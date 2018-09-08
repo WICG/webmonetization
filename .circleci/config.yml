@@ -52,3 +52,8 @@ jobs:
 
               git push origin $TARGET_BRANCH
             fi
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
