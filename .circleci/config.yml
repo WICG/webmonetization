@@ -45,7 +45,7 @@ jobs:
               cd out
 
               git add -A
-              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+              git commit -m "chore: automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
               git push origin $TARGET_BRANCH
             fi
