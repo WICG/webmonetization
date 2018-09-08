@@ -60,7 +60,7 @@ class Index extends React.Component {
                 </Paragraph>
                 <List>
                   <ListItem><a href="https://coil.com">Coil</a></ListItem>
-                  <ListItem>Do you know another provider? <a href="">Create a PR</a></ListItem>
+                  <ListItem>Do you know another provider? <a href="https://github.com/interledger/webmonetization.org/edit/master/src/pages/Index/Index.js">Make a PR</a></ListItem>
                 </List>
               </Content>
             </Section>
