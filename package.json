@@ -1,7 +1,8 @@
 {
-  "name": "create-react-app",
+  "name": "webmonetization.org",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://webmonetization.org/",
   "dependencies": {
     "@material-ui/core": "latest",
     "prop-types": "latest",
