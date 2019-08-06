@@ -44,17 +44,19 @@ class Index extends React.Component {
               </Content>
             </Section>
           </Grid>
-          <Grid item xs={12}>
-          <Section>
+          <Grid item xs={12} sm={6}>
+            <Section>
               <Heading>Explainer</Heading>
               <Content>
-                <a href="https://adrianhopebailie.github.io/web-monetization/explainer/">WICG Proposal</a>
+                Read the <a href="https://adrianhopebailie.github.io/web-monetization/explainer.html">explainer</a> submitted to the W3C.
               </Content>
             </Section>
+          </Grid>
+          <Grid item xs={12} sm={6}>
             <Section>
               <Heading>Specification</Heading>
               <Content>
-                <a href="https://adrianhopebailie.github.io/web-monetization/">Web Monetization - Draft Community Group Report</a>
+                Read the formal <a href="https://adrianhopebailie.github.io/web-monetization/">specification</a>.
               </Content>
             </Section>
           </Grid>
