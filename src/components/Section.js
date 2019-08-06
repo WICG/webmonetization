@@ -4,11 +4,11 @@ import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
   root: {
-    padding: `${theme.spacing.unit * 3}px`,
+    padding: `${theme.spacing(3)}px`,
     border: `1px solid rgba(0, 0, 0, 0.125)`
   },
   heading: {
-    marginBottom: `${theme.spacing.unit * 1}px`
+    marginBottom: `${theme.spacing(1)}px`
   },
   content: {
   }
@@ -21,7 +21,7 @@ export default withStyles(styles)(({ classes, children, ...props }) => (
 ))
 
 export const Heading = withStyles(styles)(({ classes, children, ...props }) => (
-  <Typography variant="headline" gutterBottom className={classes.heading} {...props}>
+  <Typography variant="h4" gutterBottom className={classes.heading} {...props}>
     {children}
   </Typography>
 ))

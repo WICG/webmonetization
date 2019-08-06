@@ -21,10 +21,10 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: '"Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-    fontSize: '0.9375rem',
+    fontSize: 14,
     fontWeight: 400,
     headline: {
-      fontSize: '1.40625rem',
+      fontSize: 20,
       fontWeight: 300
     }
   }

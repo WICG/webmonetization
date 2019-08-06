@@ -9,7 +9,7 @@ const styles = theme => ({
 })
 
 export default withStyles(styles)(({ classes, ...props }) => (
-  <Typography className={classes.root} variant="display4" gutterBottom {...props}>
-    Web Monetization is a JavaScript browser API which allows the creation of bi-directional payment streams between the user agent and the website.
+  <Typography className={classes.root} variant="h5" gutterBottom {...props}>
+    Web Monetization is a JavaScript browser API which allows the creation of a payment stream from the user agent to the website.
   </Typography>
 ))

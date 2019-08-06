@@ -3,17 +3,18 @@ import Grid from '@material-ui/core/Grid'
 import withRoot from '../../withRoot'
 import Container from '../../components/Container'
 import Section, { Heading, Content } from '../../components/Section'
-import List, { ListItem } from '../../components/List'
 import Paragraph from '../../components/Paragraph'
+import Providers from '../../components/Providers'
 import Logo from './Logo'
 import ProjectStatus from './ProjectStatus'
 import MainDescription from './MainDescription'
+import Resources from '../../components/Resources';
 
 class Index extends React.Component {
   render () {
     return (
       <Container>
-        <Grid container spacing={24}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <Logo />
           </Grid>
@@ -44,10 +45,16 @@ class Index extends React.Component {
             </Section>
           </Grid>
           <Grid item xs={12}>
+          <Section>
+              <Heading>Explainer</Heading>
+              <Content>
+                <a href="https://adrianhopebailie.github.io/web-monetization/explainer/">WICG Proposal</a>
+              </Content>
+            </Section>
             <Section>
               <Heading>Specification</Heading>
               <Content>
-                <a href="https://interledger.org/rfcs/0028-web-monetization/">IL-RFC 28: Web Monetization</a>
+                <a href="https://adrianhopebailie.github.io/web-monetization/">Web Monetization - Draft Community Group Report</a>
               </Content>
             </Section>
           </Grid>
@@ -58,10 +65,7 @@ class Index extends React.Component {
                 <Paragraph>
                   Here are some providers offering Web Monetization Services today:
                 </Paragraph>
-                <List>
-                  <ListItem><a href="https://coil.com">Coil</a></ListItem>
-                  <ListItem>Do you know another provider? <a href="https://github.com/interledger/webmonetization.org/edit/master/src/pages/Index/Index.js">Make a PR</a></ListItem>
-                </List>
+                <Providers />
               </Content>
             </Section>
           </Grid>
@@ -70,8 +74,9 @@ class Index extends React.Component {
               <Heading>For Creators</Heading>
               <Content>
                 <Paragraph>
-                  Instructions for adding Web Monetization to your site are coming soon!
+                  Here are resources on how to add Web Monetization to your site:
                 </Paragraph>
+                <Resources/>
               </Content>
             </Section>
           </Grid>
