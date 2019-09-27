@@ -13,10 +13,37 @@ const users = [
   },
 ];
 
+const wallets = [
+  {
+    name: "XRP Tip Bot",
+    image: "tipbot_logo.svg",
+    link: "https://www.xrptipbot.com"
+  },
+  {
+    name: "Gatehub",
+    image: "gatehub_logo.svg",
+    link: "https://gatehub.net"
+  },
+  {
+    name: "Stronghold",
+    image: "stronghold_logo.svg",
+    link: "https://stronghold.co"
+  },
+];
+
+const providers = [
+  {
+    name: "Coil",
+    image: "coil_logo.svg",
+    link: "https://coil.com"
+  },
+];
+
 const siteConfig = {
   title: 'Web Monetization', // Title for your website.
   tagline: 'A JavaScript browser API which allows the creation of a payment stream from the user agent to the website',
   url: 'https://webmonetization.org', // Your website URL
+  cname: 'webmonetization.org',
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
@@ -40,10 +67,13 @@ const siteConfig = {
   // If you have users set above, you add it here:
   users,
 
+  providers,
+  wallets,
+
   /* path to images for header/footer */
-  headerIcon: 'img/webmon_icon_simple.svg',
+  headerIcon: 'img/wm-icon.svg',
   footerIcon: 'img/webmon_icon_simple.svg',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/fav-webmonetization.png',
 
   /* Colors for website */
   colors: {
@@ -62,9 +92,9 @@ const siteConfig = {
       "system-ui"
     ]
   },
-
+ 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `© ${new Date().getFullYear()} Interledger Foundation`,
+  // copyright: ``,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.

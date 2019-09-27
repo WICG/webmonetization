@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "A website for testing",
+    "tagline": "A JavaScript browser API which allows the creation of a payment stream from the user agent to the website",
     "docs": {
       "doc1": {
         "title": "Latin-ish",
@@ -24,9 +24,9 @@
     },
     "links": {
       "Docs": "Docs",
-      "API": "API",
-      "Help": "Help",
-      "Blog": "Blog"
+      "Specification": "Specification",
+      "Forum": "Forum",
+      "GitHub": "GitHub"
     },
     "categories": {
       "Docusaurus": "Docusaurus",

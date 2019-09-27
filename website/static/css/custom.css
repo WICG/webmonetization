@@ -5,7 +5,12 @@ h2 {
 
 .homeContainer {
     background: #282C34;
-    padding: 60px;
+    padding: 2em 2em;
+    overflow: hidden;
+}
+
+.nav-footer {
+    padding: 2em;
 }
 
 .bgLogo {
@@ -20,10 +25,11 @@ h2 {
 }
 
 .projectTitle > small {
-    font-weight: lighter;
+    font-weight: 300;
     opacity: 0.6;
     line-height: 1.4em;
     font-size: 21px;
+    letter-spacing: 0.03em;
 }
 
 .inner {
@@ -35,8 +41,7 @@ h2 {
     background: #000000;
     color: #FFFFFF;
     text-align: center;
-    padding-top: 47px;
-    padding-bottom: 47px;
+    padding: 45px 20px;
     display: flex;
     justify-content: center;
     position: relative;
@@ -59,8 +64,7 @@ h2 {
 .contentContainer {
     max-width: 532px;
     margin: auto;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    padding: 0 2em 5em 2em;
 }
 
 .contentContainer p {
@@ -70,8 +74,7 @@ h2 {
 
 .cardBlock {
     text-align: center;
-    margin-top: 80px;
-    margin-bottom: 80px;
+    padding: 0 2em 5em 2em;
 }
 
 .cardBlock p {
@@ -80,7 +83,9 @@ h2 {
 
 .cardContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .card {
@@ -115,14 +120,45 @@ h2 {
     color: #A4A8B1;
 }
 
+.resource {
+    flex: 1;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.resource:first-child {
+    margin-left: 0;
+}
+
+.resource:last-child {
+    margin-right: 0;
+}
+
 .resource p {
     color: #636975;
+}
+
+@media only screen and (max-device-width: 736px) {
+    .bgLogo {
+        display: none;
+    }
+
+    .resourceContainer {
+        flex-direction: column;
+    }
+
+    .resource {
+        margin: 0;
+    }
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
 @media only screen and (min-width: 1024px) {
+    .cardContainer {
+        flex-direction: row;
+    }
 }
 
 @media only screen and (max-width: 1023px) {
