@@ -1,0 +1,135 @@
+/* custom css */
+h2 {
+    font-size: 40px;
+}
+
+.homeContainer {
+    background: #282C34;
+    padding: 60px;
+}
+
+.bgLogo {
+    position: absolute;
+    margin-left: 60px;
+    margin-top: -20px;
+}
+
+.projectTitle {
+    color: #FFFFFF;
+    font-weight: normal;
+}
+
+.projectTitle > small {
+    font-weight: lighter;
+    opacity: 0.6;
+    line-height: 1.4em;
+    font-size: 21px;
+}
+
+.inner {
+    max-width: 560px;
+    margin: auto;
+}
+
+.splashFooter {
+    background: #000000;
+    color: #FFFFFF;
+    text-align: center;
+    padding-top: 47px;
+    padding-bottom: 47px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.splashFooter > div {
+    max-width: 532px;
+    font-size: 17px;
+}
+
+.splashFooter a {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.contentBlock {
+    border-bottom: 1px solid #E3E5E9;
+}
+
+.contentContainer {
+    max-width: 532px;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.contentContainer p {
+    color: #636975;
+    font-size: 17px;
+}
+
+.cardBlock {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.cardBlock p {
+    color: #636975;
+}
+
+.cardContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.card {
+    font-size: 14px;
+    color: #636975;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 33px;
+    width: 258px;
+    height: 110px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    margin: 8px;
+}
+
+.card a {
+    color: dodgerblue;
+}
+
+.resources a {
+    color: dodgerblue;
+}
+
+.resourceContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.resourceContainer + p {
+    color: #A4A8B1;
+}
+
+.resource p {
+    color: #636975;
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}
