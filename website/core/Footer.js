@@ -25,6 +25,9 @@ class Footer extends React.Component {
             <a href='/'>
               Home
             </a>
+            <a href='/meta-tag'>
+              Meta Tag Generator
+            </a>
           </div>
           <div>
             <h5>Community</h5>
