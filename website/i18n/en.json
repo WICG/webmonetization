@@ -5,21 +5,29 @@
     "previous": "Previous",
     "tagline": "A JavaScript browser API which allows the creation of a payment stream from the user agent to the website",
     "docs": {
-      "doc1": {
-        "title": "Latin-ish",
-        "sidebar_label": "Example Page"
+      "api": {
+        "title": "API",
+        "sidebar_label": "API"
       },
-      "doc2": {
-        "title": "document number 2"
+      "explainer": {
+        "title": "Web Monetization Explainer",
+        "sidebar_label": "Web Monetization"
       },
-      "doc3": {
-        "title": "This is document number 3"
+      "getting-started": {
+        "title": "Getting Started",
+        "sidebar_label": "Getting Started"
       },
-      "doc4": {
-        "title": "Other Document"
+      "receiving": {
+        "title": "Receiving Payments",
+        "sidebar_label": "Receiving Payments"
       },
-      "doc5": {
-        "title": "Fifth Document"
+      "sending": {
+        "title": "Web Monetization Senders",
+        "sidebar_label": "Senders"
+      },
+      "specification": {
+        "title": "Web Monetization Specification",
+        "sidebar_label": "Specification"
       }
     },
     "links": {
@@ -29,9 +37,9 @@
       "GitHub": "GitHub"
     },
     "categories": {
-      "Docusaurus": "Docusaurus",
-      "First Category": "First Category",
-      "Second Category": "Second Category"
+      "Overview": "Overview",
+      "Explainer": "Explainer",
+      "More": "More"
     }
   },
   "pages-strings": {

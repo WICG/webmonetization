@@ -2,8 +2,7 @@ const React = require('react');
 
 class Footer extends React.Component {
   docUrl(doc, language) {
-    const baseUrl = this.props.config.baseUrl;
-    const docsUrl = this.props.config.docsUrl;
+    const { baseUrl, docsUrl } = this.props.config;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
     const langPart = `${language ? `${language}/` : ''}`;
     return `${baseUrl}${docsPart}${langPart}${doc}`;
@@ -56,10 +55,9 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>Resources</h5>
-            <a href={this.docUrl('doc1.html', this.props.language)}>Docs</a>
-            <a>Specification</a>
-            <a>Coil Developer Docs</a>
-            <a>Payment Pointers</a>
+            <a href={this.docUrl('getting-started.html', this.props.language)}>Docs</a>
+            <a href="https://adrianhopebailie.github.io/web-monetization/">Specification</a>
+            <a href="https://paymentpointers.org">Payment Pointers</a>
           </div>
         </section>
         <section className="copyright">{this.props.config.copyright}</section>

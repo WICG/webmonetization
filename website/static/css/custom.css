@@ -2,6 +2,21 @@
 h2 {
     font-size: 40px;
 }
+.fixedHeaderContainer {
+  background: #000000;
+}
+
+.navigationSlider .slidingNav ul li > a:hover {
+  background-color: #000000;
+}
+
+.navigationSlider .slidingNav ul li > a:focus {
+  background-color: #000000;
+}
+
+.navigationSlider .slidingNav ul li.siteNavGroupActive > a {
+  background-color: #000000;
+}
 
 .homeContainer {
     background: #282C34;

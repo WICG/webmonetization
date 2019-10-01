@@ -9,10 +9,7 @@ const GridBlock = CompLibrary.GridBlock;
 class HomeSplash extends React.Component {
   render() {
     const {siteConfig, language = ''} = this.props;
-    const {baseUrl, docsUrl} = siteConfig;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
-    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const {baseUrl } = siteConfig;
 
     const SplashContainer = props => (
       <div className="homeContainer">
@@ -48,7 +45,10 @@ class HomeSplash extends React.Component {
 class Index extends React.Component {
   render() {
     const { config: siteConfig, language = '' } = this.props;
-    const { baseUrl } = siteConfig;
+    const { baseUrl, docsUrl } = siteConfig;
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
+    const langPart = `${language ? `${language}/` : ''}`;
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const SpashFooter = () => {
       return (
@@ -111,7 +111,7 @@ class Index extends React.Component {
     
     const LastCard = () => (
       <div className="card">
-        <span>Do you know another provider? <a>Make a PR</a></span>
+        <span>Do you know another provider? <a href="https://github.com/interledger/webmonetization.org/edit/master/website/siteConfig.js">Make a PR</a></span>
       </div>
     )
 
@@ -145,18 +145,18 @@ class Index extends React.Component {
         <div className="resourceContainer">
           <div className="resource">
             <h3>Documentation</h3>
-            <p>Resource on how to add Web Monetization to your site.<br /><a>Read docs ></a></p>
+            <p>Resource on how to add Web Monetization to your site.<br /><a href={docUrl('getting-started.html', this.props.language)}>Read docs ›</a></p>
           </div>
           <div className="resource">
             <h3>Explainer</h3>
-            <p>The explainer submitted to the W3C.<br /><a>Read explainer ></a></p>
+            <p>The explainer submitted to the W3C.<br /><a href={docUrl('explainer.html', this.props.language)}>Read explainer ›</a></p>
           </div>
           <div className="resource">
             <h3>Specification</h3>
-            <p>The formal specification.<br /><a href="https://adrianhopebailie.github.io/web-monetization/">Read specs ></a></p>
+            <p>The formal specification.<br /><a href="https://adrianhopebailie.github.io/web-monetization/">Read specs ›</a></p>
           </div>
         </div>
-        <p>Do you know other developer resources? <a>Make a PR</a></p>
+        <p>Do you know other developer resources? <a href="https://github.com/interledger/webmonetization.org">Make a PR</a></p>
       </Container>
 
     return (

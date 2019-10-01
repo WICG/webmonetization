@@ -58,7 +58,7 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    { doc: 'doc1', label: 'Docs' },
+    { doc: 'getting-started', href: '/docs', label: 'Docs' },
     { href: 'https://adrianhopebailie.github.io/web-monetization/', label: 'Specification' },
     { href: 'https://forum.interledger.org', label: 'Forum' },
     { href: 'https://github.com/interledger/webmonetization.org', label: 'GitHub' },
@@ -77,7 +77,7 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#000000',
+    primaryColor: '#0080FF',
     secondaryColor: '#282C34',
   },
 
@@ -98,7 +98,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-light',
   },
 
   // Add custom scripts here that would be placed in <script> tags.

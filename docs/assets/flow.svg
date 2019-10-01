@@ -1,0 +1,395 @@
+<svg id="mermaid-1567542729025" width="100%" xmlns="http://www.w3.org/2000/svg" height="100%" style="max-width:850px;" viewBox="-50 -10 850 590"><style>
+
+
+#mermaid-1567542729025 .label {
+  font-family: 'trebuchet ms', verdana, arial;
+  color: #333; }
+
+#mermaid-1567542729025 .label text {
+  fill: #333; }
+
+#mermaid-1567542729025 .node rect,
+#mermaid-1567542729025 .node circle,
+#mermaid-1567542729025 .node ellipse,
+#mermaid-1567542729025 .node polygon {
+  fill: #eee;
+  stroke: #999;
+  stroke-width: 1px; }
+
+#mermaid-1567542729025 .node.clickable {
+  cursor: pointer; }
+
+#mermaid-1567542729025 .arrowheadPath {
+  fill: #333333; }
+
+#mermaid-1567542729025 .edgePath .path {
+  stroke: #666;
+  stroke-width: 1.5px; }
+
+#mermaid-1567542729025 .edgeLabel {
+  background-color: white; }
+
+#mermaid-1567542729025 .cluster rect {
+  fill: #eaf2fb;
+  stroke: #26a;
+  stroke-width: 1px; }
+
+#mermaid-1567542729025 .cluster text {
+  fill: #333; }
+
+#mermaid-1567542729025 div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #eaf2fb;
+  border: 1px solid #26a;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100; }
+
+#mermaid-1567542729025 .actor {
+  stroke: #999;
+  fill: #eee; }
+
+#mermaid-1567542729025 text.actor {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1567542729025 .actor-line {
+  stroke: #666; }
+
+#mermaid-1567542729025 .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1567542729025 .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: '2 2';
+  stroke: #333; }
+
+#mermaid-1567542729025 #arrowhead {
+  fill: #333; }
+
+#mermaid-1567542729025 .sequenceNumber {
+  fill: white; }
+
+#mermaid-1567542729025 #sequencenumber {
+  fill: #333; }
+
+#mermaid-1567542729025 #crosshead path {
+  fill: #333 !important;
+  stroke: #333 !important; }
+
+#mermaid-1567542729025 .messageText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1567542729025 .labelBox {
+  stroke: #999;
+  fill: #eee; }
+
+#mermaid-1567542729025 .labelText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1567542729025 .loopText {
+  fill: #333;
+  stroke: none; }
+
+#mermaid-1567542729025 .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: '2 2';
+  stroke: #999; }
+
+#mermaid-1567542729025 .note {
+  stroke: #777700;
+  fill: #ffa; }
+
+#mermaid-1567542729025 .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px; }
+
+#mermaid-1567542729025 .activation0 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+#mermaid-1567542729025 .activation1 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+#mermaid-1567542729025 .activation2 {
+  fill: #f4f4f4;
+  stroke: #666; }
+
+
+#mermaid-1567542729025 .section {
+  stroke: none;
+  opacity: 0.2; }
+
+#mermaid-1567542729025 .section0 {
+  fill: #80b3e6; }
+
+#mermaid-1567542729025 .section2 {
+  fill: #80b3e6; }
+
+#mermaid-1567542729025 .section1,
+#mermaid-1567542729025 .section3 {
+  fill: white;
+  opacity: 0.2; }
+
+#mermaid-1567542729025 .sectionTitle0 {
+  fill: #333; }
+
+#mermaid-1567542729025 .sectionTitle1 {
+  fill: #333; }
+
+#mermaid-1567542729025 .sectionTitle2 {
+  fill: #333; }
+
+#mermaid-1567542729025 .sectionTitle3 {
+  fill: #333; }
+
+#mermaid-1567542729025 .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px; }
+
+
+#mermaid-1567542729025 .grid .tick {
+  stroke: #e6e6e6;
+  opacity: 0.3;
+  shape-rendering: crispEdges; }
+
+#mermaid-1567542729025 .grid path {
+  stroke-width: 0; }
+
+
+#mermaid-1567542729025 .today {
+  fill: none;
+  stroke: #d42;
+  stroke-width: 2px; }
+
+
+
+#mermaid-1567542729025 .task {
+  stroke-width: 2; }
+
+#mermaid-1567542729025 .taskText {
+  text-anchor: middle;
+  font-size: 11px; }
+
+#mermaid-1567542729025 .taskTextOutsideRight {
+  fill: #333;
+  text-anchor: start;
+  font-size: 11px; }
+
+#mermaid-1567542729025 .taskTextOutsideLeft {
+  fill: #333;
+  text-anchor: end;
+  font-size: 11px; }
+
+
+#mermaid-1567542729025 .task.clickable {
+  cursor: pointer; }
+
+#mermaid-1567542729025 .taskText.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+#mermaid-1567542729025 .taskTextOutsideLeft.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+#mermaid-1567542729025 .taskTextOutsideRight.clickable {
+  cursor: pointer;
+  fill: #003163 !important;
+  font-weight: bold; }
+
+
+#mermaid-1567542729025 .taskText0,
+#mermaid-1567542729025 .taskText1,
+#mermaid-1567542729025 .taskText2,
+#mermaid-1567542729025 .taskText3 {
+  fill: white; }
+
+#mermaid-1567542729025 .task0,
+#mermaid-1567542729025 .task1,
+#mermaid-1567542729025 .task2,
+#mermaid-1567542729025 .task3 {
+  fill: #26a;
+  stroke: #1a4d80; }
+
+#mermaid-1567542729025 .taskTextOutside0,
+#mermaid-1567542729025 .taskTextOutside2 {
+  fill: #333; }
+
+#mermaid-1567542729025 .taskTextOutside1,
+#mermaid-1567542729025 .taskTextOutside3 {
+  fill: #333; }
+
+
+#mermaid-1567542729025 .active0,
+#mermaid-1567542729025 .active1,
+#mermaid-1567542729025 .active2,
+#mermaid-1567542729025 .active3 {
+  fill: #eee;
+  stroke: #1a4d80; }
+
+#mermaid-1567542729025 .activeText0,
+#mermaid-1567542729025 .activeText1,
+#mermaid-1567542729025 .activeText2,
+#mermaid-1567542729025 .activeText3 {
+  fill: #333 !important; }
+
+
+#mermaid-1567542729025 .done0,
+#mermaid-1567542729025 .done1,
+#mermaid-1567542729025 .done2,
+#mermaid-1567542729025 .done3 {
+  stroke: #666;
+  fill: #bbb;
+  stroke-width: 2; }
+
+#mermaid-1567542729025 .doneText0,
+#mermaid-1567542729025 .doneText1,
+#mermaid-1567542729025 .doneText2,
+#mermaid-1567542729025 .doneText3 {
+  fill: #333 !important; }
+
+
+#mermaid-1567542729025 .crit0,
+#mermaid-1567542729025 .crit1,
+#mermaid-1567542729025 .crit2,
+#mermaid-1567542729025 .crit3 {
+  stroke: #b1361b;
+  fill: #d42;
+  stroke-width: 2; }
+
+#mermaid-1567542729025 .activeCrit0,
+#mermaid-1567542729025 .activeCrit1,
+#mermaid-1567542729025 .activeCrit2,
+#mermaid-1567542729025 .activeCrit3 {
+  stroke: #b1361b;
+  fill: #eee;
+  stroke-width: 2; }
+
+#mermaid-1567542729025 .doneCrit0,
+#mermaid-1567542729025 .doneCrit1,
+#mermaid-1567542729025 .doneCrit2,
+#mermaid-1567542729025 .doneCrit3 {
+  stroke: #b1361b;
+  fill: #bbb;
+  stroke-width: 2;
+  cursor: pointer;
+  shape-rendering: crispEdges; }
+
+#mermaid-1567542729025 .milestone {
+  transform: rotate(45deg) scale(0.8, 0.8); }
+
+#mermaid-1567542729025 .milestoneText {
+  font-style: italic; }
+
+#mermaid-1567542729025 .doneCritText0,
+#mermaid-1567542729025 .doneCritText1,
+#mermaid-1567542729025 .doneCritText2,
+#mermaid-1567542729025 .doneCritText3 {
+  fill: #333 !important; }
+
+#mermaid-1567542729025 .activeCritText0,
+#mermaid-1567542729025 .activeCritText1,
+#mermaid-1567542729025 .activeCritText2,
+#mermaid-1567542729025 .activeCritText3 {
+  fill: #333 !important; }
+
+#mermaid-1567542729025 .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: #333; }
+
+#mermaid-1567542729025 g.classGroup text {
+  fill: #999;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 10px; }
+
+#mermaid-1567542729025 g.classGroup rect {
+  fill: #eee;
+  stroke: #999; }
+
+#mermaid-1567542729025 g.classGroup line {
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 .classLabel .box {
+  stroke: none;
+  stroke-width: 0;
+  fill: #eee;
+  opacity: 0.5; }
+
+#mermaid-1567542729025 .classLabel .label {
+  fill: #999;
+  font-size: 10px; }
+
+#mermaid-1567542729025 .relation {
+  stroke: #999;
+  stroke-width: 1;
+  fill: none; }
+
+#mermaid-1567542729025 #compositionStart {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 #compositionEnd {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 #aggregationStart {
+  fill: #eee;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 #aggregationEnd {
+  fill: #eee;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 #dependencyStart {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 #dependencyEnd {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 #extensionStart {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 #extensionEnd {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 1; }
+
+#mermaid-1567542729025 .commit-id,
+#mermaid-1567542729025 .commit-msg,
+#mermaid-1567542729025 .branch-label {
+  fill: lightgrey;
+  color: lightgrey; }
+
+#mermaid-1567542729025 .sequenceNumber { margin: 10px; }</style><style>#mermaid-1567542729025 {
+    color: rgba(0, 0, 0, 0.65);
+    font: ;
+  }</style><g></g><g><line id="actor6058" x1="75" y1="5" x2="75" y2="570" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="0" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="75" dy="-14">WM Receiver</tspan></text><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="75" dy="0"></tspan></text><text x="75" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="75" dy="14">(Website's Wallet)</tspan></text></g><g><line id="actor6059" x1="275" y1="5" x2="275" y2="570" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="200" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="275" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="275" dy="0">Web Page</tspan></text></g><g><line id="actor6060" x1="475" y1="5" x2="475" y2="570" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="400" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="475" dy="-14">User Agent</tspan></text><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="475" dy="0"></tspan></text><text x="475" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="475" dy="14">(Browser)</tspan></text></g><g><line id="actor6061" x1="675" y1="5" x2="675" y2="570" class="actor-line" stroke-width="0.5px" stroke="#999"></line><rect x="600" y="0" fill="#eaeaea" stroke="#666" width="150" height="65" rx="3" ry="3" class="actor"></rect><text x="675" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="675" dy="-14">WM Sender</tspan></text><text x="675" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="675" dy="0"></tspan></text><text x="675" y="32.5" dominant-baseline="central" alignment-baseline="central" class="actor" style="text-anchor: middle; font-size: 14px; font-family: Open-Sans, sans-serif;"><tspan x="675" dy="14">(User's Wallet)  </tspan></text></g><defs><marker id="arrowhead" refX="5" refY="2" markerWidth="6" markerHeight="4" orient="auto"><path d="M 0,0 V 4 L6,2 Z"></path></marker></defs><defs><marker id="crosshead" markerWidth="15" markerHeight="8" orient="auto" refX="16" refY="4"><path fill="black" stroke="#000000" stroke-width="1px" d="M 9,2 V 6 L16,4 Z" style="stroke-dasharray: 0, 0;"></path><path fill="none" stroke="#000000" stroke-width="1px" d="M 0,1 L 6,7 M 6,1 L 0,7" style="stroke-dasharray: 0, 0;"></path></marker></defs><defs><marker id="sequencenumber" refX="15" refY="15" markerWidth="60" markerHeight="40" orient="auto"><circle cx="15" cy="15" r="6"></circle></marker></defs><g><text x="375" y="103" class="messageText" style="text-anchor: middle;">[parse monetization meta tag]</text><line x1="475" y1="110" x2="275" y2="110" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="475" y="114" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">1</text></g><g><text x="475" y="148" class="messageText" style="text-anchor: middle;">Calculate Rate (url)</text><path d="M 475,155 C 535,145 535,185 475,175" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="fill: none;"></path><text x="475" y="159" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">2</text></g><g><text x="375" y="223" class="messageText" style="text-anchor: middle;">[generate session id]</text><line x1="475" y1="230" x2="275" y2="230" class="messageLine1" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="stroke-dasharray: 3, 3; fill: none;"></line><text x="475" y="234" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">3</text></g><g><text x="275" y="268" class="messageText" style="text-anchor: middle;">Get Receiver Address and Secret (paymentPointer, sessionId)</text><line x1="475" y1="275" x2="75" y2="275" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="fill: none;"></line><text x="475" y="279" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">4</text></g><g><rect x="70" y="277" fill="#EDF2AE" stroke="#666" width="10" height="293" rx="0" ry="0" class="activation0"></rect></g><g><text x="575" y="338" class="messageText" style="text-anchor: middle;">Send Payment (receiverAddress, amount)</text><line x1="475" y1="345" x2="675" y2="345" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="fill: none;"></line><text x="475" y="349" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">5</text></g><g><rect x="670" y="347" fill="#EDF2AE" stroke="#666" width="10" height="223" rx="0" ry="0" class="activation0"></rect></g><g><text x="375" y="383" class="messageText" style="text-anchor: middle;">Send Payment (amount)</text><line x1="670" y1="390" x2="80" y2="390" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="fill: none;"></line><text x="670" y="394" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">6</text></g><g><text x="572.5" y="428" class="messageText" style="text-anchor: middle;">Payment Sent (amount)</text><line x1="670" y1="435" x2="475" y2="435" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="fill: none;"></line><text x="670" y="439" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">7</text></g><g><text x="375" y="473" class="messageText" style="text-anchor: middle;">Payment Sent (amount, sessionId)</text><line x1="475" y1="480" x2="275" y2="480" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="fill: none;"></line><text x="475" y="484" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">8</text></g><g><text x="177.5" y="543" class="messageText" style="text-anchor: middle;">Get Payments (sessionId)</text><line x1="275" y1="550" x2="80" y2="550" class="messageLine0" stroke-width="2" stroke="black" marker-end="url(#arrowhead)" marker-start="url(#sequencenumber)" style="fill: none;"></line><text x="275" y="554" font-family="sans-serif" font-size="12px" text-anchor="middle" textLength="16px" class="sequenceNumber">9</text></g><g><line x1="60" y1="490" x2="285" y2="490" class="loopLine"></line><line x1="285" y1="490" x2="285" y2="560" class="loopLine"></line><line x1="60" y1="560" x2="285" y2="560" class="loopLine"></line><line x1="60" y1="490" x2="60" y2="560" class="loopLine"></line><polygon points="60,490 110,490 110,503 101.6,510 60,510" class="labelBox"></polygon><text x="67.5" y="505" class="labelText"><tspan x="67.5">opt</tspan></text><text x="172.5" y="505" class="loopText" style="text-anchor: middle;"><tspan x="172.5">[ Confirm Payments ]</tspan></text></g><g><line x1="50" y1="285" x2="690" y2="285" class="loopLine"></line><line x1="690" y1="285" x2="690" y2="570" class="loopLine"></line><line x1="50" y1="570" x2="690" y2="570" class="loopLine"></line><line x1="50" y1="285" x2="50" y2="570" class="loopLine"></line><polygon points="50,285 100,285 100,298 91.6,305 50,305" class="labelBox"></polygon><text x="57.5" y="300" class="labelText"><tspan x="57.5">loop</tspan></text><text x="370" y="300" class="loopText" style="text-anchor: middle;"><tspan x="370">[ Streaming Micropayments (possibly throughput limited by user's wallet) ]</tspan></text></g></svg>
