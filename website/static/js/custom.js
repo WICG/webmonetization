@@ -11,6 +11,9 @@ window.addEventListener('load', function() {
 })
 
 function setpp(event) {
-  document.getElementById('pp').textContent = event.target[0].value;
   event.preventDefault();
+  var pp = event.target[0].value;
+  if (pp[0] !== "$" || pp.indexOf("=") !== -1 || pp.indexOf("+") !== -1) return
+  var url = new URL(pp.replace(/^\$/, 'https://'));
+  document.getElementById('pp').textContent = event.target[0].value;
 }
