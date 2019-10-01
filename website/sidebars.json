@@ -1,0 +1,7 @@
+{
+  "docs": {
+    "Overview": ["getting-started", "api"],
+    "Explainer": ["explainer", "receiving", "sending"],
+    "More": ["specification"]
+  }
+}
