@@ -8,6 +8,9 @@ const Container = CompLibrary.Container;
 function MetaTag(props) {
   const { config: siteConfig, language = '' } = props;
   const { baseUrl, docsUrl } = siteConfig;
+  const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
+  const langPart = `${language ? `${language}/` : ''}`;
+  const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
   return (
     <div className="docMainWrapper wrapper">
       <Container className="mainContainer documentContainer metaTagContainer">
@@ -30,7 +33,7 @@ function MetaTag(props) {
           __html: "document.getElementById('paymentPointerForm').onsubmit = setpp"
         }} />
         <p>
-          To learn more, read the on how to monetize your site, read the Coil DevDocs.
+          To learn more, read the on how to monetize your site, read the <a href={docUrl('getting-started.html', props.language)}>Docs</a>.
         </p>
         <div className="metaTagOutput">
           <p>
@@ -38,7 +41,7 @@ function MetaTag(props) {
           </p>
           <code id="metaTag">
             &lt;meta name="monetization" content="<span id="pp">$YourPaymentPointer</span>" /&gt;
-            <img src={`${baseUrl}img/copy_icon.svg`} id="copyIcon" class="btnClipboard" />
+            <img src={`${baseUrl}img/copy_icon.svg`} id="copyIcon" className="btnClipboard" />
           </code>
         </div>
       </Container>
