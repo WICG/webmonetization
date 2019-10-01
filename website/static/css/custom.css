@@ -138,6 +138,65 @@ h2 {
     color: #636975;
 }
 
+.metaTagContainer {
+    max-width: 800px;
+}
+
+.metaTagContainer p {
+    color: #636975;
+}
+
+#paymentPointerForm {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.paymentPointerInput {
+    height: 56px;
+    color: #A4A8B1;
+    background: #F5F6F8;
+    border-radius: 4px;
+    padding: 16px 24px;
+    font-size: 17px;
+    border: 0;
+    flex: 1;
+    font-family: $myOtherFont;
+}
+
+#generateButton {
+    height: 56px;
+    font-size: 16px;
+    color: #FFFFFF;
+    border-radius: 4px;
+    background: #0080FF;
+    margin-left: 16px;
+    padding-left: 26px;
+    padding-right: 26px;
+    cursor: pointer;
+    font-family: $myOtherFont;
+}
+
+.metaTagOutput {
+    margin-top: 50px;
+    line-height: 2.5em;
+}
+
+#metaTag {
+    padding: 18px 50px 18px 24px;
+    display: block;
+    line-height: 2em;
+    position: relative;
+    background: #F7F8F9;
+}
+
+#copyIcon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    margin-top: -16px;
+    cursor: pointer;
+}
+
 @media only screen and (max-device-width: 736px) {
     .bgLogo {
         display: none;
