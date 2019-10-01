@@ -12,7 +12,7 @@ jobs:
           command: |
             git config --global user.email $GH_EMAIL
             git config --global user.name $GH_NAME
-            cd website && yarn install && GIT_USER=$GH_NAME yarn run publish-gh-pages
+            cd website && yarn install && GIT_USER=$GH_NAME USE_SSH=true yarn run publish-gh-pages
 
 workflows:
   version: 2
