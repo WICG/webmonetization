@@ -3,29 +3,29 @@
 
 const wallets = [
   {
-    name: "XRP Tip Bot",
-    image: "tipbot_logo.svg",
-    link: "https://www.xrptipbot.com"
+    name: 'XRP Tip Bot',
+    image: 'tipbot_logo.svg',
+    link: 'https://www.xrptipbot.com'
   },
   {
-    name: "Gatehub",
-    image: "gatehub_logo.svg",
-    link: "https://gatehub.net"
+    name: 'Gatehub',
+    image: 'gatehub_logo.svg',
+    link: 'https://gatehub.net'
   },
   {
-    name: "Stronghold",
-    image: "stronghold_logo.svg",
-    link: "https://stronghold.co"
-  },
-];
+    name: 'Stronghold',
+    image: 'stronghold_logo.svg',
+    link: 'https://stronghold.co'
+  }
+]
 
 const providers = [
   {
-    name: "Coil",
-    image: "coil_logo.svg",
-    link: "https://coil.com"
-  },
-];
+    name: 'Coil',
+    image: 'coil_logo.svg',
+    link: 'https://coil.com'
+  }
+]
 
 const siteConfig = {
   title: 'Web Monetization', // Title for your website.
@@ -49,7 +49,7 @@ const siteConfig = {
     { doc: 'getting-started', href: '/docs', label: 'Docs' },
     { href: 'https://adrianhopebailie.github.io/web-monetization/', label: 'Specification' },
     { href: 'https://forum.interledger.org', label: 'Forum' },
-    { href: 'https://github.com/interledger/webmonetization.org', label: 'GitHub' },
+    { href: 'https://github.com/interledger/webmonetization.org', label: 'GitHub' }
   ],
 
   providers,
@@ -63,27 +63,27 @@ const siteConfig = {
   /* Colors for website */
   colors: {
     primaryColor: '#0080FF',
-    secondaryColor: '#282C34',
+    secondaryColor: '#282C34'
   },
 
   /* Custom fonts for website */
   fonts: {
     myFont: [
-      "Times New Roman",
-      "Serif"
+      'Times New Roman',
+      'Serif'
     ],
     myOtherFont: [
-      "-apple-system",
-      "system-ui"
+      '-apple-system',
+      'system-ui'
     ]
   },
- 
+
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   // copyright: ``,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'atom-one-light',
+    theme: 'atom-one-light'
   },
 
   // Add custom scripts here that would be placed in <script> tags.
@@ -99,7 +99,7 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg',
+  ogImage: 'img/undraw_online.svg'
   // twitterImage: 'img/undraw_tweetstorm.svg',
 
   // For sites with a sizable amount of content, set collapsible to true.
@@ -115,6 +115,6 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
-};
+}
 
-module.exports = siteConfig;
+module.exports = siteConfig

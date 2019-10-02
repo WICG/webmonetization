@@ -1,19 +1,21 @@
-const React = require('react');
+const React = require('react')
 
 class Footer extends React.Component {
-  docUrl(doc, language) {
-    const { baseUrl, docsUrl } = this.props.config;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
-    return `${baseUrl}${docsPart}${langPart}${doc}`;
+  docUrl (doc, language) {
+    const { baseUrl, docsUrl } = this.props.config
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`
+    const langPart = `${language ? `${language}/` : ''}`
+
+    return `${baseUrl}${docsPart}${langPart}${doc}`
   }
 
-  pageUrl(doc, language) {
-    const baseUrl = this.props.config.baseUrl;
-    return baseUrl + (language ? `${language}/` : '') + doc;
+  pageUrl (doc, language) {
+    const baseUrl = this.props.config.baseUrl
+
+    return baseUrl + (language ? `${language}/` : '') + doc
   }
 
-  render() {
+  render () {
     return (
       <footer className="nav-footer" id="footer">
         <section className="sitemap">
@@ -59,14 +61,24 @@ class Footer extends React.Component {
           <div>
             <h5>Resources</h5>
             <a href={this.docUrl('getting-started.html', this.props.language)}>Docs</a>
-            <a href="https://adrianhopebailie.github.io/web-monetization/">Specification</a>
-            <a href="https://paymentpointers.org">Payment Pointers</a>
+            <a 
+              href="https://adrianhopebailie.github.io/web-monetization/"
+              target="_blank"
+              rel="noreferrer noopener">
+              Specification
+            </a>
+            <a 
+              href="https://paymentpointers.org"
+              target="_blank"
+              rel="noreferrer noopener">
+              Payment Pointers
+            </a>
           </div>
         </section>
         <section className="copyright">{this.props.config.copyright}</section>
       </footer>
-    );
+    )
   }
 }
 
-module.exports = Footer;
+module.exports = Footer

@@ -1,15 +1,13 @@
-const React = require('react');
+const React = require('react')
 
-const CompLibrary = require('../../core/CompLibrary.js');
+const CompLibrary = require('../../core/CompLibrary.js')
 
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
-const Container = CompLibrary.Container;
-const GridBlock = CompLibrary.GridBlock;
+const Container = CompLibrary.Container
 
 class HomeSplash extends React.Component {
-  render() {
-    const {siteConfig, language = ''} = this.props;
-    const {baseUrl } = siteConfig;
+  render () {
+    const { siteConfig } = this.props
+    const { baseUrl } = siteConfig
 
     const SplashContainer = props => (
       <div className="homeContainer">
@@ -17,38 +15,38 @@ class HomeSplash extends React.Component {
           <div className="wrapper homeWrapper">{props.children}</div>
         </div>
       </div>
-    );
+    )
 
     const Logo = props => (
-      <img src={props.img_src} alt="Web Monetization Icon" style={{ width: "120px" }} />
-    );
+      <img src={props.img_src} alt="Web Monetization Icon" style={{ width: '120px' }} />
+    )
 
     const ProjectTitle = () => (
       <h2 className="projectTitle">
         {siteConfig.title}
         <small>{siteConfig.tagline}</small>
       </h2>
-    );
+    )
 
     return (
       <SplashContainer>
         <Logo img_src={`${baseUrl}img/wm-icon-animated.svg`} />
-        <img src={`${baseUrl}img/grey_wm_logo.svg`} className="bgLogo" />
+        <img src={`${baseUrl}img/grey_wm_logo.svg`} className="bgLogo" alt="" />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
         </div>
       </SplashContainer>
-    );
+    )
   }
 }
 
 class Index extends React.Component {
-  render() {
-    const { config: siteConfig, language = '' } = this.props;
-    const { baseUrl, docsUrl } = siteConfig;
-    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-    const langPart = `${language ? `${language}/` : ''}`;
-    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+  render () {
+    const { config: siteConfig, language = '' } = this.props
+    const { baseUrl, docsUrl } = siteConfig
+    const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`
+    const langPart = `${language ? `${language}/` : ''}`
+    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`
 
     const SpashFooter = () => {
       return (
@@ -63,8 +61,8 @@ class Index extends React.Component {
             </a>.
           </div>
         </div>
-      );
-    };
+      )
+    }
 
     const TextBlock = props => (
       <div className="contentBlock">
@@ -72,8 +70,8 @@ class Index extends React.Component {
           {props.children}
         </div>
       </div>
-    );
-    
+    )
+
     const Motivation = () => (
       <TextBlock>
         <h2>Motivation</h2>
@@ -86,20 +84,20 @@ class Index extends React.Component {
           web infrastructure.
         </p>
       </TextBlock>
-    );
+    )
 
     const WhyNow = () => (
       <TextBlock>
         <h2>Why Now?</h2>
         <p>
           Until recently, there hasn't been an open, neutral protocol
-          for transferring money. Interledger provides a simple,
+          for transferring money. <a href="https://interledger.org" target="_blank" rel="noreferrer noopener">Interledger</a> provides a simple,
           ledger-agnostic, and currency-agnostic method for the transfer
           of small quantities of money. This opens up the possibility for
           streaming money, which makes Web Monetization possible for the first time.
         </p>
       </TextBlock>
-    );
+    )
 
     const CardBlock = props => (
       <div className="contentBlock" id={props.id}>
@@ -108,23 +106,29 @@ class Index extends React.Component {
         </div>
       </div>
     )
-    
+
     const LastCard = () => (
       <div className="card">
-        <span>Do you know another provider? <a href="https://github.com/interledger/webmonetization.org/edit/master/website/siteConfig.js">Make a PR</a></span>
+        <span>Do you know another provider?&nbsp;
+          <a href="https://github.com/interledger/webmonetization.org/edit/master/website/siteConfig.js"
+            target="_blank"
+            rel="noreferrer noopener">
+            Make a PR
+          </a>
+        </span>
       </div>
     )
 
     const CardSet = props =>
       <div className="cardContainer">
         {props.cards.map(({ name, image, link }) =>
-          <a className="card" href={link} key={name}>
+          <a className="card" href={link} target="_blank" rel="noreferrer noopener" key={name}>
             <img src={`${baseUrl}img/${image}`} alt={name} />
           </a>
         )}
         <LastCard />
       </div>
-    
+
     const Wallets = () =>
       <CardBlock id="wallets">
         <h2>Web Monetization Wallets</h2>
@@ -132,7 +136,7 @@ class Index extends React.Component {
         <CardSet cards={siteConfig.wallets} />
       </CardBlock>
 
-    const Providers = () =>      
+    const Providers = () =>
       <CardBlock id="providers">
         <h2>Web Monetization Providers</h2>
         <p>These providers offer Web Monetization services</p>
@@ -153,10 +157,16 @@ class Index extends React.Component {
           </div>
           <div className="resource">
             <h3>Specification</h3>
-            <p>The formal specification.<br /><a href="https://adrianhopebailie.github.io/web-monetization/">Read specs ›</a></p>
+            <p>The formal specification.<br />
+              <a href="https://adrianhopebailie.github.io/web-monetization/"
+                target="_blank"
+                rel="noreferrer noopener">
+                Read specs ›
+              </a>
+            </p>
           </div>
         </div>
-        <p>Do you know other developer resources? <a href="https://github.com/interledger/webmonetization.org">Make a PR</a></p>
+        <p>Do you know other developer resources? <a href="https://github.com/interledger/webmonetization.org" target="_blank" rel="noreferrer noopener">Make a PR</a></p>
       </Container>
 
     return (
@@ -171,8 +181,8 @@ class Index extends React.Component {
           <Resources />
         </div>
       </div>
-    );
+    )
   }
 }
 
-module.exports = Index;
+module.exports = Index
