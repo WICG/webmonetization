@@ -8,6 +8,7 @@ window.addEventListener('load', function() {
   clipboard.on('success', function(event) {
     event.clearSelection();
   })
+  navigator.serviceWorker.register('/service-worker.js');
 })
 
 function setpp(event) {
