@@ -32,7 +32,7 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/wm-icon-anim.svg`} />
+        <Logo img_src={`${baseUrl}img/wm-icon-animated.svg`} />
         <img src={`${baseUrl}img/grey_wm_logo.svg`} className="bgLogo" />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
