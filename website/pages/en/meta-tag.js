@@ -1,16 +1,16 @@
-const React = require('react');
-const { useState } = require('react');
+const React = require('react')
 
-const CompLibrary = require('../../core/CompLibrary.js');
+const CompLibrary = require('../../core/CompLibrary.js')
 
-const Container = CompLibrary.Container;
+const Container = CompLibrary.Container
 
-function MetaTag(props) {
-  const { config: siteConfig, language = '' } = props;
-  const { baseUrl, docsUrl } = siteConfig;
-  const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`;
-  const langPart = `${language ? `${language}/` : ''}`;
-  const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+function MetaTag (props) {
+  const { config: siteConfig, language = '' } = props
+  const { baseUrl, docsUrl } = siteConfig
+  const docsPart = `${docsUrl ? `${docsUrl}/` : ''}`
+  const langPart = `${language ? `${language}/` : ''}`
+  const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`
+
   return (
     <div className="docMainWrapper wrapper">
       <Container className="mainContainer documentContainer metaTagContainer">
@@ -22,7 +22,7 @@ function MetaTag(props) {
           Just provide your Payment Pointer and click generate.
         </p>
         <form id="paymentPointerForm">
-          <input 
+          <input
             className="paymentPointerInput"
             type="text"
             placeholder="$YourPaymentPointer"
@@ -41,7 +41,7 @@ function MetaTag(props) {
           </p>
           <code id="metaTag">
             &lt;meta name="monetization" content="<span id="pp">$YourPaymentPointer</span>" /&gt;
-            <img src={`${baseUrl}img/copy_icon.svg`} id="copyIcon" className="btnClipboard" />
+            <img src={`${baseUrl}img/copy_icon.svg`} id="copyIcon" className="btnClipboard" alt="copy-icon"/>
           </code>
         </div>
       </Container>
@@ -49,4 +49,4 @@ function MetaTag(props) {
   )
 }
 
-module.exports = MetaTag;
+module.exports = MetaTag

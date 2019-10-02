@@ -24,12 +24,13 @@ $ yarn start
 Your project file structure should look something like this
 
 ```
-webmonetization.org/
+webmonetization.org
 ├── docker-compose.yml
 ├── Dockerfile
-├── docs/
+├── docs
 │   ├── api.md
 │   ├── assets
+│   │   └── flow.svg
 │   ├── explainer.md
 │   ├── getting-started.md
 │   ├── receiving.md
@@ -38,17 +39,37 @@ webmonetization.org/
 ├── explainer.md
 ├── LICENSE
 ├── README.md
-└── website/
-    ├── blog
-    ├── build
+└── website
     ├── core
+    │   └── Footer.js
     ├── i18n
-    ├── node_modules
+    │   └── en.json
     ├── package.json
     ├── pages
+    │   └── en
+    │       ├── docs.js
+    │       ├── index.js
+    │       └── meta-tag.js
     ├── sidebars.json
     ├── siteConfig.js
     ├── static
+    │   ├── css
+    │   │   └── custom.css
+    │   ├── img
+    │   │   ├── coil_logo.svg
+    │   │   ├── copy_icon.svg
+    │   │   ├── favicon.ico
+    │   │   ├── fav-webmonetization.png
+    │   │   ├── gatehub_logo.svg
+    │   │   ├── grey_wm_logo.svg
+    │   │   ├── stronghold_logo.svg
+    │   │   ├── tipbot_logo.svg
+    │   │   ├── webmon_icon_simple.svg
+    │   │   ├── webmon_icon.svg
+    │   │   ├── wm-icon-animated.svg
+    │   │   └── wm-icon.svg
+    │   └── js
+    │       └── custom.js
     └── yarn.lock
 ```
 
