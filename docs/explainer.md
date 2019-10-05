@@ -351,7 +351,7 @@ has a readonly `state` property. Initially the browser sets
     object containing the Payment Pointer and the Session ID.
 
 6.  The browser continues to send payments at the calculated rate. Every time
-    the it completes a payment (including the first payment) it dispatches a
+    it completes a payment (including the first payment) it dispatches a
     `monetizationprogress` event from `document.monetization`. The event has a
     `detail` field with an object containing the amount and currency of the
     payment.
