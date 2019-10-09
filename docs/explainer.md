@@ -1,3 +1,4 @@
+
 ---
 id: explainer
 title: Web Monetization Explainer
@@ -25,11 +26,11 @@ exchange for consuming the content and/or services on the website.
 The experience must be frictionless for users. It must allow users to
 pre-approve payments in aggregate or delegate the authorization of the
 individual small payments to a component/service (a Web Monetization Agent) that
-makes decisions about when to pay websites and how much without the need for
+makes decisions about when to pay websites, and how much, without the need for
 user interaction.
 
-This system must preserve the user's privacy. It must not be possible for
-websites to track users on the basis of the payments they make and it must not
+This system must preserve the user's privacy: It must not be possible for
+websites to track users on the basis of the payments they make, and it must not
 be possible for the user's payment provider to get details of a user's browsing
 history.
 
@@ -78,22 +79,21 @@ traditional e-commerce.
 _This flow is simplified to exclude some edge cases. Numbers correspond to the
 diagram above._
 
-1. When the user visits a website that uses Web Monetization the website
-   provides the browser (via a `meta` tag in the `head` section) with a
-   **Payment Pointer** where it accepts payments.
+1. Sites that support Web Monetization include a `meta` tag whose `content` is a **Payment Pointer**.
+   As the name implies, the Payment Pointer is where the site accepts payments.
 2. The browser uses its internal **Web Monetization Agent** to calculate an
    appropriate rate of payments to make to the website.
 3. The browser generates a unique session id for this payment session.
 4. The browser fetches a unique receiving address and secret for the session
    from the website's **WM Receiver**.
-5. While the user has the page in focus the browser begins initiating payments
-   at the calculated rate to the website, using the user's **WM Sender**.
+5. While the user has the page in focus, the browser begins initiating payments
+   at the calculated rate to the website using the user's **WM Sender**.
    _(**ISSUE**: What about people listening to monetised music in a background
    tab? See
    [Issue #12](https://github.com/adrianhopebailie/web-monetization/issues/12))_
 6. The **WM Sender** sends the payment to the **WM Receiver**.
 7. The **WM Sender** notifies the browser of successful payments.
-8. The browser, in turn, raises an event that informs the web page of the
+8. The browser, in turn, dispatches an event that informs the web page of the
    payment.
 9. The web page can connect to its own backend systems to verify that the
    payment was received (using the session id to correlate the incoming payment
@@ -133,10 +133,10 @@ standards-track specification.
 
 ### Declaritive vs Imperative API?
 
-The current proposal is for a hybrid declarative and imperative API whereby
-websites declare their ability to accept micropayments using a `<meta>` tag in
-the page header and then access the global `monetization` object on the DOM to
-track incoming payment events and react to these.
+The current proposal is for a hybrid declarative and imperative API. 
+Websites declare their ability to accept WM payments using a `<meta>` tag in
+the page header. Imperatively, a developer can then access the global `monetization` 
+object on the DOM to track incoming payments stream/events and react to these.
 
 ### Use updated Payment Request and Payment Handler APIs?
 
@@ -144,22 +144,25 @@ The Web Payments WG has designed two APIs that follow a similar pattern to Web
 Monetization but for a different use case.
 
 The Payment Request API is an imperative API that websites can use to request a
-single discrete payment.
-
-This is designed to always prompt the user for authorization as part of the flow
+single discrete payment: the Payment Request API is designed to always prompt
+the user for authorization as part of the flow
 as it is designed for payment sizes where this is necessary. However, nothing
 prevents this API also supporting a non-interactive flow that supports Web
 Monetization use cases.
 
 Further, the Payment Handler API aligns well with the model anticipated for Web
-Monetization senders. A sender might manifest as a specialized Payment Handler
-capable of returning not just a `PaymentRequestResponse` but also a handle to a
+Monetization senders: A sender might manifest as a specialized Payment Handler
+capable of returning not just a `PaymentResponse` but also a handle to a
 stream of micropayments.
 
-### Streams
+### This sounds a lot like Streams...
 
 In-keeping with the trend toward streaming APIs, the API surface could be
-updated to implement the stream API rather than repeated events.
+updated to implement the [WHATWG Stream API](https://streams.spec.whatwg.org) rather
+than events. 
+
+We will investigate the pros/cons of using streams and events for Web Monetization as 
+part of the incubation process. 
 
 ## Concepts
 
@@ -230,11 +233,11 @@ account.
 ### Add &lt;meta&gt; tag to website header
 
 The website puts a `<meta>` tag in the header of the HTML documents it serves
-with the `name` attribute equal to `monetization` and the `value` attribute
+with the `name` attribute equal to `monetization` and the `content` attribute
 equal to the _Payment Pointer_ where the website will accept payments.
 
 > **Example:** Alice puts the tag
-> `<meta name="monetization" value="$secure-wallet.example/~alice">` into the
+> `<meta name="monetization" content="$secure-wallet.example/~alice">` into the
 > `<head>` section of _https://rocknrollblog.example_.
 
 Web Monetization only works on secure pages served over HTTPS (or
@@ -264,7 +267,7 @@ current browser session.
 
 ```html
 <head>
-  <meta name="monetization" value="$secure-wallet.example/~alice" />
+  <meta name="monetization" content="$secure-wallet.example/~alice" />
 </head>
 <script>
   if (document.monetization) {
@@ -351,7 +354,7 @@ has a readonly `state` property. Initially the browser sets
     object containing the Payment Pointer and the Session ID.
 
 6.  The browser continues to send payments at the calculated rate. Every time
-    it completes a payment (including the first payment) it dispatches a
+    the it completes a payment (including the first payment) it dispatches a
     `monetizationprogress` event from `document.monetization`. The event has a
     `detail` field with an object containing the amount and currency of the
     payment.
@@ -394,7 +397,6 @@ Please submit a PR if you are aware of updates to the lists below.
 
 - [XRP Tipbot](https://www.xrptipbot.com/)
 - [Stronghold](https://stronghold.co/)
-- [GateHub](https://gatehub.net/)
 
 ### WM Senders
 
