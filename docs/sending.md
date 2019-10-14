@@ -48,7 +48,7 @@ indicating that the payment failed.
 
 > **ISSUE**: Do we need to indicate WHY this payment failed? Maybe an error code?
 > 
-> See [Issue #13](https://github.com/adrianhopebailie/web-monetization/issues/13)
+> See [Issue #18](https://github.com/interledger/webmonetization.org/issues/18)
 
 When it has completed the payment it invokes `PaymentRequestEvent.respondWith()`
 passing in a Promise that resolves to an instance of
@@ -59,7 +59,7 @@ fulfillment and data from the response.
 > calling website. Should this be removed for Monetization to preserve the
 > user's privacy?
 > 
-> See [Issue #10](https://github.com/adrianhopebailie/web-monetization/issues/10)
+> See [Issue #15](https://github.com/interledger/webmonetization.org/issues/15)
 
 
 ### `MonetizationRequest` Dictionary
