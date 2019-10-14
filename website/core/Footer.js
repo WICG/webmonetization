@@ -60,14 +60,14 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>Resources</h5>
-            <a href={this.docUrl('getting-started.html', this.props.language)}>Docs</a>
-            <a 
-              href="https://adrianhopebailie.github.io/web-monetization/"
+            <a href={this.docUrl('getting-started.html')}>Docs</a>
+            <a
+              href="/specification.html"
               target="_blank"
               rel="noreferrer noopener">
               Specification
             </a>
-            <a 
+            <a
               href="https://paymentpointers.org"
               target="_blank"
               rel="noreferrer noopener">

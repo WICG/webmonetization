@@ -1,4 +1,3 @@
-
 ---
 id: explainer
 title: Web Monetization Explainer

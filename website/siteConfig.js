@@ -47,8 +47,8 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { doc: 'getting-started', href: '/docs', label: 'Docs' },
-    { href: 'https://adrianhopebailie.github.io/web-monetization/', label: 'Specification' },
-    { href: 'https://forum.interledger.org', label: 'Forum' },
+    { href: '/specification.html', label: 'Specification' },
+    { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
     { href: 'https://github.com/interledger/webmonetization.org', label: 'GitHub' }
   ],
 
