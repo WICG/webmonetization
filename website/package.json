@@ -1,4 +1,5 @@
 {
+  "license": "Apache-2.0",
   "scripts": {
     "examples": "docusaurus-examples",
     "start": "docusaurus-start",
@@ -6,16 +7,9 @@
     "publish-gh-pages": "docusaurus-publish",
     "write-translations": "docusaurus-write-translations",
     "version": "docusaurus-version",
-    "rename-version": "docusaurus-rename-version",
-    "import-explainer": "ts-node -T scripts/import-explainer.ts"
+    "rename-version": "docusaurus-rename-version"
   },
   "devDependencies": {
-    "@types/node-fetch": "^2.5.2",
-    "docusaurus": "^1.13.0",
-    "node-fetch": "^2.6.0",
-    "prettier": "^1.18.2",
-    "ts-node": "^8.4.1",
-    "ts-node-dev": "^1.0.0-pre.43",
-    "typescript": "^3.6.3"
+    "docusaurus": "^1.13.0"
   }
 }
