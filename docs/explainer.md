@@ -89,7 +89,7 @@ diagram above._
    at the calculated rate to the website using the user's **WM Sender**.
    _(**ISSUE**: What about people listening to monetised music in a background
    tab? See
-   [Issue #12](https://github.com/adrianhopebailie/web-monetization/issues/12))_
+   [Issue #17](https://github.com/interledger/webmonetization.org/issues/17))_
 6. The **WM Sender** sends the payment to the **WM Receiver**.
 7. The **WM Sender** notifies the browser of successful payments.
 8. The browser, in turn, dispatches an event that informs the web page of the
@@ -245,7 +245,7 @@ injecting their own &lt;meta&gt; tags onto pages.
 
 > **ISSUE:** How dow we ensure only legitimate tags are parsed by the browser?
 >
-> See [Issue #5](https://github.com/adrianhopebailie/web-monetization/issues/5)
+> See [Issue #14](https://github.com/interledger/webmonetization.org/issues/14)
 
 ### Handle payments
 
@@ -313,7 +313,7 @@ current browser session.
 > type?
 >
 > See
-> [Issue #11](https://github.com/adrianhopebailie/web-monetization/issues/11)
+> [Issue #16](https://github.com/interledger/webmonetization.org/issues/16)
 
 ## Browser Behaviour
 
