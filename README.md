@@ -1,9 +1,17 @@
-# WebMonetization.org 
+# WebMonetization.org
+
 [View live site](https://webmonetization.org)
+
+This repo is the home of the proposed Web Monetization standard.
+
+View the [explainer](https://webmonetization.org/docs/explainer.html), or read
+the proposed [spec](https://webmonetization.org/specification.html).
+
+## Contribute
 
 This website was created with [Docusaurus](https://docusaurus.io/).
 
-# Local Development
+### Local Development
 
 1. Make sure all the dependencies for the website are installed:
 
@@ -12,6 +20,7 @@ This website was created with [Docusaurus](https://docusaurus.io/).
 $ cd website
 $ yarn
 ```
+
 2. Run your dev server:
 
 ```sh
@@ -19,7 +28,7 @@ $ yarn
 $ yarn start
 ```
 
-## Directory Structure
+### Directory Structure
 
 Your project file structure should look something like this
 
@@ -36,7 +45,6 @@ webmonetization.org
 │   ├── receiving.md
 │   ├── sending.md
 │   └── specification.md
-├── explainer.md
 ├── LICENSE
 ├── README.md
 └── website
@@ -68,14 +76,15 @@ webmonetization.org
     │   │   ├── webmon_icon.svg
     │   │   ├── wm-icon-animated.svg
     │   │   └── wm-icon.svg
-    │   └── js
-    │       └── custom.js
+    │   ├── js
+    │   │   └── custom.js
+    │   └── specification.html
     └── yarn.lock
 ```
 
-# Editing Content
+## Editing Content
 
-## Editing an existing docs page
+### Editing an existing docs page
 
 Edit docs by navigating to `docs/` and editing the corresponding document:
 
@@ -90,13 +99,15 @@ title: This Doc Needs To Be Edited
 Edit me...
 ```
 
-For more information about docs, click [here](https://docusaurus.io/docs/en/navigation)
+For more information about docs, click
+[here](https://docusaurus.io/docs/en/navigation)
 
-# Adding Content
+## Adding Content
 
-## Adding a new docs page to an existing sidebar
+### Adding a new docs page to an existing sidebar
 
-1. Create the doc as a new markdown file in `/docs`, example `docs/newly-created-doc.md`:
+1. Create the doc as a new markdown file in `/docs`, example
+   `docs/newly-created-doc.md`:
 
 ```md
 ---
@@ -123,13 +134,16 @@ My new content here..
 }
 ```
 
-For more information about adding new docs, click [here](https://docusaurus.io/docs/en/navigation)
+For more information about adding new docs, click
+[here](https://docusaurus.io/docs/en/navigation)
 
-## Adding items to your site's top navigation bar
+### Adding items to your site's top navigation bar
 
-1. Add links to docs, custom pages or external links by editing the headerLinks field of `website/siteConfig.js`:
+1. Add links to docs, custom pages or external links by editing the headerLinks
+   field of `website/siteConfig.js`:
 
 `website/siteConfig.js`
+
 ```javascript
 {
   headerLinks: [
@@ -146,14 +160,18 @@ For more information about adding new docs, click [here](https://docusaurus.io/d
 }
 ```
 
-For more information about the navigation bar, click [here](https://docusaurus.io/docs/en/navigation)
+For more information about the navigation bar, click
+[here](https://docusaurus.io/docs/en/navigation)
 
-## Adding custom pages
+### Adding custom pages
 
-1. Docusaurus uses React components to build pages. The components are saved as .js files in `website/pages/en`:
-1. If you want your page to show up in your navigation header, you will need to update `website/siteConfig.js` to add to the `headerLinks` element:
+1. Docusaurus uses React components to build pages. The components are saved as
+   .js files in `website/pages/en`:
+1. If you want your page to show up in your navigation header, you will need to
+   update `website/siteConfig.js` to add to the `headerLinks` element:
 
 `website/siteConfig.js`
+
 ```javascript
 {
   headerLinks: [
@@ -165,8 +183,9 @@ For more information about the navigation bar, click [here](https://docusaurus.i
 }
 ```
 
-For more information about custom pages, click [here](https://docusaurus.io/docs/en/custom-pages).
+For more information about custom pages, click
+[here](https://docusaurus.io/docs/en/custom-pages).
 
-# Full Documentation
+## Full Documentation
 
 Full documentation can be found on the [website](https://docusaurus.io/).
