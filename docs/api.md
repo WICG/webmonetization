@@ -40,8 +40,8 @@ Until Web Monetization is built into the browser this will be `undefined` unless
 document.monetization && document.monetization.state === 'stopped'
 ```
 
-The user's browser is capable of Web Monetization.
-If a monetization tag is found **AND** the [Web Monetization Service Provider](/#providers) is enabled/active/etc the `document.monetization.state` will transition to `pending` as STREAMing is initiated.
+The user's browser is capable of Web Monetization but is not currently streaming payments.
+If a monetization tag is found **AND** the [Web Monetization Service Provider](/#providers) is enabled/active/etc the `document.monetization.state` will transition to `pending` as the payment stream is being initiated.
 
 If the user is Web Monetized, the `document.monetization.state` will always begin in this state.
 
@@ -52,7 +52,7 @@ document.monetization && document.monetization.state === 'pending'
 ```
 
 The user is capable of Web Monetization.
-The [Web Monetization Service Provider](/#providers) has initiated a STREAMing payment with Interledger but no packet has been sent yet.
+The [Web Monetization Service Provider](/#providers) has initiated a payment stream but no payments have been completed yet.
 
 ### Started
 
@@ -61,7 +61,7 @@ document.monetization && document.monetization.state === 'started'
 ```
 
 The user is capable of Web Monetization. 
-The [Web Monetization Service Provider](/#providers) is actively STREAMing payments to your site with Interledger.
+The [Web Monetization Service Provider](/#providers) is actively streaming payments to the website.
 
 It can take a couple of seconds for `document.monetization.state` to go from `pending` to `started`. The events described below can be used to listen for a change in `document.monetization.state`.
 
@@ -96,7 +96,7 @@ requestId | String | The `requestId` matches the Monetization ID (UUID V4) gener
 }
 ```
 
-The `monetizationpending` event can be listened to determine when Web Monetization has been initiated. To use it add an event listener to document.monetization.
+The `monetizationpending` event can be used to determine when Web Monetization has been initiated.
 
 ### `monetizationstart`
 
@@ -158,7 +158,7 @@ requestId | String | The `requestId` matches the Monetization ID (UUID V4) gener
 }
 ```
 
-The `monetizationstop` event can be listened to determine when Web Monetization has been stopped. To use it add an event listener to document.monetization.
+The `monetizationstop` event can be used to determine when Web Monetization has been stopped.
 
 ### `monetizationprogress`
 
@@ -196,7 +196,7 @@ assetScale | Number | A number representing the scale of the amount. For example
 }
 ```
 
-The `monetizationprogress` event can be listened to show the current status of the STREAMing payment. To use it add an event listener to document.monetization.
+The `monetizationprogress` event can be listened to show the current status of the payment stream.
 
 ## HTTP Headers
 
