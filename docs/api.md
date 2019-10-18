@@ -127,7 +127,7 @@ requestId | String | The `requestId` matches the Monetization ID (UUID V4) gener
 }
 ```
 
-The `monetizationstart` event can be listened to determine when Web Monetization has started actively paying. To use it add an event listener to document.monetization.
+The `monetizationstart` event can be used to determine when Web Monetization has started actively paying. To use it add an event listener to document.monetization.
 
 ### `monetizationstop`
 
@@ -196,7 +196,7 @@ assetScale | Number | A number representing the scale of the amount. For example
 }
 ```
 
-The `monetizationprogress` event can be listened to show the current status of the payment stream.
+The `monetizationprogress` event can be used to show the current status of the payment stream.
 
 ## HTTP Headers
 
