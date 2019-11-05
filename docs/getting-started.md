@@ -1,55 +1,70 @@
 ---
 id: getting-started
-title: Getting Started
-sidebar_label: Getting Started
+title: Quick Start Guide
+sidebar_label: Quick Start Guide
 ---
 
-This section describes how to use Web Monetization on your website.
+This page provides high-level instructions for adding Web Monetization to your
+ website.
 
-In order to Web-Monetize your site, you need to insert a special HTML tag that
-tells the [Web Monetization Provider](/#providers) how to pay you. We call this the **Web Monetization Meta Tag**.
+To monetize your site, you must:
+1. Set up a Web-monetized wallet for receiving payments.
+2. Get your wallet's payment pointer.
+3. Create a special `<meta>` tag that tells [Web Monetization providers](/#providers)
+how to pay you.
+4. Add the `<meta>` tag to each page of your website that you want to monetize.
 
-## Setup a Web Monetization Wallet
+For a more detailed look at Web-monetizing your site, see the
+[Web Monetization explainer](./explainer#getting-started).
 
-Select one of the [Web Monetization Wallets](/#wallets) and setup an account.
+## 1. Set Up a Web-Monetized Wallet
 
-## Get your Payment Pointer
+Choose a [wallet that supports Web Monetization](/#wallets) and set up an account.
+The wallet must support the Interledger Protocol (ILP).
 
-From your ILP Wallet Provider find your Payment Pointer and copy it. 
-A Payment Pointer looks like:
+## 2. Get Your Payment Pointer
+
+Find your payment pointer within your wallet and copy it.
+
+### Example Payment Pointer
 ```html
 $twitter.xrptipbot.com/WebMonetization
 ```
 
-## Generate your Meta Tag
+## 3. Create Your Meta Tag
 
-Use the [Meta Tag Generator](/meta-tag) to make your meta tag.
+Create your `<meta>` tag by using the [Meta Tag Generator](/meta-tag) or by
+following the example below.
 
-The tag's `name` is always `monetization`.
+The tag's `name` is always `monetization`. The `content` is your payment
+pointer.
 
-### Example Meta Tag 
+### Example Meta Tag
 ```html
-<meta 
-  name="monetization" 
+<meta
+  name="monetization"
   content="$twitter.xrptipbot.com/WebMonetization">
 ```
 
-## Add Meta Tag to Website
+## 4. Add the Meta Tag to Your Website
 
-Copy your Meta Tag and add it to your websites `<head>` section. It should look like the Example Site below. 
+Copy your `<meta>` tag and add it to the `<head>` section of each page you want
+to monetize.
 
-### Example Site
+> Web Monetization only works on secure pages served over HTTPS.
+
+### Example HTML
 
 ```html
 <!doctype html>
 <html>
   <head>
     <title>Web Monetized Site</title>
-    <meta 
-      name="monetization" 
+    <meta
+      name="monetization"
       content="$twitter.xrptipbot.com/WebMonetization">
   </head>
 </html>
 ```
 
-Congragulations! Your website is now Web Monetized. 
+Congratulations! Your website is now Web monetized.

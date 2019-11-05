@@ -6,27 +6,35 @@
     "tagline": "A JavaScript browser API which allows the creation of a payment stream from the user agent to the website",
     "docs": {
       "api": {
-        "title": "API",
-        "sidebar_label": "API"
+        "title": "JavaScript API",
+        "sidebar_label": "JavaScript API"
       },
       "explainer": {
         "title": "Web Monetization Explainer",
         "sidebar_label": "Web Monetization"
       },
       "getting-started": {
-        "title": "Getting Started",
-        "sidebar_label": "Getting Started"
+        "title": "Quick Start Guide",
+        "sidebar_label": "Quick Start Guide"
+      },
+      "glossary": {
+        "title": "Glossary",
+        "sidebar_label": "Glossary"
       },
       "receiving": {
-        "title": "Receiving Payments",
+        "title": "Web Monetization Receivers",
         "sidebar_label": "Receiving Payments"
+      },
+      "resources": {
+        "title": "External Resources",
+        "sidebar_label": "External Resources"
       },
       "sending": {
         "title": "Web Monetization Senders",
-        "sidebar_label": "Senders"
+        "sidebar_label": "Sending Payments"
       },
       "specification": {
-        "title": "Web Monetization Specification",
+        "title": "Draft Web Monetization Specification",
         "sidebar_label": "Specification"
       }
     },
