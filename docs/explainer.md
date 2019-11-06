@@ -224,8 +224,9 @@ account.
 ### Add &lt;meta&gt; Tag to Website Header
 
 The website contains a `<meta>` tag in the header of the HTML documents it
-serves. The tag's `name` value must always be `monetization`. The `content`
-value is the payment pointer where the website will accept payments.
+serves. The tag's `name` attribute must always have the value `monetization`.
+The value of the `content` attribute is the payment pointer where the website
+will accept payments.
 
 > **Example:** Alice puts the tag
 > `<meta name="monetization" content="$secure-wallet.example/~alice">` into the

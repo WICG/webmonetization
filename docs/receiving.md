@@ -105,7 +105,7 @@ For an entity to be a receiver, it only needs to run a STREAM server, accept
 connections, and handle the incoming payments sent over the connection.
 
 The browser uses the connection parameters (ILP receiving address and shared
-  secret) it acquired though [SPSP](#simple-payment-setup-protocol-spsp) to
+  secret) it acquired through [SPSP](#simple-payment-setup-protocol-spsp) to
   establish a STREAM connection with the receiver. Then, a stream of payments
   can be made to the receiver until the stream is closed.
 
