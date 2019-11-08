@@ -4,7 +4,7 @@ title: Web Monetization Explainer
 sidebar_label: Web Monetization
 ---
 
-Web Monetization is a proposed API standard that allows websites to request
+Web Monetization (WM) is a proposed API standard that allows websites to request
 a stream of very small payments (e.g. fractions of a cent) from a user.
 
 The API's framework provides new revenue models for websites and web-based
@@ -34,8 +34,8 @@ of individual small payments to a component/service (a Web Monetization
 
 This system must preserve the user's privacy. It must not be possible for
 websites to track users on the basis of the payments they make, and it must not
-be possible for the user's payment provider (Web Monetization sender) to get
-details of a user's browsing history.
+be possible for the user's Web Monetization provider to get details of a
+user's browsing history.
 
 ## Non-Goals
 
@@ -50,11 +50,15 @@ e-commerce.
 
 ### Prerequisites
 
-* Users must have an account or subscription with a **Web Monetization sender**.
+* Users must have an account or subscription with a **Web Monetization provider**
+(also known as a WM sender).
 * Users must have a **Web Monetization agent** installed in their browser with
-the necessary authorization to initiate payments from the sender on the user's behalf.
+the necessary authorization to initiate payments from the WM provider on the
+user's behalf.
 * Websites must sign up with, or run their own, **Web Monetization receiver**.
-The receiver is responsible for accepting payments from a user's sender.
+  > The WM receiver and WM provider do not need a direct relationship. Their
+  shared use of the Interledger network allows payments to be sent from the
+  WM provider to the WM receiver.
 
 ### Sequence Diagram
 
@@ -71,14 +75,14 @@ determine where to send payments.
 2. The browser uses its internal Web Monetization agent to calculate an
 appropriate rate of payments to make to the site.
 3. The browser generates a unique session ID for this payment session.
-4. The browser fetches a unique receiving address and shared secret for the
-session from the site's Web Monetization receiver.
+4. The browser fetches a unique destination address and shared secret for the
+session from the site's WM receiver.
 5. With the site's page still in focus, the browser begins initiating payments
-to the website at the calculated rate from the user's sender.
+to the website at the calculated rate from the user's WM provider.
 > [Issue 17 - Support Streaming to Background Tabs](https://github.com/interledger/webmonetization.org/issues/17)<p>What about people listening to monetized music in a background tab?
 
-6. The sender sends the payment to the receiver.
-7. The sender notifies the browser of successful payments.
+6. The WM provider sends the payment to the WM receiver.
+7. The WM provider notifies the browser of successful payments.
 8. The browser, in turn, dispatches an event that informs the page of the
 payment.
 9. _(Optional)_ The page can connect to its own backend systems to verify that
@@ -102,9 +106,9 @@ because the service is both collecting payments from the user and paying out
 to the creator/producer/service provider. The service is therefore able to
 correlate payments and collect data about which services are accessed by users.
 
-Web Monetization decouples the sender and the receiver. Using the browser as an
-intermediary, the privacy of users is protected and payments can't be used to
-track a user across sites.
+Web Monetization decouples the provider (sender) and the receiver. Using the
+browser as an intermediary, the privacy of users is protected and payments can't
+be used to track a user across sites.
 
 ## Design Discussion Points
 
@@ -138,10 +142,11 @@ authorization as part of the flow, as the API is designed for payment sizes
 where this is necessary. However, nothing prevents the API from also
 supporting a non-interactive flow that supports Web Monetization use cases.
 
-The Payment Handler API aligns well with the model anticipated for Web
-Monetization senders. A sender might manifest as a specialized payment handler
-capable of returning not just a `PaymentResponse` but also a handle to a stream
-of micropayments.
+The Payment Handler API aligns well with the model anticipated for WM providers.
+A provider might manifest as a specialized payment handler capable of returning
+not just a `PaymentResponse` but also a handle to a stream of micropayments.
+
+> [Issue 34 - Use Updated Payment Request and Payment Handler APIs?](https://github.com/interledger/webmonetization.org/issues/34)
 
 ### This Sounds a Lot Like Streams...
 
@@ -170,10 +175,10 @@ The design of the protocol also allows for payments to be made that span
 multiple underlying settlement networks, improving the interoperability and
 reach of existing networks.
 
-Web Monetization senders and receivers use the Interledger protocol to exchange
-payments. The sender and receiver might be directly connected or might connect
-via one or more intermediaries. This will be driven by the regulatory requirements
-and the status of intermediaries as registered money services businesses.
+Web Monetization providers and receivers use the Interledger protocol to exchange
+payments. The provider and WM receiver might be directly connected or might
+connect via one or more intermediaries. This will be driven by the regulatory
+requirements and the status of intermediaries as registered money services businesses.
 
 For more details see https://interledger.org.
 
@@ -193,9 +198,9 @@ identifiable as a payment account identifier.
 >
 > These resolve to `https://alice.wallet.example/.well-known/pay` and `https://wallet.example/alice` respectively.
 
-Websites that use Web Monetization require a receiving address for their
-payments (which they will get from their receiver). The address must be inserted
-into the appropriate `meta` tag as either a URL or a payment pointer.
+Websites that use Web Monetization require a destination address for their
+payments (which they will get from their WM receiver). The address must be inserted
+into the appropriate `meta` tag.
 
 For more details see https://paymentpointers.org.
 
@@ -206,8 +211,8 @@ For a high-level overview, see the [Quick Start Guide](./getting-started).
 ### Set Up a Receiving Account
 
 To use Web Monetization a website owner must have a financial account at a
-service provider capable of receiving payments via the Interledger protocol
-(i.e. a Web Monetization receiver).
+service provider capable of receiving payments (WM receiver) via the Interledger
+protocol.
 
 Such a service (a digital wallet, bank, or similar) must provide the website
 owner with a payment pointer that serves as the public address for the
@@ -218,8 +223,7 @@ account.
 > payment pointer for her account is `$secure-wallet.example/~alice`. <p>For
 > privacy reasons Alice might also get the payment pointer
 > `$secure-wallet.example/db74f8b4-d6a0-4489-a021-e785e5efb229` or be able to
-> generate new addresses on demand (this would be a feature of her Web
-> Monetization receiver).
+> generate new addresses on demand (this would be a feature of her WM receiver).
 
 ### Add &lt;meta&gt; Tag to Website Header
 
@@ -243,13 +247,13 @@ How do we ensure only legitimate tags are parsed by the browser?
 
 When a user visits a monetized site with a supported browser the site will find a
 `document.monetization` object in the DOM. The object will have a `state`
-property that the website can check to determine if the user's sender has
+property that the website can check to determine if the user's WM provider has
 started sending payments.
 
 The `document.monetization` object will emit events when monetization starts and
-then subsequently each time a payment is sent successfully by the sender. The
+then subsequently each time a payment is sent successfully by the WM provider. The
 start event will contain a unique identifier for the payment stream that can be
-used to correlate the payments at the receiver with the user's current browser
+used to correlate the payments at the WM receiver with the user's current browser
 session.
 
 > **Example:** Alice adds the client-side code shown below to her website to
@@ -324,13 +328,13 @@ implements [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventT
     it should pay the current website. If the result is 0 it aborts.
 
 3.  The browser resolves the payment pointer and gets a unique
-    Interledger address (receiving address) and shared secret to use for the
-    current session. The browser then begins sending payments via the sender.
+    Interledger address (destination address) and shared secret to use for the
+    current session. The browser then begins sending payments via the WM provider.
 
-4.  The browser invokes the user's sender [by emitting new `PaymentRequestEvent` events](./sending.md)
+4.  The browser invokes the user's WM provider [by emitting new `PaymentRequestEvent` events](./sending.md)
     with the necessary details.
 
-5.  Once the sender has successfully completed the first payment with a non-zero
+5.  Once the WM provider has successfully completed the first payment with a non-zero
     amount, the browser sets the `document.monetization.state` to `started` and
     then dispatches the `monetizationstart` event on `document.monetization`.
     The event has a `detail` field with an object containing the payment pointer
@@ -349,10 +353,10 @@ implements [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventT
 ### Auditing / Dashboard
 
 It must be possible for users to get summaries of payments compiled by the
-browser. Summaries allow users to reconcile information from websites and
-senders about how much they have paid. Payments should be broken down by:
+browser. Summaries allow users to reconcile information from websites and WM
+providers about how much they have paid. Payments should be broken down by the:
 * Origin of the websites paid
-* Web Monetization sender making the payments
+* WM provider making the payments
 * Date and time
 
 It should also be possible to:
@@ -363,9 +367,9 @@ viewpoints or etc. and doesn't want to contribute financially.
 usual sum. For example, when a Web-monetized user visits a favorite charity's
 monetized website.
 
-## Web Monetization Sender Interface
+## Web Monetization Provider Interface
 
-The Web Monetization sender interface leverages the
+The Web Monetization Provider (sender) interface leverages the
 [Payment Handler API](https://www.w3.org/TR/payment-handler/).
 
 More details are provided on the [Sending Payments](./sending.md) page.
@@ -380,7 +384,7 @@ Please submit a PR if you are aware of updates to the lists below.
 - [Stronghold](https://stronghold.co/)
 - [GateHub](https://gatehub.net/)
 
-### Web Monetization Senders
+### Web Monetization Providers (Senders)
 
 - [Coil](https://coil.com)
 

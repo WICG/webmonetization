@@ -1,6 +1,6 @@
 ---
 id: sending
-title: Web Monetization Senders
+title: Web Monetization Providers
 sidebar_label: Sending Payments
 ---
 
@@ -8,30 +8,34 @@ sidebar_label: Sending Payments
 > information is considered experimental and conversations are ongoing. If you
 > are a content creator you can skip this page.
 
-This page describes the functions of the Web Monetization sender and how the
-sender could manifest as a payment handler.
+This page describes the functions of the Web Monetization provider and
+how the provider could manifest as a payment handler. Web Monetization providers
+are also known as Web Monetization senders.
 
-A sender is an entity that makes payments on behalf of a user and is capable of
-sending micropayments to receivers.
+A Web Monetization sender is a digital entity that makes payments on behalf of
+a user and is capable of sending micropayments to Web Monetization receivers.
 
-The sender interfaces with a browser so the Web Monetization agent can send
-payment instructions, such as who to pay, when, and how much.
+The Web Monetization sender interfaces with a browser so the Web Monetization
+agent (e.g. extension) can send payment instructions, such as who to pay, when,
+and how much.
 
 ## Payment Handler API
 
-Our expectation is the sender will manifest as a payment handler as follows.
+Our expectation is the Web Monetization (WM) sender will manifest as a payment
+handler as follows.
 
-The sender interface leverages the Payment Handler API. The API contains
+The WM sender interface leverages the Payment Handler API. The API contains
 capabilities that enable Web applications to handle requests for payments. You
-can read the working draft of the spec on the [W3C website](https://www.w3.org/TR/payment-handler/).
+can read the working draft of the spec on the
+[W3C website](https://www.w3.org/TR/payment-handler/).
 
-The Payment Handler API aligns well with the model anticipated for senders: A
-sender could manifest as a specialized payment handler capable of returning not
-just a `PaymentResponse` but also a handle to a stream of micropayments.
+The Payment Handler API aligns well with the model anticipated for WM senders:
+A WM sender could manifest as a specialized payment handler capable of returning
+not just a `PaymentResponse` but also a handle to a stream of micropayments.
 
 ### `monetization` - Payment Method
 
-Payment handlers able to act as senders **MUST** register themselves with the
+Payment handlers able to act as WM senders **MUST** register themselves with the
 platform as supportive of the `monetization` payment method.
 
 The `monetization` payment method identifier will be registered as a
@@ -40,18 +44,22 @@ through the Web Payments WG at W3C.
 
 ### `PaymentRequestEvent` - Event
 
-When the user's browser sends a payment via the sender, the browser emits a [`PaymentRequestEvent`](https://www.w3.org/TR/payment-handler/#the-paymentrequestevent).
+When the user's browser sends a payment via the WM sender, the browser emits a
+[`PaymentRequestEvent`](https://www.w3.org/TR/payment-handler/#the-paymentrequestevent).
 
-The `PaymentRequestEvent` contains a single [`PaymentMethodData`](https://www.w3.org/TR/payment-request/#paymentmethoddata-dictionary) dictionary in the
-`PaymentRequestEvent.methodData` property.
+The `PaymentRequestEvent` contains a single
+[`PaymentMethodData`](https://www.w3.org/TR/payment-request/#paymentmethoddata-dictionary)
+dictionary in the `PaymentRequestEvent.methodData` property.
 
 The `PaymentMethodData` dictionary contains the value `monetization` in the
-`supportedMethods` property. `data` is an instance of a [`MonetizationRequest`](#monetizationrequest-dictionary) containing the destination (receiver) address to send to, the
-condition, and expiry values to use. The payment handler uses this data to send
-a single Interledger payment, to the destination address. The amount sent by the
-payment handler is the amount specified in `PaymentRequestEvent.total`.
-`PaymentRequestEvent.total` is an instance of [`PaymentCurrencyAmount`](https://www.w3.org/TR/payment-request/#paymentcurrencyamount-dictionary) specifying both an amount (`value`)
-and a `currency`.
+`supportedMethods` property. `data` is an instance of a
+[`MonetizationRequest`](#monetizationrequest-dictionary) containing the
+destination (WM receiver) address to send to, the condition, and expiry values
+to use. The payment handler uses this data to send a single Interledger payment
+to the destination address. The amount sent by the payment handler is the amount
+specified in `PaymentRequestEvent.total`. `PaymentRequestEvent.total` is an
+instance of [`PaymentCurrencyAmount`](https://www.w3.org/TR/payment-request/#paymentcurrencyamount-dictionary)
+specifying both an amount (`value`) and a `currency`.
 
 ```webidl
 dictionary PaymentCurrencyAmount {
@@ -72,7 +80,7 @@ And responds with either a pass or a fail:
 * Pass - passes in a `Promise` that resolves to an instance of
 [`MonetizationResponse`](#monetizationresponse-dictionary) containing the
 fulfillment and data from the response.
-> [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/interledger/webmonetization.org/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for Monetization to preserve the user's privacy?
+> [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/interledger/webmonetization.org/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?
 
 * Fail - provides a rejected `Promise` indicating that the payment failed
 because the handler was unable to send in the specified currency.
@@ -84,8 +92,8 @@ For more information about the JavaScript `Promise` object, see the
 ### `MonetizationRequest` - Dictionary
 
 The data in the `MonetizationRequest` emitted to the payment handler contains
-the destination (receiver) address for the payment, the condition, expiry, and
-data to use in the Interledger packet.
+the destination (WM receiver) address for the payment, the condition, expiry,
+and data to use in the Interledger packet.
 
 ```webidl
   dictionary MonetizationRequest {
@@ -98,8 +106,8 @@ data to use in the Interledger packet.
 
 | Property    | Description                                                   |
 | ----------- | ------------------------------------------------------------- |
-| destination | The ILP address of the receiver for this session. |
-| condition   | 32 bytes, base64-encoded condition to use for the ILP packet. The receiver must be able to fulfill this condition. |
+| destination | The ILP address of the WM receiver for this session. |
+| condition   | 32 bytes, base64-encoded condition to use for the ILP packet. The WM receiver must be able to fulfill this condition. |
 | expiry      | Expiration date and time for when the ILP packet expires.     |
 | data        | Base64-encoded additional data to send in the ILP packet.     |
 
@@ -127,8 +135,8 @@ When the payment handler is invoked (handling a new `PaymentRequestEvent`) it's
 expected to send a payment on behalf of the user.
 
 If the payment handler is not authorized to send payments it can either:
-* Invoke `PaymentRequestEvent.openWindow()` to provide a UI to the user to login
-and authorize the payment
+* Invoke `PaymentRequestEvent.openWindow()` to provide a UI to the user to log
+in and authorize the payment
 * Reject the request by passing a rejected `Promise` to
 `PaymentRequestEvent.respondWith()` and let the browser handle the case
 
@@ -139,7 +147,7 @@ undetected.
 ## Supporting Payment Streams
 
 As detailed in the [explainer](./explainer.md), the user's browser receives a
-unique receiver address and shared secret for each monetization session (e.g.
+unique destination address and shared secret for each monetization session (e.g.
   page refresh, navigation). This specification assumes that the browser will
   handle the generation of a new condition using the shared secret for each
   payment it wants to send.

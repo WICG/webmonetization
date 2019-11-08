@@ -8,7 +8,7 @@ This page provides high-level instructions for adding Web Monetization to your
  website.
 
 To monetize your site, you must:
-1. Set up a Web-monetized wallet for receiving payments.
+1. Set up a Web-monetized receiver (wallet) for receiving payments.
 2. Get your wallet's payment pointer.
 3. Create a special `<meta>` tag that tells [Web Monetization providers](/#providers)
 how to pay you.
@@ -28,7 +28,7 @@ Find your payment pointer within your wallet and copy it.
 
 ### Example Payment Pointer
 ```html
-$twitter.xrptipbot.com/WebMonetization
+$wallet.example.com/alice
 ```
 
 ## 3. Create Your Meta Tag
@@ -43,7 +43,7 @@ pointer.
 ```html
 <meta
   name="monetization"
-  content="$twitter.xrptipbot.com/WebMonetization">
+  content="$wallet.example.com/alice">
 ```
 
 ## 4. Add the Meta Tag to Your Website
@@ -62,7 +62,7 @@ to monetize.
     <title>Web Monetized Site</title>
     <meta
       name="monetization"
-      content="$twitter.xrptipbot.com/WebMonetization">
+      content="$wallet.example.com/alice">
   </head>
 </html>
 ```
