@@ -40,6 +40,8 @@ for Web Monetized visitors:
 </body>
 ```
 
+[_You can view this example page here_](/examples/show_simple.html).
+
 If you view this content with Web Monetization enabled then it will show
 "Here's some exclusive content!" once Web Monetization initializes. If you view
 it without Web Monetization then you won't see anything.
@@ -145,6 +147,12 @@ This means there's three states in total:
   </div>
 </body>
 ```
+
+[_You can view this example page here_](/examples/show.html).
+
+Try loading this page with Web Monetization enabled to see it load the
+exclusive content. Open in in an private window to see what it looks like
+without Web Monetization.
 
 ### How Does it Work?
 
