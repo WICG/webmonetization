@@ -1,14 +1,18 @@
 ---
-id: show-content
-title: Show Content
-sidebar_label: Show Content
+id: exclusive-content
+title: Exclusive Content
+sidebar_label: Exclusive Content
 ---
+
+One of the perks of Web Monetization is that its JavaScript API can be used to
+make your page respond to Web Monetization. You can reward the people who
+support your site by giving Web Monetized viewers exclusive content.
+
 
 ## A Basic Example
 
-Showing and hiding content depending on whether a visitor is Web-Monetized is
-easy! This is a very simple example of exclusive content that only shows up
-for Web Monetized visitors:
+Web Monetization makes exclusive content easy! This is a very simple example of
+exclusive content that only shows up for Web Monetized visitors:
 
 > **Careful!** These examples hide content on the client side. A clever user could pretend to be Web Monetized by using the developer console. Examples on how to verify Web Monetization from the server side will come soon.
 
@@ -74,7 +78,7 @@ the state goes from `pending` to `started`.
 Finally we select our exclusive content element and make it visible. We defined
 a CSS class that made it hidden, so removing that class will make it visible.
 If you want to do something else when Web Monetization starts, you can replace
-this line. You can trigger any javascript so the sky's the limit.
+this line. You can trigger any JavaScript so the sky's the limit.
 
 ## A Complete Example
 

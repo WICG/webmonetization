@@ -9,6 +9,10 @@
         "title": "JavaScript API",
         "sidebar_label": "JavaScript API"
       },
+      "exclusive-content": {
+        "title": "Exclusive Content",
+        "sidebar_label": "Exclusive Content"
+      },
       "explainer": {
         "title": "Web Monetization Explainer",
         "sidebar_label": "Web Monetization"
@@ -32,10 +36,6 @@
       "sending": {
         "title": "Web Monetization Providers",
         "sidebar_label": "Sending Payments"
-      },
-      "show-content": {
-        "title": "Show Content",
-        "sidebar_label": "Show Content"
       },
       "specification": {
         "title": "Draft Web Monetization Specification",

@@ -1,7 +1,7 @@
 {
   "docs": {
     "Overview": ["getting-started", "api"],
-    "Examples": ["show-content"],
+    "Examples": ["exclusive-content"],
     "Explainer": ["explainer", "receiving", "sending"],
     "More": ["specification", "glossary", "resources"]
   }
