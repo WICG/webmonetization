@@ -14,6 +14,7 @@ Here's an example page that removes its ads for Web Monetized visitors:
 
 ```html
 <head>
+  <!-- this should be set to your own payment pointer -->
   <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
 
   <script>

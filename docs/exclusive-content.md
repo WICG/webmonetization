@@ -22,6 +22,7 @@ exclusive content that only shows up for Web Monetized visitors:
 
 ```html
 <head>
+  <!-- this should be set to your own payment pointer -->
   <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
 
   <style>
@@ -99,6 +100,7 @@ This means there's three states in total:
 
 ```html
 <head>
+  <!-- this should be set to your own payment pointer -->
   <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
 
   <style>
