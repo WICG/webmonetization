@@ -16,12 +16,6 @@ Here's an example page that removes its ads for Web Monetized visitors:
 <head>
   <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
 
-  <style>
-    .hidden {
-      display: none;
-    }
-  </style>
-
   <script>
     const adCode = 'Ad! <marquee width=200>Buy product A!</marquee> Ad!'
     function showAds () {
