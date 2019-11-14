@@ -33,6 +33,10 @@
         "title": "Web Monetization Providers",
         "sidebar_label": "Sending Payments"
       },
+      "show-content": {
+        "title": "Show Content",
+        "sidebar_label": "Show Content"
+      },
       "specification": {
         "title": "Draft Web Monetization Specification",
         "sidebar_label": "Specification"
@@ -46,6 +50,7 @@
     },
     "categories": {
       "Overview": "Overview",
+      "Examples": "Examples",
       "Explainer": "Explainer",
       "More": "More"
     }
