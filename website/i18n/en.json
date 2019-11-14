@@ -29,6 +29,10 @@
         "title": "Web Monetization Receivers",
         "sidebar_label": "Receiving Payments"
       },
+      "remove-ads": {
+        "title": "Remove Ads",
+        "sidebar_label": "Remove Ads"
+      },
       "resources": {
         "title": "External Resources",
         "sidebar_label": "External Resources"

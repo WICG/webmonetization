@@ -1,0 +1,47 @@
+<head>
+  <meta name="monetization" content="$twitter.xrptipbot.com/Coil">
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <script>
+    const adCode = 'Ad! <marquee width=200>Buy product A!</marquee> Ad!'
+    function showAds () {
+      document.getElementById('ad').innerHTML = adCode
+    }
+
+    function removeAds () {
+      document.getElementById('ad').remove()
+    }
+
+    let hasPaid = false
+    if (document.monetization) {
+      document.monetization.addEventListener('monetizationstart', () => {
+        hasPaid = true
+        removeAds()
+      })
+    }
+
+    window.addEventListener('load', () => {
+      if (!document.monetization) {
+        showAds()
+      } else {
+        setTimeout(() => {
+          if (!hasPaid) {
+            showAds()
+          }
+        }, 3000)
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div id="ad">
+  </div>
+
+  Here's some real content.
+</body>

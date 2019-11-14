@@ -14,7 +14,9 @@ support your site by giving Web Monetized viewers exclusive content.
 Web Monetization makes exclusive content easy! This is a very simple example of
 exclusive content that only shows up for Web Monetized visitors:
 
-> **Careful!** These examples hide content on the client side. A clever user could pretend to be Web Monetized by using the developer console. Examples on how to verify Web Monetization from the server side will come soon.
+> **Careful!** These examples hide content on the client side. A clever user
+> could pretend to be Web Monetized by using the developer console. Examples on
+> how to verify Web Monetization from the server side will come soon.
 
 ### Code
 
