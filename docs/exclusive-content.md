@@ -20,7 +20,7 @@ exclusive content that only shows up for Web Monetized visitors:
 
 ```html
 <head>
-  <meta name="monetization" content="$twitter.xrptipbot.com/Coil">
+  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
 
   <style>
     .hidden {
@@ -97,7 +97,7 @@ This means there's three states in total:
 
 ```html
 <head>
-  <meta name="monetization" content="$twitter.xrptipbot.com/Coil">
+  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
 
   <style>
     .hidden {
