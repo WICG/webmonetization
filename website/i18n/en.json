@@ -48,6 +48,10 @@
       "specification": {
         "title": "Draft Web Monetization Specification",
         "sidebar_label": "Specification"
+      },
+      "start-stop": {
+        "title": "Start/Stop Monetization",
+        "sidebar_label": "Start/Stop Monetization"
       }
     },
     "links": {
