@@ -9,6 +9,10 @@
         "title": "JavaScript API",
         "sidebar_label": "JavaScript API"
       },
+      "counter": {
+        "title": "Micropayment Counter",
+        "sidebar_label": "Micropayment Counter"
+      },
       "exclusive-content": {
         "title": "Exclusive Content",
         "sidebar_label": "Exclusive Content"
