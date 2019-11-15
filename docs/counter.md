@@ -4,10 +4,10 @@ title: Micropayment Counter
 sidebar_label: Micropayment Counter
 ---
 
-Sometimes the question "is this visitor Web Monetized?" has a more complicated
-answer than "yes/no." Sometimes you care about how much money you're making
-from a visitor, and you want to trigger logic on your site depending on the
-amount.
+Web Monetization lets you count exactly how much you made from a given visitor,
+and update that amount in real-time as more micropayments come in. Like any
+animated effect it should be used sparingly, but it can be a cool way to show
+your visitors exactly how much they're supporting you!
 
 This example shows you how to use the `monetizationprogress` event to count how
 much you've made off of micropayments from a given visitor.
