@@ -99,7 +99,10 @@ if (document.monetization) {
 ```
 
 As soon as the page loads, any visitor who does not have Web Monetization
-(`!document.monetization`) sees ads immediately.
+(`!document.monetization`) sees ads immediately. If the visitor _does_ have Web
+Monetization, the three-second timer starts. We check whether the
+`monetizationstart` event has fired when the timer is up. If Web Monetization
+hasn't initialized, the visitor is shown the ads.
 
 ```js
 window.addEventListener('load', () => {
@@ -114,10 +117,6 @@ window.addEventListener('load', () => {
   }
 })
 ```
-
-If the visitor _does_ have Web Monetization, the three-second timer starts.
-We check whether the `monetizationstart` event has fired when the timer is up.
-If Web Monetization hasn't initialized, the visitor is shown the ads.
 
 > You might think of using `document.monetization.state` instead of remembering
 > `hasPaid`. But, the state can go back to being `stopped` or `pending` if the user
