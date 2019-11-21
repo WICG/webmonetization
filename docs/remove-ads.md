@@ -5,10 +5,10 @@ sidebar_label: Remove Ads
 ---
 
 Removing ads is a great way to thank the people who support your site. You can
-make sure that Web Monetized visitors have a smooth experience without forgoing
+make sure Web-monetized visitors have a smooth experience without forgoing
 monetization of the rest of your visitors.
 
-Here's an example page that removes its ads for Web Monetized visitors:
+Here's an example page that removes its ads for Web-monetized visitors:
 
 ## Code
 
@@ -57,21 +57,23 @@ Here's an example page that removes its ads for Web Monetized visitors:
 </body>
 ```
 
-[_You can view this example page here_](/examples/remove_ads.html).
-
 Users who visit the site without Web Monetization will see ads appear as soon as the page loads.
 
-If you have Web Monetization in your browser then it won't show the ads
-immediately. You have a three second grace period for Web Monetization to
+[_You can view the example page here_](/examples/remove_ads.html).
+
+Users who have Web Monetization in their browser won't see the ads
+immediately. There's a three-second grace period for Web Monetization to
 initialize.
 
-* If Web Monetization initializes before the three seconds are up then you
-  never see ads.
-* Once the three seconds are up the ads will load into the page.
-* If Web Monetization initializes any time after the three seconds are up the
-  ads will be removed.
+If Web Monetization:
+
+* Initializes before the three seconds are up, the ads never appear.
+* Fails to initialize within three seconds, the ads will load into the page.
+* Initializes any time after the three seconds are up, the ads will be removed.
 
 ## How Does it Work?
+
+This works a little bit differently from the [exclusive content example](/docs/exclusive-content). The ad is not added to the page at all until you decide to show ads. That means images and trackers are not loaded for Web-monetized visitors _(although in the example we're only loading an annoying `<marquee>` tag)_.
 
 ```js
 const adCode = 'Ad! <marquee width=200>Buy product A!</marquee> Ad!'
@@ -80,7 +82,11 @@ function showAds () {
 }
 ```
 
-This works a little bit differently from the [exclusive content example](/docs/exclusive-contnt). The ad is not added to the page at all until we decide to show ads. That means images and trackers will not be loaded for Web Monetized visitors _(although in the example we're only loading an annoying `<marquee>` tag)_.
+If the visitor has Web Monetization, then we bind the `monetizationstart` event.
+This triggers the removal of ads once Web Monetization initializes.
+
+The `hasPaid` variable is used in the timer to see whether Web
+Monetization has already initialized when the grace period is over.
 
 ```
 let hasPaid = false
@@ -92,11 +98,11 @@ if (document.monetization) {
 }
 ```
 
-If the visitor has Web Monetization then we bind the `monetizationstart` event.
-This triggers the removal of ads once Web Monetization intializes.
-
-Our `hasPaid` variable will be used in our timer to see whether Web
-Monetization has already initialized when the grace period is over.
+As soon as the page loads, any visitor who does not have Web Monetization
+(`!document.monetization`) sees ads immediately. If the visitor _does_ have Web
+Monetization, the three-second timer starts. We check whether the
+`monetizationstart` event has fired when the timer is up. If Web Monetization
+hasn't initialized, the visitor is shown the ads.
 
 ```js
 window.addEventListener('load', () => {
@@ -112,15 +118,7 @@ window.addEventListener('load', () => {
 })
 ```
 
-As soon as the page loads, any visitor who does not have Web Monetization
-(`!document.monetization`) sees ads immediately.
-
-If the visitor _does_ have Web Moentization we start our three second timer.
-When the timer is up we check whether the `monetizationstart` event has fired.
-If Web Monetization hasn't initialized, we show them the ads.
-
 > You might think of using `document.monetization.state` instead of remembering
-> `hasPaid`. But the state can go back to being stopped or pending if the user
-> backgrounds the tab. If they background your tab when the 3 seconds are over
-> then a legitimately Web Monetizated user might would get shown ads! So
-> keeping a `hasPaid` variable is better.
+> `hasPaid`. But, the state can go back to being `stopped` or `pending` if the user
+> backgrounds the tab. If they background your tab when the three seconds are over,
+> then a legitimately Web-monetized user might be shown ads! Keeping a `hasPaid` variable is a better practice.
