@@ -4,13 +4,13 @@ title: Start/Stop Monetization
 sidebar_label: Start/Stop Monetization
 ---
 
-Sometimes you don't want your entire site to be web monetized. The easiest way
+Sometimes you don't want your entire site to be Web-monetized. The easiest way
 to do this is to just include the Web Monetization meta tag on the pages you
 want to monetize. But if you want to turn Web Monetization on and off
-dynamically then you can do that too.
+dynamically, you can do that too!
 
-This example page shows how to turn Web Monetization on or off dynamically,
-when a visitor clicks a button.
+This example page shows how to turn Web Monetization on and off dynamically, in
+response to a visitor clicking a button.
 
 ## Code
 
@@ -68,16 +68,24 @@ when a visitor clicks a button.
 </body>
 ```
 
-[_You can view this example page here_](/examples/start-stop.html).
+If you view this in a Web-monetized browser, you can see the monetization state
+and control it with the _Stop Monetization_ and _Start Monetization_ buttons.
 
-If you view this in a Web Monetized browser you can see the monetization state
-and control it with the "Stop Monetization" and "Start Monetization" buttons.
+[_You can view the example page here_](/examples/start-stop.html).
 
-When you click "Stop Monetization," the state will immediately go to "stopped."
-If you click "Start Monetization," the state will move to "pending," and then
-proceed to "started" once Web Monetization initializes.
+When you click _Stop Monetization_, the state will immediately go to `stopped`.
+When you click _Start Monetization_, the state will move to `pending`, and then
+proceed to `started` after Web Monetization initializes.
 
 ## How Does it Work?
+
+To display the current monetization state on the page, we bind the
+three monetization state events: `monetizationstop`, `monetizationpending`, and
+`monetizationstart`. Each time one of them fires we display the current
+monetization state.
+
+> This isn't required to start and stop monetization but it helps visualize it on
+> the example page.
 
 ```js
 function showMonetizationState () {
@@ -91,13 +99,9 @@ if (document.monetization) {
 }
 ```
 
-In order to display the current monetization state on the page, we bind the
-three monetization state events: `monetizationstop`, `monetizationpending`, and
-`monetizationstart`. Each time one of them fires we display the current
-monetization state.
-
-This isn't required to start and stop monetization but it helps visualize it on
-the example page.
+When the page loads we set an initial state. If the visitor doesn't have Web
+Monetization (`document.monetization` is not defined), we say _Not enabled in
+browser._ Otherwise, we display the current monetization state.
 
 ```js
 window.addEventListener('load', () => {
@@ -108,17 +112,17 @@ window.addEventListener('load', () => {
   }
 ```
 
-When the page loads we set an initial state. If the user doesn't have Web
-Monetization (`document.monetization` is not defined), we say "Not enabled in
-browser." Otherwise we display the current monetization state.
+We need to grab the meta tag's element object in order to add and remove it.
+The query selector, `meta[name="monetization"]`, selects a `<meta>` tag with
+a `name` attribute of `monetization` (the Web Monetization meta tag).
 
 ```js
 const monetizationTag = document.querySelector('meta[name="monetization"]')
 ```
 
-We need to grab the meta tag's element object in order to add and remove it.
-The query selector, `meta[name="monetization"]` selects a `<meta>` tag with
-a `"name"` attribute of `monetization`, the Web Monetization meta tag.
+When the _Stop_ button is clicked, we call `remove()` on the monetization tag
+element. Your Web Monetization extension will pick up this change and stop
+monetization right away.
 
 ```js
 stopButton.addEventListener('click', () => {
@@ -129,9 +133,9 @@ stopButton.addEventListener('click', () => {
 })
 ```
 
-When the stop button is clicked, we call `remove()` on the monetization tag
-element. Your Web Monetization extension will pick up this change and stop
-monetization right away.
+When the _Start_ button is clicked, we append the monetization tag to the
+document's head. Your Web Monetization extension will pick up this change and
+begin initializing Web Mone tization.
 
 ```js
 startButton.addEventListener('click', () => {
@@ -141,7 +145,3 @@ startButton.addEventListener('click', () => {
   startButton.disabled = true
 })
 ```
-
-When the start button is clicked, we append the monetization tag to the
-document's head. Your Web Monetization extension will pick up this change and
-begin initializing Web Monetization.
