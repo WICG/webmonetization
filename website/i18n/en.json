@@ -9,6 +9,14 @@
         "title": "JavaScript API",
         "sidebar_label": "JavaScript API"
       },
+      "counter": {
+        "title": "Micropayment Counter",
+        "sidebar_label": "Micropayment Counter"
+      },
+      "exclusive-content": {
+        "title": "Exclusive Content",
+        "sidebar_label": "Exclusive Content"
+      },
       "explainer": {
         "title": "Web Monetization Explainer",
         "sidebar_label": "Web Monetization"
@@ -25,6 +33,10 @@
         "title": "Web Monetization Receivers",
         "sidebar_label": "Receiving Payments"
       },
+      "remove-ads": {
+        "title": "Remove Ads",
+        "sidebar_label": "Remove Ads"
+      },
       "resources": {
         "title": "External Resources",
         "sidebar_label": "External Resources"
@@ -36,6 +48,10 @@
       "specification": {
         "title": "Draft Web Monetization Specification",
         "sidebar_label": "Specification"
+      },
+      "start-stop": {
+        "title": "Start/Stop Monetization",
+        "sidebar_label": "Start/Stop Monetization"
       }
     },
     "links": {
@@ -46,6 +62,7 @@
     },
     "categories": {
       "Overview": "Overview",
+      "Examples": "Examples",
       "Explainer": "Explainer",
       "More": "More"
     }

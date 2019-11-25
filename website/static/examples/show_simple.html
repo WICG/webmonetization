@@ -1,0 +1,23 @@
+<head>
+  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <script>
+    if (document.monetization) {
+      document.monetization.addEventListener('monetizationstart', () => {
+        document.getElementById('exclusive').classList.remove('hidden')
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <div id="exclusive" class="hidden">
+    Here's some exclusive content!
+  </div>
+</body>

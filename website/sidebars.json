@@ -1,6 +1,7 @@
 {
   "docs": {
     "Overview": ["getting-started", "api"],
+    "Examples": ["exclusive-content", "remove-ads", "counter", "start-stop"],
     "Explainer": ["explainer", "receiving", "sending"],
     "More": ["specification", "glossary", "resources"]
   }
