@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <!-- the id="money" is just so we can control this from js -->
+    <meta id="money" name="monetization" content="$twitter.xrptipbot.com/Interledger">
+  </head>
+  <script>
+    let lastTimestamp = Date.now()
+    function log (msg) {
+      const log = document.getElementById('log')
+      if (log) {
+        const newTimestamp = Date.now()
+        const diff = newTimestamp - lastTimestamp
+        lastTimestamp = newTimestamp
+        log.innerText += msg + ' +' + diff + '\n'
+      }
+    }
+
+    const initialState = document.monetization && document.monetization.state
+    window.addEventListener('load', () => {
+      log('event: window.load, initial state: ' + initialState)
+      log('event: window.load, current state: ' +
+        (document.monetization && document.monetization.state))
+
+      document.getElementById('clear').addEventListener('click', () => {
+        document.getElementById('log').innerText = ''
+      })
+
+      document.getElementById('remove').addEventListener('click', () => {
+        document.getElementById('money').remove()
+        document.getElementById('remove').disabled = true
+        document.getElementById('add').disabled = false
+      })
+
+      document.getElementById('add').addEventListener('click', () => {
+        if (!document.getElementById('money')) {
+          const meta = document.createElement('meta')
+          meta.id = 'money'
+          meta.name = 'monetization'
+          meta.content = '$twitter.xrptipbot.com/Coil'
+          document.head.appendChild(meta)
+          document.getElementById('remove').disabled = false
+          document.getElementById('add').disabled = true
+        }
+      })
+
+      if (document.monetization) {
+        /*setInterval(() => {
+          log('state: ' + document.monetization.state)
+        }, 1e3)*/
+
+        document.monetization.addEventListener('monetizationpending', ev => {
+          log('event: pending, state: ' + document.monetization.state +
+            ' requestId: ' + ev.detail.requestId + ' pp=' + ev.detail.paymentPointer)
+        })
+
+        document.monetization.addEventListener('monetizationstart', ev => {
+          log('event: start, state: ' + document.monetization.state +
+            ' requestId: ' + ev.detail.requestId + ' pp=' + ev.detail.paymentPointer)
+        })
+
+        document.monetization.addEventListener('monetizationstop', ev => {
+          log('event: stopped, state: ' + document.monetization.state +
+            ' requestId: ' + ev.detail.requestId + ' pp=' + ev.detail.paymentPointer)
+        })
+
+        document.monetization.addEventListener('monetizationprogress', ev => {
+          log('event: progress, state: ' + document.monetization.state +
+            ' amount: ' + ev.detail.amount + ' code: ' + ev.detail.assetCode +
+            ' scale: ' + ev.detail.assetScale)
+        })
+      }
+    })
+  </script>
+  <body>
+    <button id="clear">Clear Log</button>
+    <button id="remove">Remove Tag</button>
+    <button id="add" disabled>Add Tag</button>
+    <pre id="log"></pre>
+  </body
+</html>
