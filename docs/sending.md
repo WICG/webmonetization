@@ -1,7 +1,7 @@
 ---
 id: sending
 title: Web Monetization Providers
-sidebar_label: Sending Payments
+sidebar_label: Sending payments
 ---
 
 > This page is a proposal for how browsers can implement Web Monetization. All
@@ -25,7 +25,7 @@ Our expectation is the Web Monetization (WM) sender will manifest as a payment
 handler as follows.
 
 The WM sender interface leverages the Payment Handler API. The API contains
-capabilities that enable Web applications to handle requests for payments. You
+capabilities that enable web applications to handle requests for payments. You
 can read the working draft of the spec on the
 [W3C website](https://www.w3.org/TR/payment-handler/).
 
@@ -33,7 +33,7 @@ The Payment Handler API aligns well with the model anticipated for WM senders:
 A WM sender could manifest as a specialized payment handler capable of returning
 not just a `PaymentResponse` but also a handle to a stream of micropayments.
 
-### `monetization` - Payment Method
+### `monetization` - payment method
 
 Payment handlers able to act as WM senders **MUST** register themselves with the
 platform as supportive of the `monetization` payment method.
@@ -42,7 +42,7 @@ The `monetization` payment method identifier will be registered as a
 [standardized payment method](https://www.w3.org/TR/payment-method-id/#standardized-payment-method-identifiers)
 through the Web Payments WG at W3C.
 
-### `PaymentRequestEvent` - Event
+### `PaymentRequestEvent` - event
 
 When the user's browser sends a payment via the WM sender, the browser emits a
 [`PaymentRequestEvent`](https://www.w3.org/TR/payment-handler/#the-paymentrequestevent).
@@ -89,7 +89,7 @@ because the handler was unable to send in the specified currency.
 For more information about the JavaScript `Promise` object, see the
 [MDN Web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
 
-### `MonetizationRequest` - Dictionary
+### `MonetizationRequest` - dictionary
 
 The data in the `MonetizationRequest` emitted to the payment handler contains
 the destination (WM receiver) address for the payment, the condition, expiry,
@@ -111,7 +111,7 @@ and data to use in the Interledger packet.
 | expiry      | Expiration date and time for when the ILP packet expires.     |
 | data        | Base64-encoded additional data to send in the ILP packet.     |
 
-### `MonetizationResponse` - Dictionary
+### `MonetizationResponse` - dictionary
 
 The data in the `MonetizationResponse` that is sent by the payment handler
 contains the fulfillment from the successful payment and the data from the
@@ -129,7 +129,7 @@ fulfill packet.
 | fulfillment | 32 bytes, base64-encoded fulfillment from the ILP packet (returned by the payee). |
 | data        | Base64-encoded additional data received from the ILP packet. |
 
-## Open Authorization Issues
+## Open authorization issues
 
 When the payment handler is invoked (handling a new `PaymentRequestEvent`) it's
 expected to send a payment on behalf of the user.
@@ -144,7 +144,7 @@ _Invoke_ is quite intrusive on the user experience unless it's throttled by the
 browser in some way. _Reject_ is likely to result in a lot of failures that go
 undetected.
 
-## Supporting Payment Streams
+## Supporting payment streams
 
 As detailed in the [explainer](./explainer.md), the user's browser receives a
 unique destination address and shared secret for each monetization session (e.g.

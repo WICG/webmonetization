@@ -3,6 +3,7 @@
     "Overview": ["getting-started", "api"],
     "Examples": ["exclusive-content", "remove-ads", "counter", "start-stop"],
     "Explainer": ["explainer", "receiving", "sending"],
+    "Wallets": ["ilp-wallets","gatehub","stronghold","xrptipbot"],
     "More": ["specification", "glossary", "resources"]
   }
 }

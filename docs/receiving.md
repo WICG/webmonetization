@@ -1,7 +1,7 @@
 ---
 id: receiving
 title: Web Monetization Receivers
-sidebar_label: Receiving Payments
+sidebar_label: Receiving payments
 ---
 
 This page describes the functions of the Web Monetization (WM) receiver and how
@@ -15,7 +15,7 @@ monetized website, the browser resolves a unique receiving address for sending
 payments to the website's WM receiver. The browser then begins sending payments
 through the user's WM sender.
 
-## Payment Pointers
+## Payment pointers
 
 A [payment pointer](https://paymentpointers.org) is a unique URL assigned to your
 payment account by your WM receiver.
@@ -35,7 +35,7 @@ a unique destination address and shared secret from the website's WM  receiver.
 Only the unique destination address for the session is given to the WM sender.
 This prevents the WM sender from correlating a payment pointer with a website.
 
-## Receiving Payments
+## Receiving payments
 
 Any entity that is able to accept payments on behalf of websites can be a WM
 receiver if it supports the necessary protocols. To accept a stream of payments
@@ -47,7 +47,7 @@ from the Interledger stack:
 payee and payer to facilitate payment over ILP
 * STREAM Protocol - Establishes micropayment streams between entities using the ILP
 
-### Interledger Protocol (ILP)
+### Interledger protocol (ILP)
 
 The ILP routes individual micropayments. Interledger allows for payments to be
 sent at very high volumes and in very small denominations. Payments are sent as
@@ -55,9 +55,9 @@ Interledger packets, which are optimized for this use case.
 
 The WM receiver must set up a link into the Interledger network. More specifically,
 the WM receiver must have an Interledger connection (direct or indirect) to any
-Web-monetized senders that want to pay the WM receiver.
+web monetized senders that want to pay the WM receiver.
 
-### Simple Payment Setup Protocol (SPSP)
+### Simple Payment Setup protocol (SPSP)
 
 The SPSP exchanges payment information between the WM receiver and WM sender to
 facilitate payment over the ILP. The WM receiver must host a secure HTTP endpoint
@@ -65,7 +65,7 @@ that returns a unique destination address and shared secret for each request.
 
 > SPSP messages **MUST** be exchanged over HTTPS.
 
-#### Example Response to an SPSP Request
+#### Example Response to an SPSP request
 
 1. Alice is a customer of _Secure Receiving Wallet Ltd._ who can act as a Web
 Monetization receiver.
@@ -80,7 +80,7 @@ Accept: application/spsp4+json
 ```
 
 4. The server responds with a JSON response carrying the Interledger destination
-address and shared secret to use to open a payment stream with
+address and shared secret to open a payment stream with
 _Secure Receiving Wallet_ and send Alice money.
 
 ```ts
@@ -93,7 +93,7 @@ _Secure Receiving Wallet_ and send Alice money.
 More details on SPSP can be found in
 [IL-RFC 0009 - Simple Payment Setup Protocol](https://interledger.org/rfcs/0009-simple-payment-setup-protocol/).
 
-### STREAM Protocol
+### STREAM protocol
 
 The STREAM protocol establishes micropayment streams between entities using the
 ILP. STREAM is loosely based on QUIC and provides similar features over ILP that

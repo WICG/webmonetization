@@ -1,21 +1,21 @@
 ---
 id: exclusive-content
 title: Exclusive Content
-sidebar_label: Exclusive Content
+sidebar_label: Exclusive content
 ---
 
 One of the perks of Web Monetization is that its JavaScript API can be used to
 make your page respond to Web Monetization. You can reward the people who
-support your site by giving Web-monetized viewers exclusive content.
+support your site by giving web monetized viewers exclusive content.
 
 
-## A Basic Example
+## A basic example
 
 Web Monetization makes providing exclusive content easy! This is a very simple example of
-showing exclusive content only to Web-monetized visitors:
+showing exclusive content only to web monetized visitors:
 
 > **Careful!** These examples hide content on the client side. A clever user
-> could pretend to be Web-monetized by using the developer console. Examples on
+> could pretend to be web monetized by using the developer console. Examples on
 > how to verify Web Monetization from the server side will come soon.
 
 ### Code
@@ -53,7 +53,7 @@ it without Web Monetization, then you won't see anything.
 
 [_You can view the example page here_](/examples/show_simple.html).
 
-### How Does it Work?
+### How does it work?
 
 There's only three things this code does. The code is encompassed in the `<script>`
 tag.
@@ -83,18 +83,18 @@ this line. You can trigger any JavaScript, so the sky's the limit.
       document.getElementById('exclusive').classList.remove('hidden')
 ```
 
-## A Complete Example
+## A complete example
 
 In reality, your requirements will be a little more complex. You should:
 
-* Show Web-monetized visitors an indicator while they wait for Web Monetization to initialize.
-* Tell non-Web-monetized visitors that there's exclusive content they can get.
+* Show web monetized visitors an indicator while they wait for Web Monetization to initialize.
+* Tell non-web-monetized visitors that there's exclusive content they can get.
 
 This means there's three states in total:
 
-* Show a call-to-action to a non-Web-monetized visitor
-* Show a loading message to a Web-monetized visitor
-* Show exclusive content to a Web-monetized visitor
+* Show a call-to-action to a non-web-monetized visitor
+* Show a loading message to a web monetized visitor
+* Show exclusive content to a web monetized visitor
 
 ### Code
 
@@ -162,10 +162,10 @@ without Web Monetization.
 
 [_You can view the example page here_](/examples/show.html).
 
-### How Does it Work?
+### How does it work?
 
 We have three functions to activate our three different states: `showLoading`
-displays the loader, `showCTA` displays the call-to-action to get Web-monetized, and
+displays the loader, `showCTA` displays the call-to-action to get web monetized, and
 `showExclusiveContent` shows the exclusive content. This works just like the
 [basic example](#a-basic-example) where we turn the `hidden` class on/off for
 our `div`s.
@@ -177,8 +177,8 @@ exists in the visitor's browser.
 window.addEventListener('load', () => {
 ```
 
-If the visitor doesn't have Web Monetization, then we show them the CTA right
-away. If the visitor does have Web Monetization, we show them the loader
+If the visitor doesn't have Web Monetization, then we show the CTA right
+away. If the visitor does have Web Monetization, we show the loader
 right away.
 
 ```js
@@ -189,7 +189,7 @@ right away.
   }
 ```
 
-When the visitor is Web-monetized, we also listen for the
+When the visitor is web monetized, we also listen for the
 `monetizationstart` event. Just like the previous example, this event will show
 the exclusive content when it's triggered and hide the other `div`s.
 

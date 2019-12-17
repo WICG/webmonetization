@@ -11,39 +11,47 @@
       },
       "counter": {
         "title": "Micropayment Counter",
-        "sidebar_label": "Micropayment Counter"
+        "sidebar_label": "Micropayment counter"
       },
       "exclusive-content": {
         "title": "Exclusive Content",
-        "sidebar_label": "Exclusive Content"
+        "sidebar_label": "Exclusive content"
       },
       "explainer": {
         "title": "Web Monetization Explainer",
         "sidebar_label": "Web Monetization"
       },
+      "gatehub": {
+        "title": "GateHub",
+        "sidebar_label": "GateHub"
+      },
       "getting-started": {
         "title": "Quick Start Guide",
-        "sidebar_label": "Quick Start Guide"
+        "sidebar_label": "Quick start guide"
       },
       "glossary": {
         "title": "Glossary",
         "sidebar_label": "Glossary"
       },
+      "ilp-wallets": {
+        "title": "Digital Wallets",
+        "sidebar_label": "Digital wallets"
+      },
       "receiving": {
         "title": "Web Monetization Receivers",
-        "sidebar_label": "Receiving Payments"
+        "sidebar_label": "Receiving payments"
       },
       "remove-ads": {
         "title": "Remove Ads",
-        "sidebar_label": "Remove Ads"
+        "sidebar_label": "Remove ads"
       },
       "resources": {
         "title": "External Resources",
-        "sidebar_label": "External Resources"
+        "sidebar_label": "External resources"
       },
       "sending": {
         "title": "Web Monetization Providers",
-        "sidebar_label": "Sending Payments"
+        "sidebar_label": "Sending payments"
       },
       "specification": {
         "title": "Draft Web Monetization Specification",
@@ -51,7 +59,15 @@
       },
       "start-stop": {
         "title": "Start/Stop Monetization",
-        "sidebar_label": "Start/Stop Monetization"
+        "sidebar_label": "Start/stop monetization"
+      },
+      "stronghold": {
+        "title": "Stronghold",
+        "sidebar_label": "Stronghold"
+      },
+      "xrptipbot": {
+        "title": "XRP Tipbot",
+        "sidebar_label": "XRP Tipbot"
       }
     },
     "links": {
@@ -64,6 +80,7 @@
       "Overview": "Overview",
       "Examples": "Examples",
       "Explainer": "Explainer",
+      "Wallets": "Wallets",
       "More": "More"
     }
   },

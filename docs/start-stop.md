@@ -1,15 +1,15 @@
 ---
 id: start-stop
 title: Start/Stop Monetization
-sidebar_label: Start/Stop Monetization
+sidebar_label: Start/stop monetization
 ---
 
-Sometimes you don't want your entire site to be Web-monetized. The easiest way
-to do this is to just include the Web Monetization meta tag on the pages you
-want to monetize. But if you want to turn Web Monetization on and off
+Sometimes you don't want your entire site to be web monetized. The easiest way
+to partially monetize your site is to just include the Web Monetization meta tag
+on specific pages. But if you want to turn Web Monetization on and off
 dynamically, you can do that too!
 
-This example page shows how to turn Web Monetization on and off dynamically, in
+This example page shows how to turn Web Monetization on and off dynamically in
 response to a visitor clicking a button.
 
 ## Code
@@ -68,7 +68,7 @@ response to a visitor clicking a button.
 </body>
 ```
 
-If you view this in a Web-monetized browser, you can see the monetization state
+If you view this in a web monetized browser, you can see the monetization state
 and control it with the _Stop Monetization_ and _Start Monetization_ buttons.
 
 [_You can view the example page here_](/examples/start-stop.html).
@@ -135,7 +135,7 @@ stopButton.addEventListener('click', () => {
 
 When the _Start_ button is clicked, we append the monetization tag to the
 document's head. Your Web Monetization extension will pick up this change and
-begin initializing Web Mone tization.
+begin initializing Web Monetization.
 
 ```js
 startButton.addEventListener('click', () => {
