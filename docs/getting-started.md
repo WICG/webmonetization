@@ -1,37 +1,37 @@
 ---
 id: getting-started
 title: Quick Start Guide
-sidebar_label: Quick Start Guide
+sidebar_label: Quick start guide
 ---
 
 This page provides high-level instructions for adding Web Monetization to your
  website.
 
 To monetize your site, you must:
-1. Set up a Web-monetized receiver (wallet) for receiving payments.
+1. Set up a web monetized receiver (wallet) for receiving payments.
 2. Get your wallet's payment pointer.
 3. Create a special `<meta>` tag that tells [Web Monetization providers](/#providers)
 how to pay you.
 4. Add the `<meta>` tag to each page of your website that you want to monetize.
 
-For a more detailed look at Web-monetizing your site, see the
+For a more detailed look at web monetizing your site, see the
 [Web Monetization explainer](./explainer#getting-started).
 
-## 1. Set Up a Web-Monetized Wallet
+## 1. Set up a web monetized wallet
 
-Choose a [wallet that supports Web Monetization](/#wallets) and set up an account.
+Choose a [wallet that supports Web Monetization](./ilp-wallets) and set up an account.
 The wallet must support the Interledger Protocol (ILP).
 
-## 2. Get Your Payment Pointer
+## 2. Get your payment pointer
 
 Find your payment pointer within your wallet and copy it.
 
-### Example Payment Pointer
+### Example payment pointer
 ```html
 $wallet.example.com/alice
 ```
 
-## 3. Create Your Meta Tag
+## 3. Create your meta tag
 
 Create your `<meta>` tag by using the [Meta Tag Generator](/meta-tag) or by
 following the example below.
@@ -39,14 +39,14 @@ following the example below.
 The tag's `name` is always `monetization`. The `content` is your payment
 pointer.
 
-### Example Meta Tag
+### Example meta tag
 ```html
 <meta
   name="monetization"
   content="$wallet.example.com/alice">
 ```
 
-## 4. Add the Meta Tag to Your Website
+## 4. Add the meta tag to your website
 
 Copy your `<meta>` tag and add it to the `<head>` section of each page you want
 to monetize.
@@ -67,4 +67,4 @@ to monetize.
 </html>
 ```
 
-Congratulations! Your website is now Web monetized.
+Congratulations! Your website is now web monetized.

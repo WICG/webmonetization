@@ -1,7 +1,7 @@
 ---
 id: counter
 title: Micropayment Counter
-sidebar_label: Micropayment Counter
+sidebar_label: Micropayment counter
 ---
 
 Web Monetization lets you count exactly how much you made from a given visitor.
@@ -53,9 +53,9 @@ Load the example page with Web Monetization enabled to see the amount count up.
 
 [_You can view the example page here_](/examples/counter.html).
 
-## How Does it Work?
+## How does it work?
 
-If the visitor is Web-monetized (`document.monetization` is defined), we're
+If the visitor is web monetized (`document.monetization` is defined), we're
 binding the `monetizationprogress` event. `monetizationprogress` contains
 details about the micropayments that occur.
 
@@ -64,8 +64,8 @@ if (document.monetization) {
   document.monetization.addEventListener('monetizationprogress', ev => {
 ```
 
-This is different from the [Exclusive Content](./exclusive-content) and
-[Remove Ads](./remove-ads) examples, where we bound `monetizationstart`.
+This is different from the [Exclusive content](./exclusive-content) and
+[Remove ads](./remove-ads) examples, where we bound `monetizationstart`.
 `monetizationstart` fires when Web Monetization initializes.
 `monetizationprogress` fires every time there's a micropayment from the Web
 Monetization provider to the site.
@@ -81,11 +81,11 @@ details. We set these currency details on the very first micropayment.
   }
 ```
 
-`ev.detail.assetCode` is a three-letter code that describes the currency of the micropayment,
-like `USD`, `EUR`, or `XRP`.
+`ev.detail.assetCode` is a three-letter code that describes the currency of the
+micropayment, like `USD`, `EUR`, or `XRP`.
 
 The asset code describes the asset the [Web Monetization
-receiver](http://localhost:3000/docs/glossary#web-monetization-receiver) is
+receiver](./glossary#web-monetization-receiver) is
 denominating their incoming payments in. This often matches the currency your
 wallet account uses, but not always.
 
@@ -93,9 +93,9 @@ The asset code will stay the same for a given payment pointer (your wallet
   provider should warn you if they change it). It is not affected by the
   currency that the Web Monetization provider uses.
 
-`ev.detail.assetScale` defines how small the units of amount will be on this payment pointer.
-A bigger scale means smaller units. If your scale is 2 and your asset code is USD, then it means
-you need 100 (`10 ** 2`) units to get one dollar.
+`ev.detail.assetScale` defines how small the units of amount will be on this
+payment pointer. A bigger scale means smaller units. If your scale is 2 and your
+asset code is USD, then it means you need 100 (`10 ** 2`) units to get one dollar.
 
 The amount in `ev.detail.amount` is an integer, which we add to our total.
 
