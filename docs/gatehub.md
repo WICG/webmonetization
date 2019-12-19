@@ -22,6 +22,8 @@ After your account is verified you can create your wallet on GateHub.
 
 ## Create your wallet
 
+GateHub will assign a payment pointer to your wallet. A payment pointer is an identifier for your wallet that's safe to share with 3rd parties.
+
 1. Log in to your [GateHub account](https://signin.gatehub.net).
 2. Select **Wallet** from the left navigation bar.
 3. Click **\(+\)** in the upper-left.
@@ -31,25 +33,9 @@ After your account is verified you can create your wallet on GateHub.
 7. Click **Deposit/Receive** at the bottom of the screen.
 8. Select the **ILP** tab and copy your payment pointer to your clipboard.
 
+Now you can share your payment pointer with other sites or add it to your own site by following the [Quick Start Guide](./getting-started).
+
 ![createwallet](assets/gatehub-01.png)
-
-## Create your meta tag
-
-Create your `<meta>` tag by using the [Meta Tag Generator](/meta-tag) or by
-following the example below.
-
-The tag's `name` is always `monetization`. The `content` is your payment
-pointer.
-
-### Example meta tag
-```html
-<meta
-  name="monetization"
-  content="$wallet.example.com/alice">
-```
-
-You're now ready to add your meta tag to the `<head>` section of each page you
-want to monetize.
 
 ## Issue an exchange order
 

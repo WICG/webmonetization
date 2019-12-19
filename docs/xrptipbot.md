@@ -21,24 +21,6 @@ Go to [XRP Tip Bot](https://www.xrptipbot.com/?login=do) and choose how you want
 
 ## Get your payment pointer
 
-When you select the ILP deposit type you're provided a payment pointer. Copy it to your clipboard.
+When you select the ILP deposit type you're provided a payment pointer. Copy it to your clipboard. A payment pointer is an identifier for your wallet that's safe to share with other sites. You can also add it to your own site by following the [Quick Start Guide](./getting-started).
 
 ![addpointer](assets/xrp-tipbot-03.png)
-
-## Create your meta tag
-
-Create your `<meta>` tag by using the [Meta Tag Generator](/meta-tag) or by
-following the example below.
-
-The tag's `name` is always `monetization`. The `content` is your payment
-pointer.
-
-### Example meta tag
-```html
-<meta
-  name="monetization"
-  content="$wallet.example.com/alice">
-```
-
-You're now ready to add your meta tag to the `<head>` section of each page you
-want to monetize.
