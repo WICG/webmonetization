@@ -27,6 +27,14 @@ const providers = [
   }
 ]
 
+const tools = [
+  {
+    name: 'Hugo + Webmonetization',
+    image: 'hugo_webmo_logo.svg',
+    link: 'https://github.com/sabinebertram/hugo-webmonetization-component'
+  }
+]
+
 const siteConfig = {
   title: 'Web Monetization', // Title for your website.
   tagline: 'A JavaScript browser API which allows the creation of a payment stream from the user agent to the website',
@@ -54,6 +62,7 @@ const siteConfig = {
 
   providers,
   wallets,
+  tools,
 
   /* path to images for header/footer */
   headerIcon: 'img/wm-icon.svg',
