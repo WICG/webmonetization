@@ -143,6 +143,13 @@ class Index extends React.Component {
         <CardSet cards={siteConfig.providers} />
       </CardBlock>
 
+    const Tools = () =>
+      <CardBlock id="tools">
+        <h2>Web Monetization Tools</h2>
+        <p>These tools enable webmonetization features</p>
+        <CardSet cards={siteConfig.tools} />
+      </CardBlock>
+
     const Resources = () =>
       <Container padding={['left', 'right']} className="resources">
         <h2>Resources</h2>
@@ -178,6 +185,7 @@ class Index extends React.Component {
           <WhyNow />
           <Wallets />
           <Providers />
+          <Tools />
           <Resources />
         </div>
       </div>
