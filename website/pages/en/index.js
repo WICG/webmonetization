@@ -146,7 +146,7 @@ class Index extends React.Component {
     const Tools = () =>
       <CardBlock id="tools">
         <h2>Web Monetization Tools</h2>
-        <p>These tools enable webmonetization features</p>
+        <p>These tools enable Web Monetization features</p>
         <CardSet cards={siteConfig.tools} />
       </CardBlock>
 
