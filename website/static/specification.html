@@ -38,12 +38,17 @@
         localBiblio: {
           Interledger: {
             title: 'Interledger Protocol (ILP)',
-            href: 'https://interledger.org/rfcs/0003-interledger-protocol/'
+            href: 'https://interledger.org/rfcs/0027-interledger-protocol-4/'
           },
           SPSP: {
             title: 'Simple Payments Setup Protocol',
             href:
               'https://interledger.org/rfcs/0009-simple-payment-setup-protocol'
+          },
+          STREAM: {
+            title: 'STREAM',
+            href:
+              'https://interledger.org/rfcs/0029-stream/'
           }
         }
       }
@@ -145,7 +150,7 @@
       <p>
         Web Monetization makes use of
         <abbr title="Simple Payment Setup Protocol">SPSP</abbr> on top of
-        <abbr title="Interledger Protocol">ILP</abbr>/STREAM to provide a
+        <abbr title="Interledger Protocol">ILP</abbr>/[[[STREAM]]] to provide a
         high-level way to send money and data, while still providing tremendous
         flexibility.
       </p>
@@ -248,8 +253,8 @@
                 <li>
                   With the <code>destination_account</code> and
                   <code>shared_secret</code> fetched from the SPSP query, a
-                  STREAM connection is established. A single STREAM is opened on
-                  this connection, and a positive SendMax is set.
+                  [[[STREAM]]] connection is established. A single [[[STREAM]]]
+                  is opened on this connection, and a positive SendMax is set.
                 </li>
                 <li>
                   The provider SHOULD set their SendMax high enough that it is
@@ -259,8 +264,8 @@
               </ul>
             </li>
             <li>
-              Once the STREAM connection has fulfilled an ILP packet with a
-              non-zero amount, the provider notifies the browser:
+              Once the [[[STREAM]]] connection has fulfilled an ILP packet with
+              a non-zero amount, the provider notifies the browser:
               <ul>
                 <li>
                   The <a>user agent</a> sets
@@ -292,10 +297,10 @@
                   the browser to do so.
                 </li>
                 <li>
-                  If the STREAM connection is severed, the provider will redo
-                  the SPSP query to the same Payment Setup Endpoint as before
-                  with the same Monetization ID. The <a>user agent</a> MUST NOT
-                  re-process the `&lt;meta&gt;` Tags Set.
+                  If the [[[STREAM]]] connection is severed, the provider will
+                  redo the SPSP query to the same Payment Setup Endpoint as
+                  before with the same Monetization ID. The <a>user agent</a>
+                  MUST NOT re-process the `&lt;meta&gt;` Tags Set.
                 </li>
                 <li>
                   Each time a packet with a non-zero amount is fulfilled, the
@@ -609,6 +614,7 @@
               readonly attribute DOMString amount;
               readonly attribute DOMString assetCode;
               readonly attribute DOMString assetScale;
+              readonly attribute DOMString? receipt;
             };
           </pre>
           <section>
@@ -646,6 +652,14 @@
               {{ MonetizationProgressEventInit }} for more information.
             </p>
           </section>
+          <section>
+            <h2><dfn>receipt</dfn> attribute</h2>
+            <p>
+              When getting, returns the value it was initialized with. See
+              {{ MonetizationProgressEventInit / receipt }} member of
+              {{ MonetizationProgressEventInit }} for more information.
+            </p>
+          </section>
           <section data-dfn-for="MonetizationProgressEventInit">
             <h3><dfn>MonetizationProgressEventInit</dfn> dictionary</h3>
             <pre class="idl">
@@ -653,6 +667,7 @@
                 required DOMString amount;
                 required DOMString assetCode;
                 required DOMString assetScale;
+                DOMString receipt;
               };
             </pre>
             <dl>
@@ -671,23 +686,15 @@
                 <code>assetScale</code> of <code>2</code> when denominated in
                 cents.
               </dd>
+              <dt><dfn>receipt</dfn> member</dt>
+              <dd>
+                base64-encoded [[[STREAM]]] receipt issued by the Web
+                Monetization receiver to the Web Monetization provider as proof
+                of the total amount received in the stream.
+              </dd>
             </dl>
           </section>
         </section>
-      </section>
-      <section id="http-headers">
-        <h2>HTTP Headers</h2>
-        <h4>`Web-Monetization-Id`</h4>
-        <p>
-          Contains the `Monetization ID` (currently referred to as
-          {{ MonetizationStartEvent / requestId }} in the
-          {{ MonetizationStartEvent }}) as a a UUID version 4, which the user
-          agent generated. This header MUST always be sent on [[SPSP]] queries
-          for Web Monetization.
-        </p>
-        <pre class="example http">
-          Web-Monetization-Id: dcd479ad-7d8d-4210-956a-13c14b8c67eb
-        </pre>
       </section>
     </section>
   </body>
