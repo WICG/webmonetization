@@ -262,7 +262,7 @@ You can monetize an iframe by adding `monetization` to the iframe's `allow` attr
   <iframe src = "/wm/example.htm" width = "600" height = "800" allow="monetization">
 ```
 
-The iframe **must** have the meta tag in its head. In the example above, `example.htm` contains the Web Monetization `meta` tag.
+The iframe must have the `meta` tag in its `head` in order to monetize. In the example above, `example.htm` contains the Web Monetization `meta` tag. No errors will occur from embedding a non-monetized iframe with `allow="monetization"`.
 
 > Monetization is only supported on iframes in the top window, not iframes within iframes.
 
