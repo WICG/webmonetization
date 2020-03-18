@@ -76,7 +76,7 @@ determine where to send payments.
 appropriate rate of payments to make to the site.
 3. The browser generates a unique session ID for this payment session.
 4. The browser fetches a unique destination address and shared secret for the
-session from the site's WM receiver.
+session from the site's payment pointer URL.
 5. _(Optional)_ A payment receipt verifier service (operated by the site or a
 third party) proxies the request and sends a Receipt Secret to generate receipts
 and Receipt Nonce to include in those receipts to the WM Receiver.
