@@ -4,13 +4,9 @@ title: Micropayment Counter
 sidebar_label: Micropayment counter
 ---
 
-Web Monetization lets you count exactly how much you made from a given visitor.
-The amount updates in real-time as more micropayments come in. Like any
-animated effect it should be used sparingly, but it can be a cool way to show
-your visitors exactly how much they're supporting you!
+Web Monetization lets you count exactly how much you made from a given visitor. The amount updates in real-time as more micropayments come in. Like any animated effect it should be used sparingly, but it can be a cool way to show your visitors exactly how much they're supporting you!
 
-This example shows you how to use the `monetizationprogress` event to count how
-much you've made off of micropayments from a given visitor.
+This example shows you how to use the `monetizationprogress` event to count how much you've made off of micropayments from a given visitor.
 
 ## Code
 
@@ -49,10 +45,6 @@ much you've made off of micropayments from a given visitor.
 </body>
 ```
 
-Load the example page with Web Monetization enabled to see the amount count up.
-
-[_You can view the example page here_](/examples/counter.html).
-
 ## How does it work?
 
 If the visitor is web monetized (`document.monetization` is defined), we're
@@ -64,43 +56,36 @@ if (document.monetization) {
   document.monetization.addEventListener('monetizationprogress', ev => {
 ```
 
-This is different from the [Exclusive content](./exclusive-content) and
-[Remove ads](./remove-ads) examples, where we bound `monetizationstart`.
+This is different from the exclusive content](./exclusive-content) and
+[remove ads](./remove-ads) examples, where we bound `monetizationstart`.
 `monetizationstart` fires when Web Monetization initializes.
 `monetizationprogress` fires every time there's a micropayment from the Web
 Monetization provider to the site.
 
-There's some attributes of the micropayments that don't change, like currency
-details. We set these currency details on the very first micropayment.
+There's some attributes of the micropayments that don't change, like currency details. We set these currency details on the very first micropayment.
 
 ```js
-  // initialize currency and scale on first progress event
-  if (total === 0) {
-    scale = ev.detail.assetScale
-    document.getElementById('currency').innerText = ev.detail.assetCode
-  }
+// initialize currency and scale on first progress event
+if (total === 0) {
+  scale = ev.detail.assetScale
+  document.getElementById('currency').innerText = ev.detail.assetCode
+}
 ```
 
-`ev.detail.assetCode` is a three-letter code that describes the currency of the
-micropayment, like `USD`, `EUR`, or `XRP`.
+`ev.detail.assetCode` is a three-letter code that describes the currency of the micropayment, like `USD`, `EUR`, or `XRP`.
 
 The asset code describes the asset the [Web Monetization
 receiver](./glossary#web-monetization-receiver) is
-denominating their incoming payments in. This often matches the currency your
-wallet account uses, but not always.
+denominating their incoming payments in. This often matches the currency your wallet account uses, but not always.
 
-The asset code will stay the same for a given payment pointer (your wallet
-  provider should warn you if they change it). It is not affected by the
-  currency that the Web Monetization provider uses.
+The asset code will stay the same for a given payment pointer (your wallet provider should warn you if they change it). It is not affected by the currency that the Web Monetization provider uses.
 
-`ev.detail.assetScale` defines how small the units of amount will be on this
-payment pointer. A bigger scale means smaller units. If your scale is 2 and your
-asset code is USD, then it means you need 100 (`10 ** 2`) units to get one dollar.
+`ev.detail.assetScale` defines how small the units of amount will be on this payment pointer. A bigger scale means smaller units. If your scale is 2 and your asset code is USD, then it means you need 100 (`10 ** 2`) units to get one dollar.
 
 The amount in `ev.detail.amount` is an integer, which we add to our total.
 
 ```js
-  total += Number(ev.detail.amount)
+total += Number(ev.detail.amount)
 ```
 
 > Even though `ev.detail.amount` is a string that can represent a number up to
@@ -115,6 +100,21 @@ readable decimal number, though, so we apply the scale to format it. This
 formatted version of the amount gets written to the `total` span on the page.
 
 ```js
-  const formatted = (total * Math.pow(10, -scale)).toFixed(scale)
-  document.getElementById('total').innerText = formatted
+const formatted = (total * Math.pow(10, -scale)).toFixed(scale)
+document.getElementById('total').innerText = formatted
 ```
+
+## Interactive example
+
+Click the **View as Web Monetized/non-Web Monetized visitor** button to see how much you've streamed.
+
+If you see the source files instead of the example, click **View App** in the bottom right.
+
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <iframe
+    src="https://glitch.com/embed/#!/embed/wm-count-revenue?path=README.md&previewSize=100"
+    title="wm-count-revenue on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>

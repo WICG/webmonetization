@@ -37,6 +37,10 @@
         "title": "Digital Wallets",
         "sidebar_label": "Digital wallets"
       },
+      "probabilistic-rev-sharing": {
+        "title": "Probabilistic Revenue Sharing",
+        "sidebar_label": "Probabilistic revenue sharing"
+      },
       "receiving": {
         "title": "Web Monetization Receivers",
         "sidebar_label": "Receiving payments"
