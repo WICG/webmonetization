@@ -106,7 +106,9 @@ document.getElementById('total').innerText = formatted
 
 ## Interactive example
 
-Click the **View as Web Monetized/non-Web Monetized visitor** button to see how much you've streamed.
+This example simulates showing the amount being streamed from a web monetized visitor. The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
+
+Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle your monetization state.
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 

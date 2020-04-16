@@ -74,9 +74,9 @@ document.getElementById('exclusive').classList.remove('hidden')})
 
 ### Interactive example
 
-Click the **View as Web Monetized/non-Web Monetized visitor** button to show and hide monetized content.
+This example simulates showing exclusive content to a web monetized visitor and hiding the content from a non-web monetized visitor. The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
 
-Viewing this content with Web Monetization enabled shows "Here's some exclusive content!" The message is hidden when Web Monetization is disabled.
+Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle your monetization state.
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
@@ -196,9 +196,11 @@ if (!document.monetization) {
 
 ### Interactive example
 
-Click the **View as Web Monetized/non-Web Monetized visitor** button to show and hide monetized content.
+This example simulates showing and hiding content based on whether your visitor is web monetized. Web monetized visitors will see exclusive content that's hidden from non-web monetized viewers. Non-web monetized visitors will see the message, "Please install a Web Monetization extension to support me", which is hidden from web monetized visitors.
 
-Viewing this content with Web Monetization enabled shows "Here's some exclusive content!" The message, "Please install a Web Monetization extension to support me", appears when Web Monetization is disabled.
+The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
+
+Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle your monetization state.
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 

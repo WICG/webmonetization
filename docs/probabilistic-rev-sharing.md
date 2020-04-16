@@ -94,7 +94,7 @@ window.addEventListener('load', () => {
 
 ### Interactive example
 
-This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a pointer and it will show you the results.
+This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a pointer and it will show you the results. The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 

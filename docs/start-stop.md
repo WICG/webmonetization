@@ -6,7 +6,7 @@ sidebar_label: Start/stop monetization
 
 Sometimes you don't want your entire site to be web monetized. The easiest way to partially monetize your site is to just include the Web Monetization `meta` tag on specific pages. But if you want to turn Web Monetization on and off dynamically, you can do that too!
 
-This example page shows how to turn Web Monetization on and off dynamically in response to a visitor clicking a button.
+This example shows how to turn Web Monetization on and off dynamically in response to a visitor clicking a button.
 
 ## Code
 
@@ -126,11 +126,15 @@ startButton.addEventListener('click', () => {
 
 ## Interactive example
 
-Click the **View as Web Monetized/non-Web Monetized visitor** button to view the different states.  
+This example simulates turning Web Monetization on and off dynamically in response to a visitor clicking a button.
 
-If you view as a web monetized visitor, you can see the monetization state and control it with the _Stop Monetization_ and _Start Monetization_ buttons. When you click _Stop Monetization_, the state will immediately go to `stopped`. When you click _Start Monetization_, the state will move to `pending`, and then proceed to `started` after Web Monetization initializes.
+A web monetized visitor can see the monetization state and control it with the buttons. The state changes to `stopped` when _Stop Monetization_ is clicked. When _Start Monetization_ is clicked, the state changes to `pending`, then to `started` after Web Monetization initializes.
 
-If you view as a non-web monetized visitor, you'll see the state "Not enabled in browser", regardless of the button you click.
+A non-web monetized visitor will see "Not enabled in browser" as the state, regardless of which button is clicked.
+
+The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
+
+Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle your monetization state.
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 

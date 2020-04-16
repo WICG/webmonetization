@@ -6,7 +6,7 @@ sidebar_label: Remove ads
 
 Removing ads is a great way to thank the people who support your site. You can make sure web monetized visitors have a smooth experience without forgoing monetization of the rest of your visitors.
 
-Here's an example page that removes its ads for web monetized visitors:
+Here's an example that removes its ads for web monetized visitors.
 
 ## Code
 
@@ -119,7 +119,9 @@ Keeping a `hasPaid` variable is a better practice.
 
 ## Interactive example
 
-Click the **View as Web Monetized/non-Web Monetized visitor** button to show and hide the ad based on whether you're web monetized.
+This example simulates hiding an ad from a web monetized visitor and showing the add to a non-web monetized visitor. The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
+
+Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle your monetization state.
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
