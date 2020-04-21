@@ -264,8 +264,6 @@ You can monetize an iframe by adding `monetization` to the iframe's `allow` attr
 
 The iframe must have the `meta` tag in its `head` in order to monetize. In the example above, `example.htm` contains the Web Monetization `meta` tag. No errors will occur from embedding a non-monetized iframe with `allow="monetization"`.
 
-> Monetization is only supported on iframes in the top window, not iframes within iframes.
-
 The `allow` attribute continues to support multiple permissions when using `monetization`. For example, `<...allow="monetization; fullscreen">`.
 
 If the parent page contains the Web Monetization `meta` tag and multiple monetized iframes, then payment is split between all monetized frames. Whether the payment is split evenly is a matter of payment rate. Coil, for example, splits payments evenly; however, the standard doesn't require providers to do so.
