@@ -254,3 +254,16 @@ the `requestId` in the `monetizationstart` browser event.
 ```http
 Web-Monetization-Id: dcd479ad-7d8d-4210-956a-13c14b8c67eb
 ```
+
+## Iframes
+You can monetize an iframe by adding `monetization` to the iframe's `allow` attribute. For example:
+
+```html
+  <iframe src = "/wm/example.htm" width = "600" height = "800" allow="monetization">
+```
+
+The iframe must have the `meta` tag in its `head` in order to monetize. In the example above, `example.htm` contains the Web Monetization `meta` tag. No errors will occur from embedding a non-monetized iframe with `allow="monetization"`.
+
+The `allow` attribute continues to support multiple permissions when using `monetization`. For example, `<...allow="monetization; fullscreen">`.
+
+If the parent page contains the Web Monetization `meta` tag and multiple monetized iframes, then payment is split between all monetized frames. Whether the payment is split evenly is a matter of payment rate. Coil, for example, splits payments evenly; however, the standard doesn't require providers to do so.
