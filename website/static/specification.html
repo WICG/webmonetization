@@ -694,6 +694,25 @@
           </section>
         </section>
       </section>
+      <section id="http-headers">
+        <h2>HTTP Headers</h2>
+        <h4>`Web-Monetization-Id`</h4>
+        <section id="warning" class="warning">
+        <p>
+          DEPRECATED: The `Web-Monetization-Id` header is deprecated in favor of receipts.
+        </p>
+        </section>
+        <p>
+          Contains the `Monetization ID` (currently referred to as
+          {{ MonetizationStartEvent / requestId }} in the
+          {{ MonetizationStartEvent }}) as a a UUID version 4, which the user
+          agent generated. This header MAY be sent on [[SPSP]] queries for
+          Web Monetization.
+        </p>
+        <pre class="example http">
+          Web-Monetization-Id: dcd479ad-7d8d-4210-956a-13c14b8c67eb
+        </pre>
+      </section>
     </section>
   </body>
 </html>
