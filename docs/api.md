@@ -222,6 +222,10 @@ document
 | assetScale | Number | The number of places past the decimal for the amount. For example, if you have USD with an asset scale of two, then the minimum divisible unit is cents. |
 | receipt | String | base64-encoded STREAM receipt issued by the Web Monetization receiver to the Web Monetization provider as proof of the total amount received in the stream. |
 
+> There may be multiple STREAM connections for a single `requestId`.
+Therefore, a `receipt` amount may not represent the total amount received for a
+given `requestId`.
+
 #### Example event object
 
 In this example, the total amount of USD received is equal to 7567 × 10^-2
