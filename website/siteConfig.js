@@ -32,6 +32,11 @@ const tools = [
     name: 'Hugo + Webmonetization',
     image: 'hugo_webmo_logo.svg',
     link: 'https://github.com/sabinebertram/hugo-webmonetization-component'
+  },
+  {
+    name: 'Eleventy + Webmonetization',
+    image: '11ty_webmo_logo.png',
+    link: 'https://github.com/DanCanetti/eleventy-plugin-monetization'
   }
 ]
 
