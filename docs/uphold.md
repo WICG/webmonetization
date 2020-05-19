@@ -4,7 +4,7 @@ title: Uphold
 sidebar_label: Uphold
 ---
 
-Use Uphold to have your earnings paid out in over 60 supported currencies, including fiat and crypto. See [Uphold's site](https://uphold.com/en/transparency) for more information.
+Use Uphold to have your earnings paid out in over 50 supported currencies, including fiat and crypto. See [Uphold's site](https://uphold.com/en/transparency) for more information.
 
 Opening an Uphold account only takes a few minutes. They collect your legal name, date of birth, and phone number. You don't have to verify your identity until you're ready to withdraw your funds, but you can do it earlier if you want. See their [help article](https://support.uphold.com/hc/en-us/articles/202766795) for more information.
 
