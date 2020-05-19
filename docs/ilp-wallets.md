@@ -6,7 +6,7 @@ sidebar_label: Digital wallets
 
 These providers offer ILP-enabled wallets. You can find provider-specific information in the side bar, under Wallets.
 
-| | <center><img src="./assets/gatehub.png"></center> | <center><img src="./assets/stronghold.png"></center> | <center><img src="./assets/uphold.png"></center> |
+| | <center><img src="./assets/gatehub.png"></center> | <center><img src="./assets/stronghold.png"></center> | <center><img src="./assets/uphold.svg"></center> |
 |-----|-----|-----|-----|
 | **Payout currencies** | XRP | USD | 27 fiat currencies <br> 27 crypto currencies <br> [See full list](https://uphold.com/en/transparency) |
 | **Withdrawal currencies** | XRP, USD, EUR, BTC, ETH | USD | USD, EUR, GBP, CAD, PLN, XRP, BTC, ETH, +59 more <br> [See full list](https://uphold.com/en/transparency) |
