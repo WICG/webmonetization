@@ -382,9 +382,9 @@ Please submit a PR if you are aware of updates to the lists below.
 
 ### Web Monetization receivers
 
-- [XRP Tipbot](https://www.xrptipbot.com/)
 - [Stronghold](https://stronghold.co/)
 - [GateHub](https://gatehub.net/)
+- [Uphold](https://uphold.com/)
 
 ### Web Monetization providers (senders)
 
