@@ -3,9 +3,9 @@
 
 const wallets = [
   {
-    name: 'XRP Tip Bot',
-    image: 'tipbot_logo.svg',
-    link: 'https://www.xrptipbot.com'
+    name: 'Uphold',
+    image: 'uphold_logo.svg',
+    link: 'https://www.uphold.com/signup'
   },
   {
     name: 'Gatehub',
@@ -15,7 +15,7 @@ const wallets = [
   {
     name: 'Stronghold',
     image: 'stronghold_logo.svg',
-    link: 'https://stronghold.co'
+    link: 'https://stronghold.co/real-time-payments#coil'
   }
 ]
 
