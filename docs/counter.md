@@ -13,7 +13,7 @@ This example shows you how to use the `monetizationprogress` event to count how 
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
+  <meta name="monetization" content="$wallet.example.com/alice">
 
   <script>
     let total = 0

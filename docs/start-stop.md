@@ -13,7 +13,7 @@ This example shows how to turn Web Monetization on and off dynamically in respon
 ```html
 <head>
   <!-- the "content" should be set to your own payment pointer -->
-  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
+  <meta name="monetization" content="$wallet.example.com/alice">
 
   <script>
     function showMonetizationState () {
