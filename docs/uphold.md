@@ -97,6 +97,12 @@ You can sign up through Uphold's app or website.
 
 ## View activity and claim funds
 
+The iOS and Android apps show incoming activity in real time; however, the website **does not**.
+
+There's a delay of **at least one hour** before payments show up in the web interface. One hour after you've received at least the minimum claimable amount, Uphold deposits the amount into your account.
+
+The minimum claimable amount varies based on currency. For example, Uphold will not deposit an amount in USD that's less than $0.01. If you receive less than $0.01, you won't see the amount in the web interface until your balance reaches $0.01, regardless of how much time has passed.
+
 ### App
 
 The app shows incoming activity in real time. You can watch the payment streams by tapping **Activity** from the toolbar.
@@ -117,9 +123,9 @@ When claimed, the transaction shows as deposited on the Activity screen.
 
 ### Website
 
-Unlike the app, the website **does not** allow you to view incoming payments in real time.
+Unlike the iOS and Android apps, the website **does not** allow you to view incoming payments in real time. There's a delay of **at least one hour** before payments show up in the web interface.
 
-An hour after you've received at least the minimum claimable amount, Uphold will deposit the amount to your account. The amount varies based on currency. For example, Uphold will not deposit an amount in USD that's less than $0.01.
+One hour after you've received at least the minimum claimable amount, Uphold will deposit the amount to your account. The amount varies based on currency. For example, Uphold will not deposit an amount in USD that's less than $0.01. 
 
 On the dashboard, click **Activity** to see all activity or click a specific card to see activity for that card.
 
