@@ -13,7 +13,7 @@ Here's an example that removes its ads for web monetized visitors.
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
+  <meta name="monetization" content="$wallet.example.com/alice">
 
   <script>
     const adCode = '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'

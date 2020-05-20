@@ -19,7 +19,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
+  <meta name="monetization" content="$wallet.example.com/alice">
 
   <style>
     .hidden {
@@ -107,7 +107,7 @@ This means there's three states in total:
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$twitter.xrptipbot.com/Interledger">
+  <meta name="monetization" content="$wallet.example.com/alice">
 
   <style>
     .hidden {
