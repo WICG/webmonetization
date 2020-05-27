@@ -57,7 +57,7 @@ const siteConfig = {
     { doc: 'getting-started', href: '/docs', label: 'Docs' },
     { href: '/specification.html', label: 'Specification' },
     { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
-    { href: 'https://github.com/interledger/webmonetization.org', label: 'GitHub' }
+    { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' }
   ],
 
   providers,

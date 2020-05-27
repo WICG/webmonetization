@@ -110,7 +110,7 @@ class Index extends React.Component {
     const LastCard = () => (
       <div className="card">
         <span>Do you know another provider?&nbsp;
-          <a href="https://github.com/interledger/webmonetization.org/edit/master/website/siteConfig.js"
+          <a href="https://github.com/WICG/webmonetization/edit/master/website/siteConfig.js"
             target="_blank"
             rel="noreferrer noopener">
             Make a PR
@@ -165,7 +165,7 @@ class Index extends React.Component {
           <div className="resource">
             <h3>Specification</h3>
             <p>The formal specification.<br />
-              <a href="https://adrianhopebailie.github.io/web-monetization/"
+              <a href={docUrl('specification.html', this.props.language)}
                 target="_blank"
                 rel="noreferrer noopener">
                 Read specs ›
@@ -173,7 +173,7 @@ class Index extends React.Component {
             </p>
           </div>
         </div>
-        <p>Do you know other developer resources? <a href="https://github.com/interledger/webmonetization.org" target="_blank" rel="noreferrer noopener">Make a PR</a></p>
+        <p>Do you know other developer resources? <a href="https://github.com/WICG/webmonetization" target="_blank" rel="noreferrer noopener">Make a PR</a></p>
       </Container>
 
     return (

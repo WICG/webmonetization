@@ -80,11 +80,11 @@ And responds with either a pass or a fail:
 * Pass - passes in a `Promise` that resolves to an instance of
 [`MonetizationResponse`](#monetizationresponse-dictionary) containing the
 fulfillment and data from the response.
-> [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/interledger/webmonetization.org/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?
+> [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/WICG/webmonetization/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?
 
 * Fail - provides a rejected `Promise` indicating that the payment failed
 because the handler was unable to send in the specified currency.
-> [Issue 18 - Indicate Failure Reasons from Web Monetization Sender](https://github.com/interledger/webmonetization.org/issues/18)
+> [Issue 18 - Indicate Failure Reasons from Web Monetization Sender](https://github.com/WICG/webmonetization/issues/18)
 
 For more information about the JavaScript `Promise` object, see the
 [MDN Web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
