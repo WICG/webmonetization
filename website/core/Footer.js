@@ -34,7 +34,7 @@ class Footer extends React.Component {
           <div>
             <h5>Community</h5>
             <a
-              href="https://github.com/interledger/webmonetization.org"
+              href="https://github.com/WICG/webmonetization"
               target="_blank"
               rel="noreferrer noopener">
               GitHub

@@ -79,7 +79,7 @@ appropriate rate of payments to make to the site.
 session from the site's WM receiver.
 5. With the site's page still in focus, the browser begins initiating payments
 to the website at the calculated rate from the user's WM provider.
-> [Issue 17 - Support Streaming to Background Tabs](https://github.com/interledger/webmonetization.org/issues/17)<p>What about people listening to monetized music in a background tab?
+> [Issue 17 - Support Streaming to Background Tabs](https://github.com/WICG/webmonetization/issues/17)<p>What about people listening to monetized music in a background tab?
 
 6. The WM provider sends the payment to the WM receiver.
 7. The WM provider notifies the browser of successful payments.
@@ -129,7 +129,7 @@ the page header. Imperatively, a developer can then access the global
 `monetization` object on the DOM to track incoming payment streams/events and
 react to these (by showing/hiding ads, etc.).
 
-> [Issue 33 - Declarative vs Imperative API](https://github.com/interledger/webmonetization.org/issues/33)
+> [Issue 33 - Declarative vs Imperative API](https://github.com/WICG/webmonetization/issues/33)
 
 ### Use updated Payment Request and Payment Handler APIs
 
@@ -146,7 +146,7 @@ The Payment Handler API aligns well with the model anticipated for WM providers.
 A provider might manifest as a specialized payment handler capable of returning
 not just a `PaymentResponse` but also a handle to a stream of micropayments.
 
-> [Issue 34 - Use Updated Payment Request and Payment Handler APIs?](https://github.com/interledger/webmonetization.org/issues/34)
+> [Issue 34 - Use Updated Payment Request and Payment Handler APIs?](https://github.com/WICG/webmonetization/issues/34)
 
 ### This sounds a lot like streams...
 
@@ -157,7 +157,7 @@ rather than events.
 We will investigate the pros/cons of using streams and events for Web
 Monetization as part of the incubation process.
 
-> [Issue 27 - Readable Stream vs Progress Event vs Both](https://github.com/interledger/webmonetization.org/issues/27)
+> [Issue 27 - Readable Stream vs Progress Event vs Both](https://github.com/WICG/webmonetization/issues/27)
 
 ## Concepts
 
@@ -240,7 +240,7 @@ Web Monetization only works on pages containing the `meta` tag. Pages must be
 secure (served over HTTPS, or `http://localhost` for testing) to preclude bad
 actors, like ISPs injecting their own `<meta>` tags into pages.
 
-> [Issue 14 (Closed) - Legitimate Meta Tags](https://github.com/interledger/webmonetization.org/issues/14)<p>
+> [Issue 14 (Closed) - Legitimate Meta Tags](https://github.com/WICG/webmonetization/issues/14)<p>
 How do we ensure only legitimate tags are parsed by the browser?
 
 ### Handle payments
@@ -302,7 +302,7 @@ session.
   }
 </script>
 ```
-> [Issue 16 - Use `PaymentCurrencyAmount` Dictionary](https://github.com/interledger/webmonetization.org/issues/16)<p>
+> [Issue 16 - Use `PaymentCurrencyAmount` Dictionary](https://github.com/WICG/webmonetization/issues/16)<p>
 Should the amount in the `monetizationprogress` event use the existing [`PaymentCurrencyAmount`](https://www.w3.org/TR/payment-request/#paymentcurrencyamount-dictionary) type?
 
 ## Browser behavior
