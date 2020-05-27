@@ -1,15 +1,15 @@
-# WebMonetization.org
+# Web Monetization
 
-[View live site](https://webmonetization.org)
+This repo is the code behind [webmonetization.org](https://webmonetization.org)
 
-This repo is the home of the proposed Web Monetization standard.
+It is the home of the proposed Web Monetization standard currently incubating at the [WICG](https://wicg.org).
 
-View the [explainer](https://webmonetization.org/docs/explainer.html), or read
+You can view the [explainer](https://webmonetization.org/docs/explainer.html), or read
 the proposed [spec](https://webmonetization.org/specification.html).
 
 ## Contribute
 
-This website was created with [Docusaurus](https://docusaurus.io/).
+This website was created with [Docusaurus](https://docusaurus.io/) and contributions are welcome as pull requests.
 
 ### Local Development
 
