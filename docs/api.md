@@ -12,9 +12,9 @@ Monetization provider](/#providers).
 
 This API is injected by any browser or extension that supports Web Monetization.
 
-> This document represents the current API implementation. Note that an
-[unofficial draft specification](../specification.html) suitable for the W3C
-standards track is being developed and should **NOT** be used as a reference for
+> This document represents the current API implementation. Note that a
+[draft specification](../specification.html) suitable for the W3C standards
+track is being developed which should **NOT** be used as a reference for
 current implementations.
 
 #### Assumptions
