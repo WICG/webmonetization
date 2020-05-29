@@ -8,9 +8,9 @@ These providers offer ILP-enabled wallets. You can find provider-specific inform
 
 | | <center><img src="./assets/uphold.svg"></center> | <center><img src="./assets/gatehub.png"></center> | <center><img src="./assets/stronghold.png"></center> |
 |-----|-----|-----|-----|
-| **Payout currencies** | 27 fiat currencies <br> 27 crypto currencies <br> [See full list](https://uphold.com/en/transparency) | XRP | USD |
+| **Payout currencies** | 27 fiat currencies <br> 34 crypto currencies <br> [See full list](https://uphold.com/en/transparency) | XRP | USD |
 | **Withdrawal currencies** | USD, EUR, GBP, CAD, PLN, XRP, BTC, ETH, +59 more <br> [See full list](https://uphold.com/en/transparency) | XRP, USD, EUR, BTC, ETH | USD |
-| **Bank connection** | ACH, SEPA, Wire | SEPA, Wire | ACH, Wire |
+| **Bank connection** | ACH, SEPA, Wire, UK FPS | SEPA, Wire | ACH, Wire |
 | **Fees** | None | SEPA: 1.00 EUR < 50,000 EUR<br>Wire: $15 min ($150 max) | $3 withdrawal fee |
 | **Payment pointer prefix** | $ilp.uphold.com/ | $ilp.gatehub.net/	| $pay.stronghold.co/	|
 
