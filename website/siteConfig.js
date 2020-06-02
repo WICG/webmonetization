@@ -37,6 +37,11 @@ const tools = [
     name: 'Eleventy + Webmonetization',
     image: '11ty_webmo_logo.png',
     link: 'https://github.com/DanCanetti/eleventy-plugin-monetization'
+  },
+  {
+    name: 'Gridsome + Webmonetization',
+    image: 'gridsome_webmo_logo.svg',
+    link: 'https://github.com/Sergix/gridsome-plugin-monetization'
   }
 ]
 
