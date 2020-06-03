@@ -24,6 +24,11 @@ const providers = [
     name: 'Coil',
     image: 'coil_logo.svg',
     link: 'https://coil.com'
+  },
+  {
+    name: 'Puma',
+    image: 'puma-logo.svg',
+    link: 'https://pumabrowser.com'
   }
 ]
 
