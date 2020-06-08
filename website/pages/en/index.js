@@ -143,6 +143,13 @@ class Index extends React.Component {
         <CardSet cards={siteConfig.providers} />
       </CardBlock>
 
+    const Browsers = () =>
+      <CardBlock id="browsers">
+        <h2>Web Monetization Enabled Browsers</h2>
+        <p>These browsers implement Web Monetization natively or via an extension</p>
+        <CardSet cards={siteConfig.browsers} />
+      </CardBlock>
+
     const Tools = () =>
       <CardBlock id="tools">
         <h2>Web Monetization Tools</h2>
@@ -185,6 +192,7 @@ class Index extends React.Component {
           <WhyNow />
           <Wallets />
           <Providers />
+          <Browsers />
           <Tools />
           <Resources />
         </div>
