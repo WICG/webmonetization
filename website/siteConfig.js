@@ -24,7 +24,10 @@ const providers = [
     name: 'Coil',
     image: 'coil_logo.svg',
     link: 'https://coil.com'
-  },
+  }
+]
+
+const browsers = [
   {
     name: 'Puma',
     image: 'puma-logo.svg',
@@ -72,6 +75,7 @@ const siteConfig = {
 
   providers,
   wallets,
+  browsers,
   tools,
 
   /* path to images for header/footer */
