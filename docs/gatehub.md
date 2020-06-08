@@ -37,6 +37,14 @@ Now you can share your payment pointer with other sites or add it to your own si
 
 ![createwallet](assets/gatehub-01.png)
 
+## Find your payment pointer
+
+1. Log in to your [GateHub account](https://signin.gatehub.net).
+2. Select **Wallet** from the left navigation bar.
+3. If needed, select your ILP wallet from the upper-left drop-down menu.
+4. Click **Deposit/Receive** at the bottom of the screen.
+5. Select the **ILP** tab and copy your payment pointer.
+
 ## Issue an exchange order
 
 Payments are deposited into your GateHub account as XRP. GateHub allows you to

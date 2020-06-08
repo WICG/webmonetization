@@ -24,7 +24,10 @@ const providers = [
     name: 'Coil',
     image: 'coil_logo.svg',
     link: 'https://coil.com'
-  },
+  }
+]
+
+const browsers = [
   {
     name: 'Puma',
     image: 'puma-logo.svg',
@@ -47,6 +50,11 @@ const tools = [
     name: 'Gridsome + Webmonetization',
     image: 'gridsome_webmo_logo.svg',
     link: 'https://github.com/Sergix/gridsome-plugin-monetization'
+  },
+  {
+    name: 'Gatsby + Webmonetization',
+    image: 'gatsby_logo.svg',
+    link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
   }
 ]
 
@@ -77,6 +85,7 @@ const siteConfig = {
 
   providers,
   wallets,
+  browsers,
   tools,
 
   /* path to images for header/footer */
