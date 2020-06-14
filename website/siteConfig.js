@@ -51,6 +51,11 @@ const tools = [
     image: 'gridsome_webmo_logo.svg',
     link: 'https://github.com/Sergix/gridsome-plugin-monetization'
   },
+  {
+    name: 'Angular + Webmonetization',
+    image: 'angular_webmo_logo.svg',
+    link: 'https://github.com/CDDelta/ngx-monetization'
+  },
   // {
   //   name: 'Gatsby + Webmonetization',
   //   image: 'gatsby_logo.svg',
