@@ -45,6 +45,8 @@ Now you can share your payment pointer with other sites or add it to your own si
 4. Click **Deposit/Receive** at the bottom of the screen.
 5. Select the **ILP** tab and copy your payment pointer.
 
+![findpointer](assets/gatehubfindpointer.gif)
+
 ## Issue an exchange order
 
 Payments are deposited into your GateHub account as XRP. GateHub allows you to
