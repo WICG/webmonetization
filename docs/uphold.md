@@ -125,7 +125,7 @@ When claimed, the transaction shows as deposited on the Activity screen.
 
 Unlike the iOS and Android apps, the website **does not** allow you to view incoming payments in real time. There's a delay of **at least one hour** before payments show up in the web interface.
 
-One hour after you've received at least the minimum claimable amount, Uphold will deposit the amount to your account. The amount varies based on currency. For example, Uphold will not deposit an amount in USD that's less than $0.01. 
+One hour after you've received at least the minimum claimable amount, Uphold will deposit the amount to your account. The amount varies based on currency. For example, Uphold will not deposit an amount in USD that's less than $0.01.
 
 On the dashboard, click **Activity** to see all activity or click a specific card to see activity for that card.
 
@@ -146,51 +146,62 @@ If you've already received a payment, you can find your payment pointer by tappi
 #### Portfolio screen
 
 1. Tap the card on the Portfolio screen. In this example, you'd tap **USD account**.
-
-  <img src="assets/uphold/upholdPortfolioWithCard.png" height="500">
-
 2. Tap **...** in the upper right, then tap **Interledger payment pointer**.
-
-  <img src="assets/uphold/upholdPaymentPointer01.png" height="500">
-
 3. Copy your payment pointer, then tap **Done**.
 
-  <img src="assets/uphold/upholdPaymentPointer02.png" height="500">
+<img src="assets/uphold/upholdappportfoliopointer.gif" height="650" border=1>
 
 #### Transact screen
 
 The Portfolio screen won't show a card until you receive a payment. In the meantime, you can find your payment pointer through the Transact screen.
 
 1. Tap **Transact** in the toolbar.
-
-  <img src="assets/uphold/upholdPortfolioWithoutCard.png" height="500">
-
 2. Tap **From**.
-
-  <img src="assets/uphold/upholdSetUp01.png" height="500">
-
 3. Scroll down and tap **Interledger**
-
-  <img src="assets/uphold/upholdSetUp02.png" height="500">
-
 4. Tap **I agree** and **Continue**.
-
-  <img src="assets/uphold/upholdSetUp03.png" height="500">
-
 5. Copy your payment pointer, then tap **Done**.
 
-  <img src="assets/uphold/upholdSetUp04.png" height="500">
+<img src="assets/uphold/upholdapptransactpointer.gif" height="650" border=1>
+
 
 ### Website
 
 1. From the dashboard, select your Interledger card.
-
-  <img src="assets/uphold/upholdWebDashboardCard.png" width="600">
-
 2. Click **Add Funds**, then select **Fund from Interledger Payment Pointer**.
-
-  <img src="assets/uphold/upholdWebAddCard03.png" width="600">
-
 3. Copy your payment pointer.
 
-  <img src="assets/uphold/upholdWebAddCard05.png" width="600">
+![find pointer](assets/uphold/upholdwebpointer.gif)
+
+## Create additional payment pointers
+
+You can create additional payment pointers by adding more cards to your Uphold account. Each card supports one payment pointer.
+
+You can create additional cards through the Uphold website and the app. The **website** is a bit easier to navigate. See the [Set up your account - Website](#website) section above and begin at step 2.
+
+To add a new card in the **app**:
+
+1. Tap **Transact**.
+
+2. Tap the **To** menu. There will be a gray arrow next to any currencies already assigned to a card.
+
+<img src="assets/uphold/upholdaddnewcard01.png" height="500">
+
+3. Select the currency you want your earnings paid out in.
+
+  * **Different currency** - If you want a different currency than an existing card, tap the currency and then proceed to step 4.
+
+  * **Same currency** - If you want the same currency as an existing card, tap the currency and then tap **Add to a new...account**.
+
+<img src="assets/uphold/upholdaddnewcard02.png" height="500">
+
+4. Tap the **From** menu.
+
+5. Scroll down to the bottom and tap **Interledger**.
+
+<img src="assets/uphold/upholdsetup-02fromaccount.png" height="500">
+
+6. Tap **I agree** and then **Continue**. The payment pointer for your new card appears on the screen.
+
+<img src="assets/uphold/upholdaddnewcard04.png" height="500">
+
+7. Tap **Done**.
