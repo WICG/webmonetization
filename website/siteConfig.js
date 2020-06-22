@@ -50,6 +50,11 @@ const tools = [
     name: 'Gridsome + Webmonetization',
     image: 'gridsome_webmo_logo.svg',
     link: 'https://github.com/Sergix/gridsome-plugin-monetization'
+  },  
+  {
+    name: 'Awesome Web Monetization',
+    image: 'awesome_webmo_logo.svg',
+    link: 'https://github.com/thomasbnt/awesome-web-monetization'
   },
   // {
   //   name: 'Gatsby + Webmonetization',
