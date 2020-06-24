@@ -55,6 +55,16 @@ const tools = [
     name: 'Gatsby + Webmonetization',
     image: 'gatsby_webmo_logo.svg',
     link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
+  },
+  {
+    name: 'Angular + Webmonetization',
+    image: 'angular_webmo_logo.svg',
+    link: 'https://github.com/CDDelta/ngx-monetization'
+  },
+  {
+    name: 'VuePress + Webmonetization',
+    image: 'vuepress_webmo_logo.png',
+    link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization'
   }
 ]
 
@@ -74,13 +84,18 @@ const siteConfig = {
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
-
+  algolia: {
+    apiKey: '522665321749697a7b612bb54dbdb0b4',
+    indexName: 'webmonetization',
+    placeholder: 'Search'
+  },
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { doc: 'getting-started', href: '/docs', label: 'Docs' },
     { href: '/specification.html', label: 'Specification' },
     { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
-    { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' }
+    { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
+    { search: true }
   ],
 
   providers,
