@@ -53,7 +53,7 @@ const tools = [
   },
   {
     name: 'Gatsby + Webmonetization',
-    image: 'gatsby_logo.svg',
+    image: 'gatsby_webmo_logo.svg',
     link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
   }
 ]
