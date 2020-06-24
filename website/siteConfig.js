@@ -55,7 +55,12 @@ const tools = [
   //   name: 'Gatsby + Webmonetization',
   //   image: 'gatsby_logo.svg',
   //   link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
-  // }
+  // },
+  {
+    name: 'VuePress + Webmonetization',
+    image: 'vuepress_webmo_logo.png',
+    link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization'
+  }
 ]
 
 const siteConfig = {
