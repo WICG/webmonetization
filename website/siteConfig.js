@@ -52,15 +52,15 @@ const tools = [
     link: 'https://github.com/Sergix/gridsome-plugin-monetization'
   },
   {
+    name: 'Gatsby + Webmonetization',
+    image: 'gatsby_webmo_logo.svg',
+    link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
+  },
+  {
     name: 'Angular + Webmonetization',
     image: 'angular_webmo_logo.svg',
     link: 'https://github.com/CDDelta/ngx-monetization'
   },
-  // {
-  //   name: 'Gatsby + Webmonetization',
-  //   image: 'gatsby_logo.svg',
-  //   link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
-  // },
   {
     name: 'VuePress + Webmonetization',
     image: 'vuepress_webmo_logo.png',
