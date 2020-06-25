@@ -32,6 +32,11 @@ const browsers = [
     name: 'Puma',
     image: 'puma-logo.svg',
     link: 'https://pumabrowser.com'
+  },
+  {
+    name: 'Brave',
+    image: 'brave-logo.svg',
+    link: 'https://brave.com/'
   }
 ]
 
