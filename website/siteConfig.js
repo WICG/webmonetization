@@ -65,6 +65,11 @@ const tools = [
     name: 'VuePress + Webmonetization',
     image: 'vuepress_webmo_logo.png',
     link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization'
+  },
+  {
+    name: 'Tessy + Webmonetization',
+    image: 'tessy_webmo_logo.svg',
+    link: 'https://github.com/VladimirMikulic/tessy'
   }
 ]
 
