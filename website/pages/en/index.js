@@ -179,6 +179,16 @@ class Index extends React.Component {
               </a>
             </p>
           </div>
+          <div className="resource">
+            <h3><img src="https://awesome.re/badge-flat2.svg" alt="Awesome" style={{ maxWidth : "100%" }}/></h3>
+            <p>An <a href="https://github.com/sindresorhus/awesome#readme">awesome</a> list of additional Web Monetization resources.<br />
+              <a href="https://github.com/thomasbnt/awesome-web-monetization"
+                target="_blank"
+                rel="noreferrer noopener">
+                View list ›
+              </a>
+            </p>
+          </div>
         </div>
         <p>Do you know other developer resources? <a href="https://github.com/WICG/webmonetization" target="_blank" rel="noreferrer noopener">Make a PR</a></p>
       </Container>
