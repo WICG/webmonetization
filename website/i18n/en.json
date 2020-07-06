@@ -3,7 +3,7 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "A JavaScript browser API which allows the creation of a payment stream from the user agent to the website",
+    "tagline": "A JavaScript browser API that allows the creation of a payment stream from the user agent to the website",
     "docs": {
       "api": {
         "title": "JavaScript API",
