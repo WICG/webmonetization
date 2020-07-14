@@ -58,3 +58,9 @@ more info.
 Each page load or refresh is a unique session. The browser generates a
 [unique session ID](./explainer#flow) which the website can use to correlate
 incoming payments to the Web Monetization receiver to a client-side context.
+
+# Receipt Verifier
+* * *
+A service operated by the monetized website or third party that verifies
+payment receipts issued by the Web Monetization receiver and emitted to the
+web page by the User agent during a session.

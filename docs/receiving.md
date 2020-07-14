@@ -30,10 +30,10 @@ redirect browsers to alternate addresses using standard HTTP redirects.
 
 One benefit of payment pointers is that they provide a level of indirection that
 allows browsers to protect the privacy of users from their WM senders. Specifically,
-a browser uses a pointer in combination with a unique session ID to request
-a unique destination address and shared secret from the website's WM  receiver.
-Only the unique destination address for the session is given to the WM sender.
-This prevents the WM sender from correlating a payment pointer with a website.
+a browser uses a pointer to request a unique destination address and shared 
+secret from the website's WM  receiver. Only the unique destination address
+for the session is given to the WM sender. This prevents the WM sender from
+correlating a payment pointer with a website.
 
 ## Receiving payments
 
@@ -104,13 +104,13 @@ For an entity to be a WM receiver, it only needs to run a STREAM server, accept
 connections, and handle the incoming payments sent over the connection.
 
 The browser uses the connection parameters (ILP destination address and shared
-  secret) it acquired through [SPSP](#simple-payment-setup-protocol-spsp) to
-  establish a STREAM connection with the WM receiver. Then, a stream of payments
-  can be made to the WM receiver until the stream is closed.
+secret) it acquired through [SPSP](#simple-payment-setup-protocol-spsp) to
+establish a STREAM connection with the WM receiver. Then, a stream of payments
+can be made to the WM receiver until the stream is closed.
 
-Each set of connection parameters is unique and allows the WM receiver to
-correlate the original SPSP request with the incoming connection. This makes it
-easier for WM receivers to associate incoming payments with different user accounts
-and Web Monetization sessions. I.e., a website can associate payments with a
-user's session but the user's WM sender can't correlate the payments it makes with
-the website.
+Each set of connection parameters is unique, meaning the user's WM sender can't
+correlate the payments it makes with the website.
+
+The WM receiver may issue payment receipts via the STREAM connection. The
+browser can submit receipts to the web page allowing the page to verify payment
+during a user's session.
