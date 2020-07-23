@@ -65,6 +65,11 @@ const tools = [
     name: 'Tessy + Webmonetization',
     image: 'tessy_webmo_logo.svg',
     link: 'https://github.com/VladimirMikulic/tessy'
+  },
+  {
+    name: 'Svelte + Webmonetization',
+    image: 'svelte_webmo_logo.svg',
+    link: 'https://github.com/sorxrob/svelte-monetization'
   }
 ]
 
