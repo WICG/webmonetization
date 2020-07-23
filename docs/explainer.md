@@ -386,7 +386,6 @@ Please submit a PR if you are aware of updates to the lists below.
 
 ### Web Monetization receivers
 
-- [Stronghold](https://stronghold.co/)
 - [GateHub](https://gatehub.net/)
 - [Uphold](https://uphold.com/)
 

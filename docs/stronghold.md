@@ -4,21 +4,10 @@ title: Stronghold
 sidebar_label: Stronghold
 ---
 
-Use Stronghold to have your earnings paid out in US dollars.
+**Stronghold is discontinuing Web Monetization support effective August 20, 2020.** Web Monetization providers will be unable to stream payments to Stronghold wallets after August 20.
 
-> You won't see your payments immediately if the amount you've received is
-beneath Stronghold's threshold of approximately $0.002.
+If you are using Stronghold as your digital wallet provider, we recommend taking the following steps before August 20.
 
-Local regulations prevent Stronghold from supporting certain countries and regions. Check out their [help article](https://happiness.stronghold.co/hc/en-us/articles/360026140812-Countries-and-regions-supported-by-Stronghold) for more information.
-
-
-## Sign up and find your payment pointer
-
-1. Go to stronghold.co and [sign up](https://identity.stronghold.co/signup) for
-an account.
-2. On the Stronghold Launchpad click **My USD Payment Pointer**. Stronghold will open a popup displaying your payment pointer.
-3. Copy your payment pointer to your clipboard.
-
-Now you can share your payment pointer with other sites or add it to your own site by following the [Quick Start Guide](./getting-started).
-
-![signup](assets/stronghold-01.png)
+1. Withdraw your balance from your [Stronghold account](https://identity.stronghold.co/login). Stronghold cannot transfer your balance to a different wallet provider. If you need help making a withdrawal, check out Stronghold's help documentation: [How do I make a withdrawal](https://happiness.stronghold.co/hc/en-us/articles/360001516932-How-do-I-make-a-withdrawal-.)
+2. Sign up for an [Uphold](https://uphold.com/en-us/) or [GateHub](https://gatehub.net/) account and get a new payment pointer.
+3. Update your Web Monetization meta tag to reference your new payment pointer.
