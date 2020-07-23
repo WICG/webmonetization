@@ -11,11 +11,6 @@ const wallets = [
     name: 'Gatehub',
     image: 'gatehub_logo.svg',
     link: 'https://gatehub.net'
-  },
-  {
-    name: 'Stronghold',
-    image: 'stronghold_logo.svg',
-    link: 'https://stronghold.co/real-time-payments#coil'
   }
 ]
 
