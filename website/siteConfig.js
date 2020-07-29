@@ -70,7 +70,7 @@ const tools = [
 
 const siteConfig = {
   title: 'Web Monetization', // Title for your website.
-  tagline: 'A JavaScript browser API which allows the creation of a payment stream from the user agent to the website',
+  tagline: 'A JavaScript browser API that allows the creation of a payment stream from the user agent to the website',
   url: 'https://webmonetization.org', // Your website URL
   cname: 'webmonetization.org',
   baseUrl: '/', // Base URL for your project */
