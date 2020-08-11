@@ -30,6 +30,14 @@ const browsers = [
   }
 ]
 
+const search = [
+  {
+    name: 'Runnaroo',
+    image: 'runnaroo_logo.svg',
+    link: 'https://www.runnaroo.com'
+  }
+]
+
 const tools = [
   {
     name: 'Hugo + Webmonetization',
@@ -106,6 +114,7 @@ const siteConfig = {
   providers,
   wallets,
   browsers,
+  search,
   tools,
 
   /* path to images for header/footer */
