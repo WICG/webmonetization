@@ -150,6 +150,13 @@ class Index extends React.Component {
         <CardSet cards={siteConfig.browsers} />
       </CardBlock>
 
+    const Search = () =>
+      <CardBlock id="search">
+        <h2>Web Monetization Enabled Search Engines</h2>
+        <p>These search engines implement Web Monetization features</p>
+        <CardSet cards={siteConfig.search} />
+      </CardBlock>
+
     const Tools = () =>
       <CardBlock id="tools">
         <h2>Web Monetization Tools</h2>
