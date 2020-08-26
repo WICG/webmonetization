@@ -116,7 +116,7 @@ document
 ```ts
 {
   detail: {
-    paymentPointer: "$$wallet.example.com/alice",
+    paymentPointer: "$wallet.example.com/alice",
     requestId: "ec4f9dec-0ba4-4029-8f6a-29dc21f2e0ce"
   }
 }
@@ -235,7 +235,7 @@ In this example, the total amount of USD received is equal to 7567 × 10^-2
 {
   detail: {
     paymentPointer: "$wallet.example.com/alice",
-    requestId: "ec4f9dec-0ba4-4029-8f6a-29dc21f2e0ce"
+    requestId: "ec4f9dec-0ba4-4029-8f6a-29dc21f2e0ce",
     amount: "7567",
     assetCode: "USD",
     assetScale: 2,
