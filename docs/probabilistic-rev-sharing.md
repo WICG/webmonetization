@@ -16,7 +16,7 @@ This example shows how to define a list of payment pointers and assign each poin
 
 ### Code
 
-```js
+```html
 <head>
   <script>
     // Define your revenue share here.
