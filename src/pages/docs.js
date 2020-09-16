@@ -1,30 +1,17 @@
 // Redirects /docs to /docs/getting-started
 
 const React = require('react')
+const { Redirect } = require('@docusaurus/router')
 
-const Redirect = require('@docusaurus/router')
-
-const siteConfig = require(process.cwd() + '/siteConfig.js')
-
-function docUrl (doc, language) {
-  return (
-    siteConfig.baseUrl +
-    'docs/' +
-    (language ? language + '/' : '') +
-    doc +
-    '.html'
-  )
-}
-
-class Docs extends React.Component {
+export default class Docs extends React.Component {
   render () {
+    const { siteConfig } = this.props
+
     return (
       <Redirect
-        redirect={docUrl('getting-started', this.props.language)}
+        to={'/docs/getting-started'}
         config={siteConfig}
       />
     )
   }
 }
-
-module.exports = Docs
