@@ -12,12 +12,12 @@ Your wallet provider will assign you a payment pointer, which is the public addr
 
 The following providers offer ILP-enabled wallets.
 
-| | <center><img src="./assets/uphold.svg"></center> | <center><img src="./assets/gatehub.png"></center> |
+| | <center><img src="./assets/uphold.svg" /></center> | <center><img src="./assets/gatehub.png" /></center> |
 | :-: |:-:|:-:|
-| **Payout currencies** | 27 fiat currencies <br> 34 crypto currencies <br> [See full list](https://uphold.com/en/transparency) | XRP |
-| **Withdrawal currencies** | USD, EUR, GBP, CAD, PLN, XRP, BTC, ETH, +59 more <br> [See full list](https://uphold.com/en/transparency) | XRP, USD, EUR, BTC, ETH |
+| **Payout currencies** | 27 fiat currencies <br /> 34 crypto currencies <br /> [See full list](https://uphold.com/en/transparency) | XRP |
+| **Withdrawal currencies** | USD, EUR, GBP, CAD, PLN, XRP, BTC, ETH, +59 more <br /> [See full list](https://uphold.com/en/transparency) | XRP, USD, EUR, BTC, ETH |
 | **Bank connection** | ACH, SEPA, Wire, UK FPS | SEPA, Wire |
-| **Fees** | None | SEPA: 1.00 EUR < 50,000 EUR<br>Wire: $15 min ($150 max) |
+| **Fees** | None | SEPA: 1.00 EUR < 50,000 EUR<br />Wire: $15 min ($150 max) |
 | **Payment pointer prefix** | $ilp.uphold.com/ | $ilp.gatehub.net/	|
 
 ## Payment pointers

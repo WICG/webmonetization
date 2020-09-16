@@ -82,7 +82,7 @@ third party) proxies the request and sends a Receipt Secret to generate receipts
 and Receipt Nonce to include in those receipts to the WM Receiver.
 6. With the site's page still in focus, the browser begins initiating payments
 to the website at the calculated rate from the user's WM provider.
-> [Issue 17 - Support Streaming to Background Tabs](https://github.com/WICG/webmonetization/issues/17)<p>What about people listening to monetized music in a background tab?
+> [Issue 17 - Support Streaming to Background Tabs](https://github.com/WICG/webmonetization/issues/17)<p>What about people listening to monetized music in a background tab?</p>
 
 7. The WM provider sends the payment to the WM receiver.
 8. _(Optional)_ The WM receiver generates and sends a receipt to the WM
@@ -223,8 +223,8 @@ account.
 
 > **Example:** Alice owns the website at _**https://<span></span>rocknrollblog.example**_ and
 > opens an account at _Secure Receiving Wallet Ltd._. <p>Secure Wallet tells Alice that the
-> payment pointer for her account is `$secure-wallet.example/~alice`. <p>For
-> privacy reasons Alice might also get the payment pointer
+> payment pointer for her account is `$secure-wallet.example/~alice`.</p> <p>For
+> privacy reasons Alice might also get the payment pointer</p>
 > `$secure-wallet.example/db74f8b4-d6a0-4489-a021-e785e5efb229` or be able to
 > generate new addresses on demand (this would be a feature of her WM receiver).
 
@@ -244,7 +244,7 @@ secure (served over HTTPS, or `http://localhost` for testing) to preclude bad
 actors, like ISPs injecting their own `<meta>` tags into pages.
 
 > [Issue 14 (Closed) - Legitimate Meta Tags](https://github.com/WICG/webmonetization/issues/14)<p>
-How do we ensure only legitimate tags are parsed by the browser?
+How do we ensure only legitimate tags are parsed by the browser?</p>
 
 ### Handle payments
 
@@ -307,7 +307,7 @@ session.
 </script>
 ```
 > [Issue 16 - Use `PaymentCurrencyAmount` Dictionary](https://github.com/WICG/webmonetization/issues/16)<p>
-Should the amount in the `monetizationprogress` event use the existing [`PaymentCurrencyAmount`](https://www.w3.org/TR/payment-request/#paymentcurrencyamount-dictionary) type?
+Should the amount in the `monetizationprogress` event use the existing [`PaymentCurrencyAmount`](https://www.w3.org/TR/payment-request/#paymentcurrencyamount-dictionary) type?</p>
 
 ## Browser behavior
 
