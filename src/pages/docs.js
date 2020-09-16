@@ -2,7 +2,7 @@
 
 const React = require('react')
 
-const Redirect = require('../../core/Redirect.js')
+const Redirect = require('@docusaurus/router')
 
 const siteConfig = require(process.cwd() + '/siteConfig.js')
 

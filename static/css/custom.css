@@ -1,3 +1,8 @@
+:root {
+  --ifm-color-primary: #0080FF;
+  --ifm-color-secondary: #282C34;
+}
+
 /* custom css */
 h2 {
     font-size: 40px;

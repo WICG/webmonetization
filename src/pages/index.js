@@ -1,8 +1,6 @@
-const React = require('react')
-
-const CompLibrary = require('../../core/CompLibrary.js')
-
-const Container = CompLibrary.Container
+import React from 'react'
+import { Container } from '@material-ui/core'
+import Layout from '@theme/Layout'
 
 class HomeSplash extends React.Component {
   render () {
@@ -40,7 +38,7 @@ class HomeSplash extends React.Component {
   }
 }
 
-class Index extends React.Component {
+export default class Index extends React.Component {
   render () {
     const { config: siteConfig, language = '' } = this.props
     const { baseUrl, docsUrl } = siteConfig
@@ -133,28 +131,28 @@ class Index extends React.Component {
       <CardBlock id="wallets">
         <h2>Web Monetization Wallets</h2>
         <p>These providers offer ILP-enabled wallets.</p>
-        <CardSet cards={siteConfig.wallets} />
+        <CardSet cards={siteConfig.customFields.wallets} />
       </CardBlock>
 
     const Providers = () =>
       <CardBlock id="providers">
         <h2>Web Monetization Providers</h2>
         <p>These providers offer Web Monetization services</p>
-        <CardSet cards={siteConfig.providers} />
+        <CardSet cards={siteConfig.customFields.providers} />
       </CardBlock>
 
     const Browsers = () =>
       <CardBlock id="browsers">
         <h2>Web Monetization Enabled Browsers</h2>
         <p>These browsers implement Web Monetization natively or via an extension</p>
-        <CardSet cards={siteConfig.browsers} />
+        <CardSet cards={siteConfig.customFields.browsers} />
       </CardBlock>
 
     const Tools = () =>
       <CardBlock id="tools">
         <h2>Web Monetization Tools</h2>
         <p>These tools enable Web Monetization features</p>
-        <CardSet cards={siteConfig.tools} />
+        <CardSet cards={siteConfig.customFields.tools} />
       </CardBlock>
 
     const Resources = () =>
@@ -194,21 +192,24 @@ class Index extends React.Component {
       </Container>
 
     return (
-      <div>
-        <HomeSplash siteConfig={siteConfig} language={language} />
-        <SpashFooter />
-        <div className="mainContainer">
-          <Motivation />
-          <WhyNow />
-          <Wallets />
-          <Providers />
-          <Browsers />
-          <Tools />
-          <Resources />
+      <Layout
+        permalink="/"
+        title={siteConfig.title}
+        description={siteConfig.tagLine}>
+        <div>
+          <HomeSplash siteConfig={siteConfig} language={language} />
+          <SpashFooter />
+          <div className="mainContainer">
+            <Motivation />
+            <WhyNow />
+            <Wallets />
+            <Providers />
+            <Browsers />
+            <Tools />
+            <Resources />
+          </div>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
-
-module.exports = Index

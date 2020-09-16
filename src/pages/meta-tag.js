@@ -1,8 +1,5 @@
 const React = require('react')
-
-const CompLibrary = require('../../core/CompLibrary.js')
-
-const Container = CompLibrary.Container
+const { Container } = require('@material-ui/core')
 
 function MetaTag (props) {
   const { config: siteConfig, language = '' } = props
