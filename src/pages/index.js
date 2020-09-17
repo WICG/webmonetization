@@ -20,10 +20,10 @@ class HomeSplash extends React.Component {
     )
 
     const ProjectTitle = () => (
-      <h2 className="projectTitle">
-        {siteConfig.title}
+      <div className="projectTitle">
+        <h2>{siteConfig.title}</h2>
         <small>{siteConfig.tagline}</small>
-      </h2>
+      </div>
     )
 
     return (

@@ -100,6 +100,11 @@ const siteConfig = {
       indexName: 'webmonetization',
       placeholder: 'Search'
     },
+    colorMode: {
+      defaultMode: 'light', 
+      disableSwitch: true,
+      respectPrefersColorScheme: false
+    },
     navbar: {
       title: 'Web Monetization',
       logo: {

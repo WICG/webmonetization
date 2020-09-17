@@ -6,9 +6,16 @@
 /* custom css */
 h2 {
     font-size: 40px;
+    margin-top: 60px;
+    margin-bottom: 16px;
 }
 .fixedHeaderContainer {
   background: #000000;
+}
+
+.mainContainer {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .navigationSlider .slidingNav ul li > a:hover {
@@ -29,6 +36,41 @@ h2 {
     overflow: hidden;
 }
 
+.homeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 2em;
+}
+
+.navbar {
+  height: 50px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #000;
+  color: white;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto;
+}
+
+.navbar__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin-right: auto;
+}
+
+.navbar__link {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar__link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
 .nav-footer {
     padding: 2em;
 }
@@ -40,8 +82,15 @@ h2 {
 }
 
 .projectTitle {
+  text-align: center;
+}
+
+.projectTitle > h2,small {
     color: #FFFFFF;
     font-weight: normal;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 300%;
 }
 
 .projectTitle > small {
