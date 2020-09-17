@@ -120,10 +120,36 @@ const siteConfig = {
       ]
     },
     footer: {
-      logo: {
-        alt: 'Web Monetization logo',
-        src: 'img/webmon_icon_simple.svg'
-      }
+      links: [
+        {
+          title: 'WebMonetization.org',
+          items: []
+        },
+        {
+          title: 'Navigation',
+          items: [
+            { label: 'Home', to: '/' },
+            { label: 'Meta Tag Generator', to: '/meta-tag' }
+          ]
+        },
+        {
+          title: 'Community',
+          items: [
+            { label: 'Github', href: 'https://github.com/WICG/webmonetization' },
+            { label: 'ILP Forum', href: 'https://forum.interledger.org' },
+            { label: 'Web Platform Incubator Community Group', href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785' },
+            { label: 'Interledger', href: 'https://interledger.org' }
+          ]
+        },
+        {
+          title: 'Resources',
+          items: [
+            { label: 'Docs', to: '/docs/getting-started' },
+            { label: 'Specification', href: 'https://webmonetization.org/specification.html' },
+            { label: 'Payment Pointers', to: 'https://paymentpointers.org/' }
+          ]
+        }
+      ]
     }
   },
 

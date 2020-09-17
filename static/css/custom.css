@@ -299,6 +299,22 @@ h2 {
     }
 }
 
+.footer {
+  background-color: #20232a;
+}
+
+.footer__title {
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.footer__link {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
