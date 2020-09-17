@@ -50,7 +50,7 @@ information.
 # Web Monetization receiver
 * * *
 The digital entity (wallet) receiving micropayments.
-See [Receiving payments](./receiving.md) and [ILP wallets](./ilp-wallet) for
+See [Receiving payments](./receiving.md) and [ILP wallets](./ilp-wallets) for
 more info.
 
 # Web Monetization session
