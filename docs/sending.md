@@ -80,7 +80,7 @@ And responds with either a pass or a fail:
 * Pass - passes in a `Promise` that resolves to an instance of
 [`MonetizationResponse`](#monetizationresponse-dictionary) containing the
 fulfillment and data from the response.
-> [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/WICG/webmonetization/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?
+> [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/WICG/webmonetization/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?</p>
 
 * Fail - provides a rejected `Promise` indicating that the payment failed
 because the handler was unable to send in the specified currency.

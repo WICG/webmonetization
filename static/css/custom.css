@@ -1,9 +1,21 @@
+:root {
+  --ifm-color-primary: #0080FF;
+  --ifm-color-secondary: #282C34;
+}
+
 /* custom css */
 h2 {
     font-size: 40px;
+    margin-top: 60px;
+    margin-bottom: 16px;
 }
 .fixedHeaderContainer {
   background: #000000;
+}
+
+.mainContainer {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 .navigationSlider .slidingNav ul li > a:hover {
@@ -24,19 +36,75 @@ h2 {
     overflow: hidden;
 }
 
+.homeWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 2em;
+}
+
+.navbar {
+  height: 50px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #000;
+  color: white;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: auto;
+}
+
+.navbar__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  margin-right: auto;
+}
+
+.navbar__link {
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar__link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.DocSearch-Button {
+  border-radius: 0px !important;
+  background-color: #000 !important;
+}
+
+.DocSearch-Button:hover {
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+.DocSearch-Search-Icon {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .nav-footer {
     padding: 2em;
 }
 
 .bgLogo {
     position: absolute;
-    margin-left: 60px;
+    margin-left: 666px;
     margin-top: -20px;
 }
 
 .projectTitle {
+  text-align: center;
+}
+
+.projectTitle > h2,small {
     color: #FFFFFF;
     font-weight: normal;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-size: 300%;
 }
 
 .projectTitle > small {
@@ -109,7 +177,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 33px;
+    padding: 14px;
     width: 258px;
     height: 110px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
@@ -229,6 +297,22 @@ h2 {
     .resource {
         margin: 0;
     }
+}
+
+.footer {
+  background-color: #20232a;
+}
+
+.footer__title {
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.footer__link {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {

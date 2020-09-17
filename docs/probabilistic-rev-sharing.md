@@ -98,12 +98,12 @@ This example shows how the random choices will approach the correct percentages 
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/probabalistic-revenue-share-experiment?path=README.md&previewSize=100"
     title="probabalistic-revenue-share-experiment on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
-    style="height: 100%; width: 100%; border: 0;">
+    style={{ height: '100%', width: '100%', border: '0' }}>
   </iframe>
 </div>
 

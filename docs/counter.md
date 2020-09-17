@@ -56,7 +56,7 @@ if (document.monetization) {
   document.monetization.addEventListener('monetizationprogress', ev => {
 ```
 
-This is different from the exclusive content](./exclusive-content) and
+This is different from [the exclusive content](./exclusive-content) and
 [remove ads](./remove-ads) examples, where we bound `monetizationstart`.
 `monetizationstart` fires when Web Monetization initializes.
 `monetizationprogress` fires every time there's a micropayment from the Web
@@ -112,11 +112,11 @@ Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle y
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/wm-count-revenue?path=README.md&previewSize=100"
     title="wm-count-revenue on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
-    style="height: 100%; width: 100%; border: 0;">
+    style={{ height: '100%', width: '100%', border: '0' }}>
   </iframe>
 </div>

@@ -1,6 +1,7 @@
 .DS_Store
 .idea
 node_modules
+yarn-error.log
 
 lib/core/metadata.js
 lib/core/MetadataBlog.js
@@ -10,3 +11,8 @@ website/build/
 website/yarn.lock
 website/node_modules
 website/i18n/*
+
+.cache-loader
+.docusaurus
+
+build/

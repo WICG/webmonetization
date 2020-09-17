@@ -77,7 +77,6 @@ const siteConfig = {
   title: 'Web Monetization', // Title for your website.
   tagline: 'A JavaScript browser API that allows the creation of a payment stream from the user agent to the website',
   url: 'https://webmonetization.org', // Your website URL
-  cname: 'webmonetization.org',
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
@@ -86,58 +85,81 @@ const siteConfig = {
   // Used for publishing and more
   projectName: 'webmonetization',
   organizationName: 'wicg',
-  // For top-level user or org sites, the organization is still the same.
-  // e.g., for the https://JoelMarcey.github.io site, it would be set like...
-  //   organizationName: 'JoelMarcey'
-  algolia: {
-    apiKey: '522665321749697a7b612bb54dbdb0b4',
-    indexName: 'webmonetization',
-    placeholder: 'Search'
+
+  customFields: {
+    providers,
+    wallets,
+    browsers,
+    tools
   },
-  // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks: [
-    { doc: 'getting-started', href: '/docs', label: 'Docs' },
-    { href: '/specification.html', label: 'Specification' },
-    { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
-    { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-    { search: true }
-  ],
 
-  providers,
-  wallets,
-  browsers,
-  tools,
+  themeConfig: {
+    ogImage: 'img/undraw_online.svg',
+    algolia: {
+      apiKey: '522665321749697a7b612bb54dbdb0b4',
+      indexName: 'webmonetization',
+      placeholder: 'Search'
+    },
+    colorMode: {
+      defaultMode: 'light', 
+      disableSwitch: true,
+      respectPrefersColorScheme: false
+    },
+    prism: {
+      theme: require('prism-react-renderer/themes/github')
+    },
+    navbar: {
+      title: 'Web Monetization',
+      logo: {
+        alt: 'Web Monetization logo',
+        src: 'img/wm-icon.svg'
+      },
+      items: [
+        { doc: 'getting-started', to: '/docs', label: 'Docs' },
+        { href: 'https://webmonetization.org/specification.html', label: 'Specification' },
+        { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
+        { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
+        { search: true }
+      ]
+    },
+    footer: {
+      links: [
+        {
+          title: 'WebMonetization.org',
+          items: []
+        },
+        {
+          title: 'Navigation',
+          items: [
+            { label: 'Home', to: '/' },
+            { label: 'Meta Tag Generator', to: '/meta-tag' }
+          ]
+        },
+        {
+          title: 'Community',
+          items: [
+            { label: 'Github', href: 'https://github.com/WICG/webmonetization' },
+            { label: 'ILP Forum', href: 'https://forum.interledger.org' },
+            { label: 'Web Platform Incubator Community Group', href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785' },
+            { label: 'Interledger', href: 'https://interledger.org' }
+          ]
+        },
+        {
+          title: 'Resources',
+          items: [
+            { label: 'Docs', to: '/docs/getting-started' },
+            { label: 'Specification', href: 'https://webmonetization.org/specification.html' },
+            { label: 'Payment Pointers', to: 'https://paymentpointers.org/' }
+          ]
+        }
+      ]
+    }
+  },
 
-  /* path to images for header/footer */
-  headerIcon: 'img/wm-icon.svg',
-  footerIcon: 'img/webmon_icon_simple.svg',
   favicon: 'img/fav-webmonetization.png',
-
-  /* Colors for website */
-  colors: {
-    primaryColor: '#0080FF',
-    secondaryColor: '#282C34'
-  },
-
-  /* Custom fonts for website */
-  fonts: {
-    myFont: [
-      'Times New Roman',
-      'Serif'
-    ],
-    myOtherFont: [
-      '-apple-system',
-      'system-ui'
-    ]
-  },
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   // copyright: ``,
-
-  highlight: {
-    // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'atom-one-light'
-  },
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: [
@@ -146,13 +168,7 @@ const siteConfig = {
     '/js/custom.js'
   ],
 
-  // On page navigation for the current documentation page.
-  onPageNav: 'separate',
-  // No .html extensions for paths.
-  cleanUrl: true,
-
   // Open Graph and Twitter card images.
-  ogImage: 'img/undraw_online.svg'
   // twitterImage: 'img/undraw_tweetstorm.svg',
 
   // For sites with a sizable amount of content, set collapsible to true.
@@ -168,6 +184,19 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+  presets: [
+    [ '@docusaurus/preset-classic', {
+      docs: {
+        path: './docs',
+        editUrl: 'https://github.com/WICG/webmonetization/tree/master',
+        routeBasePath: 'docs',
+        sidebarPath: require.resolve('./sidebars.json')
+      },
+      theme: {
+        customCss: require.resolve('./static/css/custom.css')
+      }
+    }]
+  ]
 }
 
 module.exports = siteConfig
