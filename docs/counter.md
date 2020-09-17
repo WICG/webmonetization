@@ -56,7 +56,7 @@ if (document.monetization) {
   document.monetization.addEventListener('monetizationprogress', ev => {
 ```
 
-This is different from the exclusive content](./exclusive-content) and
+This is different from [the exclusive content](./exclusive-content) and
 [remove ads](./remove-ads) examples, where we bound `monetizationstart`.
 `monetizationstart` fires when Web Monetization initializes.
 `monetizationprogress` fires every time there's a micropayment from the Web
