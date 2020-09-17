@@ -71,13 +71,27 @@ h2 {
   color: rgba(255, 255, 255, 1);
 }
 
+.DocSearch-Button {
+  border-radius: 0px !important;
+  background-color: #000 !important;
+}
+
+.DocSearch-Button:hover {
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+.DocSearch-Search-Icon {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .nav-footer {
     padding: 2em;
 }
 
 .bgLogo {
     position: absolute;
-    margin-left: 60px;
+    margin-left: 666px;
     margin-top: -20px;
 }
 
