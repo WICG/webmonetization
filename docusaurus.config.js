@@ -105,6 +105,9 @@ const siteConfig = {
       disableSwitch: true,
       respectPrefersColorScheme: false
     },
+    prism: {
+      theme: require('prism-react-renderer/themes/github')
+    },
     navbar: {
       title: 'Web Monetization',
       logo: {
