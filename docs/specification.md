@@ -4,7 +4,7 @@ title: Draft Web Monetization Specification
 sidebar_label: Specification
 ---
 
-A [draft specification](../specification.html) is being developed that is
+A [draft specification](https://webmonetization.org/specification.html) is being developed that is
 suitable for the W3C standards track.
 
 The specification reflects the desired end-state of the standard and APIs and is

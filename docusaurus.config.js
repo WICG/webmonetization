@@ -188,7 +188,7 @@ const siteConfig = {
     [ '@docusaurus/preset-classic', {
       docs: {
         path: './docs',
-        editUrl: 'https://github.com/WICG/webmonetization',
+        editUrl: 'https://github.com/WICG/webmonetization/tree/master',
         routeBasePath: 'docs',
         sidebarPath: require.resolve('./sidebars.json')
       },
