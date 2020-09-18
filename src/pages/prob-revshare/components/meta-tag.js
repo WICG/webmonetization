@@ -1,32 +1,14 @@
 import React from 'react'
-import { useShares } from './use-shares'
+import { useShares } from '../state'
+import { sharesToPaymentPointer } from '../lib'
 
 export function SharesMetaTag () {
   const [ shares ] = useShares()
+  const pointer = sharesToPaymentPointer(shares)
 
-  const serializedShares = shares.reduce((agg, share) => {
-    if (share.pointer && share.weight) {
-      agg[share.pointer] = share.weight
-    }
-    return agg
-  }, {})
-
-  if (!Object.keys(serializedShares).length) {
+  if (!pointer) {
     return <p>Please enter some shares with valid payment pointers and weights</p>
   }
-
-  const encodedShares = btoa(JSON.stringify(serializedShares))
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=/g, '')
-
-  const params = new URLSearchParams()
-  params.set('pm', encodedShares)
-
-  const parsedPointer = new URL('https://webmonetization.org/api/revshare/pay')
-  parsedPointer.search = params.toString()
-
-  const pointer = parsedPointer.href
 
   return <code id="metaTag">
     &lt;meta name="monetization content="{pointer}" /&gt;

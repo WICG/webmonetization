@@ -6,7 +6,9 @@ export function ShareInput ({
   weight,
   onChangeName,
   onChangePointer,
-  onChangeWeight
+  onChangeWeight,
+  onRemove,
+  removeDisabled
 }) {
   return <div className='shareInputRow'>
     <input type='text' placeholder='Name (optional)' value={name} onChange={ev => {
@@ -15,8 +17,9 @@ export function ShareInput ({
     <input type='text' placeholder='$PaymentPointer' value={pointer} onChange={ev => {
       onChangePointer(ev.target.value)
     }} />
-    <input type='number' placeholder='weight' value={weight} onChange={ev => {
+    <input type='number' placeholder='weight' min={0} value={weight} onChange={ev => {
       onChangeWeight(ev.target.value)
     }} />
+    <button disabled={removeDisabled} onClick={() => onRemove()}>Remove</button>
   </div>
 }

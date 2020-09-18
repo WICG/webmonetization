@@ -2,9 +2,8 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import Layout from '@theme/Layout'
 
-import { ShareList } from './components/share-list'
-import { SharesProvider } from './components/use-shares'
-import { SharesMetaTag } from './components/meta-tag'
+import { SharesProvider } from './state'
+import { ShareList, SharesMetaTag, RevshareChart } from './components'
 
 export default function ProbRevshare (props) {
   const { config: siteConfig } = props
@@ -23,6 +22,7 @@ export default function ProbRevshare (props) {
           <p>
             This tool allows you to create a meta tag which splits money between several creators. Make sure to update your meta tag every time you update the shares on this page!
           </p>
+          <RevshareChart />
           <ShareList />
           <h2>Meta Tag</h2>
           <SharesMetaTag />
