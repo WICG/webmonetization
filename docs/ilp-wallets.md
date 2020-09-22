@@ -14,7 +14,7 @@ Your wallet provider will assign you a payment pointer, which is the public addr
 
 The following providers offer ILP-enabled wallets.
 
-| | <center><img src={useBaseUrl('./assets/uphold.svg')}/></center> | <center><img src={useBaseUrl('./assets/gatehub.png')}/></center> |
+| | <center><img src={useBaseUrl('img/uphold.svg')}/></center> | <center><img src={useBaseUrl('img/gatehub.png')}/></center> |
 | :-: |:-:|:-:|
 | **Payout currencies** | 27 fiat currencies <br /> 34 crypto currencies <br /> [See full list](https://uphold.com/en/transparency) | XRP |
 | **Withdrawal currencies** | USD, EUR, GBP, CAD, PLN, XRP, BTC, ETH, +59 more <br /> [See full list](https://uphold.com/en/transparency) | XRP, USD, EUR, BTC, ETH |
