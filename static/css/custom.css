@@ -282,6 +282,10 @@ h2 {
   /* overflow: visible; */
 }
 
+.weightInput, .percentInput {
+  width: 8em;
+}
+
 #copyIcon {
     position: absolute;
     right: 18px;
