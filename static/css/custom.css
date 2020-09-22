@@ -278,7 +278,8 @@ h2 {
 }
 
 .revshareChart {
-  overflow: visible;
+  /* TODO: can we accomplish this without covering inputs */
+  /* overflow: visible; */
 }
 
 #copyIcon {
