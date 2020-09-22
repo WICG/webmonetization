@@ -227,7 +227,7 @@ h2 {
 }
 
 .metaTagContainer {
-    max-width: 800px;
+    max-width: 900px !important;
 }
 
 .metaTagContainer p {
@@ -277,6 +277,10 @@ h2 {
     background: #F7F8F9;
 }
 
+.revshareChart {
+  overflow: visible;
+}
+
 #copyIcon {
     position: absolute;
     right: 18px;
@@ -315,12 +319,26 @@ h2 {
   color: rgba(255,255,255,0.6);
 }
 
+.revshareContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
 @media only screen and (min-width: 1024px) {
     .cardContainer {
         flex-direction: row;
+    }
+
+    .revshareContainer {
+      display: flex;
+      flex-direction: row;
     }
 }
 

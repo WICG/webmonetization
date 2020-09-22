@@ -9,10 +9,18 @@ export function RevshareChart () {
   const chartData = sharesToChartData(shares)
 
   if (!chartData.length) {
-    return <></>
+    return <PieChart
+      className='revshareChart'
+      data={[
+        { value: 1, color: '#E7E8E9' }
+      ]}
+      style={{ width: 300, height: 300 }}
+      radius={30}
+    />
   }
 
   return <PieChart
+    className='revshareChart'
     data={chartData}
     style={{ width: 300, height: 300 }}
     radius={30}
