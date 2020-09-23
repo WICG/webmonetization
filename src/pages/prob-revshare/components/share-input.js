@@ -1,4 +1,6 @@
 import React from 'react'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow' 
 
 export function ShareInput ({
   name,
@@ -14,36 +16,45 @@ export function ShareInput ({
   percentDisabled,
   weightDisabled
 }) {
-  return <form className='shareInputRow'>
-    <input
-      type='text'
-      placeholder='Name (optional)'
-      value={name}
-      onChange={ev => {
-        onChangeName(ev.target.value)
-      }}
-    />
-    <input
-      type='text'
-      placeholder='Payment Pointer'
-      value={pointer}
-      onChange={ev => {
-        onChangePointer(ev.target.value)
-      }}
-    />
-    <input
-      className='weightInput'
-      type='number'
-      placeholder='Weight'
-      min={0}
-      step={'any'}
-      value={weight}
-      disabled={weightDisabled}
-      onChange={ev => {
-        onChangeWeight(ev.target.value)
-      }}
-    />
-    <span class="percentInputContainer">
+  return <TableRow>
+    <TableCell>
+      <input
+        type='text'
+        placeholder='Name (optional)'
+        value={name}
+        onChange={ev => {
+          onChangeName(ev.target.value)
+        }}
+      />
+    </TableCell>
+
+    <TableCell>
+      <input
+        type='text'
+        placeholder='Payment Pointer'
+        value={pointer}
+        onChange={ev => {
+          onChangePointer(ev.target.value)
+        }}
+      />
+    </TableCell>
+
+    <TableCell>
+      <input
+        className='weightInput'
+        type='number'
+        placeholder='Weight'
+        min={0}
+        step={'any'}
+        value={weight}
+        disabled={weightDisabled}
+        onChange={ev => {
+          onChangeWeight(ev.target.value)
+        }}
+      />
+    </TableCell>
+
+    <TableCell>
       <input
         className='percentInput'
         type='number'
@@ -57,13 +68,15 @@ export function ShareInput ({
           onChangePercent(ev.target.value / 100)
         }}
       />
-      %
-    </span>
-    <button
-      disabled={removeDisabled}
-      onClick={() => onRemove()}
-    >
-      Remove
-    </button>
-  </form>
+    </TableCell>
+
+    <TableCell>
+      <button
+        disabled={removeDisabled}
+        onClick={() => onRemove()}
+      >
+        Remove
+      </button>
+    </TableCell>
+  </TableRow>
 }
