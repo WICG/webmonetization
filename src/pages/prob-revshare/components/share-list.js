@@ -3,6 +3,7 @@ import React from 'react'
 import { ShareInput } from './share-input'
 import { AddShareButton } from './add-share'
 import { useShares, newShare } from '../state'
+import { trimDecimal } from '../lib'
 
 function changeList (arr, i, alteration) {
   return [
@@ -17,10 +18,6 @@ function dropIndex (arr, i) {
     ...arr.slice(0, i),
     ...arr.slice(i + 1)
   ]
-}
-
-function formatDecimal (dec) {
-  return Number(dec.toFixed(3))
 }
 
 function weightFromPercent (percent, weight, totalWeight) {
@@ -44,11 +41,12 @@ export function ShareList () {
 
         weight={share.weight}
         onChangeWeight={weight => setShares(changeList(shares, i, { weight }))}
+        weightDisabled={!share.pointer}
 
-        percent={share.weight / totalWeight}
-        percentDisabled={shares.length <= 1}
+        percent={Number(share.weight) ? share.weight / totalWeight : undefined}
+        percentDisabled={!share.pointer || shares.length <= 1}
         onChangePercent={percent => setShares(changeList(shares, i, {
-          weight: formatDecimal(weightFromPercent(percent, share.weight, totalWeight))
+          weight: trimDecimal(weightFromPercent(percent, share.weight, totalWeight))
         }))}
 
         onRemove={() => setShares(dropIndex(shares, i))}

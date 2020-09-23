@@ -11,39 +11,59 @@ export function ShareInput ({
   onChangePercent,
   onRemove,
   removeDisabled,
-  percentDisabled
+  percentDisabled,
+  weightDisabled
 }) {
-  return <div className='shareInputRow'>
-    <input type='text' placeholder='Name (optional)' value={name} onChange={ev => {
-      onChangeName(ev.target.value)
-    }} />
-    <input type='text' placeholder='$PaymentPointer' value={pointer} onChange={ev => {
-      onChangePointer(ev.target.value)
-    }} />
+  return <form className='shareInputRow'>
+    <input
+      type='text'
+      placeholder='Name (optional)'
+      value={name}
+      onChange={ev => {
+        onChangeName(ev.target.value)
+      }}
+    />
+    <input
+      type='text'
+      placeholder='Payment Pointer'
+      value={pointer}
+      onChange={ev => {
+        onChangePointer(ev.target.value)
+      }}
+    />
     <input
       className='weightInput'
       type='number'
-      placeholder='weight'
+      placeholder='Weight'
       min={0}
       step={'any'}
       value={weight}
+      disabled={weightDisabled}
       onChange={ev => {
         onChangeWeight(ev.target.value)
       }}
     />
-    <input
-      className='percentInput'
-      type='number'
-      placeholder='percent'
-      min={0}
-      max={100}
-      step={1}
-      value={Math.round(percent * 100)}
-      disabled={percentDisabled}
-      onChange={ev => {
-        onChangePercent(ev.target.value / 100)
-      }}
-    />
-    <button disabled={removeDisabled} onClick={() => onRemove()}>Remove</button>
-  </div>
+    <span class="percentInputContainer">
+      <input
+        className='percentInput'
+        type='number'
+        placeholder='Percent'
+        min={0}
+        max={100}
+        step={'any'}
+        value={percent && Math.round(percent * 100)}
+        disabled={percentDisabled}
+        onChange={ev => {
+          onChangePercent(ev.target.value / 100)
+        }}
+      />
+      %
+    </span>
+    <button
+      disabled={removeDisabled}
+      onClick={() => onRemove()}
+    >
+      Remove
+    </button>
+  </form>
 }

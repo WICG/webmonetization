@@ -57,3 +57,7 @@ export function sharesToPaymentPointer (shares) {
 
   return parsedPointer.href
 }
+
+export function trimDecimal (dec) {
+  return Number(dec.toFixed(3))
+}
