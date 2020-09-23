@@ -4,35 +4,35 @@ title: Uphold
 sidebar_label: Uphold
 ---
 
-import UpholdSignUp01 from './assets/upholdSignUp01.png';
-import UpholdSignUp02 from './assets/upholdSignUp02.png';
-import UpholdWebSignUp01 from './assets/upholdWebSignUp01.png';
-import UpholdSignUp03 from './assets/upholdSignUp03.png';
-import upholdSignUp04 from './assets/upholdSignUp04.png';
-import upholdSignUp05 from './assets/upholdSignUp05.png';
-import UpholdWebSignUp02 from './assets/upholdWebSignUp02.png';
-import UpholdSetUp01 from './assets/upholdSetUp01.png';
-import UpholdSetUp02 from './assets/upholdSetUp02.png';
-import UpholdSetUp03 from './assets/upholdSetUp03.png';
-import UpholdSetUp04 from './assets/upholdSetUp04.png';
-import UpholdWebAddCard01 from './assets/upholdWebAddCard01.png';
-import UpholdWebAddCard02 from './assets/upholdWebAddCard02.png';
-import UpholdWebAddCard03 from './assets/upholdWebAddCard03.png';
-import UpholdWebAddCard04 from './assets/upholdWebAddCard04.png';
-import UpholdWebAddCard05 from './assets/upholdWebAddCard05.png';
-import UpholdClaim01 from './assets/upholdClaim01.png';
-import UpholdClaim02 from './assets/upholdClaim02.png';
-import UpholdClaim03 from './assets/upholdClaim03.png';
-import UpholdClaim04 from './assets/upholdClaim04.png';
-import UpholdWebActivity01 from './assets/upholdWebActivity01.png';
-import UpholdWebActivity02 from './assets/upholdWebActivity02.png';
-import YpholdWebActivity03 from './assets/upholdWebActivity03.png';
-import Upholdappportfoliopointer from './assets/upholdappportfoliopointer.gif';
-import Upholdapptransactpointer from './assets/upholdapptransactpointer.gif';
-import Upholdaddnewcard01 from './assets/upholdaddnewcard01.png';
-import Upholdaddnewcard02 from './assets/upholdaddnewcard02.png';
-import Upholdsetup-02fromaccount from './assets/upholdsetup-02fromaccount.png';
-import Upholdaddnewcard04 from './assets/upholdaddnewcard04.png';
+import UpholdSignUp01 from './assets/uphold/upholdSignUp01.png';
+import UpholdSignUp02 from './assets/uphold/upholdSignUp02.png';
+import UpholdWebSignUp01 from './assets/uphold/upholdWebSignUp01.png';
+import UpholdSignUp03 from './assets/uphold/upholdSignUp03.png';
+import UpholdSignUp04 from './assets/uphold/upholdSignUp04.png';
+import UpholdSignUp05 from './assets/uphold/upholdSignUp05.png';
+import UpholdWebSignUp02 from './assets/uphold/upholdWebSignUp02.png';
+import UpholdSetUp01 from './assets/uphold/upholdSetUp01.png';
+import UpholdSetUp02 from './assets/uphold/upholdSetUp02.png';
+import UpholdSetUp03 from './assets/uphold/upholdSetUp03.png';
+import UpholdSetUp04 from './assets/uphold/upholdSetUp04.png';
+import UpholdWebAddCard01 from './assets/uphold/upholdWebAddCard01.png';
+import UpholdWebAddCard02 from './assets/uphold/upholdWebAddCard02.png';
+import UpholdWebAddCard03 from './assets/uphold/upholdWebAddCard03.png';
+import UpholdWebAddCard04 from './assets/uphold/upholdWebAddCard04.png';
+import UpholdWebAddCard05 from './assets/uphold/upholdWebAddCard05.png';
+import UpholdClaim01 from './assets/uphold/upholdClaim01.png';
+import UpholdClaim02 from './assets/uphold/upholdClaim02.png';
+import UpholdClaim03 from './assets/uphold/upholdClaim03.png';
+import UpholdClaim04 from './assets/uphold/upholdClaim04.png';
+import UpholdWebActivity01 from './assets/uphold/upholdWebActivity01.png';
+import UpholdWebActivity02 from './assets/uphold/upholdWebActivity02.png';
+import UpholdWebActivity03 from './assets/uphold/upholdWebActivity03.png';
+import Upholdappportfoliopointer from './assets/uphold/upholdappportfoliopointer.gif';
+import Upholdapptransactpointer from './assets/uphold/upholdapptransactpointer.gif';
+import Upholdaddnewcard01 from './assets/uphold/upholdaddnewcard01.png';
+import Upholdaddnewcard02 from './assets/uphold/upholdaddnewcard02.png';
+import Upholdsetup02fromaccount from './assets/uphold/upholdsetup02fromaccount.png';
+import Upholdaddnewcard04 from './assets/uphold/upholdaddnewcard04.png';
 
 Use Uphold to have your earnings paid out in over 50 supported currencies, including fiat and crypto. See [Uphold's site](https://uphold.com/en/transparency) for more information.
 
@@ -71,9 +71,11 @@ You can sign up through Uphold's app or website.
 8. When confirmed, the app and website refresh.
 
     **App**
+
   <img src={UpholdSignUp05} height="500"/>
 
     **Website**
+
   <img src={UpholdWebSignUp02} height="500"/>
 
 9. Select **Fund my account**, then see the next section.
@@ -227,7 +229,7 @@ To add a new card in the **app**:
 
 5. Scroll down to the bottom and tap **Interledger**.
 
-  <img src={Upholdsetup-02fromaccount} height="500"/>
+  <img src={Upholdsetup02fromaccount} height="500"/>
 
 6. Tap **I agree** and then **Continue**. The payment pointer for your new card appears on the screen.
 
