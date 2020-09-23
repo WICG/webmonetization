@@ -4,7 +4,8 @@ title: Digital Wallet and Payment Pointers
 sidebar_label: Digital wallets and payment pointers
 ---
 
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import UpholdSvg from './assets/uphold.svg';
+import GateHubImg from './assets/gatehub.png';
 
 You must have an account with a wallet that supports the Interledger Protocol (ILP) to enable Web Monetization on your site.
 
@@ -14,7 +15,7 @@ Your wallet provider will assign you a payment pointer, which is the public addr
 
 The following providers offer ILP-enabled wallets.
 
-| | <center><img src={useBaseUrl('img/uphold.svg')}/></center> | <center><img src={useBaseUrl('img/gatehub.png')}/></center> |
+| | <center><UpholdSvg /></center> | <center><img src={GateHubImg}/></center> |
 | :-: |:-:|:-:|
 | **Payout currencies** | 27 fiat currencies <br /> 34 crypto currencies <br /> [See full list](https://uphold.com/en/transparency) | XRP |
 | **Withdrawal currencies** | USD, EUR, GBP, CAD, PLN, XRP, BTC, ETH, +59 more <br /> [See full list](https://uphold.com/en/transparency) | XRP, USD, EUR, BTC, ETH |
