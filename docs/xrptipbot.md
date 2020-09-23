@@ -30,11 +30,11 @@ If you are an XRP TipBot user, **you must link your account to [Uphold](./uphold
 
 5. Click **OK, connect to Uphold**. Uphold’s sign in page opens.
 
-<img src="assets/xrpmigration/xrpMigration05.png" height="450" />
+<img src={require('./assets/xrpmigration/xrpMigration05.png').default} height="450" />
 
 6. Sign in to your account. You’ll be prompted to authorize Uphold to connect to XRP TipBot.
 
-<img src="assets/xrpmigration/xrpMigration06.png" height="700" />
+<img src={require('./assets/xrpmigration/xrpMigration06.png').default} height="700" />
 
 7. Click **Authorize**.
 
@@ -88,7 +88,7 @@ When you sign up for Uphold, they provide you with a few empty (unfunded) cards 
 
 3. Select the **Transfer To card**. Enter the amount of XRP you want to transfer. The screen will refresh to show how much the XRP is worth if your Transfer To card is in a different currency.
 
-<img src="assets/xrpmigration/xrpMigration13.png" height="400" />
+<img src={require('./assets/xrpmigration/xrpMigration13.png').default} height="400" />
 
 4. Click **Confirm**.
 

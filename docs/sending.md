@@ -1,6 +1,6 @@
 ---
 id: sending
-title: Web Monetization Providers
+title: Web Monetization Providers (Sending Payments)
 sidebar_label: Sending payments
 ---
 
@@ -53,7 +53,7 @@ dictionary in the `PaymentRequestEvent.methodData` property.
 
 The `PaymentMethodData` dictionary contains the value `monetization` in the
 `supportedMethods` property. `data` is an instance of a
-[`MonetizationRequest`](#monetizationrequest-dictionary) containing the
+[`MonetizationRequest`](#monetizationrequest---dictionary) containing the
 destination (WM receiver) address to send to, the condition, and expiry values
 to use. The payment handler uses this data to send a single Interledger payment
 to the destination address. The amount sent by the payment handler is the amount
@@ -78,7 +78,7 @@ paymentRequestEvent.respondWith(
 
 And responds with either a pass or a fail:
 * Pass - passes in a `Promise` that resolves to an instance of
-[`MonetizationResponse`](#monetizationresponse-dictionary) containing the
+[`MonetizationResponse`](#monetizationresponse---dictionary) containing the
 fulfillment and data from the response.
 > [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/WICG/webmonetization/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?</p>
 

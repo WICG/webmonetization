@@ -396,7 +396,7 @@ Please submit a PR if you are aware of updates to the lists below.
 ### Browsers
 
 - [Google Chrome (desktop) + Coil Extension](https://chrome.google.com/webstore/detail/coil/locbifcbeldmnphbgkdigjmkbfkhbnca)
-- [Mozilla Firefox (desktop and Android) + Coil Extension](https://addons.mozilla.org/en-US/firefox/addon/coil/)
+- [Mozilla Firefox (desktop) + Coil Extension](https://addons.mozilla.org/en-US/firefox/addon/coil/)
 - [Microsoft Edge (desktop) + Coil Extension](https://microsoftedge.microsoft.com/addons/detail/ljionajlbinlfkdnpkloejeoogfgkojm)
 - [Brave Browser (desktop) + Coil Extension](https://chrome.google.com/webstore/detail/coil/locbifcbeldmnphbgkdigjmkbfkhbnca)
 - [Puma Browser (mobile)](https://www.pumabrowser.com/)
