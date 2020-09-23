@@ -283,7 +283,7 @@ h2 {
 }
 
 .weightInput, .percentInput {
-  width: 8em;
+  width: 6em !important;
 }
 
 #copyIcon {

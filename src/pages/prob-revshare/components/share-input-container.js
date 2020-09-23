@@ -3,19 +3,31 @@ import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
 import TableContainer from '@material-ui/core/TableContainer'
 import TableHead from '@material-ui/core/TableHead'
-import Paper from '@material-ui/core/Paper'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+  table: {
+    padding: '0px'
+  },
+  td: {
+    padding: '0px'
+  }
+})
 
 export function ShareInputContainer ({ children }) {
-  return <TableContainer component={Paper}>
-    <Table size='small'>
+  const classes = useStyles()
+
+  return <TableContainer>
+    <Table className={classes.table} size='small'>
       <TableHead>
         <TableRow>
-          <TableCell>Name (optional)</TableCell>
-          <TableCell>Payment Pointer</TableCell>
-          <TableCell>Weight</TableCell>
-          <TableCell>Percent</TableCell>
+          <TableCell><b>Name</b></TableCell>
+          <TableCell><b>Pointer</b></TableCell>
+          <TableCell><b>Weight</b></TableCell>
+          <TableCell><b>Percent</b></TableCell>
+          <TableCell><b>Remove</b></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

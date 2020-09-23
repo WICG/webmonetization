@@ -1,8 +1,13 @@
 import React from 'react'
 import TableCell from '@material-ui/core/TableCell'
 import TableRow from '@material-ui/core/TableRow' 
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Delete from '@material-ui/icons/Delete'
+import InputAdornment from '@material-ui/core/InputAdornment'
 
 export function ShareInput ({
+  key,
   name,
   pointer,
   weight,
@@ -16,11 +21,11 @@ export function ShareInput ({
   percentDisabled,
   weightDisabled
 }) {
-  return <TableRow>
+  return <TableRow key={key}>
     <TableCell>
-      <input
+      <TextField
+        size='small'
         type='text'
-        placeholder='Name (optional)'
         value={name}
         onChange={ev => {
           onChangeName(ev.target.value)
@@ -29,9 +34,9 @@ export function ShareInput ({
     </TableCell>
 
     <TableCell>
-      <input
+      <TextField
+        size='small'
         type='text'
-        placeholder='Payment Pointer'
         value={pointer}
         onChange={ev => {
           onChangePointer(ev.target.value)
@@ -40,10 +45,10 @@ export function ShareInput ({
     </TableCell>
 
     <TableCell>
-      <input
+      <TextField
+        size='small'
         className='weightInput'
         type='number'
-        placeholder='Weight'
         min={0}
         step={'any'}
         value={weight}
@@ -55,10 +60,10 @@ export function ShareInput ({
     </TableCell>
 
     <TableCell>
-      <input
+      <TextField
+        size='small'
         className='percentInput'
         type='number'
-        placeholder='Percent'
         min={0}
         max={100}
         step={'any'}
@@ -67,16 +72,20 @@ export function ShareInput ({
         onChange={ev => {
           onChangePercent(ev.target.value / 100)
         }}
+        InputProps={{
+          endAdornment: <InputAdornment position="end">%</InputAdornment>
+        }}
       />
     </TableCell>
 
     <TableCell>
-      <button
+      <Button
+        size='small'
         disabled={removeDisabled}
         onClick={() => onRemove()}
       >
-        Remove
-      </button>
+        <Delete />
+      </Button>
     </TableCell>
   </TableRow>
 }
