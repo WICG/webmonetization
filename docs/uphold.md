@@ -4,6 +4,36 @@ title: Uphold
 sidebar_label: Uphold
 ---
 
+import UpholdSignUp01 from './assets/upholdSignUp01.png';
+import UpholdSignUp02 from './assets/upholdSignUp02.png';
+import UpholdWebSignUp01 from './assets/upholdWebSignUp01.png';
+import UpholdSignUp03 from './assets/upholdSignUp03.png';
+import upholdSignUp04 from './assets/upholdSignUp04.png';
+import upholdSignUp05 from './assets/upholdSignUp05.png';
+import UpholdWebSignUp02 from './assets/upholdWebSignUp02.png';
+import UpholdSetUp01 from './assets/upholdSetUp01.png';
+import UpholdSetUp02 from './assets/upholdSetUp02.png';
+import UpholdSetUp03 from './assets/upholdSetUp03.png';
+import UpholdSetUp04 from './assets/upholdSetUp04.png';
+import UpholdWebAddCard01 from './assets/upholdWebAddCard01.png';
+import UpholdWebAddCard02 from './assets/upholdWebAddCard02.png';
+import UpholdWebAddCard03 from './assets/upholdWebAddCard03.png';
+import UpholdWebAddCard04 from './assets/upholdWebAddCard04.png';
+import UpholdWebAddCard05 from './assets/upholdWebAddCard05.png';
+import UpholdClaim01 from './assets/upholdClaim01.png';
+import UpholdClaim02 from './assets/upholdClaim02.png';
+import UpholdClaim03 from './assets/upholdClaim03.png';
+import UpholdClaim04 from './assets/upholdClaim04.png';
+import UpholdWebActivity01 from './assets/upholdWebActivity01.png';
+import UpholdWebActivity02 from './assets/upholdWebActivity02.png';
+import YpholdWebActivity03 from './assets/upholdWebActivity03.png';
+import Upholdappportfoliopointer from './assets/upholdappportfoliopointer.gif';
+import Upholdapptransactpointer from './assets/upholdapptransactpointer.gif';
+import Upholdaddnewcard01 from './assets/upholdaddnewcard01.png';
+import Upholdaddnewcard02 from './assets/upholdaddnewcard02.png';
+import Upholdsetup-02fromaccount from './assets/upholdsetup-02fromaccount.png';
+import Upholdaddnewcard04 from './assets/upholdaddnewcard04.png';
+
 Use Uphold to have your earnings paid out in over 50 supported currencies, including fiat and crypto. See [Uphold's site](https://uphold.com/en/transparency) for more information.
 
 Opening an Uphold account only takes a few minutes. They collect your legal name, date of birth, and phone number. You don't have to verify your identity until you're ready to withdraw your funds, but you can do it earlier if you want. See their [help article](https://support.uphold.com/hc/en-us/articles/202766795) for more information.
@@ -16,35 +46,35 @@ You can sign up through Uphold's app or website.
 
 2. In the app, tap **Sign Up** on the launch screen.
 
-<img src="assets/uphold/upholdSignUp01.png" height="500" />
+  <img src={UpholdSignUp01} height="500"/>
 
 3. Complete all fields and accept Uphold's Terms of Service and Privacy Policy.
 
 > Uphold is in the process of obtaining a BitLicense in the state of New York. Until the BitLicense is issued they cannot support cryptocurrency transactions in New York. **You can still set up an account and claim funds in a supported currency, such as USD.**
 
-<img src="assets/uphold/upholdSignUp02.png" height="500" />
+  <img src={UpholdSignUp02} height="500"/>
 
 4. If you're signing up through the website, select Individual as the account type.
 
-<img src="assets/uphold/upholdWebSignUp01.png" height="500" />
+  <img src={UpholdWebSignUp01} height="500"/>
 
 5. Proceed to the next screen.
 
 6. Complete all fields, certify your details, then proceed to the next screen.
 
-<img src="assets/uphold/upholdSignUp03.png" height="500" />
+  <img src={UpholdSignUp03} height="500"/>
 
 7. Check your email and confirm your email address.
 
-<img src="assets/uphold/upholdSignUp04.png" height="500" />
+  <img src={UpholdSignUp04} height="500"/>
 
 8. When confirmed, the app and website refresh.
 
     **App**
-  <img src="assets/uphold/upholdSignUp05.png" height="500" />
+  <img src={UpholdSignUp05} height="500"/>
 
     **Website**
-  <img src="assets/uphold/upholdWebSignUp02.png" width="600" />
+  <img src={UpholdWebSignUp02} height="500"/>
 
 9. Select **Fund my account**, then see the next section.
 
@@ -53,21 +83,21 @@ You can sign up through Uphold's app or website.
 ### App
 1. If you're still in the Sign Up flow, tap **Fund my account**. If you're on the Portfolio screen, tap **Transact** in the toolbar.
 
-  <img src="assets/uphold/upholdSetUp01.png" height="500" />
+  <img src={UpholdSetUp01} height="500"/>
 
 2. Tap the **From** menu.
 
 3. Scroll to the bottom of the list and tap **Interledger**.
 
-  <img src="assets/uphold/upholdSetUp02.png" height="500" />
+  <img src={UpholdSetUp02} height="500"/>
 
 4. Tap **I agree** and **Continue**.
 
-  <img src="assets/uphold/upholdSetUp03.png" height="500" />
+  <img src={UpholdSetUp03} height="500"/>
 
 5. Select the type of currency you want your earnings paid out in by tapping the **To** menu.
 
-  <img src="assets/uphold/upholdSetUp04.png" height="500" />
+  <img src={UpholdSetUp04} height="500"/>
 
 6. Tap **Done**.
 
@@ -77,23 +107,23 @@ You can sign up through Uphold's app or website.
 
 2. If you don't have the overlay on the dashboard, click **Add card/currency**.
 
-  <img src="assets/uphold/upholdWebAddCard01.png" width="600" />
+  <img src={UpholdWebAddCard01} height="500"/>
 
 3. Enter a name for your card.
 
 4. Select the currency you want your earnings pay out in and click **Create**.
 
-  <img src="assets/uphold/upholdWebAddCard02.png" height="300" />
+  <img src={UpholdWebAddCard02} height="500"/>
 
 5. Click **Fund from Interledger Payment Pointer**.
 
-  <img src="assets/uphold/upholdWebAddCard03.png" width="600" />
+  <img src={UpholdWebAddCard03} height="500"/>
 
 6. Click **Generate a payment pointer**.
 
-  <img src="assets/uphold/upholdWebAddCard04.png" width="600" />
+  <img src={UpholdWebAddCard04} height="600"/>
 
-  <img src="assets/uphold/upholdWebAddCard05.png" width="600" />
+  <img src={UpholdWebAddCard05} height="600"/>
 
 ## View activity and claim funds
 
@@ -107,19 +137,19 @@ The minimum claimable amount varies based on currency. For example, Uphold will 
 
 The app shows incoming activity in real time. You can watch the payment streams by tapping **Activity** from the toolbar.
 
-<img src="assets/uphold/upholdClaim01.png" height="500" />
+<img src={UpholdClaim01} height="500"/>
 
 You can tap any activity that shows on the screen to see more details. When you've received the minimum amount required to claim the funds, the **Claim funds** button becomes active.
 
-<img src="assets/uphold/upholdClaim02.png" height="500" />
+<img src={UpholdClaim02} height="500"/>
 
 Uphold will claim funds on your behalf every hour as long as you've received a claimable amount. The amount varies based on currency. For example, you must have at least $0.01 before you can claim a USD payment. After funds are claimed, the transaction's status changes to Completed.
 
-<img src="assets/uphold/upholdClaim03.png" height="500" />
+<img src={UpholdClaim03} height="500"/>
 
 When claimed, the transaction shows as deposited on the Activity screen.
 
-<img src="assets/uphold/upholdClaim04.png" height="500" />
+<img src={UpholdClaim04} height="500"/>
 
 ### Website
 
@@ -129,13 +159,13 @@ One hour after you've received at least the minimum claimable amount, Uphold wil
 
 On the dashboard, click **Activity** to see all activity or click a specific card to see activity for that card.
 
-<img src="assets/uphold/upholdWebActivity01.png" width="600" />
+<img src={UpholdWebActivity01} height="600"/>
 
-<img src="assets/uphold/upholdWebActivity02.png" width="600" />
+<img src={UpholdWebActivity02} height="600"/>
 
 Click a transaction to see more details.
 
-<img src="assets/uphold/upholdWebActivity03.png" width="600" />
+<img src={UpholdWebActivity03} height="600"/>
 
 ## Find your payment pointer
 
@@ -149,7 +179,7 @@ If you've already received a payment, you can find your payment pointer by tappi
 2. Tap **...** in the upper right, then tap **Interledger payment pointer**.
 3. Copy your payment pointer, then tap **Done**.
 
-<img src="assets/uphold/upholdappportfoliopointer.gif" height="650" border="1" />
+<img src={Upholdappportfoliopointer} height="650" border="1"/>
 
 #### Transact screen
 
@@ -161,8 +191,7 @@ The Portfolio screen won't show a card until you receive a payment. In the meant
 4. Tap **I agree** and **Continue**.
 5. Copy your payment pointer, then tap **Done**.
 
-<img src="assets/uphold/upholdapptransactpointer.gif" height="650" border="1" />
-
+<img src={Upholdapptransactpointer} height="650" border="1"/>
 
 ### Website
 
@@ -184,7 +213,7 @@ To add a new card in the **app**:
 
 2. Tap the **To** menu. There will be a gray arrow next to any currencies already assigned to a card.
 
-<img src="assets/uphold/upholdaddnewcard01.png" height="500" />
+  <img src={Upholdaddnewcard01} height="500"/>
 
 3. Select the currency you want your earnings paid out in.
 
@@ -192,16 +221,16 @@ To add a new card in the **app**:
 
   * **Same currency** - If you want the same currency as an existing card, tap the currency and then tap **Add to a new...account**.
 
-<img src="assets/uphold/upholdaddnewcard02.png" height="500" />
+  <img src={Upholdaddnewcard02} height="500"/>
 
 4. Tap the **From** menu.
 
 5. Scroll down to the bottom and tap **Interledger**.
 
-<img src="assets/uphold/upholdsetup-02fromaccount.png" height="500" />
+  <img src={Upholdsetup-02fromaccount} height="500"/>
 
 6. Tap **I agree** and then **Continue**. The payment pointer for your new card appears on the screen.
 
-<img src="assets/uphold/upholdaddnewcard04.png" height="500" />
+  <img src={Upholdaddnewcard04} height="500"/>
 
 7. Tap **Done**.
