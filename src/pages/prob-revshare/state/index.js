@@ -1,5 +1,6 @@
 import React, { useContext, useState, createContext } from 'react'
 
+const SHARES_KEY = 'prob-revshare-shares'
 const SharesContext = createContext()
 
 export function newShare () {
@@ -10,12 +11,34 @@ export function newShare () {
   }
 }
 
+function loadStartingShares () {
+  try {
+    const share = localStorage.getItem(SHARES_KEY)
+    const parsed = JSON.parse(share)
+
+    if (share && parsed) {
+      return parsed
+    } else {
+      return [ newShare() ]
+    }
+  } catch (e) {
+    if (e.name === 'SyntaxError') {
+      return [ newShare() ]
+    } else {
+      throw e
+    }
+  }
+}
+
 export function SharesProvider ({ children }) {
-  const [ shares, setShares ] = useState([ newShare() ])
+  const [ shares, setShares ] = useState(loadStartingShares())
 
   return <SharesContext.Provider value={[
     shares,
-    setShares
+    (shares) => {
+      localStorage.setItem(SHARES_KEY, JSON.stringify(shares))
+      return setShares(shares)
+    }
   ]}>
     {children}
   </SharesContext.Provider>
