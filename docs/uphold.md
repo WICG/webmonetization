@@ -115,17 +115,17 @@ You can sign up through Uphold's app or website.
 
 4. Select the currency you want your earnings pay out in and click **Create**.
 
-  <img src={UpholdWebAddCard02} height="500"/>
+  <img src={UpholdWebAddCard02} height="400"/>
 
 5. Click **Fund from Interledger Payment Pointer**.
 
-  <img src={UpholdWebAddCard03} height="500"/>
+  <img src={UpholdWebAddCard03} height="400"/>
 
 6. Click **Generate a payment pointer**.
 
-  <img src={UpholdWebAddCard04} height="600"/>
+  <img src={UpholdWebAddCard04} height="400"/>
 
-  <img src={UpholdWebAddCard05} height="600"/>
+  <img src={UpholdWebAddCard05} height="500"/>
 
 ## View activity and claim funds
 
@@ -163,11 +163,11 @@ On the dashboard, click **Activity** to see all activity or click a specific car
 
 <img src={UpholdWebActivity01} height="600"/>
 
-<img src={UpholdWebActivity02} height="600"/>
+<img src={UpholdWebActivity02} height="450"/>
 
 Click a transaction to see more details.
 
-<img src={UpholdWebActivity03} height="600"/>
+<img src={UpholdWebActivity03} height="450"/>
 
 ## Find your payment pointer
 
@@ -181,7 +181,7 @@ If you've already received a payment, you can find your payment pointer by tappi
 2. Tap **...** in the upper right, then tap **Interledger payment pointer**.
 3. Copy your payment pointer, then tap **Done**.
 
-<img src={Upholdappportfoliopointer} height="650" border="1"/>
+<img src={Upholdappportfoliopointer} height="650"/>
 
 #### Transact screen
 
