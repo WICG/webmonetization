@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { ViewStates, useView } from '../state'
-import { RevshareContainer } from './revshare-container'
 import { RevshareChart } from './revshare-chart'
 import { ShareList } from './share-list'
 import { ImportView } from './import'
@@ -12,10 +11,8 @@ export function ActiveView () {
 
   if (view === ViewStates.Shares) {
     return <>
-      <RevshareContainer>
-        <ShareList />
-        <RevshareChart />
-      </RevshareContainer>
+      <RevshareChart />
+      <ShareList />
       <h2>Meta Tag</h2>
       <SharesMetaTag />
     </>
