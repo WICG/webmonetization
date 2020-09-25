@@ -8,6 +8,30 @@ Sometimes you don't want your entire site to be web monetized. The easiest way t
 
 This example shows how to turn Web Monetization on and off dynamically in response to a visitor clicking a button.
 
+## Live Edit
+```jsx live
+function Clock(props) {
+  const [date, setDate] = useState(new Date());
+  useEffect(() => {
+    var timerID = setInterval(() => tick(), 1000);
+
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
+
+  function tick() {
+    setDate(new Date());
+  }
+
+  return (
+    <div>
+      <h2>It is {date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+```
+
 ## Code
 
 ```html

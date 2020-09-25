@@ -83,6 +83,7 @@ const siteConfig = {
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
+  themes: ['@docusaurus/theme-live-codeblock'],
   projectName: 'webmonetization',
   organizationName: 'wicg',
 
