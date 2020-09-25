@@ -42,7 +42,7 @@ export default function MetaTag (props) {
           </button>
         </form>
         <p>
-          To learn more, read the on how to monetize your site, read the <Link to='/docs'>Docs</Link>.
+          To learn more, read the on how to monetize your site, read the <Link to='/docs'>Docs</Link>. If you're interested in splitting revenue between multiple parties, check out the <Link to='/prob-revshare'>Probabilistic Revshare Generator</Link>.
         </p>
         <div className="metaTagOutput">
           <p>
