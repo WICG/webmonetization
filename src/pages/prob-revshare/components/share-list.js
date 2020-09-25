@@ -66,7 +66,7 @@ export function ShareList () {
       className='importSharesButton'
       onClick={() => setView(ViewStates.Import) }
     >
-      Edit Existing Revshare
+      Import Existing Revshare
     </Button>
   </div>
 }
