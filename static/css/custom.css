@@ -324,6 +324,10 @@ h2 {
   width: 2em !important;
 }
 
+.sectionHeader {
+  font-size: 30px;
+}
+
 @media only screen and (max-device-width: 736px) {
     .bgLogo {
         display: none;

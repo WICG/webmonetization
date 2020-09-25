@@ -7,22 +7,29 @@ import { ImportView } from './import'
 import { SharesMetaTag } from './meta-tag'
 import { SharesText } from './shares-text'
 import { ImportText } from './import-text'
+import { SectionHeader } from './section-header'
 
 export function ActiveView () {
   const [ view ] = useView()
 
   if (view === ViewStates.Shares) {
     return <>
-      <h2>Editing Revshare</h2>
+      <SectionHeader>
+        Editing Revshare
+      </SectionHeader>
       <SharesText />
       <RevshareChart />
       <ShareList />
-      <h2>Meta Tag</h2>
+      <SectionHeader>
+        Meta Tag
+      </SectionHeader>
       <SharesMetaTag />
     </>
   } else if (view === ViewStates.Import) {
     return <>
-      <h2>Importing Revshare</h2>
+      <SectionHeader>
+        Importing Revshare
+      </SectionHeader>
       <ImportText />
       <ImportView />
     </>
