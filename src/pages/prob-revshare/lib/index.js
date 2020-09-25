@@ -156,3 +156,50 @@ export function validatePointerList (pointerList) {
 
   return true
 }
+
+export function validatePointer (pointer) {
+  if (!pointer) {
+    return true
+  }
+
+  if (typeof pointer !== 'string') {
+    return false
+  }
+
+  const urlForm = pointer.startsWith('$')
+    ? 'https://' + pointer.substring(1)
+    : pointer
+
+  try {
+    const _ = new URL(urlForm)
+    return true
+  } catch (e) {
+    return false
+  }
+}
+
+export function validateWeight (weight) {
+  if (!weight) {
+    return true
+  }
+
+  return !(isNaN(weight) || Number(weight) < 0)
+}
+
+export function validateShares (shares) {
+  if (!Array.isArray(shares)) {
+    return false
+  }
+
+  for (const share of shares) {
+    if (!validatePointer(share.pointer)) {
+      return false
+    }
+
+    if (!validateWeight(share.weight)) {
+      return false
+    }
+  }
+
+  return true
+}

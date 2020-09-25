@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Delete from '@material-ui/icons/Delete'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import { validatePointer, validateWeight } from '../lib'
 
 export function ShareInput ({
   key,
@@ -38,6 +39,8 @@ export function ShareInput ({
         size='small'
         type='text'
         value={pointer}
+        error={!validatePointer(pointer)}
+        helperText={!validatePointer(pointer) && 'Invalid payment pointer.'}
         onChange={ev => {
           onChangePointer(ev.target.value)
         }}
@@ -53,6 +56,8 @@ export function ShareInput ({
         step={'any'}
         value={weight}
         disabled={weightDisabled}
+        error={!validateWeight(weight)}
+        helperText={!validateWeight(weight) && 'Weight must be a positive number'}
         onChange={ev => {
           onChangeWeight(ev.target.value)
         }}

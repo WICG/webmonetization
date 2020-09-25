@@ -7,7 +7,6 @@ import { ImportView } from './import'
 import { SharesMetaTag } from './meta-tag'
 import { SharesText } from './shares-text'
 import { ImportText } from './import-text'
-import { MetaText } from './meta-text'
 
 export function ActiveView () {
   const [ view ] = useView()
@@ -19,7 +18,6 @@ export function ActiveView () {
       <RevshareChart />
       <ShareList />
       <h2>Meta Tag</h2>
-      <MetaText />
       <SharesMetaTag />
     </>
   } else if (view === ViewStates.Import) {

@@ -1,4 +1,5 @@
 import React, { useContext, useState, createContext } from 'react'
+import { validateShares } from '../lib'
 
 const SHARES_KEY = 'prob-revshare-shares'
 const SharesContext = createContext()
@@ -16,7 +17,7 @@ function loadStartingShares () {
     const share = localStorage.getItem(SHARES_KEY)
     const parsed = JSON.parse(share)
 
-    if (share && parsed) {
+    if (share && parsed && validateShares(parsed)) {
       return parsed
     } else {
       return [ newShare() ]
