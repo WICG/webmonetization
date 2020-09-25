@@ -1,17 +1,18 @@
 import { fromBase64Url } from './base64'
 
-export interface PointerMap {
-  [pointer: string]: number
-}
+const POINTER_LIST_PARAM = 'p'
 
-export function pickPointer (pointers: PointerMap): string {
-  const sum = Object.values(pointers).reduce((sum, weight) => sum + weight, 0)
+export type PointerEntry = [ string, number ]
+export type PointerList = PointerEntry[]
+
+export function pickPointer (pointers: PointerList): string {
+  const sum = pointers.reduce((sum, entry) => sum + entry[1], 0)
   let choice = Math.random() * sum
 
-  for (const pointer in pointers) {
-    const weight = pointers[pointer]
+  for (const pointer of pointers) {
+    const weight = pointer[1]
     if ((choice -= weight) <= 0) {
-      return pointer
+      return pointer[0]
     }
   }
 
@@ -32,24 +33,30 @@ export function resolvePointer (pointer: string): string {
   return url.href
 }
 
-export function parsePointerMap (url: string): PointerMap {
+export function parsePointerMap (url: string): PointerList {
   const parsed = new URL(url)
   const search = new URLSearchParams(parsed.search)
 
-  const pointerMapB64 = search.get('pm')
-  console.log('pointerMapB64', pointerMapB64)
-  if (!pointerMapB64) {
-    throw new Error('request does not include pointer map')
+  const pointerListB64 = search.get(POINTER_LIST_PARAM)
+  if (!pointerListB64) {
+    throw new Error('request does not include pointer list')
   }
 
-  const pointerMapJson = fromBase64Url(pointerMapB64)
-  const pointerMap = JSON.parse(pointerMapJson)
+  const pointerListJson = fromBase64Url(pointerListB64)
+  const pointerList = JSON.parse(pointerListJson)
 
-  for (const weight of Object.values(pointerMap)) {
-    if (typeof weight !== 'number') {
+  if (!Array.isArray(pointerList)) {
+    throw new Error('pointer list must be array')
+  }
+
+  for (const entry of pointerList) {
+    if (typeof entry[0] !== 'string') {
+      throw new Error('pointers must be strings')
+    }
+    if (typeof entry[1] !== 'number') {
       throw new Error('pointer weights must be numbers')
     }
   }
 
-  return pointerMap as PointerMap
+  return pointerList as PointerList
 }

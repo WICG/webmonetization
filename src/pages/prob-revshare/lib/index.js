@@ -1,5 +1,5 @@
 const BASE_REVSHARE_POINTER = 'https://webmonetization.org/api/revshare/pay'
-const POINTER_MAP_PARAM = 'pm'
+const POINTER_LIST_PARAM = 'p'
 const CHART_COLORS = [
   '#6ADAAB',
   '#5DC495',
@@ -24,19 +24,23 @@ export function sharesToChartData (shares) {
   }))
 }
 
-export function sharesToMap (shares) {
-  return shares.reduce((agg, share) => {
-    if (share.pointer && share.weight) {
-      agg[share.pointer] = share.weight
-    }
-    return agg
-  }, {})
+export function sharesToPointerList (shares) {
+  return shares
+    .map(share => {
+      if (share.pointer && share.weight) {
+        return [ share.pointer, Number(share.weight), share.name ]
+      } else {
+        return
+      }
+    })
+    .filter(x => x)
 }
 
-export function sharesFromMap (map) {
-  return Object.keys(map).map(pointer => ({
-    pointer,
-    weight: map[pointer]
+export function sharesFromPointerList (pl) {
+  return pl.map(share => ({
+    pointer: share[0],
+    weight: share[1],
+    name: share[2]
   }))
 }
 
@@ -59,11 +63,11 @@ export function sharesToPaymentPointer (shares) {
     return
   }
 
-  const shareMap = sharesToMap(validShares)
-  const encodedShares = base64url(JSON.stringify(shareMap))
+  const pointerList = sharesToPointerList(validShares)
+  const encodedShares = base64url(JSON.stringify(pointerList))
 
   const params = new URLSearchParams()
-  params.set(POINTER_MAP_PARAM, encodedShares)
+  params.set(POINTER_LIST_PARAM, encodedShares)
 
   const parsedPointer = new URL(BASE_REVSHARE_POINTER)
   parsedPointer.search = params.toString()
@@ -75,14 +79,19 @@ export function pointerToShares (pointer) {
   try {
     const parsed = new URL(pointer)
     const params = new URLSearchParams(parsed.search)
-    const encodedMap = params.get('pm')
+    const encodedList = params.get(POINTER_LIST_PARAM)
 
-    if (!encodedMap) {
+    if (!encodedList) {
       throw new Error('No share data found. Make sure you copy the whole "content" field from your meta tag.')
     }
 
-    const pointerMap = JSON.parse(fromBase64url(encodedMap))
-    return sharesFromMap(pointerMap)
+    const pointerList = JSON.parse(fromBase64url(encodedList))
+
+    if (!validatePointerList(pointerList)) {
+      throw new Error('Share data is invalid. Make sure you copy the whole "content" from your meta tag.')
+    }
+
+    return sharesFromPointerList(pointerList)
   } catch (e) {
     if (e.name === 'TypeError') {
       throw new Error('Meta tag or payment pointer is malformed')
@@ -122,4 +131,28 @@ export function tagOrPointerToShares (tag) {
 
 export function trimDecimal (dec) {
   return Number(dec.toFixed(3))
+}
+
+export function validatePointerList (pointerList) {
+  console.log('pointerList', pointerList)
+  if (!Array.isArray(pointerList)) {
+    return false
+  }
+
+  for (const entry of pointerList) {
+    if (typeof entry[0] !== 'string') {
+      console.log('ptr not string', entry)
+      return false
+    }
+    if (typeof entry[1] !== 'number') {
+      console.log('weight not number', entry)
+      return false
+    }
+    if (entry[2] && typeof entry[2] !== 'string') {
+      console.log('name not string', entry)
+      return false
+    }
+  }
+
+  return true
 }
