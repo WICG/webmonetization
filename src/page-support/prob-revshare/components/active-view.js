@@ -8,6 +8,7 @@ import { SharesMetaTag } from './meta-tag'
 import { SharesText } from './shares-text'
 import { ImportText } from './import-text'
 import { SectionHeader } from './section-header'
+import { OnlyClient } from './only-client'
 
 export function ActiveView () {
   const [ view ] = useView()
@@ -18,12 +19,14 @@ export function ActiveView () {
         Editing Revshare
       </SectionHeader>
       <SharesText />
-      <RevshareChart />
-      <ShareList />
-      <SectionHeader>
-        Meta Tag
-      </SectionHeader>
-      <SharesMetaTag />
+      <OnlyClient>
+        <RevshareChart />
+        <ShareList />
+        <SectionHeader>
+          Meta Tag
+        </SectionHeader>
+        <SharesMetaTag />
+      </OnlyClient>
     </>
   } else if (view === ViewStates.Import) {
     return <>
