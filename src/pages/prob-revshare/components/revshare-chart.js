@@ -18,7 +18,7 @@ export function RevshareChart () {
       data={[
         { value: 1, color: '#E7E8E9' }
       ]}
-      style={{ width: 300, height: 300 }}
+      style={{ width: '100%', height: 300 }}
       radius={30}
     />
   }
@@ -26,7 +26,7 @@ export function RevshareChart () {
   return <PieChart
     className='revshareChart'
     data={chartData}
-    style={{ width: 300, height: 300, objectFit: 'fill' }}
+    style={{ width: '100%', height: 300 }}
     radius={30}
     label={genLabel}
     labelStyle={() => ({
