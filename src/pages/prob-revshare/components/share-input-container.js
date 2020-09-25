@@ -27,7 +27,7 @@ export function ShareInputContainer ({ children }) {
           <TableCell><b>Pointer</b></TableCell>
           <TableCell><b>Weight</b></TableCell>
           <TableCell><b>Percent</b></TableCell>
-          <TableCell><b>Remove</b></TableCell>
+          <TableCell></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>

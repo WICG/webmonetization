@@ -283,7 +283,7 @@ h2 {
 }
 
 .weightInput, .percentInput {
-  width: 6em !important;
+  width: 5em !important;
 }
 
 #copyIcon {
@@ -300,6 +300,28 @@ h2 {
 
 .importControls {
   margin-top: 1em;
+}
+
+.nameCell {
+  width: 15em;
+}
+
+.sharePointerInput {
+  width: 20em;
+}
+
+.pointerCell {
+  padding-right: 0px !important;
+}
+
+.weightCell, .percentCell {
+  width: 6em;
+}
+
+.removeCell, .removeButton {
+  padding: 0px !important;
+  margin-right: 0px !important;
+  width: 2em !important;
 }
 
 @media only screen and (max-device-width: 736px) {

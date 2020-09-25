@@ -23,9 +23,10 @@ export function ShareInput ({
   weightDisabled
 }) {
   return <TableRow key={key}>
-    <TableCell>
+    <TableCell className='nameCell'>
       <TextField
         size='small'
+        className='shareNameInput'
         type='text'
         value={name}
         onChange={ev => {
@@ -34,9 +35,10 @@ export function ShareInput ({
       />
     </TableCell>
 
-    <TableCell>
+    <TableCell className='pointerCell'>
       <TextField
         size='small'
+        className='sharePointerInput'
         type='text'
         value={pointer}
         error={!validatePointer(pointer)}
@@ -47,7 +49,7 @@ export function ShareInput ({
       />
     </TableCell>
 
-    <TableCell>
+    <TableCell className='weightCell'>
       <TextField
         size='small'
         className='weightInput'
@@ -64,7 +66,7 @@ export function ShareInput ({
       />
     </TableCell>
 
-    <TableCell>
+    <TableCell className='percentCell'>
       <TextField
         size='small'
         className='percentInput'
@@ -83,8 +85,9 @@ export function ShareInput ({
       />
     </TableCell>
 
-    <TableCell>
+    <TableCell className='removeCell' align='right'>
       <Button
+        className='removeButton'
         size='small'
         disabled={removeDisabled}
         onClick={() => onRemove()}
