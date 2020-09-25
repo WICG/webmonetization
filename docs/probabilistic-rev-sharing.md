@@ -10,6 +10,10 @@ One way is through probabilistic revenue sharing (revshare). In Web Monetization
 
 The chance of a payment pointer being chosen is based on its assigned weight. For example, if Alice's payment pointer has a weight of 50, the pointer has a 50% chance of being chosen. The laws of probability state that Alice’s share will approach 50% of the page’s total revenue as more users visit the site.
 
+:::info
+Want to try probabilistic revenue sharing right away? Check out our [Probabilistic Revshare Generator](/prob-revshare)
+:::
+
 ## A basic example
 
 This example shows how to define a list of payment pointers and assign each pointer a weight. The easiest way to establish weight is by assigning values that add to 100.
@@ -167,3 +171,5 @@ app.use((req, res, next) => {
 With this scheme, your payment pointer contains all the revshare logic and you don't need to repeat the information on every page. The scheme also works recursively. One of the pointers that a vanity pointer randomly chooses could go on to make a random choice of its own. Your blog could choose the photographer's payment pointer 1% of the time, then 10% of the time the photographer's pointer chooses the photo editor's pointer.
 
 This lets you make some revsharing schemes that would be wildly impractical with existing schemes. By taking the pain out of revenue sharing, we can help everyone get compensated fairly!
+
+If you want to get started with probabilistic revenue sharing today, try out our [Probabilistic Revshare Generator](/prob-revshare)!

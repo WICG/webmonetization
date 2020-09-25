@@ -227,7 +227,7 @@ h2 {
 }
 
 .metaTagContainer {
-    max-width: 800px;
+    max-width: 900px !important;
 }
 
 .metaTagContainer p {
@@ -277,12 +277,55 @@ h2 {
     background: #F7F8F9;
 }
 
+.revshareChart {
+  /* TODO: can we accomplish this without covering inputs */
+  /* overflow: visible; */
+}
+
+.weightInput, .percentInput {
+  width: 5em !important;
+}
+
 #copyIcon {
     position: absolute;
     right: 18px;
     top: 50%;
     margin-top: -16px;
     cursor: pointer;
+}
+
+.importSharesButton {
+  margin-left: 1em !important;
+}
+
+.importControls {
+  margin-top: 1em;
+}
+
+.nameCell {
+  width: 15em;
+}
+
+.sharePointerInput {
+  width: 20em;
+}
+
+.pointerCell {
+  padding-right: 0px !important;
+}
+
+.weightCell, .percentCell {
+  width: 6em;
+}
+
+.removeCell, .removeButton {
+  padding: 0px !important;
+  margin-right: 0px !important;
+  width: 2em !important;
+}
+
+.sectionHeader {
+  font-size: 30px;
 }
 
 @media only screen and (max-device-width: 736px) {
@@ -315,12 +358,26 @@ h2 {
   color: rgba(255,255,255,0.6);
 }
 
+.revshareContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
 @media only screen and (min-width: 1024px) {
     .cardContainer {
         flex-direction: row;
+    }
+
+    .revshareContainer {
+      display: flex;
+      flex-direction: row;
     }
 }
 
