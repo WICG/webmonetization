@@ -3,8 +3,8 @@ import { Container } from '@material-ui/core'
 import Layout from '@theme/Layout'
 import { Link } from '@docusaurus/router'
 
-import { SharesProvider, ViewProvider } from './state'
-import { ActiveView } from './components'
+import { SharesProvider, ViewProvider } from '../page-support/prob-revshare/state'
+import { ActiveView } from '../page-support/prob-revshare/components/active-view'
 
 export default function ProbRevshare (props) {
   const { config: siteConfig } = props

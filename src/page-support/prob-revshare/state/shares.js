@@ -14,7 +14,10 @@ export function newShare () {
 
 function loadStartingShares () {
   try {
-    const share = localStorage.getItem(SHARES_KEY)
+    const share = typeof window === 'undefined'
+      ? undefined
+      : localStorage.getItem(SHARES_KEY)
+
     const parsed = JSON.parse(share)
 
     if (share && parsed && validateShares(parsed)) {
