@@ -1,6 +1,6 @@
 export * from './meta-tag'
-export * from './add-share'
 export * from './share-list'
 export * from './share-input'
 export * from './revshare-chart'
 export * from './revshare-container'
+export * from './active-view'

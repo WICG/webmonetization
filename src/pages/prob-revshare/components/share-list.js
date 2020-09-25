@@ -1,9 +1,9 @@
 import React from 'react'
 
 import { ShareInput } from './share-input'
-import { AddShareButton } from './add-share'
+import { Button } from './button'
 import { ShareInputContainer } from './share-input-container'
-import { useShares, newShare } from '../state'
+import { useShares, newShare, useView, ViewStates } from '../state'
 import { trimDecimal } from '../lib'
 
 function changeList (arr, i, alteration) {
@@ -27,6 +27,7 @@ function weightFromPercent (percent, weight, totalWeight) {
 
 export function ShareList () {
   const [ shares, setShares ] = useShares()
+  const [ _, setView ] = useView()
   const totalWeight = shares.reduce((a, b) => a + Number(b.weight), 0)
 
   return <div>
@@ -56,6 +57,16 @@ export function ShareList () {
         />
       })}
     </ShareInputContainer>
-    <AddShareButton onClick={() => setShares([ ...shares, newShare() ])} />
+    <Button
+      onClick={() => setShares([ ...shares, newShare() ])}
+    >
+      Add Share
+    </Button>
+    <Button
+      className='importSharesButton'
+      onClick={() => setView(ViewStates.Import) }
+    >
+      Edit Existing Revshare
+    </Button>
   </div>
 }

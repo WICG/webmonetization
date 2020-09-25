@@ -294,6 +294,14 @@ h2 {
     cursor: pointer;
 }
 
+.importSharesButton {
+  margin-left: 1em !important;
+}
+
+.importControls {
+  margin-top: 1em;
+}
+
 @media only screen and (max-device-width: 736px) {
     .bgLogo {
         display: none;

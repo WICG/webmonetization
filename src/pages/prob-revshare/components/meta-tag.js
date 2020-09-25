@@ -11,7 +11,7 @@ export function SharesMetaTag () {
   }
 
   return <code id="metaTag">
-    &lt;meta name="monetization content="{pointer}" /&gt;
+    &lt;meta name="monetization" content="{pointer}"&gt;
     <img src='/img/copy_icon.svg' id="copyIcon" className="btnClipboard" />
   </code>
 }

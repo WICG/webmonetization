@@ -33,11 +33,24 @@ export function sharesToMap (shares) {
   }, {})
 }
 
+export function sharesFromMap (map) {
+  return Object.keys(map).map(pointer => ({
+    pointer,
+    weight: map[pointer]
+  }))
+}
+
 export function base64url (str) {
   return btoa(str)
     .replace(/\+/g, '-')
     .replace(/\//g, '_')
     .replace(/=/g, '')
+}
+
+export function fromBase64url (str) {
+  return atob(str
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/'))
 }
 
 export function sharesToPaymentPointer (shares) {
@@ -56,6 +69,55 @@ export function sharesToPaymentPointer (shares) {
   parsedPointer.search = params.toString()
 
   return parsedPointer.href
+}
+
+export function pointerToShares (pointer) {
+  try {
+    const parsed = new URL(pointer)
+    const params = new URLSearchParams(parsed.search)
+    const encodedMap = params.get('pm')
+
+    if (!encodedMap) {
+      throw new Error('No share data found. Make sure you copy the whole "content" field from your meta tag.')
+    }
+
+    const pointerMap = JSON.parse(fromBase64url(encodedMap))
+    return sharesFromMap(pointerMap)
+  } catch (e) {
+    if (e.name === 'TypeError') {
+      throw new Error('Meta tag or payment pointer is malformed')
+    } else if (e.name === 'SyntaxError') {
+      throw new Error('Payment pointer has malformed share data. Make sure to copy the entire pointer.')
+    } else {
+      throw e
+    }
+  }
+}
+
+export function tagToShares (tag) {
+  const parser = new DOMParser()
+  const node = parser.parseFromString(tag, 'text/html')
+  const meta = node.head.querySelector('meta[name="monetization"]')
+
+  if (!meta) {
+    console.log(node, node.head, node.head.querySelector('meta[name="monetization"]'))
+    throw new Error('Please copy the exact meta tag you got from this revshare tool. It seems to be malformed.')
+  }
+
+  return pointerToShares(meta.content)
+}
+
+export function tagOrPointerToShares (tag) {
+  const trimmedTag = tag.trim()
+  if (!trimmedTag) {
+    throw new Error('Tag or pointer is empty')
+  }
+
+  if (trimmedTag.startsWith(BASE_REVSHARE_POINTER)) {
+    return pointerToShares(trimmedTag)
+  } else {
+    return tagToShares(trimmedTag)
+  }
 }
 
 export function trimDecimal (dec) {
