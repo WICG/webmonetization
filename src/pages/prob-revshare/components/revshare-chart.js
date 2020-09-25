@@ -13,14 +13,7 @@ export function RevshareChart () {
   const chartData = sharesToChartData(shares)
 
   if (!chartData.length) {
-    return <PieChart
-      className='revshareChart'
-      data={[
-        { value: 1, color: '#E7E8E9' }
-      ]}
-      style={{ width: '100%', height: 300 }}
-      radius={30}
-    />
+    return <></>
   }
 
   return <PieChart
