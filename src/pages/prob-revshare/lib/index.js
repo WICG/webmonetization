@@ -1,4 +1,4 @@
-const BASE_REVSHARE_POINTER = 'https://webmonetization.org/api/revshare/pay'
+const BASE_REVSHARE_POINTER = 'https://webmonetization.org/api/revshare/pay/'
 const POINTER_LIST_PARAM = 'p'
 const CHART_COLORS = [
   '#6ADAAB',
