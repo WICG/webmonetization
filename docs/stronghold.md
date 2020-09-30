@@ -8,6 +8,6 @@ sidebar_label: Stronghold
 
 If you are using Stronghold as your digital wallet provider, we recommend taking the following steps before August 20.
 
-1. Withdraw your balance from your [Stronghold account](https://identity.stronghold.co/login). Stronghold cannot transfer your balance to a different wallet provider. If you need help making a withdrawal, check out Stronghold's help documentation: [How do I make a withdrawal](https://happiness.stronghold.co/hc/en-us/articles/360001516932-How-do-I-make-a-withdrawal-.)
+1. Withdraw your balance from your [Stronghold account](https://identity.stronghold.co/login). Stronghold cannot transfer your balance to a different wallet provider. If you need help making a withdrawal, check out Stronghold's help documentation.
 2. Sign up for an [Uphold](https://uphold.com/en-us/) or [GateHub](https://gatehub.net/) account and get a new payment pointer.
 3. Update your Web Monetization meta tag to reference your new payment pointer.

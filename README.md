@@ -4,7 +4,7 @@ This repo is the code behind [webmonetization.org](https://webmonetization.org)
 
 It is the home of the proposed Web Monetization standard currently incubating at the [WICG](https://wicg.org).
 
-You can view the [explainer](https://webmonetization.org/docs/explainer.html), or read
+You can view the [explainer](https://webmonetization.org/docs/explainer), or read
 the proposed [spec](https://webmonetization.org/specification.html).
 
 ## Contribute
