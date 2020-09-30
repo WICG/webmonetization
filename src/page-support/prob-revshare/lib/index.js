@@ -112,13 +112,18 @@ export function tagToShares (tag) {
   return pointerToShares(meta.content)
 }
 
+function isRevsharePointer (str) {
+  return str.startsWith(BASE_REVSHARE_POINTER)
+    || str.startsWith(normalizePointerPrefix(BASE_REVSHARE_POINTER))
+}
+
 export function tagOrPointerToShares (tag) {
   const trimmedTag = tag.trim()
   if (!trimmedTag) {
     throw new Error('Tag or pointer is empty')
   }
 
-  if (trimmedTag.startsWith(BASE_REVSHARE_POINTER)) {
+  if (isRevsharePointer(trimmedTag)) {
     return pointerToShares(trimmedTag)
   } else {
     return tagToShares(trimmedTag)
