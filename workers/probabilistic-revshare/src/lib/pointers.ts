@@ -37,7 +37,10 @@ export function parsePointerMap (url: string): PointerList {
   const parsed = new URL(url)
   const search = new URLSearchParams(parsed.search)
 
+  // pointer list could be in final path segment or query param
   const pointerListB64 = search.get(POINTER_LIST_PARAM)
+    || parsed.pathname.split('/').pop()
+
   if (!pointerListB64) {
     throw new Error('request does not include pointer list')
   }

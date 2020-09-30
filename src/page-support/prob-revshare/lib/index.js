@@ -1,4 +1,4 @@
-const BASE_REVSHARE_POINTER = 'https://webmonetization.org/api/revshare/pay/'
+const BASE_REVSHARE_POINTER = '$webmonetization.org/api/revshare/pay/'
 const POINTER_LIST_PARAM = 'p'
 const CHART_COLORS = [
   '#6ADAAB',
@@ -65,21 +65,17 @@ export function sharesToPaymentPointer (shares) {
 
   const pointerList = sharesToPointerList(validShares)
   const encodedShares = base64url(JSON.stringify(pointerList))
-
-  const params = new URLSearchParams()
-  params.set(POINTER_LIST_PARAM, encodedShares)
-
-  const parsedPointer = new URL(BASE_REVSHARE_POINTER)
-  parsedPointer.search = params.toString()
-
-  return parsedPointer.href
+  return BASE_REVSHARE_POINTER + encodedShares
 }
 
 export function pointerToShares (pointer) {
   try {
-    const parsed = new URL(pointer)
+    const parsed = new URL(normalizePointerPrefix(pointer))
     const params = new URLSearchParams(parsed.search)
+
+    // list could be in query string or in path segment
     const encodedList = params.get(POINTER_LIST_PARAM)
+      || parsed.pathname.split('/').pop()
 
     if (!encodedList) {
       throw new Error('No share data found. Make sure you copy the whole "content" field from your meta tag.')
@@ -116,13 +112,18 @@ export function tagToShares (tag) {
   return pointerToShares(meta.content)
 }
 
+function isRevsharePointer (str) {
+  return str.startsWith(BASE_REVSHARE_POINTER)
+    || str.startsWith(normalizePointerPrefix(BASE_REVSHARE_POINTER))
+}
+
 export function tagOrPointerToShares (tag) {
   const trimmedTag = tag.trim()
   if (!trimmedTag) {
     throw new Error('Tag or pointer is empty')
   }
 
-  if (trimmedTag.startsWith(BASE_REVSHARE_POINTER)) {
+  if (isRevsharePointer(trimmedTag)) {
     return pointerToShares(trimmedTag)
   } else {
     return tagToShares(trimmedTag)
@@ -157,6 +158,12 @@ export function validatePointerList (pointerList) {
   return true
 }
 
+export function normalizePointerPrefix (pointer) {
+  return pointer.startsWith('$')
+    ? 'https://' + pointer.substring(1)
+    : pointer
+}
+
 export function validatePointer (pointer) {
   if (!pointer) {
     return true
@@ -166,12 +173,8 @@ export function validatePointer (pointer) {
     return false
   }
 
-  const urlForm = pointer.startsWith('$')
-    ? 'https://' + pointer.substring(1)
-    : pointer
-
   try {
-    const _ = new URL(urlForm)
+    const _ = new URL(normalizePointerPrefix(pointer))
     return true
   } catch (e) {
     return false
