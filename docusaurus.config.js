@@ -1,4 +1,4 @@
-// See https://docusaurus.io/docs/site-config for all the possible
+// Seehttps://v2.docusaurus.io/docs/configuration for all the possible
 // site configuration options.
 
 const wallets = [
