@@ -4,12 +4,12 @@ This repo is the code behind [webmonetization.org](https://webmonetization.org)
 
 It is the home of the proposed Web Monetization standard currently incubating at the [WICG](https://wicg.org).
 
-You can view the [explainer](https://webmonetization.org/docs/explainer.html), or read
+You can view the [explainer](https://webmonetization.org/docs/explainer), or read
 the proposed [spec](https://webmonetization.org/specification.html).
 
 ## Contribute
 
-This website was created with [Docusaurus](https://docusaurus.io/) and contributions are welcome as pull requests.
+This website was created with [Docusaurus](https://v2.docusaurus.io/) and contributions are welcome as pull requests.
 
 ### Local Development
 
@@ -34,51 +34,98 @@ Your project file structure should look something like this
 
 ```
 webmonetization.org
-├── docker-compose.yml
-├── Dockerfile
-├── docs
-│   ├── api.md
-│   ├── assets
-│   │   └── flow.svg
-│   ├── explainer.md
-│   ├── getting-started.md
-│   ├── receiving.md
-│   ├── sending.md
-│   └── specification.md
-├── LICENSE
-├── README.md
-└── website
-    ├── core
-    │   └── Footer.js
+    ├── CODE_OF_CONDUCT.md
+    ├── CONTRIBUTING.md
+    ├── Dockerfile
+    ├── LICENSE
+    ├── LICENSE.md
+    ├── README.md
+    ├── docker-compose.yml
+    ├── docs
+    │   ├── api.md
+    │   ├── assets
+    │   │   ├── flow.svg
+    │   │   ├── gatehub-addwallet.gif
+    │   │   ├── gatehub-exchangeorder.png
+    │   │   ├── gatehub-findpointer.gif
+    │   │   ├── gatehub.png
+    │   │   ├── uphold
+    │   │   ├── uphold.svg
+    │   │   └── xrpmigration
+    │   ├── counter.md
+    │   ├── exclusive-content.md
+    │   ├── explainer.md
+    │   ├── gatehub.md
+    │   ├── getting-started.md
+    │   ├── glossary.md
+    │   ├── ilp-wallets.md
+    │   ├── probabilistic-rev-sharing.md
+    │   ├── receiving.md
+    │   ├── remove-ads.md
+    │   ├── resources.md
+    │   ├── sending.md
+    │   ├── specification.md
+    │   ├── start-stop.md
+    │   ├── stronghold.md
+    │   ├── uphold.md
+    │   └── xrptipbot.md
+    ├── docusaurus.config.js
     ├── i18n
-    │   └── en.json
+    │   └── en.json
     ├── package.json
-    ├── pages
-    │   └── en
-    │       ├── docs.js
-    │       ├── index.js
-    │       └── meta-tag.js
     ├── sidebars.json
-    ├── siteConfig.js
+    ├── src
+    │   ├── page-support
+    │   │   └── prob-revshare
+    │   └── pages
+    │       ├── docs.js
+    │       ├── index.js
+    │       ├── meta-tag.js
+    │       └── prob-revshare.js
     ├── static
-    │   ├── css
-    │   │   └── custom.css
-    │   ├── img
-    │   │   ├── coil_logo.svg
-    │   │   ├── copy_icon.svg
-    │   │   ├── favicon.ico
-    │   │   ├── fav-webmonetization.png
-    │   │   ├── gatehub_logo.svg
-    │   │   ├── grey_wm_logo.svg
-    │   │   ├── stronghold_logo.svg
-    │   │   ├── tipbot_logo.svg
-    │   │   ├── webmon_icon_simple.svg
-    │   │   ├── webmon_icon.svg
-    │   │   ├── wm-icon-animated.svg
-    │   │   └── wm-icon.svg
-    │   ├── js
-    │   │   └── custom.js
-    │   └── specification.html
+    │   ├── CNAME
+    │   ├── css
+    │   │   └── custom.css
+    │   ├── img
+    │   │   ├── 11ty_webmo_logo.png
+    │   │   ├── angular_webmo_logo.svg
+    │   │   ├── awesome_webmo_logo.svg
+    │   │   ├── coil_logo.svg
+    │   │   ├── copy_icon.svg
+    │   │   ├── fav-webmonetization.png
+    │   │   ├── favicon.ico
+    │   │   ├── gatehub_logo.svg
+    │   │   ├── gatsby_webmo_logo.svg
+    │   │   ├── grey_wm_logo.svg
+    │   │   ├── gridsome_webmo_logo.svg
+    │   │   ├── hugo_webmo_logo.svg
+    │   │   ├── puma-logo.svg
+    │   │   ├── stronghold_logo.svg
+    │   │   ├── svelte_webmo_logo.svg
+    │   │   ├── tessy_webmo_logo.svg
+    │   │   ├── tipbot_logo.svg
+    │   │   ├── uphold-logo.svg
+    │   │   ├── uphold_logo.svg
+    │   │   ├── vuepress_webmo_logo.png
+    │   │   ├── webmon_icon.svg
+    │   │   ├── webmon_icon_simple.svg
+    │   │   ├── wm-icon-animated.svg
+    │   │   └── wm-icon.svg
+    │   ├── js
+    │   │   └── custom.js
+    │   ├── service-worker.js
+    │   └── specification.html
+    ├── w3c.json
+    ├── workers
+    │   ├── README.md
+    │   └── probabilistic-revshare
+    │       ├── README.md
+    │       ├── package.json
+    │       ├── rollup.config.js
+    │       ├── src
+    │       ├── tsconfig.json
+    │       ├── wrangler.toml
+    │       └── yarn.lock
     └── yarn.lock
 ```
 
@@ -100,7 +147,7 @@ Edit me...
 ```
 
 For more information about docs, click
-[here](https://docusaurus.io/docs/en/navigation)
+[here](https://v2.docusaurus.io/docs/docs-introduction/)
 
 ## Adding Content
 
@@ -135,57 +182,81 @@ My new content here..
 ```
 
 For more information about adding new docs, click
-[here](https://docusaurus.io/docs/en/navigation)
+[here](https://v2.docusaurus.io/docs/docs-introduction/)
 
 ### Adding items to your site's top navigation bar
 
-1. Add links to docs, custom pages or external links by editing the headerLinks
-   field of `website/siteConfig.js`:
+1. Add links to docs, custom pages or external links by editing the `themeConfig.navbar.links` field of `docusaurus.config.js`:
 
-`website/siteConfig.js`
+`docusaurus.config.js`
 
 ```javascript
-{
-  headerLinks: [
-    ...
-    /* you can add docs */
-    { doc: 'my-examples', label: 'Examples' },
-    /* you can add custom pages */
-    { page: 'help', label: 'Help' },
-    /* you can add external links */
-    { href: 'https://github.com/facebook/Docusaurus', label: 'GitHub' },
-    ...
-  ],
-  ...
-}
+module.exports = {
+  // ...
+  themeConfig: {
+    navbar: {
+      links: [
+        {
+          // Client-side routing, used for navigating within the website.
+          // The baseUrl will be automatically prepended to this value.
+          to: 'docs/introduction',
+          // A full-page navigation, used for navigating outside of the website.
+          // You should only use either `to` or `href`.
+          href: 'https://www.facebook.com',
+          // Prepends the baseUrl to href values.
+          prependBaseUrlToHref: true,
+          // The string to be shown.
+          label: 'Introduction',
+          // Left or right side of the navbar.
+          position: 'left', // or 'right'
+          // To apply the active class styling on all
+          // routes starting with this path.
+          // This usually isn't necessary
+          activeBasePath: 'docs',
+          // Alternative to activeBasePath if required.
+          activeBaseRegex: 'docs/(next|v8)',
+          // Custom CSS class (for styling any item).
+          className: '',
+        },
+        // ... other links
+      ],
+    },
+    // ...
+  },
+};
 ```
 
 For more information about the navigation bar, click
-[here](https://docusaurus.io/docs/en/navigation)
+[here](https://v2.docusaurus.io/docs/theme-bootstrap/#navbar)
 
 ### Adding custom pages
 
 1. Docusaurus uses React components to build pages. The components are saved as
-   .js files in `website/pages/en`:
+   .js files in `src/pages`:
 1. If you want your page to show up in your navigation header, you will need to
-   update `website/siteConfig.js` to add to the `headerLinks` element:
+   update the `themeConfig.navbar.links` field of `docusaurus.config.js` (see above).
 
 `website/siteConfig.js`
-
 ```javascript
-{
-  headerLinks: [
-    ...
-    { page: 'my-new-custom-page', label: 'My New Custom Page' },
-    ...
-  ],
-  ...
-}
+module.exports = {
+  // ...
+  themeConfig: {
+    navbar: {
+      links: [
+        {
+          to: 'my-new-custom-page',
+          label: 'My New Custom Page',
+          position: 'left', // or 'right'
+        },
+      ],
+    },
+  },
+};
 ```
 
 For more information about custom pages, click
-[here](https://docusaurus.io/docs/en/custom-pages).
+[here](https://v2.docusaurus.io/docs/creating-pages/).
 
 ## Full Documentation
 
-Full documentation can be found on the [website](https://docusaurus.io/).
+Full documentation can be found on the [website](https://v2.docusaurus.io/).
