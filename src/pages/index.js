@@ -148,6 +148,13 @@ export default class Index extends React.Component {
         <CardSet cards={siteConfig.customFields.browsers} />
       </CardBlock>
 
+    const Search = () =>
+      <CardBlock id="search">
+        <h2>Web Monetization Enabled Search Engines</h2>
+        <p>These search engines implement Web Monetization features</p>
+        <CardSet cards={siteConfig.customFields.search} />
+      </CardBlock>
+
     const Tools = () =>
       <CardBlock id="tools">
         <h2>Web Monetization Tools</h2>
@@ -205,6 +212,7 @@ export default class Index extends React.Component {
             <Wallets />
             <Providers />
             <Browsers />
+            <Search />
             <Tools />
             <Resources />
           </div>
