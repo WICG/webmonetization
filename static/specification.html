@@ -6,13 +6,17 @@
     <script
       src="https://www.w3.org/Tools/respec/respec-w3c"
       class="remove"
+      defer
     ></script>
     <script class="remove">
       'use strict'
       // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
       var respecConfig = {
         edDraftURI: 'https://webmonetization.org/specification.html',
-        github: 'wicg/webmonetization',
+        github: {
+          repoURL: 'wicg/webmonetization',
+          branch: 'master',
+        },
         editors: [
           {
             name: 'Adrian Hope-Bailie',
@@ -33,7 +37,8 @@
           }
         ],
         shortName: 'web-monetization',
-        specStatus: 'CG-Draft',
+        specStatus: 'CG-DRAFT',
+        group: 'wicg',
         xref: 'web-platform',
         localBiblio: {
           Interledger: {
@@ -68,24 +73,25 @@
         Monetization provider.
       </p>
     </section>
-    <section id="sotd"></section>
-    <section id="warning" class="warning">
-      <p>
-        This specification is a work in progress within the community on the
-        best shape it should take. Please see the
-        <a href="./docs/explainer.html">explainer</a> for more info.
-      </p>
-      <p>
-        The specification reflects the desired end-state of the Web Monetization
-        APIs as currently anticipated and agreed to between the contributors.
-        The specification is being prepared here, in this format, to collect the
-        input of the Web community and prepare the work to ultimately follow the
-        W3C standards track should it have the necessary support to do so.
-      </p>
-      <p>
-        For the most accurate reflection of the APIs that have been implemented
-        by providers see the <a href="./docs/api">API documentation</a>.
-      </p>
+    <section id="sotd">
+      <div class="warning">
+        <p>
+          This specification is a work in progress within the community on the
+          best shape it should take. Please see the
+          <a href="./docs/explainer.html">explainer</a> for more info.
+        </p>
+        <p>
+          The specification reflects the desired end-state of the Web Monetization
+          APIs as currently anticipated and agreed to between the contributors.
+          The specification is being prepared here, in this format, to collect the
+          input of the Web community and prepare the work to ultimately follow the
+          W3C standards track should it have the necessary support to do so.
+        </p>
+        <p>
+          For the most accurate reflection of the APIs that have been implemented
+          by providers see the <a href="./docs/api">API documentation</a>.
+        </p>
+      </div>
     </section>
     <section id="terminology">
       <h2>Terminology</h2>
@@ -697,11 +703,10 @@
       <section id="http-headers">
         <h2>HTTP Headers</h2>
         <h4>`Web-Monetization-Id`</h4>
-        <section id="warning" class="warning">
-        <p>
-          DEPRECATED: The `Web-Monetization-Id` header is deprecated in favor of receipts.
+        <p class="warning">
+          DEPRECATED: The `Web-Monetization-Id` header is deprecated in favor
+          of receipts.
         </p>
-        </section>
         <p>
           Contains the `Monetization ID` (currently referred to as
           {{ MonetizationStartEvent / requestId }} in the
@@ -714,5 +719,6 @@
         </pre>
       </section>
     </section>
+    <section id="conformance" class="appendix"></section>
   </body>
 </html>
