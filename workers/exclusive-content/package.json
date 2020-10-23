@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "exclusive-content",
+  "version": "1.0.0",
+  "description": "Exclusive Content - Cloudflare Worker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "Sabine Schaller <sabine@coil.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
