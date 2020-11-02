@@ -107,35 +107,38 @@ function str2ab(str) {
   return buf
 }
 
-async function getKeyMaterial() {
+async function importMasterKey() {
   const encoder = new TextEncoder()
   return crypto.subtle.importKey(
     'raw',
     encoder.encode(MASTERKEY),
-    'PBKDF2',
-    false,
-    ['deriveBits', 'deriveKey'],
-  )
-}
-
-async function deriveKey(salt) {
-  const keyMaterial = await getKeyMaterial()
-  return crypto.subtle.deriveKey(
     {
-      name: 'PBKDF2',
-      salt: salt,
-      iterations: 1000,
-      hash: 'SHA-256',
+      name: 'HMAC', 
+      hash: 'SHA-256'
     },
-    keyMaterial,
-    { name: 'AES-GCM', length: 256 },
     false,
-    ['encrypt', 'decrypt'],
+    ['sign'],
   )
 }
 
-async function encrypt(plaintext, salt, iv) {
-  const key = await deriveKey(salt)
+async function deriveKey(paymentPointer) {
+  const masterKey = await importMasterKey()
+  const signature = await crypto.subtle.sign(
+    'HMAC',
+    masterKey,
+    paymentPointer
+  )
+  return crypto.subtle.importKey(
+    'raw',
+    signature,
+    'AES-GCM',
+    false,
+    ['encrypt', 'decrypt']
+  )
+}
+
+async function encrypt(plaintext, paymentPointer, iv) {
+  const key = await deriveKey(paymentPointer)
   return crypto.subtle.encrypt(
     {
       name: 'AES-GCM',
@@ -146,8 +149,8 @@ async function encrypt(plaintext, salt, iv) {
   )
 }
 
-async function decrypt(cyphertext, salt, iv) {
-  const key = await deriveKey(salt)
+async function decrypt(cyphertext, paymentPointer, iv) {
+  const key = await deriveKey(paymentPointer)
   return crypto.subtle.decrypt(
     {
       name: 'AES-GCM',
