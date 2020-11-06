@@ -26,17 +26,16 @@ wrangler publish
 
 ## Endpoints
 
-### `POST /encrypt`
+### `POST /deriveNewKey`
 
-Encrypts plaintext
+Derives a new key for encryption given a payment pointer
 
 #### Request Body
 
 JSON object containing
-| Name | Type | Description | Example |
-| -- | -- | -- | -- |
-| pp | String | (proxy) payment pointer | "\$spsp.example.com/alice" |
-| pt | String | plain text | "Hello World" |
+| Name | Type | Example |
+| -- | -- | -- |
+| paymentPointer | String | "\$spsp.example.com/alice" |
 
 #### Headers
 
@@ -49,28 +48,28 @@ JSON object containing
 JSON object containing
 | Name | Type | Description | Example |
 | -- | -- | -- | -- |
-| ct | String | cypher text | "VsPD81db5Ts9rUnvxqGD5hxCRoDU+ygE44w42AoEbaKQbhGXkrpxoYwCrhrtR2MmFfOg" |
-| iv | String | initialization vector | "1603118464654" |
+| key | String | base64-encoded HMAC |"roXXcAX5qOtrBR7SMeZSGY+YIauNznBqsRXILTCI0IM=" |
+| nonce | String | stringified [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) |"1837883175" |
 
 #### Errors
 
-- 400 - Input variables missing
+- 400 - Payment pointer not part of request body
 - 415 - Unsupported content type. Use application/json
 
-### `POST /decrypt`
+### `POST /deriveKey`
 
-Decrypts cyphertext if it can verify payment
+Derives an existing key for decryption given that payment can be verified. In order to verify, the encrypted STREAM receipt verifier endpoint (`encVerifier`) needs to be passed together with the encryption initialization vector.
 
 #### Request Body
 
 JSON object containing
 | Name | Type | Description | Example |
 | -- | -- | -- | -- |
-| pp | String | (proxy) payment pointer | "\$spsp.example.com/alice" |
-| ct | String | cypher text | "VsPD81db5Ts9rUnvxqGD5hxCRoDU+ygE44w42AoEbaKQbhGXkrpxoYwCrhrtR2MmFfOg" |
-| iv | String | initialization vector | "1603118464654" |
-| vr | String | receipt verifier endpoint | "https://verifier.example.com" |
-| bi | String | balance id used to credit the receipts | "123" |
+| paymentPointer | String | | "\$spsp.example.com/alice" |
+| nonce | String | stringified [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "1837883175" |
+| encVerifier | String | base64-encoded AES-GCM encryption of the verifier endpoint | "nsNBmLVm11WDVbst+jJuxkA17vEH+/W6yIPeQdnoK3mdT8D/LA==" |
+| initVector | String | random initialization vector used for encryption |"729945811" |
+| receipt | String | base64-encoded STREAM receipt |"AVJgrh79jbZ8CnaObl/p+z0BAAAAAAAF8m5+VSi2zfg/RvkzDP20uWk0ZMbUflzUxEyJxqHXomY+og==" |
 
 #### Headers
 
@@ -83,7 +82,7 @@ JSON object containing
 JSON object containing
 | Name | Type | Description | Example |
 | -- | -- | -- | -- |
-| pt | String | plain text | "Hello World" |
+| key | String | base64-encoded HMAC |"roXXcAX5qOtrBR7SMeZSGY+YIauNznBqsRXILTCI0IM=" |
 
 #### Errors
 

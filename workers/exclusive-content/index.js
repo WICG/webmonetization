@@ -7,7 +7,7 @@ const headers = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'POST,OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
-  'Access-Control-Max-Age': '86400',
+  'Access-Control-Max-Age': '86400'
 }
 
 addEventListener('fetch', event => {
@@ -20,36 +20,39 @@ async function handleRequest(request) {
     if (headers.get('content-type') !== 'application/json') {
       return new Response('Unsupported content type. Use application/json', {
         headers,
-        status: 415,
+        status: 415
       })
     }
     const url = new URL(request.url)
     const path = url.pathname
-    if ((path !== '/encrypt') & (path !== '/decrypt')) {
+    if ((path !== '/deriveNewKey') & (path !== '/deriveKey')) {
       return new Response('Not found', { headers, status: 404 })
     }
     const body = await request.json()
-    if (path === '/encrypt') {
-      if (
-        Object.keys(body).includes('pp') &&
-        Object.keys(body).includes('pt')
-      ) {
-        return handleEncryptRequest(body)
+    if (path === '/deriveNewKey') {
+      if (Object.keys(body).includes('paymentPointer')) {
+        return handleNewKeyDerivation(body)
       } else {
-        return new Response('Input variables missing', { headers, status: 400 })
+        return new Response('Payment pointer not part of request body', {
+          headers,
+          status: 400
+        })
       }
     }
-    if (path === '/decrypt') {
+    if (path === '/deriveKey') {
       if (
-        Object.keys(body).includes('pp') &&
-        Object.keys(body).includes('vr') &&
-        Object.keys(body).includes('bi') &&
-        Object.keys(body).includes('ct') &&
-        Object.keys(body).includes('iv')
+        Object.keys(body).includes('paymentPointer') &&
+        Object.keys(body).includes('nonce') &&
+        Object.keys(body).includes('encVerifier') &&
+        Object.keys(body).includes('initVector') &&
+        Object.keys(body).includes('receipt')
       ) {
-        return handleDecryptRequest(body)
+        return handleExKeyDerivation(body)
       } else {
-        return new Response('Input variables missing', { headers, status: 400 })
+        return new Response('Input variables missing', {
+          headers,
+          status: 400
+        })
       }
     }
   } else if (request.method === 'OPTIONS') {
@@ -59,30 +62,37 @@ async function handleRequest(request) {
   }
 }
 
-async function handleEncryptRequest(body) {
-  const iv = Date.now().toString()
-  const enc = await encrypt(encode(body.pt), encode(body.pp), encode(iv))
-  const ct = btoa(ab2str(enc))
-  return new Response(JSON.stringify({ ct, iv }), {
-    headers: { ...headers, 'Content-Type': 'application/json;charset=UTF-8' },
+async function handleNewKeyDerivation(body) {
+  const nonce = getRandomValue()
+  const keyBuffer = await deriveKey(encode(body.paymentPointer + nonce))
+  const key = btoa(ab2str(keyBuffer))
+  return new Response(JSON.stringify({ key, nonce }), {
+    headers: { ...headers, 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
 
-async function handleDecryptRequest(body) {
-  const payment = await verifyReceipt(body.vr, body.bi)
+async function handleExKeyDerivation(body) {
+  const keyBuffer = await deriveKey(encode(body.paymentPointer + body.nonce))
+  const verifier = await decrypt(
+    str2ab(atob(body.encVerifier)),
+    keyBuffer,
+    encode(body.initVector)
+  )
+  console.log(decode(verifier))
+  const payment = await verifyReceipt(decode(verifier), body.receipt)
   if (payment) {
-    const dec = await decrypt(
-      str2ab(atob(body.ct)),
-      encode(body.pp),
-      encode(body.iv),
-    )
-    const pt = decode(dec)
-    return new Response(JSON.stringify({ pt }), {
-      headers: { ...headers, 'Content-Type': 'application/json;charset=UTF-8' },
+    const key = btoa(ab2str(keyBuffer))
+    return new Response(JSON.stringify({ key }), {
+      headers: { ...headers, 'Content-Type': 'application/json;charset=UTF-8' }
     })
   } else {
     return new Response('Payment required', { headers, status: 402 })
   }
+}
+
+function getRandomValue() {
+  var array = new Uint32Array(1)
+  return crypto.getRandomValues(array).toString()
 }
 
 function encode(str) {
@@ -98,6 +108,7 @@ function decode(buf) {
 function ab2str(buf) {
   return String.fromCharCode.apply(null, new Uint8Array(buf))
 }
+
 function str2ab(str) {
   var buf = new ArrayBuffer(str.length)
   var bufView = new Uint8Array(buf)
@@ -113,60 +124,42 @@ async function importMasterKey() {
     'raw',
     encoder.encode(MASTERKEY),
     {
-      name: 'HMAC', 
+      name: 'HMAC',
       hash: 'SHA-256'
     },
     false,
-    ['sign'],
+    ['sign']
   )
 }
 
-async function deriveKey(paymentPointer) {
+async function deriveKey(data) {
   const masterKey = await importMasterKey()
-  const signature = await crypto.subtle.sign(
-    'HMAC',
-    masterKey,
-    paymentPointer
-  )
-  return crypto.subtle.importKey(
+  return crypto.subtle.sign('HMAC', masterKey, data)
+}
+
+async function decrypt(cyphertext, keyBuffer, initVector) {
+  const key = await crypto.subtle.importKey(
     'raw',
-    signature,
+    keyBuffer,
     'AES-GCM',
     false,
     ['encrypt', 'decrypt']
   )
-}
-
-async function encrypt(plaintext, paymentPointer, iv) {
-  const key = await deriveKey(paymentPointer)
-  return crypto.subtle.encrypt(
-    {
-      name: 'AES-GCM',
-      iv: iv,
-    },
-    key,
-    plaintext,
-  )
-}
-
-async function decrypt(cyphertext, paymentPointer, iv) {
-  const key = await deriveKey(paymentPointer)
   return crypto.subtle.decrypt(
     {
       name: 'AES-GCM',
-      iv: iv,
+      iv: initVector
     },
     key,
-    cyphertext,
+    cyphertext
   )
 }
 
-async function verifyReceipt(verifier, balanceId) {
+async function verifyReceipt(verifier, receipt) {
   const endpoint = new URL(
-    verifier.endsWith('/')
-      ? `${verifier}balances/${balanceId}:spend`
-      : `${verifier}/balances/${balanceId}:spend`,
+    //TODO: change to latest endpoint name once merged
+    verifier.endsWith('/') ? `${verifier}receipts` : `${verifier}/receipts`
   )
-  const response = await fetch(endpoint.href, { method: 'POST', body: '1' })
+  const response = await fetch(endpoint.href, { method: 'POST', body: receipt })
   return response.ok
 }
