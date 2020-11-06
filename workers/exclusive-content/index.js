@@ -78,7 +78,6 @@ async function handleExKeyDerivation(body) {
     keyBuffer,
     encode(body.initVector)
   )
-  console.log(decode(verifier))
   const payment = await verifyReceipt(decode(verifier), body.receipt)
   if (payment) {
     const key = btoa(ab2str(keyBuffer))
