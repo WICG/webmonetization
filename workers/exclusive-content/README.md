@@ -48,8 +48,8 @@ JSON object containing
 JSON object containing
 | Name | Type | Description | Example |
 | -- | -- | -- | -- |
-| key | String | base64-encoded HMAC |"roXXcAX5qOtrBR7SMeZSGY+YIauNznBqsRXILTCI0IM=" |
-| nonce | String | stringified [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) |"1837883175" |
+| key | String | base64-encoded HMAC | "roXXcAX5qOtrBR7SMeZSGY+YIauNznBqsRXILTCI0IM=" |
+| nonce | String | 16 random alphanumeric characters | "ea22smqdrugcc8ty" |
 
 #### Errors
 
@@ -66,9 +66,9 @@ JSON object containing
 | Name | Type | Description | Example |
 | -- | -- | -- | -- |
 | paymentPointer | String | | "\$spsp.example.com/alice" |
-| nonce | String | stringified [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "1837883175" |
+| nonce | String | 16 random alphanumeric characters | "ea22smqdrugcc8ty" |
 | encVerifier | String | base64-encoded AES-GCM encryption of the verifier endpoint | "nsNBmLVm11WDVbst+jJuxkA17vEH+/W6yIPeQdnoK3mdT8D/LA==" |
-| initVector | String | random initialization vector used for encryption |"729945811" |
+| initVector | String | random initialization vector used for `encVerifier` decryption, 16 random alphanumeric characters | "6pcvwv40ckftubz8" |
 | receipt | String | base64-encoded STREAM receipt |"AVJgrh79jbZ8CnaObl/p+z0BAAAAAAAF8m5+VSi2zfg/RvkzDP20uWk0ZMbUflzUxEyJxqHXomY+og==" |
 
 #### Headers
