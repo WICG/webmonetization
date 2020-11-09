@@ -11,6 +11,6 @@
   "author": "Sabine Schaller <sabine@coil.com>",
   "license": "Apache-2.0",
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "prettier": "^2.1.2"
   }
 }
