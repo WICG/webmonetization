@@ -89,7 +89,6 @@ async function handleExKeyDerivation(body) {
 }
 
 function getRandomValue() {
-  var array = new Uint32Array(1)
   return [...Array(16)]
     .map((i) => (~~(Math.random() * 36)).toString(36))
     .join('')
