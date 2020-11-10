@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write '**/*.{js,css,json,md}'",
+    "prepublish": "npm build",
     "build": "mkdir -p ./dist && rollup -c > ./dist/index.js"
   },
   "author": "Sabine Schaller <sabine@coil.com>",
