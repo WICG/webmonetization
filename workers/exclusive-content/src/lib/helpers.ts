@@ -10,9 +10,9 @@ function generateHeaders(): HeadersInit {
 }
 
 export function getRandomValue(): string {
-  return [...Array(16)]
-    .map((i) => (~~(Math.random() * 36)).toString(36))
-    .join('')
+  const array = new Uint8Array(16)
+  const randomValues = crypto.getRandomValues(array)
+  return ab2str(randomValues)
 }
 
 export function encode(str: string): Uint8Array {

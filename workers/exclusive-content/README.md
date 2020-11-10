@@ -49,7 +49,7 @@ JSON object containing
 | Name | Type | Description | Example |
 | -- | -- | -- | -- |
 | key | String | base64-encoded HMAC | "roXXcAX5qOtrBR7SMeZSGY+YIauNznBqsRXILTCI0IM=" |
-| nonce | String | 16 random alphanumeric characters | "ea22smqdrugcc8ty" |
+| nonce | String | base64-encoded random values generated with [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "iVBojzgBQiyIlaK2yzKUNQ==" |
 
 #### Errors
 
@@ -66,9 +66,9 @@ JSON object containing
 | Name | Type | Description | Example |
 | -- | -- | -- | -- |
 | paymentPointer | String | | "\$spsp.example.com/alice" |
-| nonce | String | 16 random alphanumeric characters | "ea22smqdrugcc8ty" |
+| nonce | String | base64-encoded random values generated with [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "iVBojzgBQiyIlaK2yzKUNQ==" |
 | encVerifier | String | base64-encoded AES-GCM encryption of the verifier endpoint | "nsNBmLVm11WDVbst+jJuxkA17vEH+/W6yIPeQdnoK3mdT8D/LA==" |
-| initVector | String | random initialization vector used for `encVerifier` decryption, 16 random alphanumeric characters | "6pcvwv40ckftubz8" |
+| initVector | String | base64-encoded random values generated with [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "A8S8GwC/luARiJG6xCNQBw==" |
 | receipt | String | base64-encoded STREAM receipt |"AVJgrh79jbZ8CnaObl/p+z0BAAAAAAAF8m5+VSi2zfg/RvkzDP20uWk0ZMbUflzUxEyJxqHXomY+og==" |
 
 #### Headers
