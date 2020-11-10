@@ -2,15 +2,13 @@ import {
   handleNewKeyDerivation,
   handleExKeyDerivation,
 } from './lib/requestHandlers'
-import { generateHeaders } from './lib/helpers'
+import { headers as responseHeaders } from './lib/helpers'
 
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request))
 })
 
 async function handleRequest(request: Request): Promise<Response> {
-  const responseHeaders = generateHeaders()
-
   if (request.method === 'POST') {
     const requestHeaders = new Map(request.headers)
     if (requestHeaders.get('content-type') !== 'application/json') {

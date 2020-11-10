@@ -1,12 +1,12 @@
 export const headers = generateHeaders()
 
-export function generateHeaders(): HeadersInit {
-  const requestHeaders: HeadersInit = new Headers()
-  requestHeaders.set('Access-Control-Allow-Origin', '*')
-  requestHeaders.set('Access-Control-Allow-Methods', 'POST,OPTIONS')
-  requestHeaders.set('Access-Control-Allow-Headers', 'Content-Type')
-  requestHeaders.set('Access-Control-Max-Age', '86400')
-  return requestHeaders
+function generateHeaders(): HeadersInit {
+  const headers: HeadersInit = new Headers()
+  headers.set('Access-Control-Allow-Origin', '*')
+  headers.set('Access-Control-Allow-Methods', 'POST,OPTIONS')
+  headers.set('Access-Control-Allow-Headers', 'Content-Type')
+  headers.set('Access-Control-Max-Age', '86400')
+  return headers
 }
 
 export function getRandomValue(): string {
