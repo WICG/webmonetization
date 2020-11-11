@@ -68,7 +68,7 @@ JSON object containing
 | paymentPointer | String | | "\$spsp.example.com/alice" |
 | nonce | String | base64-encoded random values generated with [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "iVBojzgBQiyIlaK2yzKUNQ==" |
 | encVerifier | String | base64-encoded AES-GCM encryption of the verifier endpoint | "nsNBmLVm11WDVbst+jJuxkA17vEH+/W6yIPeQdnoK3mdT8D/LA==" |
-| initVector | String | base64-encoded random values generated with [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "A8S8GwC/luARiJG6xCNQBw==" |
+| initVector | String | initialization vector used for `encVerifier` decryption, base64-encoded random values generated with [crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) | "A8S8GwC/luARiJG6xCNQBw==" |
 | receipt | String | base64-encoded STREAM receipt |"AVJgrh79jbZ8CnaObl/p+z0BAAAAAAAF8m5+VSi2zfg/RvkzDP20uWk0ZMbUflzUxEyJxqHXomY+og==" |
 
 #### Headers
