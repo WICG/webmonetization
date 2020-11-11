@@ -9,8 +9,6 @@ import {
 } from './helpers'
 import { verifyReceipt } from './receiptVerifier'
 
-headers.set('Content-Type', 'application/json;charset=UTF-8')
-
 export async function handleNewKeyDerivation(
   paymentPointer: string,
 ): Promise<Response> {
@@ -18,7 +16,7 @@ export async function handleNewKeyDerivation(
   const keyBuffer = await deriveKey(paymentPointer, nonce)
   const key = ab2str(keyBuffer)
   return new Response(JSON.stringify({ key, nonce }), {
-    headers,
+    headers: { ...headers, 'Content-Type': 'application/json;charset=UTF-8' },
   })
 }
 
@@ -35,7 +33,7 @@ export async function handleExKeyDerivation(
   if (verified) {
     const key = ab2str(keyBuffer)
     return new Response(JSON.stringify({ key }), {
-      headers,
+      headers: { ...headers, 'Content-Type': 'application/json;charset=UTF-8' },
     })
   } else {
     return new Response('Payment required', { headers, status: 402 })
