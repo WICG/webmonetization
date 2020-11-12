@@ -1,13 +1,13 @@
-const worker = 'http://localhost:3001'
+const worker = 'http://localhost:3000'
 
 export async function generateExclusiveContent(pointer, verifier, plaintext) {
   const { key, nonce } = await fetchKey(pointer)
-  const { cyphertext, cypherVerifier, initVector } = await handleEncryption(
-    plaintext,
-    verifier,
-    key
-  )
-  return { nonce, cyphertext, cypherVerifier, initVector }
+  const {
+    cypherText: cypherText,
+    cypherVerifier,
+    initVector,
+  } = await handleEncryption(plaintext, verifier, key)
+  return { nonce, cypherText, cypherVerifier, initVector }
 }
 
 async function fetchKey(pointer) {
@@ -24,17 +24,17 @@ async function fetchKey(pointer) {
 }
 
 async function handleEncryption(plaintext, verifier, keyString) {
-  const key = await importKey(str2ab(window.atob(keyString)))
+  const key = await importKey(str2ab(keyString))
   const initVector = getRandomValue()
-  const cyphertext = await encrypt(encode(plaintext), key, encode(initVector))
+  const cypherText = await encrypt(encode(plaintext), key, encode(initVector))
   const cypherVerifier = await encrypt(
     encode(verifier),
     key,
     encode(initVector)
   )
   return {
-    cyphertext: window.btoa(ab2str(cyphertext)),
-    cypherVerifier: window.btoa(ab2str(cypherVerifier)),
+    cypherText: ab2str(cypherText),
+    cypherVerifier: ab2str(cypherVerifier),
     initVector,
   }
 }
@@ -57,25 +57,27 @@ async function encrypt(plaintext, key, iv) {
   )
 }
 
-function encode(str) {
-  const encoder = new TextEncoder('utf-8')
+export function encode(str) {
+  const encoder = new TextEncoder()
   return encoder.encode(str)
 }
 
-function ab2str(buf) {
-  return String.fromCharCode.apply(null, new Uint8Array(buf))
+export function ab2str(ab) {
+  return window.btoa(String.fromCharCode.apply(null, new Uint8Array(ab)))
 }
 
-function str2ab(str) {
-  var buf = new ArrayBuffer(str.length)
-  var bufView = new Uint8Array(buf)
-  for (var i = 0, strLen = str.length; i < strLen; i++) {
-    bufView[i] = str.charCodeAt(i)
+export function str2ab(str) {
+  const decodedString = window.atob(str)
+  var ab = new ArrayBuffer(decodedString.length)
+  var abView = new Uint8Array(ab)
+  for (var i = 0, strLen = decodedString.length; i < strLen; i++) {
+    abView[i] = decodedString.charCodeAt(i)
   }
-  return buf
+  return ab
 }
 
-function getRandomValue() {
-  var array = new Uint32Array(1)
-  return window.crypto.getRandomValues(array).toString()
+export function getRandomValue() {
+  const array = new Uint8Array(16)
+  const randomValues = crypto.getRandomValues(array)
+  return ab2str(randomValues)
 }

@@ -69,7 +69,7 @@ export function GenerateForm() {
                 verifier,
                 plaintext,
                 nonce: data.nonce,
-                cyphertext: data.cyphertext,
+                cypherText: data.cypherText,
                 cypherVerifier: data.cypherVerifier,
                 initVector: data.initVector,
               })

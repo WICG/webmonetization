@@ -5,22 +5,24 @@ import { GenerateInfoText } from './generate-info-text'
 import { GenerateForm } from './generate-form'
 import { GeneratedInfoText } from './generated-info-text'
 import { ViewStates, useView } from '../state'
+import { GeneratedTabs } from './generated-tabs'
 
 export function ActiveView() {
-  const [ view ] = useView()
+  const [view] = useView()
   if (view === ViewStates.Generate) {
     return (
       <>
-      <SectionHeader>Generate Exclusive Content</SectionHeader>
-      <GenerateInfoText />
-      <GenerateForm />
+        <SectionHeader>Generate Exclusive Content</SectionHeader>
+        <GenerateInfoText />
+        <GenerateForm />
       </>
     )
   } else if (view === ViewStates.Generated) {
     return (
       <>
-      <SectionHeader>Exclusive Content Generated!</SectionHeader>
-      <GeneratedInfoText />
+        <SectionHeader>Exclusive Content Generated!</SectionHeader>
+        <GeneratedInfoText />
+        <GeneratedTabs />
       </>
     )
   }

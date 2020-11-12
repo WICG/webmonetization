@@ -25,6 +25,7 @@
     "@material-ui/icons": "^4.9.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-minimal-pie-chart": "^8.0.1"
+    "react-minimal-pie-chart": "^8.0.1",
+    "react-syntax-highlighter": "^15.3.0"
   }
 }
