@@ -58,8 +58,7 @@ export function GenerateForm() {
       </FormControl>
 
       <Button
-        variant='contained'
-        color='primary'
+        variant='outlined'
         size='medium'
         onClick={() => {
           generateExclusiveContent(pointer, verifier, plaintext).then(

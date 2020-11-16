@@ -34,7 +34,7 @@ export function CopyContent(props) {
   }
 
   return (
-    <>
+    <div>
       <Tooltip title={props.message}>
         <Button tooltip onClick={() => copyContent(props.id)}>
           <FileCopyOutlinedIcon />
@@ -53,6 +53,6 @@ export function CopyContent(props) {
           <DialogContentText>Copied to clipboard!</DialogContentText>
         </DialogContent>
       </Dialog>
-    </>
+    </div>
   )
 }

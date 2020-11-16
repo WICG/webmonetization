@@ -6,6 +6,7 @@ import { GenerateForm } from './generate-form'
 import { GeneratedInfoText } from './generated-info-text'
 import { ViewStates, useView } from '../state'
 import { GeneratedTabs } from './generated-tabs'
+import { BackButton } from './back-button'
 
 export function ActiveView() {
   const [view] = useView()
@@ -23,6 +24,7 @@ export function ActiveView() {
         <SectionHeader>Exclusive Content Generated!</SectionHeader>
         <GeneratedInfoText />
         <GeneratedTabs />
+        <BackButton />
       </>
     )
   }
