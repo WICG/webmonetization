@@ -1,6 +1,7 @@
 import React from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { CopyContent } from './copy-content'
 
 export function GeneratedInfoText() {
   const divTag = `<div id="ec">
@@ -12,7 +13,8 @@ export function GeneratedInfoText() {
       <p>
         Please add the following <code>div</code> tag to your HTML.
       </p>
-      <SyntaxHighlighter language='html' style={docco}>
+      <CopyContent id='ec-div' message='Copy div tag' />
+      <SyntaxHighlighter id='ec-div' language='html' style={docco}>
         {divTag}
       </SyntaxHighlighter>
 

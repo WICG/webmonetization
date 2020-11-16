@@ -1,6 +1,7 @@
 import React from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { CopyContent } from './copy-content'
 
 import { useExclusiveContent } from '../state'
 
@@ -152,9 +153,15 @@ export function IndependentScript() {
 
   return (
     <>
-      <SyntaxHighlighter language='html' style={docco}>
-        {independentScript}
-      </SyntaxHighlighter>
+      <div>
+        <CopyContent
+          id='independentScript'
+          message='Copy script without dependencies'
+        />
+        <SyntaxHighlighter id='independentScript' language='html' style={docco}>
+          {independentScript}
+        </SyntaxHighlighter>
+      </div>
     </>
   )
 }
