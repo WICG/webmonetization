@@ -19,13 +19,6 @@ export function GenerateForm() {
   const [verifier, setVerifier] = useState('')
   const [plaintext, setPlaintext] = useState('')
 
-  function formValidated() {
-    if ((pointer !== '') & (verifier !== '') & (plaintext !== '')) {
-      return true
-    }
-    return false
-  }
-
   return (
     <>
       <FormControl margin='normal' fullWidth>
