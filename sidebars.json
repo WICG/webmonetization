@@ -1,7 +1,7 @@
 {
   "docs": {
     "Overview": ["getting-started", "api"],
-    "Examples": ["exclusive-content", "remove-ads", "counter", "probabilistic-rev-sharing", "start-stop"],
+    "Examples": ["exclusive-content", "remove-ads", "counter", "probabilistic-rev-sharing", "start-stop", "receipt-verifier"],
     "Explainer": ["explainer", "receiving", "sending"],
     "Wallets": ["ilp-wallets","gatehub","stronghold", "uphold", "xrptipbot"],
     "More": ["specification", "glossary", "resources"]
