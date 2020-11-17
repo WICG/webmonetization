@@ -19,6 +19,13 @@ export function GenerateForm() {
   const [verifier, setVerifier] = useState('')
   const [plaintext, setPlaintext] = useState('')
 
+  function formValidated() {
+    if ((pointer !== '') & (verifier !== '') & (plaintext !== '')) {
+      return true
+    }
+    return false
+  }
+
   return (
     <>
       <FormControl margin='normal' fullWidth>
@@ -27,8 +34,14 @@ export function GenerateForm() {
           id='pointer'
           type='text'
           value={pointer}
-          onChange={(e) => setPointer(e.target.value)}
+          onChange={(e) => {
+            setPointer(e.target.value)
+          }}
         />
+        <FormHelperText id='pointer-helper-text'>
+          Example: <code>$spsp.example.com/alice</code> or{' '}
+          <code>https://spsp.example.com/alice</code>
+        </FormHelperText>
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
@@ -37,8 +50,13 @@ export function GenerateForm() {
           id='verifier'
           type='text'
           value={verifier}
-          onChange={(e) => setVerifier(e.target.value)}
+          onChange={(e) => {
+            setVerifier(e.target.value)
+          }}
         />
+        <FormHelperText id='pointer-helper-text'>
+          Example: <code>https://verifier.example.com</code>
+        </FormHelperText>
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
@@ -48,10 +66,12 @@ export function GenerateForm() {
           multiline
           rows={10}
           value={plaintext}
-          onChange={(e) => setPlaintext(e.target.value)}
+          onChange={(e) => {
+            setPlaintext(e.target.value)
+          }}
         />
         <FormHelperText id='pointer-helper-text'>
-          this can really just be plain text, e.g. <code>Hello World</code>, or
+          This can really just be plain text, e.g. <code>Hello World</code>, or
           an HTML tag, e.g.{' '}
           <code>&lt;div&gt;&lt;p&gt;Hello World&lt;/p&gt;&lt;/div&gt;</code>
         </FormHelperText>
@@ -60,6 +80,7 @@ export function GenerateForm() {
       <Button
         variant='outlined'
         size='medium'
+        disabled={!pointer | !verifier | !plaintext}
         onClick={() => {
           generateExclusiveContent(pointer, verifier, plaintext).then(
             (data) => {
