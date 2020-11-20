@@ -4,6 +4,8 @@ import {
 } from './lib/requestHandlers'
 import { headers as responseHeaders } from './lib/helpers'
 
+const BASE_PATH = '/api/exclusive-content/'
+
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request))
 })
@@ -21,7 +23,7 @@ async function handleRequest(request: Request): Promise<Response> {
     const path = url.pathname
 
     const body = await request.json()
-    if (path === '/deriveNewKey') {
+    if (path === BASE_PATH + '/deriveNewKey') {
       if (body.paymentPointer) {
         return handleNewKeyDerivation(body.paymentPointer)
       } else {
@@ -30,7 +32,7 @@ async function handleRequest(request: Request): Promise<Response> {
           status: 400,
         })
       }
-    } else if (path === '/deriveKey') {
+    } else if (path === BASE_PATH + '/deriveKey') {
       if (
         body.paymentPointer &&
         body.nonce &&
