@@ -4,7 +4,7 @@ import {
 } from './lib/requestHandlers'
 import { headers as responseHeaders } from './lib/helpers'
 
-const BASE_PATH = '/api/exclusive-content/'
+const BASE_PATH = '/api/exclusive-content'
 
 addEventListener('fetch', (event) => {
   event.respondWith(handleRequest(event.request))
