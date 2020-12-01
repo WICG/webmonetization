@@ -1,5 +1,4 @@
-// TODO: add worker url
-const worker = 'http://localhost:3000'
+const WORKER = 'https://webmonetization.org/api/exclusive-content'
 
 export async function generateExclusiveContent(pointer, verifier, plaintext) {
   const { key, nonce } = await fetchKey(pointer)
@@ -12,7 +11,7 @@ export async function generateExclusiveContent(pointer, verifier, plaintext) {
 }
 
 async function fetchKey(pointer) {
-  const response = await fetch(`${worker}/deriveNewKey`, {
+  const response = await fetch(`${WORKER}/deriveNewKey`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

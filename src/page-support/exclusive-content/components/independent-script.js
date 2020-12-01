@@ -5,12 +5,13 @@ import { CopyContent } from './copy-content'
 
 import { useExclusiveContent } from '../state'
 
+const WORKER = 'https://webmonetization.org/api/exclusive-content'
+
 export function IndependentScript() {
   const [exclusiveContent] = useExclusiveContent()
   const proxyPaymentPointer = exclusiveContent.verifier.endsWith('/')
     ? exclusiveContent.verifier
     : exclusiveContent.verifier + '/'
-  // TODO: change url to exclusive content script
   const independentScript = `<script>
   var data = {
     paymentPointer: "${exclusiveContent.pointer}",
@@ -66,7 +67,7 @@ export function IndependentScript() {
   }
 
   function unlockExclusiveContent(data) {
-    fetch("http://localhost:3000/deriveKey", {
+    fetch("${WORKER}/deriveKey", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
