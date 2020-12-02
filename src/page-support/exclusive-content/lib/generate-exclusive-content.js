@@ -1,13 +1,19 @@
 const WORKER = 'https://webmonetization.org/api/exclusive-content'
+const VERIFIER = 'https://receipt-verifier-dehz6dtlzq-uc.a.run.app'
 
-export async function generateExclusiveContent(pointer, verifier, plaintext) {
+export async function generateExclusiveContent(
+  pointer,
+  optVerifier,
+  plaintext
+) {
+  const verifier = optVerifier ? optVerifier : VERIFIER
   const { key, nonce } = await fetchKey(pointer)
   const {
     cypherText: cypherText,
     cypherVerifier,
     initVector,
   } = await handleEncryption(plaintext, verifier, key)
-  return { nonce, cypherText, cypherVerifier, initVector }
+  return { verifier, nonce, cypherText, cypherVerifier, initVector }
 }
 
 async function fetchKey(pointer) {

@@ -38,22 +38,7 @@ export function GenerateForm() {
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
-        <InputLabel htmlFor='verifier'>Verifier URL</InputLabel>
-        <Input
-          id='verifier'
-          type='text'
-          value={verifier}
-          onChange={(e) => {
-            setVerifier(e.target.value)
-          }}
-        />
-        <FormHelperText id='pointer-helper-text'>
-          Example: <code>https://verifier.example.com</code>
-        </FormHelperText>
-      </FormControl>
-
-      <FormControl margin='normal' fullWidth>
-        <InputLabel htmlFor='plaintext'>Plain Text</InputLabel>
+        <InputLabel htmlFor='plaintext'>Content</InputLabel>
         <Input
           id='plaintext'
           multiline
@@ -70,16 +55,33 @@ export function GenerateForm() {
         </FormHelperText>
       </FormControl>
 
+      <FormControl margin='normal' fullWidth>
+        <InputLabel htmlFor='verifier'>Verifier URL (optional)</InputLabel>
+        <Input
+          id='verifier'
+          type='text'
+          value={verifier}
+          onChange={(e) => {
+            setVerifier(e.target.value)
+          }}
+        />
+        <FormHelperText id='pointer-helper-text'>
+          If this is not specified, we will use a hosted verifier. If you decide
+          to use your own verifier, specify something like:{' '}
+          <code>https://verifier.example.com</code>
+        </FormHelperText>
+      </FormControl>
+
       <Button
         variant='outlined'
         size='medium'
-        disabled={!pointer | !verifier | !plaintext}
+        disabled={!pointer | !plaintext}
         onClick={() => {
           generateExclusiveContent(pointer, verifier, plaintext).then(
             (data) => {
               setExclusiveContent({
                 pointer,
-                verifier,
+                verifier: data.verifier,
                 plaintext,
                 nonce: data.nonce,
                 cypherText: data.cypherText,
