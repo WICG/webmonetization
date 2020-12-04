@@ -8,42 +8,45 @@ This page explains how to set up a receipt verifier service.
 
 As more creators adopt Web Monetization to serve premium and/or ad-free content, there’s a greater need for reliable payment verification. Web Monetization browser events, like `monetizationstart`, are helpful indicators of payment, but can be spoofed by savvy users to access exclusive content without paying.
 
-[Interledger STREAM receipts](https://interledger.org/rfcs/0039-stream-receipts/) provide payment recipients (such as web monetized site owners) with verifiable proofs of payment. As a payment recipient, you can verify STREAM receipts yourself by setting up your own verification service or by using a third-party service. You don't need to run your own Interledger connector or SPSP server to verify STREAM receipts.
+[Interledger STREAM receipts](https://interledger.org/rfcs/0039-stream-receipts/) provide payment recipients (such as web monetized site owners) with verifiable proofs of payment. As a payment recipient, you can verify STREAM receipts yourself by setting up your own receipt verifier service or by using a third-party service. You don't need to run your own Interledger connector or SPSP server to verify STREAM receipts.
 
 ## Before you begin
 
 Your Web Monetization receiver (the digital entity receiving payments) must be set up to generate Interledger STREAM receipts. No action is required on your part. GateHub and Uphold already support receipts.
 
-## Service overview
+## Receipt verifier service overview
 
 The receipt verifier service acts as a proxy between the Web Monetization sender and receiver.
 
-Before a payment is made, the WM sender sends a query to the WM receiver. The query passes through the verifier service, which adds a receipt secret and receipt nonce.
+Before a payment is made, the WM sender sends a query to the WM receiver. The query passes through the receipt verifier service, which adds a receipt secret and receipt nonce.
 
 When the WM receiver receives money from the payment, it generates a receipt (which includes a signature generated using the receipt secret) and sends the receipt to the WM sender.
 
-The WM sender passes the receipt to the verifier service so the verifier can confirm the payment (as only the WM receiver and verifier service know the receipt secret). The verifier must verify the receipt before accepting the amount as paid.
+The site takes the receipt from the Web Monetization events, then submits the receipt to its backend. The backend then submits the receipt to the receipt verifier service so the receipt verifier service can confirm the payment (as only it and the WM receiver know the receipt secret). The receipt verifier service must verify the receipt before accepting the amount as paid.
 
 ## Install the receipt verifier service package
 
-You can get the [receipt verifier service package](https://github.com/coilhq/receipt-verifier) or run the verifier as a [Kubernetes service](https://github.com/coilhq/receipt-verifier/tree/main/config/base).
+You can get the [receipt verifier service package](https://github.com/coilhq/receipt-verifier) or run the receipt verifier service as a [Kubernetes service](https://github.com/coilhq/receipt-verifier/tree/main/config/base).
 
 **Example**
 
-This example shows Coil's implementation of the receipt verifier package, which requires Redis. You can write a different implementation that doesn't rely on Redis.
+This example shows Coil's implementation of the receipt verifier service package, which requires Redis. You can write a different implementation that doesn't rely on Redis.
 
 ```
 npm install
 npm run-script build
 sudo docker run -p 6379:6379 -d redis
 npm start
+
+git clone https://github.com/coilhq/receipt-verifier.git
+cd receipt-verifier
 ```
 
 ## Update your Web Monetization meta tag
 
 Typically, a Web Monetization meta tag looks something like this:
 
-`<meta name=“monetization" content="$wallet.example.com/alice">`
+`<meta name=“monetization" content="$wallet.example/alice">`
 
 For queries from the WM sender to be proxied by the receipt verifier service to your payment pointer:
 
@@ -51,10 +54,10 @@ For queries from the WM sender to be proxied by the receipt verifier service to 
 2. Add your pointer to the path of the receipt verifier service's URL.
 3. Update your meta tag's `content` to be this new value.
 
-For example, if your payment pointer is `$wallet.example.com/alice` and your receipt verifier service’s URL is `https://receipt-verifier.com`, then you’ll set your meta tag’s `content` to either of the following:
+For example, if your payment pointer is `$wallet.example/alice` and your receipt verifier service’s URL is `https://receipt-verifier.example`, then you’ll set your meta tag’s `content` to either of the following:
 
-* `https://receipt-verifier.com/%24wallet.example.com%2Falice`
-* `$receipt-verifier.com/%24wallet.example.com%2Falice`
+* `https://receipt-verifier.example/%24wallet.example%2Falice`
+* `$receipt-verifier.example/%24wallet.example%2Falice`
 
 
 ## Web Monetization revshare generator
@@ -65,10 +68,10 @@ For example, if your meta tag looks like this:
 
 `<meta name="monetization" content="$webmonetization.org/api/revshare/pay/W1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0">`
 
-And your receipt verifier service’s URL is `https://receipt-verifier.com`, then you’ll set your meta tag’s `content` to either of the following:
+And your receipt verifier service’s URL is `https://receipt-verifier.example`, then you’ll set your meta tag’s `content` to either of the following:
 
-* `https://receipt-verifier.com/%24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
-* `$receipt-verifier.com/ %24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
+* `https://receipt-verifier.example/%24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
+* `$receipt-verifier.example/ %24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
 
 ## Set up a monetizationprogress event listener
 
@@ -79,13 +82,13 @@ Add the following client-side code to your website to listen for a `monetization
 ```html
 <head>
   <!-- This should be set to .... -->
-  <meta name="monetization" content="https://receipt-verifier.com/%24wallet.example.com%2Falice">
+  <meta name="monetization" content="https://receipt-verifier.example/%24wallet.example%2Falice">
   <script>
     if (document.monetization) {
         document.monetization.addEventListener('monetizationprogress', event => {
-            // A payment has been received
+            // A payment has been received.
 
-            // Connect to your site’s backend to validate the payment
+            // Connect to your site’s backend to validate the payment. This does NOT connect directly to the receipt verifier.
             const res = await fetch('/verifyReceipt', {
               method: 'POST',
               headers: {
@@ -101,11 +104,11 @@ Add the following client-side code to your website to listen for a `monetization
 </head>
 ```
 
-Your backend can send the receipt to the receipt verifier’s `/verify` endpoint. Here’s an example for an Express.js server:
+Your backend can send the receipt to the receipt verifier service’s `/verify` endpoint. Here’s an example for an Express.js server:
 
 ```javascript
 app.post('/verifyReceipt', async (req, res) => {
-  const resp = await fetch('https://receipt-verifier.com/verify', {
+  const resp = await fetch('https://receipt-verifier.example/verify', {
     method: 'POST',
     body: req.body.receipt
   }
@@ -115,4 +118,4 @@ app.post('/verifyReceipt', async (req, res) => {
 })
 ```
 
-The receipt verifier can confirm the payment, as only the verifier and the WM receiver know the receipt secret. The verifier must verify the receipt before accepting the receipt amount as paid. When accepted as paid, the site backend can serve exclusive content or any other perks you’ve set up.
+The receipt verifier service can confirm the payment, as only the receipt verifier service and the WM receiver know the receipt secret. The receipt verifier service must verify the receipt before accepting the receipt amount as paid. When accepted as paid, the site backend can serve exclusive content or any other perks you’ve set up.
