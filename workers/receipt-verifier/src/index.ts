@@ -1,3 +1,10 @@
+function passHeaders (headers: Headers, names: string[]): Headers {
+  return names.reduce((newHeaders: Headers, name: string) => {
+    newHeaders.set(name, headers.get(name) || '')
+    return newHeaders
+  }, new Headers())
+}
+
 addEventListener('fetch', event => {
   const url = new URL(event.request.url)
 
@@ -7,8 +14,11 @@ addEventListener('fetch', event => {
   console.log('rewriting', event.request.url, 'to', url.href)
 
   return event.respondWith(fetch(url.href, {
-    headers: {
-      accept: event.request.headers.get('accept') || 'application/json'
-    }
+    method: event.request.method,
+    body: event.request.body,
+    headers: passHeaders(event.request.headers, [
+      'accept',
+      'content-type'
+    ])
   }))
 })
