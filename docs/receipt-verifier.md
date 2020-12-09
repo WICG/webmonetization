@@ -8,7 +8,7 @@ This page explains how to set up a receipt verifier service.
 
 As more creators adopt Web Monetization to serve premium and/or ad-free content, there’s a greater need for reliable payment verification. Web Monetization browser events, like `monetizationstart`, are helpful indicators of payment, but can be spoofed by savvy users to access exclusive content without paying.
 
-[Interledger STREAM receipts](https://interledger.org/rfcs/0039-stream-receipts/) provide payment recipients (such as web monetized site owners) with verifiable proofs of payment. As a payment recipient, you can verify STREAM receipts yourself by setting up your own receipt verifier service or by using a third-party service. You don't need to run your own Interledger connector or SPSP server to verify STREAM receipts.
+[Interledger STREAM receipts](https://interledger.org/rfcs/0039-stream-receipts/) provide payment recipients (such as web monetized site owners) with verifiable proofs of payment. As a payment recipient, you can verify STREAM receipts yourself by setting up your own receipt verifier service or by using a third-party service, like [the one we provide](#use-our-publicly-available-receipt-verifier). You don't need to run your own Interledger connector or SPSP server to verify STREAM receipts.
 
 ## Before you begin
 
@@ -23,6 +23,15 @@ Before a payment is made, the WM sender sends a query to the WM receiver. The qu
 When the WM receiver receives money from the payment, it generates a receipt (which includes a signature generated using the receipt secret) and sends the receipt to the WM sender.
 
 The site takes the receipt from the Web Monetization events, then submits the receipt to its backend. The backend then submits the receipt to the receipt verifier service so the receipt verifier service can confirm the payment (as only it and the WM receiver know the receipt secret). The receipt verifier service must verify the receipt before accepting the amount as paid.
+
+## Use our publicly available receipt verifier
+
+If you don't want to set up your own receipt verifier service, you can use ours!
+
+Review the following sections below and use `https://webmonetization.org/api/receipts` as the receipt verifier service's URL.
+
+* [Update your Web Monetization meta tag](#update-your-web-monetization-meta-tag)
+* [Set up a monetizationprogress event listener](#set-up-a-monetizationprogress-event-listener)
 
 ## Install the receipt verifier service package
 
@@ -59,10 +68,15 @@ For example, if your payment pointer is `$wallet.example/alice` and your receipt
 * `https://receipt-verifier.example/%24wallet.example%2Falice`
 * `$receipt-verifier.example/%24wallet.example%2Falice`
 
+If you're using our publicly available receipt verifier service, then you'll set your meta tag's `content` to either of the following:
+
+* `https://webmonetization.org/api/receipts/%24wallet.example%2Falice`
+* `$webmonetization.org/api/receipts/%24wallet.example%2Falice`
+
 
 ## Web Monetization revshare generator
 
-If you used the [Web Monetization revshare generator](https://webmonetization.org/prob-revshare) to create a meta tag for [probabilistic revenue sharing](https://webmonetization.org/docs/probabilistic-rev-sharing/), follow the same instructions as above: URI-encode your revshare payment pointer and put it in the path of the receipt verifier service’s URL.
+If you used the [Web Monetization revshare generator](https://webmonetization.org/prob-revshare) to create a meta tag for [probabilistic revenue sharing](./probabilistic-rev-sharing/), follow the same instructions as above: URI-encode your revshare payment pointer and put it in the path of the receipt verifier service’s URL.
 
 For example, if your meta tag looks like this:
 
