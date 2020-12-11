@@ -5,3 +5,4 @@ This directory contains cloudflare workers which power some server-side function
 ## Sub-projects
 
 - `probabilistic-revshare` - powers the probabilistic revshare functionality on webmonetization.org
+- `exclusive-content` - powers the exclusive content generator on webmonetization.org
