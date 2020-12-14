@@ -18,7 +18,8 @@ addEventListener('fetch', event => {
     body: event.request.body,
     headers: passHeaders(event.request.headers, [
       'accept',
-      'content-type'
+      'content-type',
+      'origin'
     ])
   }))
 })
