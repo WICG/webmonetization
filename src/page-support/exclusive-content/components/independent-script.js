@@ -13,7 +13,7 @@ export function IndependentScript() {
     ? exclusiveContent.verifier
     : exclusiveContent.verifier + '/'
   const independentScript = `<script>
-  var data = {
+  const data = {
     paymentPointer: "${exclusiveContent.pointer}",
     proxyPaymentPointer: "${proxyPaymentPointer}${encodeURIComponent(
     exclusiveContent.pointer
@@ -143,9 +143,9 @@ export function IndependentScript() {
 
   function str2ab(str) {
     const decodedString = window.atob(str);
-    var ab = new ArrayBuffer(decodedString.length);
-    var abView = new Uint8Array(ab);
-    for (var i = 0, strLen = decodedString.length; i < strLen; i++) {
+    const ab = new ArrayBuffer(decodedString.length);
+    const abView = new Uint8Array(ab);
+    for (let i = 0, strLen = decodedString.length; i < strLen; i++) {
       abView[i] = decodedString.charCodeAt(i);
     }
     return ab;

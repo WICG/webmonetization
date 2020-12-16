@@ -74,9 +74,9 @@ export function ab2str(ab) {
 
 export function str2ab(str) {
   const decodedString = window.atob(str)
-  var ab = new ArrayBuffer(decodedString.length)
-  var abView = new Uint8Array(ab)
-  for (var i = 0, strLen = decodedString.length; i < strLen; i++) {
+  const ab = new ArrayBuffer(decodedString.length)
+  const abView = new Uint8Array(ab)
+  for (let i = 0, strLen = decodedString.length; i < strLen; i++) {
     abView[i] = decodedString.charCodeAt(i)
   }
   return ab

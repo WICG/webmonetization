@@ -14,7 +14,7 @@ export function DependentScript() {
   const dependentScript = `<script type="module">
   import { exclusiveContent } from "./exclusive-content.js";
 
-  var data = {
+  const data = {
     paymentPointer: "${exclusiveContent.pointer}",
     proxyPaymentPointer: "${proxyPaymentPointer}${encodeURIComponent(
     exclusiveContent.pointer
