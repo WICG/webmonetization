@@ -1,5 +1,5 @@
 const WORKER = 'https://webmonetization.org/api/exclusive-content'
-const VERIFIER = 'https://receipt-verifier-dehz6dtlzq-uc.a.run.app'
+const VERIFIER = 'https://webmonetization.org/api/receipts'
 
 export async function generateExclusiveContent(
   pointer,
