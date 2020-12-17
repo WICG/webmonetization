@@ -118,7 +118,13 @@ Add the following client-side code to your website to listen for a `monetization
 </head>
 ```
 
-Your backend can send the receipt to the receipt verifier service’s `/verify` endpoint. Here’s an example for an Express.js server:
+Your backend can send the receipt to the receipt verifier service’s `/verify` endpoint.
+
+:::info
+If you're using our publicly available receipt verifier service, the verify endpoint is `https://webmonetization.org/api/receipts/verify`.
+:::
+
+Here’s an example for an Express.js server:
 
 ```javascript
 app.post('/verifyReceipt', async (req, res) => {
