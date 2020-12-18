@@ -56,7 +56,7 @@ export default function MetaTag (props) {
           }
           label={
             <span>
-              Use <Link to={'/docs/receipt-verifier/#use-our-publicly-available-receipt-verifier'}>receipt verifier service</Link>
+              Use <Link to={'/docs/receipt-verifier/#use-our-publicly-available-receipt-verifier'}>receipt verifier service</Link> (Advanced)
             </span>
           }
         />
