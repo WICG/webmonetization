@@ -23,7 +23,7 @@ export default function MetaTag (props) {
           <h1>Meta Tag Generator</h1>
         </header>
         <p>
-          This Meta Tag Generator helps you generating your HTML meta tag to monetize your website.<br />
+          This Meta Tag Generator helps you generate your HTML meta tag to monetize your website.<br />
           Just provide your Payment Pointer and click generate.
         </p>
         <form id="paymentPointerForm" onSubmit={ev => ev.preventDefault()} >
@@ -61,7 +61,7 @@ export default function MetaTag (props) {
           }
         />
         <p>
-          To learn more, read the on how to monetize your site, read the <Link to='/docs'>Docs</Link>. If you're interested in splitting revenue between multiple parties, check out the <Link to='/prob-revshare'>Probabilistic Revshare Generator</Link>.
+          Read our <Link to='/docs'>docs</Link> to learn more about Web Monetization. If you're interested in splitting revenue between multiple parties, check out the <Link to='/prob-revshare'>Probabilistic Revshare Generator</Link>.
         </p>
         <div className="metaTagOutput">
           <p>
