@@ -73,6 +73,10 @@ If you're using our publicly available receipt verifier service, then you'll set
 * `https://webmonetization.org/api/receipts/%24wallet.example%2Falice`
 * `$webmonetization.org/api/receipts/%24wallet.example%2Falice`
 
+:::info
+You can create your meta tag with the [Meta Tag Generator](/meta-tag) if using the publicly available receipt verifier service.
+:::
+
 
 ## Web Monetization revshare generator
 
