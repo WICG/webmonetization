@@ -7,14 +7,14 @@ sidebar_label: Glossary
 # Monetized web page
 * * *
 A page on a monetized website that contains the necessary
-[`meta` tag](explainer#add-lt-meta-gt-tag-to-website-header.md) defining the
+[`meta` tag](explainer.md#add-lt-meta-gt-tag-to-website-header) defining the
 page's receiving address (payment pointer).
 
 # Payment pointer
 * * *
 A secure URL that points to a payment initiation endpoint on the web. The
 payment pointer is provided by the Web Monetization receiver.
-See [Payment pointers](explainer#payment-pointers.md) for more info.
+See [Payment pointers](explainer.md#payment-pointers) for more info.
 
 # Receiver
 * * *
