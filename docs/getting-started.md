@@ -15,11 +15,11 @@ how to pay you.
 4. Add the `<meta>` tag to each page of your website that you want to monetize.
 
 For a more detailed look at web monetizing your site, see the
-[Web Monetization explainer](./explainer#getting-started).
+[Web Monetization explainer](explainer.md#getting-started).
 
 ## 1. Set up a web monetized wallet
 
-Choose a [wallet that supports Web Monetization](./ilp-wallets) and set up an account.
+Choose a [wallet that supports Web Monetization](ilp-wallets.md) and set up an account.
 The wallet must support the Interledger Protocol (ILP).
 
 ## 2. Get your payment pointer
