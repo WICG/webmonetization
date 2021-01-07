@@ -27,5 +27,5 @@ The following providers offer ILP-enabled wallets.
 
 A payment pointer is a public address to your ILP-enabled wallet. Your wallet provider assigns you a payment pointer during account setup. If you're having trouble finding your payment pointer, check out these instructions:
 
-* GateHub - [Find your payment pointer](gatehub#find-your-payment-pointer)
-* Uphold - [Find your payment pointer](uphold#find-your-payment-pointer)
+* GateHub - [Find your payment pointer](gatehub.md#find-your-payment-pointer)
+* Uphold - [Find your payment pointer](uphold.md#find-your-payment-pointer)

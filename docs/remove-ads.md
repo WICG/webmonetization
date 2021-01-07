@@ -69,7 +69,7 @@ If Web Monetization:
 
 ## How does it work?
 
-This works a little bit differently from the [exclusive content example](/docs/exclusive-content). The ad is not added to the page at all until you decide to show ads. That means images and trackers are not loaded for web monetized visitors.
+This works a little bit differently from the [exclusive content example](exclusive-content.md). The ad is not added to the page at all until you decide to show ads. That means images and trackers are not loaded for web monetized visitors.
 
 ```js
 const adCode = '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'

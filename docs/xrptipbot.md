@@ -10,7 +10,7 @@ import XrpMigration13 from './assets/xrpmigration/xrpMigration13.png';
 
 ## NOTICE
 
-If you are an XRP TipBot user, **you must link your account to [Uphold](./uphold)** to be able to send and/or receive tips in the near future. This change is due to the passage of the European Union’s 5th Anti-Money Laundering Directive (AMLD5). XRP TipBot is not going away immediately, but you should either **migrate** your balance to Uphold or **withdraw** your balance as soon as possible. When you sign into your XRP TipBot account, you’ll be guided through migrating or withdrawing.
+If you are an XRP TipBot user, **you must link your account to [Uphold](uphold.md)** to be able to send and/or receive tips in the near future. This change is due to the passage of the European Union’s 5th Anti-Money Laundering Directive (AMLD5). XRP TipBot is not going away immediately, but you should either **migrate** your balance to Uphold or **withdraw** your balance as soon as possible. When you sign into your XRP TipBot account, you’ll be guided through migrating or withdrawing.
 
 > Uphold is in the process of obtaining a BitLicense in the state of New York. Until the BitLicense is issued they cannot support cryptocurrency transactions. If you reside in New York, you’ll need to withdraw your funds from the TipBot. You can still set up an Uphold account for fiat money but it won’t be linked to XRP TipBot.
 

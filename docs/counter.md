@@ -56,8 +56,8 @@ if (document.monetization) {
   document.monetization.addEventListener('monetizationprogress', ev => {
 ```
 
-This is different from [the exclusive content](./exclusive-content) and
-[remove ads](./remove-ads) examples, where we bound `monetizationstart`.
+This is different from [the exclusive content](exclusive-content.md) and
+[remove ads](remove-ads.md) examples, where we bound `monetizationstart`.
 `monetizationstart` fires when Web Monetization initializes.
 `monetizationprogress` fires every time there's a micropayment from the Web
 Monetization provider to the site.
@@ -75,7 +75,7 @@ if (total === 0) {
 `ev.detail.assetCode` is a three-letter code that describes the currency of the micropayment, like `USD`, `EUR`, or `XRP`.
 
 The asset code describes the asset the [Web Monetization
-receiver](./glossary#web-monetization-receiver) is
+receiver](glossary.md#web-monetization-receiver) is
 denominating their incoming payments in. This often matches the currency your wallet account uses, but not always.
 
 The asset code will stay the same for a given payment pointer (your wallet provider should warn you if they change it). It is not affected by the currency that the Web Monetization provider uses.

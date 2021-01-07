@@ -34,7 +34,7 @@ GateHub will assign a payment pointer to your wallet. A payment pointer is an id
 8. Select **Interledger Payment pointer**, then copy your payment pointer.
     > Refresh the page if you don't see the Interledger option. This is shown in the screen capture below.
 
-Now you can share your payment pointer with other sites or add it to your own site by following the [Quick Start Guide](./getting-started).
+Now you can share your payment pointer with other sites or add it to your own site by following the [Quick Start Guide](getting-started.md).
 
 ![addwallet](assets/gatehub-addwallet.gif)
 
