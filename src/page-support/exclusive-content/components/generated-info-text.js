@@ -2,11 +2,29 @@ import React from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { CopyContent } from './copy-content'
+import { useExclusiveContent } from '../state'
 
 export function GeneratedInfoText() {
-  const divTag = `<div id="ec">
-  <div id="ecm" style="text-align: center"></div>
-  <div id="ecc"></div>
+
+  const [exclusiveContent] = useExclusiveContent()
+  const proxyPaymentPointer = exclusiveContent.verifier.endsWith('/')
+  ? exclusiveContent.verifier
+  : exclusiveContent.verifier + '/'
+
+  const divTag = `<div 
+  class="exclusive" 
+  id="${Math.random().toString(36).substr(2).replace(/^[0-9]/g, 'aa')}"
+  paymentPointer="${exclusiveContent.pointer}"
+  proxyPaymentPointer="${proxyPaymentPointer}${encodeURIComponent(
+  exclusiveContent.pointer
+)}"
+  cypherText="${exclusiveContent.cypherText}"
+  cypherVerifier="${exclusiveContent.cypherVerifier}"
+  initVector="${exclusiveContent.initVector}"
+  nonce="${exclusiveContent.nonce}"
+>
+  <div class="exclusiveMessage" style="text-align: center"></div>
+  <div class="exclusiveContent"></div>
 </div>`
   return (
     <>

@@ -3,60 +3,57 @@ import SyntaxHighlighter from 'react-syntax-highlighter'
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { CopyContent } from './copy-content'
 
-import { useExclusiveContent } from '../state'
-
 const WORKER = 'https://webmonetization.org/api/exclusive-content'
 
 export function IndependentScript() {
-  const [exclusiveContent] = useExclusiveContent()
-  const proxyPaymentPointer = exclusiveContent.verifier.endsWith('/')
-    ? exclusiveContent.verifier
-    : exclusiveContent.verifier + '/'
   const independentScript = `<script>
-  const data = {
-    paymentPointer: "${exclusiveContent.pointer}",
-    proxyPaymentPointer: "${proxyPaymentPointer}${encodeURIComponent(
-    exclusiveContent.pointer
-  )}",
-    cypherText: "${exclusiveContent.cypherText}",
-    cypherVerifier: "${exclusiveContent.cypherVerifier}",
-    initVector: "${exclusiveContent.initVector}",
-    nonce: "${exclusiveContent.nonce}",
-    receipt: "",
-  };
-
-  let key;
+  const { data, paymentPointer } = gatherExclusive();
 
   if (document.monetization !== undefined) {
-    setMeta(data.proxyPaymentPointer);
+    setMeta(paymentPointer);
 
-    document.monetization.addEventListener(
-      "monetizationpending",
-      (event) => {
-        document.getElementById("ecm").innerHTML =
+    document.monetization.addEventListener("monetizationpending", () => {
+      document.querySelectorAll(".exclusiveMessage").forEach((element) => {
+        element.innerHTML =
           "<p>⸻ ⏰ Waiting for Web Monetization to start to unlock this content. ⸻</p>";
-      }
-    );
-
-    document.monetization.addEventListener("monetizationstart", (event) => {
-      document.getElementById("ecm").innerHTML =
-        "<p>⸻ ⏰ Waiting for Web Monetization receipt verification to unlock this content. ⸻</p>";
+      });
     });
 
-    document.monetization.addEventListener(
-      "monetizationprogress",
-      (event) => {
-        if (!data.receipt) {
-          data["receipt"] = event.detail.receipt;
-          if (!key) {
-            unlockExclusiveContent(data);
-          }
-        }
+    document.monetization.addEventListener("monetizationstart", () => {
+      document.querySelectorAll(".exclusiveMessage").forEach((element) => {
+        element.innerHTML =
+          "<p>⸻ ⏰ Waiting for Web Monetization receipt verification to unlock this content. ⸻</p>";
+      });
+    });
+
+    document.monetization.addEventListener("monetizationprogress", (event) => {
+      if (data.length) {
+        unlockExclusiveContent(data.pop(), event.detail.receipt);
       }
-    );
+    });
   } else {
-    document.getElementById("ecm").innerHTML =
-      "<p>⸻ 🔒 This content is exclusive for users with Web Monetization enabled. ⸻</p>";
+    document.querySelectorAll(".exclusiveMessage").forEach((element) => {
+      element.innerHTML =
+        "<p>⸻ 🔒 This content is exclusive for users with Web Monetization enabled. ⸻</p>";
+    });
+  }
+
+  function gatherExclusive() {
+    const data = [];
+    const pointers = [];
+    document.querySelectorAll(".exclusive").forEach((element) => {
+      data.push({
+        id: element.getAttribute("id"),
+        paymentPointer: element.getAttribute("paymentPointer"),
+        cypherText: element.getAttribute("cyphertext"),
+        cypherVerifier: element.getAttribute("cypherverifier"),
+        initVector: element.getAttribute("initvector"),
+        nonce: element.getAttribute("nonce"),
+      });
+      pointers.push(element.getAttribute("proxyPaymentPointer"));
+    });
+    const paymentPointer = pointers[Math.floor(Math.random() * pointers.length)];
+    return { data, paymentPointer };
   }
 
   function setMeta(proxyPaymentPointer) {
@@ -66,7 +63,7 @@ export function IndependentScript() {
     document.getElementsByTagName("head")[0].appendChild(meta);
   }
 
-  function unlockExclusiveContent(data) {
+  function unlockExclusiveContent(data, receipt) {
     fetch("${WORKER}/deriveKey", {
       method: "POST",
       headers: {
@@ -77,23 +74,21 @@ export function IndependentScript() {
         nonce: data.nonce,
         encVerifier: data.cypherVerifier,
         initVector: data.initVector,
-        receipt: data.receipt,
+        receipt: receipt,
       }),
     })
       .then((response) => {
         return response.json();
       })
       .then((responseData) => {
-        key = responseData.key;
-        decryptContent(
-          responseData.key,
-          data.cypherText,
-          data.initVector
-        ).then((plaintext) => {
-          document.getElementById("ecm").innerHTML =
-            "<p>⸻ 🔓 Enjoy your exclusive content! ⸻</p>";
-          document.getElementById("ecc").innerHTML = plaintext;
-        });
+        decryptContent(responseData.key, data.cypherText, data.initVector).then(
+          (plaintext) => {
+            const element = document.querySelector(\`#\${data.id}\`);
+            element.querySelector(".exclusiveMessage").innerHTML =
+              "<p>⸻ 🔓 Enjoy your exclusive content! ⸻</p>";
+            element.querySelector(".exclusiveContent").innerHTML = plaintext;
+          }
+        );
       })
       .catch((error) => {
         console.log("Error:", error);
@@ -102,11 +97,7 @@ export function IndependentScript() {
 
   async function decryptContent(keyString, cypherText, initVector) {
     const key = await importKey(str2ab(keyString));
-    const plaintext = await decrypt(
-      str2ab(cypherText),
-      key,
-      encode(initVector)
-    );
+    const plaintext = await decrypt(str2ab(cypherText), key, encode(initVector));
     return decode(plaintext);
   }
 
@@ -122,13 +113,10 @@ export function IndependentScript() {
   }
 
   async function importKey(keyBuffer) {
-    return window.crypto.subtle.importKey(
-      "raw",
-      keyBuffer,
-      "AES-GCM",
-      false,
-      ["encrypt", "decrypt"]
-    );
+    return window.crypto.subtle.importKey("raw", keyBuffer, "AES-GCM", false, [
+      "encrypt",
+      "decrypt",
+    ]);
   }
 
   function encode(str) {
