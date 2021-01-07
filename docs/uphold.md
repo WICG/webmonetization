@@ -7,15 +7,13 @@ sidebar_label: Uphold
 import Upholdaddnewcard01 from './assets/uphold/upholdaddnewcard01.png';
 import Upholdaddnewcard02 from './assets/uphold/upholdaddnewcard02.png';
 import Upholdaddnewcard04 from './assets/uphold/upholdaddnewcard04.png';
-import Upholdappportfoliopointer from './assets/uphold/upholdappportfoliopointer.gif';
-import Upholdapptransactpointer from './assets/uphold/upholdapptransactpointer.gif';
+import UpholdAppPortfolioPointer from './assets/uphold/upholdappportfoliopointer.gif';
+import UpholdAppTransactPointer from './assets/uphold/upholdapptransactpointer.gif';
 import UpholdClaim01 from './assets/uphold/upholdClaim01.png';
 import UpholdClaim02 from './assets/uphold/upholdClaim02.png';
 import UpholdClaim03 from './assets/uphold/upholdClaim03.png';
 import UpholdClaim04App from './assets/uphold/upholdClaim04App.png';
 import UpholdClaim04Web from './assets/uphold/upholdClaim04Web.png';
-import UpholdAppPortfolioPointer from './assets/uphold/upholdappportfoliopointer.gif';
-import UpholdAppTransactPointer from './assets/uphold/upholdapptransactpointer.gif';
 import UpholdSetUp01 from './assets/uphold/upholdSetUp01.png';
 import UpholdSetUp02 from './assets/uphold/upholdSetUp02.png';
 import Upholdsetup02fromaccount from './assets/uphold/upholdsetup02fromaccount.png';
@@ -35,15 +33,6 @@ import UpholdWebFindPointer05 from './assets/uphold/upholdWebFindPointer05.png';
 import UpholdWebFindPointer06 from './assets/uphold/upholdWebFindPointer06.png';
 import UpholdWebFindPointer07 from './assets/uphold/upholdWebFindPointer07.png';
 import UpholdWebFindPointer08 from './assets/uphold/upholdWebFindPointer08.png';
-
-
-
-
-
-
-
-
-
 
 Use Uphold to have your earnings paid out in over 50 supported currencies, including fiat and crypto. See [Uphold's site](https://uphold.com/en/transparency) for more information.
 
@@ -156,7 +145,7 @@ The Portfolio screen won't show a card until you receive a payment. In the meant
 2. Tap **...** in the upper right, then tap **Interledger payment pointer**.
 3. Copy your payment pointer, then tap **Done**.
 
-<img src="./assets/uphold/upholdappportfoliopointer.gif#border" height="500" />
+<img src={UpholdAppPortfolioPointer} height="500"/>
 
 #### Transact screen
 
@@ -168,4 +157,4 @@ The Portfolio screen won't show a card until you receive a payment. In the meant
 4. Tap **I agree** and then **Continue**.
 5. Copy your payment pointer, then tap **Done** and leave the Transact screen.
 
-<img src="./assets/uphold/upholdapptransactpointer.gif#border" height="500" />
+<img src={UpholdAppTransactPointer} height="500"/>
