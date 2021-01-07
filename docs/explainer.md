@@ -62,7 +62,7 @@ user's behalf.
 
 ### Sequence diagram
 
-![test](assets/flow.svg)
+![diagram](assets/flow.svg)
 
 ### Flow
 
@@ -209,7 +209,7 @@ For more details see https://paymentpointers.org.
 
 ## Getting Started
 
-For a high-level overview, see the [Quick start guide](./getting-started).
+For a high-level overview, see the [Quick start guide](getting-started.md).
 
 ### Set up a receiving account
 
@@ -217,7 +217,7 @@ To use Web Monetization a website owner must have a financial account at a
 service provider capable of receiving payments (WM receiver) via the Interledger
 protocol.
 
-Such a service (a [digital wallet](./ilp-wallets), bank, or similar) must provide the website
+Such a service (a [digital wallet](ilp-wallets.md), bank, or similar) must provide the website
 owner with a payment pointer that serves as the public address for the
 account.
 
@@ -313,7 +313,7 @@ Should the amount in the `monetizationprogress` event use the existing [`Payment
 
 A web monetized browser exposes a `document.monetization` DOM object that
 implements [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget)
-and has a read-only [`state` property](./api#states). The object allows you to
+and has a read-only [`state` property](api.md#states). The object allows you to
 track Web Monetization events and see whether the user visiting your page is web monetized.
 
 1.  If the browser finds a valid payment pointer in a page's `<meta>`
@@ -337,7 +337,7 @@ track Web Monetization events and see whether the user visiting your page is web
     Interledger address (destination address) and shared secret to use for the
     current session. The browser then begins sending payments via the WM provider.
 
-4.  The browser invokes the user's WM provider [by emitting new `PaymentRequestEvent` events](./sending.md)
+4.  The browser invokes the user's WM provider [by emitting new `PaymentRequestEvent` events](sending.md)
     with the necessary details.
 
 5.  Once the WM provider has successfully completed the first payment with a non-zero
@@ -378,7 +378,7 @@ monetized website.
 The Web Monetization provider (sender) interface leverages the
 [Payment Handler API](https://www.w3.org/TR/payment-handler/).
 
-More details are provided in the [Sending payments](./sending.md) page.
+More details are provided in the [Sending payments](sending.md) page.
 
 ## Existing implementations
 

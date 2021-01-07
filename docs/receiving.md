@@ -30,7 +30,7 @@ redirect browsers to alternate addresses using standard HTTP redirects.
 
 One benefit of payment pointers is that they provide a level of indirection that
 allows browsers to protect the privacy of users from their WM senders. Specifically,
-a browser uses a pointer to request a unique destination address and shared 
+a browser uses a pointer to request a unique destination address and shared
 secret from the website's WM  receiver. Only the unique destination address
 for the session is given to the WM sender. This prevents the WM sender from
 correlating a payment pointer with a website.

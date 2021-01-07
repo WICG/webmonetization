@@ -9,4 +9,4 @@ suitable for the W3C standards track.
 
 The specification reflects the desired end-state of the standard and APIs and is
 **not** a good reference for current implementations (which are better described
-  in the existing [API documentation](./api.md)).
+  in the existing [API documentation](api.md)).

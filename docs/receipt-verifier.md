@@ -80,7 +80,7 @@ You can create your meta tag with the [Meta Tag Generator](/meta-tag) if using t
 
 ## Web Monetization revshare generator
 
-If you used the [Web Monetization revshare generator](https://webmonetization.org/prob-revshare) to create a meta tag for [probabilistic revenue sharing](./probabilistic-rev-sharing/), follow the same instructions as above: URI-encode your revshare payment pointer and put it in the path of the receipt verifier service’s URL.
+If you used the [Web Monetization revshare generator](https://webmonetization.org/prob-revshare) to create a meta tag for [probabilistic revenue sharing](probabilistic-rev-sharing.md), follow the same instructions as above: URI-encode your revshare payment pointer and put it in the path of the receipt verifier service’s URL.
 
 For example, if your meta tag looks like this:
 
