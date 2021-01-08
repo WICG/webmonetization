@@ -13,15 +13,13 @@ export function GeneratedInfoText() {
 
   const divTag = `<div 
   class="exclusive" 
-  id="${Math.random().toString(36).substr(2).replace(/^[0-9]/g, 'aa')}"
-  paymentPointer="${exclusiveContent.pointer}"
-  proxyPaymentPointer="${proxyPaymentPointer}${encodeURIComponent(
-  exclusiveContent.pointer
-)}"
-  cypherText="${exclusiveContent.cypherText}"
-  cypherVerifier="${exclusiveContent.cypherVerifier}"
-  initVector="${exclusiveContent.initVector}"
-  nonce="${exclusiveContent.nonce}"
+  id=${JSON.stringify(Math.random().toString(36).substr(2).replace(/^[0-9]/g, 'aa'))}
+  paymentPointer=${JSON.stringify(exclusiveContent.pointer)}
+  proxyPaymentPointer=${JSON.stringify(proxyPaymentPointer + encodeURIComponent(exclusiveContent.pointer))}
+  cypherText=${JSON.stringify(exclusiveContent.cypherText)}
+  cypherVerifier=${JSON.stringify(exclusiveContent.cypherVerifier)}
+  initVector=${JSON.stringify(exclusiveContent.initVector)}
+  nonce=${JSON.stringify(exclusiveContent.nonce)}
 >
   <div class="exclusiveMessage" style="text-align: center"></div>
   <div class="exclusiveContent"></div>
