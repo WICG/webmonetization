@@ -17,7 +17,7 @@ export function DependentScript() {
           id='dependentScript'
           message='Copy script with dependencies'
         />
-        <SyntaxHighlighter id='dependentScript' language='html' style={docco}>
+        <SyntaxHighlighter id='dependentScript' language='htmlbars' style={docco}>
           {dependentScript}
         </SyntaxHighlighter>
       </div>

@@ -27,18 +27,25 @@ export function GeneratedInfoText() {
   return (
     <>
       <p>
-        Please add the following <code>div</code> tag to your HTML.
+        Here is what you need to do to embed it on your web page:
+      </p>
+      <p>
+        1. Add the following <code>div</code> tag to your HTML, in the spot 
+        you want the exclusive content to appear.
       </p>
       <CopyContent id='ec-div' message='Copy div tag' />
-      <SyntaxHighlighter id='ec-div' language='html' style={docco}>
+      <SyntaxHighlighter id='ec-div' language='htmlbars' style={docco}>
         {divTag}
       </SyntaxHighlighter>
 
-      <p>You have the choice between</p>
-      <ul>
-        <li>embedding a script that depends on an external script</li>
-        <li>embedding a script that doesn't have any dependencies</li>
-      </ul>
+      <p>
+        2. Add <strong>one of the following <code>script</code> tags </strong> to your HTML 
+        <code>body</code>. 
+        You have the choice between embedding a script that depends on an external script 
+        and one that doesn't have any dependencies. 
+        If you include multiple exclusive content <code>div</code> tags, you only need to 
+        add the script once.
+      </p>
     </>
   )
 }

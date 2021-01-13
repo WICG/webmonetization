@@ -147,7 +147,7 @@ export function IndependentScript() {
           id='independentScript'
           message='Copy script without dependencies'
         />
-        <SyntaxHighlighter id='independentScript' language='html' style={docco}>
+        <SyntaxHighlighter id='independentScript' language='htmlbars' style={docco}>
           {independentScript}
         </SyntaxHighlighter>
       </div>

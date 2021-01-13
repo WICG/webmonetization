@@ -14,13 +14,16 @@ export function GeneratedTabs() {
   return (
     <>
       <div>
-        <AppBar position='static' color='default'>
+        <AppBar 
+          position='static'
+          color='none'
+          style={{boxShadow: "none"}}
+        >
           <Tabs
             value={value}
             onChange={handleChange}
             indicatorColor='primary'
             textColor='primary'
-            centered
           >
             <Tab label='Dependencies' />
             <Tab label='No Dependencies' />
@@ -39,5 +42,5 @@ export function GeneratedTabs() {
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
-  return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>
+  return <div {...other}>{value === index && <Box p={3} style={{padding: '24px 0 24px 0'}}>{children}</Box>}</div>
 }

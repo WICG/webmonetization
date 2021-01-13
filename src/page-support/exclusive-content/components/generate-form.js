@@ -22,7 +22,7 @@ export function GenerateForm() {
   return (
     <>
       <FormControl margin='normal' fullWidth>
-        <InputLabel htmlFor='pointer'>Payment Pointer</InputLabel>
+        <InputLabel shrink='false' htmlFor='pointer'>Payment Pointer</InputLabel>
         <Input
           id='pointer'
           type='text'
@@ -38,7 +38,7 @@ export function GenerateForm() {
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
-        <InputLabel htmlFor='plaintext'>Content</InputLabel>
+        <InputLabel shrink='false' htmlFor='plaintext'>Content</InputLabel>
         <Input
           id='plaintext'
           multiline
@@ -46,6 +46,12 @@ export function GenerateForm() {
           value={plaintext}
           onChange={(e) => {
             setPlaintext(e.target.value)
+          }}
+          style={{
+            borderStyle: 'solid solid none solid', 
+            borderWidth: '1px',
+            borderColor: '#949494',
+            padding: '8px'
           }}
         />
         <FormHelperText id='pointer-helper-text'>
@@ -56,7 +62,7 @@ export function GenerateForm() {
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
-        <InputLabel htmlFor='verifier'>Verifier URL (optional)</InputLabel>
+        <InputLabel shrink='false' htmlFor='verifier'>Verifier URL (optional)</InputLabel>
         <Input
           id='verifier'
           type='text'
