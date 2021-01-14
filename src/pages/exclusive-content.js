@@ -27,8 +27,10 @@ export default function ExclusiveContent(props) {
               </header>
               <p>
                 This tool allows you to create exclusive content which is only
-                unlocked if payment can be verified using STREAM receipts (
-                <Link to='/docs/exclusive-content'>Learn more</Link>).
+                unlocked if payment can be verified.{' '}
+                <Link to='/docs/exclusive-content#exclusive-content-with-payment-verification'>
+                  Learn more!
+                </Link>
               </p>
               <ActiveView />
             </Container>

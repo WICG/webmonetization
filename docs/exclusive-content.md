@@ -12,14 +12,14 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 > **Careful!** These examples hide content on the client side. A clever user
 > could pretend to be web monetized by using the developer console. Examples on
-> how to verify Web Monetization from the server side will come soon.
+> how to verify Web Monetization can be found [further down](#exclusive-content-with-payment-verification).
 
 ### Code
 
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice">
+  <meta name="monetization" content="$wallet.example.com/alice" />
 
   <style>
     .hidden {
@@ -37,13 +37,9 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 </head>
 
 <body>
-  <p>
-    Content will appear below here if you are Web monetized.
-  </p>
+  <p>Content will appear below here if you are Web monetized.</p>
   <hr />
-  <div id="exclusive" class="hidden">
-    Here's some exclusive content!
-  </div>
+  <div id="exclusive" class="hidden">Here's some exclusive content!</div>
 </body>
 ```
 
@@ -93,21 +89,21 @@ If you see the source files instead of the example, click **View App** in the bo
 
 In reality, your requirements will be a little more complex. You should:
 
-* Show web monetized visitors an indicator while they wait for Web Monetization to initialize.
-* Tell non-web-monetized visitors that there's exclusive content they can get.
+- Show web monetized visitors an indicator while they wait for Web Monetization to initialize.
+- Tell non-web-monetized visitors that there's exclusive content they can get.
 
 This means there's three states in total:
 
-* Show a call-to-action to a non-web-monetized visitor
-* Show a loading message to a web monetized visitor
-* Show exclusive content to a web monetized visitor
+- Show a call-to-action to a non-web-monetized visitor
+- Show a loading message to a web monetized visitor
+- Show exclusive content to a web monetized visitor
 
 ### Code
 
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice">
+  <meta name="monetization" content="$wallet.example.com/alice" />
 
   <style>
     .hidden {
@@ -116,18 +112,18 @@ This means there's three states in total:
   </style>
 
   <script>
-    function showExclusiveContent () {
+    function showExclusiveContent() {
       document.getElementById('exclusive').classList.remove('hidden')
       document.getElementById('loading').classList.add('hidden')
       document.getElementById('cta').classList.add('hidden')
     }
 
-    function showCTA () {
+    function showCTA() {
       document.getElementById('loading').classList.add('hidden')
       document.getElementById('cta').classList.remove('hidden')
     }
 
-    function showLoading () {
+    function showLoading() {
       document.getElementById('loading').classList.remove('hidden')
     }
 
@@ -148,13 +144,9 @@ This means there's three states in total:
 </head>
 
 <body>
-  <div id="loading" class="hidden">
-    Loading exclusive content...
-  </div>
+  <div id="loading" class="hidden">Loading exclusive content...</div>
 
-  <div id="exclusive" class="hidden">
-    Here's some exclusive content!
-  </div>
+  <div id="exclusive" class="hidden">Here's some exclusive content!</div>
 
   <div id="cta" class="hidden">
     Please install a Web Monetization extension to support me!
@@ -208,6 +200,44 @@ If you see the source files instead of the example, click **View App** in the bo
   <iframe
     src="https://glitch.com/embed/#!/embed/wm-exclusive-content-advanced?path=README.md&previewSize=100"
     title="wm-exclusive-content-advanced on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style={{ height: '100%', width: '100%', border: '0' }}>
+  </iframe>
+</div>
+
+## Exclusive content with payment verification
+
+The above examples only hide content client side which could be spoofed by a clever user.
+Since the introduction of STREAM receipts it is possible to verify payments using a STREAM receipt verifier.
+
+The Exclusive Content Generator allows users to generate an encrypted piece of content that can be embedded on the web page.
+
+:::info
+Want to try the Exclusive Content Generator right away? Check it out [here](/exclusive-content).
+:::
+
+### How does it work?
+
+The Exclusive Content Generator is a Cloudflare worker that derives an encryption key from the user's payment pointer and a master key and returns it to the Creator's client. The client then encrypts the exclusive content and the verifier endpoint and displays all the information required for decryption in a <code>div</code> tag. It also provides a JavaScipt scipt to be embedded on the Creator's web page.
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5hdXRvbnVtYmVyXG5DcmVhdG9yIC0-PiBDcmVhdG9yJ3MgQ2xpZW50OiBwYXltZW50IHBvaW50ZXIsIGNvbnRlbnQsIHZlcmlmaWVyIGVuZHBvaW50IChvcHRpb25hbClcbkNyZWF0b3IncyBDbGllbnQgLT4-IEV4Y2x1c2l2ZSBDb250ZW50IEdlbmVyYXRvcjogcGF5bWVudCBwb2ludGVyXG5FeGNsdXNpdmUgQ29udGVudCBHZW5lcmF0b3IgLT4-IEV4Y2x1c2l2ZSBDb250ZW50IEdlbmVyYXRvcjogZGVyaXZlcyBlbmNyeXB0aW9uIGtleSBmcm9tIHBheW1lbnQgcG9pbnRlclxuRXhjbHVzaXZlIENvbnRlbnQgR2VuZXJhdG9yIC0-PiBDcmVhdG9yJ3MgQ2xpZW50OiBlbmNyeXB0aW9uIGtleVxuQ3JlYXRvcidzIENsaWVudCAtPj4gQ3JlYXRvcidzIENsaWVudDogZW5jcnlwdHMgY29udGVudCBhbmQgdmVyaWZpZXIgZW5kcG9pbnQsIGdlbmVyYXRlcyBkaXYgdGFnXG5DcmVhdG9yJ3MgQ2xpZW50IC0-PiBDcmVhdG9yOiBkaXYgYW5kIHNjcmlwdCB0YWdzIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5hdXRvbnVtYmVyXG5DcmVhdG9yIC0-PiBDcmVhdG9yJ3MgQ2xpZW50OiBwYXltZW50IHBvaW50ZXIsIGNvbnRlbnQsIHZlcmlmaWVyIGVuZHBvaW50IChvcHRpb25hbClcbkNyZWF0b3IncyBDbGllbnQgLT4-IEV4Y2x1c2l2ZSBDb250ZW50IEdlbmVyYXRvcjogcGF5bWVudCBwb2ludGVyXG5FeGNsdXNpdmUgQ29udGVudCBHZW5lcmF0b3IgLT4-IEV4Y2x1c2l2ZSBDb250ZW50IEdlbmVyYXRvcjogZGVyaXZlcyBlbmNyeXB0aW9uIGtleSBmcm9tIHBheW1lbnQgcG9pbnRlclxuRXhjbHVzaXZlIENvbnRlbnQgR2VuZXJhdG9yIC0-PiBDcmVhdG9yJ3MgQ2xpZW50OiBlbmNyeXB0aW9uIGtleVxuQ3JlYXRvcidzIENsaWVudCAtPj4gQ3JlYXRvcidzIENsaWVudDogZW5jcnlwdHMgY29udGVudCBhbmQgdmVyaWZpZXIgZW5kcG9pbnQsIGdlbmVyYXRlcyBkaXYgdGFnXG5DcmVhdG9yJ3MgQ2xpZW50IC0-PiBDcmVhdG9yOiBkaXYgYW5kIHNjcmlwdCB0YWdzIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
+
+The embedded JavaScript script will parse all the exclusive content <code>div</code> tags and include the proxy payment pointer in the web page's header (if there are multiple, it will select one at random). If Web Monetization is enabled by the User, receipts can now be obtained from the <code>monetizationprogress</code> events. The receipts, together with the payment pointer and the encrypted verifier endpoint, are submitted to the Cloudflare worker, which derives the encryption key and decrypts the verifier endpoint. If the worker is able to verify the receipts with the STREAM receipt verifier, it shares the encryption key with the User's client, who is now able to decrypt the content and display it.
+
+[![](https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5hdXRvbnVtYmVyXG5Vc2VyJ3MgQ2xpZW50IC0-PiBDcmVhdG9yJ3MgV2FsbGV0OiBzdHJlYW1zIHBheW1lbnRzXG5DcmVhdG9yJ3MgV2FsbGV0IC0-PiBVc2VyJ3MgQ2xpZW50OiBTVFJFQU0gcmVjZWlwdHNcblVzZXIncyBDbGllbnQgLT4-IEV4Y2x1c2l2ZSBDb250ZW50IEdlbmVyYXRvcjogQ3JlYXRvcidzIHBheW1lbnQgcG9pbnRlciwgZW5jcnlwdGVkIHZlcmlmaWVyIGVuZHBvaW50LCBTVFJFQU0gcmVjZWlwdFxuRXhjbHVzaXZlIENvbnRlbnQgR2VuZXJhdG9yIC0-PiBFeGNsdXNpdmUgQ29udGVudCBHZW5lcmF0b3I6IGRlcml2ZXMga2V5LCBkZWNyeXB0cyB2ZXJpZmllciBlbmRwb2ludCwgdmVyaWZpZXMgcmVjZWlwdFxuRXhjbHVzaXZlIENvbnRlbnQgR2VuZXJhdG9yIC0-PiBVc2VyJ3MgQ2xpZW50OiBrZXlcblVzZXIncyBDbGllbnQgLT4-IFVzZXIncyBDbGllbnQ6IGRlY3J5cHRzIGNvbnRlbnQiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG5hdXRvbnVtYmVyXG5Vc2VyJ3MgQ2xpZW50IC0-PiBDcmVhdG9yJ3MgV2FsbGV0OiBzdHJlYW1zIHBheW1lbnRzXG5DcmVhdG9yJ3MgV2FsbGV0IC0-PiBVc2VyJ3MgQ2xpZW50OiBTVFJFQU0gcmVjZWlwdHNcblVzZXIncyBDbGllbnQgLT4-IEV4Y2x1c2l2ZSBDb250ZW50IEdlbmVyYXRvcjogQ3JlYXRvcidzIHBheW1lbnQgcG9pbnRlciwgZW5jcnlwdGVkIHZlcmlmaWVyIGVuZHBvaW50LCBTVFJFQU0gcmVjZWlwdFxuRXhjbHVzaXZlIENvbnRlbnQgR2VuZXJhdG9yIC0-PiBFeGNsdXNpdmUgQ29udGVudCBHZW5lcmF0b3I6IGRlcml2ZXMga2V5LCBkZWNyeXB0cyB2ZXJpZmllciBlbmRwb2ludCwgdmVyaWZpZXMgcmVjZWlwdFxuRXhjbHVzaXZlIENvbnRlbnQgR2VuZXJhdG9yIC0-PiBVc2VyJ3MgQ2xpZW50OiBrZXlcblVzZXIncyBDbGllbnQgLT4-IFVzZXIncyBDbGllbnQ6IGRlY3J5cHRzIGNvbnRlbnQiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
+
+### Interactive example
+
+This example page will request the decryption key for each piece of exclusive content if Web Monetization is enabled. If it is not enabled, it will say "🔒 This content is exclusive for users with Web Monetization enabled."
+
+The example does require you to have Web Monetization enabled in your browser, hence you need to [open the page](https://exclusive-content-demo.glitch.me/) with Web Monetization enabled.
+
+If you see the source files instead of the example, click **View App** in the bottom right.
+
+<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
+  <iframe
+    src="https://glitch.com/embed/#!/embed/exclusive-content-demo?path=index.html&previewSize=100"
+    title="exclusive-content-demo on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
     style={{ height: '100%', width: '100%', border: '0' }}>
   </iframe>
