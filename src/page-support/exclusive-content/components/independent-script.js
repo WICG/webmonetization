@@ -44,13 +44,13 @@ export function IndependentScript() {
     document.querySelectorAll(".exclusive").forEach((element) => {
       data.push({
         id: element.getAttribute("id"),
-        paymentPointer: element.getAttribute("paymentPointer"),
+        paymentPointer: element.getAttribute("paymentpointer"),
         cypherText: element.getAttribute("cyphertext"),
         cypherVerifier: element.getAttribute("cypherverifier"),
         initVector: element.getAttribute("initvector"),
         nonce: element.getAttribute("nonce"),
       });
-      pointers.push(element.getAttribute("proxyPaymentPointer"));
+      pointers.push(element.getAttribute("proxypaymentpointer"));
     });
     const paymentPointer = pointers[Math.floor(Math.random() * pointers.length)];
     return { data, paymentPointer };
@@ -147,7 +147,11 @@ export function IndependentScript() {
           id='independentScript'
           message='Copy script without dependencies'
         />
-        <SyntaxHighlighter id='independentScript' language='htmlbars' style={docco}>
+        <SyntaxHighlighter
+          id='independentScript'
+          language='htmlbars'
+          style={docco}
+        >
           {independentScript}
         </SyntaxHighlighter>
       </div>
