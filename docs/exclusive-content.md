@@ -208,7 +208,7 @@ If you see the source files instead of the example, click **View App** in the bo
 ## Exclusive content with payment verification
 
 The above examples only hide content client side which could be spoofed by a clever user.
-Since the introduction of STREAM receipts it is possible to verify payments using a STREAM receipt verifier.
+Since the introduction of STREAM receipts it is possible to verify payments using a [STREAM receipt verifier](/docs/receipt-verifier).
 
 The Exclusive Content Generator allows users to generate an encrypted piece of content that can be embedded on the web page.
 
