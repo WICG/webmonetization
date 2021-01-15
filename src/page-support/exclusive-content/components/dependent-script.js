@@ -4,9 +4,8 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { CopyContent } from './copy-content'
 
 export function DependentScript() {
-  // TODO: change url to exclusive content script
   const dependentScript = `<script type="module">
-  import { exclusiveContent } from "./exclusive-content.js";
+  import { exclusiveContent } from "https://webmonetization.org/js/exclusive-content.js";
   exclusiveContent();
 </script>`
 
@@ -17,7 +16,11 @@ export function DependentScript() {
           id='dependentScript'
           message='Copy script with dependencies'
         />
-        <SyntaxHighlighter id='dependentScript' language='htmlbars' style={docco}>
+        <SyntaxHighlighter
+          id='dependentScript'
+          language='htmlbars'
+          style={docco}
+        >
           {dependentScript}
         </SyntaxHighlighter>
       </div>
