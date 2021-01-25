@@ -7,17 +7,21 @@ export function exclusiveContent() {
     setMeta(paymentPointer)
 
     document.monetization.addEventListener('monetizationpending', () => {
-      document.querySelectorAll('.exclusiveMessage').forEach((element) => {
-        element.innerHTML =
-          '<p>⸻ ⏰ Waiting for Web Monetization to start to unlock this content. ⸻</p>'
-      })
+      if (data.length) {
+        document.querySelectorAll('.exclusiveMessage').forEach((element) => {
+          element.innerHTML =
+            '<p>⸻ ⏰ Waiting for Web Monetization to start to unlock this content. ⸻</p>'
+        })
+      }
     })
 
     document.monetization.addEventListener('monetizationstart', () => {
-      document.querySelectorAll('.exclusiveMessage').forEach((element) => {
-        element.innerHTML =
-          '<p>⸻ ⏰ Waiting for Web Monetization receipt verification to unlock this content. ⸻</p>'
-      })
+      if (data.length) {
+        document.querySelectorAll('.exclusiveMessage').forEach((element) => {
+          element.innerHTML =
+            '<p>⸻ ⏰ Waiting for Web Monetization receipt verification to unlock this content. ⸻</p>'
+        })
+      }
     })
 
     document.monetization.addEventListener('monetizationprogress', (event) => {
