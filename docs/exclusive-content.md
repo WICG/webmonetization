@@ -238,7 +238,7 @@ If you see the source files instead of the example, click **View App** in the bo
   <iframe
     src="https://glitch.com/embed/#!/embed/exclusive-content-demo?path=index.html&previewSize=100"
     title="exclusive-content-demo on Glitch"
-    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media; monetization"
     style={{ height: '100%', width: '100%', border: '0' }}>
   </iframe>
 </div>
