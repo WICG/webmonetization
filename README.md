@@ -42,90 +42,117 @@ webmonetization.org
     ├── README.md
     ├── docker-compose.yml
     ├── docs
-    │   ├── api.md
-    │   ├── assets
-    │   │   ├── flow.svg
-    │   │   ├── gatehub-addwallet.gif
-    │   │   ├── gatehub-exchangeorder.png
-    │   │   ├── gatehub-findpointer.gif
-    │   │   ├── gatehub.png
-    │   │   ├── uphold
-    │   │   ├── uphold.svg
-    │   │   └── xrpmigration
-    │   ├── counter.md
-    │   ├── exclusive-content.md
-    │   ├── explainer.md
-    │   ├── gatehub.md
-    │   ├── getting-started.md
-    │   ├── glossary.md
-    │   ├── ilp-wallets.md
-    │   ├── probabilistic-rev-sharing.md
-    │   ├── receiving.md
-    │   ├── remove-ads.md
-    │   ├── resources.md
-    │   ├── sending.md
-    │   ├── specification.md
-    │   ├── start-stop.md
-    │   ├── stronghold.md
-    │   ├── uphold.md
-    │   └── xrptipbot.md
+    │   ├── api.md
+    │   ├── assets
+    │   │   ├── ec-generate.svg
+    │   │   ├── ec-unlock.svg
+    │   │   ├── flow.svg
+    │   │   ├── gatehub-addwallet.gif
+    │   │   ├── gatehub-exchangeorder.png
+    │   │   ├── gatehub-findpointer.gif
+    │   │   ├── gatehub.png
+    │   │   ├── uphold
+    │   │   ├── uphold.svg
+    │   │   └── xrpmigration
+    │   ├── counter.md
+    │   ├── exclusive-content.md
+    │   ├── explainer.md
+    │   ├── gatehub.md
+    │   ├── getting-started.md
+    │   ├── glossary.md
+    │   ├── ilp-wallets.md
+    │   ├── probabilistic-rev-sharing.md
+    │   ├── receipt-verifier.md
+    │   ├── receiving.md
+    │   ├── remove-ads.md
+    │   ├── resources.md
+    │   ├── sending.md
+    │   ├── specification.md
+    │   ├── start-stop.md
+    │   ├── stronghold.md
+    │   ├── uphold.md
+    │   └── xrptipbot.md
     ├── docusaurus.config.js
     ├── i18n
     │   └── en.json
     ├── package.json
     ├── sidebars.json
     ├── src
-    │   ├── page-support
-    │   │   └── prob-revshare
-    │   └── pages
-    │       ├── docs.js
-    │       ├── index.js
-    │       ├── meta-tag.js
-    │       └── prob-revshare.js
+    │   ├── pages
+    │   │   ├── docs.js
+    │   │   ├── exclusive-content.js
+    │   │   ├── index.js
+    │   │   ├── meta-tag.js
+    │   │   └── prob-revshare.js
+    │   └── page-support
+    │       ├── exclusive-content
+    │       ├── prob-revshare
+    │       └── shared
     ├── static
-    │   ├── CNAME
-    │   ├── css
-    │   │   └── custom.css
-    │   ├── img
-    │   │   ├── 11ty_webmo_logo.png
-    │   │   ├── angular_webmo_logo.svg
-    │   │   ├── awesome_webmo_logo.svg
-    │   │   ├── coil_logo.svg
-    │   │   ├── copy_icon.svg
-    │   │   ├── fav-webmonetization.png
-    │   │   ├── favicon.ico
-    │   │   ├── gatehub_logo.svg
-    │   │   ├── gatsby_webmo_logo.svg
-    │   │   ├── grey_wm_logo.svg
-    │   │   ├── gridsome_webmo_logo.svg
-    │   │   ├── hugo_webmo_logo.svg
-    │   │   ├── puma-logo.svg
-    │   │   ├── stronghold_logo.svg
-    │   │   ├── svelte_webmo_logo.svg
-    │   │   ├── tessy_webmo_logo.svg
-    │   │   ├── tipbot_logo.svg
-    │   │   ├── uphold-logo.svg
-    │   │   ├── uphold_logo.svg
-    │   │   ├── vuepress_webmo_logo.png
-    │   │   ├── webmon_icon.svg
-    │   │   ├── webmon_icon_simple.svg
-    │   │   ├── wm-icon-animated.svg
-    │   │   └── wm-icon.svg
-    │   ├── js
-    │   │   └── custom.js
-    │   ├── service-worker.js
-    │   └── specification.html
+    │   ├── CNAME
+    │   ├── css
+    │   │   └── custom.css
+    │   ├── img
+    │   │   ├── 11ty_webmo_logo.png
+    │   │   ├── angular_webmo_logo.svg
+    │   │   ├── awesome_webmo_logo.svg
+    │   │   ├── coil_logo.svg
+    │   │   ├── copy_icon.svg
+    │   │   ├── favicon.ico
+    │   │   ├── fav-webmonetization.png
+    │   │   ├── gatehub_logo.svg
+    │   │   ├── gatsby_webmo_logo.svg
+    │   │   ├── grey_wm_logo.svg
+    │   │   ├── gridsome_webmo_logo.svg
+    │   │   ├── hugo_webmo_logo.svg
+    │   │   ├── infinity_search_logo.svg
+    │   │   ├── puma-logo.svg
+    │   │   ├── runnaroo_logo.svg
+    │   │   ├── stronghold_logo.svg
+    │   │   ├── svelte_webmo_logo.svg
+    │   │   ├── tessy_webmo_logo.svg
+    │   │   ├── tipbot_logo.svg
+    │   │   ├── uphold_logo.svg
+    │   │   ├── uphold-logo.svg
+    │   │   ├── vuepress_webmo_logo.png
+    │   │   ├── webmon_icon_simple.svg
+    │   │   ├── webmon_icon.svg
+    │   │   ├── wm-icon-animated.svg
+    │   │   └── wm-icon.svg
+    │   ├── js
+    │   │   ├── custom.js
+    │   │   └── exclusive-content.js
+    │   ├── service-worker.js
+    │   └── specification.html
     ├── w3c.json
     ├── workers
-    │   ├── README.md
-    │   └── probabilistic-revshare
-    │       ├── README.md
-    │       ├── package.json
-    │       ├── rollup.config.js
-    │       ├── src
-    │       ├── tsconfig.json
-    │       ├── wrangler.toml
-    │       └── yarn.lock
+    │   ├── exclusive-content
+    │   │   ├── dist
+    │   │   ├── node_modules
+    │   │   ├── package.json
+    │   │   ├── README.md
+    │   │   ├── rollup.config.js
+    │   │   ├── src
+    │   │   ├── wrangler.toml
+    │   │   └── yarn.lock
+    │   ├── probabilistic-revshare
+    │   │   ├── package.json
+    │   │   ├── README.md
+    │   │   ├── rollup.config.js
+    │   │   ├── src
+    │   │   ├── tsconfig.json
+    │   │   ├── wrangler.toml
+    │   │   └── yarn.lock
+    │   ├── README.md
+    │   └── receipt-verifier
+    │       ├── package.json
+    │       ├── README.md
+    │       ├── rollup.config.js
+    │       ├── src
+    │       ├── tsconfig.json
+    │       ├── wrangler.toml
+    │       └── yarn.lock
+
     └── yarn.lock
 ```
 
@@ -223,7 +250,7 @@ module.exports = {
     },
     // ...
   },
-};
+}
 ```
 
 For more information about the navigation bar, click
@@ -237,6 +264,7 @@ For more information about the navigation bar, click
    update the `themeConfig.navbar.links` field of `docusaurus.config.js` (see above).
 
 `website/siteConfig.js`
+
 ```javascript
 module.exports = {
   // ...
@@ -251,7 +279,7 @@ module.exports = {
       ],
     },
   },
-};
+}
 ```
 
 For more information about custom pages, click
