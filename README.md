@@ -152,7 +152,6 @@ webmonetization.org
     │       ├── tsconfig.json
     │       ├── wrangler.toml
     │       └── yarn.lock
-
     └── yarn.lock
 ```
 
