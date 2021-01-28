@@ -73,10 +73,14 @@ If you're using our publicly available receipt verifier service, then you'll set
 * `https://webmonetization.org/api/receipts/%24wallet.example%2Falice`
 * `$webmonetization.org/api/receipts/%24wallet.example%2Falice`
 
+:::info
+You can create your meta tag with the [Meta Tag Generator](/meta-tag) if using the publicly available receipt verifier service.
+:::
+
 
 ## Web Monetization revshare generator
 
-If you used the [Web Monetization revshare generator](https://webmonetization.org/prob-revshare) to create a meta tag for [probabilistic revenue sharing](./probabilistic-rev-sharing/), follow the same instructions as above: URI-encode your revshare payment pointer and put it in the path of the receipt verifier service’s URL.
+If you used the [Web Monetization revshare generator](https://webmonetization.org/prob-revshare) to create a meta tag for [probabilistic revenue sharing](probabilistic-rev-sharing.md), follow the same instructions as above: URI-encode your revshare payment pointer and put it in the path of the receipt verifier service’s URL.
 
 For example, if your meta tag looks like this:
 
@@ -118,7 +122,13 @@ Add the following client-side code to your website to listen for a `monetization
 </head>
 ```
 
-Your backend can send the receipt to the receipt verifier service’s `/verify` endpoint. Here’s an example for an Express.js server:
+Your backend can send the receipt to the receipt verifier service’s `/verify` endpoint.
+
+:::info
+If you're using our publicly available receipt verifier service, the verify endpoint is `https://webmonetization.org/api/receipts/verify`.
+:::
+
+Here’s an example for an Express.js server:
 
 ```javascript
 app.post('/verifyReceipt', async (req, res) => {

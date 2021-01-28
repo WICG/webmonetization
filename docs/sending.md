@@ -146,7 +146,7 @@ undetected.
 
 ## Supporting payment streams
 
-As detailed in the [explainer](./explainer.md), the user's browser receives a
+As detailed in the [explainer](explainer.md), the user's browser receives a
 unique destination address and shared secret for each monetization session (e.g.
   page refresh, navigation). This specification assumes that the browser will
   handle the generation of a new condition using the shared secret for each

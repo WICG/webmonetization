@@ -234,6 +234,10 @@ h2 {
     color: #636975;
 }
 
+.metaTagContainer span {
+    color: #636975;
+}
+
 #paymentPointerForm {
     display: flex;
     margin-bottom: 15px;
