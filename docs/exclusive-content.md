@@ -228,17 +228,21 @@ The embedded JavaScript script will parse all the exclusive content <code>div</c
 
 ### Interactive example
 
-This example page will request the decryption key for each piece of exclusive content if Web Monetization is enabled. If it is not enabled, it will say "🔒 This content is exclusive for users with Web Monetization enabled."
+The example page will request the decryption key for each piece of exclusive content if Web Monetization is enabled. If it is not enabled, it will say "🔒 This content is exclusive for users with Web Monetization enabled."
 
-The example does require you to have Web Monetization enabled in your browser, hence you need to [open the page](https://exclusive-content-demo.glitch.me/) with Web Monetization enabled.
+The preview below simulates showing exclusive content to a web monetized visitor and hiding the content from a non-web monetized visitor. The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
+
+Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle your monetization state.
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
 <div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
-    src="https://glitch.com/embed/#!/embed/exclusive-content-demo?path=index.html&previewSize=100"
-    title="exclusive-content-demo on Glitch"
-    allow="geolocation; microphone; camera; midi; vr; encrypted-media; monetization"
-    style={{ height: '100%', width: '100%', border: '0' }}>
+    src="https://glitch.com/embed/#!/embed/exclusive-content-demo-simulation?path=index.html&previewSize=100"
+    title="exclusive-content-demo-simulation on Glitch"
+    allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+    style={{ height: '100%', width: '100%', border: '0', paddingBottom: '30px' }}>
   </iframe>
 </div>
+
+If you want to interact with a fully functionable example which **does require you to have Web Monetization enabled in your browser**, visit [this demo page](https://exclusive-content-demo.glitch.me/) with Web Monetization enabled.
