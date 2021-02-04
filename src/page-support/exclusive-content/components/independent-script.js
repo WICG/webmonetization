@@ -13,8 +13,7 @@ export function IndependentScript() {
     getJS().then(
       (r) => {
         const independentScript = `<script>
-${r.replace('export ', '')}
-exclusiveContent()
+${r}
 </script>`
         setScript(independentScript)
       },

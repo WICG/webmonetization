@@ -1,6 +1,6 @@
 const WORKER = 'https://webmonetization.org/api/exclusive-content'
 
-export function exclusiveContent() {
+!(function () {
   const { data, paymentPointer } = gatherExclusive()
 
   if (document.monetization !== undefined) {
@@ -35,7 +35,7 @@ export function exclusiveContent() {
         '<p>⸻ 🔒 This content is exclusive for users with Web Monetization enabled. ⸻</p>'
     })
   }
-}
+})()
 
 function gatherExclusive() {
   const data = []

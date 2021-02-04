@@ -4,10 +4,7 @@ import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import { CopyContent } from './copy-content'
 
 export function DependentScript() {
-  const dependentScript = `<script type="module">
-  import { exclusiveContent } from "https://webmonetization.org/js/exclusive-content.js";
-  exclusiveContent();
-</script>`
+  const dependentScript = `<script src="https://webmonetization.org/js/exclusive-content.js"></script>`
 
   return (
     <>
