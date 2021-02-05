@@ -27,8 +27,8 @@ export function ab2str(ab: ArrayBuffer): string {
 
 export function str2ab(str: string): ArrayBuffer {
   const decodedString = atob(str)
-  var ab = new ArrayBuffer(decodedString.length)
-  var abView = new Uint8Array(ab)
+  const ab = new ArrayBuffer(decodedString.length)
+  const abView = new Uint8Array(ab)
   for (var i = 0, strLen = decodedString.length; i < strLen; i++) {
     abView[i] = decodedString.charCodeAt(i)
   }
