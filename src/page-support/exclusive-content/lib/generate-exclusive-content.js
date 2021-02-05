@@ -1,16 +1,12 @@
 const WORKER = 'https://webmonetization.org/api/exclusive-content'
-const VERIFIER = 'https://receipt-verifier-dehz6dtlzq-uc.a.run.app'
+const VERIFIER = 'https://webmonetization.org/api/receipts'
 
 export async function generateExclusiveContent(
   pointer,
   optVerifier,
   plaintext
 ) {
-  const verifier =
-    optVerifier &&
-    !optVerifier.startsWith('https://webmonetization.org/api/receipts')
-      ? optVerifier
-      : VERIFIER
+  const verifier = optVerifier ? optVerifier : VERIFIER
   const { key, nonce } = await fetchKey(pointer)
   const {
     cypherText: cypherText,
