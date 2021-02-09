@@ -1,0 +1,32 @@
+name: publish-workers
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'workers/**'
+jobs:
+  directories:
+    runs-on: ubuntu-latest
+    outputs:
+      dir: ${{ steps.set-dirs.outputs.dir }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: set-dirs
+        run: echo "::set-output name=dir::$(ls -d */ | jq -R -s -c 'split("\n")[:-1]')"
+        working-directory: workers
+  publish:
+    runs-on: ubuntu-latest
+    needs: [directories]
+    strategy:
+      matrix:
+        dir: ${{fromJson(needs.directories.outputs.dir)}}
+    steps:
+      - uses: actions/checkout@v2
+      - run: 'yarn && yarn build'
+        working-directory: workers/${{matrix.dir}}
+      - uses: cloudflare/wrangler-action@1.3.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: workers/${{matrix.dir}}
