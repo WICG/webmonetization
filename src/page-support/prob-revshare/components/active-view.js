@@ -7,7 +7,7 @@ import { ImportView } from './import'
 import { SharesMetaTag } from './meta-tag'
 import { SharesText } from './shares-text'
 import { ImportText } from './import-text'
-import { SectionHeader } from './section-header'
+import { SectionHeader } from '../../shared/components/section-header'
 import { OnlyClient } from './only-client'
 
 export function ActiveView () {

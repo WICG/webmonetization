@@ -44,6 +44,8 @@ webmonetization.org
     ├── docs
     │   ├── api.md
     │   ├── assets
+    │   │   ├── ec-generate.svg
+    │   │   ├── ec-unlock.svg
     │   │   ├── flow.svg
     │   │   ├── gatehub-addwallet.gif
     │   │   ├── gatehub-exchangeorder.png
@@ -60,6 +62,7 @@ webmonetization.org
     │   ├── glossary.md
     │   ├── ilp-wallets.md
     │   ├── probabilistic-rev-sharing.md
+    │   ├── receipt-verifier.md
     │   ├── receiving.md
     │   ├── remove-ads.md
     │   ├── resources.md
@@ -75,10 +78,13 @@ webmonetization.org
     ├── package.json
     ├── sidebars.json
     ├── src
-    │   ├── page-support
-    │   │   └── prob-revshare
-    │   └── pages
+    │   ├── page-support
+    │       ├── exclusive-content
+    │   │   |── prob-revshare
+    │       └── shared
+    │   └── pages
     │       ├── docs.js
+    │   │   ├── exclusive-content.js
     │       ├── index.js
     │       ├── meta-tag.js
     │       └── prob-revshare.js
@@ -99,7 +105,9 @@ webmonetization.org
     │   │   ├── grey_wm_logo.svg
     │   │   ├── gridsome_webmo_logo.svg
     │   │   ├── hugo_webmo_logo.svg
+    │   │   ├── infinity_search_logo.svg
     │   │   ├── puma-logo.svg
+    │   │   ├── runnaroo_logo.svg
     │   │   ├── stronghold_logo.svg
     │   │   ├── svelte_webmo_logo.svg
     │   │   ├── tessy_webmo_logo.svg
@@ -112,20 +120,38 @@ webmonetization.org
     │   │   ├── wm-icon-animated.svg
     │   │   └── wm-icon.svg
     │   ├── js
-    │   │   └── custom.js
+    │   │   ├── custom.js
+    │   │   └── exclusive-content.js
     │   ├── service-worker.js
     │   └── specification.html
     ├── w3c.json
     ├── workers
     │   ├── README.md
-    │   └── probabilistic-revshare
-    │       ├── README.md
-    │       ├── package.json
-    │       ├── rollup.config.js
-    │       ├── src
-    │       ├── tsconfig.json
-    │       ├── wrangler.toml
-    │       └── yarn.lock
+    │   ├── exclusive-content
+    │   │   ├── dist
+    │   │   ├── node_modules
+    │   │   ├── package.json
+    │   │   ├── README.md
+    │   │   ├── rollup.config.js
+    │   │   ├── src
+    │   │   ├── wrangler.toml
+    │   │   └── yarn.lock
+    │   |── probabilistic-revshare
+    │   |   ├── README.md
+    │   |   ├── package.json
+    │   |   ├── rollup.config.js
+    │   |   ├── src
+    │   |   ├── tsconfig.json
+    │   |   ├── wrangler.toml
+    │   |   └── yarn.lock
+    │   └── receipt-verifier
+    │       ├── package.json
+    │       ├── README.md
+    │       ├── rollup.config.js
+    │       ├── src
+    │       ├── tsconfig.json
+    │       ├── wrangler.toml
+    │       └── yarn.lock
     └── yarn.lock
 ```
 
@@ -223,7 +249,7 @@ module.exports = {
     },
     // ...
   },
-};
+}
 ```
 
 For more information about the navigation bar, click
@@ -237,6 +263,7 @@ For more information about the navigation bar, click
    update the `themeConfig.navbar.links` field of `docusaurus.config.js` (see above).
 
 `website/siteConfig.js`
+
 ```javascript
 module.exports = {
   // ...
@@ -251,7 +278,7 @@ module.exports = {
       ],
     },
   },
-};
+}
 ```
 
 For more information about custom pages, click
