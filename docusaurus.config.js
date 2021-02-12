@@ -152,7 +152,8 @@ const siteConfig = {
           items: [
             { label: 'Home', to: '/' },
             { label: 'Meta Tag Generator', to: '/meta-tag' },
-            { label: 'Revshare Generator', to: '/prob-revshare' }
+            { label: 'Revshare Generator', to: '/prob-revshare' },
+            { label: 'Exclusive Content Generator', to: '/exclusive-content' }
           ]
         },
         {
