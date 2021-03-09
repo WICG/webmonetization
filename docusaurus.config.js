@@ -120,7 +120,7 @@ const siteConfig = {
       placeholder: 'Search'
     },
     colorMode: {
-      defaultMode: 'light', 
+      defaultMode: 'light',
       disableSwitch: true,
       respectPrefersColorScheme: false
     },
@@ -209,7 +209,7 @@ const siteConfig = {
     [ '@docusaurus/preset-classic', {
       docs: {
         path: './docs',
-        editUrl: 'https://github.com/WICG/webmonetization/tree/master',
+        editUrl: 'https://github.com/WICG/webmonetization/tree/main',
         routeBasePath: 'docs',
         sidebarPath: require.resolve('./sidebars.json')
       },
