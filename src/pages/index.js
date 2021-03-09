@@ -108,7 +108,7 @@ export default class Index extends React.Component {
     const LastCard = () => (
       <div className="card">
         <span>Do you know another provider?&nbsp;
-          <a href="https://github.com/WICG/webmonetization/edit/master/src/pages/index.js"
+          <a href="https://github.com/WICG/webmonetization/edit/main/src/pages/index.js"
             target="_blank"
             rel="noreferrer noopener">
             Make a PR
