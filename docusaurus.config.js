@@ -44,7 +44,7 @@ const search = [
   {
     name: 'Mojeek',
     image: 'mojeek_logo.svg',
-    link: 'https://www.mojeek.com/'
+    link: 'https://www.mojeek.com'
   }
 ]
 
