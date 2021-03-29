@@ -41,6 +41,11 @@ const search = [
     image: 'infinity_search_logo.svg',
     link: 'https://infinitysearch.co'
   }
+  {
+    name: 'Mojeek',
+    image: 'mojeek_logo.svg',
+    link: 'https://www.mojeek.com'
+  }
 ]
 
 const tools = [
