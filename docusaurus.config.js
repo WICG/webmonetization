@@ -14,7 +14,7 @@ const wallets = [
   },
   {
     name: 'Stronghold',
-    image: 'stronghold_logo.svg',
+    image: 'stronghold_logo.png',
     link: 'https://stronghold.co'
   }
 ]
