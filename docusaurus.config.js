@@ -37,11 +37,6 @@ const browsers = [
 
 const search = [
   {
-    name: 'Runnaroo',
-    image: 'runnaroo_logo.svg',
-    link: 'https://www.runnaroo.com'
-  },
-  {
     name: 'Infinity Search',
     image: 'infinity_search_logo.svg',
     link: 'https://infinitysearch.co'
