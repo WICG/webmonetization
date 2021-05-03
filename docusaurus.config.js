@@ -12,11 +12,6 @@ const wallets = [
     image: 'gatehub_logo.svg',
     link: 'https://gatehub.net'
   },
-  {
-    name: 'Stronghold',
-    image: 'stronghold_logo.png',
-    link: 'https://stronghold.co'
-  }
 ]
 
 const providers = [
