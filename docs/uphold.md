@@ -72,27 +72,25 @@ Uphold is in the process of obtaining a BitLicense in the state of New York. Unt
 
 ### View activity
 
-Uphold's Android and iOS apps show incoming payments in real time; however, the website **does not**. This means payments might not show up on the website right away. A payment becomes visible on the website when the payment is claimed.
-
-You can watch payment streams in the app by tapping **Activity** from the toolbar. You can tap any activity that shows on the screen to see more details.
+You can see real-time incoming payment streams in the app and on the website through the Activity screen.
 
 <img src={UpholdClaim01} height="500"/>
 
+Tap any activity that shows on the screen to see more details.
+
 ### Claim funds
 
-Before your funds can be withdrawn, they must be claimed. App users can manually claim funds over one cent (USD). Website users **cannot** manually claim funds.
+Before your funds can be withdrawn, they must be claimed. You can manually claim funds over $0.02 USD. If you don't claim your available funds, Uphold will automatically do it for you when the conditions listed below are met.
 
-Uphold will automatically claim funds when the conditions listed below are met. A payment becomes visible on the website only **after** the payment is claimed.
-
-* Accrued funds of $0.01 USD through $0.99 USD are auto-claimed every 24 hours
+* Accrued funds of $0.02 USD through $0.99 USD are auto-claimed every 24 hours
 * Accrued funds of $1.00 USD or more are auto-claimed every hour
 
-If you know you've received a payment, but it's not showing up on the website, it could be that:
+If you know you've received a payment, but you can't claim it, it could be that:
 
-* Your balance is less than $0.01 USD and can't be claimed
-* Your balance is at least $0.01 USD, but not enough time has passed for Uphold to auto-claim the payment
+* Your balance is less than $0.02 USD and can't be claimed
+* Your balance is at least $0.02 USD, but not enough time has passed for Uphold to auto-claim the payment
 
-As an app user, when you've received the minimum amount required to make a manual claim, the Claim Funds button becomes active. If you don't manually claim funds, Uphold will do it for you.
+When you've received the minimum amount required to make a manual claim, the Claim Funds button becomes active. Remember, if you don't manually claim your funds, Uphold will do it for you.
 
 <img src={UpholdClaim02} height="500"/>
 
@@ -100,7 +98,7 @@ After the funds are claimed, the transaction's status changes to Completed.
 
 <img src={UpholdClaim03} height="500"/>
 
-The transaction shows as deposited on the Activity screen on both the app and the website.
+The transaction shows as deposited on the Activity screen.
 
 <img src={UpholdClaim04App} height="500"/><img src={UpholdClaim04Web}/>
 
