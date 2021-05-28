@@ -199,6 +199,12 @@ small {
   color: dodgerblue;
 }
 
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
 .card-merge {
   width: auto;
   height: auto;
@@ -226,6 +232,7 @@ small {
 .card-wide-content {
   text-align: left;
   margin: 0 16px;
+  flex: 1;
 }
 
 .card-wide-content h4 {
