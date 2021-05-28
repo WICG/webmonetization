@@ -118,8 +118,8 @@ export default class Index extends React.Component {
       <div className='card card-merge'>
         <img
           className='card-merge-icon'
-          src='/img/merge_icon.svg'
-          alt='merge-icon'
+          src='/img/icon-merge.svg'
+          alt='merge icon'
         />
         <span>
           Do you know another {props.label}?&nbsp;
@@ -135,21 +135,45 @@ export default class Index extends React.Component {
     )
 
     const CardSet = (props) => (
-      <>
-        <div className='cardContainer'>
-          {props.cards.map(({ name, image, link }) => (
-            <a
-              className='card'
-              href={link}
-              target='_blank'
-              rel='noreferrer noopener'
-              key={name}
-            >
-              <img src={`${baseUrl}img/${image}`} alt={name} />
-            </a>
-          ))}
-        </div>
-      </>
+      <div className='cardContainer'>
+        {props.cards.map(({ name, image, link, desc }) => {
+          if (desc) {
+            return (
+              <a
+                className='card card-wide'
+                href={link}
+                target='_blank'
+                rel='noreferrer noopener'
+                key={name}
+              >
+                <img src={`${baseUrl}img/${image}`} alt={name} />
+                <div className='card-wide-content'>
+                  <h4>{name}</h4>
+                  <p>{desc}</p>
+                </div>
+                <div className='card-wide-arrow'>
+                  <img
+                    src={`${baseUrl}img/icon-arrow-right.svg`}
+                    alt='icon arrow right'
+                  />
+                </div>
+              </a>
+            )
+          } else {
+            return (
+              <a
+                className='card'
+                href={link}
+                target='_blank'
+                rel='noreferrer noopener'
+                key={name}
+              >
+                <img src={`${baseUrl}img/${image}`} alt={name} />
+              </a>
+            )
+          }
+        })}
+      </div>
     )
 
     const Wallets = () => (

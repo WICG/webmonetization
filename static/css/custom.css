@@ -173,6 +173,7 @@ small {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -207,6 +208,35 @@ small {
 
 .card-merge-icon {
   margin-right: 12px;
+}
+
+.card-wide {
+  width: 532px;
+  height: 130px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 33px 24px;
+}
+
+.card-wide:hover {
+  text-decoration: none;
+}
+
+.card-wide-content {
+  text-align: left;
+  margin: 0 16px;
+}
+
+.card-wide-content h4 {
+  margin: 0 0 8px 0;
+  font-size: 17px;
+  color: #000;
+}
+
+.card-wide-arrow {
+  height: 100%;
+  display: flex;
 }
 
 .resources a {

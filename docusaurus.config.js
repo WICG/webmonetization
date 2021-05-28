@@ -5,12 +5,12 @@ const wallets = [
   {
     name: 'Uphold',
     image: 'uphold_logo.svg',
-    link: 'https://www.uphold.com/signup'
+    link: 'https://www.uphold.com/signup',
   },
   {
     name: 'Gatehub',
     image: 'gatehub_logo.svg',
-    link: 'https://gatehub.net'
+    link: 'https://gatehub.net',
   },
 ]
 
@@ -18,82 +18,102 @@ const providers = [
   {
     name: 'Coil',
     image: 'coil_logo.svg',
-    link: 'https://coil.com'
-  }
+    link: 'https://coil.com',
+  },
 ]
 
 const browsers = [
   {
-    name: 'Puma',
-    image: 'puma-logo.svg',
-    link: 'https://pumabrowser.com'
-  }
+    name: 'Puma Browser',
+    image: 'logo-browser-puma.svg',
+    link: 'https://pumabrowser.com',
+    desc: 'Mobile browser for Android and iOS that supports Web Monetization natively.',
+  },
+  {
+    name: 'Mozilla Firefox Extension',
+    image: 'logo-browser-firefox.svg',
+    link: 'https://addons.mozilla.org/en-US/firefox/addon/coil/',
+    desc: 'Support websites and creators with Web Monetization. (published by Coil)',
+  },
+  {
+    name: 'Google Chrome Extension',
+    image: 'logo-browser-chrome.svg',
+    link: 'https://chrome.google.com/webstore/detail/coil/locbifcbeldmnphbgkdigjmkbfkhbnca',
+    desc: 'Support websites and creators with Web Monetization. (published by Coil)',
+  },
+  {
+    name: 'Microsoft Edge Extension',
+    image: 'logo-browser-edge.svg',
+    link: 'https://microsoftedge.microsoft.com/addons/detail/ljionajlbinlfkdnpkloejeoogfgkojm?hl=en-US',
+    desc: 'Support websites and creators with Web Monetization. (published by Coil)',
+  },
 ]
 
 const search = [
   {
     name: 'Infinity Search',
     image: 'infinity_search_logo.svg',
-    link: 'https://infinitysearch.co'
+    link: 'https://infinitysearch.co',
   },
   {
     name: 'Mojeek',
     image: 'mojeek_logo.svg',
-    link: 'https://www.mojeek.com'
-  }
+    link: 'https://www.mojeek.com',
+  },
 ]
 
 const tools = [
   {
     name: 'Hugo + Webmonetization',
     image: 'hugo_webmo_logo.svg',
-    link: 'https://github.com/sabinebertram/hugo-webmonetization-component'
+    link: 'https://github.com/sabinebertram/hugo-webmonetization-component',
   },
   {
     name: 'Eleventy + Webmonetization',
     image: '11ty_webmo_logo.png',
-    link: 'https://github.com/DanCanetti/eleventy-plugin-monetization'
+    link: 'https://github.com/DanCanetti/eleventy-plugin-monetization',
   },
   {
     name: 'Gridsome + Webmonetization',
     image: 'gridsome_webmo_logo.svg',
-    link: 'https://github.com/Sergix/gridsome-plugin-monetization'
+    link: 'https://github.com/Sergix/gridsome-plugin-monetization',
   },
   {
     name: 'Gatsby + Webmonetization',
     image: 'gatsby_webmo_logo.svg',
-    link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
+    link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization',
   },
   {
     name: 'Angular + Webmonetization',
     image: 'angular_webmo_logo.svg',
-    link: 'https://github.com/CDDelta/ngx-monetization'
+    link: 'https://github.com/CDDelta/ngx-monetization',
   },
   {
     name: 'VuePress + Webmonetization',
     image: 'vuepress_webmo_logo.png',
-    link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization'
+    link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization',
   },
   {
     name: 'Tessy + Webmonetization',
     image: 'tessy_webmo_logo.svg',
-    link: 'https://github.com/VladimirMikulic/tessy'
+    link: 'https://github.com/VladimirMikulic/tessy',
   },
   {
     name: 'Svelte + Webmonetization',
     image: 'svelte_webmo_logo.svg',
-    link: 'https://github.com/sorxrob/svelte-monetization'
+    link: 'https://github.com/sorxrob/svelte-monetization',
   },
   {
     name: 'Moodle + Webmonetization',
     image: 'moodle_webmo_logo.png',
-    link: 'https://github.com/andrewhancox/moodle-local_webmonetization'
-  }
+    link: 'https://github.com/andrewhancox/moodle-local_webmonetization',
+  },
 ]
 
 const siteConfig = {
   title: 'Web Monetization', // Title for your website.
-  tagline: 'A JavaScript browser API that allows the creation of a payment stream from the user agent to the website',
+  tagline:
+    'A JavaScript browser API that allows the creation of a payment stream from the user agent to the website',
   url: 'https://webmonetization.org', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -109,7 +129,7 @@ const siteConfig = {
     wallets,
     browsers,
     search,
-    tools
+    tools,
   },
 
   themeConfig: {
@@ -117,35 +137,41 @@ const siteConfig = {
     algolia: {
       apiKey: '522665321749697a7b612bb54dbdb0b4',
       indexName: 'webmonetization',
-      placeholder: 'Search'
+      placeholder: 'Search',
     },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
-      respectPrefersColorScheme: false
+      respectPrefersColorScheme: false,
     },
     prism: {
-      theme: require('prism-react-renderer/themes/github')
+      theme: require('prism-react-renderer/themes/github'),
     },
     navbar: {
       title: 'Web Monetization',
       logo: {
         alt: 'Web Monetization logo',
-        src: 'img/wm-icon.svg'
+        src: 'img/wm-icon.svg',
       },
       items: [
         { doc: 'getting-started', to: '/docs', label: 'Docs' },
-        { href: 'https://webmonetization.org/specification.html', label: 'Specification' },
-        { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
+        {
+          href: 'https://webmonetization.org/specification.html',
+          label: 'Specification',
+        },
+        {
+          href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
+          label: 'WICG Forum',
+        },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        { search: true }
-      ]
+        { search: true },
+      ],
     },
     footer: {
       links: [
         {
           title: 'WebMonetization.org',
-          items: []
+          items: [],
         },
         {
           title: 'Navigation',
@@ -153,28 +179,37 @@ const siteConfig = {
             { label: 'Home', to: '/' },
             { label: 'Meta Tag Generator', to: '/meta-tag' },
             { label: 'Revshare Generator', to: '/prob-revshare' },
-            { label: 'Exclusive Content Generator', to: '/exclusive-content' }
-          ]
+            { label: 'Exclusive Content Generator', to: '/exclusive-content' },
+          ],
         },
         {
           title: 'Community',
           items: [
-            { label: 'Github', href: 'https://github.com/WICG/webmonetization' },
+            {
+              label: 'Github',
+              href: 'https://github.com/WICG/webmonetization',
+            },
             { label: 'ILP Forum', href: 'https://forum.interledger.org' },
-            { label: 'Web Platform Incubator Community Group', href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785' },
-            { label: 'Interledger', href: 'https://interledger.org' }
-          ]
+            {
+              label: 'Web Platform Incubator Community Group',
+              href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
+            },
+            { label: 'Interledger', href: 'https://interledger.org' },
+          ],
         },
         {
           title: 'Resources',
           items: [
             { label: 'Docs', to: '/docs/getting-started' },
-            { label: 'Specification', href: 'https://webmonetization.org/specification.html' },
-            { label: 'Payment Pointers', to: 'https://paymentpointers.org/' }
-          ]
-        }
-      ]
-    }
+            {
+              label: 'Specification',
+              href: 'https://webmonetization.org/specification.html',
+            },
+            { label: 'Payment Pointers', to: 'https://paymentpointers.org/' },
+          ],
+        },
+      ],
+    },
   },
 
   favicon: 'img/fav-webmonetization.png',
@@ -186,7 +221,7 @@ const siteConfig = {
   scripts: [
     'https://buttons.github.io/buttons.js',
     'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
-    '/js/custom.js'
+    '/js/custom.js',
   ],
 
   // Open Graph and Twitter card images.
@@ -206,18 +241,21 @@ const siteConfig = {
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
   presets: [
-    [ '@docusaurus/preset-classic', {
-      docs: {
-        path: './docs',
-        editUrl: 'https://github.com/WICG/webmonetization/tree/main',
-        routeBasePath: 'docs',
-        sidebarPath: require.resolve('./sidebars.json')
+    [
+      '@docusaurus/preset-classic',
+      {
+        docs: {
+          path: './docs',
+          editUrl: 'https://github.com/WICG/webmonetization/tree/main',
+          routeBasePath: 'docs',
+          sidebarPath: require.resolve('./sidebars.json'),
+        },
+        theme: {
+          customCss: require.resolve('./static/css/custom.css'),
+        },
       },
-      theme: {
-        customCss: require.resolve('./static/css/custom.css')
-      }
-    }]
-  ]
+    ],
+  ],
 }
 
 module.exports = siteConfig
