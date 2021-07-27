@@ -88,6 +88,11 @@ const tools = [
     name: 'Moodle + Webmonetization',
     image: 'moodle_webmo_logo.png',
     link: 'https://github.com/andrewhancox/moodle-local_webmonetization'
+  },
+  {
+    name: 'Jekyll + Webmonetization',
+    image: 'jekyll_webmo_logo.svg',
+    link: 'https://github.com/philnash/jekyll-web_monetization'
   }
 ]
 
