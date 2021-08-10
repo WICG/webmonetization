@@ -41,7 +41,7 @@
         xref: 'web-platform',
         localBiblio: {
           Interledger: {
-            title: 'Interledger Protocol (ILP)',
+            title: 'Interledger Protocol',
             href: 'https://interledger.org/rfcs/0027-interledger-protocol-4/'
           },
           SPSP: {
@@ -58,7 +58,7 @@
             title: 'STREAM Receipt',
             href:
               'https://interledger.org/rfcs/0039-stream-receipts/'
-          }
+          },
         }
       }
     </script>
@@ -144,289 +144,63 @@
     </section>
     <section>
       <h2>
-        Extensions to the `Document` interface
+        Extensions to the `Navigator` interface
       </h2>
       <pre class="idl">
-        partial interface Document {
+        partial interface Navigator {
           readonly attribute Monetization monetization;
         };
       </pre>
     </section>
-    <section id="flow">
+    <section>
       <h2>
-        Flow
+        Link type "monetization"
       </h2>
       <p>
-        This flow refers to the <a>user agent</a> and the user's
-        <a>provider</a>.
+        The "monetization" keyword may be used with [^link^] elements. This
+        keyword creates an external resource link.
       </p>
-      <ol>
-        <li>The <a>user agent</a> sets {{ Monetization / state }} to "{{
-        MonetizationState / pending }}".
-        </li>
-        <li>
-          <p>
-            The <a>user agent</a> observes the [^head^] and looks for a Web
-            Monetization <code>&lt;meta name="monetization"&gt;</code> tag
-            (<a href="#meta-tags-set">specified below</a>).
-          </p>
-          <ul>
-            <li>There MUST be only one <code>&lt;meta
-            name="monetization"&gt;</code> tag at any given time
-            </li>
-            <li>The `&lt;meta&gt;` Tags Set MUST be in the [^head^] of the
-            document.
-            </li>
-            <li>The `&lt;meta&gt;` Tags Set MUST be in the top level window
-            (i.e. not inside an iframe)
-            </li>
-          </ul>
-        </li>
-        <li>
-          <p>
-            Below is repeated for every semantically (consider
-            <code>meta.content = meta.content</code>) new <code>&lt;meta
-            name="monetization"&gt;</code> tag seen for the life of the page:
-          </p>
-          <ul>
-            <li>If any of the Web Monetization `&lt;meta&gt;` Tags Set are
-            malformed, the browser will stop here. The <a>user agent</a> SHOULD
-            report a warning via the console.
-            </li>
-            <li>If the Web Monetization <code>&lt;meta
-            name="monetization"&gt;</code> tag is well-formed, the browser
-            should extract the Payment Setup Endpoint (<a href=
-            "https://paymentpointers.org">Payment Pointer</a> or <a href=
-            "https://interledger.org/rfcs/0009-simple-payment-setup-protocol">
-              SPSP</a> Url).
-            </li>
-            <li>The <a>user agent</a> generates a fresh <strong>random</strong>
-            UUID (version 4) and uses this as a Monetization ID. This MUST be
-            regenerated upon dynamic changes to the meta tags and MUST be
-            unique per page load in order to avoid user tracking.
-            </li>
-            <li>The <a>user agent</a> passes these payment details to the
-            user's provider (see <a href="#payment-handler-flow">Payment
-            Handler Flow</a>).
-            </li>
-            <li>The provider resolves the Payment Setup Endpoint and begins to
-            pay. The provider MAY be acting from a different machine from the
-            user. Cookies and session information MUST NOT be carried with any
-            requests made to resolve the Payment Setup Endpoint, with the
-            exception of the Monetization ID.
-              <ul>
-                <li>With the <code>destination_account</code> and
-                <code>shared_secret</code> fetched from the SPSP query, a
-                [[[STREAM]]] connection is established. A single [[[STREAM]]]
-                is opened on this connection, and a positive SendMax is set.
-                </li>
-                <li>The provider SHOULD set their SendMax high enough that it
-                is never reached, and make payment adjustments by limiting
-                throughput.
-                </li>
-              </ul>
-            </li>
-            <li>Once the [[[STREAM]]] connection has fulfilled an ILP packet
-            with a non-zero amount, the provider notifies the browser:
-              <ul>
-                <li>The <a>user agent</a> sets
-                <code>document.monetization.state</code> to
-                <code>started</code>.
-                </li>
-                <li>This MUST occur before the `start` event is fired.
-                </li>
-                <li>This event is a {{ MonetizationStartEvent }} containing the
-                Payment Setup Endpoint and the Monetization ID as properties.
-                </li>
-                <li>The <a>user agent</a> also emits a {{ progress }} event
-                from <code>document.monetization</code>, corresponding to this
-                first packet.
-                </li>
-              </ul>
-            </li>
-            <li>Payment continues for the lifetime of a given meta tag (or
-            semantically equivalent)
-              <ul>
-                <li>The provider MAY decide to stop/start payment at any time,
-                e.g. if the user is idle, backgrounds the page, or instructs
-                the browser to do so.
-                </li>
-                <li>If the [[[STREAM]]] connection is severed, the provider
-                will redo the SPSP query to the same Payment Setup Endpoint as
-                before with the same Monetization ID. The <a>user agent</a>
-                MUST NOT re-process the `&lt;meta&gt;` Tags Set.
-                </li>
-                <li>Each time a packet with a non-zero amount is fulfilled, the
-                provider notifies the browser, and the browser emits a {{
-                MonetizationProgressEvent }} on
-                <code>document.monetization</code>. The event has details of
-                the packet.
-                </li>
-                <li>When a stream is closed the
-                <code>document.monetization.state</code> MUST be set back to
-                'pending'
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ol>
-      <h3 id="payment-handler-flow">
-        Payment Handler Flow
-      </h3>
       <p>
-        A provider can be implemented as a Payment Handler supporting the
-        'webmonetization' payment method (The payment method specification for
-        this payment method is still under development as it is dependant on
-        changes to the Payment Handler API that support streaming payments).
-        Communication between the browser and the provider would use this flow.
+        The monetization keyword indicates a [=payment end-point=] used to
+        monetize the document.
       </p>
-      <ul>
-        <li>After parsing the `&lt;meta&gt;` Tags Set, the browser creates a
-        new <a href=
-        "https://www.w3.org/TR/payment-request/#paymentrequest-interface">PaymentRequest</a>
-        object with the following <a href=
-        "https://www.w3.org/TR/payment-request/#dom-paymentmethoddata">PaymentMethodData</a>
-        argument.
-        </li>
-      </ul>
-      <pre class="json">
-        {
-          "supportedMethods": "webmonetization",
-          "data": {
-            "paymentPointer": "&lt;payment pointer parsed from meta tag&gt;"
-          }
-        }
-      </pre>
-      <ul>
-        <li>The <a>user agent</a> calls <code>.show()</code> on this
-        PaymentRequest, triggering the <a href=
-        "https://www.w3.org/TR/payment-handler/">PaymentHandler</a> for <code>
-          webmonetization</code>. This PaymentHandler is how the browser
-          communicates to the provider.
-          <ul>
-            <li>The return value of <code>.show()</code> MUST return a Promise,
-            and must also implement the {{ EventTarget }} interface. The
-            provider will emit {{ MonetizationStartEvent }} and {{
-            MonetizationProgressEvent }} events from this Promise to
-            communicate to the browser when payment occurs. The Promise MUST
-            NOT resolve, because Web Monetization continues for the entire
-            lifetime of a given meta tag. The Promise MAY reject if there is an
-            error preventing the provider from paying and no retries will
-            occur.
-            </li>
-            <li>This PaymentHandler MUST NOT require any UI or confirmation to
-            proceed with payment.
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <p>
+        ...Fetching and processing details TBW...
+      </p>
     </section>
-    <section id="specification">
+    <section>
       <h2>
-        Specification
+        Monetization API
       </h2>
-      <section id="meta-tags-set">
-        <h2>
-          Meta Tags Set
-        </h2>
-        <p>
-          The `&lt;meta&gt;` Tags Set MUST be in the document's [^head^]. The
-          `&lt;meta&gt;` Tags Set allows the <a>user agent</a> to pay a site
-          via Web Monetization by specifying a <a href=
-          "https://paymentpointers.org">Payment Pointer</a> or <a href=
-          "https://interledger.org/rfcs/0009-simple-payment-setup-protocol">SPSP</a>
-          url.
-        </p>
-        <p>
-          The <code>name</code> of the `&lt;meta&gt;` tags all start with
-          <code>monetization</code>. The table below lists the different
-          <code>name</code>s and the formats of their <code>content</code>.
-          Currently there is only one tag, but this may be expanded in the
-          future so care MUST be given to altering a Tags Set such that
-          <code>&lt;meta name="monetization"&gt;</code> is the last one
-          modified.
-        </p>
-        <table class="def data">
-          <thead>
-            <tr>
-              <th>
-                Name
-              </th>
-              <th>
-                Required?
-              </th>
-              <th>
-                Format
-              </th>
-              <th>
-                Description
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <code>monetization</code>
-              </td>
-              <td>
-                Yes
-              </td>
-              <td>
-                Payment Setup Endpoint
-              </td>
-              <td>
-                The <a href="https://paymentpointers.org">Payment Pointer</a>
-                or SPSP url that the <a>user agent</a> will pay to.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h4 id="examples">
-          Examples
-        </h4>
-        <h5 id="web-monetization-meta-tag">
-          Web Monetization Meta Tag
-        </h5>
-        <pre class="example html">
-    &lt;meta name="monetization" content="$wallet.example.com/alice"&gt;
-          </pre>
-      </section>
       <section data-dfn-for="Monetization">
         <h2>
-          <dfn>Monetization</dfn> interface
+          `Monetization` interface
         </h2>
         <pre class="idl">
           [Exposed=Window, SecureContext]
           interface Monetization : EventTarget {
             readonly attribute MonetizationState state;
-            attribute EventHandler onstart;
             attribute EventHandler onprogress;
           };
         </pre>
-        <dl>
-          <dt>
+        <section>
+          <h2>
             <dfn>state</dfn> attribute
-          </dt>
-          <dd>
-            A {{ Monetization / state }} attribute exposes the current state of
-            Web Monetization as a {{ MonetizationState }} enum value.
-          </dd>
-          <dt>
-            <dfn>onstart</dfn> attribute
-          </dt>
-          <dd>
-            A {{ Monetization / onstart }} attribute is an {{ EventHandler }}
-            for a {{ MonetizationStartEvent }} named "<a>start</a>".
-          </dd>
-          <dt>
+          </h2>
+          <p>
+            A {{Monetization/state}} attribute exposes the current state of Web
+            Monetization as a {{MonetizationState}} enum value.
+          </p>
+        </section>
+        <section>
+          <h2>
             <dfn>onprogress</dfn> attribute
-          </dt>
-          <dd>
-            A {{ Monetization / onprogress }} attribute is an {{ EventHandler
-            }} for an {{ MonetizationProgressEvent }} named "<a>progress</a>".
-          </dd>
-        </dl>
+          </h2>
+          <p>
+            A {{Monetization/onprogress}} attribute is an [=event handler IDL
+            attribute=] for an {{MonetizationEvent}} named "<a>progress</a>".
+          </p>
+        </section>
       </section>
       <section data-dfn-for="MonetizationState">
         <h2>
@@ -443,8 +217,7 @@
             "<dfn>pending</dfn>"
           </dt>
           <dd>
-            Indicates that monetization has not yet started. This is set even
-            if there are no Web Monetization [^meta^] elements in the document.
+            Indicates that monetization has not yet started.
           </dd>
           <dt>
             "<dfn>started</dfn>"
@@ -480,67 +253,45 @@
             </tr>
             <tr>
               <td>
-                <code><dfn>start</dfn></code>
+                <code><dfn data-dfn-for="monetization" class=
+                "event">progress</dfn></code>
               </td>
               <td>
-                {{ MonetizationStartEvent }}
-              </td>
-              <td>
-                The first non-zero payment is successfully sent.
-              </td>
-              <td>
-                {{ Document / monetization }} attribute
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <code><dfn>progress</dfn></code>
-              </td>
-              <td>
-                {{ MonetizationProgressEvent }}
+                {{MonetizationEvent}}
               </td>
               <td>
                 A payment is successfully made to the receiver.
               </td>
               <td>
-                {{ Document / monetization }}
+                {{Navigator/monetization}}
               </td>
             </tr>
           </table>
         </section>
-        <section data-dfn-for="MonetizationStartEvent">
+        <section data-dfn-for="MonetizationEvent">
           <h2>
-            <dfn>MonetizationStartEvent</dfn> interface
+            `MonetizationEvent` interface
           </h2>
           <pre class="idl">
             [SecureContext, Exposed=Window]
-            interface MonetizationStartEvent : Event {
-              constructor(DOMString type, MonetizationStartEventInit eventInitDict);
-              readonly attribute DOMString paymentPointer;
+            interface MonetizationEvent : Event {
+              constructor(DOMString type, MonetizationEventInit eventInitDict);
+              readonly attribute USVString paymentPointer;
               readonly attribute DOMString requestId;
+              readonly attribute DOMString amount;
+              readonly attribute DOMString assetCode;
+              readonly attribute DOMString assetScale;
+              readonly attribute DOMString receipt;
             };
           </pre>
-          <section>
-            <h2>
-              `constructor()`
-            </h2>
-            <p>
-              The <dfn>constructor()</dfn> for {{ MonetizationStartEvent }}
-              behaves as follows:
-            </p>
-            <ol class="algorithm">
-              <li>...TBW...
-              </li>
-            </ol>
-          </section>
           <section>
             <h2>
               <dfn>paymentPointer</dfn> attribute
             </h2>
             <p>
-              When getting, returns the value it was initialized with. See {{
-              MonetizationStartEventInit / paymentPointer }} member of {{
-              MonetizationStartEventInit }} for more information.
+              When getting, returns the value it was initialized with. See
+              {{MonetizationEventInit/paymentPointer}} member of
+              {{MonetizationEventInit}} for more information.
             </p>
           </section>
           <section>
@@ -548,84 +299,19 @@
               <dfn>requestId</dfn> attribute
             </h2>
             <p>
-              When getting, returns the value it was initialized with. See {{
-              MonetizationStartEventInit / requestId }} member of {{
-              MonetizationStartEventInit }} for more information.
+              When getting, returns the value it was initialized with. See
+              {{MonetizationEventInit/requestId}} member of
+              {{MonetizationEventInit}} for more information.
             </p>
-          </section>
-          <section data-dfn-for="MonetizationStartEventInit">
-            <h3>
-              <dfn>MonetizationStartEventInit</dfn> dictionary
-            </h3>
-            <p>
-              Dispatched once the first ILP packet with a non-zero amount has
-              been fulfilled by the page's SPSP receiver. MUST be dispatched at
-              least once if payment occurs.
-            </p>
-            <pre class="idl">
-                dictionary MonetizationStartEventInit : EventInit {
-                  required DOMString paymentPointer;
-                  required DOMString requestId;
-                };
-              </pre>
-            <dl>
-              <dt>
-                <dfn>paymentPointer</dfn> member
-              </dt>
-              <dd>
-                A string representing the Payment Pointer resolved from the
-                <code>&lt;meta name="monetization"&gt;</code> tag.
-              </dd>
-              <dt>
-                <dfn>requestId</dfn> member
-              </dt>
-              <dd>
-                The Monetization ID (UUID V4) generated by the browser (see
-                [[[#flow]]]).
-              </dd>
-            </dl>
-          </section>
-        </section>
-        <section data-dfn-for="MonetizationProgressEvent">
-          <h2>
-            <dfn>MonetizationProgressEvent</dfn> interface
-          </h2>
-          <p>
-            Dispatched every time an ILP packet with a non-zero amount has been
-            fulfilled by the page's Web Monetization receiver (including the
-            first time, when `start` event is also dispatched).
-          </p>
-          <pre class="idl">
-            [SecureContext, Exposed=Window]
-            interface MonetizationProgressEvent : Event {
-              constructor(DOMString type, MonetizationProgressEventInit eventInitDict);
-              readonly attribute DOMString amount;
-              readonly attribute DOMString assetCode;
-              readonly attribute DOMString assetScale;
-              readonly attribute DOMString? receipt;
-            };
-          </pre>
-          <section>
-            <h2>
-              `constructor()`
-            </h2>
-            <p>
-              The <dfn>constructor()</dfn> for {{ MonetizationProgressEvent }}
-              behaves as follows:
-            </p>
-            <ol class="algorithm">
-              <li>...TBW...
-              </li>
-            </ol>
           </section>
           <section>
             <h2>
               <dfn>amount</dfn> attribute
             </h2>
             <p>
-              When getting, returns the value it was initialized with. See {{
-              MonetizationProgressEventInit / amount }} member of {{
-              MonetizationProgressEventInit }} for more information.
+              When getting, returns the value it was initialized with. See
+              {{MonetizationEventInit/amount}} member of
+              {{MonetizationEventInit}} for more information.
             </p>
           </section>
           <section>
@@ -633,9 +319,9 @@
               <dfn>assetCode</dfn> attribute
             </h2>
             <p>
-              When getting, returns the value it was initialized with. See {{
-              MonetizationProgressEventInit / assetCode }} member of {{
-              MonetizationProgressEventInit }} for more information.
+              When getting, returns the value it was initialized with. See
+              {{MonetizationEventInit/assetCode}} member of
+              {{MonetizationEventInit}} for more information.
             </p>
           </section>
           <section>
@@ -643,9 +329,9 @@
               <dfn>assetScale</dfn> attribute
             </h2>
             <p>
-              When getting, returns the value it was initialized with. See {{
-              MonetizationProgressEventInit / assetScale }} member of {{
-              MonetizationProgressEventInit }} for more information.
+              When getting, returns the value it was initialized with. See
+              {{MonetizationEventInit/assetScale}} member of
+              {{MonetizationEventInit}} for more information.
             </p>
           </section>
           <section>
@@ -653,78 +339,75 @@
               <dfn>receipt</dfn> attribute
             </h2>
             <p>
-              When getting, returns the value it was initialized with. See {{
-              MonetizationProgressEventInit / receipt }} member of {{
-              MonetizationProgressEventInit }} for more information.
+              When getting, returns the value it was initialized with. See
+              {{MonetizationEventInit/receipt}} member of
+              {{MonetizationEventInit}} for more information.
             </p>
           </section>
-          <section data-dfn-for="MonetizationProgressEventInit">
-            <h3>
-              <dfn>MonetizationProgressEventInit</dfn> dictionary
-            </h3>
-            <pre class="idl">
-              dictionary MonetizationProgressEventInit : EventInit {
+        </section>
+        <section data-dfn-for="MonetizationEventInit">
+          <h3>
+            <dfn>MonetizationEventInit</dfn> dictionary
+          </h3>
+          <p>
+            Dispatched once the first ILP packet with a non-zero amount has
+            been fulfilled by the page's SPSP receiver. MUST be dispatched at
+            least once if payment occurs.
+          </p>
+          <pre class="idl">
+              dictionary MonetizationEventInit : EventInit {
+                required USVString paymentPointer;
+                required DOMString requestId;
                 required DOMString amount;
                 required DOMString assetCode;
                 required DOMString assetScale;
-                DOMString receipt;
+                required DOMString receipt;
               };
             </pre>
-            <dl>
-              <dt>
-                <dfn>amount</dfn> member
-              </dt>
-              <dd>
-                The destination amount <em>received</em> as specified in the
-                ILP packet.
-              </dd>
-              <dt>
-                <dfn>assetCode</dfn> member
-              </dt>
-              <dd>
-                The three letter asset code describing the amount's units.
-              </dd>
-              <dt>
-                <dfn>assetScale</dfn> member
-              </dt>
-              <dd>
-                The scale of the amount. For example, USD would have an
-                <code>assetScale</code> of <code>2</code> when denominated in
-                cents.
-              </dd>
-              <dt>
-                <dfn>receipt</dfn> member
-              </dt>
-              <dd>
-                base64-encoded [[[Receipt]]] issued by the Web Monetization
-                receiver to the Web Monetization provider as proof of the total
-                amount received in the stream.
-              </dd>
-            </dl>
-          </section>
+          <dl>
+            <dt>
+              <dfn>paymentPointer</dfn> member
+            </dt>
+            <dd>
+              A string representing a [=payment end-point=].
+            </dd>
+            <dt>
+              <dfn>requestId</dfn> member
+            </dt>
+            <dd>
+              The Monetization ID (UUID V4) [[RFC4122]].
+            </dd>
+            <dt>
+              <dfn>amount</dfn> member
+            </dt>
+            <dd>
+              The destination amount <em>received</em> as specified in the ILP
+              packet.
+            </dd>
+            <dt>
+              <dfn>assetCode</dfn> member
+            </dt>
+            <dd>
+              The three letter asset code describing the amount's units.
+            </dd>
+            <dt>
+              <dfn>assetScale</dfn> member
+            </dt>
+            <dd>
+              The scale of the amount. For example, USD would have an
+              <code>assetScale</code> of <code>2</code> when denominated in
+              cents.
+            </dd>
+            <dt>
+              <dfn>receipt</dfn> member
+            </dt>
+            <dd>
+              base64-encoded [[[Receipt]]] issued by the Web Monetization
+              receiver to the Web Monetization provider as proof of the total
+              amount received in the stream.
+            </dd>
+          </dl>
         </section>
-      </section>
-      <section id="http-headers">
-        <h2>
-          HTTP Headers
-        </h2>
-        <h4>
-          `Web-Monetization-Id`
-        </h4>
-        <p class="warning">
-          DEPRECATED: The `Web-Monetization-Id` header is deprecated in favor
-          of receipts.
-        </p>
-        <p>
-          Contains the `Monetization ID` (currently referred to as {{
-          MonetizationStartEvent / requestId }} in the {{
-          MonetizationStartEvent }}) as a a UUID version 4, which the user
-          agent generated. This header MAY be sent on [[SPSP]] queries for Web
-          Monetization.
-        </p>
-        <pre class="example http">
-          Web-Monetization-Id: dcd479ad-7d8d-4210-956a-13c14b8c67eb
-        </pre>
       </section>
     </section>
     <section id="relation-to-other-technologies" class="informative">
