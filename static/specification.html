@@ -155,42 +155,6 @@
         </li>
       </ul>
     </section>
-    <section id="relation-to-other-protocols" class="informative">
-      <h2>
-        Relation to other protocols
-      </h2>
-      <p>
-        The W3C have published two payments related APIs for browsers, the
-        [[[payment-Request]]] and the [[[Payment-Handler]]].
-      </p>
-      <p>
-        The reason this API is not using the [[[payment-Request]]] directly is
-        that Web Monetization is intended for continuous payments rather than
-        discrete payments. It is also designed to <em>not</em> have any user
-        interaction: It is intended to provide a direct alternative to
-        advertisements, rather than an alternative to traditional e-commerce
-        checkout methods.
-      </p>
-      <p>
-        In future, some changes will be required to the [[[payment-Request]]]
-        and the [[[Payment-Handler]]] to support Web Monetization. This API
-        brings the necessary capabilities to user agents in a manner that can
-        integrate with existing payments APIs.
-      </p>
-      <p>
-        With advertisements, the user agent decides whether to display the ads
-        and the user decides whether to engage with the ads. With Web
-        Monetization, the user's provider decides whether to pay the site and,
-        if so, how much to pay.
-      </p>
-      <p>
-        Web Monetization makes use of <abbr title=
-        "Simple Payment Setup Protocol">SPSP</abbr> on top of <abbr title=
-        "Interledger Protocol">ILP</abbr>/[[[STREAM]]] to provide a high-level
-        way to send money and data, while still providing tremendous
-        flexibility.
-      </p>
-    </section>
     <section>
       <h2>
         Extensions to the `Document` interface
@@ -775,6 +739,18 @@
           Web-Monetization-Id: dcd479ad-7d8d-4210-956a-13c14b8c67eb
         </pre>
       </section>
+    </section>
+    <section id="relation-to-other-technologies" class="informative">
+      <h2>
+        Relation to other technologies
+      </h2>
+      <p>
+        Unlike [[[payment-Request]]] and the [[[Payment-Handler]]], Web
+        Monetization is intended for continuous payments rather than discrete
+        payments. Additionally, it is designed to <em>not</em> require any user
+        interaction, serving as an alternative to traditional e-commerce
+        checkout methods.
+      </p>
     </section>
     <section id="conformance" class="appendix"></section>
   </body>
