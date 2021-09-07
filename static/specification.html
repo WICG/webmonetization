@@ -150,10 +150,10 @@
     </section>
     <section>
       <h2>
-        Extensions to the `Document` interface
+        Extensions to the `Navigator` interface
       </h2>
       <pre class="idl">
-        partial interface Document {
+        partial interface Navigator {
           readonly attribute Monetization monetization;
         };
       </pre>
@@ -236,7 +236,7 @@
             with a non-zero amount, the provider notifies the browser:
               <ul>
                 <li>The <a>user agent</a> sets
-                <code>document.monetization.state</code> to
+                <code>navigator.monetization.state</code> to
                 <code>started</code>.
                 </li>
                 <li>This MUST occur before the `start` event is fired.
@@ -245,7 +245,7 @@
                 Payment Setup Endpoint and the Monetization ID as properties.
                 </li>
                 <li>The <a>user agent</a> also emits a {{ progress }} event
-                from <code>document.monetization</code>, corresponding to this
+                from <code>navigator.monetization</code>, corresponding to this
                 first packet.
                 </li>
               </ul>
@@ -265,11 +265,11 @@
                 <li>Each time a packet with a non-zero amount is fulfilled, the
                 provider notifies the browser, and the browser emits a {{
                 MonetizationProgressEvent }} on
-                <code>document.monetization</code>. The event has details of
+                <code>navigator.monetization</code>. The event has details of
                 the packet.
                 </li>
                 <li>When a stream is closed the
-                <code>document.monetization.state</code> MUST be set back to
+                <code>navigator.monetization.state</code> MUST be set back to
                 'pending'
                 </li>
               </ul>
@@ -495,7 +495,7 @@
                 The first non-zero payment is successfully sent.
               </td>
               <td>
-                {{ Document / monetization }} attribute
+                {{ Navigator / monetization }} attribute
               </td>
             </tr>
             <tr>
@@ -509,7 +509,7 @@
                 A payment is successfully made to the receiver.
               </td>
               <td>
-                {{ Document / monetization }}
+                {{ Navigator / monetization }}
               </td>
             </tr>
           </table>
