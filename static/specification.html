@@ -99,34 +99,28 @@
       </h2>
       <dl>
         <dt>
-          <dfn>User</dfn>:
-        </dt>
-        <dd>
-          the party who is accessing the web-monetized website.
-        </dd>
-        <dt>
-          <dfn>Website</dfn>:
-        </dt>
-        <dd>
-          the web-monetized website.
-        </dd>
-        <dt>
           <dfn data-lt="provider">Web Monetization provider</dfn>:
         </dt>
         <dd>
-          the party making payments on behalf of the user.
+          The party making payments on behalf of the user. A Web Monetization
+          provider uses the [[[SPSP]]] (<abbr title=
+          "Simple Payment Setup Protocol">SPSP</abbr>) on top of the
+          [[[Interledger]]] (<abbr title=
+          "Interledger Protocol">ILP</abbr>)/[[[STREAM]]] to provide a
+          high-level way to send money and data.
         </dd>
         <dt>
           <dfn>Web Monetization receiver</dfn>:
         </dt>
         <dd>
-          the party receiving payments on behalf of the website.
+          The party receiving payments on behalf of the website.
         </dd>
         <dt>
-          <dfn>User agent</dfn>:
+          <dfn>Payment end-point</dfn>:
         </dt>
         <dd>
-          the web browser used by the user.
+          A [=URL=] to a conforming HTTP <a data-cite="SPSP#specification">SPSP
+          end-point</a>.
         </dd>
       </dl>
     </section>
