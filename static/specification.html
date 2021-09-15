@@ -499,7 +499,7 @@
             [SecureContext, Exposed=Window]
             interface MonetizationEvent : Event {
               constructor(DOMString type, MonetizationEventInit eventInitDict);
-              readonly attribute USVString paymentPointer;
+              readonly attribute USVString url;
               readonly attribute DOMString requestId;
               readonly attribute DOMString amount;
               readonly attribute DOMString assetCode;
@@ -509,12 +509,12 @@
           </pre>
           <section>
             <h2>
-              <dfn>paymentPointer</dfn> attribute
+              <dfn>url</dfn> attribute
             </h2>
             <p>
               When getting, returns the value it was initialized with. See
-              {{MonetizationEventInit/paymentPointer}} member of
-              {{MonetizationEventInit}} for more information.
+              {{MonetizationEventInit/url}} member of {{MonetizationEventInit}}
+              for more information.
             </p>
           </section>
           <section>
@@ -579,7 +579,7 @@
           </p>
           <pre class="idl">
               dictionary MonetizationEventInit : EventInit {
-                required USVString paymentPointer;
+                required USVString url;
                 required DOMString requestId;
                 required DOMString amount;
                 required DOMString assetCode;
@@ -589,10 +589,10 @@
             </pre>
           <dl>
             <dt>
-              <dfn>paymentPointer</dfn> member
+              <dfn>url</dfn> member
             </dt>
             <dd>
-              A string representing a [=payment end-point=].
+              A URL that the [=payment end-point=] that generated the event.
             </dd>
             <dt>
               <dfn>requestId</dfn> member
