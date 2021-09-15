@@ -156,17 +156,250 @@
       <h2>
         Link type "monetization"
       </h2>
-      <p>
-        The "monetization" keyword may be used with [^link^] elements. This
-        keyword creates an external resource link.
-      </p>
+      <aside class="issue">
+        This is a "monkey patch" for the HTML spec, which means this would
+        eventually be moved to the HTML spec.
+      </aside>
       <p>
         The monetization keyword indicates a [=payment end-point=] used to
         monetize the document.
       </p>
+      <aside class="issue" data-number="192"></aside>
       <p>
-        ...Fetching and processing details TBW...
+        Every instance of {{Navigator}} has an <dfn data-dfn-for=
+        "Navigator">[[\activeMonetizationElement]]</dfn> internal slot of type
+        {{HTMLLinkElement}}, which represents the element in the document which
+        controls the monetization. It is initialized as `null`.
       </p>
+      <p>
+        The <code data-x="rel-monetization">monetization</code> keyword may be
+        used with <code>link</code> elements. This keyword creates an
+        <span data-x="external resource link">external resource link</span>.
+      </p>
+      <p>
+        Only the first <code>link</code> element in <span>tree order</span>
+        whose <code data-x="attr-link-rel">rel</code> attribute contains the
+        token <code data-x="rel-monetization">monetization</code> may be used.
+      </p>
+      <p>
+        The <code data-x="rel-monetization">monetization</code> keyword
+        indicates the [=payment end-point=] to associate with this browsing
+        context.
+      </p>
+      <div>
+        <p>
+          There is no default type for resources given by the <code data-x=
+          "rel-monetization">monetization</code> keyword.
+        </p>
+        <p>
+          The appropriate times to <span data-x=
+          "fetch and process the linked resource">fetch and process</span> this
+          type of link is:
+        </p>
+        <ul>
+          <li>
+            <p>
+              When {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}}
+              is `null`.
+            </p>
+          </li>
+          <li>
+            <p>
+              When the <span>external resource link</span> is created on a
+              <code>link</code> element that is already <span>browsing-context
+              connected</span>.
+            </p>
+          </li><!-- e.g. rel="" changed, href="" set... -->
+          <li>
+            <p>
+              When the <span>external resource link</span>'s <code>link</code>
+              element <span>becomes browsing-context connected</span>.
+            </p>
+          </li>
+          <li>
+            <p>
+              When the <code data-x="attr-link-href">href</code> attribute of
+              the <code>link</code> element of an <span>external resource
+              link</span> that is already <span>browsing-context
+              connected</span> is changed.
+            </p>
+          </li>
+          <li>
+            <p>
+              When the <code data-x="attr-link-disabled">disabled</code>
+              attribute of the <code>link</code> element of an <span>external
+              resource link</span> that is already <span>browsing-context
+              connected</span> is set, changed, or removed.
+            </p>
+          </li>
+          <li>
+            <p>
+              When the <code data-x="attr-link-crossorigin">crossorigin</code>
+              attribute of the <code>link</code> element of an <span data-x=
+              "external resource link">external resource link</span> that is
+              already <span>browsing-context connected</span> is set, changed,
+              or removed.
+            </p>
+          </li>
+          <li>
+            <p>
+              When the <code data-x="attr-link-type">type</code> attribute of
+              the <code>link</code> element of an <span>external resource
+              link</span> that is already <span>browsing-context
+              connected</span> is set or changed to a value that does not or no
+              longer matches the <span data-x="Content-Type">Content-Type
+              metadata</span> of the previous obtained external resource, if
+              any.
+            </p>
+          </li>
+          <li>
+            <p>
+              When the <code data-x="attr-link-type">type</code> attribute of
+              the <code>link</code> element of an <span>external resource
+              link</span> that is already <span>browsing-context
+              connected</span>, but was previously not obtained due to the
+              <code data-x="attr-link-type">type</code> attribute specifying an
+              unsupported type, is set, removed, or changed.
+            </p>
+          </li>
+        </ul>
+        <p>
+          A user agent must not <span>delay the load event</span> for this link
+          type.
+        </p>
+        <p>
+          The <span>linked resource fetch setup steps</span> for this type of
+          linked resource, given a <code>link</code> element <var>el</var> and
+          <span data-x="concept-request">request</span> <var>request</var>,
+          are:
+        </p>
+        <ol>
+          <li>
+            <p>
+              If {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}} is
+              not `null`, then return false.
+            </p>
+          </li>
+          <li>
+            <!-- detached element / non-fully active elements -->
+            <p>
+              If <var>el</var> <span>cannot navigate</span>, then return false.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <var>el</var>'s <span>node document</span> is not allowed to
+              use the "monetization" feature, return false.
+            </p>
+          </li>
+          <li>
+            <p>
+              If <var>el</var>'s is not the the first <code>link</code> element
+              in <span>tree order</span> whose <code data-x=
+              "attr-link-rel">rel</code> attribute contains the token
+              <code data-x="rel-manifest">manifest</code>, return false.
+            </p>
+          </li>
+          <li>
+            <p>
+              Set {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}}
+              to element.
+            </p>
+          </li>
+          <li>
+            <p>
+              Let <var>context</var> be <var>el</var>'s <span>node
+              document</span>'s <span data-x="concept-document-bc">browsing
+              context</span>.
+            </p>
+          </li>
+          <li>
+            <p>
+              Set <var>request</var>'s <span data-x=
+              "concept-request-initiator">initiator</span> to "".
+            </p>
+          </li>
+          <li>
+            <p>
+              Set <var>request</var>'s <span data-x=
+              "concept-request-destination">destination</span> to
+              "<code data-x="">????</code>".
+            </p>
+            <aside class="issue">
+              <p>
+                We need to coordinate with the fetch spec here... I suspect we
+                need a new request [=request/destination=] "monetization".
+              </p>
+            </aside>
+          </li>
+          <li>
+            <p>
+              Set <var>request</var>'s <span data-x=
+              "concept-request-mode">mode</span> to "<code data-x=
+              "">cors</code>".
+            </p>
+          </li>
+          <li>
+            <p>
+              Set <var>request</var>'s <span data-x=
+              "concept-request-credentials-mode">credentials mode</span> to the
+              <span>CORS settings attribute credentials mode</span> for
+              <var>el</var>'s <code data-x=
+              "attr-link-crossorigin">crossorigin</code> content attribute.
+            </p>
+          </li>
+          <li>
+            <p>
+              Return true.
+            </p>
+          </li>
+        </ol>
+        <p>
+          To <span data-x="process the linked resource">process this type of
+          linked resource</span> given a <code>link</code> element
+          <var>el</var>, boolean <var>success</var>, and <span data-x=
+          "concept-response">response</span> <var>response</var>:
+        </p>
+        <ol>
+          <li>
+            <p>
+              If <var>response</var>'s <span data-x="Content-Type">Content-Type
+              metadata</span> is not a <span>JSON MIME type</span>, then set
+              <var>success</var> to false.
+            </p>
+            <aside class="issue">
+              <p>
+                We can be more strict about the media type here, but we need to
+                formally register the media type with IANA
+                (`application/spsp+json`). However, we can also be more
+                lenient, and allow the media type to just be anything that ends
+                with "+json".
+              </p>
+            </aside>
+          </li>
+          <li>
+            <p>
+              If <var>success</var> is true, then <span>initialize
+              monetization</span> given <var>el</var> and <var>response</var>.
+            </p>
+          </li>
+        </ol>
+      </div>
+      <p>
+        If the {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}}
+        <span>becomes browsing-context disconnected</span> run the following
+        [=removing steps=]:
+      </p>
+      <ol>
+        <li>Set {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}} to
+        `null`.
+        </li>
+        <li>Stop monetization.
+        </li>
+        <li>Re-establish a new "monetization" link relationship, if one is
+        available.
+        </li>
+      </ol>
     </section>
     <section>
       <h2>
