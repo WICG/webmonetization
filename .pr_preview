@@ -1,4 +1,5 @@
 {
   "src_file": "static/specification.html",
-  "type": "respec"
+  "type": "respec",
+  "branch": "main"
 }
