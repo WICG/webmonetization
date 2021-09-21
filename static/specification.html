@@ -500,11 +500,10 @@
             interface MonetizationEvent : Event {
               constructor(DOMString type, MonetizationEventInit eventInitDict);
               readonly attribute USVString url;
-              readonly attribute DOMString requestId;
               readonly attribute DOMString amount;
               readonly attribute DOMString assetCode;
-              readonly attribute DOMString assetScale;
-              readonly attribute DOMString receipt;
+              readonly attribute octet assetScale;
+              readonly attribute DOMString? receipt;
             };
           </pre>
           <section>
@@ -574,8 +573,7 @@
           </h3>
           <p>
             Dispatched once the first ILP packet with a non-zero amount has
-            been fulfilled by the page's SPSP receiver. MUST be dispatched at
-            least once if payment occurs.
+            been fulfilled by the page's SPSP receiver.
           </p>
           <pre class="idl">
               dictionary MonetizationEventInit : EventInit {
@@ -583,8 +581,8 @@
                 required DOMString requestId;
                 required DOMString amount;
                 required DOMString assetCode;
-                required DOMString assetScale;
-                required DOMString receipt;
+                required octet assetScale;
+                DOMString? receipt = null;
               };
             </pre>
           <dl>
