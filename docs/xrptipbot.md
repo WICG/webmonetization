@@ -10,7 +10,7 @@ import XrpMigration13 from './assets/xrpmigration/xrpMigration13.png';
 
 ## NOTICE
 
-If you are an XRP TipBot user, **you must link your account to [Uphold](uphold.md)** to be able to send and/or receive tips in the near future. This change is due to the passage of the European Union’s 5th Anti-Money Laundering Directive (AMLD5). XRP TipBot is not going away immediately, but you should either **migrate** your balance to Uphold or **withdraw** your balance as soon as possible. When you sign into your XRP TipBot account, you’ll be guided through migrating or withdrawing.
+XRP TipBot is no longer operational. You can [withdraw](https://www.xrptipbot.com/withdraw) your funds or you can link your account to [Uphold](uphold.md) and migrate your balance.
 
 > Uphold is in the process of obtaining a BitLicense in the state of New York. Until the BitLicense is issued they cannot support cryptocurrency transactions. If you reside in New York, you’ll need to withdraw your funds from the TipBot. You can still set up an Uphold account for fiat money but it won’t be linked to XRP TipBot.
 
@@ -18,29 +18,31 @@ If you are an XRP TipBot user, **you must link your account to [Uphold](uphold.m
 
 ### Connect your account
 
-1. Click **Continue to the next step**.
+1. Sign in to your XRP TipBot account.
+
+2. Click **Continue to the next step**.
 
 ![](assets/xrpmigration/xrpMigration01.png)
 
-2. Click **Register** if you don’t have an Uphold account yet. You’ll be taken to [Uphold’s sign up page](https://uphold.com/signup).
+3. Click **Register** if you don’t have an Uphold account yet. You’ll be taken to [Uphold’s sign up page](https://uphold.com/signup).
 
-3. If you do have an Uphold account, click **Connect**.
+4. If you do have an Uphold account, click **Connect**.
 
 ![](assets/xrpmigration/xrpMigration03.png)
 
-4. If you clicked **Connect**, review the information on this page carefully.
+5. If you clicked **Connect**, review the information on this page carefully.
 
 ![](assets/xrpmigration/xrpMigration04.png)
 
-5. Click **OK, connect to Uphold**. Uphold’s sign in page opens.
+6. Click **OK, connect to Uphold**. Uphold’s sign in page opens.
 
 <img src={XrpMigration05} height="400"/>
 
-6. Sign in to your account. You’ll be prompted to authorize Uphold to connect to XRP TipBot.
+7. Sign in to your account. You’ll be prompted to authorize Uphold to connect to XRP TipBot.
 
 <img src={XrpMigration06} height="700"/>
 
-7. Click **Authorize**.
+8. Click **Authorize**.
 
 After you authorize Uphold, your browser might take you back to the XRP TipBot screen with the **OK, connect to Uphold** button. That’s fine. Uphold will send you a confirmation email within a few minutes.
 
