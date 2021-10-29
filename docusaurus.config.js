@@ -67,7 +67,7 @@ const tools = [
     name: 'Hugo Web Monetization Component',
     image: 'logo-tool-hugo.svg',
     link: 'https://github.com/sabinebertram/hugo-webmonetization-component',
-    desc: 'This component adds a partial including the "monetization" meta tag and the payment pointer of the creator.',
+    desc: 'Theme component that enables web monetization on your entire Hugo website.',
   },
   {
     name: 'Monetize 11ty',
@@ -97,7 +97,7 @@ const tools = [
     name: 'Vuepress Plugin Web-Monetization',
     image: 'logo-tool-vuepress.png',
     link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization',
-    desc: 'Adds a web-monetization meta tag to your VuePress website. This allows you to monetize your content using the web-monetization standard.',
+    desc: 'Adds a web-monetization meta tag to your VuePress website.',
   },
   {
     name: 'Tessy',
@@ -115,7 +115,13 @@ const tools = [
     name: 'Moodle Webmonetization Module',
     image: 'moodle_webmo_logo.png',
     link: 'https://github.com/andrewhancox/moodle-local_webmonetization',
-    desc: 'A JavaScript browser API which allows the creation of a payment stream from the user agent to the website.',
+    desc: 'A plugin for adding a web monetization meta tag to your Moodle site.',
+  },
+  {
+    name: 'Jekyll + Webmonetization',
+    image: 'jekyll_webmo_logo.svg',
+    link: 'https://github.com/philnash/jekyll-web_monetization',
+    desc: 'A Jekyll plugin for adding a web monetization meta tag to your site.',
   },
 ]
 
