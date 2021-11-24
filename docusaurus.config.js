@@ -67,7 +67,7 @@ const tools = [
     name: 'Hugo Web Monetization Component',
     image: 'logo-tool-hugo.svg',
     link: 'https://github.com/sabinebertram/hugo-webmonetization-component',
-    desc: 'Theme component that enables web monetization on your entire Hugo website.',
+    desc: 'Theme component that enables Web Monetization on your entire Hugo website.',
   },
   {
     name: 'Monetize 11ty',
@@ -79,13 +79,13 @@ const tools = [
     name: 'gridsome-plugin-monetization',
     image: 'logo-tool-gridsome.svg',
     link: 'https://github.com/Sergix/gridsome-plugin-monetization',
-    desc: 'Web monetization plugin for Gridsome.',
+    desc: 'Web Monetization plugin for Gridsome.',
   },
   {
     name: 'gatsby-plugin-monetization',
     image: 'logo-tool-gatsby.svg',
     link: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization',
-    desc: 'A Gatsby plugin for react-monetize to speed up your integration with Web Monetization API.',
+    desc: 'A Gatsby plugin for react-monetize to speed up your integration with Web Monetization.',
   },
   {
     name: 'ngx-monetization',
@@ -97,7 +97,7 @@ const tools = [
     name: 'Vuepress Plugin Web-Monetization',
     image: 'logo-tool-vuepress.png',
     link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization',
-    desc: 'Adds a web-monetization meta tag to your VuePress website.',
+    desc: 'Adds a Web Monetization meta tag to your VuePress website.',
   },
   {
     name: 'Tessy',
@@ -121,7 +121,7 @@ const tools = [
     name: 'Jekyll + Webmonetization',
     image: 'jekyll_webmo_logo.svg',
     link: 'https://github.com/philnash/jekyll-web_monetization',
-    desc: 'A Jekyll plugin for adding a web monetization meta tag to your site.',
+    desc: 'A Jekyll plugin for adding a Web Monetization meta tag to your site.',
   },
 ]
 
