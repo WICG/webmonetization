@@ -238,7 +238,7 @@
                 <li>This event is a {{ MonetizationEvent }} containing the
                 Payment Setup Endpoint and the Monetization ID as properties.
                 </li>
-                <li>The <a>user agent</a> also emits a {{ progress }} event
+                <li>The <a>user agent</a> also emits a "monetization" event
                 from <code>document.monetization</code>, corresponding to this
                 first packet.
                 </li>
@@ -403,7 +403,7 @@
           [Exposed=Window, SecureContext]
           interface Monetization : EventTarget {
             readonly attribute MonetizationState state;
-            attribute EventHandler onprogress;
+            attribute EventHandler onmonetization;
           };
         </pre>
         <section>
@@ -417,11 +417,11 @@
         </section>
         <section>
           <h2>
-            <dfn>onprogress</dfn> attribute
+            <dfn>onmonetization</dfn> attribute
           </h2>
           <p>
-            A {{Monetization/onprogress}} attribute is an [=event handler IDL
-            attribute=] for an {{MonetizationEvent}} named "<a>progress</a>".
+            A {{Monetization/onmonetization}} attribute is an [=event handler IDL
+            attribute=] for an {{MonetizationEvent}} named "monetization".
           </p>
         </section>
       </section>
@@ -477,7 +477,7 @@
             <tr>
               <td>
                 <code><dfn data-dfn-for="monetization" class=
-                "event">progress</dfn></code>
+                "event">monetization</dfn></code>
               </td>
               <td>
                 {{MonetizationEvent}}
