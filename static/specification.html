@@ -323,7 +323,7 @@
             <p>
               Set <var>request</var>'s <span data-x=
               "concept-request-destination">destination</span> to
-              "<code data-x="">????</code>".
+              "<code data-x="">monetization</code>".
             </p>
             <aside class="issue">
               <p>
@@ -357,31 +357,40 @@
         <p>
           To <span data-x="process the linked resource">process this type of
           linked resource</span> given a <code>link</code> element
-          <var>el</var>, boolean <var>success</var>, and <span data-x=
+          <var>element</var>, boolean <var>success</var>, and <span data-x=
           "concept-response">response</span> <var>response</var>:
         </p>
         <ol>
           <li>
             <p>
-              If <var>response</var>'s <span data-x="Content-Type">Content-Type
-              metadata</span> is not a <span>JSON MIME type</span>, then set
-              <var>success</var> to false.
+              If |response|'s status is not an ok status, the set |success| to
+              false.
             </p>
-            <aside class="issue">
-              <p>
-                We can be more strict about the media type here, but we need to
-                formally register the media type with IANA
-                (`application/spsp+json`). However, we can also be more
-                lenient, and allow the media type to just be anything that ends
-                with "+json".
-              </p>
-            </aside>
           </li>
           <li>
             <p>
-              If <var>success</var> is true, then <span>initialize
-              monetization</span> given <var>el</var> and <var>response</var>.
+              Otherwise, if <var>response</var>'s <span data-x=
+              "Content-Type">Content-Type metadata</span> is not a <span>JSON
+              MIME type</span>, then set <var>success</var> to false.
             </p>
+          </li>
+          <li>Let |json| be the result of [=parse JSON bytes to an Infra
+          value=] passing |response|'s [=body=].
+          </li>
+          <li>If |json| is an exception, then set <var>success</var> to false.
+          </li>
+          <li>[=Perform simple payment validation=] with |json| as per
+          [[Interledger]], and set |success| to be the result.
+          </li>
+          <li>[=Queue an element task=] on the [=networking task source=] given
+          |element| and the following steps:
+            <ol>
+              <li>If |success| is true, [=fire an event=] named "load" at
+              |element|.
+              </li>
+              <li>Otherwise, [=fire an event=] named "error" at |element|.
+              </li>
+            </ol>
           </li>
         </ol>
       </div>
