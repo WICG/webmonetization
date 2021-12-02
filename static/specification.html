@@ -66,9 +66,9 @@
   <body>
     <section id="abstract">
       <p>
-        Web Monetization allows websites to automatically receive
-        micro payments from users, facilitated by the user agent and a user's
-        preferred monetization provider.
+        Web Monetization allows websites to automatically receive payments from
+        users, facilitated by the user agent and a user's preferred
+        monetization provider.
       </p>
     </section>
     <section id="sotd">
@@ -109,25 +109,26 @@
           <dfn data-lt="provider">Monetization provider</dfn>:
         </dt>
         <dd>
-          The party making payments on behalf of the user. A Monetization
-          provider uses the [[[SPSP]]] (<abbr title=
-          "Simple Payment Setup Protocol">SPSP</abbr>) on top of the
+          The party making payments on behalf of the user. A monetization
+          provider leverages the [[[SPSP]]] (<abbr title=
+          "Simple Payment Setup Protocol">SPSP</abbr>) together with
           [[[Interledger]]] (<abbr title=
           "Interledger Protocol">ILP</abbr>)/[[[STREAM]]] to provide a
-          high-level way to send money and data.
+          high-level way to pay a [=monetization receiver=].
         </dd>
         <dt>
           <dfn>Monetization receiver</dfn>:
         </dt>
         <dd>
-          The party receiving payments on behalf of the website.
+          The party receiving payments on behalf of the website, whose details
+          are provided by a [=payment end-point=].
         </dd>
         <dt>
           <dfn>Payment end-point</dfn>:
         </dt>
         <dd>
-          A [=URL=] to a conforming HTTP <a data-cite="SPSP#specification">SPSP
-          end-point</a>.
+          A [=URL=] to a <a data-cite="SPSP#specification">SPSP end-point</a>
+          (i.e., a JSON resource containing details that facilitate payment).
         </dd>
       </dl>
     </section>
@@ -165,15 +166,17 @@
       </h2>
       <aside class="issue">
         <p>
-          This is a "monkey patch" for the HTML spec, which means this would
-          eventually be moved to the HTML spec.
+          This is a "monkey patch" for the [[HTML]] specification: If accepted,
+          this will eventually be moved to HTML itself.
         </p>
       </aside>
       <aside class="note" title="Multiple monetization links">
         <p>
-          Although a single HTML document can have multiple links with the
+          Although a single HTML document can have multiple [^link^] elements with the
           "monetization" link type, the user agent might restrict the number of
-          concurrent [[STREAM]] connections it can simultaneously supports.
+          concurrent [[STREAM]] connections it can simultaneously support.
+          In such a case, an "error" event will be fired at the
+          [^link^] element where a connection can't be established.
         </p>
       </aside>
       <p>
@@ -358,15 +361,14 @@
           </li>
           <li>If |json| is an exception, then set <var>success</var> to false.
           </li>
-          <li>If |success| is true, [=perform simple payment validation=] with |json| as per
-          [[Interledger]], and set |success| to be the result.
+          <li>If |success| is true, [=perform simple payment validation=] with
+          |json| as per [[Interledger]], and set |success| to be the result.
           </li>
           <li>
             <p>
-              If the user agent has exhausted the number of allowed
-              [[STREAM]] connections, set |success| to false.
+              If the user agent has exhausted the number of allowed [[STREAM]]
+              connections, set |success| to false.
             </p>
-            <ol>
           </li>
           <li>[=Queue an element task=] on the [=networking task source=] given
           |element| and the following steps:
