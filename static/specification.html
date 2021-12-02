@@ -66,9 +66,9 @@
   <body>
     <section id="abstract">
       <p>
-        Web Monetization is an API that allows websites to automatically
-        receive micro-payments from users, facilitated by the browser and a
-        user's Web Monetization provider.
+        Web Monetization allows websites to automatically receive
+        micro payments from users, facilitated by the user agent and a user's
+        preferred monetization provider.
       </p>
     </section>
     <section id="sotd">
@@ -93,16 +93,23 @@
         </p>
       </div>
     </section>
-    <section id="terminology">
+    <section id="model">
       <h2>
-        Terminology
+        Model
       </h2>
       <dl>
         <dt>
-          <dfn data-lt="provider">Web Monetization provider</dfn>:
+          Monetization
         </dt>
         <dd>
-          The party making payments on behalf of the user. A Web Monetization
+          A payment made by a user to a website, facilitated through a
+          [=monetization provider=].
+        </dd>
+        <dt>
+          <dfn data-lt="provider">Monetization provider</dfn>:
+        </dt>
+        <dd>
+          The party making payments on behalf of the user. A Monetization
           provider uses the [[[SPSP]]] (<abbr title=
           "Simple Payment Setup Protocol">SPSP</abbr>) on top of the
           [[[Interledger]]] (<abbr title=
@@ -110,7 +117,7 @@
           high-level way to send money and data.
         </dd>
         <dt>
-          <dfn>Web Monetization receiver</dfn>:
+          <dfn>Monetization receiver</dfn>:
         </dt>
         <dd>
           The party receiving payments on behalf of the website.
@@ -144,32 +151,34 @@
     </section>
     <section>
       <h2>
-        Extensions to the `Navigator` interface
+        `onmonetization` event handler
       </h2>
-      <pre class="idl">
-        partial interface Navigator {
-          readonly attribute Monetization monetization;
-        };
-      </pre>
+      <p>
+        The `onmonetization` event handler is a [=event handler content
+        attribute=] attribute that can be applied to any element. The user
+        agent uses it to notify that some [^link^] has been monetized.
+      </p>
     </section>
     <section>
       <h2>
         Link type "monetization"
       </h2>
       <aside class="issue">
-        This is a "monkey patch" for the HTML spec, which means this would
-        eventually be moved to the HTML spec.
+        <p>
+          This is a "monkey patch" for the HTML spec, which means this would
+          eventually be moved to the HTML spec.
+        </p>
+      </aside>
+      <aside class="note" title="Multiple monetization links">
+        <p>
+          Although a single HTML document can have multiple links with the
+          "monetization" link type, the user agent might restrict the number of
+          concurrent [[STREAM]] connections it can simultaneously supports.
+        </p>
       </aside>
       <p>
         The monetization keyword indicates a [=payment end-point=] used to
         monetize the document.
-      </p>
-      <aside class="issue" data-number="192"></aside>
-      <p>
-        Every instance of {{Navigator}} has an <dfn data-dfn-for=
-        "Navigator">[[\activeMonetizationElement]]</dfn> internal slot of type
-        {{HTMLLinkElement}}, which represents the element in the document which
-        controls the monetization. It is initialized as `null`.
       </p>
       <p>
         The <code data-x="rel-monetization">monetization</code> keyword may be
@@ -177,14 +186,8 @@
         <span data-x="external resource link">external resource link</span>.
       </p>
       <p>
-        Only the first <code>link</code> element in <span>tree order</span>
-        whose <code data-x="attr-link-rel">rel</code> attribute contains the
-        token <code data-x="rel-monetization">monetization</code> may be used.
-      </p>
-      <p>
         The <code data-x="rel-monetization">monetization</code> keyword
-        indicates the [=payment end-point=] to associate with this browsing
-        context.
+        indicates that some aspect of the document is monetized.
       </p>
       <div>
         <p>
@@ -197,12 +200,6 @@
           type of link is:
         </p>
         <ul>
-          <li>
-            <p>
-              When {{Navigator}}'s {{Navigator/[[activeMonetizationElement]]}}
-              is `null`.
-            </p>
-          </li>
           <li>
             <p>
               When the <span>external resource link</span> is created on a
@@ -275,12 +272,6 @@
         </p>
         <ol>
           <li>
-            <p>
-              If {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}} is
-              not `null`, then return false.
-            </p>
-          </li>
-          <li>
             <!-- detached element / non-fully active elements -->
             <p>
               If <var>el</var> <span>cannot navigate</span>, then return false.
@@ -302,12 +293,6 @@
           </li>
           <li>
             <p>
-              Set {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}}
-              to element.
-            </p>
-          </li>
-          <li>
-            <p>
               Let <var>context</var> be <var>el</var>'s <span>node
               document</span>'s <span data-x="concept-document-bc">browsing
               context</span>.
@@ -316,7 +301,7 @@
           <li>
             <p>
               Set <var>request</var>'s <span data-x=
-              "concept-request-initiator">initiator</span> to "".
+              "concept-request-initiator">initiator</span> to "document".
             </p>
           </li>
           <li>
@@ -325,12 +310,6 @@
               "concept-request-destination">destination</span> to
               "<code data-x="">monetization</code>".
             </p>
-            <aside class="issue">
-              <p>
-                We need to coordinate with the fetch spec here... I suspect we
-                need a new request [=request/destination=] "monetization".
-              </p>
-            </aside>
           </li>
           <li>
             <p>
@@ -379,8 +358,15 @@
           </li>
           <li>If |json| is an exception, then set <var>success</var> to false.
           </li>
-          <li>[=Perform simple payment validation=] with |json| as per
+          <li>If |success| is true, [=perform simple payment validation=] with |json| as per
           [[Interledger]], and set |success| to be the result.
+          </li>
+          <li>
+            <p>
+              If the user agent has exhausted the number of allowed
+              [[STREAM]] connections, set |success| to false.
+            </p>
+            <ol>
           </li>
           <li>[=Queue an element task=] on the [=networking task source=] given
           |element| and the following steps:
@@ -395,20 +381,9 @@
         </ol>
       </div>
       <p>
-        If the {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}}
-        <span>becomes browsing-context disconnected</span> run the following
-        [=removing steps=]:
+        If a "monetization" <code>link</code> <span>becomes browsing-context
+        disconnected</span>, stop monetization.
       </p>
-      <ol>
-        <li>Set {{Navigator}}'s {{Navigator\[[activeMonetizationElement]]}} to
-        `null`.
-        </li>
-        <li>Stop monetization.
-        </li>
-        <li>Re-establish a new "monetization" link relationship, if one is
-        available.
-        </li>
-      </ol>
     </section>
     <section>
       <h2>
@@ -611,7 +586,7 @@
               <dfn>paymentPointer</dfn> member
             </dt>
             <dd>
-              A string representing a [=payment end-point=].
+              A URL representing a [=payment end-point=].
             </dd>
             <dt>
               <dfn>requestId</dfn> member
