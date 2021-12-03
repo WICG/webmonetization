@@ -567,12 +567,100 @@
       </p>
       <aside class="note">
         <p>
-          A <a>document</a>’s [=Document/permissions policy=] determines
+          A <a>document</a>'s [=Document/permissions policy=] determines
           whether [^link^] elements are monetized - particularly in third-party
           content, such as an [^iframe^]. When disabled, monetization is
           disabled and related events won't be dispatched.
         </p>
       </aside>
+    </section>
+    <section>
+      <h2>
+        Content Security Policy
+      </h2>
+      <p class="note" title="Monkey patch 🐒">
+        This section will eventually be moved into the [[CSP]] and [[FETCH]]
+        specifications.
+      </p>
+      <section>
+        <h3>
+          <dfn>monetization-src</dfn> directive
+        </h3>
+        <p>
+          The monetization-src directive restricts the URLs from which a
+          [=payment pointer=] is loaded. The syntax for the directive's name
+          and value is described by the following ABNF:
+        </p>
+        <pre class="abnf">
+          directive-name  = "monetization-src"
+          directive-value = serialized-source-list
+        </pre>
+        <aside class="example">
+          <p>
+            Given a page with the following Content Security Policy:
+          </p>
+          <pre class="http">
+            Content-Security-Policy: monetization-src https://example.com/
+          </pre>
+          <p>
+            Fetches for the following code will return a network errors, as the
+            URL provided do not match monetization-src's source list:
+          </p>
+          <pre class="html">
+            &lt;link rel="monetization" href="https://example.org/payment-pointer"&gt;
+          </pre>
+        </aside>
+        <section>
+          <h4>
+            monetization-src Pre-request check
+          </h4>
+          <p>
+            This directive's pre-request check is as follows:
+          </p>
+          <p>
+            Given a [=request=] (|request|) and a [=policy=] (|policy|):
+          </p>
+          <ol class="algorithm">
+            <li>Let |name| be the result of executing "Get the effective
+            directive for request" on |request|.
+            </li>
+            <li>If the result of executing "Should fetch directive execute" on
+            |name|, `monetization-src` and |policy| is "No", return "Allowed".
+            </li>
+            <li>If the result of executing "Does request match source list?" on
+            |request|, this directive's value, and |policy|, is "Does Not
+            Match", return "Blocked".
+            </li>
+            <li>Return "Allowed".
+            </li>
+          </ol>
+        </section>
+        <section>
+          <h4>
+            monetization-src Post-request check
+          </h4>
+          <p>
+            This directive's post-request check is as follows:
+          </p>
+          <p>
+            Given a [=request=] (|request|) and a [=policy=] (|policy|):
+          </p>
+          <ol>
+            <li>Let |name| be the result of executing "Get the effective
+            directive for request" on |request|.
+            </li>
+            <li>If the result of executing "Should fetch directive execute" on
+            |name|, `monetization-src` and |policy| is "No", return "Allowed".
+            </li>
+            <li>If the result of executing "Does response to request match
+            source list?" on |response|, |request|, this directive's value, and
+            |policy|, is "Does Not Match", return "Blocked".
+            </li>
+            <li>Return "Allowed".
+            </li>
+          </ol>
+        </section>
+      </section>
     </section>
     <section>
       <h2>
@@ -591,16 +679,16 @@
         Privacy considerations
       </h2>
       <p>
-        Web monetization is designed to be privacy-preserving:
-        The user agent does not send any data to the [=monetization provider=].
-        Instead, it requests data from the [=monetization provider=] without
-        ever revealing the URL of the web page the user is currently browsing.
+        Web monetization is designed to be privacy-preserving: The user agent
+        does not send any data to the [=monetization provider=]. Instead, it
+        requests data from the [=monetization provider=] without ever revealing
+        the URL of the web page the user is currently browsing.
       </p>
       <p>
         Further, the user agent gets the payment information from the [=payment
-        pointer=] to establish the [[STREAM]] connection. This also
-        ensures the [=monetization provider=] doesn't have access to a user's
-        browsing history or to the [=payment pointer=].
+        pointer=] to establish the [[STREAM]] connection. This also ensures the
+        [=monetization provider=] doesn't have access to a user's browsing
+        history or to the [=payment pointer=].
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
