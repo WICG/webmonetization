@@ -99,7 +99,7 @@
       </h2>
       <dl>
         <dt>
-          Monetization
+          <dfn data-lt="monetized">Monetization</dfn>
         </dt>
         <dd>
           A payment made by a user to a website, facilitated through a
@@ -156,8 +156,8 @@
       </h2>
       <p>
         The `onmonetization` event handler is a [=event handler content
-        attribute=] attribute that can be applied to any element. The user
-        agent uses it to notify that some [^link^] has been monetized.
+        attribute=] that can be applied to any element. The user agent uses it
+        to notify that some [^link^] has been [=monetized=].
       </p>
     </section>
     <section>
@@ -357,7 +357,7 @@
             </p>
           </li>
           <li>Let |json| be the result of [=parse JSON bytes to an Infra
-          value=] passing |response|'s [=body=].
+          value=] passing |response|'s [=Response/body=].
           </li>
           <li>If |json| is an exception, then set <var>success</var> to false.
           </li>
@@ -389,285 +389,116 @@
         disconnected</span>, stop monetization.
       </p>
     </section>
-    <section>
+    <section id="events">
       <h2>
-        Monetization API
+        monetization event
       </h2>
-      <section data-dfn-for="Monetization">
-        <h2>
-          `Monetization` interface
-        </h2>
-        <pre class="idl">
-          [Exposed=Window, SecureContext]
-          interface Monetization : EventTarget {
-            readonly attribute MonetizationState state;
-            attribute EventHandler onprogress;
-          };
-        </pre>
-        <section>
-          <h2>
-            <dfn>state</dfn> attribute
-          </h2>
-          <p>
-            A {{Monetization/state}} attribute exposes the current state of Web
-            Monetization as a {{MonetizationState}} enum value.
-          </p>
-        </section>
-        <section>
-          <h2>
-            <dfn>onprogress</dfn> attribute
-          </h2>
-          <p>
-            A {{Monetization/onprogress}} attribute is an [=event handler IDL
-            attribute=] for an {{MonetizationEvent}} named "<a>progress</a>".
-          </p>
-        </section>
-      </section>
-      <section data-dfn-for="MonetizationState">
-        <h2>
-          <dfn>MonetizationState</dfn> enum
-        </h2>
-        <pre class="idl">
-            enum MonetizationState {
-              "pending",
-              "started"
-            };
-          </pre>
-        <dl>
-          <dt>
-            "<dfn>pending</dfn>"
-          </dt>
-          <dd>
-            Indicates that monetization has not yet started.
-          </dd>
-          <dt>
-            "<dfn>started</dfn>"
-          </dt>
-          <dd>
-            Indicates that monetization has started (i.e. the user agent fired
-            the `"start"` event).
-          </dd>
-        </dl>
-      </section>
-      <section id="events">
-        <h2>
-          Events
-        </h2>
-        <section>
-          <h3>
-            "monetization" event
-          </h3>
-          <p>
-            When the [[[STREAM]]] connection has fulfilled an ILP |envelope|
-            with a non-zero amount, perform the following steps:
-          </p>
-          <ol class="algorithm">
-            <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}}
-            associated with the [[[STREAM]]] connection.
+      <p>
+        When the [[[STREAM]]] connection has fulfilled an ILP |envelope| with a
+        non-zero amount, perform the following steps:
+      </p>
+      <ol class="algorithm">
+        <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} associated
+        with the [[[STREAM]]] connection.
+        </li>
+        <li>If |target| is `null`, then return.
+        </li>
+        <li>Let |initDict| be a {{MonetizationEventInit}} dictionary, whose
+        members are initialized to match |envelope|'s details.
+        </li>
+        <li>Let |event:MonetizationEvent| be a newly constructed
+        {{MonetizationEvent}} initialize with |initDict|.
+        </li>
+        <li>[=Queue a task=] on the [=monetization task source=] to perform the
+        following steps:
+          <ol>
+            <li>If |target| is not connected, return.
             </li>
-            <li>If |target| is `null`, then return.
-            </li>
-            <li>Let |initDict| be a {{MonetizationEventInit}} dictionary, whose
-            members are initialized to match |envelope|'s details.
-            </li>
-            <li>Let |event:MonetizationEvent| be a newly constructed
-            {{MonetizationEvent}} initialize with |initDict|.
-            </li>
-            <li>[=Queue a task=] on the [=monetization task source=] to perform
-            the following steps:
-              <ol>
-                <li>If |target| is not connected, return.
-                </li>
-                <li>[=Fire an event=] named "monetization" at |target|.
-                </li>
-              </ol>
+            <li>[=Fire an event=] named "monetization" at |target|.
             </li>
           </ol>
-        </section>
-        <section class="informative">
-          <h2>
-            Summary
-          </h2>
-          <table class="def data">
-            <tr>
-              <th>
-                Event name
-              </th>
-              <th>
-                Interface
-              </th>
-              <th>
-                Dispatched when…
-              </th>
-              <th>
-                Target
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <code><dfn data-dfn-for="monetization" class=
-                "event">progress</dfn></code>
-              </td>
-              <td>
-                {{MonetizationEvent}}
-              </td>
-              <td>
-                A payment is successfully made to the receiver.
-              </td>
-              <td>
-                {{Navigator/monetization}}
-              </td>
-            </tr>
-          </table>
-        </section>
-        <section data-dfn-for="MonetizationEvent">
-          <h2>
-            `MonetizationEvent` interface
-          </h2>
-          <pre class="idl">
-            [SecureContext, Exposed=Window]
-            interface MonetizationEvent : Event {
-              constructor(DOMString type, MonetizationEventInit eventInitDict);
-              readonly attribute USVString paymentPointer;
-              readonly attribute DOMString requestId;
-              readonly attribute DOMString amount;
-              readonly attribute DOMString assetCode;
-              readonly attribute DOMString assetScale;
-              readonly attribute DOMString receipt;
-            };
-          </pre>
-          <section>
-            <h2>
-              <dfn>paymentPointer</dfn> attribute
-            </h2>
-            <p>
-              When getting, returns the value it was initialized with. See
-              {{MonetizationEventInit/paymentPointer}} member of
-              {{MonetizationEventInit}} for more information.
-            </p>
-          </section>
-          <section>
-            <h2>
-              <dfn>requestId</dfn> attribute
-            </h2>
-            <p>
-              When getting, returns the value it was initialized with. See
-              {{MonetizationEventInit/requestId}} member of
-              {{MonetizationEventInit}} for more information.
-            </p>
-          </section>
-          <section>
-            <h2>
-              <dfn>amount</dfn> attribute
-            </h2>
-            <p>
-              When getting, returns the value it was initialized with. See
-              {{MonetizationEventInit/amount}} member of
-              {{MonetizationEventInit}} for more information.
-            </p>
-          </section>
-          <section>
-            <h2>
-              <dfn>assetCode</dfn> attribute
-            </h2>
-            <p>
-              When getting, returns the value it was initialized with. See
-              {{MonetizationEventInit/assetCode}} member of
-              {{MonetizationEventInit}} for more information.
-            </p>
-          </section>
-          <section>
-            <h2>
-              <dfn>assetScale</dfn> attribute
-            </h2>
-            <p>
-              When getting, returns the value it was initialized with. See
-              {{MonetizationEventInit/assetScale}} member of
-              {{MonetizationEventInit}} for more information.
-            </p>
-          </section>
-          <section>
-            <h2>
-              <dfn>receipt</dfn> attribute
-            </h2>
-            <p>
-              When getting, returns the value it was initialized with. See
-              {{MonetizationEventInit/receipt}} member of
-              {{MonetizationEventInit}} for more information.
-            </p>
-          </section>
-        </section>
-        <section data-dfn-for="MonetizationEventInit">
-          <h3>
-            <dfn>MonetizationEventInit</dfn> dictionary
-          </h3>
-          <p>
-            Dispatched once the first ILP packet with a non-zero amount has
-            been fulfilled by the page's SPSP receiver. MUST be dispatched at
-            least once if payment occurs.
-          </p>
-          <pre class="idl">
-              dictionary MonetizationEventInit : EventInit {
-                required USVString paymentPointer;
-                required DOMString requestId;
-                required DOMString amount;
-                required DOMString assetCode;
-                required DOMString assetScale;
-                required DOMString receipt;
-              };
-            </pre>
-          <dl>
-            <dt>
-              <dfn>paymentPointer</dfn> member
-            </dt>
-            <dd>
-              A URL representing a [=payment end-point=].
-            </dd>
-            <dt>
-              <dfn>requestId</dfn> member
-            </dt>
-            <dd>
-              The Monetization ID (UUID V4) [[RFC4122]].
-            </dd>
-            <dt>
-              <dfn>amount</dfn> member
-            </dt>
-            <dd>
-              The destination amount <em>received</em> as specified in the ILP
-              packet.
-            </dd>
-            <dt>
-              <dfn>assetCode</dfn> member
-            </dt>
-            <dd>
-              The three letter asset code describing the amount's units.
-            </dd>
-            <dt>
-              <dfn>assetScale</dfn> member
-            </dt>
-            <dd>
-              The scale of the amount. For example, USD would have an
-              <code>assetScale</code> of <code>2</code> when denominated in
-              cents.
-            </dd>
-            <dt>
-              <dfn>receipt</dfn> member
-            </dt>
-            <dd>
-              base64-encoded [[[Receipt]]] issued by the Web Monetization
-              receiver to the Web Monetization provider as proof of the total
-              amount received in the stream.
-            </dd>
-          </dl>
-        </section>
+        </li>
+      </ol>
+    </section>
+    <section data-dfn-for="MonetizationEvent">
+      <h2>
+        `MonetizationEvent` interface
+      </h2>
+      <pre class="idl">
+        [SecureContext, Exposed=Window]
+        interface MonetizationEvent : Event {
+          constructor(DOMString type, MonetizationEventInit eventInitDict);
+          readonly attribute USVString paymentPointer;
+          readonly attribute DOMString amount;
+          readonly attribute DOMString assetCode;
+          readonly attribute DOMString assetScale;
+          readonly attribute DOMString receipt;
+        };
+
+        dictionary MonetizationEventInit : EventInit {
+          required USVString paymentPointer;
+          required DOMString amount;
+          required DOMString assetCode;
+          required DOMString assetScale;
+          required DOMString receipt;
+        };
+      </pre>
+      <section>
+        <h2>
+          <dfn>paymentPointer</dfn> attribute
+        </h2>
+        <p>
+          A URL representing a [=payment end-point=]. When getting, returns the
+          value it was initialized with.
+        </p>
+      </section>
+      <section>
+        <h2>
+          <dfn>amount</dfn> attribute
+        </h2>
+        <p>
+          The destination amount <em>received</em> as specified in the ILP
+          packet. When getting, returns the value it was initialized with.
+        </p>
+      </section>
+      <section>
+        <h2>
+          <dfn>assetCode</dfn> attribute
+        </h2>
+        <p>
+          The three letter asset code describing the amount's units (e.g.,
+          "USD" for US dollars). When getting, returns the value it was
+          initialized with.
+        </p>
+      </section>
+      <section>
+        <h2>
+          <dfn>assetScale</dfn> attribute
+        </h2>
+        <p>
+          The scale of the amount. For example, USD would have an
+          <code>assetScale</code> of <code>2</code> when denominated in cents.
+          When getting, returns the value it was initialized with.
+        </p>
+      </section>
+      <section>
+        <h2>
+          <dfn>receipt</dfn> attribute
+        </h2>
+        <p>
+          `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
+          receiver=] to the [=Monetization provider=] as proof of the total
+          amount received in the stream. When getting, returns the value it was
+          initialized with.
+        </p>
       </section>
     </section>
     <section id="relation-to-other-technologies" class="informative">
       <h2>
-        Relation to other technologies
+        Relation to Web Payments
       </h2>
       <p>
-        Unlike [[[payment-Request]]] and the [[[Payment-Handler]]], Web
+        Unlike [[[Payment-Request]]] and the [[[Payment-Handler]]], Web
         Monetization is intended for continuous payments rather than discrete
         payments. Additionally, it is designed to <em>not</em> require any user
         interaction, serving as an alternative to traditional e-commerce
