@@ -93,6 +93,51 @@
         </p>
       </div>
     </section>
+    <section class="informative">
+      <h2>Usage examples</h2>
+      <section>
+        <h3>Monetizing a web page</h3>
+        <aside class="example">
+          <pre class="html">
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang="en"&gt;
+            &lt;meta charset="utf-8"&gt;
+            &lt;title&gt;My Blog&lt;/title&gt;
+            &lt;link
+              rel="monetization"
+              href="https://example.com/pay"
+              onmonetization="sayThanks()"&gt;
+
+            &lt;script&gt;
+              function sayThanks(event) {
+                // Do something here
+              }
+            &lt;/script&gt;
+          </pre>
+        </aside>
+      </section>
+      <section>
+        <h3>Monetizing media</h3>
+        <p>
+          The following example shows how to monetize various type of media
+          using different payment pointers.
+        </p>
+        <aside class="example">
+          <pre class="html">
+            &lt;video src="myvideo" onmonetization="sayThanks(this)"&gt;
+              &lt;link rel="monetization" href="https://example.com/video/pay"&gt;
+            &lt;/video&gt;
+
+            &lt;audio src="music.mp3" onmonetization="sayThanks(this)"&gt;
+              &lt;link rel="monetization" href="https://example.com/audio/pay"&gt;
+            &lt;/audio&gt;
+
+            &lt;picture srcset="cat.jpeg" onmonetization="sayThanks(this)"&gt;
+              &lt;link rel="monetization" href="https://example.com/cat/pay"&gt;
+            &lt;/picture&gt;
+          </pre>
+      </section>
+    </section>
     <section id="model">
       <h2>
         Model
