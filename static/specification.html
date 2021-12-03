@@ -99,7 +99,7 @@
       </h2>
       <dl>
         <dt>
-          <dfn data-lt="monetized">Monetization</dfn>
+          <dfn data-lt="monetized">Monetization</dfn>:
         </dt>
         <dd>
           A payment made by a user to a website, facilitated through a
@@ -149,16 +149,6 @@
         <li>Pays continuously as the user consumes content.
         </li>
       </ul>
-    </section>
-    <section>
-      <h2>
-        `onmonetization` event handler
-      </h2>
-      <p>
-        The `onmonetization` event handler is a [=event handler content
-        attribute=] that can be applied to any element. The user agent uses it
-        to notify that some [^link^] has been [=monetized=].
-      </p>
     </section>
     <section>
       <h2>
@@ -264,39 +254,32 @@
           </li>
         </ul>
         <p>
-          A user agent must not <span>delay the load event</span> for this link
+          A user agent MUST NOT <span>delay the load event</span> for this link
           type.
         </p>
         <p>
           The <span>linked resource fetch setup steps</span> for this type of
-          linked resource, given a <code>link</code> element <var>el</var> and
-          <span data-x="concept-request">request</span> <var>request</var>,
+          linked resource, given a <code>link</code> element <var>element</var>
+          and <span data-x="concept-request">request</span> <var>request</var>,
           are:
         </p>
         <ol>
           <li>
             <!-- detached element / non-fully active elements -->
             <p>
-              If <var>el</var> <span>cannot navigate</span>, then return false.
+              If <var>element</var> <span>cannot navigate</span>, then return
+              false.
             </p>
           </li>
           <li>
             <p>
-              If <var>el</var>'s <span>node document</span> is not allowed to
-              use the "monetization" feature, return false.
+              If <var>element</var>'s <span>node document</span> is not
+              [=allowed to use=] the "monetization" feature, return false.
             </p>
           </li>
           <li>
             <p>
-              If <var>el</var>'s is not the the first <code>link</code> element
-              in <span>tree order</span> whose <code data-x=
-              "attr-link-rel">rel</code> attribute contains the token
-              <code data-x="rel-manifest">manifest</code>, return false.
-            </p>
-          </li>
-          <li>
-            <p>
-              Let <var>context</var> be <var>el</var>'s <span>node
+              Let <var>context</var> be <var>element</var>'s <span>node
               document</span>'s <span data-x="concept-document-bc">browsing
               context</span>.
             </p>
@@ -304,7 +287,7 @@
           <li>
             <p>
               Set <var>request</var>'s <span data-x=
-              "concept-request-initiator">initiator</span> to "document".
+              "concept-request-initiator">initiator</span> to "`document`".
             </p>
           </li>
           <li>
@@ -326,7 +309,7 @@
               Set <var>request</var>'s <span data-x=
               "concept-request-credentials-mode">credentials mode</span> to the
               <span>CORS settings attribute credentials mode</span> for
-              <var>el</var>'s <code data-x=
+              <var>element</var>'s <code data-x=
               "attr-link-crossorigin">crossorigin</code> content attribute.
             </p>
           </li>
@@ -345,7 +328,7 @@
         <ol>
           <li>
             <p>
-              If |response|'s status is not an ok status, the set |success| to
+              If |response|'s status is not an OK status, the set |success| to
               false.
             </p>
           </li>
@@ -386,7 +369,17 @@
       </div>
       <p>
         If a "monetization" <code>link</code> <span>becomes browsing-context
-        disconnected</span>, stop monetization.
+        disconnected</span>, a user agent MUST stop monetization [[STREAM]].
+      </p>
+    </section>
+    <section>
+      <h2>
+        `onmonetization` event handler
+      </h2>
+      <p>
+        The `onmonetization` event handler is an [=event handler content
+        attribute=] that can be applied to any [=element=]. The user agent uses
+        it to notify that some [^link^] has been [=monetized=].
       </p>
     </section>
     <section id="events">
@@ -394,7 +387,7 @@
         monetization event
       </h2>
       <p>
-        When the [[[STREAM]]] connection has fulfilled an ILP |envelope| with a
+        When the [[[STREAM]]] connection has fulfilled an ILP |packet| with a
         non-zero amount, perform the following steps:
       </p>
       <ol class="algorithm">
@@ -403,11 +396,12 @@
         </li>
         <li>If |target| is `null`, then return.
         </li>
-        <li>Let |initDict| be a {{MonetizationEventInit}} dictionary, whose
-        members are initialized to match |envelope|'s details.
+        <li>Let |eventInitDict:MonetizationEventInit| be a
+        {{MonetizationEventInit}} dictionary, whose members are initialized to
+        match |packet|'s details.
         </li>
         <li>Let |event:MonetizationEvent| be a newly constructed
-        {{MonetizationEvent}} initialize with |initDict|.
+        {{MonetizationEvent}} initialized with |eventInitDict|.
         </li>
         <li>[=Queue a task=] on the [=monetization task source=] to perform the
         following steps:
@@ -428,37 +422,28 @@
         [SecureContext, Exposed=Window]
         interface MonetizationEvent : Event {
           constructor(DOMString type, MonetizationEventInit eventInitDict);
-          readonly attribute USVString paymentPointer;
           readonly attribute DOMString amount;
           readonly attribute DOMString assetCode;
           readonly attribute DOMString assetScale;
-          readonly attribute DOMString receipt;
+          readonly attribute DOMString? receipt;
+          readonly attribute USVString paymentPointer;
         };
 
         dictionary MonetizationEventInit : EventInit {
-          required USVString paymentPointer;
           required DOMString amount;
           required DOMString assetCode;
           required DOMString assetScale;
-          required DOMString receipt;
+          required DOMString? receipt;
+          required USVString paymentPointer;
         };
       </pre>
-      <section>
-        <h2>
-          <dfn>paymentPointer</dfn> attribute
-        </h2>
-        <p>
-          A URL representing a [=payment end-point=]. When getting, returns the
-          value it was initialized with.
-        </p>
-      </section>
       <section>
         <h2>
           <dfn>amount</dfn> attribute
         </h2>
         <p>
-          The destination amount <em>received</em> as specified in the ILP
-          packet. When getting, returns the value it was initialized with.
+          The amount received as by an ILP packet. When getting, returns the
+          value it was initialized with.
         </p>
       </section>
       <section>
@@ -487,9 +472,18 @@
         </h2>
         <p>
           `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
-          receiver=] to the [=Monetization provider=] as proof of the total
+          receiver=] to the [=monetization provider=] as proof of the total
           amount received in the stream. When getting, returns the value it was
           initialized with.
+        </p>
+      </section>
+      <section>
+        <h2>
+          <dfn>paymentPointer</dfn> attribute
+        </h2>
+        <p>
+          A URL representing a [=payment end-point=]. When getting, returns the
+          value it was initialized with.
         </p>
       </section>
     </section>
