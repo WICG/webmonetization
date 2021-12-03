@@ -612,7 +612,7 @@
         </aside>
         <section>
           <h4>
-            monetization-src Pre-request check
+            `monetization-src` Pre-request check
           </h4>
           <p>
             This directive's pre-request check is as follows:
@@ -637,7 +637,7 @@
         </section>
         <section>
           <h4>
-            monetization-src Post-request check
+            `monetization-src` Post-request check
           </h4>
           <p>
             This directive's post-request check is as follows:
@@ -673,6 +673,20 @@
         retain control of the monetization process by taking action (e.g., stop
         or start monetization of a particular site if they wish to do so).
       </p>
+      <p>
+        As [=payment pointers=] are generally provided as a service (e.g.,
+        Uphold), a XSS attack could inject a malicious [=payment pointer=] into
+        a page that uses the same service. To mitigate such an attack, it
+        RECOMMENDED that developers:
+      </p>
+      <ul>
+        <li>host a [=payment pointer=] on their own servers and request
+        [[SPSP]] details from the provider on the server as needed.
+        </li>
+        <li>Set the `monetization-src` CSP directive to restrict requests to
+        origins they control and trust to host [=payment pointers=].
+        </li>
+      </ul>
     </section>
     <section>
       <h2>
