@@ -172,10 +172,10 @@
       </aside>
       <aside class="note" title="Multiple monetization links">
         <p>
-          Although a single HTML document can have multiple [^link^] elements with the
-          "monetization" link type, the user agent might restrict the number of
-          concurrent [[STREAM]] connections it can simultaneously support.
-          In such a case, an "error" event will be fired at the
+          Although a single HTML document can have multiple [^link^] elements
+          with the "monetization" link type, the user agent might restrict the
+          number of concurrent [[STREAM]] connections it can simultaneously
+          support. In such a case, an "error" event will be fired at the
           [^link^] element where a connection can't be established.
         </p>
       </aside>
@@ -370,6 +370,8 @@
               connections, set |success| to false.
             </p>
           </li>
+          <li>Otherwise, establish a new [[STREAM]] connection.
+          </li>
           <li>[=Queue an element task=] on the [=networking task source=] given
           |element| and the following steps:
             <ol>
@@ -451,6 +453,37 @@
         <h2>
           Events
         </h2>
+        <section>
+          <h3>
+            "monetization" event
+          </h3>
+          <p>
+            When the [[[STREAM]]] connection has fulfilled an ILP |envelope|
+            with a non-zero amount, perform the following steps:
+          </p>
+          <ol class="algorithm">
+            <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}}
+            associated with the [[[STREAM]]] connection.
+            </li>
+            <li>If |target| is `null`, then return.
+            </li>
+            <li>Let |initDict| be a {{MonetizationEventInit}} dictionary, whose
+            members are initialized to match |envelope|'s details.
+            </li>
+            <li>Let |event:MonetizationEvent| be a newly constructed
+            {{MonetizationEvent}} initialize with |initDict|.
+            </li>
+            <li>[=Queue a task=] on the [=monetization task source=] to perform
+            the following steps:
+              <ol>
+                <li>If |target| is not connected, return.
+                </li>
+                <li>[=Fire an event=] named "monetization" at |target|.
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </section>
         <section class="informative">
           <h2>
             Summary
