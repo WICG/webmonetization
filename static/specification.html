@@ -586,6 +586,23 @@
         or start monetization of a particular site if they wish to do so).
       </p>
     </section>
+    <section>
+      <h2>
+        Privacy considerations
+      </h2>
+      <p>
+        Web monetization is designed to be privacy-preserving:
+        The user agent does not send any data to the [=monetization provider=].
+        Instead, it requests data from the [=monetization provider=] without
+        ever revealing the URL of the web page the user is currently browsing.
+      </p>
+      <p>
+        Further, the user agent gets the payment information from the [=payment
+        pointer=] to establish the [[STREAM]] connection. This also
+        ensures the [=monetization provider=] doesn't have access to a user's
+        browsing history or to the [=payment pointer=].
+      </p>
+    </section>
     <section id="relation-to-other-technologies" class="informative">
       <h2>
         Relation to Web Payments
