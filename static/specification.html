@@ -487,6 +487,24 @@
         </p>
       </section>
     </section>
+    <section id="permissions-policy" data-cite="permissions-policy">
+      <h2>
+        Permissions Policy integration
+      </h2>
+      <p>
+        This specification defines a [=policy-controlled feature=] identified
+        by the string <dfn class="permission">"monetization"</dfn>". Its
+        <a>default allowlist</a> is `'self'`.
+      </p>
+      <aside class="note">
+        <p>
+          A <a>document</a>’s [=Document/permissions policy=] determines
+          whether [^link^] elements are monetized - particularly in
+          third-party content, such as an [^iframe^]. When disabled,
+          monetization is disabled and related events won't be dispatched.
+        </p>
+      </aside>
+    </section>
     <section id="relation-to-other-technologies" class="informative">
       <h2>
         Relation to Web Payments
