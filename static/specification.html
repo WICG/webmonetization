@@ -126,7 +126,7 @@
         </h3>
         <p>
           The following example shows how to monetize various type of media
-          using different payment pointers.
+          using different [=payment end-point=].
         </p>
         <aside class="example">
           <pre class="html">
@@ -574,7 +574,7 @@
         </p>
       </aside>
     </section>
-    <section>
+    <section data-cite="CSP">
       <h2>
         Content Security Policy
       </h2>
@@ -588,7 +588,7 @@
         </h3>
         <p>
           The monetization-src directive restricts the URLs from which a
-          [=payment pointer=] is loaded. The syntax for the directive's name
+          [=payment end-point=] is loaded. The syntax for the directive's name
           and value is described by the following ABNF:
         </p>
         <pre class="abnf">
@@ -610,7 +610,7 @@
             &lt;link rel="monetization" href="https://example.org/payment-pointer"&gt;
           </pre>
         </aside>
-        <section>
+        <section data-cite="CSP">
           <h4>
             `monetization-src` Pre-request check
           </h4>
@@ -618,7 +618,7 @@
             This directive's pre-request check is as follows:
           </p>
           <p>
-            Given a [=request=] (|request|) and a [=policy=] (|policy|):
+            Given a [=request=] (|request|) and a [=violation/policy=] (|policy|):
           </p>
           <ol class="algorithm">
             <li>Let |name| be the result of executing "Get the effective
@@ -643,7 +643,7 @@
             This directive's post-request check is as follows:
           </p>
           <p>
-            Given a [=request=] (|request|) and a [=policy=] (|policy|):
+            Given a [=request=] (|request|) and a [=violation/policy=] (|policy|):
           </p>
           <ol>
             <li>Let |name| be the result of executing "Get the effective
@@ -674,17 +674,17 @@
         or start monetization of a particular site if they wish to do so).
       </p>
       <p>
-        As [=payment pointers=] are generally provided as a service (e.g.,
-        Uphold), a XSS attack could inject a malicious [=payment pointer=] into
+        As [=payment end-points=] are generally provided as a service (e.g.,
+        Uphold), a XSS attack could inject a malicious [=payment end-points=] into
         a page that uses the same service. To mitigate such an attack, it
         RECOMMENDED that developers:
       </p>
       <ul>
-        <li>host a [=payment pointer=] on their own servers and request
+        <li>host a [=payment end-point=] on their own servers and request
         [[SPSP]] details from the provider on the server as needed.
         </li>
         <li>Set the `monetization-src` CSP directive to restrict requests to
-        origins they control and trust to host [=payment pointers=].
+        origins they control and trust to host [=payment end-points=].
         </li>
       </ul>
     </section>
@@ -700,9 +700,9 @@
       </p>
       <p>
         Further, the user agent gets the payment information from the [=payment
-        pointer=] to establish the [[STREAM]] connection. This also ensures the
+        end-point=] to establish the [[STREAM]] connection. This also ensures the
         [=monetization provider=] doesn't have access to a user's browsing
-        history or to the [=payment pointer=].
+        history or to the [=payment end-point=].
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
