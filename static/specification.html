@@ -413,7 +413,8 @@
               <li>If |success| is true, [=fire an event=] named "load" at
               |element|, which bubbles.
               </li>
-              <li>Otherwise, [=fire an event=] named "error" at |element|, which bubbles.
+              <li>Otherwise, [=fire an event=] named "error" at |element|,
+              which bubbles.
               </li>
             </ol>
           </li>
@@ -618,7 +619,8 @@
             This directive's pre-request check is as follows:
           </p>
           <p>
-            Given a [=request=] (|request|) and a [=violation/policy=] (|policy|):
+            Given a [=request=] (|request|) and a [=violation/policy=]
+            (|policy|):
           </p>
           <ol class="algorithm">
             <li>Let |name| be the result of executing "Get the effective
@@ -643,7 +645,8 @@
             This directive's post-request check is as follows:
           </p>
           <p>
-            Given a [=request=] (|request|) and a [=violation/policy=] (|policy|):
+            Given a [=request=] (|request|) and a [=violation/policy=]
+            (|policy|):
           </p>
           <ol>
             <li>Let |name| be the result of executing "Get the effective
@@ -675,8 +678,8 @@
       </p>
       <p>
         As [=payment end-points=] are generally provided as a service (e.g.,
-        Uphold), a XSS attack could inject a malicious [=payment end-points=] into
-        a page that uses the same service. To mitigate such an attack, it
+        Uphold), a XSS attack could inject a malicious [=payment end-points=]
+        into a page that uses the same service. To mitigate such an attack, it
         RECOMMENDED that developers:
       </p>
       <ul>
@@ -700,8 +703,8 @@
       </p>
       <p>
         Further, the user agent gets the payment information from the [=payment
-        end-point=] to establish the [[STREAM]] connection. This also ensures the
-        [=monetization provider=] doesn't have access to a user's browsing
+        end-point=] to establish the [[STREAM]] connection. This also ensures
+        the [=monetization provider=] doesn't have access to a user's browsing
         history or to the [=payment end-point=].
       </p>
     </section>
