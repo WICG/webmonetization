@@ -410,11 +410,10 @@
           <li>[=Queue an element task=] on the [=networking task source=] given
           |element| and the following steps:
             <ol>
-              <li>If |success| is true, [=fire an event=] named "load" at
-              |element|, which bubbles.
+              <li>If |success| is true, [=fire an event=] named `"load"` at
+              |element|.
               </li>
-              <li>Otherwise, [=fire an event=] named "error" at |element|,
-              which bubbles.
+              <li>Otherwise, [=fire an event=] named `"error"` at |element|.
               </li>
             </ol>
           </li>
@@ -461,7 +460,8 @@
           <ol>
             <li>If |target| is not connected, return.
             </li>
-            <li>[=Fire an event=] named "monetization" at |target|.
+            <li>[=Fire an event=] named `"monetization"` at |target|, with
+            {{Event/bubbles}} initialized to true.
             </li>
           </ol>
         </li>
