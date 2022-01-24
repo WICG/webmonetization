@@ -207,19 +207,18 @@
           <pre class="JS">
             /** @type {MonetizationEvent} event */
             async function verifyReceipt(event) {
-              const url = 'https://verifier.example/';
-              const url.searchParam.set("verify", event.paymentPointer);
-              const request = new Request(url, {
-                method: "POST",
-                body: JSON.stringify({
-                  receipt: event.receipt
-                },
-                headers: {
-                  "Content-Type": "application/json"
-                }
+              const body = JSON.stringify({
+                receipt: event.receipt
               });
 
-              const response = await fetch(request);
+              const response = await fetch('https://verifier.example/verify/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body);
+              });
+
               if (response.ok) {
                 // The payment was verified
               } else {
