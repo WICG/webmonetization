@@ -110,13 +110,85 @@
             &lt;link
               rel="monetization"
               href="https://example.com/pay"
-              onmonetization="sayThanks()"&gt;
+              onmonetization="sayThanks(this)"&gt;
 
             &lt;script&gt;
-              function sayThanks(event) {
+              function sayThanks(monetizedLink) {
                 // Do something here
               }
             &lt;/script&gt;
+          </pre>
+        </aside>
+      </section>
+      <section>
+        <h3>
+          Monetization events
+        </h3>
+        <p>
+          The {{MonetizationEvent}} DOM events provide information such as the
+          amount received, the currency of the payment (what we call the "asset
+          code"), and a receipt that can be used to verify the receipt of
+          payment. As in the previous example above, these events are
+          dispatched to [^link^] elements and bubble up the DOM tree.
+        </p>
+        <p>
+          To listen for {{MonetizationEvent}} events, you need to add an
+          [=event listener=] to the the relevant [^link^] element via
+          JavaScript:
+        </p>
+        <aside class="example">
+          <pre class="html">
+            &lt;link rel="monetization" href="https://example.com/pay"&gt;
+            &lt;script&gt;
+              const link = document.querySelector('link[rel="monetization"]');
+              link.addEventListener("monetization", event =&gt; {
+                // See how much your received and in what currency
+                const { amount, assetCode, assetScale } = event;
+                console.log(`Received ${assetCode}${amount} (${assetScale}).`);
+
+                // And use the receipt to verify the payment using
+                // a payment verification service (see next example).
+                verifyReceipt(event);
+              });
+            &lt;/script&gt;
+          </pre>
+        </aside>
+      </section>
+      <section>
+        <h3>
+          Verifying a receipt
+        </h3>
+        <p>
+          The {{MonetizationEvent}}'s {{MonetizationEvent/receipt}} attribute
+          is a unique string can be used to verify the payment using a payment
+          verification service.
+        </p>
+        <p>
+          Below is a hypothetical verification service "verifier.example" that
+          performs verification via a `POST` HTTP request.
+        </p>
+        <aside class="example">
+          <pre class="JS">
+            /** @type {MonetizationEvent} event */
+            async function verifyReceipt(event) {
+              const body = JSON.stringify({
+                receipt: event.receipt
+              });
+
+              const response = await fetch('https://verifier.example/verify/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body);
+              });
+
+              if (response.ok) {
+                // The payment was verified
+              } else {
+                // The payment was not verified
+              }
+            }
           </pre>
         </aside>
       </section>
@@ -139,7 +211,7 @@
             &lt;/audio&gt;
 
             &lt;picture srcset="cat.jpeg" onmonetization="sayThanks(this)"&gt;
-              &lt;link rel="monetization" href="https://example.com/cat/pay"&gt;
+              &lt;link rel="monetization" href="https://example.com/images/pay"&gt;
             &lt;/picture&gt;
           </pre>
         </aside>
@@ -512,7 +584,7 @@
           <dfn>amount</dfn> attribute
         </h2>
         <p>
-          The amount received as by an ILP packet. When getting, returns the
+          The amount delivered by an ILP packet. When getting, returns the
           value it was initialized with.
         </p>
       </section>
@@ -521,7 +593,7 @@
           <dfn>assetCode</dfn> attribute
         </h2>
         <p>
-          The three letter asset code describing the amount's units (e.g.,
+          The three letter asset code identifying the amount's units (e.g.,
           "USD" for US dollars). When getting, returns the value it was
           initialized with.
         </p>
@@ -563,7 +635,7 @@
       </h2>
       <p>
         This specification defines a [=policy-controlled feature=] identified
-        by the string <dfn class="permission">"monetization"</dfn>". Its
+        by the string <dfn class="permission">"monetization"</dfn>. Its
         <a>default allowlist</a> is `'self'`.
       </p>
       <aside class="note">
