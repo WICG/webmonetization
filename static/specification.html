@@ -602,7 +602,7 @@
           constructor(DOMString type, MonetizationEventInit eventInitDict);
           readonly attribute DOMString amount;
           readonly attribute DOMString assetCode;
-          readonly attribute DOMString assetScale;
+          readonly attribute unsigned long long assetScale;
           readonly attribute DOMString? receipt;
           readonly attribute USVString paymentPointer;
         };
@@ -610,7 +610,7 @@
         dictionary MonetizationEventInit : EventInit {
           required DOMString amount;
           required DOMString assetCode;
-          required DOMString assetScale;
+          required unsigned long long assetScale;
           required DOMString? receipt;
           required USVString paymentPointer;
         };
