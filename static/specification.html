@@ -99,6 +99,42 @@
       </h2>
       <section>
         <h3>
+          Checking if Web Monetization is supported
+        </h3>
+        <p>
+          There are multiple ways to check if Web Monetization is supported.
+          One way is to call {{DOMTokenList/supports()}} on a [^link^]
+          element's {{HTMLLinkElement/relList}} passing the `"monetization"`
+          keyword. Alternatively, you can check if either the
+          {{MonetizationEvent}} interface or "`onmonetization`" [=event handler
+          IDL attribute=], exists on the {{Window}} object.
+        </p>
+        <aside class="example">
+          <pre class="HTML">
+            &lt;link rel="monetization" href="https://example.com/monetization.js"&gt;
+            &lt;script&gt;
+              // Checking via DOMTokenList
+              const link = document.querySelector('link[rel="monetization"]') ||
+                document.createElement("link");
+              if (link.relList.supports("monetization")) {
+                console.log("Web Monetization is supported.");
+              }
+
+              // Checking global scope for MonetizationEvent
+              if (window.MonetizationEvent) {
+                console.log("Web Monetization is supported.");
+              }
+
+              // Checking if it's a global event handler
+              if (window.hasOwnProperty("onmonetization")) {
+                console.log("Web Monetization is supported.");
+              }
+            &lt;/script&gt;
+          </pre>
+        </aside>
+      </section>
+      <section>
+        <h3>
           Monetizing a web page
         </h3>
         <aside class="example">
