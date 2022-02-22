@@ -1,9 +1,38 @@
 {
-  "docs": {
-    "Overview": ["getting-started", "api"],
-    "Examples": ["exclusive-content", "remove-ads", "counter", "probabilistic-rev-sharing", "start-stop", "receipt-verifier"],
-    "Explainer": ["explainer", "receiving", "sending"],
-    "Wallets": ["ilp-wallets","gatehub", "xrptipbot"],
-    "More": ["specification", "glossary", "resources"]
-  }
+  "docs": [
+    "web-monetization-api",
+    {
+      "Interfaces": [
+        "monetization-event",
+        "link",
+        "link-type",
+        "on-monetization",
+        "permission-policy",
+        "csp"
+      ],
+      "Concepts": [
+        "explainer",
+        "receiving",
+        "sending"
+      ],
+      "Guides and Tutorials": [
+        "exclusive-content",
+        "remove-ads",
+        "counter",
+        "probabilistic-rev-sharing",
+        "start-stop",
+        "receipt-verifier"
+      ],
+      "Payment Pointer Providers": [
+        "ilp-wallets",
+        "gatehub",
+        "uphold",
+        "xrptipbot"
+      ],
+      "Resources": [
+        "glossary",
+        "resources"
+      ]
+    }
+  ]
 }

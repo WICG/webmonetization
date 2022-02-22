@@ -9,7 +9,7 @@ export default class Docs extends React.Component {
 
     return (
       <Redirect
-        to={'/docs/getting-started'}
+        to={'/docs/web-monetization-api'}
         config={siteConfig}
       />
     )
