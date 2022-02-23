@@ -122,8 +122,8 @@
           One way is to call {{DOMTokenList/supports()}} on a [^link^]
           element's {{HTMLLinkElement/relList}} passing the `"monetization"`
           keyword. Alternatively, you can check if either the
-          {{MonetizationEvent}} interface or "`onmonetization`" [=event handler
-          IDL attribute=], exists on the {{Window}} object.
+          {{MonetizationEvent}} interface or the "`onmonetization`" [=event handler
+          IDL attribute=] exist on the {{Window}} object.
         </p>
         <aside class="example">
           <pre class="HTML">
@@ -184,8 +184,8 @@
           dispatched to [^link^] elements and bubble up the DOM tree.
         </p>
         <p>
-          To listen for {{MonetizationEvent}} events, you need to add an
-          [=event listener=] to the the relevant [^link^] element via
+          To listen for {{MonetizationEvent}} events, an
+          [=event listener=] needs to be added to the the relevant [^link^] element via
           JavaScript:
         </p>
         <aside class="example">
@@ -212,7 +212,7 @@
         </h3>
         <p>
           The {{MonetizationEvent}}'s {{MonetizationEvent/receipt}} attribute
-          is a unique string can be used to verify the payment using a payment
+          is a unique string that can be used to verify the payment using a payment
           verification service.
         </p>
         <p>
@@ -249,8 +249,8 @@
           Monetizing media
         </h3>
         <p>
-          The following example shows how to monetize various type of media
-          using different [=payment end-point=].
+          The following example shows how to monetize various types of media
+          using different [=payment end-points=].
         </p>
         <aside class="example">
           <pre class="html">
