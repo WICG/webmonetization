@@ -18,22 +18,34 @@
         },
         editors: [
           {
+            name: 'Marcos Caceres',
+            url: 'https://w3.org/',
+            company: 'W3C',
+          },
+          {
+            name: 'Alex Lakatos',
+            url: 'https://interledger.org/',
+            company: 'Interledger Foundation',
+          },
+          {
             name: 'Adrian Hope-Bailie',
             email: 'adrian@coil.com',
             company: 'Coil Technologies Inc.',
-            companyURL: 'https://coil.com'
+            companyURL: 'https://coil.com',
+            retiredDate: '2021-12-01',
           },
           {
             name: 'Ben Sharafian',
             email: 'ben@coil.com',
             company: 'Coil Technologies Inc.',
-            companyURL: 'https://coil.com'
+            companyURL: 'https://coil.com',
+            retiredDate: '2022-02-01',
           },
           {
             name: 'Nick Dudfield',
             company: 'Coil Technologies Inc.',
-            companyURL: 'https://coil.com'
-          }
+            companyURL: 'https://coil.com',
+          },
         ],
         shortName: 'web-monetization',
         specStatus: 'CG-DRAFT',
@@ -42,24 +54,25 @@
         localBiblio: {
           Interledger: {
             title: 'Interledger Protocol',
-            href: 'https://interledger.org/rfcs/0027-interledger-protocol-4/'
+            href: 'https://interledger.org/rfcs/0027-interledger-protocol-4/',
           },
           SPSP: {
             title: 'Simple Payments Setup Protocol',
-            href:
-              'https://interledger.org/rfcs/0009-simple-payment-setup-protocol'
+            href: 'https://interledger.org/rfcs/0009-simple-payment-setup-protocol',
           },
           STREAM: {
             title: 'STREAM',
-            href:
-              'https://interledger.org/rfcs/0029-stream/'
+            href: 'https://interledger.org/rfcs/0029-stream/',
           },
           Receipt: {
             title: 'STREAM Receipt',
-            href:
-              'https://interledger.org/rfcs/0039-stream-receipts/'
+            href: 'https://interledger.org/rfcs/0039-stream-receipts/',
           },
-        }
+          'Open-Payments': {
+            title: 'Open Payments',
+            href: 'https://docs.openpayments.dev/',
+          },
+        },
       }
     </script>
   </head>
@@ -270,10 +283,8 @@
         </dt>
         <dd>
           The party making payments on behalf of the user. A monetization
-          provider leverages the [[[SPSP]]] (<abbr title=
-          "Simple Payment Setup Protocol">SPSP</abbr>) together with
-          [[[Interledger]]] (<abbr title=
-          "Interledger Protocol">ILP</abbr>)/[[[STREAM]]] to provide a
+          provider leverages the [[[Interledger]]] suite of protocols and
+          technologies (e.g., [[Open-Payments]] or [[STREAM]]) to provide a
           high-level way to pay a [=monetization receiver=].
         </dd>
         <dt>
@@ -289,6 +300,14 @@
         <dd>
           A [=URL=] to a <a data-cite="SPSP#specification">SPSP end-point</a>
           (i.e., a JSON resource containing details that facilitate payment).
+        </dd>
+        <dt>
+          <dfn>Payment connection</dfn>
+        </dt>
+        <dd>
+          A network connection made over the [[[Interledger]]] network using,
+          for example, [[Open-Payments]] or [[STREAM]], for the purpose of
+          facilitating a payment.
         </dd>
       </dl>
     </section>
@@ -306,7 +325,12 @@
         <li>Developers have a way to associate payments with their users, in
         order to provide a range of experiences.
         </li>
-        <li>Pays continuously as the user consumes content.
+        <li>Users retains control of if, when, and how payments are made to the
+        site. For example, micropayments of a predetermined monetary value
+        could be "streamed" to the site over time. Alternatively, the user
+        could make a one or many discreet "one-off" payment(s) of any arbitrary
+        monetary amount, even while micropayments are simultaneously being
+        streamed.
         </li>
       </ul>
     </section>
@@ -324,7 +348,7 @@
         <p>
           Although a single HTML document can have multiple [^link^] elements
           with the "monetization" link type, the user agent might restrict the
-          number of concurrent [[STREAM]] connections it can simultaneously
+          number of concurrent [=payment connections=] it can simultaneously
           support. In such a case, an "error" event will be fired at the
           [^link^] element where a connection can't be established.
         </p>
@@ -504,16 +528,16 @@
           </li>
           <li>If |json| is an exception, then set <var>success</var> to false.
           </li>
-          <li>If |success| is true, [=perform simple payment validation=] with
-          |json| as per [[Interledger]], and set |success| to be the result.
+          <li>If |success| is true, perform simple payment validation with
+          |json| as per [[SPSP]], and set |success| to be the result.
           </li>
           <li>
             <p>
-              If the user agent has exhausted the number of allowed [[STREAM]]
-              connections, set |success| to false.
+              If the user agent has exhausted the number of allowed [=payment
+              connections=], set |success| to false.
             </p>
           </li>
-          <li>Otherwise, establish a new [[STREAM]] connection.
+          <li>Otherwise, establish a new [=payment connection=].
           </li>
           <li>[=Queue an element task=] on the [=networking task source=] given
           |element| and the following steps:
@@ -529,7 +553,7 @@
       </div>
       <p>
         If a "monetization" <code>link</code> <span>becomes browsing-context
-        disconnected</span>, a user agent MUST stop monetization [[STREAM]].
+        disconnected</span>, a user agent MUST stop the [=payment connection=].
       </p>
     </section>
     <section>
@@ -547,18 +571,23 @@
         monetization event
       </h2>
       <p>
-        When the [[[STREAM]]] connection has fulfilled an ILP |packet| with a
+        When the [=payment connection=] has fulfilled an ILP |packet| with a
         non-zero amount, perform the following steps:
       </p>
       <ol class="algorithm">
         <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} associated
-        with the [[[STREAM]]] connection.
+        with the [=payment connection=].
         </li>
         <li>If |target| is `null`, then return.
         </li>
         <li>Let |eventInitDict:MonetizationEventInit| be a
         {{MonetizationEventInit}} dictionary, whose members are initialized to
         match |packet|'s details.
+          <p class="issue">
+            We probably need to canonicalize things like `assetCode` to
+            uppercase. See {{PaymentCurrencyAmount/currency}} for how it's done
+            in [[Payment-Request]].
+          </p>
         </li>
         <li>Let |event:MonetizationEvent| be a newly constructed
         {{MonetizationEvent}} initialized with |eventInitDict|.
@@ -600,17 +629,17 @@
         [SecureContext, Exposed=Window]
         interface MonetizationEvent : Event {
           constructor(DOMString type, MonetizationEventInit eventInitDict);
-          readonly attribute DOMString amount;
+          readonly attribute bigint amount;
           readonly attribute DOMString assetCode;
-          readonly attribute unsigned long long assetScale;
+          readonly attribute octet assetScale;
           readonly attribute DOMString? receipt;
           readonly attribute USVString paymentPointer;
         };
 
         dictionary MonetizationEventInit : EventInit {
-          required DOMString amount;
+          required bigint amount;
           required DOMString assetCode;
-          required unsigned long long assetScale;
+          required octet assetScale;
           required DOMString? receipt;
           required USVString paymentPointer;
         };
@@ -671,7 +700,7 @@
       </h2>
       <p>
         This specification defines a [=policy-controlled feature=] identified
-        by the string <dfn class="permission">"monetization"</dfn>. Its
+        by the string <dfn class="permission export">"monetization"</dfn>. Its
         <a>default allowlist</a> is `'self'`.
       </p>
       <aside class="note">
@@ -693,7 +722,7 @@
       </p>
       <section>
         <h3>
-          <dfn>monetization-src</dfn> directive
+          <dfn class="export">monetization-src</dfn> directive
         </h3>
         <p>
           The monetization-src directive restricts the URLs from which a
@@ -811,7 +840,7 @@
       </p>
       <p>
         Further, the user agent gets the payment information from the [=payment
-        end-point=] to establish the [[STREAM]] connection. This also ensures
+        end-point=] to establish the [=payment connection=]. This also ensures
         the [=monetization provider=] doesn't have access to a user's browsing
         history or to the [=payment end-point=].
       </p>
@@ -821,11 +850,10 @@
         Relation to Web Payments
       </h2>
       <p>
-        Unlike [[[Payment-Request]]] and the [[[Payment-Handler]]], Web
-        Monetization is intended for continuous payments rather than discrete
-        payments. Additionally, it is designed to <em>not</em> require any user
-        interaction, serving as an alternative to traditional e-commerce
-        checkout methods.
+        Unlike [[[Payment-Request]]] and the [[[Payment-Handler]]], which only
+        supports "one-off" payments, Web Monetization provides a [=payment
+        connection=] that supports both continuous payments and "one-off"
+        payments.
       </p>
     </section>
     <section id="conformance" class="appendix"></section>
