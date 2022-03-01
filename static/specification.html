@@ -19,7 +19,7 @@
         editors: [
           {
             name: 'Marcos Caceres',
-            email: 'marcos@w3c.org ',
+            email: 'marcos@w3c.org',
             company: 'W3C',
             companyURL: 'https://w3.org/',
           },
@@ -44,7 +44,7 @@
             retiredDate: '2022-02-01',
           },
           {
-            name: 'Nick Dudfield',
+            name: 'Nicholas Dudfield',
             email: 'niq@coil.com',
             company: 'Coil Technologies Inc.',
             companyURL: 'https://coil.com',
@@ -185,8 +185,8 @@
         </p>
         <p>
           To listen for {{MonetizationEvent}} events, an
-          [=event listener=] needs to be added to the the relevant [^link^] element via
-          JavaScript:
+          [=event listener=] needs to be added to  the relevant [^link^] element
+          (or to one of its ancestors) via JavaScript:
         </p>
         <aside class="example">
           <pre class="html">
@@ -194,12 +194,12 @@
             &lt;script&gt;
               const link = document.querySelector('link[rel="monetization"]');
               link.addEventListener("monetization", event =&gt; {
-                // See how much your received and in what currency
+                // See how much was received and in what currency
                 const { amount, assetCode, assetScale } = event;
                 console.log(`Received ${assetCode}${amount} (${assetScale}).`);
 
-                // And use the receipt to verify the payment using
-                // a payment verification service (see next example).
+                // Use the receipt to verify the payment using
+                // a verification service (see next example).
                 verifyReceipt(event);
               });
             &lt;/script&gt;
@@ -302,7 +302,7 @@
           <dfn>Payment end-point</dfn>:
         </dt>
         <dd>
-          A [=URL=] to a <a data-cite="SPSP#specification">SPSP end-point</a>
+          An [=URL=] to a <a data-cite="SPSP#specification">SPSP end-point</a>
           (i.e., a JSON resource containing details that facilitate payment).
         </dd>
         <dt>
@@ -693,7 +693,7 @@
           <dfn>paymentPointer</dfn> attribute
         </h2>
         <p>
-          A URL representing a [=payment end-point=]. When getting, returns the
+          An URL representing a [=payment end-point=]. When getting, returns the
           value it was initialized with.
         </p>
       </section>
@@ -819,7 +819,7 @@
       </p>
       <p>
         As [=payment end-points=] are generally provided as a service (e.g.,
-        Uphold), a XSS attack could inject a malicious [=payment end-points=]
+        Uphold), an XSS attack could inject a malicious [=payment end-points=]
         into a page that uses the same service. To mitigate such an attack, it
         RECOMMENDED that developers:
       </p>
@@ -837,7 +837,7 @@
         Privacy considerations
       </h2>
       <p>
-        Web monetization is designed to be privacy-preserving: The user agent
+        Web Monetization is designed to be privacy-preserving: The user agent
         does not send any data to the [=monetization provider=]. Instead, it
         requests data from the [=monetization provider=] without ever revealing
         the URL of the web page the user is currently browsing.
