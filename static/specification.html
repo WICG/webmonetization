@@ -122,8 +122,8 @@
           One way is to call {{DOMTokenList/supports()}} on a [^link^]
           element's {{HTMLLinkElement/relList}} passing the `"monetization"`
           keyword. Alternatively, you can check if either the
-          {{MonetizationEvent}} interface or the "`onmonetization`" [=event handler
-          IDL attribute=] exist on the {{Window}} object.
+          {{MonetizationEvent}} interface or the "`onmonetization`" [=event
+          handler IDL attribute=] exist on the {{Window}} object.
         </p>
         <aside class="example">
           <pre class="HTML">
@@ -184,9 +184,9 @@
           dispatched to [^link^] elements and bubble up the DOM tree.
         </p>
         <p>
-          To listen for {{MonetizationEvent}} events, an
-          [=event listener=] needs to be added to  the relevant [^link^] element
-          (or to one of its ancestors) via JavaScript:
+          To listen for {{MonetizationEvent}} events, an [=event listener=]
+          needs to be added to the relevant [^link^] element (or to one of its
+          ancestors) via JavaScript:
         </p>
         <aside class="example">
           <pre class="html">
@@ -212,8 +212,8 @@
         </h3>
         <p>
           The {{MonetizationEvent}}'s {{MonetizationEvent/receipt}} attribute
-          is a unique string that can be used to verify the payment using a payment
-          verification service.
+          is a unique string that can be used to verify the payment using a
+          payment verification service.
         </p>
         <p>
           Below is a hypothetical verification service "verifier.example" that
@@ -309,9 +309,15 @@
           <dfn>Payment connection</dfn>
         </dt>
         <dd>
-          A network connection made over the [[[Interledger]]] network using,
-          for example, [[Open-Payments]] or [[STREAM]], for the purpose of
-          facilitating a payment.
+          An [[[Interledger]]] network connection for the purpose of
+          facilitating a payment that is either:
+          <ol>
+            <li>made over [[STREAM]] and setup via [[SPSP]],
+            </li>
+            <li>or made over [[HTTP]] and [[STREAM]] and setup via
+            [[Open-Payments]].
+            </li>
+          </ol>
         </dd>
       </dl>
     </section>
@@ -693,8 +699,8 @@
           <dfn>paymentPointer</dfn> attribute
         </h2>
         <p>
-          A [=URL=] representing a [=payment end-point=]. When getting, returns the
-          value it was initialized with.
+          A [=URL=] representing a [=payment end-point=]. When getting, returns
+          the value it was initialized with.
         </p>
       </section>
     </section>
@@ -819,9 +825,10 @@
       </p>
       <p>
         As [=payment end-points=] are generally provided as a service (e.g.,
-        Uphold), a <abbr title="Cross Site Scripting">XSS</abbr> attack could inject a malicious [=payment end-points=]
-        into a page that uses the same service. To mitigate such an attack, it
-        RECOMMENDED that developers:
+        Uphold), a <abbr title="Cross Site Scripting">XSS</abbr> attack could
+        inject a malicious [=payment end-points=] into a page that uses the
+        same service. To mitigate such an attack, it RECOMMENDED that
+        developers:
       </p>
       <ul>
         <li>host a [=payment end-point=] on their own servers and request
