@@ -371,6 +371,23 @@ h2 {
   flex-grow: 1;
 }
 
+.specifications table {
+  display: table;
+}
+
+.specifications table th, .specifications table td {
+  padding: .5rem .75rem;
+}
+
+.specifications table th {
+  text-align: left;
+  background-color: #fbfbfe;
+}
+
+.specifications a span {
+  font-size: smaller;
+}
+
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
 }
 
