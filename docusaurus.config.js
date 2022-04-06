@@ -47,6 +47,12 @@ const browsers = [
     link: 'https://microsoftedge.microsoft.com/addons/detail/ljionajlbinlfkdnpkloejeoogfgkojm?hl=en-US',
     desc: 'Support websites and creators with Web Monetization. (published by Coil)',
   },
+  {
+    name: 'Brave Browser',
+    image: 'logo-browser-brave.svg',
+    link: 'https://brave.com/',
+    desc: 'Browse privately. Search privately. And ditch Big Tech',
+  },
 ]
 
 const search = [
