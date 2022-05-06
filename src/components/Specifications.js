@@ -26,7 +26,7 @@ export default function Specifications({ children, link }) {
                 rel={'noopener noreferrer'}
               >
                 {children}<OpenInNew color="disabled" fontSize='inherit' />
-                <br></br><span>#{link}</span>
+                <br></br><span>{link && `#${link}`}</span>
               </a>
             </td>
           </tr>
