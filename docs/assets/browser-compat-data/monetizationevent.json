@@ -7,26 +7,26 @@
         "support": {
           "chrome": {
             "version_added": true,
-            "notes": "You'll need to use the Web Monetization Extension."
+            "notes": "You'll need to use a Web Monetization Extension."
           },
           "edge": {
             "version_added": true,
-            "notes": "You'll need to use the Web Monetization Extension."
+            "notes": "You'll need to use a Web Monetization Extension."
           },
           "firefox": {
             "version_added": true,
-            "notes": "You'll need to use the Web Monetization Extension."
+            "notes": "You'll need to use a Web Monetization Extension."
           },
           "ie": {
             "version_added": false
           },
           "opera": {
             "version_added": true,
-            "notes": "You'll need to use the Web Monetization Extension."
+            "notes": "You'll need to use a Web Monetization Extension."
           },
           "safari": {
             "version_added": true,
-            "notes": "You'll need to use the Web Monetization Extension."
+            "notes": "You'll need to use a Web Monetization Extension."
           },
           "webview_android": {
             "version_added": false
