@@ -358,8 +358,9 @@ button.content-generator__btn {
   display: table;
 }
 
-.specifications table th, .specifications table td {
-  padding: .5rem .75rem;
+.specifications table th,
+.specifications table td {
+  padding: 0.5rem 0.75rem;
 }
 
 .specifications table th {
@@ -369,6 +370,101 @@ button.content-generator__btn {
 
 .specifications a span {
   font-size: smaller;
+}
+.browser-compat th {
+  vertical-align: bottom;
+}
+.browser-compat .visually-hidden {
+  display: none;
+}
+
+.browser-compat .bc-head-txt-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  left: calc(50% - 0.5rem);
+  line-height: 1;
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.browser-compat .icon.icon-chrome {
+  mask-image: url(/static/img/chrome.svg);
+}
+
+.browser-compat .icon.icon-edge {
+  mask-image: url(/static/img/edge.svg);
+}
+
+.browser-compat .icon.icon-simple-firefox {
+  mask-image: url(/static/img/simple-firefox.svg);
+}
+
+.browser-compat .icon.icon-ie {
+  mask-image: url(/static/img/ie.svg);
+}
+
+.browser-compat .icon.icon-opera {
+  mask-image: url(/static/img/opera.svg);
+}
+
+.browser-compat .icon.icon-safari {
+  mask-image: url(/static/img/safari.svg);
+}
+
+.browser-compat .icon.icon-webview {
+  mask-image: url(/static/img/webview.svg);
+}
+
+.browser-compat .icon.icon-samsunginternet {
+  mask-image: url(/static/img/samsunginternet.svg);
+}
+
+.browser-compat .icon.icon-puma {
+  mask-image: url(/static/img/puma.svg);
+}
+
+.browser-compat table td,
+.browser-compat table th {
+  background: inherit;
+  padding: 0.25rem 0.75rem;
+  width: 2rem;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.browser-compat .bc-notes {
+  margin-right: 2em;
+}
+
+.browser-compat .bc-feature {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.browser-compat table {
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--elem-radius);
+  border-collapse: separate;
+  border-spacing: 0;
+  display: table;
+}
+
+.browser-compat .bc-support span {
+  display: block;
+}
+
+.browser-compat .bc-head-icon-symbol {
+  width: 1rem;
+  height: 1rem;
+  background-color: #696969;
+  display: inline-block;
+  vertical-align: middle;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  flex-shrink: 0;
 }
 
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
