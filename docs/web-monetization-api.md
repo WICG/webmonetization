@@ -3,6 +3,10 @@ id: web-monetization-api
 title: Web Monetization API
 sidebar_label: Web Monetization API
 ---
+import Specifications from '@site/src/components/Specifications';
+import BrowserCompat from '@site/src/components/BrowserCompat';
+
+
 The Web Monetization API provides a seemless payment experience for site owners and site visitors. Unlike the W3C's Payment Request API, when a web-monetized visitor visits a web-monetized website, a continuous stream of micro-payments takes place automatically. Thus, visitors automatically send a small sum per time unit to any web-monetized website they visit. The rate of payment is predetermined by the user's web monetization agent and adapts over time.
 
 ## Web Monetization concepts and usage
@@ -20,5 +24,9 @@ An event object that contains the amount, currency code and receipt of a success
 
 ## Specifications
 
+<Specifications>Web Monetization API</Specifications>
+
 ## Browser compatibility
+
+<BrowserCompat data="webmonetization.json">Web Monetization API</BrowserCompat>
 
