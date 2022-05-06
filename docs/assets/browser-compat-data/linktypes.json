@@ -1,136 +1,118 @@
 {
-    "api": {
-      "rel": {
-        "__compat": {
-          "docs_url": "https://webmonetization.org/docs",
-          "spec_url": "https://webmonetization.org/specification.html",
-          "support": {
-            "chrome": {
-              
-              "version_added": "100",
-              "notes": "You'll need to use the Web Monetization Extension."
-            },
-            "chrome_android": {
-              
-              "version_added": "100",
-              "notes": "You'll need to use the Web Monetization Extension."
-            },
-            "edge": {
-              
-              "version_added": "99",
-              "notes": "You'll need to use the Web Monetization Extension."
-            },
-            "firefox": {
-              "version_added": "99",
-              "notes": "You'll need to use the Web Monetization Extension."
-            },
-            "firefox_android": {
-              "version_added": "99",
-              "notes": "You'll need to use the Web Monetization Extension."
-            },
-            "ie": {
-              "version_added": false
-            },
-            "opera": {
-              "version_added": false
-            },
-            "opera_android": {
-              "version_added": false
-            },
-            "puma_browswer": {
-              "version_added": "3.4.7",
-              "notes": "You'll need to use the Web Monetization Extension."
-            },
-            "safari": {
-              "version_added": "15.3",
-              "notes": "You'll need to use the Web Monetization Extension."
-            },
-            "safari_ios": {
-              
-              "version_added": "15.3"
-            },
-            "samsunginternet_android": {
-              
-              "version_added": false
-            },
-            "webview_android": {
-              
-              "version_added": false
-            },
+  "api": {
+    "rel": {
+      "__compat": {
+        "docs_url": "https://webmonetization.org/docs",
+        "spec_url": "https://webmonetization.org/specification.html",
+        "support": {
+          "chrome": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "edge": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "firefox": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "ie": {
+            "version_added": false
+          },
+          "opera": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "safari": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "webview_android": {
+            "version_added": false
+          },
+          "chrome_android": {
+            "version_added": false
+          },
+          "firefox_android": {
+            "version_added": false
+          },
+          "opera_android": {
+            "version_added": false
+          },
+          "safari_ios": {
+            "version_added": false
+          },
+          "samsunginternet_android": {
+            "version_added": false
+          },
+          "puma_browswer": {
+            "version_added": true
+          },
           "status": {
             "experimental": false,
             "standard_track": true,
             "deprecated": false
           }
         }
-        },
-        "monetization": {
-            "__compat": {
-              "docs_url": "https://webmonetization.org/docs",
-              "spec_url": "https://webmonetization.org/specification.html",
-              "support": {
-                "chrome": {
-                  
-                  "version_added": "100",
-                  "notes": "You'll need to use the Web Monetization Extension."
-                },
-                "chrome_android": {
-                  
-                  "version_added": "100",
-                  "notes": "You'll need to use the Web Monetization Extension."
-                },
-                "edge": {
-                  
-                  "version_added": "99",
-                  "notes": "You'll need to use the Web Monetization Extension."
-                },
-                "firefox": {
-                  "version_added": "99",
-                  "notes": "You'll need to use the Web Monetization Extension."
-                },
-                "firefox_android": {
-                  "version_added": "99",
-                  "notes": "You'll need to use the Web Monetization Extension."
-                },
-                "ie": {
-                  "version_added": false
-                },
-                "opera": {
-                  "version_added": false
-                },
-                "opera_android": {
-                  "version_added": false
-                },
-                "puma_browswer": {
-                  "version_added": "3.4.7",
-                  "notes": "You'll need to use the Web Monetization Extension."
-                },
-                "safari": {
-                  "version_added": "15.3",
-                  "notes": "You'll need to use the Web Monetization Extension."
-                },
-                "safari_ios": {
-                  
-                  "version_added": "15.3"
-                },
-                "samsunginternet_android": {
-                  
-                  "version_added": false
-                },
-                "webview_android": {
-                  
-                  "version_added": false
-                },
-              "status": {
-                "experimental": false,
-                "standard_track": true,
-                "deprecated": false
-              }
-            }
-            }
+      }
+    },
+    "monetization": {
+      "__compat": {
+        "docs_url": "https://webmonetization.org/docs",
+        "spec_url": "https://webmonetization.org/specification.html",
+        "support": {
+          "chrome": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "edge": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "firefox": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "ie": {
+            "version_added": false
+          },
+          "opera": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "safari": {
+            "version_added": true,
+            "notes": "You'll need to use the Web Monetization Extension."
+          },
+          "webview_android": {
+            "version_added": false
+          },
+          "chrome_android": {
+            "version_added": false
+          },
+          "firefox_android": {
+            "version_added": false
+          },
+          "opera_android": {
+            "version_added": false
+          },
+          "safari_ios": {
+            "version_added": false
+          },
+          "samsunginternet_android": {
+            "version_added": false
+          },
+          "puma_browswer": {
+            "version_added": true
+          },
+          "status": {
+            "experimental": false,
+            "standard_track": true,
+            "deprecated": false
+          }
         }
-     }
-
-        
+      }
     }
+  }
 }
