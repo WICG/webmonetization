@@ -4,6 +4,7 @@ title: Link types
 sidebar_label: Link types
 ---
 import Specifications from '@site/src/components/Specifications';
+import BrowserCompat from '@site/src/components/BrowserCompat';
 
 | Link Type      | Description | Allowed in these elements | Not Allowed in these elements |
 | ----------- | ----------- | -------- | -------- |
@@ -15,5 +16,4 @@ import Specifications from '@site/src/components/Specifications';
 
 ## Browser compatibility
 
-rel
-monetization
+<BrowserCompat data="linktypes.json">Web Monetization API</BrowserCompat>

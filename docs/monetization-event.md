@@ -4,6 +4,7 @@ title: MonetizationEvent
 sidebar_label: MonetizationEvent
 ---
 import Specifications from '@site/src/components/Specifications';
+import BrowserCompat from '@site/src/components/BrowserCompat';
 
 The **`MonetizationEvent`** interface of the [Web Monetization API](web-monetization-api.md) is the event object for web monetization events, which contains the amount, currency code and receipt.  
 
@@ -30,3 +31,4 @@ The **`MonetizationEvent`** interface of the [Web Monetization API](web-monetiza
 
 ## Browser Compatibility
 
+<BrowserCompat data="monetizationevent.json">Web Monetization API</BrowserCompat>
