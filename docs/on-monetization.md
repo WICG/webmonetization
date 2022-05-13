@@ -4,9 +4,10 @@ title: GlobalEventHandlers.onmonetization
 sidebar_label: onmonetization
 ---
 import Specifications from '@site/src/components/Specifications';
+import BrowserCompat from '@site/src/components/BrowserCompat';
 
 The **`onmonetization`** property of the
-`GlobalEventHandlers` mixin is the [event handler](/en-US/docs/Web/Events/Event_handlers) for
+`GlobalEventHandlers` mixin is the event handler for
 processing monetization events sent to the window.
 
 ## Syntax
@@ -25,8 +26,8 @@ window.onmonetization = function() {
 
 ## Specifications
 
-<Specifications link="link-type-monetization">Web Monetization API</Specifications>
+<Specifications link="onmonetization-event-handler">Web Monetization API</Specifications>
 
 ## Browser compatibility
 
-onmonetization
+<BrowserCompat data="onmonetization.json">Web Monetization API</BrowserCompat>
