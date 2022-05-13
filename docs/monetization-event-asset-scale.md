@@ -3,6 +3,10 @@ id: monetization-event-asset-scale
 title: MonetizationEvent.assetScale
 sidebar_label: MonetizationEvent.assetScale
 ---
+
+import Specifications from '@site/src/components/Specifications';
+import BrowserCompat from '@site/src/components/BrowserCompat';
+
 The **`assetScale`** property of the [MonetizationEvent](monetization-event.md) interface returns the scale of the amount that was successfully streamed. 
 
 ## Value
@@ -24,6 +28,8 @@ console.log(`Browser sent ${assetCode}${amount / (10 * assetScale)}.`)
 ```
 
 ## Specifications
+<Specifications link="assetscale-attribute">Web Monetization API</Specifications>
 
 ## Browser compatibility
+<BrowserCompat data="assetScale.json">Web Monetization API</BrowserCompat>
 
