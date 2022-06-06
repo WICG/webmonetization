@@ -10,7 +10,7 @@ The `Permissions-Policy` header defines whether particular browser functions, su
 
 The basic syntax is as follows: 
 
-```Permissions-Policy: <directive> <allowlist>```
+`Permissions-Policy: <directive> <allowlist>`
 
 where `<directive>` is the function that is enabled for a given `<allowlist>`, which is a list of origins.  The default `<allowlist>` is `'self'`, which allows monetization in the document and in all nested browsing contexts(iframes) in the same origin.  
 
@@ -23,7 +23,9 @@ Determines whether link elements within the document are monetized.
 
 ## Example
 
-```Permissions-Policy: monetization 'self'```
+```html
+Permissions-Policy: monetization 'self'
+```
 
 ## Specifications
 <Specifications link="permissions-policy">Web Monetization API</Specifications>
