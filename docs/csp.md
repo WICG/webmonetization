@@ -17,12 +17,16 @@ Restricts the URLs form which a payment end-point is loaded.
 ### Example
 Given a page with the following Content Security Policy:
 
-```Content-Security-Policy: monetization-src https://example.com/```
+```html
+Content-Security-Policy: monetization-src https://example.com/
+```
 
 
 Fetches for the following code will return network errors, as the URL provided do not match monetization-src's source list:
 
-```<link rel="monetization" href="https://example.org/payment-pointer">```
+```html
+<link rel="monetization" href="https://example.org/payment-pointer">
+```
 
 
 ## Specifications

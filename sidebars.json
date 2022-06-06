@@ -3,7 +3,9 @@
     "web-monetization-api",
     {
       "Interfaces": [
-        "monetization-event",
+        "monetization-event"
+      ],
+      "Integrations": [
         "link",
         "link-type",
         "on-monetization",

@@ -10,11 +10,14 @@ To add web monetization to your page, you will need to add a `<link>` tag with a
 
 ## Examples
 
-```<link rel="monetization" href="https://example.com/pay">```
+```html
+<link rel="monetization" href="https://example.com/pay">
+```
 
 ### Monetization load events
 
-```<link rel="monetization" href="https://example.com/pay">
+```html
+<link rel="monetization" href="https://example.com/pay">
 <script>
   const link = document.querySelector('link[rel="monetization"]');
   link.addEventListener("monetization", event => {

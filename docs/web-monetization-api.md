@@ -12,7 +12,7 @@ The Web Monetization API provides a seemless payment experience for site owners 
 ## Web Monetization concepts and usage
 
 ## Interfaces
-  [MonetizationEvent](monetization-event.md)
+  [`MonetizationEvent`](monetization-event.md)
   
 An event object that contains the amount, currency code and receipt of a successful web monetization event.  
 
