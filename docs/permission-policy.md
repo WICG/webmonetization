@@ -19,9 +19,9 @@ Permissions-Policy: <directive> <allowlist>
 
 ## Directives
 
-`monetization` 
+[`monetization`](/docs/permission-policy-monetization)
 
-Determines whether link elements within the document are monetized.  
+Controls whether the current document is allowed to use the [Web Monetization API](/docs/).  
 
 ## Example
 
