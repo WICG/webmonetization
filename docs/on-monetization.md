@@ -12,15 +12,15 @@ processing monetization events sent to the window.
 
 ## Syntax
 
-```js
-window.onmonetization = functionRef;
+```javascript
+window.onmonetization = functionRef
 ```
 
 ## Examples
 
-```js
-window.onmonetization = function() {
-  alert('Web Monetization event triggered.');
+```javascript
+window.onmonetization = function () {
+  alert('Web Monetization event triggered.')
 }
 ```
 

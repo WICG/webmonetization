@@ -350,6 +350,10 @@ button.content-generator__btn {
   flex-direction: column;
 }
 
+table.event-properties {
+  display: table;
+}
+
 .spacer {
   flex-grow: 1;
 }

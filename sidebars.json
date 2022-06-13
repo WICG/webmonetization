@@ -3,13 +3,15 @@
     "web-monetization-api",
     {
       "Interfaces": [
-        "monetization-event"
+        "monetization-event",
+        "monetization-event-element"
       ],
       "Integrations": [
         "link",
         "link-type",
         "on-monetization",
         "permission-policy",
+        "permission-policy-monetization",
         "csp"
       ],
       "Concepts": [
