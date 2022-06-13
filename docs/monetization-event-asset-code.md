@@ -3,6 +3,10 @@ id: monetization-event-asset-code
 title: MonetizationEvent.assetCode
 sidebar_label: MonetizationEvent.assetCode
 ---
+
+import Specifications from '@site/src/components/Specifications';
+import BrowserCompat from '@site/src/components/BrowserCompat';
+
 The **`assetCode`** property of the [MonetizationEvent](monetization-event.md) interface returns the currency code. 
 
 ## Value
@@ -24,6 +28,8 @@ console.log(`Browser sent ${assetCode}${amount / (10 * assetScale)}.`)
 ```
 
 ## Specifications
+<Specifications link="assetcode-attribute">Web Monetization API</Specifications>
 
 ## Browser compatibility
+<BrowserCompat data="assetCode.json">Web Monetization API</BrowserCompat>
 

@@ -3,6 +3,8 @@ id: monetization-event-amount
 title: MonetizationEvent.amount
 sidebar_label: MonetizationEvent.amount
 ---
+import Specifications from '@site/src/components/Specifications';
+import BrowserCompat from '@site/src/components/BrowserCompat';
 
 The **`amount`** property of the [MonetizationEvent](monetization-event.md) interface returns the amount that was successfully streamed.
 
@@ -25,6 +27,7 @@ console.log(`Browser sent ${assetCode}${amount / (10 * assetScale)}.`)
 ```
 
 ## Specifications
+<Specifications link="amount-attribute">Web Monetization API</Specifications>
 
 ## Browser compatibility
-
+<BrowserCompat data="amount.json">Web Monetization API</BrowserCompat>
