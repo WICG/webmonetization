@@ -10,7 +10,7 @@ Using the `Content-Security-Policy` response header, you can control the list of
 
 ## Directives
 ### Fetch directives
-`monetization-src` 
+[`monetization-src`](monetization-src.md) 
 
 Restricts the URLs from which a payment end-point is loaded.
 
