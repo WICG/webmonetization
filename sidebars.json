@@ -12,7 +12,8 @@
         "on-monetization",
         "permission-policy",
         "permission-policy-monetization",
-        "csp"
+        "csp",
+        "monetization-src"
       ],
       "Concepts": [
         "explainer",
