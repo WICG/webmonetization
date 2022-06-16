@@ -1,7 +1,7 @@
 ---
 id: on-monetization
 title: GlobalEventHandlers.onmonetization
-sidebar_label: onmonetization
+sidebar_label: GlobalEventHandlers.onmonetization
 ---
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';

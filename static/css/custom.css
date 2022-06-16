@@ -84,7 +84,6 @@ section {
 
   padding-left: 20px;
   padding-right: 20px;
-  margin: auto;
 }
 
 .navbar__title {
@@ -360,6 +359,7 @@ table.event-properties {
 
 .specifications table {
   display: table;
+  width: 100%;
 }
 
 .specifications table th,

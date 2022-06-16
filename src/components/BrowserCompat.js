@@ -8,7 +8,7 @@ import Extension from '@material-ui/icons/Extension'
 
 export default function BrowserCompat({ children, data }) {
   const [compat, setCompat] = useState({})
-  fetch(`/docs/assets/browser-compat-data/${data}`)
+  fetch(`/browser-compat-data/${data}`)
     .then((res) => res.json())
     .then((json) => {
       setCompat(json.api)

@@ -119,12 +119,11 @@ const siteConfig = {
 
   themeConfig: {
     ogImage: 'img/undraw_online.svg',
-    algolia: {
-      appId: 'BH4D9OD16A',
-      apiKey: '522665321749697a7b612bb54dbdb0b4',
-      indexName: 'webmonetization',
-      placeholder: 'Search',
-    },
+    // algolia: {
+    //   apiKey: '522665321749697a7b612bb54dbdb0b4',
+    //   indexName: 'webmonetization',
+    //   placeholder: 'Search'
+    // },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -144,8 +143,8 @@ const siteConfig = {
         { href: 'https://webmonetization.org/specification.html', label: 'Specification' },
         { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        { type: 'search', position: 'right' },
-      ],
+        // { search: true }
+      ]
     },
     footer: {
       links: [

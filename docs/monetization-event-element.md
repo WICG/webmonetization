@@ -1,7 +1,7 @@
 ---
 id: monetization-event-element
 title: 'HTMLElement: monetization'
-sidebar_label: monetization
+sidebar_label: 'HTMLElement: monetization'
 ---
 
 import Specifications from '@site/src/components/Specifications';
