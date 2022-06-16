@@ -11,12 +11,12 @@ The Web Monetization API provides a seamless payment experience for site owners 
 
 ## Web Monetization Concepts and Usage
 
-The Web Monetization API makes web apps able to accept payment streams from users. There are two components to this API:
+The Web Monetization API allows web apps to accept payment streams from users. There are two components to this API:
 
 - The Web Monetization Agent is designed to be implemented in browsers and expose the Web Monetization API. It's responsible to:
   - get the rate, token, and BTP address from the Web Monetization Provider
   - get the payment information from the `<link>` element
-  - create a [Interledger](https://interledger.org/) payment connection via either STREAM or the Open Payments standard
+  - create an [Interledger](https://interledger.org/) payment connection via either STREAM or the Open Payments standard
   - receive confirmation of the payment
 
 - The Web Monetization Provider is intended to be the entity that pays websites on behalf of the user. It's designed to be side-loaded via an extension, essentially allowing users to choose their provider by installing a different extension. It would only be responsible for offering the browser information about the rate, token, and provider address. Ideally, there would be a separate extension category for Web Monetization Providers. 
