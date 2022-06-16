@@ -7,7 +7,7 @@ sidebar_label: monetization
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-The HTTP `Permissions-Policy` header `monetization` directive controls whether the current document is allowed to use the [Web Monetization API](/docs/).
+The HTTP [`Permissions-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) header `monetization` directive controls whether the current document is allowed to use the [Web Monetization API](/docs/).
 
 ## Syntax
 
