@@ -18,7 +18,7 @@ current implementations.
 
 #### Assumptions
 
-* Your website is [monetized](getting-started.md).
+* Your website is [monetized](/docs/web-monetization-api).
 * The user visiting your site has an account with a Web Monetization provider.
 * The user's browser supports Web Monetization natively or through an extension.
 

@@ -1,4 +1,4 @@
-// Redirects /docs to /docs/getting-started
+// Redirects /docs to /docs/web-monetization-api
 
 const React = require('react')
 const { Redirect } = require('@docusaurus/router')
