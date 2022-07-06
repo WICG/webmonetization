@@ -67,7 +67,7 @@
             title: 'STREAM Receipt',
             href: 'https://interledger.org/rfcs/0039-stream-receipts/',
           },
-          'Open-Payments': {
+          'Open Payments': {
             title: 'Open Payments',
             href: 'https://docs.openpayments.guide/',
           },
@@ -293,7 +293,7 @@
         <dd>
           The party making payments on behalf of the user. A monetization
           provider leverages the [[[Interledger]]] suite of protocols and
-          technologies (e.g., [[Open-Payments]] based on [[STREAM]]) to provide
+          technologies (e.g., [[Open Payments]] based on [[STREAM]]) to provide
           a high-level way to pay a [=monetization receiver=].
         </dd>
         <dt>
@@ -307,7 +307,7 @@
           <dfn>Payment end-point</dfn>:
         </dt>
         <dd>
-          A [=URL=] to a <a data-cite="Open-Payments#specification">Open
+          A [=URL=] to a <a data-cite="Open Payments#specification">Open
           Payments account end-point</a> (i.e., a JSON resource containing
           details that facilitate payment to an account).
         </dd>
@@ -691,11 +691,11 @@
         </h2>
         <div class="warning">
           <p>
-            The [=receipt=] attribute is deprecated.
+            The `receipt` attribute is deprecated.
           </p>
           <p>
             All [=monetization receivers=] should be migrating from generating
-            [[[Receipts]]] to supporting incoming payments via [[Open
+            [[[Receipt]]]s to supporting incoming payments via [[Open
             Payments]].
           </p>
         </div>
@@ -883,7 +883,7 @@
       <p>
         Unlike [[[Payment-Request]]] and the [[[Payment-Handler]]], which only
         supports "one-off" payments, Web Monetization provides a [=payment
-        connection=] that supports both continuous payments and "one-off"
+        session=] that supports both continuous payments and "one-off"
         payments.
       </p>
     </section>
