@@ -174,7 +174,7 @@ const siteConfig = {
         {
           title: 'Resources',
           items: [
-            { label: 'Docs', to: '/docs/getting-started' },
+            { label: 'Docs', to: '/docs/web-monetization-api' },
             { label: 'Specification', href: 'https://webmonetization.org/specification.html' },
             { label: 'Payment Pointers', to: 'https://paymentpointers.org/' }
           ]

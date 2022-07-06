@@ -209,7 +209,7 @@ For more details see https://paymentpointers.org.
 
 ## Getting Started
 
-For a high-level overview, see the [Quick start guide](getting-started.md).
+For a high-level overview, see the [Quick start guide](/docs/web-monetization-api).
 
 ### Set up a receiving account
 

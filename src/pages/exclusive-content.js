@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
 import Layout from '@theme/Layout'
-import { Link } from '@docusaurus/router'
+import Link from '@docusaurus/Link'
 
 import {
   ViewProvider,

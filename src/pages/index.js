@@ -168,7 +168,7 @@ export default class Index extends React.Component {
         <div className="resourceContainer">
           <div className="resource">
             <h3>Documentation</h3>
-            <p>Resource on how to add Web Monetization to your site.<br /><a href={docUrl('docs/getting-started', this.props.language)}>Read docs ›</a></p>
+            <p>Resource on how to add Web Monetization to your site.<br /><a href={docUrl('docs/web-monetization-api', this.props.language)}>Read docs ›</a></p>
           </div>
           <div className="resource">
             <h3>Explainer</h3>
