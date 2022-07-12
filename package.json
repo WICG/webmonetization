@@ -2,6 +2,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "docusaurus start",
+    "serve": "docusaurus serve",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
