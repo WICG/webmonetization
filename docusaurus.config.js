@@ -141,7 +141,7 @@ const siteConfig = {
       },
       items: [
         { doc: 'web-monetization-api', to: '/docs', label: 'Docs' },
-        { href: '/specification.html', label: 'Specification' },
+        { type: 'html', value:'<a class="navbar__link" href="/specification.html">Specification</a>' },
         { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
         { type: 'search', position: 'right' }
@@ -175,7 +175,7 @@ const siteConfig = {
           title: 'Resources',
           items: [
             { label: 'Docs', to: '/docs/web-monetization-api' },
-            { label: 'Specification', href: '/specification.html' },
+            { html: '<a class="footer__link-item" href="/specification.html">Specification</a>' },
             { label: 'Payment Pointers', to: 'https://paymentpointers.org/' }
           ]
         }
