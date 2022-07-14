@@ -2,19 +2,49 @@
   "docs": [
     "web-monetization-api",
     {
-      "Interfaces": [
-        "monetization-event",
-        "link",
-        "link-type",
-        "on-monetization",
-        "permission-policy",
-        "csp"
-      ],
-      "Concepts": [
-        "explainer",
-        "receiving",
-        "sending"
-      ],
+      "type": "category",
+      "label": "Interfaces",
+      "items": [
+        {
+          "type": "category",
+          "label": "<link>",
+          "link": {
+            "type": "doc",
+            "id": "link"
+          },
+          "items": ["link-type"]
+        },
+        {
+          "type": "category",
+          "label": "MonetizationEvent",
+          "link": {
+            "type": "doc",
+            "id": "monetization-event"
+          },
+          "items": ["on-monetization", "monetization-event-element"]
+        },
+        {
+          "type": "category",
+          "label": "Content-Security-Policy",
+          "link": {
+            "type": "doc",
+            "id": "csp"
+          },
+          "items": ["monetization-src"]
+        },
+        {
+          "type": "category",
+          "label": "Permissions-Policy",
+          "link": {
+            "type": "doc",
+            "id": "permission-policy"
+          },
+          "items": ["permission-policy-monetization"]
+        }
+      ]
+    },
+    {
+      "Concepts": ["explainer", "receiving", "sending"],
       "Guides and Tutorials": [
         "exclusive-content",
         "remove-ads",
@@ -29,10 +59,7 @@
         "uphold",
         "xrptipbot"
       ],
-      "Resources": [
-        "glossary",
-        "resources"
-      ]
+      "Resources": ["glossary", "resources"]
     }
   ]
 }
