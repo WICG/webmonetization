@@ -21,7 +21,7 @@
             "type": "doc",
             "id": "monetization-event"
           },
-          "items": ["on-monetization", "monetization-event-element"]
+          "items": ["monetization-event-amount", "monetization-event-asset-code", "monetization-event-asset-scale", "monetization-event-incoming-payments", "monetization-event-receipt", "monetization-event-payment-pointer", "on-monetization", "monetization-event-element"]
         },
         {
           "type": "category",

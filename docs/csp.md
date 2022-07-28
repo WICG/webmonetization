@@ -6,13 +6,13 @@ sidebar_label: Content-Security-Policy
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-Using the [`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) response header, you can control the list of URLs to use as a payment end-point via the `monetization-src` directive. 
+Using the [`Content-Security-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) response header, you can control the list of URLs to use as a payment pointer via the `monetization-src` directive. 
 
 ## Directives
 ### Fetch directives
 [`monetization-src`](monetization-src.md) 
 
-Restricts the URLs from which a payment end-point is loaded.
+Restricts the URLs from which a payment pointer is loaded.
 
 ### Example
 Given a page with the following Content Security Policy:

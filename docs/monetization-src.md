@@ -6,7 +6,7 @@ sidebar_label: monetization-src
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-The [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) (CSP) `monetization-src` directive restricts the URLs from which a payment endpoint are loaded. 
+The [Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy) (CSP) `monetization-src` directive restricts the list of URLs from which a payment endpoint is loaded. 
 
 ## Syntax
 

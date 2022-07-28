@@ -7,11 +7,11 @@ sidebar_label: MonetizationEvent.assetScale
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-The **`assetScale`** property of the [MonetizationEvent](monetization-event.md) interface returns the scale of the successfully streamed amount.
+The **`assetScale`** property of the [MonetizationEvent](monetization-event.md) interface returns the scale of the paid amount.
 
 ## Value
 
-An integer. Represents the scale of the amount of money received according to the last receipt.
+An integer that represents the scale on the amount of money received according to the last payment received.
 
 ## Examples
 
@@ -22,7 +22,7 @@ An integer. Represents the scale of the amount of money received according to th
   link.addEventListener('monetization', (event) => {
     // See how much your received and in what currency
     const { amount, assetCode, assetScale } = event
-    console.log(`Browser sent ${assetCode}${amount / (10 * assetScale)}.`)
+    console.log(`Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`)
   })
 </script>
 ```

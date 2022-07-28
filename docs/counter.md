@@ -13,7 +13,7 @@ This example shows you how to use the `monetizationprogress` event to count how 
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice">
+  <link rel="monetization" href="https://wallet.example.com/alice">
 
   <script>
     let total = 0
@@ -48,7 +48,7 @@ This example shows you how to use the `monetizationprogress` event to count how 
 ## How does it work?
 
 If the visitor is web monetized (`document.monetization` is defined), we're
-binding the `monetizationprogress` event. `monetizationprogress` contains
+binding the `monetizationprogress` event. The `monetizationprogress` event contains
 details about the micropayments that occur.
 
 ```js
@@ -57,9 +57,9 @@ if (document.monetization) {
 ```
 
 This is different from [the exclusive content](exclusive-content.md) and
-[remove ads](remove-ads.md) examples, where we bound `monetizationstart`.
-`monetizationstart` fires when Web Monetization initializes.
-`monetizationprogress` fires every time there's a micropayment from the Web
+[remove ads](remove-ads.md) examples, where we bound `monetization`.  The
+`monetization` event fires when Web Monetization initializes.
+The `monetizationprogress`, on the other hand, fires every time there's a micropayment from the Web
 Monetization provider to the site.
 
 There's some attributes of the micropayments that don't change, like currency details. We set these currency details on the very first micropayment.
@@ -72,7 +72,7 @@ if (total === 0) {
 }
 ```
 
-`ev.detail.assetCode` is a three-letter code that describes the currency of the micropayment, like `USD`, `EUR`, or `XRP`.
+`ev.detail.assetCode` is a three-letter code that describes the currency of the micropayment, like `USD`, `EUR`, or `GBP`.
 
 The asset code describes the asset the [Web Monetization
 receiver](glossary.md#web-monetization-receiver) is

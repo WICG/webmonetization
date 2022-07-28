@@ -19,7 +19,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice" />
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <style>
     .hidden {
@@ -29,7 +29,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
   <script>
     if (document.monetization) {
-      document.monetization.addEventListener('monetizationstart', () => {
+      document.monetization.addEventListener('monetization', ev => {
         document.getElementById('exclusive').classList.remove('hidden')
       })
     }
@@ -47,18 +47,17 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 There's only three things this code does. The code is encompassed in the `<script>` tag.
 
-First, we check whether `document.monetization` exists in the browser. If it doesn't exist, then we can't listen for the `monetizationstart` event to tell us when Web Monetization initializes.
+First, we check whether `document.monetization` exists in the browser. If it doesn't exist, then we can't listen for the `monetization` event to tell us when Web Monetization initializes.
 
 ```js
 if (document.monetization) {
 ```
 
 Next, we add an event listener to the `document.monetization` object. The
-`monetizationstart` event is emitted when Web Monetization initializes and
-the state goes from `pending` to `started`.
+`monetization` event is emitted when Web Monetization initializes.
 
 ```js
-document.monetization.addEventListener('monetizationstart', () => {
+document.monetization.addEventListener('monetization', ev => {
 ```
 
 Finally, we select our exclusive content element and make it visible. We defined a CSS class that made it hidden, so removing that class will make it visible. If you want to do something else when Web Monetization starts, you can replace this line. You can trigger any JavaScript, so the sky's the limit.
@@ -103,7 +102,7 @@ This means there's three states in total:
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice" />
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <style>
     .hidden {
@@ -128,7 +127,7 @@ This means there's three states in total:
     }
 
     if (document.monetization) {
-      document.monetization.addEventListener('monetizationstart', () => {
+      document.monetization.addEventListener('monetization', ev => {
         showExclusiveContent()
       })
     }
@@ -158,11 +157,11 @@ This means there's three states in total:
 
 We have three functions to activate our three different states: `showLoading` displays the loader, `showCTA` displays the call-to-action to get web monetized, and `showExclusiveContent` shows the exclusive content. This works just like the [basic example](#a-basic-example) where we turn the `hidden` class on/off for our `div`s.
 
-When the visitor is web monetized, we listen for the `monetizationstart` event. Just like the previous example, this event will show the exclusive content when it's triggered and hide the other `div`s.
+When the visitor is web monetized, we listen for the `monetization` event. Just like the previous example, this event will show the exclusive content when it's triggered and hide the other `div`s.
 
 ```js
 if (document.monetization) {
-  document.monetization.addEventListener('monetizationstart', () => {
+  document.monetization.addEventListener('monetization', ev => {
     showExclusiveContent()
   })
 }
@@ -208,7 +207,7 @@ If you see the source files instead of the example, click **View App** in the bo
 ## Exclusive content with payment verification
 
 The above examples only hide content client side which could be spoofed by a clever user.
-Since the introduction of STREAM receipts it is possible to verify payments using a [STREAM receipt verifier](/docs/receipt-verifier).
+A web monetized can be verified checking the [incomingPayments](/docs/monetization-event-incoming-payments.md) attribute of the `MonetizationEvent` interface.  
 
 The Exclusive Content Generator allows users to generate an encrypted piece of content that can be embedded on the web page.
 
