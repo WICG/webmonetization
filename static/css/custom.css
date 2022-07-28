@@ -70,6 +70,10 @@ h2 {
   color: rgba(255, 255, 255, 1);
 }
 
+div.searchBox_node_modules-\@docusaurus-theme-classic-lib-theme-Navbar-Search-styles-module {
+  padding: 0;
+}
+
 .DocSearch-Button {
   border-radius: 0px !important;
   background-color: #000 !important;

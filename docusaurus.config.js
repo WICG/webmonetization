@@ -119,11 +119,12 @@ const siteConfig = {
 
   themeConfig: {
     ogImage: 'img/undraw_online.svg',
-    // algolia: {
-    //   apiKey: '522665321749697a7b612bb54dbdb0b4',
-    //   indexName: 'webmonetization',
-    //   placeholder: 'Search'
-    // },
+    algolia: {
+      apiKey: '522665321749697a7b612bb54dbdb0b4',
+      indexName: 'webmonetization',
+      appId: 'GJDGP03PYJ',
+      placeholder: 'Search'
+    },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -140,10 +141,10 @@ const siteConfig = {
       },
       items: [
         { doc: 'web-monetization-api', to: '/docs', label: 'Docs' },
-        { href: 'https://webmonetization.org/specification.html', label: 'Specification' },
+        { type: 'html', value:'<a class="navbar__link" href="/specification.html">Specification</a>' },
         { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        // { search: true }
+        { type: 'search', position: 'right' }
       ]
     },
     footer: {
@@ -173,8 +174,8 @@ const siteConfig = {
         {
           title: 'Resources',
           items: [
-            { label: 'Docs', to: '/docs/getting-started' },
-            { label: 'Specification', href: 'https://webmonetization.org/specification.html' },
+            { label: 'Docs', to: '/docs/web-monetization-api' },
+            { html: '<a class="footer__link-item" href="/specification.html">Specification</a>' },
             { label: 'Payment Pointers', to: 'https://paymentpointers.org/' }
           ]
         }

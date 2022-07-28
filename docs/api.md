@@ -12,13 +12,13 @@ payments from users. Payments are sent to the website by the user's [Web Monetiz
 This API is injected by any browser or extension that supports Web Monetization.
 
 > This document represents the current API implementation. Note that a
-[draft specification](https://webmonetization.org/specification.html) suitable for the W3C standards
+[draft specification](/specification.html) suitable for the W3C standards
 track is being developed which should **NOT** be used as a reference for
 current implementations.
 
 #### Assumptions
 
-* Your website is [monetized](getting-started.md).
+* Your website is [monetized](/docs/web-monetization-api).
 * The user visiting your site has an account with a Web Monetization provider.
 * The user's browser supports Web Monetization natively or through an extension.
 
