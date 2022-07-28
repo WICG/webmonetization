@@ -6,11 +6,11 @@ sidebar_label: MonetizationEvent.amount
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-The **`amount`** property of the [MonetizationEvent](monetization-event.md) interface returns the amount that was successfully streamed.
+The **`amount`** property of the [MonetizationEvent](monetization-event.md) interface returns the amount of money that was successfully received on the last payment.
 
 ## Value
 
-An integer with the amount of money received according to the last receipt.
+An integer representing the amount of money received.
 
 ## Examples
 
@@ -21,7 +21,7 @@ An integer with the amount of money received according to the last receipt.
   link.addEventListener('monetization', (event) => {
     // See how much your received and in what currency
     const { amount, assetCode, assetScale } = event
-    console.log(`Browser sent ${assetCode}${amount / (10 * assetScale)}.`)
+    console.log(`Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`)
   })
 </script>
 ```

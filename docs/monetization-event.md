@@ -7,18 +7,20 @@ sidebar_label: MonetizationEvent
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-The **`MonetizationEvent`** interface of the [Web Monetization API](web-monetization-api.md) is the event object for web monetization events, which contains the amount, currency code, and receipt.
+The **`MonetizationEvent`** interface of the [Web Monetization API](web-monetization-api.md) is the event object for web monetization events, which contains the details to facilitate payments.
 
 ## Properties
 
 - [amount](monetization-event-amount.md)
   : An integer amount delivered by an ILP packet.
 - [assetCode](monetization-event-asset-code.md)
-  : A string representing the currency code (eg USD, EUR)
+  : A string representing the currency code (eg USD, EUR) of the received amount.
 - [assetScale](monetization-event-asset-scale.md)
-  : The scale of the amount
+  : The scale of the received amount.
+- [incomingPayments](monetization-event-incoming-payments.md)
+  : A string containing the URL representing an incoming payment at the monetization receiver.  
 - [receipt](monetization-event-receipt.md)
-  : The base-64 encoded Interledger Stream receipt that the browser received.
+  : The base-64 encoded Interledger [Stream receipt](https://github.com/interledger/rfcs/blob/master/0039-stream-receipts/0039-stream-receipts.md) that the browser received.
 - [paymentPointer](monetization-event-payment-pointer.md)
   : A URL representing the payment end-point.
 

@@ -6,7 +6,7 @@ sidebar_label: <link>
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-To add web monetization to your page, you will need to add a `<link>` tag with a `rel='monetization'` indicating that some content on the page is monetized.  While an HTML document can contain unlimited monetized `<link>` tags, implementations may restrict how many of those links are actually monetized. 
+To add Web Monetization to your page, you will need to add a `<link>` tag with a `rel='monetization'` indicating that some content on the page is monetized.  While an HTML document can contain unlimited monetized `<link>` tags, implementations may restrict how many of those links are actually monetized. 
 
 ## Examples
 

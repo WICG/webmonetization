@@ -20,7 +20,7 @@ A string containing a payment URL. Represents a payment end-point. The returned 
 <script>
   const link = document.querySelector(“link[rel=‘monetization’]“);
   link.addEventListener(“monetization”, (event) => {
-  console.log(typeof(event.paymentPointer))})
+  console.log(event.paymentPointer)})
 </script>
 ```
 
