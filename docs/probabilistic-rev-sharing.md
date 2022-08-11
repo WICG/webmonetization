@@ -4,7 +4,7 @@ title: Probabilistic Revenue Sharing
 sidebar_label: Probabilistic revenue sharing
 ---
 
-More often than not, high quality content involves more than one person. So, how do you share a portion of your revenue if only one payment pointer is supported in the `monetization` meta tag?
+More often than not, high quality content involves more than one person. So, how do you share a portion of your revenue if you only have a single `link` tag with a payment pointer?
 
 One way is through probabilistic revenue sharing (revshare). In Web Monetization, probabilistic revenue sharing works by randomly choosing from a list of predefined payment pointers each time a web monetized visitor loads your page. The visitor pays to the chosen pointer until the page is reloaded or closed.
 
@@ -45,9 +45,9 @@ This example shows how to define a list of payment pointers and assign each poin
     }
 
     window.addEventListener('load', () => {
-      const monetizationTag = document.createElement('meta')
-      monetizationTag.name = 'monetization'
-      monetizationTag.content = pickPointer()
+      const monetizationTag = document.createElement('link')
+      monetizationTag.rel = 'monetization'
+      monetizationTag.href = pickPointer()
 
       document.head.appendChild(monetizationTag)
     })
@@ -88,9 +88,9 @@ Finally, we add the code that dynamically inserts the randomly chosen payment po
 
 ```js
 window.addEventListener('load', () => {
-  const monetizationTag = document.createElement('meta')
-  monetizationTag.name = 'monetization'
-  monetizationTag.content = pickPointer()
+  const monetizationTag = document.createElement('link')
+  monetizationTag.rel = 'monetization'
+  monetizationTag.href = pickPointer()
 
   document.head.appendChild(monetizationTag)
 })

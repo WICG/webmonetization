@@ -50,7 +50,6 @@
         "remove-ads",
         "counter",
         "probabilistic-rev-sharing",
-        "start-stop",
         "receipt-verifier"
       ],
       "Payment Pointer Providers": [
