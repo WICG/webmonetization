@@ -28,8 +28,9 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
   </style>
 
   <script>
-    if (document.monetization) {
-      document.monetization.addEventListener('monetization', ev => {
+    const link = document.querySelector('link[rel="monetization"]')
+     if (link.relList.supports('monetization')) {
+      link.addEventListener('load', ev => {
         document.getElementById('exclusive').classList.remove('hidden')
       })
     }
@@ -38,7 +39,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 <body>
   <p>Content will appear below here if you are Web monetized.</p>
-  <hr />
+  <hr/>
   <div id="exclusive" class="hidden">Here's some exclusive content!</div>
 </body>
 ```
@@ -47,17 +48,18 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 There's only three things this code does. The code is encompassed in the `<script>` tag.
 
-First, we check whether `document.monetization` exists in the browser. If it doesn't exist, then we can't listen for the `monetization` event to tell us when Web Monetization initializes.
+First, we check whether Web Monetization is supported by calling `supports()` on a link element's `relList` and passing `"monetization"` as a parameter. If it doesn't exist, then we can't listen for the monetization `load` event to tell us when Web Monetization initializes.
 
 ```js
-if (document.monetization) {
+const link = document.querySelector('link[rel="monetization"]')
+  if (link.relList.supports('monetization')) {
 ```
 
-Next, we add an event listener to the `document.monetization` object. The
-`monetization` event is emitted when Web Monetization initializes.
+Next, we add an event listener to the `link` element. The
+`load` event is emitted when Web Monetization initializes.
 
 ```js
-document.monetization.addEventListener('monetization', ev => {
+link.addEventListener('load', ev => {
 ```
 
 Finally, we select our exclusive content element and make it visible. We defined a CSS class that made it hidden, so removing that class will make it visible. If you want to do something else when Web Monetization starts, you can replace this line. You can trigger any JavaScript, so the sky's the limit.
@@ -77,7 +79,7 @@ If you see the source files instead of the example, click **View App** in the bo
 
 <div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
-    src="https://glitch.com/embed/#!/embed/wm-exclusive-content-basic?path=README.md&previewSize=100"
+    src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-basic?path=README.md&previewSize=100"
     title="wm-exclusive-content-basic on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
     style={{ height: '100%', width: '100%', border: '0' }}>
@@ -131,9 +133,16 @@ This means there's three states in total:
         showExclusiveContent()
       })
     }
-
+    
+    if (window.MonetizationEvent) {
+      const link = document.querySelector('link[rel="monetization"]')
+      link.addEventListener("monetization", ev => {
+        showExclusiveContent()
+      })
+    }
+    
     window.addEventListener('load', () => {
-      if (!document.monetization) {
+      if (!window.MonetizationEvent) {
         showCTA()
       } else {
         showLoading()
@@ -160,17 +169,19 @@ We have three functions to activate our three different states: `showLoading` di
 When the visitor is web monetized, we listen for the `monetization` event. Just like the previous example, this event will show the exclusive content when it's triggered and hide the other `div`s.
 
 ```js
-if (document.monetization) {
-  document.monetization.addEventListener('monetization', ev => {
+if (window.MonetizationEvent) {
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener("monetization", ev => {
     showExclusiveContent()
-  })
-}
+      })
+    }
 ```
 
 When the page loads, we check whether Web Monetization exists in the visitor's browser.
 
 ```js
-window.addEventListener('load', () => {
+    window.addEventListener('load', () => {
+      if (!window.MonetizationEvent) {
 ```
 
 If the visitor doesn't have Web Monetization, then we show the CTA right
@@ -178,11 +189,11 @@ away. If the visitor does have Web Monetization, we show the loader
 right away.
 
 ```js
-if (!document.monetization) {
-  showCTA()
-} else {
-  showLoading()
-}
+      if (!window.MonetizationEvent) {
+        showCTA()
+      } else {
+        showLoading()
+      }
 ```
 
 ### Interactive example

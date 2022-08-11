@@ -26,15 +26,16 @@ Here's an example that removes its ads for web monetized visitors.
     }
 
     let hasPaid = false
-    if (document.monetization) {
-      document.monetization.addEventListener('monetization', ev => {
+    if (window.MonetizationEvent) {
+      const link = document.querySelector('link[rel="monetization"]')
+      link.addEventListener('monetization', ev => {
         hasPaid = true
         removeAds()
       })
     }
 
     window.addEventListener('load', () => {
-      if (!document.monetization) {
+      if (!window.MonetizationEvent) {
         showAds()
       } else {
         setTimeout(() => {
@@ -81,12 +82,13 @@ function showAds () {
 If the visitor is web monetized, then we bind the `monetization` event. This triggers the removal of the ad once Web Monetization initializes.
 
 The `hasPaid` variable is used in the timer to see whether Web
-Monetization has already initialized when the grace period is over.
+Monetization has started after the grace period is over.
 
 ```js
 let hasPaid = false
-if (document.monetization) {
-  document.monetization.addEventListener('monetizationstart', ev => {
+if (window.MonetizationEvent) {
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', ev => {
     hasPaid = true
     removeAds()
   })
@@ -94,12 +96,12 @@ if (document.monetization) {
 ```
 
 As soon as the page loads, any visitor who does not have Web Monetization
-(`!document.monetization`) sees the ad immediately. If the visitor _does_ have Web Monetization, the three-second timer starts. We check whether the
+(`!window.MonetizationEvent`) sees the ad immediately. If the visitor _does_ have Web Monetization, the three-second timer starts. We check whether the
 `monetization` event has fired when the timer is up. If Web Monetization hasn't initialized, the visitor is shown the ad.
 
 ```js
 window.addEventListener('load', () => {
-  if (!document.monetization) {
+  if (!window.MonetizationEvent) {
     showAds()
   } else {
     setTimeout(() => {
