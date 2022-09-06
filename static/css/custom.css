@@ -93,6 +93,10 @@ section {
   margin-right: auto;
 }
 
+.hide {
+  display: none;
+}
+
 .navbar__link {
   font-weight: 300;
   color: var(--ifm-color-gray-200);
