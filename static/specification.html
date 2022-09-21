@@ -639,7 +639,7 @@
         [SecureContext, Exposed=Window]
         interface MonetizationEvent : Event {
           constructor(DOMString type, MonetizationEventInit eventInitDict);
-          readonly attribute bigint amount;
+          readonly attribute DOMString amount;
           readonly attribute DOMString assetCode;
           readonly attribute octet assetScale;
           readonly attribute DOMString? receipt;
@@ -648,7 +648,7 @@
         };
 
         dictionary MonetizationEventInit : EventInit {
-          required bigint amount;
+          required DOMString amount;
           required DOMString assetCode;
           required octet assetScale;
           required DOMString? receipt;
