@@ -4,6 +4,8 @@ title: Exclusive Content
 sidebar_label: Exclusive content
 ---
 
+import Hidden from '@site/src/components/Hidden';
+
 One of the perks of Web Monetization is that its JavaScript API can be used to make your page respond to Web Monetization. You can reward the people who support your site by giving web monetized viewers exclusive content.
 
 ## A basic example
@@ -30,7 +32,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
   <script>
     const link = document.querySelector('link[rel="monetization"]')
      if (link.relList.supports('monetization')) {
-      link.addEventListener('load', ev => {
+      link.addEventListener('monetization', ev => {
         document.getElementById('exclusive').classList.remove('hidden')
       })
     }
@@ -48,7 +50,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 There's only three things this code does. The code is encompassed in the `<script>` tag.
 
-First, we check whether Web Monetization is supported by calling `supports()` on a link element's `relList` and passing `"monetization"` as a parameter. If it doesn't exist, then we can't listen for the monetization `load` event to tell us when Web Monetization initializes.
+First, we check whether Web Monetization is supported by calling `supports()` on a link element's `relList` and passing `"monetization"` as a parameter. If it doesn't exist, then we can't listen for the `monetization` event to tell us when Web Monetization initializes.
 
 ```js
 const link = document.querySelector('link[rel="monetization"]')
@@ -56,10 +58,10 @@ const link = document.querySelector('link[rel="monetization"]')
 ```
 
 Next, we add an event listener to the `link` element. The
-`load` event is emitted when Web Monetization initializes.
+`monetization` event is emitted when Web Monetization initializes.
 
 ```js
-link.addEventListener('load', ev => {
+link.addEventListener('monetization', ev => {
 ```
 
 Finally, we select our exclusive content element and make it visible. We defined a CSS class that made it hidden, so removing that class will make it visible. If you want to do something else when Web Monetization starts, you can replace this line. You can trigger any JavaScript, so the sky's the limit.
@@ -128,19 +130,13 @@ This means there's three states in total:
       document.getElementById('loading').classList.remove('hidden')
     }
 
-    if (document.monetization) {
-      document.monetization.addEventListener('monetization', ev => {
-        showExclusiveContent()
-      })
-    }
-    
     if (window.MonetizationEvent) {
-      const link = document.querySelector('link[rel="monetization"]')
-      link.addEventListener("monetization", ev => {
+		const link = document.querySelector('link[rel="monetization"]');
+  		link.addEventListener("monetization", ev => {
         showExclusiveContent()
       })
     }
-    
+
     window.addEventListener('load', () => {
       if (!window.MonetizationEvent) {
         showCTA()
@@ -217,8 +213,14 @@ If you see the source files instead of the example, click **View App** in the bo
 
 ## Exclusive content with payment verification
 
+<Hidden>
 The above examples only hide content client side which could be spoofed by a clever user.
 A web monetized can be verified checking the [incomingPayments](/docs/monetization-event-incoming-payments.md) attribute of the `MonetizationEvent` interface.  
+</Hidden>
+
+The above examples only hide content client side which could be spoofed by a clever user. Since the introduction of STREAM receipts it is possible to verify payments using a [STREAM receipt verifier](/receipt-verifier.md).
+
+
 
 The Exclusive Content Generator allows users to generate an encrypted piece of content that can be embedded on the web page.
 
@@ -232,7 +234,7 @@ The Exclusive Content Generator derives an encryption key from the user's paymen
 
 ![](./assets/ec-generate.svg)
 
-The embedded JavaScript script will parse all the exclusive content <code>div</code> tags and include the proxy payment pointer in the web page's header (if there are multiple, it will select one at random). If Web Monetization is enabled by the User, receipts can now be obtained from the <code>monetizationprogress</code> events. The receipts, together with the payment pointer and the encrypted verifier endpoint, are submitted to the Exclusive Content Generator, which derives the encryption key and decrypts the verifier endpoint. If the Exclusive Content Generator is able to verify the receipts with the STREAM receipt verifier, it shares the encryption key with the User's client, who is now able to decrypt the content and display it.
+The embedded JavaScript script will parse all the exclusive content <code>div</code> tags and include the proxy payment pointer in the web page's header (if there are multiple, it will select one at random). If Web Monetization is enabled by the User, receipts can now be obtained from the [<code>receipt</code>](monetization-event-receipt.md) property of the [<code>MonetizationEvent</code>](monetization-event.md) event interface. The receipts, together with the payment pointer and the encrypted verifier endpoint, are submitted to the Exclusive Content Generator, which derives the encryption key and decrypts the verifier endpoint. If the Exclusive Content Generator is able to verify the receipts with the STREAM receipt verifier, it shares the encryption key with the User's client, who is now able to decrypt the content and display it.
 
 ![](./assets/ec-unlock.svg)
 

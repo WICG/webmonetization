@@ -11,7 +11,7 @@ The **`assetCode`** property of the [MonetizationEvent](monetization-event.md) i
 
 ## Value
 
-A string representing the three-character currency code.
+A string representing the three-character currency code on the last payment received.
 
 ## Examples
 

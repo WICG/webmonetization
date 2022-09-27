@@ -11,7 +11,7 @@ The **`assetScale`** property of the [MonetizationEvent](monetization-event.md) 
 
 ## Value
 
-An integer that represents the scale on the amount of money received according to the last payment received.
+An integer that represents the scale on the amount of money received in the last payment.
 
 ## Examples
 
