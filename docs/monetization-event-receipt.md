@@ -6,12 +6,15 @@ sidebar_label: MonetizationEvent.receipt
 
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
+import Hidden from '@site/src/components/Hidden';
 
+<Hidden>
 :::danger Caution
 
 Receipts are deprecated. Please consider using the [**incomingPayments**](monetization-event-incoming-payments.md) property of the MonetizationEvent interface instead.
 
 :::
+</Hidden>
 
 The **`receipt`** property of the [Monetization Event](monetization-event.md) interface returns an optional proof-of-payment receipt. It is issued by the monetization receiver for the monetization provider as proof of the total current amount received in the stream.
 
