@@ -18,12 +18,6 @@
         },
         editors: [
           {
-            name: 'Marcos Caceres',
-            company: 'W3C',
-            companyURL: 'https://w3.org/',
-            retiredDate: '2022-03-23',
-          },
-          {
             name: 'Alex Lakatos',
             email: 'alex@interledger.org',
             company: 'Interledger Foundation',
@@ -31,11 +25,18 @@
           },
           {
             name: 'Adrian Hope-Bailie',
-            email: 'adrian@coil.com',
+            email: 'adrian@fynbos.dev.com',
+            company: 'Fynbos Technologies Limited',
+            companyURL: 'https://fynbos.dev',
+          },
+          {
+            name: 'Nicholas Dudfield',
+            email: 'niq@coil.com',
             company: 'Coil Technologies Inc.',
             companyURL: 'https://coil.com',
-            retiredDate: '2021-12-01',
           },
+        ],
+        formerEditors: [
           {
             name: 'Ben Sharafian',
             email: 'ben@coil.com',
@@ -44,11 +45,11 @@
             retiredDate: '2022-02-01',
           },
           {
-            name: 'Nicholas Dudfield',
-            email: 'niq@coil.com',
-            company: 'Coil Technologies Inc.',
-            companyURL: 'https://coil.com',
-          },
+            name: 'Marcos Caceres',
+            company: 'W3C',
+            companyURL: 'https://w3.org/',
+            retiredDate: '2022-03-23',
+          }
         ],
         shortName: 'web-monetization',
         specStatus: 'CG-DRAFT',
@@ -193,7 +194,7 @@
               link.addEventListener("monetization", event =&gt; {
                 // See how much was sent and in what currency
                 const { amount, assetCode, assetScale } = event;
-                console.log(`Browser sent ${assetCode}${amount / (10 * assetScale)}.`);
+                console.log(`Browser sent ${assetCode}${amount / (10 ** assetScale)}.`);
 
                 // Use the incoming payment URL to verify the payment at the receiver.
                 verifyPayment(event);
@@ -244,7 +245,7 @@
                 // The incoming payment was fetched successfully
                 const { receivedAmount } = JSON.parse(response.json())
                 const { amount, assetCode, assetScale } = receivedAmount;
-                console.log(`Received ${assetCode}${amount / (10 * assetScale)}.`);
+                console.log(`Received ${assetCode}${amount / (10 ** assetScale)}.`);
               }
             }
           </pre>
@@ -256,7 +257,7 @@
         </h3>
         <p>
           The following example shows how to monetize various types of media
-          using different [=payment end-points=].
+          using different [=payment pointers=].
         </p>
         <aside class="example">
           <pre class="html">
@@ -284,7 +285,7 @@
           <dfn data-lt="monetized">Monetization</dfn>:
         </dt>
         <dd>
-          A payment made by a user to a website, facilitated through a
+          Payments made by a user to a website, facilitated through a
           [=monetization provider=].
         </dd>
         <dt>
@@ -301,14 +302,14 @@
         </dt>
         <dd>
           The party receiving payments on behalf of the website, whose details
-          are provided by a [=payment end-point=].
+          are provided by a [=payment pointer=].
         </dd>
         <dt>
-          <dfn>Payment end-point</dfn>:
+          <dfn>Payment Pointer</dfn>:
         </dt>
         <dd>
-          A [=URL=] to a <a data-cite="Open Payments#specification">Open
-          Payments account end-point</a> (i.e., a JSON resource containing
+          A [=URL=] to an <a data-cite="Open Payments#specification">Open
+          Payments API entry-point</a> (i.e., a JSON resource containing
           details that facilitate payment to an account).
         </dd>
         <dt>
@@ -316,9 +317,9 @@
         </dt>
         <dd>
           An session between a [=monetization provider=] and [=monetization
-          receiver=] initiated by the creation of an incoming payment resource
-          at the [=monetization receiver=]. One or more payments can be sent by
-          the [=monetization provider=] in a single session.
+          receiver=] initiated by the [=monetization provider=] at the
+          [=monetization receiver=]. One or more payments can be sent by the
+          [=monetization provider=] in a single session.
         </dd>
       </dl>
     </section>
@@ -365,7 +366,7 @@
         </p>
       </aside>
       <p>
-        The monetization keyword indicates a [=payment end-point=] used to
+        The monetization keyword indicates a [=payment pointer=] used to
         monetize the document.
       </p>
       <p>
@@ -581,8 +582,8 @@
         monetization event
       </h2>
       <p>
-        When the [=payment session=] has sent an |outgoing payment| with a
-        non-zero amount, perform the following steps:
+        When the [=payment session=] has sent a |payment| with a non-zero
+        amount, perform the following steps:
       </p>
       <ol class="algorithm">
         <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} associated
@@ -592,7 +593,7 @@
         </li>
         <li>Let |eventInitDict:MonetizationEventInit| be a
         {{MonetizationEventInit}} dictionary, whose members are initialized to
-        match |outgoing payment|'s details.
+        match |payment|'s details.
           <p class="issue">
             We probably need to canonicalize things like `assetCode` to
             uppercase. See {{PaymentCurrencyAmount/currency}} for how it's done
@@ -661,9 +662,19 @@
           <dfn>amount</dfn> attribute
         </h2>
         <p>
-          The amount delivered by an ILP packet. When getting, returns the
-          value it was initialized with.
+          The amount <em>sent</em>. When getting, returns the value it was
+          initialized with.
         </p>
+        <div class="warning">
+          <p>
+            The `amount` attribute previously reflected the amount
+            <em>received</em>.
+          </p>
+          <p>
+            To determine the amount received use either the `receipt` or
+            `incomingPayment` attribute.
+          </p>
+        </div>
       </section>
       <section>
         <h2>
@@ -702,8 +713,8 @@
         <p>
           `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
           receiver=] to the [=monetization provider=] as proof of the total
-          amount received in the stream. When getting, returns the value it was
-          initialized with.
+          amount received in the [=payment session=]. When getting, returns the
+          value it was initialized with.
         </p>
       </section>
       <section>
@@ -711,7 +722,7 @@
           <dfn>paymentPointer</dfn> attribute
         </h2>
         <p>
-          A [=URL=] representing a [=payment end-point=]. When getting, returns
+          A [=URL=] representing a [=payment pointer=]. When getting, returns
           the value it was initialized with.
         </p>
       </section>
@@ -757,7 +768,7 @@
         </h3>
         <p>
           The monetization-src directive restricts the URLs from which a
-          [=payment end-point=] is loaded. The syntax for the directive's name
+          [=payment pointer=] is loaded. The syntax for the directive's name
           and value is described by the following ABNF:
         </p>
         <pre class="abnf">
@@ -845,17 +856,17 @@
         or start monetization of a particular site if they wish to do so).
       </p>
       <p>
-        As [=payment end-points=] are generally provided as a service (e.g.,
+        As [=payment pointers=] are generally provided as a service (e.g.,
         Uphold), a <abbr title="Cross Site Scripting">XSS</abbr> attack could
-        inject malicious [=payment end-points=] into a page that uses the same
+        inject malicious [=payment pointers=] into a page that uses the same
         service. To mitigate such an attack, it is RECOMMENDED that developers:
       </p>
       <ul>
-        <li>host a [=payment end-point=] on their own servers and proxy [[Open
+        <li>host a [=payment pointer=] on their own servers and proxy [[Open
         Payments]] requests on the server as needed.
         </li>
         <li>Set the `monetization-src` CSP directive to restrict requests to
-        origins they control and trust to host [=payment end-points=].
+        origins they control and trust to host [=payment pointers=].
         </li>
       </ul>
     </section>
@@ -871,9 +882,9 @@
       </p>
       <p>
         Further, the user agent gets the payment information from the [=payment
-        end-point=] to establish the [=payment session=]. This also ensures the
+        pointer=] to establish the [=payment session=]. This also ensures the
         [=monetization provider=] doesn't have access to a user's browsing
-        history or to the [=payment end-point=].
+        history or to the [=payment pointer=].
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
