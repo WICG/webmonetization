@@ -127,7 +127,7 @@ const tools = [
     name: 'Pipe Web Monetization',
     image: 'logo-tool-pipe.svg',
     link: 'https://www.pipewebmonetization.com/',
-    desc: 'Web monetize your WordPress website and access your revenue via analytics dashboard.',
+    desc: 'Web monetize your WordPress website and access your revenue via an analytics dashboard.',
   },
 ]
 
