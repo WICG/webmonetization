@@ -594,11 +594,6 @@
         <li>Let |eventInitDict:MonetizationEventInit| be a
         {{MonetizationEventInit}} dictionary, whose members are initialized to
         match |payment|'s details.
-          <p class="issue">
-            We probably need to canonicalize things like `assetCode` to
-            uppercase. See {{PaymentCurrencyAmount/currency}} for how it's done
-            in [[Payment-Request]].
-          </p>
         </li>
         <li>Let |event:MonetizationEvent| be a newly constructed
         {{MonetizationEvent}} initialized with |eventInitDict|.
@@ -640,41 +635,51 @@
         [SecureContext, Exposed=Window]
         interface MonetizationEvent : Event {
           constructor(DOMString type, MonetizationEventInit eventInitDict);
-          readonly attribute DOMString amount;
-          readonly attribute DOMString assetCode;
-          readonly attribute octet assetScale;
+          readonly attribute DOMString? amount;
+          readonly attribute DOMString? assetCode;
+          readonly attribute octet? assetScale;
           readonly attribute DOMString? receipt;
+          readonly attribute PaymentCurrencyAmount amountSent;
           readonly attribute USVString paymentPointer;
           readonly attribute USVString? incomingPayment;
         };
 
         dictionary MonetizationEventInit : EventInit {
-          required DOMString amount;
-          required DOMString assetCode;
-          required octet assetScale;
+          required DOMString? amount;
+          required DOMString? assetCode;
+          required octet? assetScale;
           required DOMString? receipt;
+          required PaymentCurrencyAmount amountSent;
           required USVString paymentPointer;
           required USVString? incomingPayment;
         };
       </pre>
+      <div class="warning">
+        <p>
+          The `amount`, `assetCode`, `assetScale` and `receipt` attributes are
+          deprecated.
+        </p>
+        <p>
+          All [=monetization receivers=] should be migrating from generating a
+          [[[Receipt]]] to supporting incoming payments via [[Open Payments]]
+          and will no longer be returning receipts to the browser.
+        </p>
+        <p>
+          As such the {{MonetizationEvent}} no longer represents an amount
+          received, it represents an amount sent and returns a URL as the
+          {{MonetizationEvent/incomingPayment}} attribute that can be used to
+          determine the amount received.
+        </p>
+      </div>
       <section>
         <h2>
           <dfn>amount</dfn> attribute
         </h2>
         <p>
-          The amount <em>sent</em>. When getting, returns the value it was
+          The amount <em>received</em> as reflected in the receipt from the
+          [=monetization receiver=]. When getting, returns the value it was
           initialized with.
         </p>
-        <div class="warning">
-          <p>
-            The `amount` attribute previously reflected the amount
-            <em>received</em>.
-          </p>
-          <p>
-            To determine the amount received use either the `receipt` or
-            `incomingPayment` attribute.
-          </p>
-        </div>
       </section>
       <section>
         <h2>
@@ -698,18 +703,18 @@
       </section>
       <section>
         <h2>
+          <dfn>amountSent</dfn> attribute
+        </h2>
+        <p>
+          The amount <em>sent</em> expressed as a {{PaymentCurrencyAmount}} as
+          defined in [[payment-request]]. When getting, returns the value it
+          was initialized with.
+        </p>
+      </section>
+      <section>
+        <h2>
           <dfn>receipt</dfn> attribute
         </h2>
-        <div class="warning">
-          <p>
-            The `receipt` attribute is deprecated.
-          </p>
-          <p>
-            All [=monetization receivers=] should be migrating from generating
-            [[[Receipt]]]s to supporting incoming payments via [[Open
-            Payments]].
-          </p>
-        </div>
         <p>
           `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
           receiver=] to the [=monetization provider=] as proof of the total
@@ -722,8 +727,8 @@
           <dfn>paymentPointer</dfn> attribute
         </h2>
         <p>
-          A [=URL=] representing a [=payment pointer=]. When getting, returns
-          the value it was initialized with.
+          A [=URL=] representing the [=payment pointer=] that has been
+          monetized. When getting, returns the value it was initialized with.
         </p>
       </section>
       <section>
