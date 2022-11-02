@@ -193,8 +193,8 @@
               const link = document.querySelector('link[rel="monetization"]');
               link.addEventListener("monetization", event =&gt; {
                 // See how much was sent and in what currency
-                const { amount, assetCode, assetScale } = event;
-                console.log(`Browser sent ${assetCode}${amount / (10 ** assetScale)}.`);
+                const { amountSent : { value, currency }} = event;
+                console.log(`Browser sent ${currency} ${value}.`);
 
                 // Use the incoming payment URL to verify the payment at the receiver.
                 verifyPayment(event);
@@ -627,6 +627,42 @@
         </dd>
       </dl>
     </section>
+    <section data-dfn-for="MonetizationCurrencyAmount">
+      <h2>
+        `MonetizationCurrencyAmount` interface
+      </h2>
+      <p>
+        The `MonetizationCurrencyAmount` interface maps directly to the
+        {{PaymentCurrencyAmount}} dictionary as defined in [[payment-request]].
+      </p>
+      <pre class="idl">
+          [SecureContext, Exposed=Window]
+          interface MonetizationCurrencyAmount {
+            readonly attribute DOMString currency;
+            readonly attribute DOMString value;
+          };
+      </pre>
+      <section>
+        <h2>
+          <dfn>currency</dfn> member
+        </h2>
+        <p>
+          The currency of the MonetizationCurrencyAmount. See the definition of
+          the `currency` member of {{PaymentCurrencyAmount}} in
+          [[payment-request]] for details.
+        </p>
+      </section>
+      <section>
+        <h2>
+          <dfn>value</dfn> member
+        </h2>
+        <p>
+          The amount of the MonetizationAmount. See the definition of the
+          `value` member in of {{PaymentCurrencyAmount}} in [[payment-request]]
+          for details.
+        </p>
+      </section>
+    </section>
     <section data-dfn-for="MonetizationEvent">
       <h2>
         `MonetizationEvent` interface
@@ -639,7 +675,7 @@
           readonly attribute DOMString? assetCode;
           readonly attribute octet? assetScale;
           readonly attribute DOMString? receipt;
-          readonly attribute PaymentCurrencyAmount amountSent;
+          readonly attribute MonetizationCurrencyAmount amountSent;
           readonly attribute USVString paymentPointer;
           readonly attribute USVString? incomingPayment;
         };
@@ -673,7 +709,7 @@
       </div>
       <section>
         <h2>
-          <dfn>amount</dfn> attribute
+          <dfn>amount</dfn> attribute (deprecated)
         </h2>
         <p>
           The amount <em>received</em> as reflected in the receipt from the
@@ -683,7 +719,7 @@
       </section>
       <section>
         <h2>
-          <dfn>assetCode</dfn> attribute
+          <dfn>assetCode</dfn> attribute (deprecated)
         </h2>
         <p>
           The three letter asset code identifying the amount's units (e.g.,
@@ -693,7 +729,7 @@
       </section>
       <section>
         <h2>
-          <dfn>assetScale</dfn> attribute
+          <dfn>assetScale</dfn> attribute (deprecated)
         </h2>
         <p>
           The scale of the amount. For example, USD would have an
@@ -701,14 +737,21 @@
           When getting, returns the value it was initialized with.
         </p>
       </section>
+      <div class="note" title="PaymentCurrencyAmount">
+        The members of `MonetizationAmount` map directly to the `value` and
+        `currency` attributes of a {{PaymentCurrencyAmount}} dictionary. See
+        the documentation of {{PaymentCurrencyAmount}} for guidance on
+        processing and display of these attributes.
+      </div>
       <section>
         <h2>
           <dfn>amountSent</dfn> attribute
         </h2>
         <p>
-          The amount <em>sent</em> expressed as a {{PaymentCurrencyAmount}} as
-          defined in [[payment-request]]. When getting, returns the value it
-          was initialized with.
+          The amount <em>sent</em>. This should be processed in the same way as
+          a {{PaymentCurrencyAmount}} dictionary as defined in
+          [[payment-request]]. When getting, returns the value it was
+          initialized with.
         </p>
       </section>
       <section>
