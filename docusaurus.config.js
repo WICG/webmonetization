@@ -123,6 +123,12 @@ const tools = [
     link: 'https://github.com/philnash/jekyll-web_monetization',
     desc: 'A Jekyll plugin for adding a Web Monetization meta tag to your site.',
   },
+  {
+    name: 'Pipe Web Monetization',
+    image: 'logo-tool-pipe.svg',
+    link: 'https://www.pipewebmonetization.com/',
+    desc: 'Web monetize your WordPress website and access your revenue via an analytics dashboard.',
+  },
 ]
 
 const siteConfig = {
