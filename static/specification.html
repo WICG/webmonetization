@@ -175,11 +175,11 @@
         </h3>
         <p>
           The {{MonetizationEvent}} DOM events provide information such as the
-          amount sent, the currency of the payment (what we call the "asset
-          code"), and a link to the incoming payment at the [=monetization
-          receiver=] which can be used to verify the receipt of payment. As in
-          the previous example above, these events are dispatched to [^link^]
-          elements and bubble up the DOM tree.
+          amount sent, the currency of the payment, and a link to the incoming
+          payment at the [=monetization receiver=] which can be used to verify
+          the receipt of payment. As in the previous example above, these
+          events are dispatched to [^link^] elements and bubble up the DOM
+          tree.
         </p>
         <p>
           To listen for {{MonetizationEvent}} events, an [=event listener=]
@@ -213,9 +213,22 @@
           [=monetization receiver=].
         </p>
         <p>
-          In most cases requests to the URL will need to be authenticated.
-          Below is a hypothetical verification endpoint that will make
-          authenticated requests to the receiver and return the results.
+          In most cases requests to the {{MonetizationEvent/incomingPayment}}
+          URL will need to be authenticated as they fetch sensitive details
+          such as the `receivedAmount`. The specifics of this authentication
+          are agreed by the website and the [=monetization receiver=] when
+          setting up the receiving account.
+        </p>
+        <p>
+          Below is a hypothetical naive verification method that will make a
+          request to the {{MonetizationEvent/incomingPayment}} URL and simply
+          return the results. For simplicity it has no logic for authenticating
+          the request.
+        </p>
+        <p>
+          A more sophisticated implementation should track the `receivedAmount`
+          property and ensure it is increasing after each {{MonetizationEvent}}
+          to verify that a new payment has been received.
         </p>
         <aside class="example">
           <pre class="JS">
@@ -226,26 +239,22 @@
                 throw new Error('No incoming payment URL')
               }
 
-              const body = JSON.stringify({
-                incomingPayment: event.incomingPayment
-              });
-
-              const response = await fetch('/verify', {
-                method: 'POST',
+              // Poll the incoming payment to check the amount received
+              const response = await fetch(event.incomingPayment, {
                 credentials: 'same-origin',
                 mode: 'same-origin',
                 cache: 'no-cache',
                 headers: {
                   'Content-Type': 'application/json'
-                },
-                body);
+                }
               });
 
               if (response.ok) {
                 // The incoming payment was fetched successfully
-                const { receivedAmount } = JSON.parse(response.json())
+                const { receivedAmount } = JSON.parse(await response.json())
                 const { amount, assetCode, assetScale } = receivedAmount;
                 console.log(`Received ${assetCode}${amount / (10 ** assetScale)}.`);
+                return receivedAmount;
               }
             }
           </pre>
@@ -317,8 +326,8 @@
         </dt>
         <dd>
           An session between a [=monetization provider=] and [=monetization
-          receiver=] initiated by the [=user agent=] at the
-          [=monetization receiver=]. One or more payments can be initiated by the
+          receiver=] initiated by the [=user agent=] at the [=monetization
+          receiver=]. One or more payments can be initiated by the
           [=monetization provider=] in a single session.
         </dd>
       </dl>
@@ -738,8 +747,8 @@
       </section>
       <div class="note" title="MonetizationCurrencyAmount">
         The members of the `MonetizationCurrencyAmount` interface map directly
-        to the `value` and `currency` attributes of a {{PaymentCurrencyAmount}} 
-        dictionary. See the documentation of {{PaymentCurrencyAmount}} for 
+        to the `value` and `currency` attributes of a {{PaymentCurrencyAmount}}
+        dictionary. See the documentation of {{PaymentCurrencyAmount}} for
         guidance on processing and display of these attributes.
       </div>
       <section>
@@ -755,7 +764,7 @@
       </section>
       <section>
         <h2>
-          <dfn>receipt</dfn> attribute
+          <dfn>receipt</dfn> attribute (deprecated)
         </h2>
         <p>
           `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
