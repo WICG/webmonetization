@@ -28,5 +28,5 @@ jobs:
         working-directory: workers/${{matrix.dir}}
       - uses: cloudflare/wrangler-action@1.3.0
         with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: workers/${{matrix.dir}}
