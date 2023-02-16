@@ -6,8 +6,7 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write '**/*.{js,css,json,md,ts}'",
-    "prepublish": "yarn build"
+    "format": "prettier --write '**/*.{js,css,json,md,ts}'"
   },
   "author": "Sabine Schaller <sabine@coil.com>",
   "license": "Apache-2.0",
