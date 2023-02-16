@@ -8,7 +8,6 @@ The worker will return a 302 redirect to one of the provided pointers, selected 
 
 ```sh
 yarn
-yarn build
 wrangler dev
 ```
 
@@ -18,6 +17,5 @@ To `https://webmonetization.org/api/revshare/pay`
 
 ```sh
 yarn
-yarn build
 wrangler publish
 ```
