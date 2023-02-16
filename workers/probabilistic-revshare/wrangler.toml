@@ -3,3 +3,4 @@ type = "javascript"
 account_id = "f257f3bcb51db7468b59e147970bcb12"
 workers_dev = false
 route = "https://webmonetization.org/api/revshare/pay/*"
+main = "./src/index.ts"
