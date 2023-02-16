@@ -4,7 +4,7 @@ This cloudflare worker will encrypt any plain text given a payment pointer. Furt
 
 ## Testing
 
-Configure your `wrangler.toml` file.
+Configure your `wrangler.toml` file. Definitely!
 
 ```sh
 yarn install
