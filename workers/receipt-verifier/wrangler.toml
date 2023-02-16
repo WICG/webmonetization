@@ -4,6 +4,7 @@ account_id = "f257f3bcb51db7468b59e147970bcb12"
 workers_dev = false
 route = "https://webmonetization.org/api/receipts/*"
 main = "./src/index.ts"
+compatibility_date = "2023-02-13"
 
 [vars]
 RECEIPT_VERIFIER_HOST = "receipt-verifier-dehz6dtlzq-uc.a.run.app"
