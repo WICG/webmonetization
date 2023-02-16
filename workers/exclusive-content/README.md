@@ -7,10 +7,10 @@ This cloudflare worker will encrypt any plain text given a payment pointer. Furt
 Configure your `wrangler.toml` file.
 
 ```sh
-npm install
+yarn install
 wrangler secret put MASTERKEY
 # enter a key to be stored with cloudflare worker
-wrangler preview --watch
+wrangler dev --local
 ```
 
 ## Deploying
@@ -18,7 +18,7 @@ wrangler preview --watch
 Configure your `wrangler.toml` file.
 
 ```sh
-npm install
+yarn install
 wrangler secret put MASTERKEY
 # enter a key to be stored with cloudflare worker
 wrangler publish
