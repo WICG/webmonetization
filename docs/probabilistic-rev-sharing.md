@@ -4,6 +4,8 @@ title: Probabilistic Revenue Sharing
 sidebar_label: Probabilistic revenue sharing
 ---
 
+import Hidden from '@site/src/components/Hidden';
+
 More often than not, high quality content involves more than one person. So, how do you share a portion of your revenue if you only have a single `link` tag with a payment pointer?
 
 One way is through probabilistic revenue sharing (revshare). In Web Monetization, probabilistic revenue sharing works by randomly choosing from a list of predefined payment pointers each time a web monetized visitor loads your page. The visitor pays to the chosen pointer until the page is reloaded or closed.
@@ -104,13 +106,14 @@ If you see the source files instead of the example, click **View App** in the bo
 
 <div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
-    src="https://glitch.com/embed/#!/embed/probabalistic-revenue-share-experiment?path=README.md&previewSize=100"
+    src="https://glitch.com/embed/#!/embed/wm2-probablistic-revenue-share?path=README.md&previewSize=100"
     title="probabalistic-revenue-share-experiment on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
     style={{ height: '100%', width: '100%', border: '0' }}>
   </iframe>
 </div>
 
+<Hidden>
 ## Advanced topic and future ideas
 
 Imagine you're embedding an image into an article. To use the image, the photographer has asked for a percentage of your earnings, so you add the photographer to your revshare.
@@ -173,3 +176,5 @@ With this scheme, your payment pointer contains all the revshare logic and you d
 This lets you make some revsharing schemes that would be wildly impractical with existing schemes. By taking the pain out of revenue sharing, we can help everyone get compensated fairly!
 
 If you want to get started with probabilistic revenue sharing today, try out our [Probabilistic Revshare Generator](/prob-revshare)!
+
+</Hidden>

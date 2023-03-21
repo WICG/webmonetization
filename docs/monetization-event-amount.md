@@ -6,6 +6,12 @@ sidebar_label: MonetizationEvent.amount
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
+:::danger Caution
+
+The amount property is deprecated. Please consider using the [**amountSent**](monetization-event-amountSent.md) property of the MonetizationEvent interface instead.
+
+:::
+
 The **`amount`** property of the [MonetizationEvent](monetization-event.md) interface returns the amount of money that was successfully received on the last payment.
 
 ## Value

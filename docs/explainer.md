@@ -5,7 +5,7 @@ sidebar_label: Web Monetization
 ---
 
 Web Monetization (WM) is a proposed API standard that allows websites to request
-a stream of very small payments (e.g. fractions of a cent) from a user.
+a series of very small payments (e.g. fractions of a cent) from a user.
 
 The API's framework provides new revenue models for websites and web-based
 services and is an alternative to subscription services and advertising, all
@@ -69,7 +69,7 @@ user's behalf.
 The numbers correspond to the diagram above. The flow is simplified to exclude
 some edge cases.
 
-1. Sites that support Web Monetization include a `<meta>` tag containing a
+1. Sites that support Web Monetization include a `<link>` tag containing a
 [payment pointer](#payment-pointers). The browser (user agent) parses the tag to
 determine where to send payments.
 2. The browser uses its internal Web Monetization agent to calculate an
@@ -127,9 +127,9 @@ standards-track specification.
 ### Declarative vs imperative API
 
 The current proposal is for a hybrid declarative and imperative API. Websites
-declare their ability to accept web monetized payments using a `<meta>` tag in
+declare their ability to accept web monetized payments using a `<link>` tag in
 the page header. Imperatively, a developer can then access the global
-`monetization` object on the DOM to track incoming payment streams/events and
+`monetization` object on the DOM to track incoming payment events and
 react to these (by showing/hiding ads, etc.).
 
 > [Issue 33 - Declarative vs Imperative API](https://github.com/WICG/webmonetization/issues/33)
@@ -179,7 +179,7 @@ multiple underlying settlement networks, improving the interoperability and
 reach of existing networks.
 
 Web Monetization providers and receivers use the Interledger protocol to exchange
-payments. The provider and WM receiver might be directly connected or might
+payments. The WM provider and WM receiver might be directly connected or might
 connect via one or more intermediaries. This will be driven by the regulatory
 requirements and the status of intermediaries as registered money services businesses.
 
@@ -203,7 +203,7 @@ identifiable as a payment account identifier.
 
 Websites that use Web Monetization require a destination address for their
 payments (which they will get from their WM receiver). The address must be inserted
-into the appropriate `meta` tag.
+into the appropriate `link` tag.
 
 For more details see https://paymentpointers.org.
 
@@ -239,9 +239,9 @@ will accept payments.
 > `<meta name="monetization" content="$secure-wallet.example/~alice">` into the
 > `<head>` section of _**https://<span></span>rocknrollblog.example**_.
 
-Web Monetization only works on pages containing the `meta` tag. Pages must be
+Web Monetization only works on pages containing the `link` tag. Pages must be
 secure (served over HTTPS, or `http://localhost` for testing) to preclude bad
-actors, like ISPs injecting their own `<meta>` tags into pages.
+actors, like ISPs injecting their own `<link>` tags into pages.
 
 > [Issue 14 (Closed) - Legitimate Meta Tags](https://github.com/WICG/webmonetization/issues/14)<p>
 How do we ensure only legitimate tags are parsed by the browser?</p>

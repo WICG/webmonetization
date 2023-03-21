@@ -7,6 +7,12 @@ sidebar_label: MonetizationEvent.assetScale
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
+:::danger Caution
+
+The assetScale property is deprecated. Please consider using the [**amountSent**](monetization-event-amountSent.md) property of the MonetizationEvent interface instead.
+
+:::
+
 The **`assetScale`** property of the [MonetizationEvent](monetization-event.md) interface returns the scale of the paid amount.
 
 ## Value

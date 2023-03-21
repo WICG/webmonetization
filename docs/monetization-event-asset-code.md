@@ -7,6 +7,12 @@ sidebar_label: MonetizationEvent.assetCode
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
+:::danger Caution
+
+The assetCode property is deprecated. Please consider using the [**amountSent**](monetization-event-amountSent.md) property of the MonetizationEvent interface instead.
+
+:::
+
 The **`assetCode`** property of the [MonetizationEvent](monetization-event.md) interface returns the currency code of the last payment received.
 
 ## Value

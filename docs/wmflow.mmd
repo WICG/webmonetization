@@ -1,0 +1,23 @@
+
+sequenceDiagram
+  participant A as WM Receiver <br/> (Website's Wallet)
+  participant B as Receipt Verifier
+  participant C as Web Page
+  participant D as User Agent <br/> (Browser)
+  participant E as WM Provider <br/> (User's Wallet)
+  autonumber
+  D->>C: [parse monetization link tag]
+  D->>D: Calculate Rate (url)
+  D->>C: [generate session id]
+  D->>B: Get Receiver Address & Secret (paymentPointer)
+  B->>A: Get Receiver Address & Secret (paymentPointer, receiptSecret)
+  loop [Sending Micropayments (throughput possibly limited by WM Provider)
+  D->>E: Send Payment (receiverAddress, amount) 
+  E->>A: Send Payment (amount)
+  A->>E: Send Receipt (amount)
+  E->>D: Payment Sent (amount, receipt)
+  D->>C: Payment Sent(sessionid, amount, receipt)
+  C->>B: opt[Confirm Payments] <br/> Verify Payment(receipt)
+  end
+
+

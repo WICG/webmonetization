@@ -204,13 +204,14 @@ If you see the source files instead of the example, click **View App** in the bo
 
 <div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
-    src="https://glitch.com/embed/#!/embed/wm-exclusive-content-advanced?path=README.md&previewSize=100"
+    src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-advanced?path=README.md&previewSize=100"
     title="wm-exclusive-content-advanced on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
     style={{ height: '100%', width: '100%', border: '0' }}>
   </iframe>
 </div>
 
+<Hidden>
 ## Exclusive content with payment verification
 
 <Hidden>
@@ -258,3 +259,4 @@ If you see the source files instead of the example, click **View App** in the bo
 </div>
 
 If you want to interact with a fully functionable example which **does require you to have Web Monetization enabled in your browser**, visit [this demo page](https://exclusive-content-demo.glitch.me/) with Web Monetization enabled.
+</Hidden>
