@@ -13,16 +13,18 @@ The **`MonetizationEvent`** interface of the [Web Monetization API](web-monetiza
 
 ## Properties
 
-- [amount](monetization-event-amount.md)
-  : An integer amount delivered by an ILP packet.
-- [assetCode](monetization-event-asset-code.md)
-  : A string representing the currency code (eg USD, EUR) of the received amount.
-- [assetScale](monetization-event-asset-scale.md)
-  : The scale of the received amount.
+- [amount](monetization-event-amount.md) *(deprecated)*
+  : An integer amount delivered by an ILP packet.   
+- [amountSent](monetization-event-amountSent.md)
+  : A dictionary containing the currency code and amount sent.  
+- [assetCode](monetization-event-asset-code.md) *(deprecated)*
+  : A string representing the currency code (eg USD, EUR) of the received amount.  
+- [assetScale](monetization-event-asset-scale.md) *(deprecated)*
+  : The scale of the received amount.  
 <Hidden>- [incomingPayments](monetization-event-incoming-payments.md)
   : A string containing the URL representing an incoming payment at the monetization receiver.</Hidden>
-- [receipt](monetization-event-receipt.md)
-  : The base-64 encoded Interledger [Stream receipt](https://github.com/interledger/rfcs/blob/master/0039-stream-receipts/0039-stream-receipts.md) that the browser received.
+- [receipt](monetization-event-receipt.md) *(deprecated)*
+  : The base-64 encoded Interledger [Stream receipt](https://github.com/interledger/rfcs/blob/master/0039-stream-receipts/0039-stream-receipts.md) that the browser received.  
 - [paymentPointer](monetization-event-payment-pointer.md)
   : A URL representing the payment end-point.
 
