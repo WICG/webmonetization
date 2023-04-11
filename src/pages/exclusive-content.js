@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import Layout from '@theme/Layout'
 import { Link } from '@docusaurus/router'
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 import {
   ViewProvider,
@@ -13,6 +14,7 @@ export default function ExclusiveContent(props) {
   const { config: siteConfig } = props
 
   return (
+    <BrowserOnly>
     <Layout
       permalink='/exclusive-content'
       title={siteConfig.title}
@@ -38,5 +40,6 @@ export default function ExclusiveContent(props) {
         </ViewProvider>
       </ExclusiveContentProvider>
     </Layout>
+    </BrowserOnly>
   )
 }

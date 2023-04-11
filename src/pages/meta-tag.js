@@ -4,6 +4,7 @@ import Checkbox from '@material-ui/core/Checkbox'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Layout from '@theme/Layout'
 import { Link } from '@docusaurus/router'
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 export default function MetaTag (props) {
   const { config: siteConfig } = props
@@ -12,7 +13,9 @@ export default function MetaTag (props) {
   const [ pointer, setPointer ] = useState('$YourPaymentPointer')
   const [ useVerifier, setUseVerifier ] = useState(false)
 
-  return <Layout
+  return (
+  <BrowserOnly>
+  <Layout
     permalink='/meta-tag'
     title={siteConfig.title}
     description={siteConfig.tagLine}
@@ -75,4 +78,6 @@ export default function MetaTag (props) {
       </Container>
     </div>
   </Layout>
+  </BrowserOnly>
+  )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from '@material-ui/core'
 import Layout from '@theme/Layout'
 import { Link } from '@docusaurus/router'
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 import { SharesProvider, ViewProvider } from '../page-support/prob-revshare/state'
 import { ActiveView } from '../page-support/prob-revshare/components/active-view'
@@ -9,7 +10,9 @@ import { ActiveView } from '../page-support/prob-revshare/components/active-view
 export default function ProbRevshare (props) {
   const { config: siteConfig } = props
 
-  return <Layout
+  return (
+  <BrowserOnly>
+  <Layout
     permalink='/prob-revshare'
     title={siteConfig.title}
     description={siteConfig.tagLine}
@@ -30,4 +33,6 @@ export default function ProbRevshare (props) {
       </SharesProvider>
     </ViewProvider>
   </Layout>
+  </BrowserOnly>
+  )
 }
