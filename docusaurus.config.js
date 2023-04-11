@@ -150,7 +150,7 @@ const siteConfig = {
           label: 'WICG Forum',
         },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        { search: true },
+        { type: 'search', position: 'right' },
       ],
     },
     footer: {
