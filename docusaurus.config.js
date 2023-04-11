@@ -3,51 +3,15 @@
 
 const wallets = [
   {
-    name: 'Uphold',
-    image: 'uphold_logo.svg',
-    link: 'https://www.uphold.com/signup',
-  },
-  {
     name: 'Gatehub',
     image: 'gatehub_logo.svg',
     link: 'https://gatehub.net',
   },
 ]
 
-const providers = [
-  {
-    name: 'Coil',
-    image: 'coil_logo.svg',
-    link: 'https://coil.com',
-  },
-]
+const providers = []
 
-const browsers = [
-  {
-    name: 'Puma Browser',
-    image: 'logo-browser-puma.svg',
-    link: 'https://pumabrowser.com',
-    desc: 'Mobile browser for Android and iOS that supports Web Monetization natively.',
-  },
-  {
-    name: 'Mozilla Firefox Extension',
-    image: 'logo-browser-firefox.svg',
-    link: 'https://addons.mozilla.org/en-US/firefox/addon/coil/',
-    desc: 'Support websites and creators with Web Monetization. (published by Coil)',
-  },
-  {
-    name: 'Google Chrome Extension',
-    image: 'logo-browser-chrome.svg',
-    link: 'https://chrome.google.com/webstore/detail/coil/locbifcbeldmnphbgkdigjmkbfkhbnca',
-    desc: 'Support websites and creators with Web Monetization. (published by Coil)',
-  },
-  {
-    name: 'Microsoft Edge Extension',
-    image: 'logo-browser-edge.svg',
-    link: 'https://microsoftedge.microsoft.com/addons/detail/ljionajlbinlfkdnpkloejeoogfgkojm?hl=en-US',
-    desc: 'Support websites and creators with Web Monetization. (published by Coil)',
-  },
-]
+const browsers = []
 
 const search = [
   {
