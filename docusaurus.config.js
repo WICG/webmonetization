@@ -120,6 +120,7 @@ const siteConfig = {
   themeConfig: {
     ogImage: 'img/undraw_online.svg',
     algolia: {
+      appId: 'BH4D9OD16A',
       apiKey: '522665321749697a7b612bb54dbdb0b4',
       indexName: 'webmonetization',
       placeholder: 'Search',

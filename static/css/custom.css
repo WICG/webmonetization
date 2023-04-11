@@ -44,7 +44,7 @@ h2 {
 }
 
 .navbar {
-  height: 50px;
+  width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
   background-color: #000;
