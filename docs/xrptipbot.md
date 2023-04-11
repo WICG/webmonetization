@@ -10,7 +10,7 @@ import XrpMigration13 from './assets/xrpmigration/xrpMigration13.png';
 
 ## NOTICE
 
-XRP TipBot is no longer operational. You can [withdraw](https://www.xrptipbot.com/withdraw) your funds or you can link your account to [Uphold](uphold.md) and migrate your balance.
+XRP TipBot is no longer operational. You can [withdraw](https://www.xrptipbot.com/withdraw) your funds or you can try to link your account to [Uphold](https://uphold.com/) and migrate your balance.
 
 > Uphold is in the process of obtaining a BitLicense in the state of New York. Until the BitLicense is issued they cannot support cryptocurrency transactions. If you reside in New York, you’ll need to withdraw your funds from the TipBot. You can still set up an Uphold account for fiat money but it won’t be linked to XRP TipBot.
 
