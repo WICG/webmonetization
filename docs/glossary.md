@@ -7,8 +7,8 @@ sidebar_label: Glossary
 # Monetized web page
 * * *
 A page on a monetized website that contains the necessary
-[`meta` tag](explainer.md#add-lt-meta-gt-tag-to-website-header) defining the
-page's receiving address (payment pointer).
+`link` [tags](explainer.md#add-lt-meta-gt-tag-to-website-header) defining the
+page's receiving addresses for payments (See [payment pointer](#payment-pointer)).
 
 # Payment pointer
 * * *
