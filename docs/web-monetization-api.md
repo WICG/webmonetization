@@ -8,7 +8,7 @@ import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 import Hidden from '@site/src/components/Hidden';
 
-The Web Monetization API provides a seamless payment experience for site owners and visitors. Unlike the W3C's [Payment Request API](https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API), the Web Monetization API sends continuous micro-payments from the user agent to the website. Thus, visitors automatically send a small sum per time unit to any web-monetized website they visit. The payment rate is predetermined by the user's web monetization agent and adapts over time.
+The Web Monetization API provides a seamless payment experience for site owners and visitors. Unlike the W3C's [Payment Request API](https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API), the Web Monetization API sends continuous micro-payments from the user agent to the website. Thus, visitors automatically send a small sum per time unit to any Web Monetized website they visit. The payment rate is predetermined by the user's Web Monetization agent and adapts over time.
 
 ## Web Monetization Concepts and Usage
 
@@ -17,11 +17,11 @@ The Web Monetization API allows web apps to accept continuous micro-payments fro
 - The Web Monetization Agent is designed to be implemented in browsers and expose the Web Monetization API. It's responsible to:
   - get the rate, token, and payment connection address from the Web Monetization Provider
   - get the payment information from the `<link>` element
-  - create an [Interledger](https://interledger.org/) payment connection via the [STREAM](https://interledger.org/rfcs/0029-stream/) protocol
+  - create an [incoming payment](https://docs.openpayments.guide/reference/create-incoming-payment) via the [Open Payments API](https://docs.openpayments.guide)
   <Hidden>- create an [Interledger](https://interledger.org/) payment connection via either the [STREAM](https://interledger.org/rfcs/0029-stream/) protocol or the [Open Payments](https://docs.openpayments.guide/) standard</Hidden>
-  - receive confirmation of the payment
+  - verify payment via the [outgoing payment](https://docs.openpayments.guide/reference/create-outgoing-payment) endpoint on the web site owner's payment pointer via the [Open Payments API](https://docs.openpayments.guide)
 
-- The Web Monetization Provider is intended to be the entity that facilitates payments to websites on behalf of the user. It's designed to be side-loaded via an extension, essentially allowing users to choose their provider by installing a different extension. It would only be responsible for offering the browser information about the rate, token, and provider address. Ideally, there would be a separate extension category for Web Monetization Providers. 
+- The Web Monetization Provider is intended to be the entity that facilitates payments to websites on behalf of the user. It's designed to be side-loaded via an extension, essentially allowing users to choose their provider by installing a different extension. It would only be responsible for offering the browser information about the rate, token, and provider address. Ideally, there would be a separate extension category for Web Monetization Providers.  A website visitor can also potentially be their own Web Monetization Provider through the use of a digital wallet that implements the [Open Payments API](https://openpayments.guide) standard.   
 
 Currently, the Agent and Provider are loaded via the same extension until the Web Monetization Agent is implemented in browsers.
 
@@ -56,9 +56,12 @@ Calculate how much you made from a Web Monetized visitor.
 
 A guide on revenue sharing amongst multiple payment pointers.
 
+<Hidden>
 [**Receipt Verifier Service**](receipt-verifier.md)
 
+
 A reference on verifying payments.
+
 
 ## Libraries
 
@@ -81,6 +84,8 @@ A reference on verifying payments.
 - [Moodle Web Monetization Module](https://github.com/andrewhancox/moodle-local_webmonetization) is a plugin for adding Web Monetization to your Moodle site.
 
 - [Jekyll + Web Monetization](https://github.com/philnash/jekyll-web_monetization) is a Jekyll plugin for adding Web Monetization to your site.
+
+</Hidden>
 
 ## Specifications
 

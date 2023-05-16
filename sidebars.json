@@ -21,7 +21,7 @@
             "type": "doc",
             "id": "monetization-event"
           },
-          "items": ["monetization-event-amountSent", "monetization-event-amount", "monetization-event-asset-code", "monetization-event-asset-scale", "monetization-event-receipt", "monetization-event-payment-pointer", "on-monetization", "monetization-event-element"]
+          "items": ["monetization-event-amountSent", "monetization-event-amount", "monetization-event-asset-code", "monetization-event-asset-scale", "monetization-event-incoming-payments", "monetization-event-receipt", "monetization-event-payment-pointer", "on-monetization", "monetization-event-element"]
         },
         {
           "type": "category",
@@ -51,10 +51,7 @@
         "counter",
         "probabilistic-rev-sharing"
       ],
-      "Payment Pointer Providers": [
-        "ilp-wallets",
-        "gatehub"
-      ],
+      "Payment Pointer Providers": ["ilp-wallets"],
       "Resources": ["glossary", "resources"]
     }
   ]
