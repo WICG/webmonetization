@@ -11,10 +11,11 @@ More often than not, high quality content involves more than one person. So, how
 One way is through probabilistic revenue sharing (revshare). In Web Monetization, probabilistic revenue sharing works by randomly choosing from a list of predefined payment pointers each time a web monetized visitor loads your page. The visitor pays to the chosen pointer until the page is reloaded or closed.
 
 The chance of a payment pointer being chosen is based on its assigned weight. For example, if Alice's payment pointer has a weight of 50, the pointer has a 50% chance of being chosen. The laws of probability state that Alice’s share will approach 50% of the page’s total revenue as more users visit the site.
-
+<Hidden>
 :::info
 Want to try probabilistic revenue sharing right away? Check out our [Probabilistic Revshare Generator](/prob-revshare)
 :::
+</Hidden>
 
 ## A basic example
 

@@ -11,10 +11,11 @@ One of the perks of Web Monetization is that its JavaScript API can be used to m
 ## A basic example
 
 Web Monetization makes providing exclusive content easy! This is a very simple example of showing exclusive content only to web monetized visitors:
-
+<Hidden>
 > **Careful!** These examples hide content on the client side. A clever user
 > could pretend to be web monetized by using the developer console. Examples on
 > how to verify Web Monetization can be found [further down](#exclusive-content-with-payment-verification).
+</Hidden>
 
 ### Code
 

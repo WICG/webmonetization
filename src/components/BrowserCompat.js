@@ -187,7 +187,7 @@ export default function BrowserCompat({ children, data }) {
           </span>
           <span class='bc-notes'>
             <Extension fontSize='inherit' htmlColor='green' /> You'll need to
-            use a <a href='/docs/extension'>Web Monetization Extension</a>.
+            use a Web Monetization Extension.
           </span>
         </div>
       )}

@@ -1,7 +1,6 @@
 ---
 id: gatehub
 title: GateHub
-sidebar_label: GateHub
 ---
 
 Use GateHub to have your earnings paid out in XRP or any other supported
