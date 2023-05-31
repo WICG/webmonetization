@@ -33,10 +33,11 @@ class HomeSplash extends React.Component {
     return (
       <SplashContainer>
         <Logo img_src={`${baseUrl}img/wm-icon-animated.svg`} />
-        <img src={`${baseUrl}img/grey_wm_logo.svg`} className='bgLogo' alt='' />
+        
         <div className='inner'>
           <ProjectTitle siteConfig={siteConfig} />
         </div>
+        <img src={`${baseUrl}img/grey_wm_logo.svg`} className='bgLogo' alt='' />
       </SplashContainer>
     )
   }
@@ -82,7 +83,7 @@ export default class Index extends React.Component {
           the web platform. As a result, the web suffers from a flood of
           advertising and corrupt business models. Web Monetization provides an
           open, native, efficient, and automatic way to compensate creators, pay
-          for API calls, and support crucial web infrastructure.
+          for content, and support crucial web infrastructure.
         </p>
       </TextBlock>
     )
@@ -91,8 +92,8 @@ export default class Index extends React.Component {
       <TextBlock>
         <h2>Why Now?</h2>
         <p>
-          Until recently, there hasn't been an open, neutral protocol for
-          transferring money.{' '}
+          Until recently, there hasn't been an open, neutral and cost-efficient
+          protocol for transferring money.{' '}
           <a
             href='https://interledger.org'
             target='_blank'
@@ -100,9 +101,9 @@ export default class Index extends React.Component {
           >
             Interledger
           </a>{' '}
-          provides a simple, ledger-agnostic, and currency-agnostic method for
-          the transfer of small quantities of money. This opens up the
-          possibility for streaming money, which makes Web Monetization possible
+          provides a simple, interoperable, and currency-agnostic method for the
+          transfer of small amounts of money. This opens up the possibility for
+          streaming money, which makes more Web Monetization use cases possible
           for the first time.
         </p>
       </TextBlock>
@@ -179,7 +180,7 @@ export default class Index extends React.Component {
     const Wallets = () => (
       <CardBlock id='wallets'>
         <h2>Web Monetization Wallets</h2>
-        <p>These providers offer ILP-enabled wallets.</p>
+        <p>These providers offer ILP-enabled wallets that you can use to become Web Monetized.</p>
         <CardSet cards={siteConfig.customFields.wallets} />
         <MergeCard label='wallet' />
       </CardBlock>
@@ -208,7 +209,7 @@ export default class Index extends React.Component {
     const Search = () => (
       <CardBlock id='search'>
         <h2>Web Monetization Enabled Search Engines</h2>
-        <p>These search engines implement Web Monetization features</p>
+        <p>These search engines implement Web Monetization features.</p>
         <CardSet cards={siteConfig.customFields.search} />
         <MergeCard label='search engine' />
       </CardBlock>
@@ -217,7 +218,7 @@ export default class Index extends React.Component {
     const Tools = () => (
       <CardBlock id='tools'>
         <h2>Web Monetization Tools</h2>
-        <p>These tools enable Web Monetization features</p>
+        <p>These tools enable Web Monetization features.</p>
         <CardSet cards={siteConfig.customFields.tools} />
         <MergeCard label='tool' />
       </CardBlock>
@@ -229,7 +230,15 @@ export default class Index extends React.Component {
         <div className='resourceContainer'>
           <div className='resource'>
             <h3>Documentation</h3>
-            <p>Resource on how to add Web Monetization to your site.<br /><a href={docUrl('docs/web-monetization-api', this.props.language)}>Read docs ›</a></p>
+            <p>
+              Resource on how to add Web Monetization to your site.
+              <br />
+              <a
+                href={docUrl('docs/web-monetization-api', this.props.language)}
+              >
+                Read docs ›
+              </a>
+            </p>
           </div>
           <div className='resource'>
             <h3>Explainer</h3>
@@ -303,12 +312,17 @@ export default class Index extends React.Component {
           <HomeSplash siteConfig={siteConfig} language={language} />
           <SpashFooter />
           <div className='mainContainer'>
-            <Motivation />
-            <WhyNow />
-            <Wallets />
-            <Providers />
-            <Browsers />
-            <Search />
+            <div className='twoColumns'>
+              <Motivation />
+              <WhyNow />
+            </div>
+            <div className='twoColumns'>
+              <Wallets />
+              <Search />
+            </div>
+            
+            {/* <Providers />
+            <Browsers /> */}
             <Tools />
             <Resources />
           </div>
