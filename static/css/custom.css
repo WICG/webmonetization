@@ -38,6 +38,17 @@
 }
 
 /* Typography styles */
+.twoColumns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: 1px solid #e3e5e9;
+}
+
+.twoColumns .contentBlock {
+  border-bottom: none;
+}
+
 .heading--1 {
   font-size: var(--step-4);
 }
