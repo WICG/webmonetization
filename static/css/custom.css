@@ -379,6 +379,11 @@ table.event-properties {
 .specifications a span {
   font-size: smaller;
 }
+
+#browser-compatibility, .browser-compat {
+  display: none;
+}
+
 .browser-compat th {
   vertical-align: bottom;
 }
