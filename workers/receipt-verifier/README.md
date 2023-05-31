@@ -6,7 +6,6 @@ We have not yet written a version of the [Receipt Verifier](https://github.com/c
 
 ```sh
 yarn
-yarn build
 wrangler dev
 ```
 
@@ -16,6 +15,5 @@ To `https://webmonetization.org/api/receipts/verify`
 
 ```sh
 yarn
-yarn build
 wrangler publish
 ```

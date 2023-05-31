@@ -1,6 +1,7 @@
 name = "exclusive-content"
-type = "javascript"
-account_id = "706b3167d38200892ec8b6e44829a60d"
+account_id = "f257f3bcb51db7468b59e147970bcb12"
 workers_dev = false
 route = "https://webmonetization.org/api/exclusive-content/*"
-zone_id = "45fea18e67a3947837b8d9eae64e0fd9"
+main = "./src/index.ts"
+compatibility_date = "2023-02-13"
+zone_id = "d6d84b0542f70af344a84313dedf52dd"

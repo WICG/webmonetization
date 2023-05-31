@@ -3,7 +3,7 @@ jobs:
   deploy-website:
     docker:
       # specify the version you desire here
-      - image: circleci/node:10
+      - image: cimg/node:16.20.0
 
     steps:
       - checkout

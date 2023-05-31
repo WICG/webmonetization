@@ -48,7 +48,7 @@ h2 {
 }
 
 .navbar {
-  height: 50px;
+  width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
   background-color: #000;
@@ -170,6 +170,9 @@ small {
 .cardBlock {
   text-align: center;
   padding: 0 2em 5em 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cardBlock p {
@@ -181,6 +184,7 @@ small {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -204,6 +208,53 @@ small {
 
 .card a {
   color: dodgerblue;
+}
+
+.card img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.card-merge {
+  width: auto;
+  height: auto;
+  padding: 24px 24px 20px 24px;
+  flex-direction: row;
+}
+
+.card-merge-icon {
+  margin-right: 12px;
+}
+
+.card-wide {
+  width: 532px;
+  height: 130px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 33px 24px;
+}
+
+.card-wide:hover {
+  text-decoration: none;
+}
+
+.card-wide-content {
+  text-align: left;
+  margin: 0 16px;
+  flex: 1;
+}
+
+.card-wide-content h4 {
+  margin: 0 0 8px 0;
+  font-size: 17px;
+  color: #000;
+}
+
+.card-wide-arrow {
+  height: 100%;
+  display: flex;
 }
 
 .resources a {

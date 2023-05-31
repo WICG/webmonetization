@@ -4,11 +4,10 @@ This cloudflare worker will return a redirect to a payment pointer provided in t
 
 The worker will return a 302 redirect to one of the provided pointers, selected randomly.
 
-## Testing
+## Testing with Wrangler
 
 ```sh
 yarn
-yarn build
 wrangler dev
 ```
 
@@ -18,6 +17,5 @@ To `https://webmonetization.org/api/revshare/pay`
 
 ```sh
 yarn
-yarn build
 wrangler publish
 ```

@@ -4,7 +4,6 @@ title: Digital Wallet and Payment Pointers
 sidebar_label: Digital wallets and payment pointers
 ---
 
-import UpholdSvg from './assets/uphold.svg';
 import GateHubImg from './assets/gatehub.png';
 
 You must have an account with a wallet that supports the Interledger Protocol (ILP) to enable Web Monetization on your site.

@@ -24,9 +24,9 @@ jobs:
         dir: ${{fromJson(needs.directories.outputs.dir)}}
     steps:
       - uses: actions/checkout@v2
-      - run: 'yarn && yarn build'
+      - run: 'yarn'
         working-directory: workers/${{matrix.dir}}
-      - uses: cloudflare/wrangler-action@1.3.0
+      - uses: cloudflare/wrangler-action@2.0.0
         with:
-          apiToken: ${{ secrets.CF_API_TOKEN }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           workingDirectory: workers/${{matrix.dir}}
