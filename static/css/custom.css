@@ -3,6 +3,10 @@
   --ifm-color-secondary: #282c34;
 }
 
+#browser-compatibility, .browser-compat {
+  display: none;
+}
+
 /* custom css */
 h2 {
   font-size: 40px;
