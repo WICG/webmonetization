@@ -14,7 +14,7 @@ page's receiving addresses for payments (See [payment pointer](#payment-pointer)
 
 # Open Payments
 * * *
-An new API standard that allows third parties authorized by users to send payments on their behelf directly from their wallets.   See [Open Payments](openpayments.guide) for more info.  
+An new API standard that allows third parties authorized by users to send payments on their behelf directly from their wallets.   See [Open Payments](https://openpayments.guide) for more info.  
 
 # Payment pointer
 * * *
