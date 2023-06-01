@@ -148,16 +148,14 @@ const siteConfig = {
           title: 'WebMonetization.org',
           items: [],
         },
-        // @TODO: Add these back in when they work and have been updated to use the link tag
-        // {
-        //   title: 'Navigation',
-        //   items: [
-        //     { label: 'Home', to: '/' },
-        //     { label: 'Meta Tag Generator', to: '/meta-tag' },
-        //     { label: 'Revshare Generator', to: '/prob-revshare' },
-        //     { label: 'Exclusive Content Generator', to: '/exclusive-content' },
-        //   ],
-        // },
+        {
+          title: 'Generators',
+          items: [
+            { label: 'Link Generator', to: '/meta-tag' },
+            { label: 'Revenue Share Generator', to: '/prob-revshare' },
+            { label: 'Exclusive Content Generator', to: '/exclusive-content' },
+          ],
+        },
         {
           title: 'Community',
           items: [
