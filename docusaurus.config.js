@@ -15,11 +15,6 @@ const browsers = []
 
 const search = [
   {
-    name: 'Infinity Search',
-    image: 'infinity_search_logo.svg',
-    link: 'https://infinitysearch.co',
-  },
-  {
     name: 'Mojeek',
     image: 'mojeek_logo.svg',
     link: 'https://www.mojeek.com',
@@ -153,15 +148,16 @@ const siteConfig = {
           title: 'WebMonetization.org',
           items: [],
         },
-        {
-          title: 'Navigation',
-          items: [
-            { label: 'Home', to: '/' },
-            { label: 'Meta Tag Generator', to: '/meta-tag' },
-            { label: 'Revshare Generator', to: '/prob-revshare' },
-            { label: 'Exclusive Content Generator', to: '/exclusive-content' },
-          ],
-        },
+        // @TODO: Add these back in when they work and have been updated to use the link tag
+        // {
+        //   title: 'Navigation',
+        //   items: [
+        //     { label: 'Home', to: '/' },
+        //     { label: 'Meta Tag Generator', to: '/meta-tag' },
+        //     { label: 'Revshare Generator', to: '/prob-revshare' },
+        //     { label: 'Exclusive Content Generator', to: '/exclusive-content' },
+        //   ],
+        // },
         {
           title: 'Community',
           items: [
@@ -169,20 +165,19 @@ const siteConfig = {
               label: 'Github',
               href: 'https://github.com/WICG/webmonetization',
             },
-            { label: 'ILP Forum', href: 'https://forum.interledger.org' },
+            { label: 'Community Fore', href: 'https://community.interledger.org' },
             {
               label: 'Web Platform Incubator Community Group',
               href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
             },
-            { label: 'Interledger', href: 'https://interledger.org' },
           ],
         },
         {
           title: 'Resources',
           items: [
-            { label: 'Docs', to: '/docs/web-monetization-api' },
-            { html: '<a class="footer__link-item" href="/specification.html">Specification</a>' },
-            { label: 'Payment Pointers', to: 'https://paymentpointers.org/' }
+            { label: 'Payment Pointers', to: 'https://paymentpointers.org/' },
+            { label: 'Open Payments', to: 'https://docs.openpayments.guide/' },
+            { label: 'Interledger', href: 'https://interledger.org' }
           ]
         }
       ]

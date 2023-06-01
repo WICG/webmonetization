@@ -1,6 +1,7 @@
 :root {
   --ifm-color-primary: #0080ff;
   --ifm-color-secondary: #282c34;
+  --ifm-footer-link-color: rgba(255, 255, 255, 0.8);
 }
 
 #browser-compatibility,
