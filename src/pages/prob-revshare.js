@@ -1,8 +1,7 @@
 import React from 'react'
 import { Container } from '@material-ui/core'
 import Layout from '@theme/Layout'
-import { Link } from '@docusaurus/router'
-import BrowserOnly from '@docusaurus/BrowserOnly'
+import Link from '@docusaurus/Link'
 
 import {
   SharesProvider,
@@ -14,7 +13,6 @@ export default function ProbRevshare(props) {
   const { config: siteConfig } = props
 
   return (
-    <BrowserOnly>
       <Layout
         permalink='/prob-revshare'
         title={siteConfig.title}
@@ -41,6 +39,5 @@ export default function ProbRevshare(props) {
           </SharesProvider>
         </ViewProvider>
       </Layout>
-    </BrowserOnly>
   )
 }
