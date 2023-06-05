@@ -1,16 +1,33 @@
 import React, { useState } from 'react'
 import { Container } from '@material-ui/core'
-import Checkbox from '@material-ui/core/Checkbox'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
+import TextField from '@material-ui/core/TextField'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 
-export default function MetaTag (props) {
+export default function MetaTag(props) {
   const { config: siteConfig } = props
 
-  const [ pointerInput, setPointerInput ] = useState('')
-  const [ pointer, setPointer ] = useState('$YourPaymentPointer')
-  const [ useVerifier, setUseVerifier ] = useState(false)
+  const [pointerInput, setPointerInput] = useState('')
+  const [pointer, setPointer] = useState('$YourPaymentPointer')
+  const [invalidUrl, setInvalidUrl] = useState(false)
+
+  const isValidPointer = (pointerInput) => {
+    try {
+      const url = new URL(pointerInput)
+      return url.href
+    } catch (err) {
+      if (pointerInput.charAt(0) === '$') {
+        return pointerInput.replace('$', 'https://')
+      } else {
+        setInvalidUrl(true)
+        return '$YourPaymentPointer'
+      }
+    }
+  }
+
+  const parsePointerUrl = (pointerInput) => {
+    return isValidPointer(pointerInput)
+  }
 
   return (
     <Layout
@@ -21,59 +38,46 @@ export default function MetaTag (props) {
       <div className='docMainWrapper wrapper'>
         <Container className='mainContainer documentContainer metaTagContainer'>
           <header className='postHeader'>
-            <h1>Meta Tag Generator</h1>
+            <h1>Link Tag Generator</h1>
           </header>
           <p>
-            This Meta Tag Generator helps you generate your HTML meta tag to
+            This Link Tag Generator helps you generate your HTML link tag to
             monetize your website.
             <br />
-            Just provide your Payment Pointer and click generate.
+            Just provide your{' '}
+            <Link to='/https://docs.openpayments.guide/docs/payment-pointers'>
+              Payment Pointer
+            </Link>{' '}
+            and click generate.
           </p>
-          <form
-            id='paymentPointerForm'
-            onSubmit={(ev) => ev.preventDefault()}
-          >
-            <input
-              className='paymentPointerInput'
-              type='text'
-              placeholder='$YourPaymentPointer'
+          <form id='paymentPointerForm' onSubmit={(ev) => ev.preventDefault()}>
+            <TextField
+              id='paymentPointer'
+              label='$YourPaymentPointer'
+              variant='outlined'
+              value={pointerInput}
+              error={Boolean(invalidUrl)}
+              helperText={
+                invalidUrl
+                  ? 'Please check the format of your payment pointer'
+                  : ''
+              }
+              fullWidth
               onChange={(ev) => {
                 setPointerInput(ev.target.value)
+                setInvalidUrl('')
               }}
             />
             <button
               id='generateButton'
               onClick={() => {
-                setPointer(pointerInput)
+                setInvalidUrl(false)
+                setPointer(parsePointerUrl(pointerInput))
               }}
             >
               Generate
             </button>
           </form>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={useVerifier}
-                onChange={(ev) => {
-                  setUseVerifier(ev.target.checked)
-                }}
-                color='default'
-              />
-            }
-            label={
-              <span>
-                Use{' '}
-                <Link
-                  to={
-                    '/docs/receipt-verifier/#use-our-publicly-available-receipt-verifier'
-                  }
-                >
-                  receipt verifier service
-                </Link>{' '}
-                (Advanced)
-              </span>
-            }
-          />
           <p>
             Read our <Link to='/docs'>docs</Link> to learn more about Web
             Monetization. If you're interested in splitting revenue between
@@ -82,17 +86,11 @@ export default function MetaTag (props) {
           </p>
           <div className='metaTagOutput'>
             <p>
-              To monetize your website add the following &lt;meta&gt; tag to
-              the &lt;head&gt; section of all pages on your website.
+              To monetize your website add the following &lt;meta&gt; tag to the
+              &lt;head&gt; section of all pages on your website.
             </p>
             <code id='metaTag'>
-              &lt;meta name="monetization" content="
-              {useVerifier
-                ? `$webmonetization.org/api/receipts/${encodeURIComponent(
-                    pointer
-                  )}`
-                : pointer}
-              " /&gt;
+              &lt;link rel="monetization" href="{pointer}" /&gt;
               <img
                 src='/img/copy_icon.svg'
                 id='copyIcon'
