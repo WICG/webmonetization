@@ -30,8 +30,8 @@ If you don't want to set up your own receipt verifier service, you can use ours!
 
 Review the following sections below and use `https://webmonetization.org/api/receipts` as the receipt verifier service's URL.
 
-* [Update your Web Monetization meta tag](#update-your-web-monetization-meta-tag)
-* [Set up a monetizationprogress event listener](#set-up-a-monetizationprogress-event-listener)
+- [Update your Web Monetization meta tag](#update-your-web-monetization-meta-tag)
+- [Set up a monetizationprogress event listener](#set-up-a-monetizationprogress-event-listener)
 
 ## Install the receipt verifier service package
 
@@ -65,18 +65,17 @@ For queries from the WM sender to be proxied by the receipt verifier service to 
 
 For example, if your payment pointer is `$wallet.example/alice` and your receipt verifier service’s URL is `https://receipt-verifier.example`, then you’ll set your meta tag’s `content` to either of the following:
 
-* `https://receipt-verifier.example/%24wallet.example%2Falice`
-* `$receipt-verifier.example/%24wallet.example%2Falice`
+- `https://receipt-verifier.example/%24wallet.example%2Falice`
+- `$receipt-verifier.example/%24wallet.example%2Falice`
 
 If you're using our publicly available receipt verifier service, then you'll set your meta tag's `content` to either of the following:
 
-* `https://webmonetization.org/api/receipts/%24wallet.example%2Falice`
-* `$webmonetization.org/api/receipts/%24wallet.example%2Falice`
+- `https://webmonetization.org/api/receipts/%24wallet.example%2Falice`
+- `$webmonetization.org/api/receipts/%24wallet.example%2Falice`
 
 :::info
 You can create your meta tag with the [Meta Tag Generator](/meta-tag) if using the publicly available receipt verifier service.
 :::
-
 
 ## Web Monetization revshare generator
 
@@ -88,8 +87,8 @@ For example, if your meta tag looks like this:
 
 And your receipt verifier service’s URL is `https://receipt-verifier.example`, then you’ll set your meta tag’s `content` to either of the following:
 
-* `https://receipt-verifier.example/%24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
-* `$receipt-verifier.example/ %24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
+- `https://receipt-verifier.example/%24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
+- `$receipt-verifier.example/ %24webmonetization.org%2Fapi%2Frevshare%2Fpay%2FW1siJHdhbGxldC5leGFtcGxlL2FsaWNlIiwxMCwiQWxpY2UiXSxbIiR3YWxsZXQuZXhhbXBsZS9ib2IiLDEwLCJCb2IiXV0`
 
 ## Set up a monetizationprogress event listener
 
@@ -100,7 +99,7 @@ Add the following client-side code to your website to listen for a `monetization
 ```html
 <head>
   <!-- This should be set to .... -->
-  <meta name="monetization" content="https://receipt-verifier.example/%24wallet.example%2Falice">
+  <meta name="monetization" content="https://receipt-verifier.example/%24wallet.example%2Falice" />
   <script>
     if (document.monetization) {
         document.monetization.addEventListener('monetizationprogress', event => {
