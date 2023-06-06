@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Container } from '@material-ui/core'
-import TextField from '@material-ui/core/TextField'
+import { Container, TextField } from '@mui/material'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 

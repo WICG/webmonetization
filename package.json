@@ -21,8 +21,10 @@
   "dependencies": {
     "@docusaurus/core": "^2.4.0",
     "@docusaurus/preset-classic": "^2.4.0",
-    "@material-ui/core": "^4.12.3",
-    "@material-ui/icons": "^4.11.2",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-minimal-pie-chart": "^8.2.0",
