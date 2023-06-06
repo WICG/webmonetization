@@ -1,13 +1,14 @@
 import React from 'react'
-import Button from '@material-ui/core/Button'
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined'
-import Tooltip from '@material-ui/core/Tooltip'
-import Dialog from '@material-ui/core/Dialog'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import CheckCircleIcon from '@material-ui/icons/CheckCircle'
-import { green } from '@material-ui/core/colors'
-import { Box } from '@material-ui/core'
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  Tooltip,
+} from '@mui/material'
+import { FileCopyOutlinedIcon, CheckCircleIcon } from '@mui/icons-material'
+import { green } from '@mui/material/colors'
 
 export function CopyContent(props) {
   const [open, setOpen] = React.useState(false)

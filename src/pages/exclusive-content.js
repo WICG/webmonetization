@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from '@material-ui/core'
+import { Container } from '@mui/material'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 

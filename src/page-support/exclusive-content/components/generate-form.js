@@ -9,7 +9,7 @@ import {
   Input,
   FormHelperText,
   Button,
-} from '@material-ui/core'
+} from '@mui/material'
 
 export function GenerateForm() {
   const [_, setView] = useView()
@@ -22,7 +22,9 @@ export function GenerateForm() {
   return (
     <>
       <FormControl margin='normal' fullWidth>
-        <InputLabel shrink='false' htmlFor='pointer'>Payment Pointer</InputLabel>
+        <InputLabel shrink='false' htmlFor='pointer'>
+          Payment Pointer
+        </InputLabel>
         <Input
           id='pointer'
           type='text'
@@ -38,7 +40,9 @@ export function GenerateForm() {
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
-        <InputLabel shrink='false' htmlFor='plaintext'>Content</InputLabel>
+        <InputLabel shrink='false' htmlFor='plaintext'>
+          Content
+        </InputLabel>
         <Input
           id='plaintext'
           multiline
@@ -48,10 +52,10 @@ export function GenerateForm() {
             setPlaintext(e.target.value)
           }}
           style={{
-            borderStyle: 'solid solid none solid', 
+            borderStyle: 'solid solid none solid',
             borderWidth: '1px',
             borderColor: '#949494',
-            padding: '8px'
+            padding: '8px',
           }}
         />
         <FormHelperText id='pointer-helper-text'>
@@ -62,7 +66,9 @@ export function GenerateForm() {
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
-        <InputLabel shrink='false' htmlFor='verifier'>Verifier URL (optional)</InputLabel>
+        <InputLabel shrink='false' htmlFor='verifier'>
+          Verifier URL (optional)
+        </InputLabel>
         <Input
           id='verifier'
           type='text'

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Container } from '@material-ui/core'
-import TextField from '@material-ui/core/TextField'
+import { Container } from '@mui/material'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 
