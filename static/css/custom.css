@@ -254,6 +254,10 @@ section {
   margin: 0;
 }
 
+.home-cta a {
+  white-space: nowrap;
+}
+
 .icon--merge {
   width: 1em;
 }
