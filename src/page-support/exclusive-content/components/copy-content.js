@@ -7,7 +7,7 @@ import {
   DialogContentText,
   Tooltip,
 } from '@mui/material'
-import { FileCopyOutlinedIcon, CheckCircleIcon } from '@mui/icons-material'
+import { FileCopyOutlined, CheckCircle } from '@mui/icons-material'
 import { green } from '@mui/material/colors'
 
 export function CopyContent(props) {
@@ -38,15 +38,15 @@ export function CopyContent(props) {
     <div>
       <Tooltip title={props.message}>
         <Button tooltip onClick={() => copyContent(props.id)}>
-          <FileCopyOutlinedIcon />
+          <FileCopyOutlined />
         </Button>
       </Tooltip>
       <Dialog open={open} onClose={handleClose}>
         <DialogContent>
           <Box display='flex' justifyContent='center' alignItems='center'>
-            <CheckCircleIcon
+            <CheckCircle
               style={{
-                color: green[500],
+                // color: green[500],
                 fontSize: 50,
               }}
             />

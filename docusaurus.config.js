@@ -1,4 +1,4 @@
-// Seehttps://v2.docusaurus.io/docs/configuration for all the possible
+// See https://v2.docusaurus.io/docs/configuration for all the possible
 // site configuration options.
 
 const wallets = [
@@ -59,7 +59,7 @@ const tools = [
   },
   {
     name: 'Vuepress Plugin Web-Monetization',
-    image: 'logo-tool-vuepress.png',
+    image: 'logo-tool-vuepress.svg',
     link: 'https://github.com/spekulatius/vuepress-plugin-web-monetization',
     desc: 'Adds a Web Monetization meta tag to your VuePress website.',
   },
@@ -77,7 +77,7 @@ const tools = [
   },
   {
     name: 'Moodle Webmonetization Module',
-    image: 'moodle_webmo_logo.png',
+    image: 'moodle_webmo_logo.svg',
     link: 'https://github.com/andrewhancox/moodle-local_webmonetization',
     desc: 'A plugin for adding a web monetization meta tag to your Moodle site.',
   },
@@ -137,7 +137,7 @@ const siteConfig = {
       title: 'Web Monetization',
       logo: {
         alt: 'Web Monetization logo',
-        src: 'img/wm-icon.svg',
+        src: 'img/wm-logo.svg',
       },
       items: [
         { doc: 'getting-started', to: '/docs', label: 'Docs' },
@@ -198,7 +198,7 @@ const siteConfig = {
     },
   },
 
-  favicon: 'img/fav-webmonetization.png',
+  favicon: 'img/favicon.png',
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   // copyright: ``,

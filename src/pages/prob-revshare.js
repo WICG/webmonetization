@@ -16,25 +16,21 @@ export default function ProbRevshare(props) {
     <Layout
       permalink='/prob-revshare'
       title={siteConfig.title}
-      description={siteConfig.tagLine}
+      description={siteConfig.tagline}
     >
       <ViewProvider>
         <SharesProvider>
-          <div className='docMainWrapper wrapper'>
-            <Container className='mainContainer documentContainer metaTagContainer'>
-              <header className='postHeader'>
-                <h1>Probabilistic Revshare Generator</h1>
-              </header>
-              <p>
-                This tool allows you to create a Web Monetization meta tag which
-                splits money between multiple Payment Pointers (
-                <Link to='/docs/probabilistic-rev-sharing'>Learn more</Link>).
-                If you make changes to an existing meta tag with this tool, make
-                sure to replace the old meta tag with the updated version.
-              </p>
-              <ActiveView />
-            </Container>
-          </div>
+          <Container maxWidth='md' component='section'>
+            <h1>Probabilistic Revshare Generator</h1>
+            <p>
+              This tool allows you to create a Web Monetization meta tag which
+              splits money between multiple Payment Pointers (
+              <Link to='/docs/probabilistic-rev-sharing'>Learn more</Link>). If
+              you make changes to an existing meta tag with this tool, make sure
+              to replace the old meta tag with the updated version.
+            </p>
+            <ActiveView />
+          </Container>
         </SharesProvider>
       </ViewProvider>
     </Layout>
