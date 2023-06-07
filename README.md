@@ -17,7 +17,7 @@ This website was created with [Docusaurus](https://v2.docusaurus.io/) and contri
 
 ```sh
 # Install dependencies
-$ cd website
+$ cd webmonetization
 $ yarn
 ```
 
@@ -26,130 +26,6 @@ $ yarn
 ```sh
 # Start the site
 $ yarn start
-```
-
-### Directory Structure
-
-Your project file structure should look something like this
-
-```
-webmonetization.org
-    ├── CODE_OF_CONDUCT.md
-    ├── CONTRIBUTING.md
-    ├── Dockerfile
-    ├── LICENSE
-    ├── LICENSE.md
-    ├── README.md
-    ├── docker-compose.yml
-    ├── docs
-    │   ├── api.md
-    │   ├── assets
-    │   │   ├── ec-generate.svg
-    │   │   ├── ec-unlock.svg
-    │   │   ├── flow.svg
-    │   │   ├── gatehub-addwallet.gif
-    │   │   ├── gatehub-exchangeorder.png
-    │   │   ├── gatehub-findpointer.gif
-    │   │   ├── gatehub.png
-    │   │   └── xrpmigration
-    │   ├── counter.md
-    │   ├── exclusive-content.md
-    │   ├── explainer.md
-    │   ├── gatehub.md
-    │   ├── getting-started.md
-    │   ├── glossary.md
-    │   ├── ilp-wallets.md
-    │   ├── probabilistic-rev-sharing.md
-    │   ├── receipt-verifier.md
-    │   ├── receiving.md
-    │   ├── remove-ads.md
-    │   ├── resources.md
-    │   ├── sending.md
-    │   ├── specification.md
-    │   ├── start-stop.md
-    │   ├── stronghold.md
-    │   └── xrptipbot.md
-    ├── docusaurus.config.js
-    ├── i18n
-    │   └── en.json
-    ├── package.json
-    ├── sidebars.json
-    ├── src
-    │   ├── page-support
-    │       ├── exclusive-content
-    │   │   |── prob-revshare
-    │       └── shared
-    │   └── pages
-    │       ├── docs.js
-    │   │   ├── exclusive-content.js
-    │       ├── index.js
-    │       ├── meta-tag.js
-    │       └── prob-revshare.js
-    ├── static
-    │   ├── CNAME
-    │   ├── css
-    │   │   └── custom.css
-    │   ├── img
-    │   │   ├── awesome_webmo_logo.svg
-    │   │   ├── copy_icon.svg
-    │   │   ├── fav-webmonetization.png
-    │   │   ├── favicon.ico
-    │   │   ├── gatehub_logo.svg
-    │   │   ├── grey_wm_logo.svg
-    │   │   ├── icon-arrow-right.svg
-    │   │   ├── icon-merge.svg
-    │   │   ├── infinity_search_logo.svg
-    │   │   ├── logo-tool-11ty.svg
-    │   │   ├── logo-tool-angular.svg
-    │   │   ├── logo-tool-gatsby.svg
-    │   │   ├── logo-tool-gridsome.svg
-    │   │   ├── logo-tool-hugo.svg
-    │   │   ├── logo-tool-svelte.svg
-    │   │   ├── logo-tool-tessy.svg
-    │   │   ├── logo-tool-vuepress.png
-    │   │   ├── mojeek_logo.svg
-    │   │   ├── moodle_webmo_logo.png
-    │   │   ├── stronghold_logo.png
-    │   │   ├── stronghold_logo.svg
-    │   │   ├── tipbot_logo.svg
-    │   │   ├── webmon_icon.svg
-    │   │   ├── webmon_icon_simple.svg
-    │   │   ├── wm-icon-animated.svg
-    │   │   └── wm-icon.svg
-    │   ├── js
-    │   │   ├── custom.js
-    │   │   └── exclusive-content.js
-    │   ├── service-worker.js
-    │   └── specification.html
-    ├── w3c.json
-    ├── workers
-    │   ├── README.md
-    │   ├── exclusive-content
-    │   │   ├── dist
-    │   │   ├── node_modules
-    │   │   ├── package.json
-    │   │   ├── README.md
-    │   │   ├── rollup.config.js
-    │   │   ├── src
-    │   │   ├── wrangler.toml
-    │   │   └── yarn.lock
-    │   |── probabilistic-revshare
-    │   |   ├── README.md
-    │   |   ├── package.json
-    │   |   ├── rollup.config.js
-    │   |   ├── src
-    │   |   ├── tsconfig.json
-    │   |   ├── wrangler.toml
-    │   |   └── yarn.lock
-    │   └── receipt-verifier
-    │       ├── package.json
-    │       ├── README.md
-    │       ├── rollup.config.js
-    │       ├── src
-    │       ├── tsconfig.json
-    │       ├── wrangler.toml
-    │       └── yarn.lock
-    └── yarn.lock
 ```
 
 ## Editing Content

@@ -14,7 +14,11 @@ export function GeneratedTabs() {
   return (
     <>
       <div>
-        <AppBar position='static' color='none' style={{ boxShadow: 'none' }}>
+        <AppBar
+          position='static'
+          color='transparent'
+          style={{ boxShadow: 'none' }}
+        >
           <Tabs
             value={value}
             onChange={handleChange}

@@ -16,25 +16,21 @@ export default function ExclusiveContent(props) {
     <Layout
       permalink='/exclusive-content'
       title={siteConfig.title}
-      description={siteConfig.tagLine}
+      description={siteConfig.tagline}
     >
       <ExclusiveContentProvider>
         <ViewProvider>
-          <div className='docMainWrapper wrapper'>
-            <Container className='mainContainer documentContainer metaTagContainer'>
-              <header className='postHeader'>
-                <h1>Exclusive Content Generator</h1>
-              </header>
-              <p>
-                This tool allows you to create exclusive content which is only
-                unlocked if payment can be verified.{' '}
-                <Link to='/docs/exclusive-content#exclusive-content-with-payment-verification'>
-                  Learn more!
-                </Link>
-              </p>
-              <ActiveView />
-            </Container>
-          </div>
+          <Container maxWidth='md' component='section'>
+            <h1>Exclusive Content Generator</h1>
+            <p>
+              This tool allows you to create exclusive content which is only
+              unlocked if payment can be verified.{' '}
+              <Link to='/docs/exclusive-content#exclusive-content-with-payment-verification'>
+                Learn more!
+              </Link>
+            </p>
+            <ActiveView />
+          </Container>
         </ViewProvider>
       </ExclusiveContentProvider>
     </Layout>
