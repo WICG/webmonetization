@@ -44,7 +44,7 @@ export default function MetaTag(props) {
             monetize your website.
             <br />
             Just provide your{' '}
-            <Link to='/https://docs.openpayments.guide/docs/payment-pointers'>
+            <Link to='https://docs.openpayments.guide/docs/payment-pointers'>
               Payment Pointer
             </Link>{' '}
             and click generate.
