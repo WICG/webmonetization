@@ -98,7 +98,7 @@ const tools = [
 const siteConfig = {
   title: 'Web Monetization', // Title for your website.
   tagline:
-    'A JavaScript browser API that allows the creation of a payment stream from the user agent to the website',
+    'The Web Monetization API allows websites to automatically and passively receive payments from Web Monetization-enabled visitors.',
   url: 'https://webmonetization.org', // Your website URL
   baseUrl: '/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:

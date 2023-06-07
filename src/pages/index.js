@@ -95,51 +95,78 @@ export default function Index(props) {
         </footer>
       </section>
       <section className='home-section'>
-        <Container maxWidth='sm'>
-          <h2 className='heading--3'>Motivation</h2>
-          <p>
-            The ability to transfer money has been a long-standing omission from
-            the web platform. As a result, the web suffers from a flood of
-            advertising and corrupt business models. Web Monetization provides
-            an open, native, efficient, and automatic way to compensate
-            creators, pay for API calls, and support crucial web infrastructure.
-          </p>
+        <Container maxWidth='lg'>
+          <Grid container spacing={4}>
+            <Grid item sm={12} md={6}>
+              <h2 className='heading--3'>Motivation</h2>
+              <p>
+                The ability to transfer money has been a long-standing omission
+                from the web platform. As a result, the web suffers from a flood
+                of advertising and corrupt business models. Web Monetization
+                provides an open, native, efficient, and automatic way to
+                compensate creators, pay for content, and support crucial web
+                infrastructure.
+              </p>
+            </Grid>
+            <Grid item sm={12} md={6}>
+              <h2 className='heading--3'>Why Now?</h2>
+              <p>
+                Until recently, there hasn't been an open, neutral and
+                cost-efficient protocol for transferring money.{' '}
+                <a
+                  href='https://interledger.org'
+                  rel='noreferrer noopener'
+                  target='_blank'
+                >
+                  Interledger
+                </a>{' '}
+                provides a simple, interoperable, and currency-agnostic method
+                for the transfer of small amounts of money. This opens up the
+                possibility for streaming money, which makes more Web
+                Monetization use cases possible for the first time.
+              </p>
+            </Grid>
+          </Grid>
         </Container>
       </section>
       <section className='home-section'>
-        <Container maxWidth='sm'>
-          <h2 className='heading--3'>Why Now?</h2>
-          <p>
-            Until recently, there hasn't been an open, neutral protocol for
-            transferring money.{' '}
-            <a
-              href='https://interledger.org'
-              rel='noreferrer noopener'
-              target='_blank'
-            >
-              Interledger
-            </a>{' '}
-            provides a simple, ledger-agnostic, and currency-agnostic method for
-            the transfer of small quantities of money. This opens up the
-            possibility for streaming money, which makes Web Monetization
-            possible for the first time.
-          </p>
+        <Container maxWidth='lg'>
+          <Grid container spacing={2}>
+            {siteConfig.customFields.wallets.length > 0 && (
+              <Grid item sm={12} md={6}>
+                <div className='home-section-header'>
+                  <h2 className='heading--3'>Web Monetization Wallets</h2>
+                  <p>
+                    These providers offer ILP-enabled wallets that you can use
+                    to become Web Monetized:
+                  </p>
+                </div>
+                <div className='home-cards'>
+                  <CardList cards={siteConfig.customFields.wallets} />
+                </div>
+                <PrCta label='wallet' />
+              </Grid>
+            )}
+            {siteConfig.customFields.search.length > 0 && (
+              <Grid item sm={12} md={6}>
+                <div className='home-section-header'>
+                  <h2 className='heading--3'>
+                    Web Monetization Enabled Search Engines
+                  </h2>
+                  <p>
+                    These search engines implement Web Monetization features:
+                  </p>
+                </div>
+                <div className='home-cards'>
+                  <CardList cards={siteConfig.customFields.search} />
+                </div>
+                <PrCta label='search engine' />
+              </Grid>
+            )}
+          </Grid>
         </Container>
       </section>
-      {siteConfig.customFields.wallets.length > 0 && (
-        <section className='home-section'>
-          <Container maxWidth='md'>
-            <div className='home-section-header'>
-              <h2 className='heading--3'>Web Monetization Wallets</h2>
-              <p>These providers offer ILP-enabled wallets:</p>
-            </div>
-            <div className='home-cards'>
-              <CardList cards={siteConfig.customFields.wallets} />
-            </div>
-            <PrCta label='wallet' />
-          </Container>
-        </section>
-      )}
+
       {siteConfig.customFields.providers.length > 0 && (
         <section className='home-section'>
           <Container maxWidth='md'>
@@ -173,22 +200,7 @@ export default function Index(props) {
           </Container>
         </section>
       )}
-      {siteConfig.customFields.search.length > 0 && (
-        <section className='home-section'>
-          <Container maxWidth='md'>
-            <div className='home-section-header'>
-              <h2 className='heading--3'>
-                Web Monetization Enabled Search Engines
-              </h2>
-              <p>These search engines implement Web Monetization features:</p>
-            </div>
-            <div className='home-cards'>
-              <CardList cards={siteConfig.customFields.search} />
-            </div>
-            <PrCta label='search engine' />
-          </Container>
-        </section>
-      )}
+
       {siteConfig.customFields.tools.length > 0 && (
         <section className='home-section'>
           <Container maxWidth='lg'>

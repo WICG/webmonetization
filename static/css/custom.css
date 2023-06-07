@@ -118,8 +118,19 @@ section {
 .home-hero {
   color: var(--ifm-color-white);
   background-color: var(--ifm-color-secondary);
+  background-image: url('/img/wm-logo--grey.svg');
+  background-repeat: no-repeat;
+  background-position: 100% 60%;
+  background-size: 60vw;
   text-align: center;
   padding-bottom: 0;
+}
+
+@media screen and (min-aspect-ratio: 3 / 4) {
+  .home-hero {
+    background-size: 40vmin;
+    background-position: 85%;
+  }
 }
 
 .home-hero > div {
@@ -252,6 +263,10 @@ section {
 
 .home-cta p {
   margin: 0;
+}
+
+.home-cta a {
+  white-space: nowrap;
 }
 
 .icon--merge {
