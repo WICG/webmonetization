@@ -217,6 +217,7 @@ section {
 .home-card--basic {
   max-width: 16em;
   justify-content: center;
+  width: 100%;
 }
 
 .home-card--basic img {
