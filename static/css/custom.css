@@ -29,9 +29,12 @@
   --ifm-color-secondary-light: #2c3039;
   --ifm-color-secondary-lighter: #2e333c;
   --ifm-color-secondary-lightest: #343944;
-  --ifm-font-size-base: var(--step-0);
   --ifm-global-spacing: var(--space-s);
   --ifm-footer-link-color: var(--ifm-color-emphasis-300);
+}
+
+.plugin-pages .main-wrapper {
+  font-size: var(--step-0);
 }
 
 /* Typography styles */
@@ -72,6 +75,7 @@ section {
 
 /* Navigation styles */
 .navbar {
+  font-size: initial;
   width: 100%;
   padding-top: 8px;
   padding-bottom: 8px;
