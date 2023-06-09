@@ -22,7 +22,7 @@ export function GenerateForm() {
   const missingFields = pointer === '' || plaintext === ''
 
   return (
-    <form>
+    <form onSubmit={(ev) => ev.preventDefault()}>
       <FormControl margin='normal' fullWidth>
         <InputLabel shrink={true} htmlFor='pointer'>
           Payment Pointer
@@ -91,6 +91,7 @@ export function GenerateForm() {
         variant='outlined'
         size='medium'
         disabled={missingFields}
+        type='submit'
         onClick={() => {
           generateExclusiveContent(pointer, verifier, plaintext).then(
             (data) => {
