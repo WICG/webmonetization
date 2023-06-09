@@ -3,8 +3,8 @@ import { Container } from '@mui/material'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 
-import { ViewProvider, ExclusiveContentProvider } from './state'
-import { ActiveView } from './components/active-view'
+import { ViewProvider, ExclusiveContentProvider } from './state/_index'
+import { ActiveView } from './components/_active-view'
 
 export default function ExclusiveContent(props) {
   const { config: siteConfig } = props

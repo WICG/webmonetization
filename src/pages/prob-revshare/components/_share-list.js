@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { ShareInput } from './share-input'
+import { ShareInput } from './_share-input'
 import { Button } from '@mui/material'
-import { ShareInputContainer } from './share-input-container'
-import { useShares, newShare, useView, ViewStates } from '../state'
-import { trimDecimal } from '../lib'
+import { ShareInputContainer } from './_share-input-container'
+import { useShares, newShare, useView, ViewStates } from '../state/_index'
+import { trimDecimal } from '../lib/_index'
 
 function changeList(arr, i, alteration) {
   return [

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { TextField, Button } from '@mui/material'
 
-import { useView, useShares, ViewStates } from '../state'
-import { tagOrPointerToShares } from '../lib'
+import { useView, useShares, ViewStates } from '../state/_index'
+import { tagOrPointerToShares } from '../lib/_index'
 
 export function ImportView() {
   const [_, setView] = useView()

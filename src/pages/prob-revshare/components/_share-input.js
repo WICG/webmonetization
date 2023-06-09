@@ -7,7 +7,7 @@ import {
   InputAdornment,
 } from '@mui/material'
 import { Delete } from '@mui/icons-material'
-import { validatePointer, validateWeight } from '../lib'
+import { validatePointer, validateWeight } from '../lib/_index'
 
 export function ShareInput({
   index,

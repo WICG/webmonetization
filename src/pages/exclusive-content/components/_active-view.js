@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { GenerateInfoText } from './generate-info-text'
-import { GenerateForm } from './generate-form'
-import { GeneratedInfoText } from './generated-info-text'
-import { ViewStates, useView } from '../state'
-import { GeneratedTabs } from './generated-tabs'
-import { BackButton } from './back-button'
+import { GenerateInfoText } from './_generate-info-text'
+import { GenerateForm } from './_generate-form'
+import { GeneratedInfoText } from './_generated-info-text'
+import { ViewStates, useView } from '../state/_index'
+import { GeneratedTabs } from './_generated-tabs'
+import { BackButton } from './_back-button'
 
 export function ActiveView() {
   const [view] = useView()

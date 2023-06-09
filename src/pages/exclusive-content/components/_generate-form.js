@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-import { useView, ViewStates, useExclusiveContent } from '../state'
-import { generateExclusiveContent } from '../lib'
+import { useView, ViewStates, useExclusiveContent } from '../state/_index'
+import { generateExclusiveContent } from '../lib/_index'
 
 import {
   FormControl,
