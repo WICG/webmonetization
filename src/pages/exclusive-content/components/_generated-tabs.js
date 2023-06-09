@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { AppBar, Tabs, Tab, Box } from '@mui/material'
-import { DependentScript } from './dependent-script'
-import { IndependentScript } from './independent-script'
+import { DependentScript } from './_dependent-script'
+import { IndependentScript } from './_independent-script'
 
 export function GeneratedTabs() {
   const [value, setValue] = React.useState(0)

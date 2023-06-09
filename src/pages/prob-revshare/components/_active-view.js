@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { ViewStates, useView } from '../state'
-import { RevshareChart } from './revshare-chart'
-import { ShareList } from './share-list'
-import { ImportView } from './import'
-import { SharesMetaTag } from './meta-tag'
-import { SharesText } from './shares-text'
-import { ImportText } from './import-text'
-import { OnlyClient } from './only-client'
+import { ViewStates, useView } from '../state/_index'
+import { RevshareChart } from './_revshare-chart'
+import { ShareList } from './_share-list'
+import { ImportView } from './_import'
+import { SharesMetaTag } from './_meta-tag'
+import { SharesText } from './_shares-text'
+import { ImportText } from './_import-text'
+import { OnlyClient } from './_only-client'
 
 export function ActiveView() {
   const [view] = useView()

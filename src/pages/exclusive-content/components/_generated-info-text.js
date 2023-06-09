@@ -1,8 +1,8 @@
 import React from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import { CopyContent } from './copy-content'
-import { useExclusiveContent } from '../state'
+import { CopyContent } from './_copy-content'
+import { useExclusiveContent } from '../state/_index'
 
 export function GeneratedInfoText() {
   const [exclusiveContent] = useExclusiveContent()
