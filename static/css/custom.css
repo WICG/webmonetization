@@ -279,6 +279,20 @@ section {
 }
 
 /* Link tag generator page styles */
+.tag-generator-form {
+  display: flex;
+  gap: var(--space-s);
+  margin-bottom: var(--space-s);
+}
+
+.tag-generator__btn {
+  height: 56px;
+}
+
+/* Exclusive content page styles */
+button.content-generator__btn {
+  margin-top: var(--space-s);
+}
 
 /* Probabilistic Revshare Generator page styles */
 .revshareChart {

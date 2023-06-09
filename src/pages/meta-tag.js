@@ -49,10 +49,14 @@ export default function MetaTag(props) {
           </a>{' '}
           and click generate.
         </p>
-        <form onSubmit={(ev) => ev.preventDefault()}>
+        <form
+          onSubmit={(ev) => ev.preventDefault()}
+          className='tag-generator-form'
+        >
           <TextField
             id='paymentPointer'
-            label='$YourPaymentPointer'
+            label='Payment Pointer URL'
+            placeholder='$YourPaymentPointer'
             variant='outlined'
             value={pointerInput}
             error={Boolean(invalidUrl)}
@@ -67,14 +71,17 @@ export default function MetaTag(props) {
               setInvalidUrl('')
             }}
           />
-          <button
+          <Button
+            className='tag-generator__btn'
+            variant='contained'
+            type='submit'
             onClick={() => {
               setInvalidUrl(false)
               setPointer(parsePointerUrl(pointerInput))
             }}
           >
             Generate
-          </button>
+          </Button>
         </form>
         <p>
           Read our <Link to='/docs'>docs</Link> to learn more about Web
@@ -84,7 +91,7 @@ export default function MetaTag(props) {
         </p>
         <div className='tag-output'>
           <p>
-            To monetize your website add the following <code>&lt;meta&gt;</code>{' '}
+            To monetize your website add the following <code>&lt;link&gt;</code>{' '}
             tag to the <code>&lt;head&gt;</code> section of all pages on your
             website.
           </p>

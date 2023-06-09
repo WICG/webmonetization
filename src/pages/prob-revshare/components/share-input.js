@@ -10,7 +10,7 @@ import { Delete } from '@mui/icons-material'
 import { validatePointer, validateWeight } from '../lib'
 
 export function ShareInput({
-  key,
+  index,
   name,
   pointer,
   weight,
@@ -25,7 +25,7 @@ export function ShareInput({
   weightDisabled,
 }) {
   return (
-    <TableRow key={key}>
+    <TableRow key={index}>
       <TableCell className='nameCell'>
         <TextField
           size='small'
