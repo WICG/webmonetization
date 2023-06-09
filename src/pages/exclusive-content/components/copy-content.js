@@ -37,7 +37,7 @@ export function CopyContent(props) {
   return (
     <div>
       <Tooltip title={props.message}>
-        <Button tooltip onClick={() => copyContent(props.id)}>
+        <Button onClick={() => copyContent(props.id)}>
           <FileCopyOutlined />
         </Button>
       </Tooltip>

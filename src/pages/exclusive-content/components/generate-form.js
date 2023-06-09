@@ -19,10 +19,12 @@ export function GenerateForm() {
   const [verifier, setVerifier] = useState('')
   const [plaintext, setPlaintext] = useState('')
 
+  const missingFields = pointer === '' || plaintext === ''
+
   return (
-    <>
+    <form onSubmit={(ev) => ev.preventDefault()}>
       <FormControl margin='normal' fullWidth>
-        <InputLabel shrink='false' htmlFor='pointer'>
+        <InputLabel shrink={true} htmlFor='pointer'>
           Payment Pointer
         </InputLabel>
         <Input
@@ -40,7 +42,7 @@ export function GenerateForm() {
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
-        <InputLabel shrink='false' htmlFor='plaintext'>
+        <InputLabel shrink={true} htmlFor='plaintext'>
           Content
         </InputLabel>
         <Input
@@ -66,7 +68,7 @@ export function GenerateForm() {
       </FormControl>
 
       <FormControl margin='normal' fullWidth>
-        <InputLabel shrink='false' htmlFor='verifier'>
+        <InputLabel shrink={true} htmlFor='verifier'>
           Verifier URL (optional)
         </InputLabel>
         <Input
@@ -85,9 +87,11 @@ export function GenerateForm() {
       </FormControl>
 
       <Button
+        className='content-generator__btn'
         variant='outlined'
         size='medium'
-        disabled={!pointer | !plaintext}
+        disabled={missingFields}
+        type='submit'
         onClick={() => {
           generateExclusiveContent(pointer, verifier, plaintext).then(
             (data) => {
@@ -107,6 +111,6 @@ export function GenerateForm() {
       >
         Generate
       </Button>
-    </>
+    </form>
   )
 }

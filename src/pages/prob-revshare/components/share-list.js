@@ -34,6 +34,7 @@ export function ShareList() {
           return (
             <ShareInput
               key={i}
+              index={i}
               name={share.name}
               onChangeName={(name) =>
                 setShares(changeList(shares, i, { name }))

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { SectionHeader } from '../../shared/components/section-header'
 import { GenerateInfoText } from './generate-info-text'
 import { GenerateForm } from './generate-form'
 import { GeneratedInfoText } from './generated-info-text'
@@ -13,7 +12,7 @@ export function ActiveView() {
   if (view === ViewStates.Generate) {
     return (
       <>
-        <SectionHeader>Generate Exclusive Content</SectionHeader>
+        <h2>Generate Exclusive Content</h2>
         <GenerateInfoText />
         <GenerateForm />
       </>
@@ -21,7 +20,7 @@ export function ActiveView() {
   } else if (view === ViewStates.Generated) {
     return (
       <>
-        <SectionHeader>Exclusive Content Generated!</SectionHeader>
+        <h2>Exclusive Content Generated!</h2>
         <GeneratedInfoText />
         <GeneratedTabs />
         <BackButton />
