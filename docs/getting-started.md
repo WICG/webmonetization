@@ -35,7 +35,7 @@ $wallet.example.com/alice
 
 ## 3. Create your meta tag
 
-Create your `<link>` tag by using the [Link Tag Generator](/meta-tag) or by
+Create your `<link>` tag by using the [Link Tag Generator](/link-tag) or by
 following the example below.
 
 The tag's `rel` is always `monetization`. The `href` is your payment

@@ -163,7 +163,7 @@ const siteConfig = {
           title: 'Navigation',
           items: [
             { label: 'Home', to: '/' },
-            { label: 'Link Tag Generator', to: '/meta-tag' },
+            { label: 'Link Tag Generator', to: '/link-tag' },
             { label: 'Revshare Generator', to: '/prob-revshare' },
             { label: 'Exclusive Content Generator', to: '/exclusive-content' },
           ],

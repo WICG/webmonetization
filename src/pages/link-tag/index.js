@@ -31,7 +31,7 @@ export default function MetaTag(props) {
 
   return (
     <Layout
-      permalink='/meta-tag'
+      permalink='/link-tag'
       title={siteConfig.title}
       description={siteConfig.tagline}
     >
