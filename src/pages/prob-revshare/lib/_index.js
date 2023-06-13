@@ -104,19 +104,22 @@ export function tagToShares(tag) {
   const parser = new DOMParser()
   const node = parser.parseFromString(tag, 'text/html')
   const meta = node.head.querySelector('meta[name="monetization"]')
+  const link = node.head.querySelector('link[rel="monetization"]')
 
-  if (!meta) {
-    console.log(
-      node,
-      node.head,
-      node.head.querySelector('meta[name="monetization"]')
-    )
+  if (!meta && !link) {
+    console.log(node, node.head)
     throw new Error(
-      'Please copy the exact meta tag you got from this revshare tool. It seems to be malformed.'
+      'Please copy the exact meta tag or link tag you got from this revshare tool. It seems to be malformed.'
     )
   }
 
-  return pointerToShares(meta.content)
+  if (meta) {
+    return pointerToShares(meta.content)
+  }
+
+  if (link) {
+    return pointerToShares(link.href)
+  }
 }
 
 function isRevsharePointer(str) {

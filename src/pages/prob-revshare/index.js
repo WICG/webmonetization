@@ -20,11 +20,11 @@ export default function ProbRevshare(props) {
           <Container maxWidth='md' component='section'>
             <h1>Probabilistic Revshare Generator</h1>
             <p>
-              This tool allows you to create a Web Monetization meta tag which
+              This tool allows you to create a Web Monetization link tag which
               splits money between multiple Payment Pointers (
               <Link to='/docs/probabilistic-rev-sharing'>Learn more</Link>). If
-              you make changes to an existing meta tag with this tool, make sure
-              to replace the old meta tag with the updated version.
+              you make changes to an existing link tag with this tool, make sure
+              to replace the old link tag with the updated version.
             </p>
             <ActiveView />
           </Container>

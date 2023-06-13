@@ -1,43 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import { CopyContent } from './_copy-content'
+import CodeBlock from '@theme/CodeBlock'
 
 export function IndependentScript() {
   const [script, setScript] = useState('')
 
   useEffect(() => {
     const getJS = () =>
-      fetch('../../../../static/js/exclusive-content.js').then((r) => r.text())
+      fetch('../../../../static/js/exclusive-content.js').then((response) =>
+        response.text()
+      )
 
     getJS().then(
-      (r) => {
+      (response) => {
         const independentScript = `<script>
-${r}
+${response}
 </script>`
         setScript(independentScript)
       },
-      (e) => {
-        setScript(e)
+      (err) => {
+        setScript(err)
       }
     )
   })
 
-  return (
-    <>
-      <div>
-        <CopyContent
-          id='independentScript'
-          message='Copy script without dependencies'
-        />
-        <SyntaxHighlighter
-          id='independentScript'
-          language='htmlbars'
-          style={docco}
-        >
-          {script}
-        </SyntaxHighlighter>
-      </div>
-    </>
-  )
+  return <CodeBlock className='language-html'>{script}</CodeBlock>
 }

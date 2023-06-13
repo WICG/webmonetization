@@ -1,6 +1,5 @@
 import React from 'react'
 import { PieChart } from 'react-minimal-pie-chart'
-
 import { useShares } from '../state/_index'
 import { sharesToChartData } from '../lib/_index'
 
