@@ -13,7 +13,7 @@ export function ImportView() {
   return (
     <div>
       <TextField
-        label='Enter your meta tag or link tag'
+        label='Enter your meta tag, link tag or payment pointer'
         multiline
         variant='outlined'
         rows={4}
