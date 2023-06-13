@@ -38,17 +38,6 @@
 }
 
 /* Typography styles */
-.twoColumns {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border-bottom: 1px solid #e3e5e9;
-}
-
-.twoColumns .contentBlock {
-  border-bottom: none;
-}
-
 .heading--1 {
   font-size: var(--step-4);
 }
@@ -102,10 +91,6 @@ section {
   font-weight: 600;
   color: var(--ifm-color-white);
   margin-right: auto;
-}
-
-.hide {
-  display: none;
 }
 
 .navbar__link {
@@ -208,9 +193,6 @@ section {
   overflow: initial;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   border-radius: var(--ifm-global-radius);
-}
-
-[class*='home-card--'] {
   padding: var(--space-s);
 }
 
@@ -232,13 +214,13 @@ section {
   opacity: 1;
 }
 
-.home-card--basic {
-  max-width: 16em;
-  justify-content: center;
+[class*='home-card--'] img {
   width: 100%;
 }
 
-.home-card--basic img {
+.home-card--basic {
+  max-width: 16em;
+  justify-content: center;
   width: 100%;
 }
 
@@ -304,35 +286,19 @@ section {
 }
 
 /* Exclusive content page styles */
+.script-tab {
+  padding-top: var(--space-s);
+  padding-bottom: var(--space-s);
+}
+
 button.content-generator__btn {
   margin-top: var(--space-s);
 }
 
 /* Probabilistic Revshare Generator page styles */
-.revshareChart {
-  /* TODO: can we accomplish this without covering inputs */
-  /* overflow: visible; */
-}
-
 .weightInput,
 .percentInput {
-  width: 5em !important;
-}
-
-#copyIcon {
-  position: absolute;
-  right: 18px;
-  top: 50%;
-  margin-top: -16px;
-  cursor: pointer;
-}
-
-.importSharesButton {
-  margin-left: 1em !important;
-}
-
-.importControls {
-  margin-top: 1em;
+  width: 5em;
 }
 
 .nameCell {
@@ -343,33 +309,30 @@ button.content-generator__btn {
   width: 20em;
 }
 
-.pointerCell {
-  padding-right: 0px !important;
-}
-
 .weightCell,
 .percentCell {
   width: 6em;
 }
 
-.removeCell,
-.removeButton {
-  padding: 0px !important;
-  margin-right: 0px !important;
-  width: 2em !important;
+.removeCell.removeCell {
+  padding: 0px;
 }
 
-.revshareContainer {
-  display: flex;
-  flex-direction: column;
+.importControls {
+  margin-top: 1em;
+}
+
+.importSharesButton.importSharesButton {
+  margin-left: 1em;
 }
 
 table.event-properties {
   display: table;
 }
 
-.spacer {
-  flex-grow: 1;
+/* Docs related styling */
+.hide {
+  display: none;
 }
 
 .specifications table {
@@ -391,7 +354,8 @@ table.event-properties {
   font-size: smaller;
 }
 
-#browser-compatibility, .browser-compat {
+#browser-compatibility,
+.browser-compat {
   display: none;
 }
 
@@ -489,18 +453,4 @@ table.event-properties {
   mask-position: center;
   mask-repeat: no-repeat;
   flex-shrink: 0;
-}
-
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
-}
-
-@media only screen and (min-width: 1024px) {
-  .cardContainer {
-    flex-direction: row;
-  }
-
-  .revshareContainer {
-    display: flex;
-    flex-direction: row;
-  }
 }

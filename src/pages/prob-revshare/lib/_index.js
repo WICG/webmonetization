@@ -54,13 +54,15 @@ export function fromBase64url(str) {
 
 export function sharesToPaymentPointer(shares) {
   const validShares = getValidShares(shares)
+
   if (!validShares.length) {
     return
   }
 
   const pointerList = sharesToPointerList(validShares)
   const encodedShares = base64url(JSON.stringify(pointerList))
-  return BASE_REVSHARE_POINTER + encodedShares
+
+  return normalizePointerPrefix(BASE_REVSHARE_POINTER) + encodedShares
 }
 
 export function pointerToShares(pointer) {
@@ -85,17 +87,16 @@ export function pointerToShares(pointer) {
         'Share data is invalid. Make sure you copy the whole "content" from your meta tag.'
       )
     }
-
     return sharesFromPointerList(pointerList)
-  } catch (e) {
-    if (e.name === 'TypeError') {
+  } catch (err) {
+    if (err.name === 'TypeError') {
       throw new Error('Meta tag or payment pointer is malformed')
-    } else if (e.name === 'SyntaxError') {
+    } else if (err.name === 'SyntaxError') {
       throw new Error(
         'Payment pointer has malformed share data. Make sure to copy the entire pointer.'
       )
     } else {
-      throw e
+      throw err
     }
   }
 }
@@ -104,19 +105,22 @@ export function tagToShares(tag) {
   const parser = new DOMParser()
   const node = parser.parseFromString(tag, 'text/html')
   const meta = node.head.querySelector('meta[name="monetization"]')
+  const link = node.head.querySelector('link[rel="monetization"]')
 
-  if (!meta) {
-    console.log(
-      node,
-      node.head,
-      node.head.querySelector('meta[name="monetization"]')
-    )
+  if (!meta && !link) {
+    console.log(node, node.head)
     throw new Error(
-      'Please copy the exact meta tag you got from this revshare tool. It seems to be malformed.'
+      'Please copy the exact meta tag or link tag you got from this revshare tool. It seems to be malformed.'
     )
   }
 
-  return pointerToShares(meta.content)
+  if (meta) {
+    return pointerToShares(meta.content)
+  }
+
+  if (link) {
+    return pointerToShares(link.href)
+  }
 }
 
 function isRevsharePointer(str) {
@@ -183,7 +187,7 @@ export function validatePointer(pointer) {
   try {
     const _ = new URL(normalizePointerPrefix(pointer))
     return true
-  } catch (e) {
+  } catch (err) {
     return false
   }
 }

@@ -1,7 +1,5 @@
 import React from 'react'
-import SyntaxHighlighter from 'react-syntax-highlighter'
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-import { CopyContent } from './_copy-content'
+import CodeBlock from '@theme/CodeBlock'
 import { useExclusiveContent } from '../state/_index'
 
 export function GeneratedInfoText() {
@@ -27,9 +25,10 @@ export function GeneratedInfoText() {
   initvector=${JSON.stringify(exclusiveContent.initVector)}
   nonce=${JSON.stringify(exclusiveContent.nonce)}
 >
-  <div class="exclusiveMessage" style="text-align: center"></div>
+  <div class="exclusiveMessage"></div>
   <div class="exclusiveContent"></div>
 </div>`
+
   return (
     <>
       <p>Here is what you need to do to embed it on your web page:</p>
@@ -37,11 +36,7 @@ export function GeneratedInfoText() {
         1. Add the following <code>div</code> tag to your HTML, in the spot you
         want the exclusive content to appear.
       </p>
-      <CopyContent id='ec-div' message='Copy div tag' />
-      <SyntaxHighlighter id='ec-div' language='htmlbars' style={docco}>
-        {divTag}
-      </SyntaxHighlighter>
-
+      <CodeBlock className='language-html'>{divTag}</CodeBlock>
       <p>
         2. Add{' '}
         <strong>

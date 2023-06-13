@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { TextField, Button } from '@mui/material'
-
 import { useView, useShares, ViewStates } from '../state/_index'
 import { tagOrPointerToShares } from '../lib/_index'
 
@@ -14,7 +13,7 @@ export function ImportView() {
   return (
     <div>
       <TextField
-        label='Enter your meta tag or payment pointer'
+        label='Enter your meta tag, link tag or payment pointer'
         multiline
         variant='outlined'
         rows={4}
@@ -39,8 +38,8 @@ export function ImportView() {
               const shares = tagOrPointerToShares(tag)
               setShares(shares)
               setView(ViewStates.Shares)
-            } catch (e) {
-              setError(e.message)
+            } catch (err) {
+              setError(err.message)
             }
           }}
         >

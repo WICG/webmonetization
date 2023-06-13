@@ -236,7 +236,10 @@ export default function Index(props) {
             </Grid>
             <Grid item sm={6} md={3}>
               <h3 className='heading--4'>
-                <img src='https://awesome.re/badge-flat2.svg' alt='Awesome' />
+                <img
+                  src={`${siteConfig.baseUrl}img/awesome-badge.svg`}
+                  alt=''
+                />
               </h3>
               <p>
                 An{' '}

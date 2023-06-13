@@ -1,6 +1,4 @@
 import React from 'react'
-
-import { GenerateInfoText } from './_generate-info-text'
 import { GenerateForm } from './_generate-form'
 import { GeneratedInfoText } from './_generated-info-text'
 import { ViewStates, useView } from '../state/_index'
@@ -9,11 +7,15 @@ import { BackButton } from './_back-button'
 
 export function ActiveView() {
   const [view] = useView()
+
   if (view === ViewStates.Generate) {
     return (
       <>
         <h2>Generate Exclusive Content</h2>
-        <GenerateInfoText />
+        <p>
+          In order to generate exclusive content, we need the following
+          information:
+        </p>
         <GenerateForm />
       </>
     )

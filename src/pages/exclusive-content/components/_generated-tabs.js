@@ -1,7 +1,6 @@
 import React from 'react'
-
-import { AppBar, Tabs, Tab, Box } from '@mui/material'
-import { DependentScript } from './_dependent-script'
+import CodeBlock from '@theme/CodeBlock'
+import { Tabs, Tab } from '@mui/material'
 import { IndependentScript } from './_independent-script'
 
 export function GeneratedTabs() {
@@ -11,44 +10,33 @@ export function GeneratedTabs() {
     setValue(newValue)
   }
 
+  const DependentScript = () => {
+    const script = `<script src="https://webmonetization.org/js/exclusive-content.js"></script>`
+    return <CodeBlock className='language-html'>{script}</CodeBlock>
+  }
+
   return (
-    <>
-      <div>
-        <AppBar
-          position='static'
-          color='transparent'
-          style={{ boxShadow: 'none' }}
-        >
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor='primary'
-            textColor='primary'
-          >
-            <Tab label='Dependencies' />
-            <Tab label='No Dependencies' />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          <DependentScript />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <IndependentScript />
-        </TabPanel>
-      </div>
-    </>
+    <div className='script-tabs'>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor='primary'
+        textColor='primary'
+      >
+        <Tab label='Dependencies' />
+        <Tab label='No Dependencies' />
+      </Tabs>
+      <TabPanel value={value} index={0}>
+        {DependentScript()}
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <IndependentScript />
+      </TabPanel>
+    </div>
   )
 }
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props
-  return (
-    <div {...other}>
-      {value === index && (
-        <Box p={3} style={{ padding: '24px 0 24px 0' }}>
-          {children}
-        </Box>
-      )}
-    </div>
-  )
+  const { children, value, index } = props
+  return <>{value === index && <div className='script-tab'>{children}</div>}</>
 }

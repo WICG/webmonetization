@@ -114,12 +114,12 @@ const siteConfig = {
 
   themeConfig: {
     ogImage: 'img/undraw_online.svg',
-    algolia: {
-      apiKey: '522665321749697a7b612bb54dbdb0b4',
-      indexName: 'webmonetization',
-      appId: 'GJDGP03PYJ',
-      placeholder: 'Search'
-    },
+    // algolia: {
+    //   apiKey: '522665321749697a7b612bb54dbdb0b4',
+    //   indexName: 'webmonetization',
+    //   appId: 'GJDGP03PYJ',
+    //   placeholder: 'Search',
+    // },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -136,11 +136,18 @@ const siteConfig = {
       },
       items: [
         { doc: 'web-monetization-api', to: '/docs', label: 'Docs' },
-        { type: 'html', value:'<a class="navbar__link" href="/specification.html">Specification</a>' },
-        { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
+        {
+          type: 'html',
+          value:
+            '<a class="navbar__link" href="/specification.html">Specification</a>',
+        },
+        {
+          href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
+          label: 'WICG Forum',
+        },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        { type: 'search', position: 'right' }
-      ]
+        // { type: 'search', position: 'right' },
+      ],
     },
     footer: {
       links: [
@@ -154,7 +161,7 @@ const siteConfig = {
             { label: 'Home', to: '/' },
             { label: 'Link Tag Generator', to: '/link-tag' },
             { label: 'Revshare Generator', to: '/prob-revshare' },
-            { label: 'Exclusive Content Generator', to: '/exclusive-content' },
+            // { label: 'Exclusive Content Generator', to: '/exclusive-content' },
           ],
         },
         {
@@ -164,7 +171,10 @@ const siteConfig = {
               label: 'Github',
               href: 'https://github.com/WICG/webmonetization',
             },
-            { label: 'Community Fore', href: 'https://community.interledger.org' },
+            {
+              label: 'Community Forem',
+              href: 'https://community.interledger.org',
+            },
             {
               label: 'Web Platform Incubator Community Group',
               href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
@@ -176,11 +186,11 @@ const siteConfig = {
           items: [
             { label: 'Payment Pointers', to: 'https://paymentpointers.org/' },
             { label: 'Open Payments', to: 'https://docs.openpayments.guide/' },
-            { label: 'Interledger', href: 'https://interledger.org' }
-          ]
-        }
-      ]
-    }
+            { label: 'Interledger', href: 'https://interledger.org' },
+          ],
+        },
+      ],
+    },
   },
 
   favicon: 'img/favicon.png',
@@ -189,11 +199,7 @@ const siteConfig = {
   // copyright: ``,
 
   // Add custom scripts here that would be placed in <script> tags.
-  scripts: [
-    'https://buttons.github.io/buttons.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
-    '/js/custom.js',
-  ],
+  scripts: [],
 
   // Open Graph and Twitter card images.
   // twitterImage: 'img/undraw_tweetstorm.svg',
