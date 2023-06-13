@@ -172,7 +172,7 @@ const siteConfig = {
               href: 'https://github.com/WICG/webmonetization',
             },
             {
-              label: 'Community Fore',
+              label: 'Community Forem',
               href: 'https://community.interledger.org',
             },
             {
