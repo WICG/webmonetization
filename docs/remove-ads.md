@@ -13,7 +13,7 @@ Here's an example that removes its ads for web monetized visitors.
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice">
+  <link rel="monetization" href="https://wallet.example.com/alice">
 
   <script>
     const adCode = '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'
@@ -26,15 +26,16 @@ Here's an example that removes its ads for web monetized visitors.
     }
 
     let hasPaid = false
-    if (document.monetization) {
-      document.monetization.addEventListener('monetizationstart', () => {
+    if (window.MonetizationEvent) {
+      const link = document.querySelector('link[rel="monetization"]')
+      link.addEventListener('monetization', ev => {
         hasPaid = true
         removeAds()
       })
     }
 
     window.addEventListener('load', () => {
-      if (!document.monetization) {
+      if (!window.MonetizationEvent) {
         showAds()
       } else {
         setTimeout(() => {
@@ -78,15 +79,16 @@ function showAds () {
 }
 ```
 
-If the visitor is web monetized, then we bind the `monetizationstart` event. This triggers the removal of the ad once Web Monetization initializes.
+If the visitor is web monetized, then we bind the `monetization` event. This triggers the removal of the ad once Web Monetization initializes.
 
 The `hasPaid` variable is used in the timer to see whether Web
-Monetization has already initialized when the grace period is over.
+Monetization has started after the grace period is over.
 
 ```js
 let hasPaid = false
-if (document.monetization) {
-  document.monetization.addEventListener('monetizationstart', () => {
+if (window.MonetizationEvent) {
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', ev => {
     hasPaid = true
     removeAds()
   })
@@ -94,12 +96,12 @@ if (document.monetization) {
 ```
 
 As soon as the page loads, any visitor who does not have Web Monetization
-(`!document.monetization`) sees the ad immediately. If the visitor _does_ have Web Monetization, the three-second timer starts. We check whether the
-`monetizationstart` event has fired when the timer is up. If Web Monetization hasn't initialized, the visitor is shown the ad.
+(`!window.MonetizationEvent`) sees the ad immediately. If the visitor _does_ have Web Monetization, the three-second timer starts. We check whether the
+`monetization` event has fired when the timer is up. If Web Monetization hasn't initialized, the visitor is shown the ad.
 
 ```js
 window.addEventListener('load', () => {
-  if (!document.monetization) {
+  if (!window.MonetizationEvent) {
     showAds()
   } else {
     setTimeout(() => {
@@ -111,11 +113,7 @@ window.addEventListener('load', () => {
 })
 ```
 
-> You might think of using `document.monetization.state` instead of remembering
-> `hasPaid`. But, the state can go back to being `stopped` or `pending` if the user
-> backgrounds the tab. If they background your tab when the three seconds are over,
-> then a legitimately web monetized user might be shown ads!
-Keeping a `hasPaid` variable is a better practice.
+
 
 ## Interactive example
 
@@ -127,7 +125,7 @@ If you see the source files instead of the example, click **View App** in the bo
 
 <div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
-    src="https://glitch.com/embed/#!/embed/wm-ad-free-experience?path=README.md&previewSize=100"
+    src="https://glitch.com/embed/#!/embed/wm2-ad-free-experience?path=README.md&previewSize=100"
     title="wm-ad-free-experience on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
     style={{ height: '100%', width: '100%', border: '0' }}>

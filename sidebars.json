@@ -1,9 +1,58 @@
 {
-  "docs": {
-    "Overview": ["getting-started", "api"],
-    "Examples": ["exclusive-content", "remove-ads", "counter", "probabilistic-rev-sharing", "start-stop", "receipt-verifier"],
-    "Explainer": ["explainer", "receiving", "sending"],
-    "Wallets": ["ilp-wallets","gatehub", "xrptipbot"],
-    "More": ["specification", "glossary", "resources"]
-  }
+  "docs": [
+    "web-monetization-api",
+    {
+      "type": "category",
+      "label": "Interfaces",
+      "items": [
+        {
+          "type": "category",
+          "label": "<link>",
+          "link": {
+            "type": "doc",
+            "id": "link"
+          },
+          "items": ["link-type"]
+        },
+        {
+          "type": "category",
+          "label": "MonetizationEvent",
+          "link": {
+            "type": "doc",
+            "id": "monetization-event"
+          },
+          "items": ["monetization-event-amountSent", "monetization-event-amount", "monetization-event-asset-code", "monetization-event-asset-scale", "monetization-event-incoming-payments", "monetization-event-receipt", "monetization-event-payment-pointer", "on-monetization", "monetization-event-element"]
+        },
+        {
+          "type": "category",
+          "label": "Content-Security-Policy",
+          "link": {
+            "type": "doc",
+            "id": "csp"
+          },
+          "items": ["monetization-src"]
+        },
+        {
+          "type": "category",
+          "label": "Permissions-Policy",
+          "link": {
+            "type": "doc",
+            "id": "permission-policy"
+          },
+          "items": ["permission-policy-monetization"]
+        }
+      ]
+    },
+    {
+      "Concepts": ["explainer", "receiving", "sending"],
+      "Guides and Tutorials": [
+        "exclusive-content",
+        "remove-ads",
+        "counter",
+        "probabilistic-rev-sharing"
+      ],
+      "Payment Pointer Providers": ["ilp-wallets"],
+      "Resources": ["glossary", "resources"]
+    }
+  ]
 }

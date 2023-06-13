@@ -15,11 +15,6 @@ const browsers = []
 
 const search = [
   {
-    name: 'Infinity Search',
-    image: 'infinity_search_logo.svg',
-    link: 'https://infinitysearch.co',
-  },
-  {
     name: 'Mojeek',
     image: 'mojeek_logo.svg',
     link: 'https://www.mojeek.com',
@@ -120,10 +115,10 @@ const siteConfig = {
   themeConfig: {
     ogImage: 'img/undraw_online.svg',
     algolia: {
-      appId: 'BH4D9OD16A',
       apiKey: '522665321749697a7b612bb54dbdb0b4',
       indexName: 'webmonetization',
-      placeholder: 'Search',
+      appId: 'GJDGP03PYJ',
+      placeholder: 'Search'
     },
     colorMode: {
       defaultMode: 'light',
@@ -140,18 +135,12 @@ const siteConfig = {
         src: 'img/wm-logo.svg',
       },
       items: [
-        { doc: 'getting-started', to: '/docs', label: 'Docs' },
-        {
-          href: 'https://webmonetization.org/specification.html',
-          label: 'Specification',
-        },
-        {
-          href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
-          label: 'WICG Forum',
-        },
+        { doc: 'web-monetization-api', to: '/docs', label: 'Docs' },
+        { type: 'html', value:'<a class="navbar__link" href="/specification.html">Specification</a>' },
+        { href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785', label: 'WICG Forum' },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        { type: 'search', position: 'right' },
-      ],
+        { type: 'search', position: 'right' }
+      ]
     },
     footer: {
       links: [
@@ -175,27 +164,23 @@ const siteConfig = {
               label: 'Github',
               href: 'https://github.com/WICG/webmonetization',
             },
-            { label: 'ILP Forum', href: 'https://forum.interledger.org' },
+            { label: 'Community Fore', href: 'https://community.interledger.org' },
             {
               label: 'Web Platform Incubator Community Group',
               href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
             },
-            { label: 'Interledger', href: 'https://interledger.org' },
           ],
         },
         {
           title: 'Resources',
           items: [
-            { label: 'Docs', to: '/docs/getting-started' },
-            {
-              label: 'Specification',
-              href: 'https://webmonetization.org/specification.html',
-            },
             { label: 'Payment Pointers', to: 'https://paymentpointers.org/' },
-          ],
-        },
-      ],
-    },
+            { label: 'Open Payments', to: 'https://docs.openpayments.guide/' },
+            { label: 'Interledger', href: 'https://interledger.org' }
+          ]
+        }
+      ]
+    }
   },
 
   favicon: 'img/favicon.png',

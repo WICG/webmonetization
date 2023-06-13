@@ -4,22 +4,25 @@ title: Exclusive Content
 sidebar_label: Exclusive content
 ---
 
+import Hidden from '@site/src/components/Hidden';
+
 One of the perks of Web Monetization is that its JavaScript API can be used to make your page respond to Web Monetization. You can reward the people who support your site by giving web monetized viewers exclusive content.
 
 ## A basic example
 
 Web Monetization makes providing exclusive content easy! This is a very simple example of showing exclusive content only to web monetized visitors:
-
+<Hidden>
 > **Careful!** These examples hide content on the client side. A clever user
 > could pretend to be web monetized by using the developer console. Examples on
 > how to verify Web Monetization can be found [further down](#exclusive-content-with-payment-verification).
+</Hidden>
 
 ### Code
 
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice" />
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <style>
     .hidden {
@@ -28,8 +31,9 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
   </style>
 
   <script>
-    if (document.monetization) {
-      document.monetization.addEventListener('monetizationstart', () => {
+    const link = document.querySelector('link[rel="monetization"]')
+     if (link.relList.supports('monetization')) {
+      link.addEventListener('monetization', ev => {
         document.getElementById('exclusive').classList.remove('hidden')
       })
     }
@@ -38,7 +42,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 <body>
   <p>Content will appear below here if you are Web monetized.</p>
-  <hr />
+  <hr/>
   <div id="exclusive" class="hidden">Here's some exclusive content!</div>
 </body>
 ```
@@ -47,18 +51,18 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 There's only three things this code does. The code is encompassed in the `<script>` tag.
 
-First, we check whether `document.monetization` exists in the browser. If it doesn't exist, then we can't listen for the `monetizationstart` event to tell us when Web Monetization initializes.
+First, we check whether Web Monetization is supported by calling `supports()` on a link element's `relList` and passing `"monetization"` as a parameter. If it doesn't exist, then we can't listen for the `monetization` event to tell us when Web Monetization initializes.
 
 ```js
-if (document.monetization) {
+const link = document.querySelector('link[rel="monetization"]')
+  if (link.relList.supports('monetization')) {
 ```
 
-Next, we add an event listener to the `document.monetization` object. The
-`monetizationstart` event is emitted when Web Monetization initializes and
-the state goes from `pending` to `started`.
+Next, we add an event listener to the `link` element. The
+`monetization` event is emitted when Web Monetization initializes.
 
 ```js
-document.monetization.addEventListener('monetizationstart', () => {
+link.addEventListener('monetization', ev => {
 ```
 
 Finally, we select our exclusive content element and make it visible. We defined a CSS class that made it hidden, so removing that class will make it visible. If you want to do something else when Web Monetization starts, you can replace this line. You can trigger any JavaScript, so the sky's the limit.
@@ -78,7 +82,7 @@ If you see the source files instead of the example, click **View App** in the bo
 
 <div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
-    src="https://glitch.com/embed/#!/embed/wm-exclusive-content-basic?path=README.md&previewSize=100"
+    src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-basic?path=README.md&previewSize=100"
     title="wm-exclusive-content-basic on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
     style={{ height: '100%', width: '100%', border: '0' }}>
@@ -103,7 +107,7 @@ This means there's three states in total:
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <meta name="monetization" content="$wallet.example.com/alice" />
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <style>
     .hidden {
@@ -127,14 +131,15 @@ This means there's three states in total:
       document.getElementById('loading').classList.remove('hidden')
     }
 
-    if (document.monetization) {
-      document.monetization.addEventListener('monetizationstart', () => {
+    if (window.MonetizationEvent) {
+		const link = document.querySelector('link[rel="monetization"]');
+  		link.addEventListener("monetization", ev => {
         showExclusiveContent()
       })
     }
 
     window.addEventListener('load', () => {
-      if (!document.monetization) {
+      if (!window.MonetizationEvent) {
         showCTA()
       } else {
         showLoading()
@@ -158,20 +163,22 @@ This means there's three states in total:
 
 We have three functions to activate our three different states: `showLoading` displays the loader, `showCTA` displays the call-to-action to get web monetized, and `showExclusiveContent` shows the exclusive content. This works just like the [basic example](#a-basic-example) where we turn the `hidden` class on/off for our `div`s.
 
-When the visitor is web monetized, we listen for the `monetizationstart` event. Just like the previous example, this event will show the exclusive content when it's triggered and hide the other `div`s.
+When the visitor is web monetized, we listen for the `monetization` event. Just like the previous example, this event will show the exclusive content when it's triggered and hide the other `div`s.
 
 ```js
-if (document.monetization) {
-  document.monetization.addEventListener('monetizationstart', () => {
+if (window.MonetizationEvent) {
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener("monetization", ev => {
     showExclusiveContent()
-  })
-}
+      })
+    }
 ```
 
 When the page loads, we check whether Web Monetization exists in the visitor's browser.
 
 ```js
-window.addEventListener('load', () => {
+    window.addEventListener('load', () => {
+      if (!window.MonetizationEvent) {
 ```
 
 If the visitor doesn't have Web Monetization, then we show the CTA right
@@ -179,11 +186,11 @@ away. If the visitor does have Web Monetization, we show the loader
 right away.
 
 ```js
-if (!document.monetization) {
-  showCTA()
-} else {
-  showLoading()
-}
+      if (!window.MonetizationEvent) {
+        showCTA()
+      } else {
+        showLoading()
+      }
 ```
 
 ### Interactive example
@@ -198,17 +205,24 @@ If you see the source files instead of the example, click **View App** in the bo
 
 <div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
-    src="https://glitch.com/embed/#!/embed/wm-exclusive-content-advanced?path=README.md&previewSize=100"
+    src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-advanced?path=README.md&previewSize=100"
     title="wm-exclusive-content-advanced on Glitch"
     allow="geolocation; microphone; camera; midi; vr; encrypted-media"
     style={{ height: '100%', width: '100%', border: '0' }}>
   </iframe>
 </div>
 
+<Hidden>
 ## Exclusive content with payment verification
 
+<Hidden>
 The above examples only hide content client side which could be spoofed by a clever user.
-Since the introduction of STREAM receipts it is possible to verify payments using a [STREAM receipt verifier](/docs/receipt-verifier).
+A web monetized can be verified checking the [incomingPayments](/docs/monetization-event-incoming-payments.md) attribute of the `MonetizationEvent` interface.  
+</Hidden>
+
+The above examples only hide content client side which could be spoofed by a clever user. Since the introduction of STREAM receipts it is possible to verify payments using a [STREAM receipt verifier](/receipt-verifier.md).
+
+
 
 The Exclusive Content Generator allows users to generate an encrypted piece of content that can be embedded on the web page.
 
@@ -222,7 +236,7 @@ The Exclusive Content Generator derives an encryption key from the user's paymen
 
 ![](./assets/ec-generate.svg)
 
-The embedded JavaScript script will parse all the exclusive content <code>div</code> tags and include the proxy payment pointer in the web page's header (if there are multiple, it will select one at random). If Web Monetization is enabled by the User, receipts can now be obtained from the <code>monetizationprogress</code> events. The receipts, together with the payment pointer and the encrypted verifier endpoint, are submitted to the Exclusive Content Generator, which derives the encryption key and decrypts the verifier endpoint. If the Exclusive Content Generator is able to verify the receipts with the STREAM receipt verifier, it shares the encryption key with the User's client, who is now able to decrypt the content and display it.
+The embedded JavaScript script will parse all the exclusive content <code>div</code> tags and include the proxy payment pointer in the web page's header (if there are multiple, it will select one at random). If Web Monetization is enabled by the User, receipts can now be obtained from the [<code>receipt</code>](monetization-event-receipt.md) property of the [<code>MonetizationEvent</code>](monetization-event.md) event interface. The receipts, together with the payment pointer and the encrypted verifier endpoint, are submitted to the Exclusive Content Generator, which derives the encryption key and decrypts the verifier endpoint. If the Exclusive Content Generator is able to verify the receipts with the STREAM receipt verifier, it shares the encryption key with the User's client, who is now able to decrypt the content and display it.
 
 ![](./assets/ec-unlock.svg)
 
@@ -246,3 +260,4 @@ If you see the source files instead of the example, click **View App** in the bo
 </div>
 
 If you want to interact with a fully functionable example which **does require you to have Web Monetization enabled in your browser**, visit [this demo page](https://exclusive-content-demo.glitch.me/) with Web Monetization enabled.
+</Hidden>
