@@ -1,5 +1,5 @@
 import React from 'react'
-import OpenInNew from '@material-ui/icons/OpenInNew'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import BrowserOnly from '@docusaurus/BrowserOnly'
 
 export default function Specifications({ children, link }) {
@@ -29,7 +29,7 @@ export default function Specifications({ children, link }) {
                     rel={'noopener noreferrer'}
                   >
                     {children}
-                    <OpenInNew color='disabled' fontSize='inherit' />
+                    <OpenInNewIcon color='disabled' fontSize='inherit' />
                     <br></br>
                     <span>{link && `#${link}`}</span>
                   </a>

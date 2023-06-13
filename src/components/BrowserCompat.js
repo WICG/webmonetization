@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import OpenInNew from '@material-ui/icons/OpenInNew'
-import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows'
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone'
-import Check from '@material-ui/icons/Check'
-import Cancel from '@material-ui/icons/Cancel'
-import Extension from '@material-ui/icons/Extension'
+import DesktopWindowsIcon from '@mui/icons-material/DesktopWindows';
+import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+import CheckIcon from '@mui/icons-material/Check';
+import CancelIcon from '@mui/icons-material/Cancel';
+import ExtensionIcon from '@mui/icons-material/Extension';
 
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment'
 import BrowserOnly from '@docusaurus/BrowserOnly'
@@ -141,11 +140,11 @@ export default function BrowserCompat({ children, data }) {
                               <span class='icon-wrap'>
                                 {compat[key].__compat.support[platform]
                                   .version_added && (
-                                  <Check fontSize='inherit' htmlColor='green' />
+                                  <CheckIcon fontSize='inherit' htmlColor='green' />
                                 )}
                                 {!compat[key].__compat.support[platform]
                                   .version_added && (
-                                  <Cancel fontSize='inherit' htmlColor='red' />
+                                  <CancelIcon fontSize='inherit' htmlColor='red' />
                                 )}
                               </span>
 
@@ -164,7 +163,7 @@ export default function BrowserCompat({ children, data }) {
                               <span class='bc-icons'>
                                 {compat[key].__compat.support[platform]
                                   .notes && (
-                                  <Extension
+                                  <ExtensionIcon
                                     fontSize='inherit'
                                     htmlColor='green'
                                   />
@@ -180,13 +179,13 @@ export default function BrowserCompat({ children, data }) {
             </tbody>
           </table>
           <span class='bc-notes'>
-            <Check fontSize='inherit' htmlColor='green' /> Full Support.
+            <CheckIcon fontSize='inherit' htmlColor='green' /> Full Support.
           </span>
           <span class='bc-notes'>
-            <Cancel fontSize='inherit' htmlColor='red' /> No Support.
+            <CancelIcon fontSize='inherit' htmlColor='red' /> No Support.
           </span>
           <span class='bc-notes'>
-            <Extension fontSize='inherit' htmlColor='green' /> You'll need to
+            <ExtensionIcon fontSize='inherit' htmlColor='green' /> You'll need to
             use a Web Monetization Extension.
           </span>
         </div>
