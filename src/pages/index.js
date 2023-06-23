@@ -222,17 +222,17 @@ export default function Index(props) {
             <Grid item sm={6} md={3}>
               <h3 className='heading--4'>Documentation</h3>
               <p>Resource on how to add Web Monetization to your site.</p>
-              <Link to='/docs/explainer'>Read docs ›</Link>
+              <Link to='/docs/web-monetization-api'>Read docs ›</Link>
             </Grid>
             <Grid item sm={6} md={3}>
               <h3 className='heading--4'>Explainer</h3>
               <p>The explainer submitted to the W3C.</p>
-              <Link to='/specification.html'>Read explainer ›</Link>
+              <Link to='/docs/explainer'>Read explainer ›</Link>
             </Grid>
             <Grid item sm={6} md={3}>
               <h3 className='heading--4'>Specification</h3>
               <p>The formal specification.</p>
-              <Link to='/specification.html'>Read specs ›</Link>
+              <Link to='pathname:///specification.html'>Read specs ›</Link>
             </Grid>
             <Grid item sm={6} md={3}>
               <h3 className='heading--4'>
