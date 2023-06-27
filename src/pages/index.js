@@ -102,7 +102,7 @@ export default function Index(props) {
               <p>
                 The ability to transfer money has been a long-standing omission
                 from the web platform. As a result, the web suffers from a flood
-                of advertising and corrupt business models. Web Monetization
+                of advertising and broken business models. Web Monetization
                 provides an open, native, efficient, and automatic way to
                 compensate creators, pay for content, and support crucial web
                 infrastructure.
