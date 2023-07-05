@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
   push:
     paths:
-      - 'static/specification.html'
+      - 'static/specification/index.html'
     branches:
       - gh-pages
 
@@ -14,9 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: brew install tidy-html5
-      - run: tidy -config static/tidyconfig.txt -o static/specification.html static/specification.html
+      - run: tidy -config static/tidyconfig.txt -o static/specification/index.html static/specification/index.html
       - uses: peter-evans/create-pull-request@v3
         with:
-          title: "Tidied up specification using tidy-html5"
-          commit-message: "chore(tidy): tidy up document"
+          title: 'Tidied up specification using tidy-html5'
+          commit-message: 'chore(tidy): tidy up document'
           branch: html-tidy

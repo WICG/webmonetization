@@ -139,7 +139,7 @@ const siteConfig = {
         {
           type: 'html',
           value:
-            '<a class="navbar__link" href="/specification.html">Specification</a>',
+            '<a class="navbar__link" href="/specification">Specification</a>',
         },
         {
           href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',

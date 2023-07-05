@@ -25,8 +25,8 @@ export function SharesLinkTag() {
         the revshare. This applies revenue sharing to the whole site. For
         monetizing media, you would need to copy the generated <code>link</code>{' '}
         tag into your respective media elements. See{' '}
-        <Link to='/specification.html#monetizing-media'>Monetizing media</Link>{' '}
-        for usage examples.
+        <Link to='/specification#monetizing-media'>Monetizing media</Link> for
+        usage examples.
       </p>
       <CodeBlock className='language-html'>
         {`<link rel="monetization" href="${pointer}" />`}

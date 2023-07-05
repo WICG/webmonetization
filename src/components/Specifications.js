@@ -1,5 +1,5 @@
 import React from 'react'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import BrowserOnly from '@docusaurus/BrowserOnly'
 
 export default function Specifications({ children, link }) {
@@ -21,7 +21,7 @@ export default function Specifications({ children, link }) {
                       location.protocol +
                       '//' +
                       location.host +
-                      '/specification.html#' +
+                      '/specification#' +
                       link
                     }
                     className='external'
