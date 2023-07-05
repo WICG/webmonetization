@@ -232,7 +232,7 @@ export default function Index(props) {
             <Grid item sm={6} md={3}>
               <h3 className='heading--4'>Specification</h3>
               <p>The formal specification.</p>
-              <Link to='pathname:///specification.html'>Read specs ›</Link>
+              <Link to='pathname:///specification'>Read specs ›</Link>
             </Grid>
             <Grid item sm={6} md={3}>
               <h3 className='heading--4'>

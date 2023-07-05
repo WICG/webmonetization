@@ -3,7 +3,7 @@
     "assetScale": {
       "__compat": {
         "docs_url": "https://webmonetization.org/docs",
-        "spec_url": "https://webmonetization.org/specification.html",
+        "spec_url": "https://webmonetization.org/specification",
         "support": {
           "chrome": {
             "version_added": true,
