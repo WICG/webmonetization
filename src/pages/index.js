@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Grid } from '@mui/material'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 
 export default function Index(props) {
   const { config: siteConfig } = props
+  const [contributors, setContributors] = useState([])
 
   const CardList = (props) => {
     return props.cards.map(({ name, image, link, desc }) => {
@@ -61,6 +62,16 @@ export default function Index(props) {
       </div>
     )
   }
+
+  const fetchContributors = async () => {
+    const response = await fetch('contributor-data/contributors.json')
+    const data = await response.json()
+    setContributors(data)
+  }
+
+  useEffect(() => {
+    fetchContributors()
+  }, [])
 
   return (
     <Layout
@@ -166,7 +177,6 @@ export default function Index(props) {
           </Grid>
         </Container>
       </section>
-
       {siteConfig.customFields.providers.length > 0 && (
         <section className='home-section'>
           <Container maxWidth='md'>
@@ -200,7 +210,6 @@ export default function Index(props) {
           </Container>
         </section>
       )}
-
       {siteConfig.customFields.tools.length > 0 && (
         <section className='home-section'>
           <Container maxWidth='lg'>
@@ -261,6 +270,25 @@ export default function Index(props) {
               </a>
             </Grid>
           </Grid>
+        </Container>
+      </section>
+      <section className='home-section'>
+        <Container maxWidth='lg'>
+          <div className='home-section-header'>
+            <h2 className='heading--3'>Contributors</h2>
+            <p>Thank you to all our contributors.</p>
+          </div>
+          {contributors.length > 0 && (
+            <ul className='home-contributors'>
+              {contributors.map((contributor) => (
+                <li key={contributor.id} className='home-contributor'>
+                  <a href={contributor.html_url}>
+                    <img alt={contributor.login} src={contributor.avatar_url} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </Container>
       </section>
     </Layout>
