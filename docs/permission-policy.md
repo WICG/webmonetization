@@ -26,7 +26,7 @@ Controls whether the current document is allowed to use the [Web Monetization AP
 ## Example
 
 ```html
-Permissions-Policy: monetization 'self'
+Permissions-Policy: monetization=(self)
 ```
 
 ## Specifications

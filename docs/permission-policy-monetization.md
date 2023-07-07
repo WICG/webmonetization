@@ -12,7 +12,7 @@ The HTTP [`Permissions-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTT
 ## Syntax
 
 ```html
-Permissions-Policy: monetization <allowlist>
+Permissions-Policy: monetization=<allowlist>;
 ```
 
 `<allowlist>`

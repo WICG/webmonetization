@@ -14,7 +14,7 @@ One or more sources may be allowed for the `monetization-src` policy:
 
 ```html
 Content-Security-Policy: monetization-src <source>;
-Content-Security-Policy: monetization-srce <source>, <source>;
+Content-Security-Policy: monetization-src <source>, <source>;
 ```
 
 ### Sources
