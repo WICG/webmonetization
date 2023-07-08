@@ -21,7 +21,11 @@ Permissions-Policy: <directive> <allowlist>
 
 [`monetization`](/docs/permission-policy-monetization)
 
-Controls whether the current document is allowed to use the [Web Monetization API](/docs/).  
+Controls whether the current document is allowed to use the [Web Monetization API](/docs/).
+
+:::info Note
+The [`allow`](https://html.spec.whatwg.org/#attr-iframe-allow) attributes only take effect when the content navigable of the iframe is navigated. Adding or removing the monetization attribute has no effect on an already-loaded document.
+:::
 
 ## Example
 
