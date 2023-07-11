@@ -2,7 +2,7 @@ name: Github API
 on:
   - pull_request
 jobs:
-  my-action:
+  get-contributors:
     runs-on: ubuntu-latest
     steps:
       # Check out code using git
