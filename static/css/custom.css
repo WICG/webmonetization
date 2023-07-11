@@ -274,6 +274,22 @@ section {
   width: 1em;
 }
 
+.home-contributors {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.home-contributor {
+  flex: 0 0 3em;
+}
+
+.home-contributor img {
+  border-radius: 50%;
+}
+
 /* Link tag generator page styles */
 .tag-generator-form {
   display: flex;
