@@ -1,6 +1,6 @@
 name: Github API
 on:
-  - pull_request
+  workflow_dispatch
 jobs:
   get-contributors:
     runs-on: ubuntu-latest
