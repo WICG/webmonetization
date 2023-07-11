@@ -1,0 +1,19 @@
+name: Github API
+on:
+  - pull_request
+jobs:
+  my-action:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out code using git
+      - uses: actions/checkout@v2
+      # Install Node 12
+      - uses: actions/setup-node@v1
+        with:
+          version: 12
+      - run: npm install @octokit/action
+      # Node.js script can be anywhere. A good convention is to put local GitHub Actions
+      # into the `.github/actions` folder
+      - run: echo $GITHUB_TOKEN
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
