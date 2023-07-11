@@ -1,18 +1,21 @@
 name: Github API
 on: workflow_dispatch
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   get-contributors:
     runs-on: ubuntu-latest
     steps:
-      # Check out code using git
-      - uses: actions/checkout@v2
-      # Install Node 12
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          version: 12
+          node-version: 18
       - run: npm install @octokit/action
-      # Node.js script can be anywhere. A good convention is to put local GitHub Actions
-      # into the `.github/actions` folder
       - run: node .github/actions/get-contributors.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          git config --global user.email "no-reply@github.com"
+          git config --global user.name "GitHub Actions"
+          git add static/contributor-data/contributors.json
+          git commit -m "Update contributors.json"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push
