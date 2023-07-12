@@ -4,6 +4,14 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 export default function Libraries() {
   const { siteConfig } = useDocusaurusContext()
 
+  const findStartWith = (array, arg) => {
+    return (
+      array.find((value) => {
+        return value.startsWith(arg)
+      }) !== undefined
+    )
+  }
+
   const tableRow = (data) => {
     return data.map(({ name, desc, link, version }) => {
       return (
@@ -13,8 +21,12 @@ export default function Libraries() {
             <br />
             {desc}
           </td>
-          <td class='cell-center'>{version.includes(2) ? '✅' : '❌'}</td>
-          <td class='cell-center'>{version.includes(1) ? '✅' : '❌'}</td>
+          <td class='cell-center'>
+            {findStartWith(version, '2.') ? '✅' : '❌'}
+          </td>
+          <td class='cell-center'>
+            {findStartWith(version, '1.') ? '✅' : '❌'}
+          </td>
           <td class='cell-center'>
             <a href={link}>
               <img
