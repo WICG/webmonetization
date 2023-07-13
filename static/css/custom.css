@@ -351,6 +351,14 @@ table.event-properties {
   display: none;
 }
 
+.cell-left {
+  text-align: left;
+}
+
+.cell-center {
+  text-align: center;
+}
+
 .specifications table {
   display: table;
   width: 100%;
