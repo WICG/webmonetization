@@ -8,7 +8,7 @@ export default function MetaTag(props) {
   const { config: siteConfig } = props
 
   const [pointerInput, setPointerInput] = useState('')
-  const [pointer, setPointer] = useState('$YourPaymentPointer')
+  const [pointer, setPointer] = useState('https://YourPaymentPointer')
   const [invalidUrl, setInvalidUrl] = useState(false)
 
   const isValidPointer = (pointerInput) => {
