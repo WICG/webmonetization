@@ -12,7 +12,7 @@ The HTTP [`Permissions-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTT
 ## Syntax
 
 ```html
-Permissions-Policy: monetization=<allowlist>;
+Permissions-Policy: monetization=<allowlist>;</allowlist>
 ```
 
 `<allowlist>`
@@ -29,4 +29,4 @@ The default value is `'self'`.
 
 ## Browser compatibility
 
-<BrowserCompat data="monetization.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="monetization">Web Monetization API</BrowserCompat>

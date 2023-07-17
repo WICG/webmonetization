@@ -4,7 +4,7 @@
 const wallets = [
   {
     name: 'Gatehub',
-    image: 'gatehub_logo.svg',
+    image: 'logo-wallet-gatehub.svg',
     link: 'https://gatehub.net',
   },
 ]
@@ -16,7 +16,7 @@ const browsers = []
 const search = [
   {
     name: 'Mojeek',
-    image: 'mojeek_logo.svg',
+    image: 'logo-search-mojeek.svg',
     link: 'https://www.mojeek.com',
   },
 ]
@@ -80,14 +80,14 @@ const tools = [
   },
   {
     name: 'Moodle Webmonetization Module',
-    image: 'moodle_webmo_logo.svg',
+    image: 'logo-tool-moodle-webm.svg',
     link: 'https://github.com/andrewhancox/moodle-local_webmonetization',
     desc: 'A plugin for adding a web monetization meta tag to your Moodle site',
     version: ['1.0'],
   },
   {
     name: 'Jekyll + Webmonetization',
-    image: 'jekyll_webmo_logo.svg',
+    image: 'logo-tool-jekyll-webm.svg',
     link: 'https://github.com/philnash/jekyll-web_monetization',
     desc: 'A Jekyll plugin for adding a Web Monetization meta tag to your site',
     version: ['1.0'],
@@ -107,9 +107,6 @@ const siteConfig = {
     'The Web Monetization API allows websites to automatically and passively receive payments from Web Monetization-enabled visitors.',
   url: 'https://webmonetization.org', // Your website URL
   baseUrl: '/', // Base URL for your project */
-  // For github.io type URLs, you would set the url and baseUrl like:
-  //   url: 'https://facebook.github.io',
-  //   baseUrl: '/test-site/',
 
   // Used for publishing and more
   projectName: 'webmonetization',
@@ -124,7 +121,6 @@ const siteConfig = {
   },
 
   themeConfig: {
-    ogImage: 'img/undraw_online.svg',
     // algolia: {
     //   apiKey: '522665321749697a7b612bb54dbdb0b4',
     //   indexName: 'webmonetization',
@@ -135,30 +131,6 @@ const siteConfig = {
       defaultMode: 'light',
       disableSwitch: true,
       respectPrefersColorScheme: false,
-    },
-    prism: {
-      theme: require('prism-react-renderer/themes/github'),
-    },
-    navbar: {
-      title: 'Web Monetization',
-      logo: {
-        alt: 'Web Monetization logo',
-        src: 'img/wm-logo.svg',
-      },
-      items: [
-        { doc: 'web-monetization-api', to: '/docs', label: 'Docs' },
-        {
-          type: 'html',
-          value:
-            '<a class="navbar__link" href="/specification">Specification</a>',
-        },
-        {
-          href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
-          label: 'WICG Forum',
-        },
-        { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        // { type: 'search', position: 'right' },
-      ],
     },
     footer: {
       links: [
@@ -202,9 +174,38 @@ const siteConfig = {
         },
       ],
     },
+    navbar: {
+      title: 'Web Monetization',
+      logo: {
+        alt: 'Web Monetization logo',
+        src: 'img/wm-logo.svg',
+      },
+      items: [
+        { doc: 'web-monetization-api', to: '/docs', label: 'Docs' },
+        {
+          label: 'Specification',
+          to: 'pathname:///specification',
+        },
+        {
+          href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
+          label: 'WICG Forum',
+        },
+        { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
+        // { type: 'search', position: 'right' },
+      ],
+    },
+    prism: {
+      theme: require('prism-react-renderer/themes/github'),
+    },
   },
 
   favicon: 'img/favicon.png',
+
+  markdown: {
+    mermaid: true,
+  },
+
+  themes: ['@docusaurus/theme-mermaid'],
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   // copyright: ``,

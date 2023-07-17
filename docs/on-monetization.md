@@ -3,6 +3,7 @@ id: on-monetization
 title: GlobalEventHandlers.onmonetization
 sidebar_label: GlobalEventHandlers.onmonetization
 ---
+
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
@@ -30,4 +31,4 @@ window.onmonetization = function () {
 
 ## Browser compatibility
 
-<BrowserCompat data="onmonetization.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="onmonetization">Web Monetization API</BrowserCompat>

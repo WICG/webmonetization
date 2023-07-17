@@ -27,24 +27,24 @@ A string that represents a URL that can be used to verify payment at the [moneti
 async function verifyPayment(event) {
   // Legacy receivers don't support returning incoming payment URLs
   if (!event.incomingPayment) {
-    throw new Error("No incoming payment URL");
+    throw new Error('No incoming payment URL')
   }
 
   const response = await fetch(event.incomingPayment, {
-    method: "GET",
-    credentials: "same-origin",
-    mode: "same-origin",
-    cache: "no-cache",
+    method: 'GET',
+    credentials: 'same-origin',
+    mode: 'same-origin',
+    cache: 'no-cache',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
-  });
+  })
 
   if (response.ok) {
     // The incoming payment was fetched successfully
-    const { receivedAmount } = JSON.parse(response.json());
-    const { amount, assetCode, assetScale } = receivedAmount;
-    console.log(`Received ${assetCode}${amount / Math.pow(10, assetScale)}.`);
+    const { receivedAmount } = JSON.parse(response.json())
+    const { amount, assetCode, assetScale } = receivedAmount
+    console.log(`Received ${assetCode}${amount / Math.pow(10, assetScale)}.`)
   }
 }
 ```
@@ -55,4 +55,4 @@ async function verifyPayment(event) {
 
 ## Browser compatibility
 
-<BrowserCompat data="receipt.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="receipt">Web Monetization API</BrowserCompat>

@@ -6,7 +6,7 @@ sidebar_label: Web Monetization
 
 import Hidden from '@site/src/components/Hidden';
 
-Until now, there have been three popular ways that websites have monetized the traffic to their sites.  
+Until now, there have been three popular ways that websites have monetized the traffic to their sites.
 
 <ul><b>Ads:</b>  Pop-ups and banners distract users from the website's content.  </ul>
 
@@ -14,7 +14,7 @@ Until now, there have been three popular ways that websites have monetized the t
 
 <ul><b>Collecting and selling user data:</b>   Websites harvest their visitors' data or online behavior and then sell it to third parties.</ul>
 
-Now there's another way that allows visitors to reward content creators directly without degrading the user experience or compromising users' privacy. The <b>Web Monetization (WM) API is a new proposed standard </b> that allows users to stream micropayments (i.e., fractions of a cent) directly from the user agent (i.e., browser) to the website. With Web Monetization, your website's content, not the users or third-party offerings, becomes the product!  
+Now there's another way that allows visitors to reward content creators directly without degrading the user experience or compromising users' privacy. The <b>Web Monetization (WM) API is a new proposed standard </b> that allows users to stream micropayments (i.e., fractions of a cent) directly from the user agent (i.e., browser) to the website. With Web Monetization, your website's content, not the users or third-party offerings, becomes the product!
 
 With Web Monetization, websites can provide users with a "premium" experience, such as allowing access to exclusive content, removing advertising, or even removing the need to log in to access content or services.
 
@@ -23,6 +23,7 @@ With Web Monetization, websites can provide users with a "premium" experience, s
 ## Goals
 
 #### Payment
+
 Provide websites with a way to collect multiple micropayments from users in exchange for consuming the site's content and services.
 
 #### Frictionless user experience
@@ -43,16 +44,16 @@ Web Monetization enables micropayments. This distinction is essential because mi
 
 ### Prerequisites
 
-* Users must have an account or subscription with a **Web Monetization Provider** (also known as a WM sender).  Alternatively, users may function as their own Web Monetization Provider using a digital wallet that supports Web Monetization.  
-* Users must have a **Web Monetization agent** installed in their browser with
-the necessary authorization to initiate payments from the WM provider on the
-user's behalf.
-* Websites must sign up with, or run their own, **Web Monetization Receiver**.
-The WM Provider and WM Receiver do not need a direct relationship. Instead, they send and verify a series of micropayments through the Open Payments API.  
+- Users must have an account or subscription with a **Web Monetization Provider** (also known as a WM sender). Alternatively, users may function as their own Web Monetization Provider using a digital wallet that supports Web Monetization.
+- Users must have a **Web Monetization agent** installed in their browser with
+  the necessary authorization to initiate payments from the WM provider on the
+  user's behalf.
+- Websites must sign up with, or run their own, **Web Monetization Receiver**.
+  The WM Provider and WM Receiver do not need a direct relationship. Instead, they send and verify a series of micropayments through the Open Payments API.
 
 ### Sequence diagram
 
-![diagram](assets/flow.svg)
+![diagram](/img/explainer-flow.svg)
 
 ### Flow
 
@@ -64,21 +65,21 @@ The numbers correspond to the diagram above. The flow is simplified to exclude s
 4.  With the site's page still in focus, the browser begins initiating outgoing payments to the website at the calculated rate from the user's WM provider wallet.
 5.  The WM provider notifies the browser of successful payments.
 6.  The browser, in turn, dispatches an event that informs the page of the payment.
-7. (Optional) The page confirms payment by checking the incoming payment URL associated with the event.
+7.  (Optional) The page confirms payment by checking the incoming payment URL associated with the event.
 
 ## Why is a standard required?
 
 Many services attempt to provide alternative means to monetize the Web and generate revenue for content creators and service providers without selling ads.
 
-However, most of these require that the user and the creator/producer/service provider join a shared network that offers to facilitate the transactions between users and these services. The result is a fragmented web of closed content and service silos rather than the global and open Web we all desire. 
+However, most of these require that the user and the creator/producer/service provider join a shared network that offers to facilitate the transactions between users and these services. The result is a fragmented web of closed content and service silos rather than the global and open Web we all desire.
 
 Further, users sacrifice their privacy because the network provider collects payments from the user and pays out to the creator/producer/service provider. The network provider can thus correlate payment flows and gather data about which users access which services.
 
-Web Monetization decouples the sender and the receiver. As the web monetization agent, the browser protects users' privacy by not revealing payments made by the user across different websites.  
+Web Monetization decouples the sender and the receiver. As the web monetization agent, the browser protects users' privacy by not revealing payments made by the user across different websites.
 
 ## Concepts
 
-Web Monetization works with two complementary technologies that enable open and interoperable micropayments between providers and websites or receivers: Payment Pointers and the Open Payments API.  
+Web Monetization works with two complementary technologies that enable open and interoperable micropayments between providers and websites or receivers: Payment Pointers and the Open Payments API.
 
 ### Payment Pointers
 
@@ -105,9 +106,9 @@ For more details see https://paymentpointers.org.
 ### Open Payments
 
 The Open Payments API provides a standard way for digital wallets to allow third-party applications to access and send funds based on the authorizations granted by the respective wallet owner.  
-Open Payments allows applications to access a digital wallet through one or more of its payment pointers. The payment pointer also serves as the entry point for the API.  
+Open Payments allows applications to access a digital wallet through one or more of its payment pointers. The payment pointer also serves as the entry point for the API.
 
-For more information, see https://openpayments.dev. 
+For more information, see https://openpayments.dev.
 
 ## Existing implementations
 

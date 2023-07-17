@@ -1,0 +1,144 @@
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.browserCompat table {
+  border: 1px solid var(--color-table-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1rem 0;
+  display: table;
+  width: 100%;
+}
+
+.browserCompat th {
+  background: inherit;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.browserCompat th,
+.browserCompat td {
+  border: 1px solid var(--color-table-border);
+  font-size: 0.75rem;
+}
+
+.browserCompat th code {
+  width: max-content;
+}
+
+.browserCompat tbody tr th {
+  vertical-align: middle;
+}
+
+.browserCompat tbody td {
+  text-align: center;
+  padding: 0.25rem 0;
+  vertical-align: top;
+}
+
+.browserCompat tbody td span {
+  display: block;
+}
+
+.browserCompat tbody td img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.platforms {
+  height: 2em;
+}
+
+.platforms th {
+  vertical-align: revert;
+}
+
+.platforms th img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.browserLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  line-height: 1;
+  position: relative;
+  padding-top: 0.5rem;
+  margin-left: 2px;
+}
+
+.browser::after {
+  height: 1.25em;
+  width: 1.25em;
+  display: block;
+}
+
+.browserChrome::after {
+  content: url(/img/browser-chrome.svg);
+}
+
+.browserEdge::after {
+  content: url(/img/browser-edge.svg);
+}
+
+.browserFirefox::after {
+  content: url(/img/browser-firefox.svg);
+}
+
+.browserIe::after {
+  content: url(/img/browser-ie.svg);
+}
+
+.browserOpera::after {
+  content: url(/img/browser-opera.svg);
+}
+
+.browserPuma::after {
+  content: url(/img/browser-puma.svg);
+}
+
+.browserSafari::after {
+  content: url(/img/browser-safari.svg);
+}
+
+.browserSamsung::after {
+  content: url(/img/browser-samsung.svg);
+}
+
+.browserWebview::after {
+  content: url(/img/browser-webview.svg);
+}
+
+.feature div {
+  align-items: baseline;
+  display: inline-flex;
+  width: 100%;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  display: flex;
+  font-size: 0.75rem;
+  margin-right: var(--space-xs);
+}
+
+.legend dt {
+  margin-right: var(--space-3xs);
+}
+
+.legend dd {
+  margin: initial;
+}
+
+/* Temporarily hidden until content is ready */
+.browserCompat {
+  display: none;
+}

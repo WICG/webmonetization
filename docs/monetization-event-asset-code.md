@@ -39,4 +39,4 @@ A string representing the three-character currency code on the last payment rece
 
 ## Browser compatibility
 
-<BrowserCompat data="assetCode.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="assetCode">Web Monetization API</BrowserCompat>

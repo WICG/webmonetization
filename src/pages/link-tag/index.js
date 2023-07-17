@@ -3,6 +3,7 @@ import { Container, TextField, Button } from '@mui/material'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
 import CodeBlock from '@theme/CodeBlock'
+import styles from './styles.module.css'
 
 export default function MetaTag(props) {
   const { config: siteConfig } = props
@@ -49,10 +50,7 @@ export default function MetaTag(props) {
           </a>{' '}
           and click generate.
         </p>
-        <form
-          onSubmit={(ev) => ev.preventDefault()}
-          className='tag-generator-form'
-        >
+        <form onSubmit={(ev) => ev.preventDefault()} className={styles.form}>
           <TextField
             id='paymentPointer'
             label='Payment Pointer URL'
@@ -72,7 +70,7 @@ export default function MetaTag(props) {
             }}
           />
           <Button
-            className='tag-generator__btn'
+            className={styles.btn}
             variant='contained'
             type='submit'
             onClick={() => {
@@ -89,7 +87,7 @@ export default function MetaTag(props) {
           multiple parties, check out the{' '}
           <Link to='/prob-revshare'>Probabilistic Revshare Generator</Link>.
         </p>
-        <div className='tag-output'>
+        <div>
           <p>
             To monetize your website add the following <code>&lt;link&gt;</code>{' '}
             tag to the <code>&lt;head&gt;</code> section of all pages on your

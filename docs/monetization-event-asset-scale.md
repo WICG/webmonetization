@@ -39,4 +39,4 @@ An integer that represents the scale on the amount of money received in the last
 
 ## Browser compatibility
 
-<BrowserCompat data="assetScale.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="assetScale">Web Monetization API</BrowserCompat>

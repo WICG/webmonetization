@@ -71,20 +71,23 @@ dictionary PaymentCurrencyAmount {
 The payment handler then invokes `PaymentRequestEvent.respondWith()`:
 
 ```ts
-paymentRequestEvent.respondWith(
-    // Promise that resolves with a PaymentResponse.
-  )
+paymentRequestEvent
+  .respondWith
+  // Promise that resolves with a PaymentResponse.
+  ()
 ```
 
 And responds with either a pass or a fail:
-* Pass - passes in a `Promise` that resolves to an instance of
-[`MonetizationResponse`](#monetizationresponse---dictionary) containing the
-fulfillment and data from the response.
-> [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/WICG/webmonetization/issues/15)<p>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?</p>
 
-* Fail - provides a rejected `Promise` indicating that the payment failed
-because the handler was unable to send in the specified currency.
-> [Issue 18 - Indicate Failure Reasons from Web Monetization Sender](https://github.com/WICG/webmonetization/issues/18)
+- Pass - passes in a `Promise` that resolves to an instance of
+  [`MonetizationResponse`](#monetizationresponse---dictionary) containing the
+  fulfillment and data from the response.
+
+  > [Issue 15 - Should Web Monetization senders know origin of the monetized website?](https://github.com/WICG/webmonetization/issues/15)<br/>The `PaymentRequestEvent` currently includes the origin of the calling website. Should this be removed for monetization to preserve the user's privacy?
+
+- Fail - provides a rejected `Promise` indicating that the payment failed
+  because the handler was unable to send in the specified currency.
+  > [Issue 18 - Indicate Failure Reasons from Web Monetization Sender](https://github.com/WICG/webmonetization/issues/18)
 
 For more information about the JavaScript `Promise` object, see the
 [MDN Web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
@@ -96,20 +99,20 @@ the destination (WM receiver) address for the payment, the condition, expiry,
 and data to use in the Interledger packet.
 
 ```webidl
-  dictionary MonetizationRequest {
-    required DOMString destination;
-    required DOMString condition;
-    required DOMString expiry;
-    DOMString data;
-  };
+dictionary MonetizationRequest {
+  required DOMString destination;
+  required DOMString condition;
+  required DOMString expiry;
+  DOMString data;
+};
 ```
 
-| Property    | Description                                                   |
-| ----------- | ------------------------------------------------------------- |
-| destination | The ILP address of the WM receiver for this session. |
+| Property    | Description                                                                                                           |
+| ----------- | --------------------------------------------------------------------------------------------------------------------- |
+| destination | The ILP address of the WM receiver for this session.                                                                  |
 | condition   | 32 bytes, base64-encoded condition to use for the ILP packet. The WM receiver must be able to fulfill this condition. |
-| expiry      | Expiration date and time for when the ILP packet expires.     |
-| data        | Base64-encoded additional data to send in the ILP packet.     |
+| expiry      | Expiration date and time for when the ILP packet expires.                                                             |
+| data        | Base64-encoded additional data to send in the ILP packet.                                                             |
 
 ### `MonetizationResponse` - dictionary
 
@@ -118,16 +121,16 @@ contains the fulfillment from the successful payment and the data from the
 fulfill packet.
 
 ```webidl
-  dictionary MonetizationRequest {
-    required DOMString fulfillment;
-    DOMString data;
-  };
+dictionary MonetizationRequest {
+  required DOMString fulfillment;
+  DOMString data;
+};
 ```
 
-| Property    | Description                                               |
-| ----------- | --------------------------------------------------------- |
+| Property    | Description                                                                       |
+| ----------- | --------------------------------------------------------------------------------- |
 | fulfillment | 32 bytes, base64-encoded fulfillment from the ILP packet (returned by the payee). |
-| data        | Base64-encoded additional data received from the ILP packet. |
+| data        | Base64-encoded additional data received from the ILP packet.                      |
 
 ## Open authorization issues
 
@@ -135,10 +138,11 @@ When the payment handler is invoked (handling a new `PaymentRequestEvent`) it's
 expected to send a payment on behalf of the user.
 
 If the payment handler is not authorized to send payments it can either:
-* Invoke `PaymentRequestEvent.openWindow()` to provide a UI to the user to log
-in and authorize the payment
-* Reject the request by passing a rejected `Promise` to
-`PaymentRequestEvent.respondWith()` and let the browser handle the case
+
+- Invoke `PaymentRequestEvent.openWindow()` to provide a UI to the user to log
+  in and authorize the payment
+- Reject the request by passing a rejected `Promise` to
+  `PaymentRequestEvent.respondWith()` and let the browser handle the case
 
 _Invoke_ is quite intrusive on the user experience unless it's throttled by the
 browser in some way. _Reject_ is likely to result in a lot of failures that go
@@ -148,17 +152,17 @@ undetected.
 
 As detailed in the [explainer](explainer.md), the user's browser receives a
 unique destination address and shared secret for each monetization session (e.g.
-  page refresh, navigation). This specification assumes that the browser will
-  handle the generation of a new condition using the shared secret for each
-  payment it wants to send.
+page refresh, navigation). This specification assumes that the browser will
+handle the generation of a new condition using the shared secret for each
+payment it wants to send.
 
 Note that the browser will then emit multiple `PaymentRequestEvent` events (one
-  for each payment). This is in contrast to how the event is expected to be
-  emitted. The expectation is that a website creates a single `PaymentRequest`
-  event. The single event is emitted as a result of the website calling `show()`
-  and the user selecting a payment instrument. In this case (with a single
-    event), the calling website waits for the `Promise` returned by `show()`,
-    then resolves the value passed by the payment handler to `respondWith()`.
+for each payment). This is in contrast to how the event is expected to be
+emitted. The expectation is that a website creates a single `PaymentRequest`
+event. The single event is emitted as a result of the website calling `show()`
+and the user selecting a payment instrument. In this case (with a single
+event), the calling website waits for the `Promise` returned by `show()`,
+then resolves the value passed by the payment handler to `respondWith()`.
 
 While this proposal requires minimal changes to the Payment Handler API
 specification it does imply some changes to the

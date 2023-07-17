@@ -11,10 +11,13 @@ One of the perks of Web Monetization is that its JavaScript API can be used to m
 ## A basic example
 
 Web Monetization makes providing exclusive content easy! This is a very simple example of showing exclusive content only to web monetized visitors:
+
 <Hidden>
+
 > **Careful!** These examples hide content on the client side. A clever user
 > could pretend to be web monetized by using the developer console. Examples on
 > how to verify Web Monetization can be found [further down](#exclusive-content-with-payment-verification).
+
 </Hidden>
 
 ### Code
@@ -32,8 +35,8 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
   <script>
     const link = document.querySelector('link[rel="monetization"]')
-     if (link.relList.supports('monetization')) {
-      link.addEventListener('monetization', ev => {
+    if (link.relList.supports('monetization')) {
+      link.addEventListener('monetization', (ev) => {
         document.getElementById('exclusive').classList.remove('hidden')
       })
     }
@@ -42,7 +45,7 @@ Web Monetization makes providing exclusive content easy! This is a very simple e
 
 <body>
   <p>Content will appear below here if you are Web monetized.</p>
-  <hr/>
+  <hr />
   <div id="exclusive" class="hidden">Here's some exclusive content!</div>
 </body>
 ```
@@ -80,7 +83,7 @@ Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle y
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
+<div className="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-basic?path=README.md&previewSize=100"
     title="wm-exclusive-content-basic on Glitch"
@@ -132,8 +135,8 @@ This means there's three states in total:
     }
 
     if (window.MonetizationEvent) {
-		const link = document.querySelector('link[rel="monetization"]');
-  		link.addEventListener("monetization", ev => {
+      const link = document.querySelector('link[rel="monetization"]')
+      link.addEventListener('monetization', (ev) => {
         showExclusiveContent()
       })
     }
@@ -153,9 +156,7 @@ This means there's three states in total:
 
   <div id="exclusive" class="hidden">Here's some exclusive content!</div>
 
-  <div id="cta" class="hidden">
-    Please install a Web Monetization extension to support me!
-  </div>
+  <div id="cta" class="hidden">Please install a Web Monetization extension to support me!</div>
 </body>
 ```
 
@@ -168,17 +169,17 @@ When the visitor is web monetized, we listen for the `monetization` event. Just 
 ```js
 if (window.MonetizationEvent) {
   const link = document.querySelector('link[rel="monetization"]')
-  link.addEventListener("monetization", ev => {
+  link.addEventListener('monetization', (ev) => {
     showExclusiveContent()
-      })
-    }
+  })
+}
 ```
 
 When the page loads, we check whether Web Monetization exists in the visitor's browser.
 
 ```js
-    window.addEventListener('load', () => {
-      if (!window.MonetizationEvent) {
+window.addEventListener('load', () => {
+  if (!window.MonetizationEvent) {
 ```
 
 If the visitor doesn't have Web Monetization, then we show the CTA right
@@ -186,11 +187,11 @@ away. If the visitor does have Web Monetization, we show the loader
 right away.
 
 ```js
-      if (!window.MonetizationEvent) {
-        showCTA()
-      } else {
-        showLoading()
-      }
+if (!window.MonetizationEvent) {
+  showCTA()
+} else {
+  showLoading()
+}
 ```
 
 ### Interactive example
@@ -203,7 +204,7 @@ Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle y
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
+<div className="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-advanced?path=README.md&previewSize=100"
     title="wm-exclusive-content-advanced on Glitch"
@@ -213,16 +214,13 @@ If you see the source files instead of the example, click **View App** in the bo
 </div>
 
 <Hidden>
+
 ## Exclusive content with payment verification
 
-<Hidden>
 The above examples only hide content client side which could be spoofed by a clever user.
-A web monetized can be verified checking the [incomingPayments](/docs/monetization-event-incoming-payments.md) attribute of the `MonetizationEvent` interface.  
-</Hidden>
+A web monetized can be verified checking the [incomingPayments](/docs/monetization-event-incoming-payments.md) attribute of the `MonetizationEvent` interface.
 
 The above examples only hide content client side which could be spoofed by a clever user. Since the introduction of STREAM receipts it is possible to verify payments using a [STREAM receipt verifier](/receipt-verifier.md).
-
-
 
 The Exclusive Content Generator allows users to generate an encrypted piece of content that can be embedded on the web page.
 
@@ -234,11 +232,11 @@ Want to try the Exclusive Content Generator right away? Check it out [here](/exc
 
 The Exclusive Content Generator derives an encryption key from the user's payment pointer and a master key and returns it to the Creator's client. The client then encrypts the exclusive content and the verifier endpoint and displays all the information required for decryption in a <code>div</code> tag. It also provides a JavaScript script to be embedded on the Creator's web page.
 
-![](./assets/ec-generate.svg)
+![](/img/ec-generate.svg)
 
 The embedded JavaScript script will parse all the exclusive content <code>div</code> tags and include the proxy payment pointer in the web page's header (if there are multiple, it will select one at random). If Web Monetization is enabled by the User, receipts can now be obtained from the [<code>receipt</code>](monetization-event-receipt.md) property of the [<code>MonetizationEvent</code>](monetization-event.md) event interface. The receipts, together with the payment pointer and the encrypted verifier endpoint, are submitted to the Exclusive Content Generator, which derives the encryption key and decrypts the verifier endpoint. If the Exclusive Content Generator is able to verify the receipts with the STREAM receipt verifier, it shares the encryption key with the User's client, who is now able to decrypt the content and display it.
 
-![](./assets/ec-unlock.svg)
+![](/img/ec-unlock.svg)
 
 ### Interactive example
 
@@ -250,7 +248,7 @@ Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle y
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
+<div className="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/exclusive-content-demo-simulation?path=index.html&previewSize=100"
     title="exclusive-content-demo-simulation on Glitch"

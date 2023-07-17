@@ -13,7 +13,7 @@ This example shows you how to use the `monetization` event to count how much you
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <link rel="monetization" href="https://wallet.example.com/alice">
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <script>
     let total = 0
@@ -21,7 +21,7 @@ This example shows you how to use the `monetization` event to count how much you
 
     if (window.MonetizationEvent) {
       const link = document.querySelector('link[rel="monetization"]')
-      link.addEventListener('monetization', ev => {
+      link.addEventListener('monetization', (ev) => {
         // initialize currency and scale on first progress event
         if (total === 0) {
           scale = ev.assetScale
@@ -108,7 +108,7 @@ Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle y
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
+<div className="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/wm2-count-revenue?path=README.md&previewSize=100"
     title="wm-count-revenue on Glitch"

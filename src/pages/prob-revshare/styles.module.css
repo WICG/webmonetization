@@ -1,0 +1,33 @@
+.weightInput,
+.percentInput {
+  width: 5em;
+}
+
+.nameCell {
+  width: 15em;
+}
+
+.sharePointerInput {
+  width: 20em;
+}
+
+.weightCell,
+.percentCell {
+  width: 6em;
+}
+
+.removeCell.removeCell {
+  padding: 0px;
+}
+
+.importControls {
+  margin-top: 1em;
+}
+
+.importSharesButton.importSharesButton {
+  margin-left: 1em;
+}
+
+table.event-properties {
+  display: table;
+}
