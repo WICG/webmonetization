@@ -13,22 +13,22 @@ Here's an example that removes its ads for web monetized visitors.
 ```html
 <head>
   <!-- this should be set to your own payment pointer -->
-  <link rel="monetization" href="https://wallet.example.com/alice">
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <script>
     const adCode = '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'
-    function showAds () {
+    function showAds() {
       document.getElementById('ad').innerHTML = adCode
     }
 
-    function removeAds () {
+    function removeAds() {
       document.getElementById('ad').remove()
     }
 
     let hasPaid = false
     if (window.MonetizationEvent) {
       const link = document.querySelector('link[rel="monetization"]')
-      link.addEventListener('monetization', ev => {
+      link.addEventListener('monetization', (ev) => {
         hasPaid = true
         removeAds()
       })
@@ -49,8 +49,7 @@ Here's an example that removes its ads for web monetized visitors.
 </head>
 
 <body>
-  <div id="ad">
-  </div>
+  <div id="ad"></div>
 
   Here's some real content.
 </body>
@@ -64,9 +63,9 @@ initialize.
 
 If Web Monetization:
 
-* Initializes before the three seconds are up, the ads never appear.
-* Fails to initialize within three seconds, the ads will load into the page.
-* Initializes any time after the three seconds are up, the ads will be removed.
+- Initializes before the three seconds are up, the ads never appear.
+- Fails to initialize within three seconds, the ads will load into the page.
+- Initializes any time after the three seconds are up, the ads will be removed.
 
 ## How does it work?
 
@@ -74,7 +73,7 @@ This works a little bit differently from the [exclusive content example](exclusi
 
 ```js
 const adCode = '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'
-function showAds () {
+function showAds() {
   document.getElementById('ad').innerHTML = adCode
 }
 ```
@@ -88,7 +87,7 @@ Monetization has started after the grace period is over.
 let hasPaid = false
 if (window.MonetizationEvent) {
   const link = document.querySelector('link[rel="monetization"]')
-  link.addEventListener('monetization', ev => {
+  link.addEventListener('monetization', (ev) => {
     hasPaid = true
     removeAds()
   })
@@ -113,8 +112,6 @@ window.addEventListener('load', () => {
 })
 ```
 
-
-
 ## Interactive example
 
 This example simulates hiding an ad from a web monetized visitor and showing the add to a non-web monetized visitor. The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
@@ -123,7 +120,7 @@ Click the **View as Web Monetized/non-Web Monetized visitor** button to toggle y
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
+<div className="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/wm2-ad-free-experience?path=README.md&previewSize=100"
     title="wm-ad-free-experience on Glitch"

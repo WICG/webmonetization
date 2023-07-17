@@ -2,6 +2,7 @@ import React from 'react'
 import CodeBlock from '@theme/CodeBlock'
 import { Tabs, Tab } from '@mui/material'
 import { IndependentScript } from './_independent-script'
+import styles from '../styles.module.css'
 
 export function GeneratedTabs() {
   const [value, setValue] = React.useState(0)
@@ -38,5 +39,7 @@ export function GeneratedTabs() {
 
 function TabPanel(props) {
   const { children, value, index } = props
-  return <>{value === index && <div className='script-tab'>{children}</div>}</>
+  return (
+    <>{value === index && <div className={styles.scriptTab}>{children}</div>}</>
+  )
 }

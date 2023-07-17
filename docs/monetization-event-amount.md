@@ -3,6 +3,7 @@ id: monetization-event-amount
 title: MonetizationEvent.amount
 sidebar_label: MonetizationEvent.amount
 ---
+
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
@@ -38,4 +39,4 @@ An integer representing the amount of money received.
 
 ## Browser compatibility
 
-<BrowserCompat data="amount.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="amount">Web Monetization API</BrowserCompat>

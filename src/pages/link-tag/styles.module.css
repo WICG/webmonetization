@@ -1,0 +1,9 @@
+.form {
+  display: flex;
+  gap: var(--space-s);
+  margin-bottom: var(--space-s);
+}
+
+.btn {
+  height: 56px;
+}

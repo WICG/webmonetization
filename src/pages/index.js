@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Container, Grid } from '@mui/material'
 import Layout from '@theme/Layout'
 import Link from '@docusaurus/Link'
+import styles from './styles.module.css'
 
 export default function Index(props) {
   const { config: siteConfig } = props
-  const [contributors, setContributors] = useState([])
+  const contributors = require(`../data/contributors.json`)
 
   const CardList = (props) => {
     return props.cards.map(({ name, image, link, desc }) => {
@@ -16,14 +17,14 @@ export default function Index(props) {
             href={link}
             target='_blank'
             rel='noreferrer noopener'
-            className='home-card--wide'
+            className={`${styles.cardWide} ${styles.card}`}
           >
             <img
-              className='home-card__logo'
+              className={styles.cardLogo}
               src={`${siteConfig.baseUrl}img/${image}`}
               alt={name}
             />
-            <div className='home-card__content'>
+            <div className={styles.cardContent}>
               <h3 className='body-text'>{name}</h3>
               <p>{desc}</p>
             </div>
@@ -36,7 +37,7 @@ export default function Index(props) {
             target='_blank'
             rel='noreferrer noopener'
             key={name}
-            className='home-card--basic'
+            className={`${styles.cardBasic} ${styles.card}`}
           >
             <img src={`${siteConfig.baseUrl}img/${image}`} alt={name} />
           </a>
@@ -47,8 +48,8 @@ export default function Index(props) {
 
   const PrCta = (props) => {
     return (
-      <div className='home-cta'>
-        <img className='icon--merge' src='/img/icon-merge.svg' alt='' />
+      <div className={styles.cta}>
+        <img className={styles.iconMerge} src='/img/icon-merge.svg' alt='' />
         <p>
           Do you know another {props.label}?{' '}
           <a
@@ -63,33 +64,25 @@ export default function Index(props) {
     )
   }
 
-  const fetchContributors = async () => {
-    const response = await fetch('contributor-data/contributors.json')
-    const data = await response.json()
-    setContributors(data)
-  }
-
-  useEffect(() => {
-    fetchContributors()
-  }, [])
-
   return (
     <Layout
       permalink='/'
       title={siteConfig.title}
       description={siteConfig.tagline}
     >
-      <section className='home-hero'>
+      <section className={styles.hero}>
         <Container maxWidth='sm'>
           <img
             alt='Web Monetization Icon'
-            className='home-hero__icon'
+            className={styles.heroIcon}
             src='img/wm-logo--animated.svg'
           />
           <h1 className='heading--2'>{siteConfig.title}</h1>
-          <p className='home-hero__tagline heading--4'>{siteConfig.tagline}</p>
+          <p className={`${styles.heroTagline} heading--4`}>
+            {siteConfig.tagline}
+          </p>
         </Container>
-        <footer className='home-hero__footer'>
+        <footer className={styles.heroFooter}>
           <Container maxWidth='sm'>
             <p>
               Web Monetization is being proposed as a W3C standard at{' '}
@@ -105,7 +98,7 @@ export default function Index(props) {
           </Container>
         </footer>
       </section>
-      <section className='home-section'>
+      <section className={styles.section}>
         <Container maxWidth='lg'>
           <Grid container spacing={4}>
             <Grid item sm={12} md={6}>
@@ -140,19 +133,19 @@ export default function Index(props) {
           </Grid>
         </Container>
       </section>
-      <section className='home-section'>
+      <section className={styles.section}>
         <Container maxWidth='lg'>
           <Grid container spacing={2}>
             {siteConfig.customFields.wallets.length > 0 && (
               <Grid item sm={12} md={6}>
-                <div className='home-section-header'>
+                <div className={styles.sectionHeader}>
                   <h2 className='heading--3'>Web Monetization Wallets</h2>
                   <p>
                     These providers offer ILP-enabled wallets that you can use
                     to become Web Monetized:
                   </p>
                 </div>
-                <div className='home-cards'>
+                <div className={styles.cards}>
                   <CardList cards={siteConfig.customFields.wallets} />
                 </div>
                 <PrCta label='wallet' />
@@ -160,7 +153,7 @@ export default function Index(props) {
             )}
             {siteConfig.customFields.search.length > 0 && (
               <Grid item sm={12} md={6}>
-                <div className='home-section-header'>
+                <div className={styles.sectionHeader}>
                   <h2 className='heading--3'>
                     Web Monetization Enabled Search Engines
                   </h2>
@@ -168,7 +161,7 @@ export default function Index(props) {
                     These search engines implement Web Monetization features:
                   </p>
                 </div>
-                <div className='home-cards'>
+                <div className={styles.cards}>
                   <CardList cards={siteConfig.customFields.search} />
                 </div>
                 <PrCta label='search engine' />
@@ -178,13 +171,13 @@ export default function Index(props) {
         </Container>
       </section>
       {siteConfig.customFields.providers.length > 0 && (
-        <section className='home-section'>
+        <section className={styles.section}>
           <Container maxWidth='md'>
-            <div className='home-section-header'>
+            <div className={styles.sectionHeader}>
               <h2 className='heading--3'>Web Monetization Providers</h2>
               <p>These providers offer Web Monetization services:</p>
             </div>
-            <div className='home-cards'>
+            <div className={styles.cards}>
               <CardList cards={siteConfig.customFields.providers} />
             </div>
             <PrCta label='provider' />
@@ -192,9 +185,9 @@ export default function Index(props) {
         </section>
       )}
       {siteConfig.customFields.browsers.length > 0 && (
-        <section className='home-section'>
+        <section className={styles.section}>
           <Container maxWidth='md'>
-            <div className='home-section-header'>
+            <div className={styles.sectionHeader}>
               <h2 className='heading--3'>
                 Web Monetization Supported Browsers
               </h2>
@@ -203,7 +196,7 @@ export default function Index(props) {
                 extension:
               </p>
             </div>
-            <div className='home-cards'>
+            <div className={styles.cards}>
               <CardList cards={siteConfig.customFields.browsers} />
             </div>
             <PrCta label='browser' />
@@ -211,20 +204,20 @@ export default function Index(props) {
         </section>
       )}
       {siteConfig.customFields.tools.length > 0 && (
-        <section className='home-section'>
+        <section className={styles.section}>
           <Container maxWidth='lg'>
-            <div className='home-section-header'>
+            <div className={styles.sectionHeader}>
               <h2 className='heading--3'>Web Monetization Tools</h2>
               <p>These tools enable Web Monetization features:</p>
             </div>
-            <div className='home-cards'>
+            <div className={styles.cards}>
               <CardList cards={siteConfig.customFields.tools} />
             </div>
             <PrCta label='tool' />
           </Container>
         </section>
       )}
-      <section className='home-section'>
+      <section className={styles.section}>
         <Container maxWidth='lg'>
           <h2 className='heading--3'>Resources</h2>
           <Grid container spacing={2}>
@@ -272,16 +265,16 @@ export default function Index(props) {
           </Grid>
         </Container>
       </section>
-      <section className='home-section'>
+      <section className={styles.section}>
         <Container maxWidth='lg'>
-          <div className='home-section-header'>
+          <div className={styles.sectionHeader}>
             <h2 className='heading--3'>Contributors</h2>
             <p>Thank you to all our contributors.</p>
           </div>
           {contributors.length > 0 && (
-            <ul className='home-contributors'>
+            <ul className={styles.contributors}>
               {contributors.map((contributor) => (
-                <li key={contributor.id} className='home-contributor'>
+                <li key={contributor.id} className={styles.contributor}>
                   <a href={contributor.html_url}>
                     <img alt={contributor.login} src={contributor.avatar_url} />
                   </a>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { TextField, Button } from '@mui/material'
 import { useView, useShares, ViewStates } from '../state/_index'
 import { tagOrPointerToShares } from '../lib/_index'
+import styles from '../styles.module.css'
 
 export function ImportView() {
   const [_, setView] = useView()
@@ -26,13 +27,13 @@ export function ImportView() {
           setError('')
         }}
       />
-      <div className='importControls'>
+      <div className={styles.importControls}>
         <Button variant='outlined' onClick={() => setView(ViewStates.Shares)}>
           Cancel
         </Button>
         <Button
           variant='outlined'
-          className='importSharesButton'
+          className={styles.importSharesButton}
           onClick={() => {
             try {
               const shares = tagOrPointerToShares(tag)

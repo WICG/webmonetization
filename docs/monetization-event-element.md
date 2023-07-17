@@ -51,4 +51,4 @@ The `monetization` event fires after a Web Monetization payment has been success
 
 ## Browser compatibility
 
-<BrowserCompat data="monetization.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="monetization">Web Monetization API</BrowserCompat>

@@ -4,6 +4,7 @@ import { Button } from '@mui/material'
 import { ShareInputContainer } from './_share-input-container'
 import { useShares, newShare, useView, ViewStates } from '../state/_index'
 import { trimDecimal } from '../lib/_index'
+import styles from '../styles.module.css'
 
 function changeList(arr, i, alteration) {
   return [
@@ -74,7 +75,7 @@ export function ShareList() {
       </Button>
       <Button
         variant='outlined'
-        className='importSharesButton'
+        className={styles.importSharesButton}
         onClick={() => setView(ViewStates.Import)}
       >
         Import Existing Revshare

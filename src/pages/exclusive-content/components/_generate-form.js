@@ -8,6 +8,7 @@ import {
   FormHelperText,
   Button,
 } from '@mui/material'
+import styles from '../styles.module.css'
 
 export function GenerateForm() {
   const [_, setView] = useView()
@@ -85,7 +86,7 @@ export function GenerateForm() {
       </FormControl>
 
       <Button
-        className='content-generator__btn'
+        className={styles.contentGeneratorBtn}
         variant='outlined'
         size='medium'
         disabled={missingFields}

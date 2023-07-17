@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 import { Delete } from '@mui/icons-material'
 import { validatePointer, validateWeight } from '../lib/_index'
+import styles from '../styles.module.css'
 
 export function ShareInput({
   index,
@@ -26,10 +27,9 @@ export function ShareInput({
 }) {
   return (
     <TableRow key={index}>
-      <TableCell className='nameCell'>
+      <TableCell className={styles.nameCell}>
         <TextField
           size='small'
-          className='shareNameInput'
           type='text'
           value={name}
           variant='standard'
@@ -39,10 +39,10 @@ export function ShareInput({
         />
       </TableCell>
 
-      <TableCell className='pointerCell'>
+      <TableCell>
         <TextField
           size='small'
-          className='sharePointerInput'
+          className={styles.sharePointerInput}
           type='text'
           value={pointer}
           variant='standard'
@@ -54,10 +54,10 @@ export function ShareInput({
         />
       </TableCell>
 
-      <TableCell className='weightCell'>
+      <TableCell className={styles.weightCell}>
         <TextField
           size='small'
-          className='weightInput'
+          className={styles.weightInput}
           type='number'
           min={0}
           step={'any'}
@@ -74,10 +74,10 @@ export function ShareInput({
         />
       </TableCell>
 
-      <TableCell className='percentCell'>
+      <TableCell className={styles.percentCell}>
         <TextField
           size='small'
-          className='percentInput'
+          className={styles.percentInput}
           type='number'
           min={0}
           max={100}
@@ -94,9 +94,8 @@ export function ShareInput({
         />
       </TableCell>
 
-      <TableCell className='removeCell' align='right'>
+      <TableCell className={styles.removeCell} align='right'>
         <Button
-          className='removeButton'
           size='small'
           disabled={removeDisabled}
           onClick={() => onRemove()}

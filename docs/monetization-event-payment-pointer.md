@@ -30,4 +30,4 @@ A string containing a payment URL. Represents a payment end-point. The returned 
 
 ## Browser compatibility
 
-<BrowserCompat data="paymentPointer.json">Web Monetization API</BrowserCompat>
+<BrowserCompat dataFileName="paymentPointer">Web Monetization API</BrowserCompat>

@@ -1,5 +1,6 @@
 import React from 'react'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import styles from './Libraries.module.css'
 
 export default function Libraries() {
   const { siteConfig } = useDocusaurusContext()
@@ -21,13 +22,13 @@ export default function Libraries() {
             <br />
             {desc}
           </td>
-          <td class='cell-center'>
+          <td className={styles.cellCenter}>
             {findStartWith(version, '2.') ? '✅' : '❌'}
           </td>
-          <td class='cell-center'>
+          <td className={styles.cellCenter}>
             {findStartWith(version, '1.') ? '✅' : '❌'}
           </td>
-          <td class='cell-center'>
+          <td className={styles.cellCenter}>
             <a href={link}>
               <img
                 alt={`Link to ${name}'s GitHub repo`}
@@ -44,7 +45,7 @@ export default function Libraries() {
     <table>
       <thead>
         <tr>
-          <th class='cell-left'>Name</th>
+          <th className={styles.cellLeft}>Name</th>
           <th>v2.0</th>
           <th>v1.0</th>
           <th>GitHub</th>

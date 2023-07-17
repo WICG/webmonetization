@@ -3,19 +3,19 @@ id: permission-policy
 title: Permissions-Policy
 sidebar_label: Permissions-Policy
 ---
+
 import Specifications from '@site/src/components/Specifications';
 import BrowserCompat from '@site/src/components/BrowserCompat';
 
-The [`Permissions-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) header defines whether particular browser functions, in this case Web Monetization, are allowed within its own frame or within any `iframe` elements in the document.  
+The [`Permissions-Policy`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy) header defines whether particular browser functions, in this case Web Monetization, are allowed within its own frame or within any `iframe` elements in the document.
 
-The basic syntax is as follows: 
+The basic syntax is as follows:
 
 ```html
-Permissions-Policy: <directive> <allowlist>
+Permissions-Policy: <directive> <allowlist></allowlist></directive>
 ```
 
-`<directive>` is the function that is enabled for a given `<allowlist>`, which is a list of origins.  The default `<allowlist>` is `'self'`, which allows monetization in the document and in all nested browsing contexts(iframes) in the same origin.  
-
+`<directive>` is the function that is enabled for a given `<allowlist>`, which is a list of origins. The default `<allowlist>` is `'self'`, which allows monetization in the document and in all nested browsing contexts(iframes) in the same origin.
 
 ## Directives
 
@@ -34,7 +34,9 @@ Permissions-Policy: monetization=(self)
 ```
 
 ## Specifications
+
 <Specifications link="permissions-policy">Web Monetization API</Specifications>
 
 ## Browser compatibility
-<BrowserCompat data="permissionpolicy.json">Web Monetization API</BrowserCompat>
+
+<BrowserCompat dataFileName="permissionpolicy">Web Monetization API</BrowserCompat>

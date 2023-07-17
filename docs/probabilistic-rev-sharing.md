@@ -32,10 +32,10 @@ This example shows how to define a list of payment pointers and assign each poin
       '$alice.example': 50,
       '$bob.example': 40,
       '$connie.example': 9.5,
-      '$dave.example': 0.5
+      '$dave.example': 0.5,
     }
 
-    function pickPointer () {
+    function pickPointer() {
       const sum = Object.values(pointers).reduce((sum, weight) => sum + weight, 0)
       let choice = Math.random() * sum
 
@@ -67,14 +67,14 @@ const pointers = {
   '$alice.example': 50,
   '$bob.example': 40,
   '$connie.example': 9.5,
-  '$dave.example': 0.5
-  }
+  '$dave.example': 0.5,
+}
 ```
 
 Next, we define how a payment pointer is chosen.
 
 ```js
-function pickPointer () {
+function pickPointer() {
   const sum = Object.values(pointers).reduce((sum, weight) => sum + weight, 0)
   let choice = Math.random() * sum
 
@@ -105,7 +105,7 @@ This example shows how the random choices will approach the correct percentages 
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div class="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
+<div className="glitch-embed-wrap" style={{ height: '420px', width: '100%' }}>
   <iframe
     src="https://glitch.com/embed/#!/embed/wm2-probablistic-revenue-share?path=README.md&previewSize=100"
     title="probabalistic-revenue-share-experiment on Glitch"
@@ -136,11 +136,11 @@ const pointers = {
   '$alice.example': 50,
   '$bob.example': 40,
   '$connie.example': 9.5,
-  '$dave.example': 0.5
+  '$dave.example': 0.5,
 }
 
 // this is the same `pickPointer()` function implemented in the previous snippet
-function pickPointer () {
+function pickPointer() {
   const sum = Object.values(pointers).reduce((sum, weight) => sum + weight, 0)
   let choice = Math.random() * sum
 

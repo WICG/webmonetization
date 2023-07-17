@@ -14,8 +14,9 @@ currency.
 2. Complete GateHub's account verification process.
 
 > If you need help, check out their articles:
-> * [Register a GateHub Account](https://support.gatehub.net/hc/en-us/articles/360021318533-Register-a-GateHub-Account)
-> * [Verification process for an individual account](https://support.gatehub.net/hc/en-us/articles/360021131054-Verification-process-for-an-individual-account)
+>
+> - [Register a GateHub Account](https://support.gatehub.net/hc/en-us/articles/360021318533-Register-a-GateHub-Account)
+> - [Verification process for an individual account](https://support.gatehub.net/hc/en-us/articles/360021131054-Verification-process-for-an-individual-account)
 
 After your account is verified you can create your wallet on GateHub.
 
@@ -31,11 +32,11 @@ GateHub will assign a payment pointer to your wallet. A payment pointer is an id
 6. Enter a wallet name and click **Create**. Your wallet is now created.
 7. Click **Add Funds**.
 8. Select **Interledger Payment pointer**, then copy your payment pointer.
-    > Refresh the page if you don't see the Interledger option. This is shown in the screen capture below.
+   > Refresh the page if you don't see the Interledger option. This is shown in the screen capture below.
 
 Now you can share your payment pointer with other sites or add it to your own site by following the [Quick Start Guide](/docs/web-monetization-api).
 
-![addwallet](assets/gatehub-addwallet.gif)
+![addwallet](/img/gatehub-addwallet.gif)
 
 ## Find your payment pointer
 
@@ -44,7 +45,7 @@ Now you can share your payment pointer with other sites or add it to your own si
 3. Click **Add Funds**.
 4. Select **Interledger Payment pointer**, then copy your payment pointer.
 
-![findpointer](assets/gatehub-findpointer.gif)
+![findpointer](/img/gatehub-findpointer.gif)
 
 ## Issue an exchange order
 
@@ -56,10 +57,10 @@ convert XRP into another currency for no charge before making a withdrawal.
 3. If your Interledger wallet isn't selected by default, click the wallet drop-down arrow in the upper-left to select it.
 4. Select your currency exchange pair \(e.g., XRP to USD\) from the drop-down menus.
 5. Enter the amount to exchange in the **You pay** field. The **You get** field
-automatically displays the amount you'll receive.
+   automatically displays the amount you'll receive.
 6. Click the **Exchange** button, then confirm the transaction. When confirmed,
-the exchange takes place immediately.
+   the exchange takes place immediately.
 
-![exchangeorder](assets/gatehub-exchangeorder.png)
+![exchangeorder](/img/gatehub-exchangeorder.png)
 
 > More information can be found in GateHub's help article: [https://support.gatehub.net/hc/en-us/articles/360021425773-Exchange](https://support.gatehub.net/hc/en-us/articles/360021425773-Exchange)
