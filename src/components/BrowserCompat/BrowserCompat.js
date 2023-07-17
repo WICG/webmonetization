@@ -11,8 +11,8 @@ export default function BrowserCompat({ dataFileName }) {
   const compatData = data.api
 
   return (
-    <>
-      <div className={styles.browserCompat}>
+    <div className={styles.browserCompat}>
+      <div className={styles.tableWrap}>
         <table>
           <thead>
             <tr className={styles.platforms}>
@@ -140,6 +140,6 @@ export default function BrowserCompat({ dataFileName }) {
           <dd>You'll need to use a Web Monetization Extension</dd>
         </div>
       </dl>
-    </>
+    </div>
   )
 }
