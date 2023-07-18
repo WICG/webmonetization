@@ -93,9 +93,11 @@ const siteConfig = {
     'The Web Monetization API allows websites to automatically and passively receive payments from Web Monetization-enabled visitors.',
   url: 'https://webmonetization.org', // Your website URL
   baseUrl: '/', // Base URL for your project */
-  // trailingSlash: true,
+
   projectName: 'webmonetization',
   organizationName: 'wicg',
+  trailingSlash: false,
+
   favicon: 'img/favicon.png',
 
   customFields: {
