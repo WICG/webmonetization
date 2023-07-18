@@ -87,7 +87,7 @@ export default function Index(props) {
             <p>
               Web Monetization is being proposed as a W3C standard at{' '}
               <a
-                href='https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785'
+                href='https://web.archive.org/web/20230521023112/https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785'
                 rel='noreferrer noopener'
                 target='_blank'
               >

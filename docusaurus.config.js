@@ -132,12 +132,12 @@ const siteConfig = {
   themes: ['@docusaurus/theme-mermaid'],
 
   themeConfig: {
-    // algolia: {
-    //   apiKey: '9bd462ce100c39e6c9d9b0f37316e3b2',
-    //   indexName: 'webmonetizationorg',
-    //   appId: 'L5XN3RH5F5',
-    //   placeholder: 'Search',
-    // },
+    algolia: {
+      apiKey: '9bd462ce100c39e6c9d9b0f37316e3b2',
+      indexName: 'webmonetizationorg',
+      appId: 'L5XN3RH5F5',
+      placeholder: 'Search',
+    },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -202,7 +202,7 @@ const siteConfig = {
           label: 'WICG Forum',
         },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
-        // { type: 'search', position: 'right' },
+        { type: 'search', position: 'right' },
       ],
     },
     prism: {
