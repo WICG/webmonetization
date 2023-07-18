@@ -77,8 +77,6 @@ A reference on verifying payments.
 
 - [Tessy](https://github.com/VladimirMikulic/tessy) is an advanced Web Monetization testing library with a powerful declarative API.
 
-- [svelte-monetization](https://github.com/wobsoriano/svelte-monetization) is a minimal and lightweight wrapper for the Web Monetization API.
-
 - [Moodle Web Monetization Module](https://github.com/andrewhancox/moodle-local_webmonetization) is a plugin for adding Web Monetization to your Moodle site.
 
 - [Jekyll + Web Monetization](https://github.com/philnash/jekyll-web_monetization) is a Jekyll plugin for adding Web Monetization to your site.

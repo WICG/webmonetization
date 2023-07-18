@@ -72,13 +72,6 @@ const tools = [
     version: ['1.0'],
   },
   {
-    name: 'svelte-monetization',
-    image: 'logo-tool-svelte.svg',
-    link: 'https://github.com/sorxrob/svelte-monetization',
-    desc: 'A minimal and lightweight wrapper for the Web Monetization API',
-    version: ['1.0'],
-  },
-  {
     name: 'Moodle Webmonetization Module',
     image: 'logo-tool-moodle-webm.svg',
     link: 'https://github.com/andrewhancox/moodle-local_webmonetization',
@@ -92,13 +85,6 @@ const tools = [
     desc: 'A Jekyll plugin for adding a Web Monetization meta tag to your site',
     version: ['1.0'],
   },
-  {
-    name: 'Pipe Web Monetization',
-    image: 'logo-tool-pipe.svg',
-    link: 'https://www.pipewebmonetization.com/',
-    desc: 'Web monetize your WordPress website and access your revenue via an analytics dashboard',
-    version: ['1.0'],
-  },
 ]
 
 const siteConfig = {
@@ -107,10 +93,10 @@ const siteConfig = {
     'The Web Monetization API allows websites to automatically and passively receive payments from Web Monetization-enabled visitors.',
   url: 'https://webmonetization.org', // Your website URL
   baseUrl: '/', // Base URL for your project */
-
-  // Used for publishing and more
+  // trailingSlash: true,
   projectName: 'webmonetization',
   organizationName: 'wicg',
+  favicon: 'img/favicon.png',
 
   customFields: {
     providers,
@@ -120,11 +106,34 @@ const siteConfig = {
     tools,
   },
 
+  markdown: {
+    mermaid: true,
+  },
+
+  presets: [
+    [
+      '@docusaurus/preset-classic',
+      {
+        docs: {
+          path: './docs',
+          editUrl: 'https://github.com/WICG/webmonetization/tree/main',
+          routeBasePath: 'docs',
+          sidebarPath: require.resolve('./sidebars.json'),
+        },
+        theme: {
+          customCss: require.resolve('./static/css/custom.css'),
+        },
+      },
+    ],
+  ],
+
+  themes: ['@docusaurus/theme-mermaid'],
+
   themeConfig: {
     // algolia: {
-    //   apiKey: '522665321749697a7b612bb54dbdb0b4',
-    //   indexName: 'webmonetization',
-    //   appId: 'GJDGP03PYJ',
+    //   apiKey: '9bd462ce100c39e6c9d9b0f37316e3b2',
+    //   indexName: 'webmonetizationorg',
+    //   appId: 'L5XN3RH5F5',
     //   placeholder: 'Search',
     // },
     colorMode: {
@@ -159,8 +168,8 @@ const siteConfig = {
               href: 'https://community.interledger.org',
             },
             {
-              label: 'Web Platform Incubator Community Group',
-              href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
+              label: 'Web Incubator Community Group',
+              href: 'https://wicg.io/',
             },
           ],
         },
@@ -187,7 +196,7 @@ const siteConfig = {
           to: 'pathname:///specification',
         },
         {
-          href: 'https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
+          href: 'https://web.archive.org/web/20230521023112/https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785',
           label: 'WICG Forum',
         },
         { href: 'https://github.com/WICG/webmonetization', label: 'GitHub' },
@@ -198,53 +207,6 @@ const siteConfig = {
       theme: require('prism-react-renderer/themes/github'),
     },
   },
-
-  favicon: 'img/favicon.png',
-
-  markdown: {
-    mermaid: true,
-  },
-
-  themes: ['@docusaurus/theme-mermaid'],
-
-  // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  // copyright: ``,
-
-  // Add custom scripts here that would be placed in <script> tags.
-  scripts: [],
-
-  // Open Graph and Twitter card images.
-  // twitterImage: 'img/undraw_tweetstorm.svg',
-
-  // For sites with a sizable amount of content, set collapsible to true.
-  // Expand/collapse the links and subcategories under categories.
-  // docsSideNavCollapsible: true,
-
-  // Show documentation's last contributor's name.
-  // enableUpdateBy: true,
-
-  // Show documentation's last update time.
-  // enableUpdateTime: true,
-
-  // You may provide arbitrary config keys to be used as needed by your
-  // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
-  presets: [
-    [
-      '@docusaurus/preset-classic',
-      {
-        docs: {
-          path: './docs',
-          editUrl: 'https://github.com/WICG/webmonetization/tree/main',
-          routeBasePath: 'docs',
-          sidebarPath: require.resolve('./sidebars.json'),
-        },
-        theme: {
-          customCss: require.resolve('./static/css/custom.css'),
-        },
-      },
-    ],
-  ],
 }
 
 module.exports = siteConfig
