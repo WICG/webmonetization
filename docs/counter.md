@@ -16,24 +16,26 @@ This example shows you how to use the `monetization` event to count how much you
   <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <script>
-    let total = 0
-    let scale
+  let total = 0;
 
-    if (window.MonetizationEvent) {
-      const link = document.querySelector('link[rel="monetization"]')
-      link.addEventListener('monetization', (ev) => {
-        // initialize currency and scale on first progress event
-        if (total === 0) {
-          scale = ev.assetScale
-          document.getElementById('currency').innerText = ev.assetCode
-        }
+  if (window.MonetizationEvent) {
+    const link = document.querySelector('link[rel="monetization"]');
 
-        total += Number(ev.amount)
+    link.addEventListener("monetization", (event) => {
+      const {
+        amountSent: { value, currency },
+      } = event;
+      console.log(`Browser sent ${currency} ${value}.`);
 
-        const formatted = (total * Math.pow(10, -scale)).toFixed(scale)
-        document.getElementById('total').innerText = formatted
-      })
-    }
+      if (total === 0) {
+        document.getElementById("currency").innerText = currency;
+      }
+
+      total += Number(value);
+
+      document.getElementById("total").innerText = total.toFixed(9);
+    });
+  }  
   </script>
 </head>
 
@@ -48,56 +50,42 @@ This example shows you how to use the `monetization` event to count how much you
 
 ## How does it work?
 
-If the visitor is web monetized (`window.MonetizationEvent` is defined), we're
-binding the `monetization` event. The `monetization` event contains
-details about the micropayments that occur.
+First, we'll bind the `monetization` event if the visitor is web monetized (`window.MonetizationEvent` is defined). 
+
+The `monetization` event contains details about the payments that occur. The `amountSent` property of the event returns the amount (`value`) and currency code of the last successful payment.
 
 ```js
-if (window.MonetizationEvent) {
-  const link = document.querySelector('link[rel="monetization"]')
-  link.addEventListener('monetization', ev => {
+  if (window.MonetizationEvent) {
+    const link = document.querySelector('link[rel="monetization"]');
+
+    link.addEventListener("monetization", (event) => {
+      const {
+      amountSent: { value, currency },
+    } = event;
+    console.log(`Browser sent ${currency} ${value}.`);
 ```
 
-There's some attributes of the micropayments that don't change, like currency details. We set these currency details on the very first micropayment.
+The currency is set on the first payment and doesn't change. It represents the received currency, which may be different than the site visitor's preferred currency. 
+
+`currency` is a three-letter code, like `USD`, `EUR`, or `GBP`. This code gets written to the `currency` span on the page.
 
 ```js
-// initialize currency and scale on first progress event
-if (total === 0) {
-  scale = ev.assetScale
-  document.getElementById('currency').innerText = ev.assetCode
-}
+// initialize currency on first progress event
+    if (total === 0) {
+      document.getElementById("currency").innerText = currency;
+    }
 ```
 
-`ev.assetCode` is a three-letter code that describes the currency of the micropayment, like `USD`, `EUR`, or `GBP`.
-
-The asset code describes the asset the [Web Monetization
-receiver](glossary.md#web-monetization-receiver) is
-denominating their incoming payments in. This often matches the currency your wallet account uses, but not always.
-
-The asset code will stay the same for a given payment pointer (your wallet provider should warn you if they change it). It is not affected by the currency that the Web Monetization provider uses.
-
-`ev.assetScale` defines how small the units of amount will be on this payment pointer. A bigger scale means smaller units. If your scale is 2 and your asset code is USD, then it means you need 100 (`10 ** 2`) units to get one dollar.
-
-The amount in `ev.amount` is an integer, which we add to our total.
+The amount in `value` is an integer, which we add to our total. 
 
 ```js
-total += Number(ev.amount)
+    total += Number(value);
 ```
 
-> Even though `ev.amount` is a string that can represent a number up to
-> 64 bits long in theory (too big for a JavaScript number), it's OK for us to
-> convert it to a JavaScript number here. The micropayment amounts in Web
-> Monetization are far from pushing the limits. With USD and a scale of 9, for
-> instance, it would take around 500,000 years to overflow this number.
-
-Finally, we update the text on the page with our new total. Our total is an
-integer with the total number of indivisible units. We want it to be a more
-readable decimal number, though, so we apply the scale to format it. This
-formatted version of the amount gets written to the `total` span on the page.
+Finally, we update the text on the page with the new total. We want the total to be in a readable format, so we convert the number to a string and round it to a specified number of decimals, which in this example is 9. This formatted version of the amount gets written to the `total` span on the page.
 
 ```js
-const formatted = (total * Math.pow(10, -scale)).toFixed(scale)
-document.getElementById('total').innerText = formatted
+    document.getElementById("total").innerText = total.toFixed(9);
 ```
 
 ## Interactive example
