@@ -1,5 +1,5 @@
 ---
-import i18next, { t } from "i18next";
+import i18next, { t, changeLanguage } from "i18next";
 import { Trans } from "astro-i18next/components";
 import data from "../data/home.json";
 import contributors from "../data/contributors.json";
@@ -8,215 +8,220 @@ import TopNav from "../components/pages/TopNav.astro";
 import Footer from "../components/pages/Footer.astro";
 import CardList from "../components/pages/CardList";
 import PrCta from "../components/pages/PrCta/PrCta";
+
+changeLanguage("en");
 ---
 <html lang={i18next.language}>
   <BaseHead title={t("site.title")} description={t("site.description")} />
 
-  <TopNav />
+  <body>
+    <TopNav />
 
-  <main>
-    <section class="section hero">
-      <div class="contentWrapperSm">
-        <img
-          alt="Web Monetization Icon"
-          class="heroIcon"
-          src="/img/wm-logo--animated.svg"
-          width="120"
-          height="86"
-        />
-        <h1 class="heading2">Web Monetization</h1>
-        <p class="heroTagline heading4">
-          The Web Monetization API allows websites to automatically and
-          passively receive payments from Web Monetization-enabled visitors.
-        </p>
-      </div>
-      <footer class="heroFooter">
+    <main>
+      <section class="section hero">
         <div class="contentWrapperSm">
-          <p>
-            Web Monetization is being proposed as a W3C standard at <a
-              href="https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              the Web Platform Incubator Community Group
-            </a>.
+          <img
+            alt="Web Monetization Icon"
+            class="heroIcon"
+            src="/img/wm-logo--animated.svg"
+            width="120"
+            height="86"
+          />
+          <h1 class="heading2">Web Monetization</h1>
+          <p class="heroTagline heading4">
+            The Web Monetization API allows websites to automatically and
+            passively receive payments from Web Monetization-enabled visitors.
           </p>
         </div>
-      </footer>
-    </section>
-    <section class="section">
-      <div class="contentWrapperLg twoColGrid">
-        <div class="gridItem">
-          <h2 class="heading3">Motivation</h2>
-          <p>
-            The ability to transfer money has been a long-standing omission
-            from the web platform. As a result, the web suffers from a flood
-            of advertising and broken business models. Web Monetization
-            provides an open, native, efficient, and automatic way to
-            compensate creators, pay for content, and support crucial web
-            infrastructure.
-          </p>
-        </div>
-        <div class="gridItem">
-          <h2 class="heading3">Why Now?</h2>
-          <p>
-            Until recently, there hasn't been an open, neutral and cost-efficient protocol for transferring money. <a href="https://interledger.org" rel="noreferrer noopener" target="_blank">Interledger</a> provides a simple, interoperable, and currency-agnostic method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes more Web Monetization use cases possible for the first time.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="contentWrapperLg twoColGrid">
-        {data.wallets.length > 0 && (
+        <footer class="heroFooter">
+          <div class="contentWrapperSm">
+            <p>
+              Web Monetization is being proposed as a W3C standard at <a
+                href="https://discourse.wicg.io/t/proposal-web-monetization-a-new-revenue-model-for-the-web/3785"
+                rel="noreferrer noopener"
+                target="_blank"
+              >
+                the Web Platform Incubator Community Group
+              </a>.
+            </p>
+          </div>
+        </footer>
+      </section>
+      <section class="section">
+        <div class="contentWrapperLg twoColGrid">
           <div class="gridItem">
+            <h2 class="heading3">Motivation</h2>
+            <p>
+              The ability to transfer money has been a long-standing omission
+              from the web platform. As a result, the web suffers from a flood
+              of advertising and broken business models. Web Monetization
+              provides an open, native, efficient, and automatic way to
+              compensate creators, pay for content, and support crucial web
+              infrastructure.
+            </p>
+          </div>
+          <div class="gridItem">
+            <h2 class="heading3">Why Now?</h2>
+            <p>
+              Until recently, there hasn't been an open, neutral and cost-efficient protocol for transferring money. <a href="https://interledger.org" rel="noreferrer noopener" target="_blank">Interledger</a> provides a simple, interoperable, and currency-agnostic method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes more Web Monetization use cases possible for the first time.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="contentWrapperLg twoColGrid">
+          {data.wallets.length > 0 && (
+            <div class="gridItem">
+              <div class="sectionHeader">
+                <h2 class="heading3">Web Monetization Wallets</h2>
+                <p>
+                  These providers offer ILP-enabled wallets that you can use to
+                  become Web Monetized:
+                </p>
+              </div>
+              <div class="cards">
+                <CardList cards={data.wallets} />
+              </div>
+              <PrCta label="wallet" />
+            </div>
+          )}
+          {data.search.length > 0 && (
+            <div class="gridItem">
+              <div class="sectionHeader">
+                <h2 class="heading3">
+                  Web Monetization Enabled Search Engines
+                </h2>
+                <p>These search engines implement Web Monetization features:</p>
+              </div>
+              <div class="cards">
+                <CardList cards={data.search} />
+              </div>
+              <PrCta label="search engine" />
+            </div>
+          )}
+        </div>
+      </section>
+      {data.providers.length > 0 && (
+        <section class="section">
+          <div class="contentWrapperLg">
             <div class="sectionHeader">
-              <h2 class="heading3">Web Monetization Wallets</h2>
+              <h2 class="heading3">Web Monetization Providers</h2>
+              <p>These providers offer Web Monetization services:</p>
+            </div>
+            <div class="cards">
+              <CardList cards={data.providers} />
+            </div>
+            <PrCta label="provider" />
+          </div>
+        </section>
+      )}
+      {data.browsers.length > 0 && (
+        <section class="section">
+          <div class="contentWrapperLg">
+            <div class="sectionHeader">
+              <h2 class="heading3">
+                Web Monetization Supported Browsers
+              </h2>
               <p>
-                These providers offer ILP-enabled wallets that you can use to
-                become Web Monetized:
+                These browsers implement Web Monetization natively or via an
+                extension:
               </p>
             </div>
             <div class="cards">
-              <CardList cards={data.wallets} />
+              <CardList cards={data.browsers} />
             </div>
-            <PrCta label="wallet" />
+            <PrCta label="browser" />
           </div>
-        )}
-        {data.search.length > 0 && (
-          <div class="gridItem">
+        </section>
+      )}
+      {data.tools.length > 0 && (
+        <section class="section">
+          <div class="contentWrapperLg">
             <div class="sectionHeader">
-              <h2 class="heading3">
-                Web Monetization Enabled Search Engines
-              </h2>
-              <p>These search engines implement Web Monetization features:</p>
+              <h2 class="heading3">Web Monetization Tools</h2>
+              <p>These tools enable Web Monetization features:</p>
             </div>
             <div class="cards">
-              <CardList cards={data.search} />
+              <CardList cards={data.tools} />
             </div>
-            <PrCta label="search engine" />
+            <PrCta label="tool" />
           </div>
-        )}
-      </div>
-    </section>
-    {data.providers.length > 0 && (
-      <section class="section">
+        </section>
+      )}
+      <section class="section resources">
         <div class="contentWrapperLg">
-          <div class="sectionHeader">
-            <h2 class="heading3">Web Monetization Providers</h2>
-            <p>These providers offer Web Monetization services:</p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.providers} />
-          </div>
-          <PrCta label="provider" />
-        </div>
-      </section>
-    )}
-    {data.browsers.length > 0 && (
-      <section class="section">
-        <div class="contentWrapperLg">
-          <div class="sectionHeader">
-            <h2 class="heading3">
-              Web Monetization Supported Browsers
-            </h2>
-            <p>
-              These browsers implement Web Monetization natively or via an
-              extension:
-            </p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.browsers} />
-          </div>
-          <PrCta label="browser" />
-        </div>
-      </section>
-    )}
-    {data.tools.length > 0 && (
-      <section class="section">
-        <div class="contentWrapperLg">
-          <div class="sectionHeader">
-            <h2 class="heading3">Web Monetization Tools</h2>
-            <p>These tools enable Web Monetization features:</p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.tools} />
-          </div>
-          <PrCta label="tool" />
-        </div>
-      </section>
-    )}
-    <section class="section resources">
-      <div class="contentWrapperLg">
-        <h2 class="heading3">Resources</h2>
-        <div class="fourColGrid">
-          <div class="gridItem">
-            <h3 class="heading4">Documentation</h3>
-            <p>Resource on how to add Web Monetization to your site.</p>
-            <a href="/docs/">Read docs ›</a>
-          </div>
-          <div class="gridItem">
-            <h3 class="heading4">Explainer</h3>
-            <p>The explainer submitted to the W3C.</p>
-            <a href="/docs/explainer">Read explainer ›</a>
-          </div>
-          <div class="gridItem">
-            <h3 class="heading4">Specification</h3>
-            <p>The formal specification.</p>
-            <a href="/specification">Read specs ›</a>
-          </div>
-          <div class="gridItem">
-            <h3 class="heading4">
-              <img
-                src={`/img/awesome-badge.svg`}
-                alt=""
-                width="86"
-                height="20"
-              />
-            </h3>
-            <p>
-              An{" "}
+          <h2 class="heading3">Resources</h2>
+          <div class="fourColGrid">
+            <div class="gridItem">
+              <h3 class="heading4">Documentation</h3>
+              <p>Resource on how to add Web Monetization to your site.</p>
+              <a href="/docs/">Read docs ›</a>
+            </div>
+            <div class="gridItem">
+              <h3 class="heading4">Explainer</h3>
+              <p>The explainer submitted to the W3C.</p>
+              <a href="/docs/explainer">Read explainer ›</a>
+            </div>
+            <div class="gridItem">
+              <h3 class="heading4">Specification</h3>
+              <p>The formal specification.</p>
+              <a href="/specification">Read specs ›</a>
+            </div>
+            <div class="gridItem">
+              <h3 class="heading4">
+                <img
+                  src={`/img/awesome-badge.svg`}
+                  alt=""
+                  width="86"
+                  height="20"
+                />
+              </h3>
+              <p>
+                An{" "}
+                <a
+                  href="https://github.com/sindresorhus/awesome#readme"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  awesome
+                </a>{" "}
+                list of additional Web Monetization resources.
+              </p>
               <a
-                href="https://github.com/sindresorhus/awesome#readme"
+                href="https://github.com/thomasbnt/awesome-web-monetization"
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                awesome
-              </a>{" "}
-              list of additional Web Monetization resources.
-            </p>
-            <a
-              href="https://github.com/thomasbnt/awesome-web-monetization"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              View list ›
-            </a>
+                View list ›
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Contributors</h2>
-          <p>Thank you to all our contributors.</p>
+      </section>
+      <section class="section">
+        <div class="contentWrapperLg">
+          <div class="sectionHeader">
+            <h2 class="heading3">Contributors</h2>
+            <p>Thank you to all our contributors.</p>
+          </div>
+          {contributors.length > 0 && (
+            <ul class="contributors">
+              {contributors.map((contributor) => (
+                <li class="contributor">
+                  <a href={contributor.html_url}>
+                    <img alt={contributor.login} src={contributor.avatar_url} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        {contributors.length > 0 && (
-          <ul class="contributors">
-            {contributors.map((contributor) => (
-              <li class="contributor">
-                <a href={contributor.html_url}>
-                  <img alt={contributor.login} src={contributor.avatar_url} />
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </section>
-  </main>
-
-  <Footer />
+      </section>
+    </main>
+  
+    <Footer />
+  </body>
+  
 </html>
 
 <style>
