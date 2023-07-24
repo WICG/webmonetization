@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
+import astroI18next from 'astro-i18next'
 
 import react from '@astrojs/react'
 import overrideIntegration from './src/overrideIntegration.mjs'
@@ -141,6 +142,7 @@ export default defineConfig({
       ],
     }),
     react(),
+    astroI18next(),
   ],
   // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
   image: {
