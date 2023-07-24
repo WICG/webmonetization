@@ -1,0 +1,97 @@
+{
+  "browsers": [],
+  "providers": [],
+  "search": [
+    {
+      "name": "Mojeek",
+      "image": "logo-search-mojeek.svg",
+      "link": "https://www.mojeek.com"
+    }
+  ],
+  "tools": [
+    {
+      "name": "Hugo Web Monetization Component",
+      "image": "logo-tool-hugo.svg",
+      "link": "https://github.com/sabinebertram/hugo-webmonetization-component",
+      "desc": "Theme component that enables Web Monetization on your entire Hugo website",
+      "version": ["1.0"]
+    },
+    {
+      "name": "Monetize 11ty",
+      "image": "logo-tool-11ty.svg",
+      "link": "https://github.com/DanCanetti/eleventy-plugin-monetization",
+      "desc": "An Eleventy plugin to monetize posts and site content by creating exclusive content areas",
+      "version": ["1.0"]
+    },
+    {
+      "name": "gridsome-plugin-monetization",
+      "image": "logo-tool-gridsome.svg",
+      "link": "https://github.com/Sergix/gridsome-plugin-monetization",
+      "desc": "Web Monetization plugin for Gridsome",
+      "version": ["1.0"]
+    },
+    {
+      "name": "gatsby-plugin-monetization",
+      "image": "logo-tool-gatsby.svg",
+      "link": "https://github.com/mrmuhammadali/gatsby-plugin-monetization",
+      "desc": "A Gatsby plugin for react-monetize to speed up your integration with Web Monetization",
+      "version": ["1.0"]
+    },
+    {
+      "name": "ngx-monetization",
+      "image": "logo-tool-angular.svg",
+      "link": "https://github.com/CDDelta/ngx-monetization",
+      "desc": "Web Monetization API for Angular",
+      "version": ["1.0"]
+    },
+    {
+      "name": "Vuepress Plugin Web-Monetization",
+      "image": "logo-tool-vuepress.svg",
+      "link": "https://github.com/spekulatius/vuepress-plugin-web-monetization",
+      "desc": "Adds a Web Monetization meta tag to your VuePress website",
+      "version": ["1.0"]
+    },
+    {
+      "name": "Tessy",
+      "image": "logo-tool-tessy.svg",
+      "link": "https://github.com/VladimirMikulic/tessy",
+      "desc": "Advanced Web Monetization testing library with powerful declarative API",
+      "version": ["1.0"]
+    },
+    {
+      "name": "svelte-monetization",
+      "image": "logo-tool-svelte.svg",
+      "link": "https://github.com/sorxrob/svelte-monetization",
+      "desc": "A minimal and lightweight wrapper for the Web Monetization API",
+      "version": ["1.0"]
+    },
+    {
+      "name": "Moodle Webmonetization Module",
+      "image": "logo-tool-moodle-webm.svg",
+      "link": "https://github.com/andrewhancox/moodle-local_webmonetization",
+      "desc": "A plugin for adding a web monetization meta tag to your Moodle site",
+      "version": ["1.0"]
+    },
+    {
+      "name": "Jekyll + Webmonetization",
+      "image": "logo-tool-jekyll-webm.svg",
+      "link": "https://github.com/philnash/jekyll-web_monetization",
+      "desc": "A Jekyll plugin for adding a Web Monetization meta tag to your site",
+      "version": ["1.0"]
+    },
+    {
+      "name": "Pipe Web Monetization",
+      "image": "logo-tool-pipe.svg",
+      "link": "https://www.pipewebmonetization.com/",
+      "desc": "Web monetize your WordPress website and access your revenue via an analytics dashboard",
+      "version": ["1.0"]
+    }
+  ],
+  "wallets": [
+    {
+      "name": "Gatehub",
+      "image": "logo-wallet-gatehub.svg",
+      "link": "https://gatehub.net"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+---
+title: 'GlobalEventHandlers: onmonetization'
+---

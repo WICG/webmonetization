@@ -1,0 +1,130 @@
+---
+---
+<header>
+  <nav class="site-nav">
+    <a href="/" class="site-logo">
+      <img src="/img/wm-logo.svg" alt="">
+      <span>Web Monetization</span>
+    </a>
+    <button id="menuToggle" class="menu-toggle" aria-controls="nav-menu" aria-expanded="true" aria-label="Toggle Menu" title="Toggle Menu">🐈‍⬛</button>
+    <ul id="navMenu" class="nav-menu">
+       <li class="nav-link__docs"><a href="/docs/">Docs</a></li>
+       <li class="nav-link__spec"><a href="/specification">Specification</a></li>
+       <li class="nav-link__github"><a href="https://github.com/WICG/webmonetization/"><img src="/img/icon-github.svg" alt="Link to Github repository"></a></li>
+    </ul>
+ </nav>
+</header>
+
+<style>
+  header {
+    background-color: hsl(240, 20%, 97%);
+    color: hsl(222, 11%, 23%);
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    padding-left: var(--space-s);
+    padding-right: var(--space-s);
+    position: relative;
+  }
+
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    white-space: nowrap;
+    margin-right: auto;
+  }
+
+  .site-logo img {
+    width: 2.5em;
+    flex: none;
+  }
+
+  .site-logo span {
+    white-space: nowrap;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--sl-color-text);
+    padding-top: var(--space-xs);
+    padding-bottom: var(--space-xs);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-link__github {
+    margin-left: auto;
+    flex: none;
+  }
+
+  .nav-link__github img {
+    height: 1.5em;
+    width: 1.5em;
+  }
+
+  .collapsed {
+    display: none;
+  }
+
+  @media screen and (max-width: 539px) {
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      background-color: white;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .nav-menu a {
+      display: block;
+      padding-left: var(--space-xs);
+      padding-right: var(--space-xs);
+    }
+  }
+
+  @media screen and (min-width: 540px) {
+    .site-logo {
+      margin-right: initial;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--space-s);
+      align-items: center;
+      list-style-type: none;
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .collapsed {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('navMenu');
+  const menuItems = document.querySelectorAll('#navMenu a');
+
+  toggle?.addEventListener('click', () => {
+    if (toggle.getAttribute('aria-expanded') === 'false') {
+      toggle.setAttribute('aria-expanded', 'true');
+      menu?.classList.remove("collapsed");
+    } else {
+      toggle.setAttribute('aria-expanded', 'false');
+      menu?.classList.add("collapsed");
+    }
+  }, false);
+</script>

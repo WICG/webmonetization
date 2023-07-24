@@ -1,0 +1,25 @@
+.specifications.specifications table {
+  border: 1px solid var(--color-table-border);
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: var(--space-m);
+  display: table;
+}
+
+.specifications tr:nth-child(odd) th {
+  background-color: var(--color-table-bg);
+}
+
+.specifications th,
+.specifications td {
+  border: 1px solid var(--color-table-border);
+  padding: 0.5rem 0.75rem;
+  vertical-align: middle;
+}
+
+.specifications th {
+  background: var(--color-table-bg-alt);
+  font-weight: bold;
+  line-height: 1.5;
+  text-align: left;
+}
