@@ -1,0 +1,87 @@
+/* This was previously in each page that called a Glitch example */
+
+.glitch-embed-wrap {
+    height: 420px;
+    width: 100%,
+}
+
+/* This is for adding captions to images and diagrams */
+
+div.caption {
+  font-size: small;
+  font-weight: 600;
+}
+
+/* I used <table> and the content in the <th> was centered */
+
+  th {
+    text-align: left;
+  }
+
+  /* Can be deleted after all To-Dos are taken care of internally */
+
+    .draft {
+    background: #f2dddd;
+    color: #aa4546;
+    padding: 16px;
+    border: 2px solid #aa4546;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+/* Tooltip stuff */
+
+  .tooltip {
+    display:inline-block;
+    position:relative;
+    border-bottom:1px dotted #666;
+    text-align:left;
+}
+
+.tooltip .top {
+    min-width:200px;
+    max-width:400px;
+    top:-20px;
+    left:50%;
+    transform:translate(-30%,-100%);
+    padding:10px 20px;
+    color:#ffffff;
+    background-color:#009cdc;
+    font-weight:normal;
+    font-size:14px;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    display:none;
+}
+
+.tooltip:hover .top {
+    display:block;
+}
+
+.tooltip .top i {
+    position:absolute;
+    top:100%;
+    left:30%;
+    margin-left:-15px;
+    width:30px;
+    height:15px;
+    overflow:hidden;
+}
+
+.tooltip .top i::after {
+    content:'';
+    position:absolute;
+    width:15px;
+    height:15px;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(45deg);
+    background-color:#009cdc;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+}
+ 

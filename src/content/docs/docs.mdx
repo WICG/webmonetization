@@ -1,3 +1,28 @@
 ---
 title: Intro to Web Monetization
 ---
+
+<div class="draft"><div class="title">Global Updates</div><ul><li>Wording for tips/best practices re: multiple link tags</li><li>Style tooltips</li><li>Add tooltips where necessary</li><li>Add definitions to tooltips</li><li>Adjust the line and paragraph spacings</li></ul></div>
+
+<div class="draft"><div class="title">Page Updates</div><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Update existing tooltips</li><li>I don't know why one tooltip has two underlines</li><li>I'd like some kind of image on this page</li></ul></div>
+
+Web Monetization aims to simplify the payment experience for website visitors and recipients. It's a proposed standard that:
+
+* Allows websites to automatically signal their acceptance of payments to web browsers
+* Enables web browsers to facilitate payments by:
+    * Obtaining authorization for a payment to be initiated
+    * Gathering details and issuing instructions to start the process of moving money
+    * Creating a <a href="./resources/glossary#payment-session"><div class="tooltip">payment session<div class="top">Thanks for hovering!<i></i></div></div></a>
+    * Communicating events to the site so the site can optionally respond
+
+It's important to understand that Web Monetization (WM) doesn't allow a website to specify a payment amount or currency. It only allows the site to tell the browser it can accept payments. With the help of a <a href="./resources/glossary#web-monetization-provider"><div class="tooltip">Web Monetization provider<div class="top">Thanks for hovering!<i></i></div></div></a> and <a href="./resources/glossary#web-monetization-agent"><div class="tooltip">Web Monetization agent<div class="top">Thanks for hovering!<i></i></div></div></a>, the site's visitor decides whether to make a payment, how much and how often to pay, and in which currency. The recipient's <a href="./resources/glossary#web-monetization-receiver"><div class="tooltip">Web Monetization receiver<div class="top">Thanks for hovering!<i></i></div></div></a> can then exchange the currency of incoming payments based on what the recipient wants to receive. This flexibility allows both parties to choose the monetization method that best suits their needs. 
+
+It's also important to note that Web Monetization doesn't process or settle payments. Its role is to help coordinate payments. At each end of Web Monetization is an account that's implemented the <a href="https://openpayments.guide" target="_blank">Open Payments APIs</a>. The WM provider supplies the site's visitor with a sending account. In some cases, the visitor could even act as their own WM provider. The WM receiver supplies the recipient with a receiving account. Web Monetization helps obtain the account-level authorizations and instructions necessary to send a payment. Payment processing and settlement then occurs between the accounts, outside of Web Monetization. 
+
+## Prior specification version
+
+A new version of the Web Monetization specification was published in June 2023. Users of the previous version should be aware of the following:
+
+* The previous version only used <a href="https://interledger.org/rfcs/0009-simple-payment-setup-protocol/" target="_blank">SPSP</a>. The new version uses <a href="https://docs.openpayments.guide/" target="_blank">Open Payments</a>.
+* The `<meta>` element is deprecated in favor of the [`<link>`](./references/html-link-rel-monetization/) element.
+* The `<link>` element does not support the shorthand form of a payment pointer (e.g., `$wallet.example/alice`). You must use the endpoint URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`). If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <a href="https://paymentpointers.org" target="_blank">paymentpointers.org</a>. In most cases, you can simply replace the `$` with `https://`.

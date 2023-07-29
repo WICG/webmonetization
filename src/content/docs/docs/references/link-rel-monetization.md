@@ -1,3 +1,0 @@
----
-title: 'HTMLLink rel: monetization'
----

@@ -12,6 +12,9 @@ export default defineConfig({
     overrideIntegration(),
     starlight({
       title: 'Web Monetization',
+      customCss: [
+        './src/styles/custom.css',
+      ],
       locales: {
         root: {
           label: 'English',
@@ -28,34 +31,44 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Intro to Web Monetization',
+          collapsed: true,
           items: [
-            { label: 'Overview', link: '/docs/' },
-            { label: 'Sending payments', link: '/docs/intro/sending-payments' },
+            { 
+              label: 'Overview', 
+              link: '/docs/',
+            },
             {
-              label: 'Receiving payments',
+              label: 'Add Web Monetization to a page',
+              link: '/docs/guides/monetize-page',
+            },
+            { 
+              label: 'Sending payments', 
+              link: '/docs/intro/sending-payments',
+            },
+            { 
+              label: 'Receiving payments', 
               link: '/docs/intro/receiving-payments',
             },
-            {
-              label: 'Web Monetization flow',
+            { 
+              label: 'Web Monetization flow', 
               link: '/docs/intro/web-monetization-flow',
             },
-            { label: 'Monetize content', link: '/docs/intro/monetize-content' },
-            { label: 'Privacy', link: '/docs/intro/privacy' },
+            { 
+              label: 'Privacy', 
+              link: '/docs/intro/privacy',
+            },
           ],
         },
         {
           label: 'References',
+          collapsed: true,
           items: [
             {
               label: 'Web Monetization API',
               items: [
                 {
-                  label: 'Overview',
-                  link: '/docs/references/web-monetization-api',
-                },
-                {
-                  label: 'HTMLLink rel: monetization',
-                  link: '/docs/references/link-rel-monetization',
+                  label: 'HTML <link> rel: monetization',
+                  link: '/docs/references/html-link-rel-monetization',
                 },
                 {
                   label: 'MonetizationCurrencyAmount',
@@ -63,21 +76,54 @@ export default defineConfig({
                 },
                 {
                   label: 'MonetizationEvent',
-                  link: '/docs/references/monetizationevent',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'Monetization Events',
+                      link: '/docs/references/monetizationevent',
+                    },
+                    {
+                      label: 'amountSent',
+                      link: '/docs/references/properties/amountsent',
+                    },
+                    {
+                      label: 'incomingPayments',
+                      link: '/docs/references/properties/incomingpayments',
+                    },
+                    {
+                      label: 'paymentPointer',
+                      link: '/docs/references/properties/paymentpointer',
+                    },
+                    {
+                      label: 'amount (deprecated)',
+                      link: '/docs/references/properties/amount',
+                    },
+                    {
+                      label: 'assetCode (deprecated)',
+                      link: '/docs/references/properties/assetcode',
+                    },
+                    {
+                      label: 'assetScale (deprecated)',
+                      link: '/docs/references/properties/assetscale',
+                    },
+                    {
+                      label: 'receipt (deprecated)',
+                      link: '/docs/references/properties/receipt',
+                    },
+                  ],
                 },
               ],
             },
             {
               label: 'HTTP headers',
               items: [
-                { label: 'Overview', link: '/docs/references/csp' },
                 {
-                  label: 'CSP: monetization-src',
-                  link: '/docs/references/monetization-src',
+                  label: 'Content-Security-Policy: monetization-src',
+                  link: '/docs/references/csp-monetization-src',
                 },
                 {
                   label: 'Permissions-Policy: monetization',
-                  link: '/docs/references/permissions-policy',
+                  link: '/docs/references/permissions-policy-monetization',
                 },
               ],
             },
@@ -94,19 +140,19 @@ export default defineConfig({
         },
         {
           label: 'Guides',
+          collapsed: true,
           items: [
             {
-              label: 'Monetize content',
-              link: '/docs/guides/monetize-content',
-            },
-            { label: 'Monetize media', link: '/docs/guides/monetize-media' },
-            {
-              label: 'Provide exclusive content',
-              link: '/docs/guides/provide-exclusive-content',
+              label: 'Add Web Monetization to a page',
+              link: '/docs/guides/monetize-page',
             },
             {
               label: 'Hide ads',
               link: '/docs/guides/hide-ads',
+            },
+            {
+              label: 'Provide exclusive content',
+              link: '/docs/guides/provide-exclusive-content',
             },
             {
               label: 'Set up probabilistic revenue sharing',
@@ -120,10 +166,20 @@ export default defineConfig({
         },
         {
           label: 'Resources',
+          collapsed: true,
           items: [
-            { label: 'Glossary', link: '/docs/resources/glossary' },
-            { label: 'Libraries', link: '/docs/resources/libraries' },
-            { label: 'Interledger', link: 'https://interledger.org/' },
+            { 
+              label: 'Glossary', 
+              link: '/docs/resources/glossary',
+            },
+            { 
+              label: 'Libraries', 
+              link: '/docs/resources/libraries',
+            },
+            { 
+              label: 'Interledger', 
+              link: 'https://interledger.org/',
+            },
             {
               label: 'Open Payments API',
               link: 'https://docs.openpayments.guide/',
@@ -132,12 +188,19 @@ export default defineConfig({
               label: 'Payment Handler API',
               link: 'https://w3c.github.io/payment-handler/',
             },
-            { label: 'Payment pointers', link: 'https://paymentpointers.org/' },
+            {
+              label: 'Payment Pointers', 
+              link: 'https://paymentpointers.org/',
+            },
             {
               label: 'Payment Request API',
               link: 'https://www.w3.org/TR/payment-request/',
             },
           ],
+        },
+        {
+          label: 'Specification',
+          link: 'https://webmonetization.org/specification/',
         },
       ],
     }),
