@@ -3,4 +3,4 @@ title: 'Libraries'
 next: false
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>Do this!</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Do this!</li></ul></div>

@@ -2,10 +2,9 @@
 title: 'Content-Security-Policy: monetization-src'
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li></ul></div>
 
-
-The `monetization-src` directive within the HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> (CSP) allows you to restrict the URLs from which a payment pointer can be loaded. 
+The `monetization-src` directive within the HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> (CSP) allows you to restrict the URLs from which a payment pointer can be loaded.
 
 <table>
   <tbody>
@@ -39,7 +38,7 @@ Content-Security-Policy: monetization-src <source>, <source>;
 
 A website administrator wants to restrict the URLs from which a payment pointer can be loaded.
 
-Given this CSP header: 
+Given this CSP header:
 
 ```http
 Content-Security-Policy: monetization-src https://www.example.com
@@ -48,5 +47,5 @@ Content-Security-Policy: monetization-src https://www.example.com
 Fetches for the following monetization source will return a network error and not load, as the URL does not match the URL defined in the CSP source list.
 
 ```html
-<link rel="monetization" href="https://example.org/payment-pointer">
+<link rel="monetization" href="https://example.org/payment-pointer" />
 ```

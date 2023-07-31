@@ -2,7 +2,7 @@
 title: 'Provide exclusive content'
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>Add any appropriate links</li><li>Update the Glitch example's README</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Update the Glitch example's README</li></ul></div>
 
 Give your paying visitors access to exclusive content when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your exclusive content will only appear to paying visitors.
 
@@ -53,7 +53,7 @@ Next, we add an event listener to the `link` element. The `monetization` event i
 link.addEventListener('monetization', (ev) => {
 ```
 
-Finally, we select the exclusive content element we want to make available to web monetized visitors. Since we defined a CSS class to hide the content, removing the class will make the content appear. 
+Finally, we select the exclusive content element we want to make available to web monetized visitors. Since we defined a CSS class to hide the content, removing the class will make the content appear.
 
 ```js
 document.getElementById('exclusive').classList.remove('hidden')})
@@ -66,21 +66,21 @@ This example simulates hiding and showing exclusive content based on a visitor's
 
 Click **View as Web Monetized/non-Web Monetized visitor** to toggle your monetization state. If source files appear instead of the example, click **View App** in the bottom-right corner.
 
-<div class="glitch-embed-wrap">
-  <iframe
-    src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-basic?path=README.md&previewSize=100"
-    title="wm-exclusive-content-basic on Glitch"
-    style='height: 100%; width: 100%; border: 0;'>
-  </iframe>
-</div>
+<iframe
+  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-basic?path=README.md&previewSize=100"
+  title="wm-exclusive-content-basic on Glitch"
+  style='height:100%;width:100%;border:0;min-height:420px'>
+</iframe>
 
 ## Example 2 - Complex
 
 In reality, you'll probably want your site to do more than simply show and hide content. In this example, we illustrate how to:
+
 - Show web monetized visitors an indicator while they wait for Web Monetization to initialize
 - Tell non-web monetized visitors that there's exclusive content they can get
 
 The example below covers three states for showing:
+
 - A call-to-action to non-web monetized visitors
 - A loading message to web monetized visitors
 - Exclusive content to web monetized visitors
@@ -139,13 +139,14 @@ The example below covers three states for showing:
 ### How it works
 
 There are three functions to activate the three states:
+
 - `showLoading` displays the loader
 - `showCTA` displays the call-to-action to non-web monetized users
 - `showExclusiveContent` displays the exclusive content to web monetized users
 
 These functions work just like the [simple example](#example-1---simple) where we turn the `hidden` class on/off for our `div`s.
 
-When the page loads, we'll check whether the visitor is web monetized. 
+When the page loads, we'll check whether the visitor is web monetized.
 
 ```js
 window.addEventListener('load', () => {
@@ -181,10 +182,8 @@ The example doesn't require you to have Web Monetization enabled in your browser
 
 Click **View as Web Monetized/non-Web Monetized visitor** to toggle your monetization state. If source files appear instead of the example, click **View App** in the bottom-right corner.
 
-<div class="glitch-embed-wrap">
-  <iframe
-    src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-advanced?path=README.md&previewSize=100"
-    title="wm-exclusive-content-advanced on Glitch"
-    style='height: 100%; width: 100%; border: 0;'>
-  </iframe>
-</div>
+<iframe
+  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-advanced?path=README.md&previewSize=100"
+  title="wm-exclusive-content-advanced on Glitch"
+  style='height:100%;width:100%;border:0;min-height:420px'>
+</iframe>

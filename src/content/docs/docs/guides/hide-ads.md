@@ -2,17 +2,18 @@
 title: 'Hide ads'
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>Add any appropriate links</li><li>Update the Glitch example's README</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Update the Glitch example's README</li></ul></div>
 
-Give your paying visitors an ad-free experience by hiding ads when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your ads will continue to appear to non-paying visitors. 
+Give your paying visitors an ad-free experience by hiding ads when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your ads will continue to appear to non-paying visitors.
 
 ## Before you begin
 
 For visitors without Web Monetization, ads will appear as soon as the page loads.
 
-For visitors with Web Monetization in their browser, there's a three-second grace period before ads are shown. This is to give Web Monetization a chance to initialize and prevent ads from briefly appearing to paying visitors. 
+For visitors with Web Monetization in their browser, there's a three-second grace period before ads are shown. This is to give Web Monetization a chance to initialize and prevent ads from briefly appearing to paying visitors.
 
 **If Web Monetization...**
+
 - Initializes within the grace period, then ads are hidden
 - Fails to initialize within the grace period, then ads are shown
 - Initializes any time after the grace period, then ads are hidden
@@ -61,7 +62,7 @@ The example below shows how to hide ads from web monetized visitors.
 
 <body>
   <div id="ad"></div>
-    Here's where your site's content will go!
+  Here's where your site's content will go!
 </body>
 ```
 
@@ -71,10 +72,11 @@ Let's start with the code for showing an ad.
 
 ```jsx
 const adCode = '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'
-function showAds () {
+function showAds() {
   document.getElementById('ad').innerHTML = adCode
 }
 ```
+
 We want to bind the `monetization` event to its respective event handler if the visitor is web monetized. This triggers the removal of the ad once Web Monetization initializes. Assuming its initialized within the grace period, your ad isn't added to the page at all. This means any related images and trackers aren't loaded either.
 
 The `hasPaid` variable in the timer is for when/if Web Monetization starts after the grace period.
@@ -83,7 +85,7 @@ The `hasPaid` variable in the timer is for when/if Web Monetization starts after
 let hasPaid = false
 if (window.MonetizationEvent) {
   const link = document.querySelector('link[rel="monetization"]')
-  link.addEventListener('monetization', ev => {
+  link.addEventListener('monetization', (ev) => {
     hasPaid = true
     removeAds()
   })
@@ -110,14 +112,12 @@ window.addEventListener('load', () => {
 
 ## Interactive example
 
-This example simulates showing and hiding an ad based on a visitor's Web Monetization state. The example doesn't require you to have Web Monetization enabled in your browser and no real payments are occurring. 
+This example simulates showing and hiding an ad based on a visitor's Web Monetization state. The example doesn't require you to have Web Monetization enabled in your browser and no real payments are occurring.
 
 Click **View as Web Monetized/non-Web Monetized visitor** to toggle your monetization state. If source files appear instead of the example, click **View App** in the bottom-right corner.
 
-<div className="glitch-embed-wrap">
-  <iframe
-    src="https://glitch.com/embed/#!/embed/wm2-ad-free-experience?path=README.md&previewSize=100"
-    title="wm-ad-free-experience on Glitch"
-    style='height: 100%; width: 100%; border: 0;'>
-  </iframe>
-</div>
+<iframe
+  src="https://glitch.com/embed/#!/embed/wm2-ad-free-experience?path=README.md&previewSize=100"
+  title="wm-ad-free-experience on Glitch"
+  style='height:100%;width:100%;border:0;min-height:420px'>
+</iframe>

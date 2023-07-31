@@ -2,13 +2,13 @@
 title: 'Sending payments'
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Add any appropriate links</li><li></li><li></li><li></li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Add any appropriate links</li></ul></div>
 
 The three key components of sending a Web Monetization (WM) payment are:
 
-* WM providers
-* Open Payments-enabled accounts
-* WM agents
+- WM providers
+- Open Payments-enabled accounts
+- WM agents
 
 :::caution
 This page describes the roles of WM providers and WM agents within the Web Monetization ecosystem. It does not explain how to become a provider or develop an agent.
@@ -18,16 +18,16 @@ This page describes the roles of WM providers and WM agents within the Web Monet
 
 For a user to send a Web Monetization payment, the user must have some kind of relationship with a WM provider. A WM provider is an entity that provides a funded Open Payments-enabled account from which payments can be sent. A provider can take a number of different forms, such as:
 
-* A company that uses its own account to make payments on behalf of its users
-* An app that’s authorized to hook directly into a user’s personal account
-* A user that hooks their personal account up to a WM agent
+- A company that uses its own account to make payments on behalf of its users
+- An app that’s authorized to hook directly into a user’s personal account
+- A user that hooks their personal account up to a WM agent
 
 In addition to providing accounts, WM providers are responsible for defining the payment models they support and implementing business logic and rules. For example, a WM provider might:
 
-* Only send payments in fiat currencies
-* Support one-time payments and micropayments, but not real-time streaming payments
-* Stream real-time payments at a fixed rate, for example $0.006 per minute 
-* Allow user-defined payout rates, frequencies, limits, and so on
+- Only send payments in fiat currencies
+- Support one-time payments and micropayments, but not real-time streaming payments
+- Stream real-time payments at a fixed rate, for example $0.006 per minute
+- Allow user-defined payout rates, frequencies, limits, and so on
 
 For a provider to send a Web Monetization payment on behalf of a user, the provider must support the Open Payments specification.
 
@@ -37,13 +37,13 @@ Web Monetization works with two complementary technologies that enable open and 
 
 ### Open Payments
 
-Accounts supplied by both WM providers and WM receivers must implement the <a href="https://openpayments.guide" target="_blank">Open Payments (OP) specification</a>. 
+Accounts supplied by both WM providers and WM receivers must implement the <a href="https://openpayments.guide" target="_blank">Open Payments (OP) specification</a>.
 
-The OP specification defines standards for ***access*** to accounts. When granted access, applications and other entities can integrate payments into their feature sets by connecting to their users’ accounts. The ability to then ***execute*** payments between OP-enabled accounts relies on the availability of a common payment rail between the accounts. 
+The OP specification defines standards for **_access_** to accounts. When granted access, applications and other entities can integrate payments into their feature sets by connecting to their users’ accounts. The ability to then **_execute_** payments between OP-enabled accounts relies on the availability of a common payment rail between the accounts.
 
 ### Payment pointers
 
-Access to an OP-enabled account, whether for sending or receiving, always starts with a <a href="https://paymentpointers.org" target="_blank">payment pointer</a>. A payment pointer is a standardized identifier for a payment account and always resolves to an HTTPS URL. 
+Access to an OP-enabled account, whether for sending or receiving, always starts with a <a href="https://paymentpointers.org" target="_blank">payment pointer</a>. A payment pointer is a standardized identifier for a payment account and always resolves to an HTTPS URL.
 
 A payment pointer allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
 
@@ -51,9 +51,9 @@ Depending on which form a WM provider takes, the user may not know, nor have a n
 
 ## WM agents
 
-One goal of Web Monetization is for the standard to be natively built into web browsers. But we aren’t there yet. For now, users must install a separate WM agent, such as an extension, into their browsers. 
+One goal of Web Monetization is for the standard to be natively built into web browsers. But we aren’t there yet. For now, users must install a separate WM agent, such as an extension, into their browsers.
 
-The WM agent is code that discovers web monetized pages, exposes the Web Monetization API, and communicates via the Open Payments API to obtain authorization and issue instructions for making a payment. 
+The WM agent is code that discovers web monetized pages, exposes the Web Monetization API, and communicates via the Open Payments API to obtain authorization and issue instructions for making a payment.
 
 ### How it works
 

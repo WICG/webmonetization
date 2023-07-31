@@ -2,7 +2,7 @@
 title: 'Permissions Policy'
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li><li>Clarify "note", it's kind of confusing</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li><li>Clarify "note", it's kind of confusing</li></ul></div>
 
 The `monetization` directive within the HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy" target="_blank">Permissions-Policy</a> header controls whether the current document and any nesting browsing contexts (iframes) are allowed to use the Web Monetization API.
 
@@ -26,7 +26,7 @@ The `allowlist` attributes only take effect when the content navigable of the if
 
 ## Example
 
-A web developer wants to disable the Web Monetization API within all browsing context except for its own origin. 
+A web developer wants to disable the Web Monetization API within all browsing context except for its own origin.
 
 It can do so by delivering the following HTTP response header to define a Permissions Policy:
 

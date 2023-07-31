@@ -2,17 +2,17 @@
 title: 'Set up probabilistic revenue sharing'
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>Add any appropriate links</li><li>Update Glitch example's README</li><li>Change all references to $example.com/ to $wallet.example/ on page and in Glitch</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Update Glitch example's README</li><li>Change all references to $example.com/ to $wallet.example/ on page and in Glitch</li></ul></div>
 
 Since a Monetization `<link>` element only supports one payment pointer as its `href` value, how do you share a portion of a web monetized page's earnings?
 
-One way is through probabilistic revenue sharing. Probabilistic revenue sharing works by randomly choosing from a list of predefined payment pointers each time a web monetized visitor loads the page. Payments are sent to the randomly chosen payment pointer until the visitor reloads or closes the page. 
+One way is through probabilistic revenue sharing. Probabilistic revenue sharing works by randomly choosing from a list of predefined payment pointers each time a web monetized visitor loads the page. Payments are sent to the randomly chosen payment pointer until the visitor reloads or closes the page.
 
 A payment pointer's chance of being chosen is based on its assigned weight. For example, if Alice's payment pointer has a weight of 50 (out of 100), then her payment pointer has a 50% chance of being chosen. The laws of probability state that Alice's share of the page's total revenue will approach 50% as more web monetized visitors access the page.
 
 ## Example
 
-The example below shows how to define a list of weighted payment pointers. The easiest way to establish weight is to assign values that add up to 100. 
+The example below shows how to define a list of weighted payment pointers. The easiest way to establish weight is to assign values that add up to 100.
 
 ```html
 <head>
@@ -51,16 +51,16 @@ The example below shows how to define a list of weighted payment pointers. The e
 
 ### How it works
 
-First, we list the payment pointers and assign each one a weight. 
+First, we list the payment pointers and assign each one a weight.
 
 If the combined weights equal 100, then each weight represents the percentage at which each payment pointer will be chosen. For example, `$example.com/connie` has a 9.5% chance of being chosen, resulting in Connie's share approaching 9.5% of the page's total revenue as more web monetized visitors access the site.
 
 ```js
 const pointers = {
-    '$example.com/alice': 50,
-    '$example.com/bob': 40,
-    '$example.com/connie': 9.5,
-    '$example.com/dave': 0.5,
+  '$example.com/alice': 50,
+  '$example.com/bob': 40,
+  '$example.com/connie': 9.5,
+  '$example.com/dave': 0.5,
 }
 ```
 
@@ -102,10 +102,8 @@ This example shows how the random choices will approach the correct percentages 
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
-<div className="glitch-embed-wrap">
-  <iframe
-    src="https://glitch.com/embed/#!/embed/wm2-probablistic-revenue-share?path=README.md&previewSize=100"
-    title="probabalistic-revenue-share-experiment on Glitch"
-    style='height: 100%; width: 100%; border: 0;'>
-  </iframe>
-</div>
+<iframe
+  src="https://glitch.com/embed/#!/embed/wm2-probablistic-revenue-share?path=README.md&previewSize=100"
+  title="probabalistic-revenue-share-experiment on Glitch"
+  style='height:100%;width:100%;border:0;min-height:420px'>
+</iframe>

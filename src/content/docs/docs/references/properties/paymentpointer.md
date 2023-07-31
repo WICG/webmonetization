@@ -2,7 +2,7 @@
 title: 'paymentPointer'
 ---
 
-<div class="draft"><div class="title">Page Updates</div><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li></ul></div>
 
 The `MonetizationEvent` `paymentPointer` property returns a URL representing the payment endpoint.
 
