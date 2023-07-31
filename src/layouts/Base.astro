@@ -1,0 +1,22 @@
+---
+import i18next, { t, changeLanguage } from "i18next";
+import BaseHead from "../components/pages/BaseHead.astro";
+import TopNav from "../components/pages/TopNav.astro";
+import Footer from "../components/pages/Footer.astro";
+
+changeLanguage("en");
+---
+<html lang={i18next.language}>
+  <BaseHead title={t("site.title")} description={t("site.description")} />
+
+  <body>
+    <TopNav />
+
+    <main>
+      <slot /> 
+    </main>
+  
+    <Footer />
+  </body>
+  
+</html>

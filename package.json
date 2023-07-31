@@ -10,11 +10,12 @@
   },
   "dependencies": {
     "@astrojs/react": "^2.2.1",
-    "@astrojs/starlight": "^0.5.5",
-    "@types/react": "^18.2.15",
+    "@astrojs/starlight": "^0.6.0",
+    "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
-    "astro": "2.9.1",
+    "astro": "2.9.6",
     "astro-i18next": "^1.0.0-beta.21",
+    "prism-react-renderer": "^2.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.32.4"

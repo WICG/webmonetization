@@ -1,0 +1,23 @@
+.form {
+  margin-bottom: var(--space-s);
+  margin-top: var(--space-s);
+}
+
+.text {
+  margin-bottom: var(--space-s);
+}
+
+.inputWrapper {
+  width: 100%;
+  display: flex;
+  gap: var(--space-s);
+}
+
+.inputWrapper input {
+  flex: 1;
+}
+
+.error {
+  font-size: var(--step--1);
+  color: maroon;
+}

@@ -1,0 +1,16 @@
+.codeBlock {
+  position: relative;
+  margin-bottom: var(--space-s);
+}
+
+.pre {
+  padding: var(--space-xs);
+  border-radius: var(--border-radius);
+  overflow: auto;
+}
+
+.btn {
+  position: absolute;
+  top: var(--space-2xs);
+  right: var(--space-2xs);
+}

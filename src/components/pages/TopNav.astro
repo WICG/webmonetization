@@ -6,8 +6,15 @@
       <img src="/img/wm-logo.svg" alt="">
       <span>Web Monetization</span>
     </a>
-    <button id="menuToggle" class="menu-toggle" aria-controls="nav-menu" aria-expanded="true" aria-label="Toggle Menu" title="Toggle Menu">🐈‍⬛</button>
-    <ul id="navMenu" class="nav-menu">
+    <button id="menuToggle" class="menu-toggle" aria-controls="nav-menu" aria-expanded="true" aria-label="Toggle Menu" title="Toggle Menu">
+      <div id="menuIcon" class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <ul id="navMenu" class="nav-menu collapsed">
        <li class="nav-link__docs"><a href="/docs/">Docs</a></li>
        <li class="nav-link__spec"><a href="/specification">Specification</a></li>
        <li class="nav-link__github"><a href="https://github.com/WICG/webmonetization/"><img src="/img/icon-github.svg" alt="Link to Github repository"></a></li>
@@ -54,9 +61,60 @@
   }
 
   .menu-toggle {
-    display: block;
+    border: 0;
+    background: initial;
+    padding: 0.5em 0;
   }
 
+  .menu-icon {
+    position: relative;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+    height: 1em;
+    width: 1.5em;
+  }
+
+  .menu-icon span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: var(--color-secondary-lightest);
+    border-radius: 4px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+  }
+
+  .menu-icon span:nth-child(1) {
+    top: 0;
+  }
+
+.menu-icon span:nth-child(2),
+.menu-icon span:nth-child(3) {
+  top: 50%;
+}
+
+.menu-icon span:nth-child(4) {
+  top: 100%;
+}
+
+.menu-icon.open span:nth-child(1),
+.menu-icon.open span:nth-child(4) {
+  top: 50%;
+  width: 0%;
+  left: 50%;
+}
+
+.menu-icon.open span:nth-child(2) {
+  transform: rotate(45deg);
+}
+
+.menu-icon.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
   .nav-link__github {
     margin-left: auto;
     flex: none;
@@ -115,16 +173,35 @@
 
 <script>
   const toggle = document.getElementById('menuToggle');
+  const icon = document.getElementById('menuIcon');
   const menu = document.getElementById('navMenu');
-  const menuItems = document.querySelectorAll('#navMenu a');
+  const isWide = window.matchMedia('(min-width: 540px)');
 
-  toggle?.addEventListener('click', () => {
-    if (toggle.getAttribute('aria-expanded') === 'false') {
+  const handleClick = () => {
+    if (toggle?.getAttribute('aria-expanded') === 'false') {
       toggle.setAttribute('aria-expanded', 'true');
       menu?.classList.remove("collapsed");
+      icon?.classList.add("open");
     } else {
-      toggle.setAttribute('aria-expanded', 'false');
+      toggle?.setAttribute('aria-expanded', 'false');
       menu?.classList.add("collapsed");
+      icon?.classList.remove("open");
     }
-  }, false);
+  };
+
+  const handleResize = (evt: MediaQueryList | MediaQueryListEvent) => { 
+    if (evt.matches) {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu?.classList.remove("collapsed");
+      icon?.classList.remove("open");
+    }  else {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu?.classList.add("collapsed");
+      icon?.classList.remove("open");
+    }
+  };
+
+  toggle?.addEventListener('click', handleClick, false);
+  isWide.addEventListener('change', evt => handleResize(evt));
+  handleResize(isWide);
 </script>
