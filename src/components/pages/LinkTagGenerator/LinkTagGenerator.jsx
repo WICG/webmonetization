@@ -8,7 +8,6 @@ export default function LinkTagGenerator() {
   const [invalidUrl, setInvalidUrl] = useState(false)
 
   const isValidPointer = (pointerInput) => {
-    console.log(pointerInput)
     try {
       const url = new URL(pointerInput)
       return url.href

@@ -12,9 +12,7 @@ export default defineConfig({
     overrideIntegration(),
     starlight({
       title: 'Web Monetization',
-      customCss: [
-        './src/styles/custom.css',
-      ],
+      customCss: ['./src/styles/docs.css'],
       locales: {
         root: {
           label: 'English',
@@ -33,28 +31,28 @@ export default defineConfig({
           label: 'Intro to Web Monetization',
           collapsed: true,
           items: [
-            { 
-              label: 'Overview', 
+            {
+              label: 'Overview',
               link: '/docs/',
             },
             {
               label: 'Add Web Monetization to a page',
               link: '/docs/guides/monetize-page',
             },
-            { 
-              label: 'Sending payments', 
+            {
+              label: 'Sending payments',
               link: '/docs/intro/sending-payments',
             },
-            { 
-              label: 'Receiving payments', 
+            {
+              label: 'Receiving payments',
               link: '/docs/intro/receiving-payments',
             },
-            { 
-              label: 'Web Monetization flow', 
+            {
+              label: 'Web Monetization flow',
               link: '/docs/intro/web-monetization-flow',
             },
-            { 
-              label: 'Privacy', 
+            {
+              label: 'Privacy',
               link: '/docs/intro/privacy',
             },
           ],
@@ -168,16 +166,16 @@ export default defineConfig({
           label: 'Resources',
           collapsed: true,
           items: [
-            { 
-              label: 'Glossary', 
+            {
+              label: 'Glossary',
               link: '/docs/resources/glossary',
             },
-            { 
-              label: 'Libraries', 
+            {
+              label: 'Libraries',
               link: '/docs/resources/libraries',
             },
-            { 
-              label: 'Interledger', 
+            {
+              label: 'Interledger',
               link: 'https://interledger.org/',
             },
             {
@@ -189,7 +187,7 @@ export default defineConfig({
               link: 'https://w3c.github.io/payment-handler/',
             },
             {
-              label: 'Payment Pointers', 
+              label: 'Payment Pointers',
               link: 'https://paymentpointers.org/',
             },
             {

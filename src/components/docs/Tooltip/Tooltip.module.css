@@ -1,0 +1,30 @@
+.wrapper {
+  position: relative;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.toggle.toggle {
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0 var(--space-3xs);
+  font-size: 12px;
+  text-decoration: underline dotted;
+  position: absolute;
+  top: -4px;
+  right: -12px;
+  cursor: pointer;
+}
+
+.bubble {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  background-color: var(--color-white);
+  border: 1px solid var(--sl-color-hairline);
+  padding: var(--space-2xs);
+  border-radius: var(--border-radius);
+  line-height: 1.25;
+  width: 15em;
+}
