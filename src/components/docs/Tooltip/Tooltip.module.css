@@ -4,21 +4,29 @@
   margin-right: 4px;
 }
 
+.wrapper astro-slot span {
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+}
+
 .toggle.toggle {
   background-color: transparent;
   border: 0;
   margin: 0;
   padding: 0 var(--space-3xs);
   font-size: 12px;
+  font-weight: bold;
   text-decoration: underline dotted;
   position: absolute;
   top: -4px;
   right: -12px;
   cursor: pointer;
+  user-select: none;
 }
 
 .bubble {
   position: absolute;
+  z-index: 5;
   right: 0;
   bottom: 100%;
   background-color: var(--color-white);
