@@ -2,7 +2,9 @@
 title: 'HTML <link> rel: monetization'
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li></ul></div>
+import Specifications from '/src/components/docs/Specifications'
+
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add browser compat if appropriate</li></ul></div>
 
 The `<link>` element enables you to [add Web Monetization to an HTML document](/docs/guides/monetize-page). The `rel` value must be `monetization`. The `href` value must be a URL representing a payment pointer.
 
@@ -19,3 +21,7 @@ The first version of the Web Monetization spec favored `<meta>` over `<link>`. T
 The `<link>` element doesn't support shorthand and requires the `href` value be the URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`).
 
 If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <a href="https://paymentpointers.org" target="_blank">paymentpointers.org</a>. In most cases, you can simply replace the `$` with `https://`.
+
+## Specification 
+
+<Specifications link="link-type-monetization"></Specifications>

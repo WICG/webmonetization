@@ -34,7 +34,7 @@ div.caption {
   font-weight: 600;
 }
 
-/* I used <table> and the content in the <th> was centered */
+/* Align table <th> to left */
 th {
   text-align: left;
 }

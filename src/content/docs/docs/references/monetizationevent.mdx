@@ -1,8 +1,10 @@
 ---
-title: 'MonetizationEvent'
+title: MonetizationEvent
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Is there a better way to do a table? (<strong>HJ replies</strong>: <em>tell me more about what better ways you had in mind?</em>)</li></ul></div>
+import Specifications from '/src/components/docs/Specifications'
+
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add browser compat if appropriate</li></ul></div>
 
 The `MonetizationEvent` DOM events provide information about payments sent to WM receivers.
 
@@ -29,18 +31,18 @@ By listening for `monetization` events, you can use the returned details to veri
   </tr>
 </table>
 
-## Current properties
+## Current attributes
 
-- [amountSent](/docs/references/properties/amountsent) - A dictionary containing the amount and currency code of the sent payment
-- [incomingPayments](/docs/references/properties/incomingpayments) - returns incoming payment URL
-- [paymentPointer](/docs/references/properties/paymentpointer) - A URL representing the payment pointer endpoint
+- [amountSent](/docs/references/attributes/amountsent) - A dictionary containing the amount and currency code of the sent payment
+- [incomingPayment](/docs/references/attributes/incomingpayment) - returns incoming payment URL
+- [paymentPointer](/docs/references/attributes/paymentpointer) - A URL representing the payment pointer endpoint
 
-## Deprecated properties
+## Deprecated attributes
 
-- [amount](/docs/references/properties/amount) - An integer amount delivered by an Interledger packet
-- [assetCode](/docs/references/properties/assetcode) - A string representing the currency code of the received amount
-- [assetScale](/docs/references/properties/assetscale) - The scale of the received amount
-- [receipt](/docs/references/properties/receipt) - The base-64 encoded Interledger STREAM receipt that the browser received
+- [amount](/docs/references/attributes/amount) - An integer amount delivered by an Interledger packet
+- [assetCode](/docs/references/attributes/assetcode) - A string representing the currency code of the received amount
+- [assetScale](/docs/references/attributes/assetscale) - The scale of the received amount
+- [receipt](/docs/references/attributes/receipt) - The base-64 encoded Interledger STREAM receipt that the browser received
 
 ## Example
 
@@ -64,3 +66,7 @@ By listening for `monetization` events, you can use the returned details to veri
   }
 </script>
 ```
+
+## Specification
+
+<Specifications link="monetizationevent-interface"></Specifications>

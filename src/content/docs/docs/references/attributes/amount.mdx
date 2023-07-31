@@ -1,0 +1,35 @@
+---
+title: amount
+---
+
+import Specifications from '/src/components/docs/Specifications'
+
+<div class="draft"><div class="title">See if sidebar deprecation note can be styled for all deprecated attributes</div></div>
+
+:::danger[Caution - Deprecated Attribute]
+The `amount` attribute is deprecated. Consider using the [amountSent](../amountsent/) attribute instead.
+:::
+
+The `MonetizationEvent` `amount` attribute returned the amount of money that was successfully received on the last payment.
+
+### Value
+
+An integer representing the amount of money received.
+
+### Example
+
+```html
+<link rel="monetization" href="https://wallet.example/alice" />
+<script>
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', (event) => {
+    // See how much your received and in what currency
+    const { amount, assetCode, assetScale } = event
+    console.log(`Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`)
+  })
+</script>
+```
+
+## Specification
+
+<Specifications link="amount-attribute-deprecated"></Specifications>

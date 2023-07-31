@@ -1,8 +1,8 @@
 ---
-title: 'Add Web Monetization to a page'
+title: Add Web Monetization to a page
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Figure out issue with page appearing highlighted in sidebar twice (<strong>HJ replies</strong>: <em>unfortunately, the sidebar can only do unique links, so since you linked this item twice in the sidebar, it's going to highlight them twice</em>)</li><li>Add any appropriate links</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Add any appropriate links</li></ul></div>
 
 This page provides basic instructions for adding Web Monetization to a web page. If you're new to web monetizing content, this page is a great place to start.
 
@@ -40,6 +40,6 @@ Since a `<link>` element can only support one `href` value, you can only define 
 
 A `monetization` event fires when an outgoing payment is successfully created. There’s no guarantee that any payments will follow or, if they do, how often or how large the payments will be.
 
-The event returns a URL as the `incomingPayment` property. Issuing a `GET` request to the URL returns the `receivedAmount`. A payment is considered received/successful when the `receivedAmount` is more than zero. You can then choose to have the page programmatically respond based on whether a payment was received. For example, you could [hide ads](../hide-ads) or [provide access to exclusive content](../provide-exclusive-content/) to web monetized visitors.
+The event returns a URL as the `incomingPayment` attribute. Issuing a `GET` request to the URL returns the `receivedAmount`. A payment is considered received/successful when the `receivedAmount` is more than zero. You can then choose to have the page programmatically respond based on whether a payment was received. For example, you could [hide ads](../hide-ads) or [provide access to exclusive content](../provide-exclusive-content/) to web monetized visitors.
 
-Visit [Monetization Events](/docs/references/monetizationevent/) for more information about the `monetization` event object and its properties.
+Visit [Monetization Events](/docs/references/monetizationevent/) for more information about the `monetization` event object and its attributes.

@@ -1,8 +1,8 @@
 ---
-title: 'Hide ads'
+title: Hide ads
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Update the Glitch example's README</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Update the Glitch example's README</li><li>Use transclusion for the blurbs in the Interactive example(s)</li></ul></div>
 
 Give your paying visitors an ad-free experience by hiding ads when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your ads will continue to appear to non-paying visitors.
 
@@ -10,7 +10,7 @@ Give your paying visitors an ad-free experience by hiding ads when the `monetiza
 
 For visitors without Web Monetization, ads will appear as soon as the page loads.
 
-For visitors with Web Monetization in their browser, there's a three-second grace period before ads are shown. This is to give Web Monetization a chance to initialize and prevent ads from briefly appearing to paying visitors.
+For visitors with Web Monetization in their browser, there's a three-second grace period before ads are shown. This gives Web Monetization a chance to initialize and prevent ads from briefly appearing to paying visitors.
 
 **If Web Monetization...**
 
@@ -77,7 +77,7 @@ function showAds() {
 }
 ```
 
-We want to bind the `monetization` event to its respective event handler if the visitor is web monetized. This triggers the removal of the ad once Web Monetization initializes. Assuming its initialized within the grace period, your ad isn't added to the page at all. This means any related images and trackers aren't loaded either.
+We want to bind the `monetization` event to its respective event handler if the visitor is web monetized. This triggers the removal of the ad once Web Monetization initializes. Assuming it initialized within the grace period, your ad isn't added to the page at all. This means any related images and trackers aren't loaded either.
 
 The `hasPaid` variable in the timer is for when/if Web Monetization starts after the grace period.
 

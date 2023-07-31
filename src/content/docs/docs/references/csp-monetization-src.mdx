@@ -2,7 +2,9 @@
 title: 'Content-Security-Policy: monetization-src'
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li></ul></div>
+import Specifications from '/src/components/docs/Specifications'
+
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add browser compat if appropriate</li><li>Verify example</li></ul></div>
 
 The `monetization-src` directive within the HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> (CSP) allows you to restrict the URLs from which a payment pointer can be loaded.
 
@@ -49,3 +51,7 @@ Fetches for the following monetization source will return a network error and no
 ```html
 <link rel="monetization" href="https://example.org/payment-pointer" />
 ```
+ 
+## Specification
+
+<Specifications link="content-security-policy"></Specifications>

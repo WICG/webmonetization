@@ -1,14 +1,16 @@
 ---
-title: 'incomingPayments'
+title: incomingPayment
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add spec and browser compat if appropriate</li><li>Verify example</li></ul></div>
+import Specifications from '/src/components/docs/Specifications'
 
-:::tip[Experimental property]
-`incomingPayments` is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental" target="_blank">experimental technology</a>. Check the [Browser compatibility table](#browser-compatibility) before using.
+<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add browser compat if appropriate</li><li>Verify example</li></ul></div>
+
+:::tip[Experimental Attribute]
+`incomingPayment` is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental" target="_blank">experimental technology</a>. Check the [Browser compatibility table](#browser-compatibility) before using.
 :::
 
-The `MonetizationEvent` `incomingPayments` property returns a URL that represents an incoming payment at the monetization receiver.
+The `MonetizationEvent` `incomingPayment` attribute returns a URL that represents an incoming payment at the monetization receiver.
 
 ## Value
 
@@ -42,3 +44,7 @@ async function verifyPayment(event) {
   }
 }
 ```
+
+## Specification
+
+<Specifications link="incomingpayment-attribute"></Specifications>

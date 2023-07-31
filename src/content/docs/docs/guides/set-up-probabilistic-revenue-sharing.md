@@ -1,10 +1,10 @@
 ---
-title: 'Set up probabilistic revenue sharing'
+title: Set up probabilistic revenue sharing
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Update Glitch example's README</li><li>Change all references to $example.com/ to $wallet.example/ on page and in Glitch</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Update Glitch example's README</li><li>Change all references to $example.com/ to $wallet.example/ on page and in Glitch</li><li>Use transclusion for the blurbs in the Interactive example(s)</li></ul></div>
 
-Since a Monetization `<link>` element only supports one payment pointer as its `href` value, how do you share a portion of a web monetized page's earnings?
+Since a monetization `<link>` element only supports one payment pointer as its `href` value, how do you share a portion of a web monetized page's earnings?
 
 One way is through probabilistic revenue sharing. Probabilistic revenue sharing works by randomly choosing from a list of predefined payment pointers each time a web monetized visitor loads the page. Payments are sent to the randomly chosen payment pointer until the visitor reloads or closes the page.
 
@@ -65,7 +65,7 @@ const pointers = {
 ```
 
 :::info
-Since this method bypasses the need to include a Monetization `<link>` element, you can choose to use a payment pointer's shorthand form (e.g., `$example.com/alice`) rather than the endpoint URL that the payment pointer resolves to (e.g. `https://example.com/bob`).
+Since this method bypasses the need to include a monetization `<link>` element, you can choose to use a payment pointer's shorthand form (e.g., `$example.com/alice`) rather than the endpoint URL that the payment pointer resolves to (e.g. `https://example.com/bob`).
 :::
 
 Next, we define the function to cause payment pointers to be chosen based on weight.

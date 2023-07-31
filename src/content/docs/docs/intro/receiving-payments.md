@@ -1,5 +1,5 @@
 ---
-title: 'Receiving payments'
+title: Receiving payments
 ---
 
 <div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Add any appropriate links</li></ul></div>

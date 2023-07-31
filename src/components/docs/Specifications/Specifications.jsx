@@ -6,7 +6,7 @@ export default function Specifications({ link, children }) {
       <table>
         <thead>
           <tr>
-            <th>Specification</th>
+            <th>Web Monetization API</th>
           </tr>
         </thead>
         <tbody>

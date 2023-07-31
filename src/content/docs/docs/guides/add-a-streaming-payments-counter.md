@@ -2,7 +2,7 @@
 title: Add a streaming payments counter
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>This page needs a good review; the ideas of streaming, micropayments, an what OP supports are a bit muddled</li><li>Update the Glitch example's README</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>This page needs a good review; the ideas of streaming, micropayments, an what OP supports are a bit muddled</li><li>Use transclusion for the blurbs in the Interactive example(s)</li><li>Update the Glitch example's README</li></ul></div>
 
 Web Monetization allows you to know exactly how much you've received from a given visitor. The amount updates in real time as more payments come in during the session.
 
@@ -54,7 +54,7 @@ The example below illustrates how to use the `monetization` event to show a web 
 
 First, we'll bind the `monetization` event if the visitor is web monetized (`window.MonetizationEvent` is defined).
 
-The `monetization` event contains details about the payments that occur. The `amountSent` property of the event returns the amount (`value`) and currency code of the last successful payment.
+The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and currency code of the last successful payment.
 
 ```js
   if (window.MonetizationEvent) {
@@ -84,7 +84,7 @@ The amount in `value` is an integer, which we add to our total.
 total += Number(value)
 ```
 
-Finally, we update the text on the page with the new total. We want the total to be in a readable format, so we convert the number to a string and round it to a specified number of decimals, which in this example is 9. This formatted version of the amount gets written to the `total` span on the page.
+Finally, we update the text on the page with the new total. We want the total to be in a readable format, so we convert the number to a string and round it to a specified number of decimals, which in this example is `9`. This formatted version of the amount gets written to the `total` span on the page.
 
 ```js
 document.getElementById('total').innerText = total.toFixed(9)

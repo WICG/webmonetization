@@ -77,36 +77,36 @@ export default defineConfig({
                   collapsed: true,
                   items: [
                     {
-                      label: 'Monetization Events',
+                      label: 'Monetization events',
                       link: '/docs/references/monetizationevent',
                     },
                     {
                       label: 'amountSent',
-                      link: '/docs/references/properties/amountsent',
+                      link: '/docs/references/attributes/amountsent',
                     },
                     {
-                      label: 'incomingPayments',
-                      link: '/docs/references/properties/incomingpayments',
+                      label: 'incomingPayment',
+                      link: '/docs/references/attributes/incomingpayment',
                     },
                     {
                       label: 'paymentPointer',
-                      link: '/docs/references/properties/paymentpointer',
+                      link: '/docs/references/attributes/paymentpointer',
                     },
                     {
                       label: 'amount (deprecated)',
-                      link: '/docs/references/properties/amount',
+                      link: '/docs/references/attributes/amount',
                     },
                     {
                       label: 'assetCode (deprecated)',
-                      link: '/docs/references/properties/assetcode',
+                      link: '/docs/references/attributes/assetcode',
                     },
                     {
                       label: 'assetScale (deprecated)',
-                      link: '/docs/references/properties/assetscale',
+                      link: '/docs/references/attributes/assetscale',
                     },
                     {
                       label: 'receipt (deprecated)',
-                      link: '/docs/references/properties/receipt',
+                      link: '/docs/references/attributes/receipt',
                     },
                   ],
                 },

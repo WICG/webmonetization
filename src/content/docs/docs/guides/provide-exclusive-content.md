@@ -1,8 +1,8 @@
 ---
-title: 'Provide exclusive content'
+title: Provide exclusive content
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Update the Glitch example's README</li></ul></div>
+<div class="draft"><h5>Page Updates</h5><ul><li>Update the Glitch example's README</li><li>Use transclusion for the blurbs in the Interactive example(s)</li></ul></div>
 
 Give your paying visitors access to exclusive content when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your exclusive content will only appear to paying visitors.
 

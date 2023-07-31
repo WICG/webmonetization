@@ -1,5 +1,5 @@
 ---
-title: 'Web Monetization flow'
+title: Web Monetization flow
 ---
 
 <div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Add any appropriate links</li><li>Definitions for key players need review and will probably change</li><li>Add "Detailed flow" section and code blocks/sequence diagram to bottom </li><li>Add diagram or etc to bottom of high-level flow section</li></ul></div>
