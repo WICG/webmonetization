@@ -1,5 +1,4 @@
 .browserCompat table {
-  border: 1px solid var(--color-table-border);
   border-collapse: separate;
   border-spacing: 0;
   margin: 1rem 0;
@@ -10,7 +9,6 @@
   background: inherit;
   padding: 0.25rem 0.75rem;
   width: 2rem;
-
   text-align: center;
   vertical-align: bottom;
 }
@@ -21,7 +19,11 @@
   font-size: 0.75rem;
 }
 
-.browserCompat tbody tr th {
+.browserCompat th code {
+  white-space: nowrap;
+}
+
+.browserCompat tbody th {
   vertical-align: middle;
 }
 
@@ -107,16 +109,21 @@
   width: 100%;
 }
 
-.legendItem {
-  align-items: center;
-  display: flex;
-  font-size: 0.75rem;
-  margin-right: var(--space-2xs);
-}
-
 .legend {
   display: flex;
   flex-wrap: wrap;
+}
+
+.legendItem.legendItem {
+  align-items: center;
+  display: flex;
+  font-size: 0.75rem;
+  margin-top: 0;
+  margin-right: var(--space-s);
+}
+
+.legendItem.legendItem dd {
+  padding-inline-start: var(--space-3xs);
 }
 
 .iconGreen {

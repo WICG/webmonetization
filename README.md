@@ -64,15 +64,46 @@ Refer to the Starlight documentation on [authoring content](https://starlight.as
 
 We have extracted some of the commonly repeated patterns within the documentation pages into custom docs components that can be reused.
 
-1. Specification component
+1. `Specification` component
 
-_WIP to be updated_
+   This component will display a link to the relevant section of the [Web Monetization specification] (https://webmonetization.org/specification/) in a table. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue.
 
-2. BrowserCompat component
+   Import the Specification component like so:
 
-_WIP to be updated_
+   ```
+   import Specification from '/src/components/docs/Specification'
+   ```
 
-3. Tooltip component
+   Use the `<Specification>` component on your docs page where relevant under a "Specifications" heading like so:
+
+   ```
+   ## Specifications
+
+   <Specification anchor='link-type-monetization' />
+   ```
+
+   This component takes in an optional `anchor` prop which allows you to specify a particular section of the specification that is relevant to that individual docs page. If no `anchor` prop is provided, it will default to the specification itself.
+
+2. `BrowserCompat` component
+
+   This component will generate a compatibility table based on the browser compatibility data passed into it. The key is to pass the component the correct data. All our browser compatibility data files can be found in `/src/data/browser-compat-data`. our docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue.
+
+   Import the component and the relevant data file like so:
+
+   ```
+   import BrowserCompat from '/src/components/docs/BrowserCompat'
+   import data from '/src/data/browser-compat-data/monetization.json' /* this is the key */
+   ```
+
+   Use the `<BrowserCompat>` component in your docs page where relevant under a "Browser compatibility" heading like so:
+
+   ```
+   ## Browser compatibility
+
+   <BrowserCompat json={data} />
+   ```
+
+3. `Tooltip` component
 
    Use the tooltip component for adding a short explanation to specific terms. This component is built to be accessible in accordance to the guidance from [WAI Tooltip Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
 
@@ -94,9 +125,11 @@ _WIP to be updated_
    <Tooltip content='THIS CONTENT IS DISPLAYED IN THE TOOLTIP UPON INTERACTION' client:load><a href="/URL">text that you are trying to explain</a></Tooltip>.
    ```
 
-4. Hidden component
+4. `Hidden` component
 
    Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
+
+   Unfortunately, due to the nature of how the ToC on the right is generated, if we want to hide an entire section (including the header), we will have to manually hide the section heading by either commenting it out or deleting it.
 
 ## Adding Content
 

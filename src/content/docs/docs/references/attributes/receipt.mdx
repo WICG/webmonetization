@@ -2,13 +2,13 @@
 title: receipt
 ---
 
-import Specifications from '/src/components/docs/Specifications'
+import Specification from '/src/components/docs/Specification'
 
 :::danger[Caution - Deprecated Attribute]
 Receipts and its associated `receipt` attribute are deprecated. Consider using the [incomingPayment](../incomingpayment/) attribute instead.
 :::
 
-The `MonetizationEvent` `receipt` attribute returned an optional proof-of-payment receipt. It was issued from the monetization receiver to the monetization provider as proof of the total current amount received in a stream. 
+The `MonetizationEvent` `receipt` attribute returned an optional proof-of-payment receipt. It was issued from the monetization receiver to the monetization provider as proof of the total current amount received in a stream.
 
 ### Value
 
@@ -25,6 +25,6 @@ A base64-encoded STREAM receipt. Returned null if receipts were not enabled on t
 </script>
 ```
 
-## Specification
+## Specifications
 
-<Specifications link="receipt-attribute-deprecated"></Specifications>
+<Specification anchor='receipt-attribute-deprecated' />

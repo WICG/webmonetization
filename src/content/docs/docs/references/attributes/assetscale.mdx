@@ -2,7 +2,7 @@
 title: assetScale
 ---
 
-import Specifications from '/src/components/docs/Specifications'
+import Specification from '/src/components/docs/Specification'
 
 :::danger[Caution - Deprecated Attribute]
 The `assetScale` attribute is deprecated. Consider using the [amountSent](../amountsent/) attribute instead.
@@ -23,11 +23,13 @@ An integer that represents the scale on the amount of money received in the last
   link.addEventListener('monetization', (event) => {
     // See how much your received and in what currency
     const { amount, assetCode, assetScale } = event
-    console.log(`Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`)
+    console.log(
+      `Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`
+    )
   })
 </script>
 ```
 
-## Specification
+## Specifications
 
-<Specifications link="assetscale-attribute-deprecated"></Specifications>
+<Specification anchor='assetscale-attribute-deprecated' />

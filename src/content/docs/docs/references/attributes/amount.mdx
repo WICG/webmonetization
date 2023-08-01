@@ -2,9 +2,14 @@
 title: amount
 ---
 
-import Specifications from '/src/components/docs/Specifications'
+import Specification from '/src/components/docs/Specification'
+import data from '/src/data/browser-compat-data/amount.json'
 
-<div class="draft"><div class="title">See if sidebar deprecation note can be styled for all deprecated attributes</div></div>
+<div class='draft'>
+  <div class='title'>
+    See if sidebar deprecation note can be styled for all deprecated attributes
+  </div>
+</div>
 
 :::danger[Caution - Deprecated Attribute]
 The `amount` attribute is deprecated. Consider using the [amountSent](../amountsent/) attribute instead.
@@ -25,11 +30,17 @@ An integer representing the amount of money received.
   link.addEventListener('monetization', (event) => {
     // See how much your received and in what currency
     const { amount, assetCode, assetScale } = event
-    console.log(`Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`)
+    console.log(
+      `Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`
+    )
   })
 </script>
 ```
 
-## Specification
+## Specifications
 
-<Specifications link="amount-attribute-deprecated"></Specifications>
+<Specification anchor='amount-attribute-deprecated' />
+
+## Browser compatibility
+
+<BrowserCompat json={data} />

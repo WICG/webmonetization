@@ -1,4 +1,4 @@
-.specifications.specifications table {
+.specification.specification table {
   border: 1px solid var(--color-table-border);
   border-collapse: collapse;
   width: 100%;
@@ -6,18 +6,18 @@
   display: table;
 }
 
-.specifications tr:nth-child(odd) th {
+.specification tr:nth-child(odd) th {
   background-color: var(--color-table-bg);
 }
 
-.specifications th,
-.specifications td {
+.specification th,
+.specification td {
   border: 1px solid var(--color-table-border);
   padding: 0.5rem 0.75rem;
   vertical-align: middle;
 }
 
-.specifications th {
+.specification th {
   background: var(--color-table-bg-alt);
   font-weight: bold;
   line-height: 1.5;

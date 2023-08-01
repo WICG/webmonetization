@@ -2,9 +2,15 @@
 title: MonetizationEvent
 ---
 
-import Specifications from '/src/components/docs/Specifications'
+import Specification from '/src/components/docs/Specification'
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Add any appropriate links</li><li>Add browser compat if appropriate</li></ul></div>
+<div class='draft'>
+  <h5>Page Updates</h5>
+  <ul>
+    <li>Add any appropriate links</li>
+    <li>Add browser compat if appropriate</li>
+  </ul>
+</div>
 
 The `MonetizationEvent` DOM events provide information about payments sent to WM receivers.
 
@@ -25,9 +31,11 @@ By listening for `monetization` events, you can use the returned details to veri
     <th>Interface</th>
     <td>MonetizationEvent</td>
   </tr>
-    <tr>
+  <tr>
     <th>Event handler property</th>
-    <td><a href="/docs/references/onmonetization">onmonetization</a></td>
+    <td>
+      <a href='/docs/references/onmonetization'>onmonetization</a>
+    </td>
   </tr>
 </table>
 
@@ -50,7 +58,9 @@ By listening for `monetization` events, you can use the returned details to veri
 <link rel="monetization" href="https://wallet.example/alice" />
 <script>
   // Checking via DOMTokenList
-  const link = document.querySelector('link[rel="monetization"]') || document.createElement('link')
+  const link =
+    document.querySelector('link[rel="monetization"]') ||
+    document.createElement('link')
   if (link.relList.supports('monetization')) {
     console.log('Web Monetization is supported.')
   }
@@ -67,6 +77,6 @@ By listening for `monetization` events, you can use the returned details to veri
 </script>
 ```
 
-## Specification
+## Specifications
 
-<Specifications link="monetizationevent-interface"></Specifications>
+<Specification anchor='monetizationevent-interface' />
