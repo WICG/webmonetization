@@ -40,7 +40,7 @@ export default function LinkTagGenerator() {
             }}
           />
           <button
-            className='btn'
+            className={styles.btn}
             type='submit'
             onClick={(evt) => {
               evt.preventDefault()

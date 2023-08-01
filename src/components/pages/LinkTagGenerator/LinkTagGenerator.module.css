@@ -15,9 +15,20 @@
 
 .inputWrapper input {
   flex: 1;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-table-border);
+  padding: var(--space-2xs);
 }
 
 .error {
   font-size: var(--step--1);
   color: maroon;
+}
+
+.btn {
+  background-color: var(--color-accent);
+  border: 0;
+  color: var(--color-white);
+  padding: var(--space-xs);
+  border-radius: var(--border-radius);
 }

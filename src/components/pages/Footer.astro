@@ -1,9 +1,27 @@
 ---
 ---
 <footer>
-  <span>
-    Copyright © {new Date().getFullYear()} Interledger Foundation.
-  </span>
+  <div class="contentWrapperLg">
+    <div class="linkWrapper">
+      <ul>
+        <li><a href="/link-tag">Link Tag Generator</a></li>
+        <li><a href="/prob-revshare">Probabilistic Revshare Generator</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://github.com/WICG/webmonetization">Github</a></li>
+        <li><a href="https://community.interledger.org/">Community Forem</a></li>
+        <li><a href="https://wicg.io/">Web Incubator Community Group</a></li>
+      </ul>
+      <ul>
+        <li><a href="https://paymentpointers.org/">Payment Pointers</a></li>
+        <li><a href="https://docs.openpayments.guide/">Open Payments</a></li>
+        <li><a href="https://interledger.org/">Interledger</a></li>
+      </ul>
+    </div>
+    <span>
+      Copyright © {new Date().getFullYear()} Interledger Foundation.
+    </span>
+  </div>
 </footer>
 
 <style>
@@ -12,5 +30,37 @@
     font-size: var(--step--1);
     background-color: var(--color-secondary-lightest);
     color: var(--color-white);
+  }
+
+  .linkWrapper {
+    display: flex;
+    gap: var(--space-m);
+    flex-direction: column;
+    padding-top:var(--space-s);
+    padding-bottom: var(--space-m);
+  }
+
+  @media screen and (min-width: 500px) {
+    .linkWrapper {
+      flex-direction: row;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: var(--space-xs);
+  }
+
+  a {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 </style>

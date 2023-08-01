@@ -7,8 +7,11 @@ import CardList from "../components/pages/CardList";
 import PrCta from "../components/pages/PrCta/PrCta";
 
 changeLanguage("en");
+
+const title = t("site.title")
+const description = t("site.description")
 ---
-<Base>
+<Base title={title} description={description}>
   <section class="section hero">
     <div class="contentWrapperSm">
       <img

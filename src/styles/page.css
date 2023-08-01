@@ -57,6 +57,7 @@ select {
 /* Base styles */
 html {
   height: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -97,20 +98,6 @@ main p {
   position: absolute;
   white-space: nowrap;
   width: 1px;
-}
-
-input:not([type='submit']):not([type='file']) {
-  border-radius: var(--border-radius);
-  border: 1px solid var(--color-table-border);
-  padding: var(--space-2xs);
-}
-
-.btn {
-  background-color: var(--color-accent);
-  border: 0;
-  color: var(--color-white);
-  padding: var(--space-xs);
-  border-radius: var(--border-radius);
 }
 
 /* Typography styles */
