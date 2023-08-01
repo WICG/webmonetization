@@ -28,6 +28,6 @@ This section describes the flow required between the key players to start the mo
 3. The WM agent sends a grant request to the authorization server and receives an access token in response.
 4. The WM agent creates an incoming payment for the session (e.g., the open browser tab/window) by using the access token and other details obtained during Steps 2 and 3 and sending an incoming payment request to the WM receiver.
 5. The WM receiver responds with unique payment details needed for addressing the payment to the recipient.
-6. The WM agent sends an outgoing payment request to the WM receiver. The request includes the payment details previously acquired, as well as the payment pointer of the sending account.
+6. The WM agent sends an outgoing payment request to the WM provider. The request includes the payment details previously acquired, as well as the payment pointer of the sending account.
 
 At this point, the payment is considered successful and the Web Monetization flow ends. It’s now up to the sending and receiving accounts to ensure the payment is settled.

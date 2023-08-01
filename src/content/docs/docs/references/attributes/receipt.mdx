@@ -3,6 +3,8 @@ title: receipt
 ---
 
 import Specification from '/src/components/docs/Specification'
+import BrowserCompat from '/src/components/docs/BrowserCompat'
+import data from '/src/data/browser-compat-data/receipt.json'
 
 :::danger[Caution - Deprecated Attribute]
 Receipts and its associated `receipt` attribute are deprecated. Consider using the [incomingPayment](../incomingpayment/) attribute instead.
@@ -28,3 +30,7 @@ A base64-encoded STREAM receipt. Returned null if receipts were not enabled on t
 ## Specifications
 
 <Specification anchor='receipt-attribute-deprecated' />
+
+{/* ## Browser compatibility */}
+
+{/* <BrowserCompat json={data} /> */}
