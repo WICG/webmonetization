@@ -1,3 +1,7 @@
+.tableWrapper {
+  overflow-x: auto;
+}
+
 .revShareTable {
   margin-bottom: var(--space-xs);
   width: 100%;
@@ -35,20 +39,7 @@
 
 .weightInput,
 .percentInput {
-  width: 5em;
-}
-
-.nameCell {
-  width: 15em;
-}
-
-.sharePointerInput {
-  width: 20em;
-}
-
-.weightCell,
-.percentCell {
-  width: 6em;
+  width: 4em;
 }
 
 .removeCell.removeCell {
@@ -63,6 +54,7 @@
 
 .removeCell button[disabled] {
   cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .shareInputBtns {
