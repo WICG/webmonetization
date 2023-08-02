@@ -66,11 +66,14 @@ export function ShareList() {
         })}
       </ShareInputContainer>
       <div className={styles.shareInputBtns}>
-        <button onClick={() => setShares([...shares, newShare()])}>
+        <button
+          className={styles.btn}
+          onClick={() => setShares([...shares, newShare()])}
+        >
           Add Share
         </button>
         <button
-          className={styles.importSharesButton}
+          className={`${styles.importSharesButton} ${styles.btn}`}
           onClick={() => setView(ViewStates.Import)}
         >
           Import Existing Revshare

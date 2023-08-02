@@ -29,7 +29,7 @@
   z-index: 5;
   right: 0;
   bottom: 100%;
-  background-color: var(--color-white);
+  background-color: var(--sl-color-white);
   border: 1px solid var(--sl-color-hairline);
   padding: var(--space-2xs);
   border-radius: var(--border-radius);

@@ -1,11 +1,4 @@
 :root {
-  --step--1: clamp(0.8rem, calc(0.7rem + 0.44vw), 0.95rem);
-  --step-0: clamp(1rem, calc(0.88rem + 0.56vw), 1.19rem);
-  --step-1: clamp(1.25rem, calc(1.09rem + 0.69vw), 1.48rem);
-  --step-2: clamp(1.56rem, calc(1.37rem + 0.87vw), 1.86rem);
-  --step-3: clamp(1.95rem, calc(1.71rem + 1.09vw), 2.32rem);
-  --step-4: clamp(2.44rem, calc(2.14rem + 1.36vw), 2.9rem);
-  --step-5: clamp(3.05rem, calc(2.67rem + 1.69vw), 3.62rem);
   --space-3xs: clamp(0.25rem, calc(0.21rem + 0.19vw), 0.31rem);
   --space-2xs: clamp(0.5rem, calc(0.42rem + 0.37vw), 0.63rem);
   --space-xs: clamp(0.75rem, calc(0.67rem + 0.37vw), 0.88rem);
@@ -15,17 +8,6 @@
   --space-xl: clamp(3rem, calc(2.63rem + 1.67vw), 3.56rem);
   --space-2xl: clamp(4rem, calc(3.5rem + 2.22vw), 4.75rem);
   --space-3xl: clamp(6rem, calc(5.25rem + 3.33vw), 7.13rem);
-  --color-white: #fff;
-  --color-secondary: #282c34;
-  --color-secondary-lightest: #343944;
-  --color-gray-500: #bec3c9;
-  --color-black: #000;
-  --color-link: #0080ff;
-  --color-table-border: #cdcdcd;
-  --color-table-bg: #f9f9fb;
-  --color-table-bg-alt: #fff;
-  --color-accent: hsl(234, 90%, 60%);
-  --border-radius: 6px;
 }
 
 /* This is for adding captions to images and diagrams */

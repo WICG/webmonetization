@@ -1,24 +1,22 @@
 .specification.specification table {
-  border: 1px solid var(--color-table-border);
+  border: 1px solid var(--sl-color-hairline-light);
   border-collapse: collapse;
   width: 100%;
   margin-top: var(--space-m);
   display: table;
 }
 
-.specification tr:nth-child(odd) th {
-  background-color: var(--color-table-bg);
+.specification tr:nth-child(even) td {
+  background-color: var(--sl-color-gray-7);
 }
 
 .specification th,
 .specification td {
-  border: 1px solid var(--color-table-border);
-  padding: 0.5rem 0.75rem;
   vertical-align: middle;
 }
 
 .specification th {
-  background: var(--color-table-bg-alt);
+  background-color: var(--sl-color-gray-7);
   font-weight: bold;
   line-height: 1.5;
   text-align: left;

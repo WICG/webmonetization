@@ -40,8 +40,6 @@
     display: flex;
     align-items: center;
     gap: 0.5em;
-    white-space: nowrap;
-    margin-right: auto;
   }
 
   .site-logo img {
@@ -64,6 +62,7 @@
     border: 0;
     background: initial;
     padding: 0.5em 0;
+    margin-left: auto;
   }
 
   .menu-icon {
@@ -80,7 +79,7 @@
     position: absolute;
     height: 4px;
     width: 100%;
-    background: var(--color-secondary-lightest);
+    background: var(--sl-color-gray-4);
     border-radius: 4px;
     opacity: 1;
     left: 0;
@@ -92,29 +91,29 @@
     top: 0;
   }
 
-.menu-icon span:nth-child(2),
-.menu-icon span:nth-child(3) {
-  top: 50%;
-}
+  .menu-icon span:nth-child(2),
+  .menu-icon span:nth-child(3) {
+    top: 50%;
+  }
 
-.menu-icon span:nth-child(4) {
-  top: 100%;
-}
+  .menu-icon span:nth-child(4) {
+    top: 100%;
+  }
 
-.menu-icon.open span:nth-child(1),
-.menu-icon.open span:nth-child(4) {
-  top: 50%;
-  width: 0%;
-  left: 50%;
-}
+  .menu-icon.open span:nth-child(1),
+  .menu-icon.open span:nth-child(4) {
+    top: 50%;
+    width: 0%;
+    left: 50%;
+  }
 
-.menu-icon.open span:nth-child(2) {
-  transform: rotate(45deg);
-}
+  .menu-icon.open span:nth-child(2) {
+    transform: rotate(45deg);
+  }
 
-.menu-icon.open span:nth-child(3) {
-  transform: rotate(-45deg);
-}
+  .menu-icon.open span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
   .nav-link__github {
     margin-left: auto;
     flex: none;
@@ -149,16 +148,12 @@
   }
 
   @media screen and (min-width: 540px) {
-    .site-logo {
-      margin-right: initial;
-    }
-
     .nav-menu {
       display: flex;
       gap: var(--space-s);
       align-items: center;
       list-style-type: none;
-      width: 100%;
+      flex: 1;
     }
 
     .menu-toggle {

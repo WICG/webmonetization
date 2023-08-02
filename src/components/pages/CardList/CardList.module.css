@@ -10,7 +10,7 @@
 }
 
 .card::after {
-  content: "";
+  content: '';
   border-radius: 6px;
   position: absolute;
   top: 0;
@@ -44,7 +44,7 @@
 }
 
 .cardWide.cardWide {
-  color: var(--color-secondary-lightest);
+  color: var(--sl-color-gray-5);
 }
 
 @media screen and (min-width: 900px) {

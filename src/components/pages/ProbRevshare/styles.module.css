@@ -1,23 +1,25 @@
 .tableWrapper {
   overflow-x: auto;
+  margin-bottom: var(--space-xs);
 }
 
 .revShareTable {
-  margin-bottom: var(--space-xs);
-  width: 100%;
   border-collapse: collapse;
   border-spacing: 0px;
+  width: 100%;
+  min-width: 35em;
 }
 
 .revShareTable td,
 .revShareTable th {
   vertical-align: top;
   padding: var(--space-2xs);
-  border: 1px solid var(--color-table-border);
+  border: 1px solid var(--sl-color-gray-2);
 }
 
 .revShareTable th {
   text-align: left;
+  background-color: var(--sl-color-gray-1);
 }
 
 .revShareTable input {
@@ -25,6 +27,7 @@
   border-bottom: 1px solid;
   padding: var(--space-3xs);
   transition: box-shadow 200ms ease-in;
+  width: 100%;
 }
 
 .revShareTable input[disabled] {
@@ -33,17 +36,19 @@
 }
 
 .revShareTable input:focus {
-  box-shadow: 0 -1px 0 var(--color-accent) inset;
+  box-shadow: 0 -1px 0 var(--sl-color-accent) inset;
   outline: none;
 }
 
-.weightInput,
-.percentInput {
+.weightCell,
+.percentCell {
   width: 4em;
 }
 
 .removeCell.removeCell {
   vertical-align: middle;
+  text-align: center;
+  width: 2em;
 }
 
 .removeCell button {
@@ -61,6 +66,22 @@
   margin-bottom: var(--space-m);
 }
 
+.btn {
+  border: 0;
+  background-color: var(--sl-color-accent);
+  color: var(--sl-color-white);
+  border-radius: var(--border-radius);
+  padding: var(--space-2xs) var(--space-xs);
+  transition: background-color 150ms ease-in;
+  font-size: var(--step--1);
+  font-weight: bold;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--sl-color-accent-high);
+}
+
 .importControls {
   margin-top: var(--space-xs);
 }
@@ -75,9 +96,12 @@
 
 .importWrapper textarea {
   width: 100%;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--sl-color-gray-2);
+  padding: var(--space-2xs);
 }
 
 .error {
   font-size: var(--step--1);
-  color: maroon;
+  color: var(--sl-color-red-high);
 }

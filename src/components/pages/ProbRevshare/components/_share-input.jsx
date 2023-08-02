@@ -30,7 +30,6 @@ export function ShareInput({
 
       <td>
         <input
-          className={styles.sharePointerInput}
           type='text'
           value={pointer}
           onChange={(ev) => {
@@ -42,9 +41,8 @@ export function ShareInput({
         </p>
       </td>
 
-      <td className={styles.weightCell}>
+      <td>
         <input
-          className={styles.weightInput}
           type='number'
           min={0}
           step={'any'}
@@ -57,9 +55,8 @@ export function ShareInput({
         {!validateWeight(weight) && 'Weight must be a positive number'}
       </td>
 
-      <td className={styles.percentCell}>
+      <td>
         <input
-          className={styles.percentInput}
           type='number'
           min={0}
           max={100}
@@ -72,7 +69,7 @@ export function ShareInput({
         />
       </td>
 
-      <td className={styles.removeCell} align='right'>
+      <td className={styles.removeCell}>
         <button disabled={removeDisabled} onClick={() => onRemove()}>
           ❌
         </button>
