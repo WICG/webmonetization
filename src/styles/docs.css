@@ -8,6 +8,7 @@
   --space-xl: clamp(3rem, calc(2.63rem + 1.67vw), 3.56rem);
   --space-2xl: clamp(4rem, calc(3.5rem + 2.22vw), 4.75rem);
   --space-3xl: clamp(6rem, calc(5.25rem + 3.33vw), 7.13rem);
+  --sl-line-height: 1.5;
 }
 
 /* This is for adding captions to images and diagrams */
@@ -21,6 +22,16 @@ th {
   text-align: left;
 }
 
+.content.content
+  :not(a, strong, em, del, span, input)
+  + :not(a, strong, em, del, span, input, :where(.not-content *)) {
+  margin-top: 1rem;
+}
+
+li > ul,
+.content.content li + li:not(:where(.not-content *)) {
+  margin-top: 0.25rem;
+}
 /* Can be deleted after all To-Dos are taken care of internally */
 .draft {
   background: #f2dddd;

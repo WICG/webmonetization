@@ -18,7 +18,7 @@
   font-weight: bold;
   text-decoration: underline dotted;
   position: absolute;
-  top: -4px;
+  bottom: 10px;
   right: -12px;
   cursor: pointer;
   user-select: none;
@@ -29,7 +29,7 @@
   z-index: 5;
   right: 0;
   bottom: 100%;
-  background-color: var(--sl-color-white);
+  background-color: var(--sl-color-bg-nav);
   border: 1px solid var(--sl-color-hairline);
   padding: var(--space-2xs);
   border-radius: var(--border-radius);
