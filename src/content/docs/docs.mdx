@@ -11,17 +11,14 @@ import LinkOut from '/src/components/docs/LinkOut'
     - Wording for tips/best practices re: multiple `<link rel=mon>` tags
     - Add tooltips where necessary
     - Add definitions to tooltips
-    - Adjust the line and paragraph spacings
-
 </div>
 
 <div class='draft'>
   ##### Page Updates
 
-    - This page is still a draft and is under review by Alex/Sabine/Mohammed
+    - This page is still a draft and is under review by Alex/Mohammed
     - Update existing tooltips
     - I'd like some kind of image on this page
-
 </div>
 
 Web Monetization aims to simplify the payment experience for website visitors and recipients. It's a proposed standard that:
@@ -44,3 +41,11 @@ A new version of the Web Monetization specification was published in June 2023. 
 - The previous version only used <LinkOut href="https://interledger.org/rfcs/0009-simple-payment-setup-protocol/">SPSP</LinkOut>. The new version uses <LinkOut href="https://docs.openpayments.guide/">Open Payments</LinkOut>.
 - The `<meta>` element is deprecated in favor of the [`<link>`](./references/html-link-rel-monetization/) element.
 - The `<link>` element does not support the shorthand form of a payment pointer (e.g., `$wallet.example/alice`). You must use the endpoint URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`). If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. In most cases, you can simply replace the `$` with `https://`.
+
+## How to get started
+
+:::caution[Payment pointers]
+Payment pointers are a required component of Web Monetization; however, there are **no** payment pointer providers at this time. 
+
+We'll update the site as providers become available. Once available, you can [add Web Monetization to an HTML page](/docs/guides/monetize-page).
+:::

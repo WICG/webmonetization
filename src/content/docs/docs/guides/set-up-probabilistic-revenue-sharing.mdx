@@ -2,7 +2,9 @@
 title: Set up probabilistic revenue sharing
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Update Glitch example's README</li><li>Change all references to $example.com/ to $wallet.example/ on page and in Glitch</li><li>Use transclusion for the blurbs in the Interactive example(s)</li></ul></div>
+import NoPay from '/src/snippets/glitchNoPay.mdx'
+
+<div class="draft"><h5>Page Updates</h5><ul><li>Update Glitch example's README</li><li>Change all references to $example.com/ to $wallet.example/ on page and in Glitch</li></ul></div>
 
 Since a monetization `<link>` element only supports one payment pointer as its `href` value, how do you share a portion of a web monetized page's earnings?
 
@@ -98,7 +100,9 @@ window.addEventListener('load', () => {
 
 ### Interactive example
 
-This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a pointer and it will show you the results. The example doesn't require you to have Web Monetization enabled in your browser. No real payments are occurring.
+This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a pointer and it will show you the results. 
+
+<NoPay />
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 

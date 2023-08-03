@@ -2,6 +2,7 @@
 title: 'GlobalEventHandlers: onmonetization'
 ---
 
+import Tooltip from '/src/components/docs/Tooltip'
 import Specification from '/src/components/docs/Specification'
 import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/onmonetization.json'
@@ -10,12 +11,11 @@ import data from '/src/data/browser-compat-data/onmonetization.json'
   <h5>Page Updates</h5>
   <ul>
     <li>Add any appropriate links</li>
-    <li>Check tooltip definition</li>
     <li>Verify example</li>
   </ul>
 </div>
 
-The `onmonetization` attribute of the <span data-text="Describes event handlers common to several interfaces like HTMLElement, Document, or Window" class="tooltip">`GlobalEventHandlers` mixin</span> is used to process `monetization` events sent to the `Window`.
+The `onmonetization` attribute of the <Tooltip content='Describes event handlers common to several interfaces like HTMLElement, Document, or Window' client:load><span>`GlobalEventHandlers`</span></Tooltip> mixin is used to process `monetization` events sent to the `Window`.
 
 `onmonetization` can be applied to any element and is used by the user agent (such as a web browser or WM agent) to notify that some `<link>` element has been monetized.
 

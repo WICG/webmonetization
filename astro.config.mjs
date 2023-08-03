@@ -36,10 +36,6 @@ export default defineConfig({
               link: '/docs/',
             },
             {
-              label: 'Add Web Monetization to a page',
-              link: '/docs/guides/monetize-page',
-            },
-            {
               label: 'Sending payments',
               link: '/docs/intro/sending-payments',
             },
@@ -65,7 +61,7 @@ export default defineConfig({
               label: 'Web Monetization API',
               items: [
                 {
-                  label: 'HTML <link> rel: monetization',
+                  label: 'HTML <link> rel=monetization',
                   link: '/docs/references/html-link-rel-monetization',
                 },
                 {
@@ -175,24 +171,30 @@ export default defineConfig({
               link: '/docs/resources/libraries',
             },
             {
-              label: 'Interledger',
-              link: 'https://interledger.org/',
-            },
-            {
-              label: 'Open Payments API',
-              link: 'https://docs.openpayments.guide/',
-            },
-            {
-              label: 'Payment Handler API',
-              link: 'https://w3c.github.io/payment-handler/',
-            },
-            {
-              label: 'Payment Pointers',
-              link: 'https://paymentpointers.org/',
-            },
-            {
-              label: 'Payment Request API',
-              link: 'https://www.w3.org/TR/payment-request/',
+              label: 'External resources',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Interledger',
+                  link: 'https://interledger.org/',
+                },
+                {
+                  label: 'Open Payments API',
+                  link: 'https://docs.openpayments.guide/',
+                },
+                {
+                  label: 'Payment Handler API',
+                  link: 'https://w3c.github.io/payment-handler/',
+                },
+                {
+                  label: 'Payment Pointers',
+                  link: 'https://paymentpointers.org/',
+                },
+                {
+                  label: 'Payment Request API',
+                  link: 'https://www.w3.org/TR/payment-request/',
+                },
+              ],
             },
           ],
         },

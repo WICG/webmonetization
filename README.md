@@ -129,7 +129,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
 
    Use this component if you need to add an external link to your content that opens in a new tab. This component adds the necessary attributes for external links and adds an external link indicator icon to the end of the link content. The icon can be turned off, if necessary.
 
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the Tooltip component like so:
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the LinkOut component like so:
 
    ```
    import LinkOut from '/src/components/docs/LinkOut'
@@ -138,20 +138,20 @@ We have extracted some of the commonly repeated patterns within the documentatio
    Use the `<LinkOut>` component within your content like so:
 
    ```
-   <LinkOut href="https://openpayments.guide/">OpenPayments API</LinkOut>.
+   <LinkOut href="https://openpayments.guide/">OpenPayments API</LinkOut>
    ```
 
    If you do not want the external link icon to appear, you can set the `withIcon` prop to `false` like so:
 
    ```
-   <LinkOut href="https://openpayments.guide/" withIcon={false}>OpenPayments API</LinkOut>.
+   <LinkOut href="https://openpayments.guide/" withIcon={false}>OpenPayments API</LinkOut>
    ```
 
 5. `LargeImg` component
 
    Use this component if you have a diagram or image that is much larger than our available space and you would like users to view the full image in another tab. This adds a link to "View full image" with an external link indicator on the bottom right corner under the image. It takes in a `src` and `alt`, just like a normal `img` element.
 
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the Tooltip component like so:
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the LargeImg component like so:
 
    ```
    import LargeImg from '/src/components/docs/LargeImg'
@@ -160,7 +160,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
    Use the `<LargeImg>` component within your content like so:
 
    ```
-   <LargeImg src="/img/OMG_A_GIGANTIC_IMG.png" alt="A really large diagram" />.
+   <LargeImg src="/img/OMG_A_GIGANTIC_IMG.png" alt="A really large diagram" />
    ```
 
 6. `Hidden` component

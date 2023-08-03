@@ -2,7 +2,10 @@
 title: Add a streaming payments counter
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>This page needs a good review; the ideas of streaming, micropayments, an what OP supports are a bit muddled</li><li>Use transclusion for the blurbs in the Interactive example(s)</li><li>Update the Glitch example's README</li></ul></div>
+import NoPay from '/src/snippets/glitchNoPay.mdx'
+import ViewAs from '/src/snippets/glitchViewAs.mdx'
+
+<div class="draft"><h5>Page Updates</h5><ul><li>This page needs a good review; the ideas of streaming, micropayments, an what OP supports are a bit muddled</li><li>Update the Glitch example's README</li></ul></div>
 
 Web Monetization allows you to know exactly how much you've received from a given visitor. The amount updates in real time as more payments come in during the session.
 
@@ -92,9 +95,11 @@ document.getElementById('total').innerText = total.toFixed(9)
 
 ## Interactive example
 
-This example simulates showing a visitor how much you're earning based off their visit. The example doesn't require you to have Web Monetization enabled in your browser and no real payments are occurring.
+This example simulates showing a visitor how much you're earning based off their visit. 
 
-Click **View as Web Monetized/non-Web Monetized visitor** to toggle your monetization state. If source files appear instead of the example, click **View App** in the bottom-right corner.
+<NoPay />
+
+<ViewAs />
 
 <iframe
   src="https://glitch.com/embed/#!/embed/wm2-count-revenue?path=README.md&previewSize=100"

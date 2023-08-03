@@ -2,7 +2,10 @@
 title: Provide exclusive content
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>Update the Glitch example's README</li><li>Use transclusion for the blurbs in the Interactive example(s)</li></ul></div>
+import NoPay from '/src/snippets/glitchNoPay.mdx'
+import ViewAs from '/src/snippets/glitchViewAs.mdx'
+
+<div class="draft"><h5>Page Updates</h5><ul><li>Update the Glitch example's README</li></ul></div>
 
 Give your paying visitors access to exclusive content when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your exclusive content will only appear to paying visitors.
 
@@ -62,9 +65,11 @@ document.getElementById('exclusive').classList.remove('hidden')})
 
 ### Interactive example
 
-This example simulates hiding and showing exclusive content based on a visitor's Web Monetization state. The example doesn't require you to have Web Monetization enabled in your browser and no real payments are occurring.
+This example simulates hiding and showing exclusive content based on a visitor's Web Monetization state. 
 
-Click **View as Web Monetized/non-Web Monetized visitor** to toggle your monetization state. If source files appear instead of the example, click **View App** in the bottom-right corner.
+<NoPay />
+
+<ViewAs />
 
 <iframe
   src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-basic?path=README.md&previewSize=100"
@@ -178,9 +183,9 @@ if (window.MonetizationEvent) {
 
 This example simulates hiding and showing exclusive content based on a visitor's Web Monetization state. Web monetized visitors will see exclusive content while non-web monetized users will not. Conversely, non-web monetized users will see the message, "Please install a Web Monetization extension to support me!".
 
-The example doesn't require you to have Web Monetization enabled in your browser and no real payments are occurring.
+<NoPay />
 
-Click **View as Web Monetized/non-Web Monetized visitor** to toggle your monetization state. If source files appear instead of the example, click **View App** in the bottom-right corner.
+<ViewAs />
 
 <iframe
   src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-advanced?path=README.md&previewSize=100"
