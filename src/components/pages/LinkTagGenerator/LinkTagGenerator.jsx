@@ -10,10 +10,18 @@ export default function LinkTagGenerator() {
   const isValidPointer = (pointerInput) => {
     try {
       const url = new URL(pointerInput)
+      if (url.pathname === '/') {
+        return `${url.href}.well-known/pay`
+      }
       return url.href
     } catch (err) {
       if (pointerInput.charAt(0) === '$') {
-        return pointerInput.replace('$', 'https://')
+        const parsedPointer = pointerInput.replace('$', 'https://')
+        const pointerUrl = new URL(parsedPointer)
+        if (pointerUrl.pathname === '/') {
+          return `${pointerUrl.href}.well-known/pay`
+        }
+        return pointerUrl.href
       } else {
         setInvalidUrl(true)
         return '$YourPaymentPointer'
