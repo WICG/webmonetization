@@ -11,13 +11,7 @@
   --sl-line-height: 1.5;
 }
 
-/* This is for adding captions to images and diagrams */
-div.caption {
-  font-size: small;
-  font-weight: 600;
-}
-
-/* Align table <th> to left */
+/* Override Starlight default styling */
 th {
   text-align: left;
 }
@@ -32,6 +26,13 @@ li > ul,
 .content.content li + li:not(:where(.not-content *)) {
   margin-top: 0.25rem;
 }
+
+/* This is for adding captions to images and diagrams */
+div.caption {
+  font-size: small;
+  font-weight: 600;
+}
+
 /* Can be deleted after all To-Dos are taken care of internally */
 .draft {
   background: #f2dddd;

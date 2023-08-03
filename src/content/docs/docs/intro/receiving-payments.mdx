@@ -2,7 +2,17 @@
 title: Receiving payments
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Add any appropriate links</li></ul></div>
+import LinkOut from '/src/components/docs/LinkOut'
+
+<div class='draft'>
+
+##### Page Updates
+
+- This page is still a draft and is under review by
+  Alex/Sabine/Mohammed
+- Add any appropriate links
+
+</div>
 
 The two key components of receiving a Web Monetization (WM) payment are:
 
@@ -31,7 +41,7 @@ The OP specification defines standards for **_access_** to accounts. When grante
 
 ### Payment pointers
 
-Access to an OP-enabled account, whether for sending or receiving, always starts with a <a href="https://paymentpointers.org" target="_blank">payment pointer</a>. A payment pointer is a unique, standardized identifier for an account that always resolves to an HTTPS URL.
+Access to an OP-enabled account, whether for sending or receiving, always starts with a <LinkOut href="https://paymentpointers.org">payment pointer</LinkOut>. A payment pointer is a unique, standardized identifier for an account that always resolves to an HTTPS URL.
 
 When a user establishes an account with a WM receiver, the receiver assigns the account a payment pointer. The payment pointer allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
 
@@ -64,4 +74,4 @@ For more information, visit the [Web Monetization flow](/docs/intro/web-monetiza
 
 Web Monetization does not enable a site to specify the amount it wants to receive. The amount, frequency, and other payment parameters are controlled by the web monetized visitor, through their relationship with their WM provider.
 
-If a site should specify a price, then integration with the W3C’s <a href="https://www.w3.org/TR/payment-request" target="_blank">Payment Request API</a> may be a better alternative to Web Monetization. The Payment Request API allows sites to ask to be paid a certain amount, then the browser (typically with the user’s approval) pays that amount.
+If a site should specify a price, then integration with the W3C’s <LinkOut href="https://www.w3.org/TR/payment-request">Payment Request API</LinkOut> may be a better alternative to Web Monetization. The Payment Request API allows sites to ask to be paid a certain amount, then the browser (typically with the user’s approval) pays that amount.

@@ -5,17 +5,18 @@ title: 'Content-Security-Policy: monetization-src'
 import Specification from '/src/components/docs/Specification'
 import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/csp-monetization-src.json'
+import LinkOut from '/src/components/docs/LinkOut'
 
 <div class='draft'>
-  <h5>Page Updates</h5>
-  <ul>
-    <li>Add any appropriate links</li>
-    <li>Add browser compat if appropriate</li>
-    <li>Verify example</li>
-  </ul>
+  ##### Page Updates
+  
+  - Add any appropriate links
+  - Add browser compat if appropriate
+  - Verify example
+
 </div>
 
-The `monetization-src` directive within the HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> (CSP) allows you to restrict the URLs from which a payment pointer can be loaded.
+The `monetization-src` directive within the HTTP <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" >Content-Security-Policy</LinkOut> (CSP) allows you to restrict the URLs from which a payment pointer can be loaded.
 
 <table>
   <tbody>
@@ -30,12 +31,9 @@ The `monetization-src` directive within the HTTP <a href="https://developer.mozi
         <strong>Directive type</strong>
       </td>
       <td>
-        <a
-          href='https://developer.mozilla.org/en-US/docs/Glossary/Fetch_directive'
-          target='_blank'
-        >
+        <LinkOut href='https://developer.mozilla.org/en-US/docs/Glossary/Fetch_directive'>
           Fetch directive
-        </a>
+        </LinkOut>
       </td>
     </tr>
   </tbody>
@@ -52,7 +50,7 @@ Content-Security-Policy: monetization-src <source>, <source>;
 
 ### Sources
 
-`<source>` can be any one of the values listed in <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#sources" target="_blank">CSP Source Values</a>.
+`<source>` can be any one of the values listed in <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/Sources#sources">CSP Source Values</LinkOut>.
 
 ## Example
 

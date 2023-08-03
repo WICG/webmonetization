@@ -3,6 +3,7 @@ title: Intro to Web Monetization
 ---
 
 import Tooltip from '/src/components/docs/Tooltip'
+import LinkOut from '/src/components/docs/LinkOut'
 
 <div class='draft'>
   ##### Global Updates
@@ -34,12 +35,12 @@ Web Monetization aims to simplify the payment experience for website visitors an
 
 It's important to understand that Web Monetization (WM) doesn't allow a website to specify a payment amount or currency. It only allows the site to tell the browser it can accept payments. With the help of a <Tooltip content='there is a lot of text to display should there be a character limit for this' client:load><a href="./resources/glossary#web-monetization-provider">Web Monetization provider</a></Tooltip>, the site's visitor decides whether to make a payment, how much and how often to pay, and in which currency. The recipient's <Tooltip content='there is a lot of text to display should there be a character limit for this' client:load><a href="./resources/glossary#web-monetization-receiver">Web Monetization receiver</a></Tooltip> can then exchange the currency of incoming payments based on what the recipient wants to receive. This <Tooltip content='there is a lot of text to display should there be a character limit for this' client:load><span>flexibility</span></Tooltip> allows both parties to choose the monetization method that best suits their needs.
 
-It's also important to note that Web Monetization doesn't process or settle payments. Its role is to help coordinate payments. At each end of Web Monetization is an account that's implemented the <a href="https://openpayments.guide" target="_blank">Open Payments APIs</a>. The WM provider supplies the site's visitor with a sending account. In some cases, the visitor could even act as their own WM provider. The WM receiver supplies the recipient with a receiving account. Web Monetization helps obtain the account-level authorizations and instructions necessary to send a payment. Payment processing and settlement then occurs between the accounts, outside of Web Monetization.
+It's also important to note that Web Monetization doesn't process or settle payments. Its role is to help coordinate payments. At each end of Web Monetization is an account that's implemented the <LinkOut href="https://openpayments.guide">Open Payments APIs</LinkOut>. The WM provider supplies the site's visitor with a sending account. In some cases, the visitor could even act as their own WM provider. The WM receiver supplies the recipient with a receiving account. Web Monetization helps obtain the account-level authorizations and instructions necessary to send a payment. Payment processing and settlement then occurs between the accounts, outside of Web Monetization.
 
 ## Prior specification version
 
 A new version of the Web Monetization specification was published in June 2023. Users of the previous version should be aware of the following:
 
-- The previous version only used <a href="https://interledger.org/rfcs/0009-simple-payment-setup-protocol/" target="_blank">SPSP</a>. The new version uses <a href="https://docs.openpayments.guide/" target="_blank">Open Payments</a>.
+- The previous version only used <LinkOut href="https://interledger.org/rfcs/0009-simple-payment-setup-protocol/">SPSP</LinkOut>. The new version uses <LinkOut href="https://docs.openpayments.guide/">Open Payments</LinkOut>.
 - The `<meta>` element is deprecated in favor of the [`<link>`](./references/html-link-rel-monetization/) element.
-- The `<link>` element does not support the shorthand form of a payment pointer (e.g., `$wallet.example/alice`). You must use the endpoint URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`). If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <a href="https://paymentpointers.org" target="_blank">paymentpointers.org</a>. In most cases, you can simply replace the `$` with `https://`.
+- The `<link>` element does not support the shorthand form of a payment pointer (e.g., `$wallet.example/alice`). You must use the endpoint URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`). If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. In most cases, you can simply replace the `$` with `https://`.

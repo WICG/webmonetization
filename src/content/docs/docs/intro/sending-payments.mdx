@@ -2,7 +2,17 @@
 title: Sending payments
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex/Sabine/Mohammed</li><li>Add any appropriate links</li></ul></div>
+import LinkOut from '/src/components/docs/LinkOut'
+
+<div class='draft'>
+
+##### Page Updates
+
+- This page is still a draft and is under review by
+  Alex/Sabine/Mohammed
+- Add any appropriate links
+
+</div>
 
 The three key components of sending a Web Monetization (WM) payment are:
 
@@ -37,13 +47,13 @@ Web Monetization works with two complementary technologies that enable open and 
 
 ### Open Payments
 
-Accounts supplied by both WM providers and WM receivers must implement the <a href="https://openpayments.guide" target="_blank">Open Payments (OP) specification</a>.
+Accounts supplied by both WM providers and WM receivers must implement the <LinkOut href="https://openpayments.guide">Open Payments (OP) specification</LinkOut>.
 
 The OP specification defines standards for **_access_** to accounts. When granted access, applications and other entities can integrate payments into their feature sets by connecting to their users’ accounts. The ability to then **_execute_** payments between OP-enabled accounts relies on the availability of a common payment rail between the accounts.
 
 ### Payment pointers
 
-Access to an OP-enabled account, whether for sending or receiving, always starts with a <a href="https://paymentpointers.org" target="_blank">payment pointer</a>. A payment pointer is a standardized identifier for a payment account and always resolves to an HTTPS URL.
+Access to an OP-enabled account, whether for sending or receiving, always starts with a <LinkOut href="https://paymentpointers.org">payment pointer</LinkOut>. A payment pointer is a standardized identifier for a payment account and always resolves to an HTTPS URL.
 
 A payment pointer allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
 

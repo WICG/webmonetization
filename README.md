@@ -125,7 +125,29 @@ We have extracted some of the commonly repeated patterns within the documentatio
    <Tooltip content='THIS CONTENT IS DISPLAYED IN THE TOOLTIP UPON INTERACTION' client:load><a href="/URL">text that you are trying to explain</a></Tooltip>.
    ```
 
-4. `Hidden` component
+4. `LinkOut` component
+
+   Use this component if you need to add an external link to your content that opens in a new tab. This component adds the necessary attributes for external links and adds an external link indicator icon to the end of the link content. The icon can be turned off, if necessary.
+
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the Tooltip component like so:
+
+   ```
+   import LinkOut from '/src/components/docs/LinkOut'
+   ```
+
+   Use the `<LinkOut>` component within your content like so:
+
+   ```
+   <LinkOut href="https://openpayments.guide/">OpenPayments API</LinkOut>.
+   ```
+
+   If you do not want the external link icon to appear, you can set the `withIcon` prop to `false` like so:
+
+   ```
+   <LinkOut href="https://openpayments.guide/" withIcon={false}>OpenPayments API</LinkOut>.
+   ```
+
+5. `Hidden` component
 
    Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
 

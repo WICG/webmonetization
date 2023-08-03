@@ -3,25 +3,27 @@ title: incomingPayment
 ---
 
 import Specification from '/src/components/docs/Specification'
+import LinkOut from '/src/components/docs/LinkOut'
 
 <div class='draft'>
-  <h5>Page Updates</h5>
-  <ul>
-    <li>Add any appropriate links</li>
-    <li>Add browser compat if appropriate - This page doesn't have a corresponding "incomingPayment.json". The published docs call receipts.json. Need to verify whether the info is the same, then make a specific file for incomingPayment.</li>
-    <li>Verify example</li>
-  </ul>
+  ##### Page Updates
+
+- Add any appropriate links
+- Add browser compat if appropriate
+- This page doesn't have a corresponding "incomingPayment.json". The published docs call receipts.json. Need to verify whether the info is the same, then make a specific file for incomingPayment.
+- Verify example
+
 </div>
 
 :::tip[Experimental Attribute]
-`incomingPayment` is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental" target="_blank">experimental technology</a>. Check the [Browser compatibility table](#browser-compatibility) before using.
+`incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>. Check the [Browser compatibility table](#browser-compatibility) before using.
 :::
 
 The `MonetizationEvent` `incomingPayment` attribute returns a URL that represents an incoming payment at the monetization receiver.
 
 ## Value
 
-A string that represents a URL that can be used to verify payment at the monetization receiver via the <a href="https://docs.openpayments.guide/reference/get-incoming-payment" target="_blank">Open Payments API standard</a>. The returned value is the value it was initialized with.
+A string that represents a URL that can be used to verify payment at the monetization receiver via the <LinkOut href="https://docs.openpayments.guide/reference/get-incoming-payment">Open Payments API standard</LinkOut>. The returned value is the value it was initialized with.
 
 ## Example
 
