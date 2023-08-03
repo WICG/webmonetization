@@ -147,7 +147,23 @@ We have extracted some of the commonly repeated patterns within the documentatio
    <LinkOut href="https://openpayments.guide/" withIcon={false}>OpenPayments API</LinkOut>.
    ```
 
-5. `Hidden` component
+5. `LargeImg` component
+
+   Use this component if you have a diagram or image that is much larger than our available space and you would like users to view the full image in another tab. This adds a link to "View full image" with an external link indicator on the bottom right corner under the image. It takes in a `src` and `alt`, just like a normal `img` element.
+
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the Tooltip component like so:
+
+   ```
+   import LargeImg from '/src/components/docs/LargeImg'
+   ```
+
+   Use the `<LargeImg>` component within your content like so:
+
+   ```
+   <LargeImg src="/img/OMG_A_GIGANTIC_IMG.png" alt="A really large diagram" />.
+   ```
+
+6. `Hidden` component
 
    Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
 
