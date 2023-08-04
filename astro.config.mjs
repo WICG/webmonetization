@@ -69,11 +69,11 @@ export default defineConfig({
                   link: '/docs/references/monetizationcurrencyamount',
                 },
                 {
-                  label: 'MonetizationEvent',
+                  label: 'Monetization events',
                   collapsed: true,
                   items: [
                     {
-                      label: 'Monetization events',
+                      label: 'MonetizationEvent',
                       link: '/docs/references/monetizationevent',
                     },
                     {

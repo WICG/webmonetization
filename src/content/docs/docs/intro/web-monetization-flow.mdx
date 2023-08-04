@@ -26,7 +26,7 @@ This section describes the flow required between the key players to start the mo
 1. The WM agent checks each page for the monetization `<link>` element as the user browses.
 2. When a monetization `<link>` element is found, the WM agent issues a request to the associated payment pointer to obtain, among other things, the URL to the WM receiver’s authorization server.
 3. The WM agent sends a grant request to the authorization server and receives an access token in response.
-4. The WM agent creates an incoming payment for the session (e.g., the open browser tab/window) by using the access token and other details obtained during Steps 2 and 3 and sending an incoming payment request to the WM receiver.
+4. The WM agent creates an incoming payment for the session (e.g., the open browser tab/window) by using the access token and other details obtained during the previous steps and sending an incoming payment request to the WM receiver.
 5. The WM receiver responds with unique payment details needed for addressing the payment to the recipient.
 6. The WM agent sends an outgoing payment request to the WM provider. The request includes the payment details previously acquired, as well as the payment pointer of the sending account.
 
