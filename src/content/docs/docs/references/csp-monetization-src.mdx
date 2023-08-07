@@ -10,7 +10,6 @@ import LinkOut from '/src/components/docs/LinkOut'
 <div class='draft'>
   ##### Page Updates
   
-  - Add any appropriate links
   - Verify example
 
 </div>
@@ -40,7 +39,7 @@ The `monetization-src` directive within the HTTP <LinkOut href="https://develope
 
 ## Syntax
 
-The basic syntax is as follows, where `source` is a serialized source list. One or more sources can be allowed for the `monetization-src` policy:
+The basic syntax is as follows, where `source` is a serialized source list. More than one source can be allowed for the `monetization-src` policy:
 
 ```http
 Content-Security-Policy: monetization-src <source>;
@@ -60,13 +59,13 @@ A website administrator wants to restrict the URLs from which a payment pointer 
 Given this CSP header:
 
 ```http
-Content-Security-Policy: monetization-src https://www.example.com
+Content-Security-Policy: monetization-src https://www.wallet.example
 ```
 
 Fetches for the following monetization source will return a network error and not load, as the URL does not match the URL defined in the CSP source list.
 
 ```html
-<link rel="monetization" href="https://example.org/payment-pointer" />
+<link rel="monetization" href="https://example.test/payment-pointer" />
 ```
 
 ## Specifications

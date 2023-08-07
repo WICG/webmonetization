@@ -3,27 +3,27 @@ title: incomingPayment
 ---
 
 import Specification from '/src/components/docs/Specification'
+import BrowserCompat from '/src/components/docs/BrowserCompat'
+import data from '/src/data/browser-compat-data/incomingPayment.json'
 import LinkOut from '/src/components/docs/LinkOut'
+import Hidden from '/src/components/docs/Hidden'
 
 <div class='draft'>
   ##### Page Updates
 
-- Add any appropriate links
-- Add browser compat if appropriate
-- This page doesn't have a corresponding "incomingPayment.json". The published docs call receipts.json. Need to verify whether the info is the same, then make a specific file for incomingPayment.
 - Verify example
 
 </div>
 
 :::tip[Experimental Attribute]
-`incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>. Check the [Browser compatibility table](#browser-compatibility) before using.
+`incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>. <Hidden>Check the [Browser compatibility table](#browser-compatibility) before using.</Hidden>
 :::
 
-The `MonetizationEvent` `incomingPayment` attribute returns a URL that represents an incoming payment at the monetization receiver.
+The `MonetizationEvent` `incomingPayment` attribute returns a URL that represents an incoming payment at the Web Monetization receiver.
 
 ## Value
 
-A string that represents a URL that can be used to verify payment at the monetization receiver via the <LinkOut href="https://docs.openpayments.guide/reference/get-incoming-payment">Open Payments API standard</LinkOut>. The returned value is the value it was initialized with.
+A string that represents a URL that can be used to verify payment at the Web Monetization receiver via the <LinkOut href="https://docs.openpayments.guide/reference/get-incoming-payment">Open Payments API standard</LinkOut>. The returned value is the value it was initialized with.
 
 ## Example
 
@@ -57,3 +57,7 @@ async function verifyPayment(event) {
 ## Specifications
 
 <Specification anchor='incomingpayment-attribute' />
+
+{/* ## Browser compatibility */}
+
+{/* <BrowserCompat json={data} /> */}

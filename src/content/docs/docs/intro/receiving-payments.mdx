@@ -8,16 +8,11 @@ import LinkOut from '/src/components/docs/LinkOut'
 
 ##### Page Updates
 
-- This page is still a draft and is under review by
-  Alex/Mohammed
-- Add any appropriate links
+- This page is still a draft and is under review by Alex
 
 </div>
 
-The two key components of receiving a Web Monetization (WM) payment are:
-
-- WM receivers
-- Open Payments-enabled accounts
+Two key components of receiving a Web Monetization (WM) payment are WM receivers and Open Payments-enabled accounts.
 
 :::caution
 This page describes the role of WM receivers within the Web Monetization ecosystem. It does not explain how to become a receiver.
@@ -25,7 +20,7 @@ This page describes the role of WM receivers within the Web Monetization ecosyst
 
 ## WM receivers
 
-A WM receiver is an entity that provides an Open Payments-enabled account into which payments can be received. Users interested in receiving Web Monetization payments can establish a relationship with a WM receiver of their choice by signing up for an account.
+A WM receiver is an entity that provides an Open Payments-enabled account into which payments can be received. Individuals interested in receiving Web Monetization payments can establish a relationship with a WM receiver of their choice by signing up for an account.
 
 We anticipate most WM receivers to offer some form of digital wallet to their users. Many digital wallet providers, not just WM receivers, are often required to verify their users’ identities before allowing funds to be withdrawn.
 
@@ -41,9 +36,9 @@ The OP specification defines standards for **_access_** to accounts. When grante
 
 ### Payment pointers
 
-Access to an OP-enabled account, whether for sending or receiving, always starts with a <LinkOut href="https://paymentpointers.org">payment pointer</LinkOut>. A payment pointer is a unique, standardized identifier for an account that always resolves to an HTTPS URL.
+Access to an OP-enabled account, whether for sending or receiving, always starts with a <LinkOut href="https://paymentpointers.org">payment pointer</LinkOut>. A payment pointer is a unique, standardized identifier for a payment account that always resolves to an HTTPS URL.
 
-When a user establishes an account with a WM receiver, the receiver assigns the account a payment pointer. The payment pointer allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
+When an individual establishes an account with a WM receiver, the receiver assigns the account a payment pointer. The payment pointer allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
 
 A payment pointer is required to web monetize a page and must be added as the `href` value within the monetization `<link>` element.
 
@@ -63,11 +58,11 @@ We'll update the site as providers become available. Once available, you can [ad
 
 ## Receiving a payment
 
-When a user visits a web monetized page, the user’s WM agent detects the monetization `<link>` element and associated payment pointer. The WM agent sends a request to the payment pointer, which is the beginning of a series of API calls needed to:
+When an individual visits a web monetized page, their WM agent detects the monetization `<link>` element and associated payment pointer. The WM agent sends a request to the payment pointer, which is the beginning of a series of API calls needed to:
 
 1. Get the details about the underlying receiving account
 2. Receive permission to send a payment to the account
-3. Create a payment session within the user’s browser tab/window
+3. Create a monetization session within the site visitor's browser tab/window
 4. Create the outgoing payment request
 
 When the payment is successful, the funds are deducted from the WM provider’s account and deposited into the WM receiver’s account.

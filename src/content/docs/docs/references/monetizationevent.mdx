@@ -6,13 +6,6 @@ import Specification from '/src/components/docs/Specification'
 import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/monetizationevent.json'
 
-<div class='draft'>
-  <h5>Page Updates</h5>
-  <ul>
-    <li>Add any appropriate links</li>
-  </ul>
-</div>
-
 The `MonetizationEvent` DOM events provide information about payments sent to WM receivers.
 
 The `monetization` event fires on a `<link rel="monetization">` element when the WM agent successfully creates an outgoing payment. There’s no guarantee that any payments will follow or, if they do, how often or how large the payments will be.
@@ -43,7 +36,7 @@ By listening for `monetization` events, you can use the returned details to veri
 ## Current attributes
 
 - [amountSent](/docs/references/attributes/amountsent) - A dictionary containing the amount and currency code of the sent payment
-- [incomingPayment](/docs/references/attributes/incomingpayment) - returns incoming payment URL
+- [incomingPayment](/docs/references/attributes/incomingpayment) - Returns the incoming payment URL
 - [paymentPointer](/docs/references/attributes/paymentpointer) - A URL representing the payment pointer endpoint
 
 ## Deprecated attributes
