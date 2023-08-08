@@ -65,6 +65,20 @@
   font-size: var(--sl-text-body);
 }
 
+.container.container {
+  max-width: 100%;
+}
+
+@media (min-width: 72rem) {
+  [data-has-sidebar] .main-frame .main-pane {
+    --sl-sidebar-width: 14rem;
+  }
+
+  .main-frame .right-sidebar-container {
+    --sl-sidebar-width: 14rem;
+  }
+}
+
 .container > h1:first-of-type {
   width: max-content;
 }
@@ -81,11 +95,12 @@
 }
 
 .content-panel:first-of-type {
-  padding-bottom: 0;
+  padding: var(--space-m) var(--space-l) 0 var(--space-l);
 }
 
 .content-panel + .content-panel {
   border-top: 0;
+  padding: var(--space-m) var(--space-l);
 }
 
 .content.content
