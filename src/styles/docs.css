@@ -1,30 +1,195 @@
-:root {
-  --space-3xs: clamp(0.25rem, calc(0.21rem + 0.19vw), 0.31rem);
-  --space-2xs: clamp(0.5rem, calc(0.42rem + 0.37vw), 0.63rem);
-  --space-xs: clamp(0.75rem, calc(0.67rem + 0.37vw), 0.88rem);
-  --space-s: clamp(1rem, calc(0.88rem + 0.56vw), 1.19rem);
-  --space-m: clamp(1.5rem, calc(1.29rem + 0.93vw), 1.81rem);
-  --space-l: clamp(2rem, calc(1.75rem + 1.11vw), 2.38rem);
-  --space-xl: clamp(3rem, calc(2.63rem + 1.67vw), 3.56rem);
-  --space-2xl: clamp(4rem, calc(3.5rem + 2.22vw), 4.75rem);
-  --space-3xl: clamp(6rem, calc(5.25rem + 3.33vw), 7.13rem);
+:root,
+::backdrop {
+  /* Colors (dark mode) */
+  --sl-hue-accent: 327;
+  --sl-color-accent-low: hsl(var(--sl-hue-accent), 60%, 15%); /* darkest */
+  --sl-color-accent: hsl(var(--sl-hue-accent), 90%, 60%);
+  --sl-color-accent-high: hsl(var(--sl-hue-accent), 100%, 87%); /* lightest */
+  --color-accent-mid: hsl(324, 100%, 44%);
+  --color-accent-secondary: hsl(176, 92%, 25%);
+
+  /* Text size and line height */
+  --step--2: clamp(0.78rem, calc(0.79rem + -0.01vw), 0.79rem);
+  --step--1: clamp(0.89rem, calc(0.87rem + 0.07vw), 0.94rem);
+  --step-0: clamp(1rem, calc(0.96rem + 0.19vw), 1.13rem);
+  --step-1: clamp(1.13rem, calc(1.05rem + 0.33vw), 1.35rem);
+  --step-2: clamp(1.27rem, calc(1.15rem + 0.53vw), 1.62rem);
+  --step-3: clamp(1.42rem, calc(1.25rem + 0.77vw), 1.94rem);
+  --step-4: clamp(1.6rem, calc(1.36rem + 1.08vw), 2.33rem);
+  --step-5: clamp(1.8rem, calc(1.47rem + 1.48vw), 2.8rem);
+  --space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
+  --space-2xs: clamp(0.5rem, calc(0.48rem + 0.09vw), 0.56rem);
+  --space-xs: clamp(0.75rem, calc(0.71rem + 0.19vw), 0.88rem);
+  --space-s: clamp(1rem, calc(0.96rem + 0.19vw), 1.13rem);
+  --space-m: clamp(1.5rem, calc(1.44rem + 0.28vw), 1.69rem);
+  --space-l: clamp(2rem, calc(1.92rem + 0.37vw), 2.25rem);
+  --space-xl: clamp(3rem, calc(2.88rem + 0.56vw), 3.38rem);
+  --space-2xl: clamp(4rem, calc(3.83rem + 0.74vw), 4.5rem);
+  --space-3xl: clamp(6rem, calc(5.75rem + 1.11vw), 6.75rem);
+
+  --sl-text-body: var(--step-0);
+  --sl-text-body-sm: var(--step--1);
+  --sl-text-code: var(--step--1);
+  --sl-text-code-sm: var(--step--1);
+  --sl-text-h1: var(--step-3);
+  --sl-text-h2: var(--step-2);
+  --sl-text-h3: var(--step-1);
+  --sl-text-h4: var(--step-1);
+  --sl-text-h5: var(--step-1);
+
   --sl-line-height: 1.5;
+  --sl-line-height-headings: 1.2;
+
+  --sl-nav-pad-x: var(--space-s);
+
+  --border-radius: 6px;
+}
+
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+  /* Colours (light mode) */
+  --sl-color-accent-high: hsl(var(--sl-hue-accent), 80%, 30%); /* darkest */
+  --sl-color-accent: hsl(var(--sl-hue-accent), 100%, 40%);
+  --sl-color-accent-low: hsl(var(--sl-hue-accent), 100%, 97%); /* lightest */
+  --color-accent-mid: hsl(324, 100%, 44%);
+  --color-accent-secondary: hsl(165, 90%, 78%);
 }
 
 /* Override Starlight default styling */
+:focus-visible {
+  outline-color: var(--color-accent-mid);
+  border-radius: var(--border-radius);
+}
+
+.main-frame {
+  font-size: var(--sl-text-body);
+}
+
+.container > h1:first-of-type {
+  width: max-content;
+}
+
+.container > h1:first-of-type::after {
+  background-color: var(--color-accent-secondary);
+  height: 12px;
+  top: -12px;
+  z-index: -1;
+  position: relative;
+  display: block;
+  width: calc(100% + 1em);
+  content: '';
+}
+
+.content-panel:first-of-type {
+  padding-bottom: 0;
+}
+
+.content-panel + .content-panel {
+  border-top: 0;
+}
+
+.content.content
+  :not(a, strong, em, del, span, input, label)
+  + :not(a, strong, em, del, span, input, label :where(.not-content *)) {
+  margin-top: var(--space-s);
+}
+
+.content.content
+  :not(h1, h2, h3, h4, h5, h6)
+  + :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
+  margin-top: var(--space-m);
+}
+
+.content.content li > ul,
+.content.content li + li:not(:where(.not-content *)) {
+  margin-top: var(--space-2xs);
+}
+
+.content.content table {
+  display: table;
+  width: 100%;
+}
+
 th {
   text-align: left;
 }
 
-.content.content
-  :not(a, strong, em, del, span, input)
-  + :not(a, strong, em, del, span, input, :where(.not-content *)) {
-  margin-top: 1rem;
+label {
+  font-size: var(--sl-text-body-sm);
 }
 
-li > ul,
-.content.content li + li:not(:where(.not-content *)) {
-  margin-top: 0.25rem;
+input:not([type='submit']):not([type='file']) {
+  border: 1px solid var(--color-accent-mid);
+  padding: var(--space-3xs) var(--space-2xs);
+  border-radius: var(--border-radius);
+  margin-top: var(--space-3xs);
+}
+
+input:not([type='submit']):not([type='file']):focus {
+  background-color: var(--sl-color-accent-low);
+}
+
+.pagination-links a {
+  border: 0;
+  box-shadow: initial;
+  border-radius: var(--border-radius);
+}
+
+.pagination-links a > span {
+  color: var(--sl-color-text-accent);
+  font-size: var(--sl-text-body-sm);
+  font-weight: 600;
+}
+
+.pagination-links a .link-title {
+  font-size: var(--sl-text-body);
+  font-weight: 400;
+  transition: color 200ms ease-out;
+}
+
+.pagination-links a:hover .link-title,
+.pagination-links a:focus .link-title {
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+}
+
+.sidebar-content .sidebar {
+  padding: 0;
+}
+
+.sidebar-content .sidebar ul {
+  --sl-sidebar-item-padding-inline: var(--space-s);
+}
+
+.sidebar-content .sidebar li {
+  margin: 0;
+}
+
+.sidebar-content .sidebar a {
+  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
+}
+
+.sidebar-content .sidebar summary {
+  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
+}
+
+.sidebar-content .sidebar a[aria-current='page'],
+.sidebar-content .sidebar a[aria-current='page']:hover,
+.sidebar-content .sidebar a[aria-current='page']:focus {
+  color: var(--sl-color-text-accent);
+  background-color: var(--sl-color-accent-low);
+  border-radius: 0;
+}
+
+.right-sidebar-panel starlight-toc h2 {
+  font-size: var(--step-0);
+}
+
+.right-sidebar-panel starlight-toc a[aria-current='true'],
+.right-sidebar-panel starlight-toc a[aria-current='true']:hover,
+.right-sidebar-panel starlight-toc a[aria-current='true']:focus {
+  color: var(--sl-color-text-accent);
+  background-color: initial;
 }
 
 /* This is for adding captions to images and diagrams */
