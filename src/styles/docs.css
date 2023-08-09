@@ -55,12 +55,12 @@
   --color-accent-secondary: hsl(165, 90%, 78%);
 }
 
-/* Override Starlight default styling */
 :focus-visible {
   outline-color: var(--color-accent-mid);
   border-radius: var(--border-radius);
 }
 
+/* Main content area styles */
 .main-frame {
   font-size: var(--sl-text-body);
 }
@@ -99,7 +99,7 @@
 }
 
 .content-panel + .content-panel {
-  border-top: 0;
+  border-block-start: 0;
   padding: var(--space-m) var(--space-l);
 }
 
@@ -144,6 +144,10 @@ input:not([type='submit']):not([type='file']):focus {
   background-color: var(--sl-color-accent-low);
 }
 
+.pagination-links {
+  border-block-start: 1px solid var(--sl-color-gray-6);
+}
+
 .pagination-links a {
   border: 0;
   box-shadow: initial;
@@ -168,6 +172,7 @@ input:not([type='submit']):not([type='file']):focus {
   text-decoration: underline;
 }
 
+/* Navigation sidebar styles */
 .sidebar-content .sidebar {
   padding: 0;
 }
@@ -196,6 +201,7 @@ input:not([type='submit']):not([type='file']):focus {
   border-radius: 0;
 }
 
+/* ToC right sidebar styles */
 @media (min-width: 72rem) {
   .right-sidebar.right-sidebar {
     border-inline-start: 0;
