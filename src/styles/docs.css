@@ -196,6 +196,17 @@ input:not([type='submit']):not([type='file']):focus {
   border-radius: 0;
 }
 
+@media (min-width: 72rem) {
+  .right-sidebar.right-sidebar {
+    border-inline-start: 0;
+  }
+
+  .right-sidebar .right-sidebar-panel {
+    border-inline-start: 1px solid var(--sl-color-gray-6);
+    margin-top: var(--space-xs);
+  }
+}
+
 .right-sidebar-panel starlight-toc h2 {
   font-size: var(--step-0);
 }
