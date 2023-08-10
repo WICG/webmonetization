@@ -69,9 +69,10 @@
   max-width: 100%;
 }
 
-@media (min-width: 72rem) {
+@media (min-width: 72rem) and (max-width: 80rem) {
   [data-has-sidebar] .main-frame .main-pane {
     --sl-sidebar-width: 14rem;
+    width: calc(100% - var(--sl-sidebar-width));
   }
 
   .main-frame .right-sidebar-container {
@@ -120,6 +121,17 @@
   margin-top: var(--space-2xs);
 }
 
+table,
+pre,
+.starlight-aside {
+  border-radius: var(--border-radius);
+  box-shadow: var(--sl-shadow-sm);
+}
+
+code {
+  border-radius: var(--border-radius);
+}
+
 .content.content table {
   display: table;
   width: 100%;
@@ -127,6 +139,57 @@
 
 th {
   text-align: left;
+}
+
+thead tr:first-of-type th {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.content thead + tbody tr:nth-child(2n):not(:where(.not-content *)) {
+  background-color: var(--sl-color-gray-7, var(--sl-color-gray-6));
+}
+
+.content thead + tbody tr:nth-child(2n + 1):not(:where(.not-content *)) {
+  background-color: initial;
+}
+
+.content tr:nth-child(2n):not(:where(.not-content *)) {
+  background-color: initial;
+}
+
+.content tr:nth-child(2n + 1):not(:where(.not-content *)) {
+  background-color: var(--sl-color-gray-7, var(--sl-color-gray-6));
+}
+
+.content :is(th, td):not(:where(.not-content *)) {
+  border: 0;
+  padding: var(--space-2xs) var(--space-xs);
+}
+
+.content tbody tr:first-of-type:not(:where(.not-content *)) th:first-child,
+.content tbody tr:first-of-type:not(:where(.not-content *)) td:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.content tbody tr:first-of-type:not(:where(.not-content *)) th:last-child,
+.content tbody tr:first-of-type:not(:where(.not-content *)) td:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+.content tbody tr:last-of-type:not(:where(.not-content *)) th:first-child,
+.content tbody tr:last-of-type:not(:where(.not-content *)) td:first-child {
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.content tbody tr:last-of-type:not(:where(.not-content *)) th:last-child,
+.content tbody tr:last-of-type:not(:where(.not-content *)) td:last-child {
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.content.content pre:not(:where(.not-content *)) {
+  border: 0;
+  padding: var(--space-xs);
 }
 
 label {
@@ -142,6 +205,10 @@ input:not([type='submit']):not([type='file']) {
 
 input:not([type='submit']):not([type='file']):focus {
   background-color: var(--sl-color-accent-low);
+}
+
+aside.starlight-aside {
+  padding: var(--space-xs);
 }
 
 .pagination-links {
@@ -224,6 +291,31 @@ input:not([type='submit']):not([type='file']):focus {
   background-color: initial;
 }
 
+/* Very large screen size handling styles */
+@media (min-width: 80rem) {
+  .page {
+    flex-direction: row;
+    max-width: 95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  div.header {
+    max-width: 95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  nav.sidebar .sidebar-pane {
+    position: sticky;
+  }
+
+  div.main-frame {
+    padding-inline-start: initial;
+    flex: 1;
+  }
+}
+
 /* This is for adding captions to images and diagrams */
 div.caption {
   font-size: small;
@@ -240,8 +332,10 @@ div.caption {
 
 .draft h5 {
   color: #aa4546;
+  font-size: var(--step-0);
 }
 
-.draft.draft ul {
+.draft.draft.draft ul,
+.draft.draft.draft p {
   margin-top: var(--space-2xs);
 }

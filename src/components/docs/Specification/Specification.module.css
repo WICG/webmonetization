@@ -1,9 +1,6 @@
 .specification.specification table {
-  border: 1px solid var(--sl-color-hairline-light);
   border-collapse: collapse;
-  width: 100%;
   margin-top: var(--space-m);
-  display: table;
 }
 
 .specification tr:nth-child(even) td {
