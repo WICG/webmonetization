@@ -65,10 +65,6 @@ export default defineConfig({
                   link: '/docs/references/html-link-rel-monetization',
                 },
                 {
-                  label: 'MonetizationCurrencyAmount',
-                  link: '/docs/references/monetizationcurrencyamount',
-                },
-                {
                   label: 'Monetization events',
                   collapsed: true,
                   items: [
