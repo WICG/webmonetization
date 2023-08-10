@@ -117,6 +117,7 @@
 }
 
 .content.content li > ul,
+.content.content li > ol,
 .content.content li + li:not(:where(.not-content *)) {
   margin-top: var(--space-2xs);
 }
@@ -205,6 +206,11 @@ input:not([type='submit']):not([type='file']) {
 
 input:not([type='submit']):not([type='file']):focus {
   background-color: var(--sl-color-accent-low);
+}
+
+::placeholder {
+  color: var(--color-accent-mid);
+  opacity: 0.6;
 }
 
 aside.starlight-aside {

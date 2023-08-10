@@ -24,10 +24,13 @@
   --sl-color-gray-5: hsl(222, 11%, 23%);
   --sl-color-gray-6: hsl(222, 13%, 16%);
   --sl-color-black: hsl(223, 13%, 10%);
-  --sl-hue-accent: 234;
-  --sl-color-accent-high: hsl(var(--sl-hue-accent), 80%, 30%);
-  --sl-color-accent: hsl(var(--sl-hue-accent), 90%, 60%);
-  --sl-color-accent-low: hsl(var(--sl-hue-accent), 88%, 90%);
+  --sl-shadow-sm: 0px 1px 1px hsla(0, 0%, 0%, 0.06),
+    0px 2px 1px hsla(0, 0%, 0%, 0.06);
+  --sl-hue-accent: 327;
+  --sl-color-accent-high: hsl(var(--sl-hue-accent), 80%, 30%); /* darkest */
+  --sl-color-accent: hsl(var(--sl-hue-accent), 100%, 40%);
+  --sl-color-accent-low: hsl(var(--sl-hue-accent), 100%, 97%); /* lightest */
+  --color-accent-mid: hsl(324, 100%, 44%);
   --sl-color-red-high: hsl(339, 80%, 30%);
 }
 
@@ -78,13 +81,17 @@ main {
   flex: 1;
 }
 
-main a {
-  color: var(--sl-color-accent);
-  text-decoration: none;
+a {
+  text-decoration: underline rgba(255, 255, 255, 0);
+  transition: text-decoration-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-main a:hover {
-  text-decoration: underline;
+a:hover {
+  text-decoration-color: inherit;
+}
+
+main a {
+  color: var(--sl-color-accent);
 }
 
 main p {
@@ -102,6 +109,91 @@ main p {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+:focus-visible {
+  outline-color: var(--color-accent-mid);
+  border-radius: var(--border-radius);
+}
+
+label {
+  font-size: var(--sl-text-body-sm);
+}
+
+input:not([type='submit']):not([type='file']) {
+  border: 1px solid var(--color-accent-mid);
+  padding: var(--space-3xs) var(--space-2xs);
+  border-radius: var(--border-radius);
+}
+
+input:not([type='submit']):not([type='file']):focus {
+  background-color: var(--sl-color-accent-low);
+}
+
+::placeholder {
+  color: var(--color-accent-mid);
+  opacity: 0.6;
+}
+
+table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: var(--border-radius);
+  box-shadow: var(--sl-shadow-sm);
+}
+
+th {
+  text-align: left;
+}
+
+thead tr:first-of-type th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+thead tr:first-of-type th:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+thead + tbody tr:nth-child(2n) {
+  background-color: var(--sl-color-gray-1, var(--sl-color-gray-2));
+}
+
+thead + tbody tr:nth-child(2n + 1) {
+  background-color: initial;
+}
+
+tr:nth-child(2n) {
+  background-color: initial;
+}
+
+tr:nth-child(2n + 1) {
+  background-color: var(--sl-color-gray-1, var(--sl-color-gray-2));
+}
+
+:is(th, td) {
+  border: 0;
+  padding: var(--space-2xs) var(--space-xs);
+}
+
+tbody tr:first-of-type th:first-child,
+tbody tr:first-of-type td:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+tbody tr:first-of-type th:last-child,
+tbody tr:first-of-type td:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+tbody tr:last-of-type th:first-child,
+tbody tr:last-of-type td:first-child {
+  border-bottom-left-radius: var(--border-radius);
+}
+
+tbody tr:last-of-type th:last-child,
+tbody tr:last-of-type td:last-child {
+  border-bottom-right-radius: var(--border-radius);
 }
 
 /* Typography styles */

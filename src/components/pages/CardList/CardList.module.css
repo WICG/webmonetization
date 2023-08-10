@@ -1,10 +1,11 @@
 .card {
   display: flex;
   align-items: center;
-  transition: box-shadow 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    text-decoration-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   overflow: initial;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--sl-shadow-sm);
   border-radius: 6px;
   padding: var(--space-s);
 }

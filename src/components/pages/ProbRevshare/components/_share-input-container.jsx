@@ -8,8 +8,8 @@ export function ShareInputContainer({ children }) {
           <tr>
             <th>Name</th>
             <th>Pointer</th>
-            <th className={styles.weightCell}>Weight</th>
-            <th className={styles.percentCell}>Percent</th>
+            <th>Weight</th>
+            <th>Percent</th>
             <th></th>
           </tr>
         </thead>

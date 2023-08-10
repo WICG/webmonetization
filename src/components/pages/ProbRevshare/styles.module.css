@@ -1,36 +1,22 @@
 .tableWrapper {
   overflow-x: auto;
   margin-bottom: var(--space-xs);
+  box-shadow: var(--sl-shadow-sm);
+  border-radius: var(--border-radius);
 }
 
-.revShareTable {
-  border-collapse: collapse;
-  border-spacing: 0px;
-  width: 100%;
-  min-width: 35em;
-}
-
-.revShareTable td,
-.revShareTable th {
-  vertical-align: top;
-  padding: var(--space-2xs);
-  border: 1px solid var(--sl-color-gray-2);
-}
-
-.revShareTable th {
-  text-align: left;
-  background-color: var(--sl-color-gray-1);
-}
-
-.revShareTable input {
+.revShareTable .input.input {
   border: 0;
+  border-radius: 0;
   border-bottom: 1px solid;
   padding: var(--space-3xs);
   transition: box-shadow 200ms ease-in;
   width: 100%;
 }
 
-.revShareTable input[disabled] {
+.revShareTable input[disabled].input.input {
+  border: 0;
+  border-radius: 0;
   border-bottom: 1px dotted;
   cursor: not-allowed;
 }
@@ -40,8 +26,11 @@
   outline: none;
 }
 
-.weightCell,
-.percentCell {
+.weightCell input[type='number'].input,
+.percentCell input[type='number'].input {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
   width: 4em;
 }
 

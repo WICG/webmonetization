@@ -20,7 +20,7 @@ export function ShareInput({
     <tr key={index}>
       <td className={styles.nameCell}>
         <input
-          type='text'
+          className={styles.input}
           value={name}
           onChange={(ev) => {
             onChangeName(ev.target.value)
@@ -30,7 +30,7 @@ export function ShareInput({
 
       <td>
         <input
-          type='text'
+          className={styles.input}
           value={pointer}
           onChange={(ev) => {
             onChangePointer(ev.target.value)
@@ -41,8 +41,9 @@ export function ShareInput({
         </p>
       </td>
 
-      <td>
+      <td className={styles.weightCell}>
         <input
+          className={styles.input}
           type='number'
           min={0}
           step={'any'}
@@ -55,8 +56,9 @@ export function ShareInput({
         {!validateWeight(weight) && 'Weight must be a positive number'}
       </td>
 
-      <td>
+      <td className={styles.percentCell}>
         <input
+          className={styles.input}
           type='number'
           min={0}
           max={100}
