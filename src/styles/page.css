@@ -111,6 +111,7 @@ main p {
   width: 1px;
 }
 
+/* Input styles */
 :focus-visible {
   outline-color: var(--color-accent-mid);
   border-radius: var(--border-radius);
@@ -135,24 +136,13 @@ input:not([type='submit']):not([type='file']):focus {
   opacity: 0.6;
 }
 
+/* Table styles */
 table {
   display: table;
   width: 100%;
   border-collapse: collapse;
   border-radius: var(--border-radius);
   box-shadow: var(--sl-shadow-sm);
-}
-
-th {
-  text-align: left;
-}
-
-thead tr:first-of-type th:first-child {
-  border-top-left-radius: var(--border-radius);
-}
-
-thead tr:first-of-type th:last-child {
-  border-top-right-radius: var(--border-radius);
 }
 
 thead + tbody tr:nth-child(2n) {
@@ -171,9 +161,22 @@ tr:nth-child(2n + 1) {
   background-color: var(--sl-color-gray-1, var(--sl-color-gray-2));
 }
 
-:is(th, td) {
+th {
+  text-align: left;
+}
+
+th,
+td {
   border: 0;
   padding: var(--space-2xs) var(--space-xs);
+}
+
+thead tr:first-of-type th:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+thead tr:first-of-type th:last-child {
+  border-top-right-radius: var(--border-radius);
 }
 
 tbody tr:first-of-type th:first-child,
@@ -268,12 +271,6 @@ tbody tr:last-of-type td:last-child {
   gap: var(--space-l);
 }
 
-@media screen and (min-width: 900px) {
-  .twoColGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media screen and (min-width: 600px) {
   .fourColGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -281,6 +278,10 @@ tbody tr:last-of-type td:last-child {
 }
 
 @media screen and (min-width: 900px) {
+  .twoColGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .fourColGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
