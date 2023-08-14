@@ -163,7 +163,55 @@ We have extracted some of the commonly repeated patterns within the documentatio
    <LargeImg src="/img/OMG_A_GIGANTIC_IMG.png" alt="A really large diagram" />
    ```
 
-6. `Hidden` component
+6. `Disclosure` component
+
+   Use this component if you have some content that you want to show/hide via a collapsible container. This component wraps around whatever content you wish to have this expand/collapse behaviour. Note that the `client:load` attribute is required for the functionality to work because this component relies on state.
+
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the Disclosure component like so:
+
+   ```
+   import Disclosure from '/src/components/docs/Disclosure'
+   ```
+
+   Use the `<Disclosure>` component within your content like so:
+
+   ```
+   <Disclosure toggleText='Show code snippets' client:load>
+      <!-- Your content, can be markup or markdown -->
+   </Disclosure>
+   ```
+
+   For the specific use-case of displaying multiple code-snippets, it might be worth considering also using the [built-in Starlight `<Tabs>`](https://starlight.astro.build/guides/components#tabs) component:
+
+   ````
+   <Disclosure toggleText='Show code snippets' client:load>
+      <Tabs>
+         <TabItem label='Request'>
+         ```bash
+         GET /alice HTTP/1.1
+         Accept: application/json
+         Host: wallet.example
+         ```
+         </TabItem>
+         <TabItem label='Response'>
+         ```bash
+         HTTP/1.1 200 Success
+         Content-Type: application/json
+
+         {
+            "id":"https://wallet.example/alice",
+            "assetCode":"USD",
+            "assetScale":2,
+            "authServer":"https://wallet.example/auth",
+         }
+         ```
+         </TabItem>
+
+      </Tabs>
+   </Disclosure>
+   ````
+
+7. `Hidden` component
 
    Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
 

@@ -105,8 +105,8 @@
 }
 
 .content.content
-  :not(a, strong, em, del, span, input, label)
-  + :not(a, strong, em, del, span, input, label :where(.not-content *)) {
+  :not(a, strong, em, del, span, label, input)
+  + :not(a, strong, em, del, span, label, input, :where(.not-content *)) {
   margin-top: var(--space-s);
 }
 
@@ -127,6 +127,10 @@ pre,
 .starlight-aside {
   border-radius: var(--border-radius);
   box-shadow: var(--sl-shadow-sm);
+}
+
+starlight-tabs pre {
+  box-shadow: none;
 }
 
 code {
@@ -215,6 +219,10 @@ input:not([type='submit']):not([type='file']):focus {
 
 aside.starlight-aside {
   padding: var(--space-xs);
+}
+
+.content astro-island > button[aria-expanded='false'] + div {
+  margin-top: 0;
 }
 
 .pagination-links {

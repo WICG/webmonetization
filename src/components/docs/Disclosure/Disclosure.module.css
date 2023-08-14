@@ -1,0 +1,41 @@
+.toggle {
+  background-color: initial;
+  border: 0;
+  display: flex;
+  gap: var(--space-2xs);
+  margin-top: var(--space-xs);
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 200ms ease-out;
+}
+
+.toggle:hover,
+.toggle:focus {
+  color: var(--sl-color-text-accent);
+}
+
+.toggle[aria-expanded='false']::after {
+  content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 8" width="12" height="8"><path fill="currentColor" d="M11 1.17a1 1 0 0 0-1.41 0L6 4.71 2.46 1.17a1 1 0 0 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L11 2.59a1.003 1.003 0 0 0 0-1.42Z"/></svg>');
+  position: relative;
+  bottom: 2px;
+}
+
+.toggle[aria-expanded='true']::after {
+  content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 12 8" width="12" height="8"><path fill="currentColor" d="M11 5.41 6.71 1.17a1 1 0 0 0-1.42 0L1.05 5.41a1 1 0 1 0 1.41 1.42L6 3.29l3.54 3.54a1 1 0 0 0 1.41 0A1.001 1.001 0 0 0 11 5.41Z"/></svg>');
+  position: relative;
+  bottom: 2px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease-out;
+}
+
+.wrapper.expanded {
+  grid-template-rows: 1fr;
+}
+
+.content {
+  overflow: hidden;
+}

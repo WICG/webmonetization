@@ -2,10 +2,22 @@
 title: Web Monetization flow
 ---
 
+import { Tabs, TabItem } from '@astrojs/starlight/components'
 import LinkOut from '/src/components/docs/LinkOut'
 import LargeImg from '/src/components/docs/LargeImg'
+import Disclosure from '/src/components/docs/Disclosure'
 
-<div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex</li><li>Add diagram or etc to high-level flow section</li><li>Add "Detailed flow" section and code blocks/sequence diagram to bottom </li></ul></div>
+<div class='draft'>
+  <h5>Page Updates</h5>
+  <ul>
+    <li>This page is still a draft and is under review by Alex</li>
+    <li>Add diagram or etc to high-level flow section</li>
+    <li>
+      Add "Detailed flow" section and code blocks/sequence diagram to
+      bottom{' '}
+    </li>
+  </ul>
+</div>
 
 Web Monetization itself is not used to specify payment amounts, currencies, or frequencies. It’s also not used to process payments. Instead, Web Monetization helps coordinate payments between <LinkOut href="https://openpayments.guide">Open Payments-enabled accounts</LinkOut> by requesting authorization and issuing payment instructions.
 
@@ -27,10 +39,55 @@ This section describes the flow required between the key players to start the mo
 ## High-level flow
 
 1. The WM agent checks each page for the monetization `<link>` element as the visitor browses.
-2. When the `<link>` is found, the WM agent parses the element to get the payment pointer. 
+2. When the `<link>` is found, the WM agent parses the element to get the payment pointer.
 3. The WM agent issues a request to the payment pointer to obtain, among other things, the URL to the WM receiver’s authorization server.
 4. The WM agent sends a grant request to the authorization server and receives an access token in response.
-5. The WM agent creates an incoming payment for the session (e.g., the open browser tab/window). The Wm agent also sends an incoming payment request containing the access token and other details to the WM receiver. The WM receiver responds with unique payment details needed for addressing the payment to the recipient. 
+5. The WM agent creates an incoming payment for the session (e.g., the open browser tab/window). The Wm agent also sends an incoming payment request containing the access token and other details to the WM receiver. The WM receiver responds with unique payment details needed for addressing the payment to the recipient.
 6. The WM agent sends an outgoing payment request to the WM provider. The request includes the payment details previously acquired, as well as the payment pointer of the sending account.
 
 At this point, the Web Monetization flow is complete. It’s now up to the sending and receiving accounts to ensure the payment is settled.
+
+## Detailed flow
+
+Step 1:
+
+<Disclosure toggleText='Only strings allowed' client:load>
+
+1. wonder if lists pass through nicely
+2. is mdx that magical?
+
+what about code blocks?
+
+```html
+<link rel="monetization" href="https://wallet.example/alice" />
+```
+
+</Disclosure>
+
+Step 2:
+
+<Disclosure toggleText='Show code snippets' client:load>
+  <Tabs>
+    <TabItem label='Request'>
+    ```bash
+    GET /alice HTTP/1.1
+    Accept: application/json
+    Host: wallet.example
+    ```
+    </TabItem>
+    <TabItem label='Response'>
+    ```bash
+    HTTP/1.1 200 Success
+    Content-Type: application/json
+
+    {
+      "id":"https://wallet.example/alice",
+      "assetCode":"USD",
+      "assetScale":2,
+      "authServer":"https://wallet.example/auth",
+    }
+    ```
+    </TabItem>
+
+  </Tabs>
+</Disclosure>
