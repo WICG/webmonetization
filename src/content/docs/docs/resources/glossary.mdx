@@ -7,7 +7,6 @@ import LinkOut from '/src/components/docs/LinkOut'
 <div class='draft'>
   <h5>Page Updates</h5>
   <ul>
-    <li>Definitions need review/approval</li>
     <li>Payment session needs updating once we know if multiple tags are supported on a page</li>
   </ul>
 </div>
@@ -30,11 +29,9 @@ An entity that provides and maintains a payment account for a payer and/or payee
 
 ### Digital wallet
 
-The term *digital wallet* means different things to different people, services, and technologies. We try to avoid over-using the term for this reason. However, in cases where we do reference digital wallets, it's within the context of <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut>.
+The term *digital wallet* means different things to different people, services, and technologies. We try to avoid over-using the term for this reason. However, in cases where we do reference digital wallets, it's within the context of <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut>. As such, we assume the digital wallets have implemented the Open Payments standard.
 
 Open Payments defines a digital wallet as any Internet-connected system that acts as an agent of a person or business that is capable of sending and receiving payments from or to that person or business.
-
-Since we use the Open Payments definition, we also assume that each digital wallet has implemented the Open Payments standard.
 
 ## O
 <hr />
@@ -50,9 +47,9 @@ Web Monetization relies on Open Payments though its use of payment pointers.
 
 ### Payment pointer
 
-Every <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut> digital wallet (or account within a wallet, depending on implementation) is identified by a unique URL called a <LinkOut href="https://paymentpointers.org/">payment pointer</LinkOut>. This URL not only identifies the wallet, but also provides the entry point to the Open Payments APIs.
+Every <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut> account within a digital wallet, or the Open Payments-enabled digital wallet itself (depending on implementation), is identified by a unique URL called a <LinkOut href="https://paymentpointers.org/">payment pointer</LinkOut>. The URL not only identifies the account or wallet, but also provides the entry point to the Open Payments APIs.
 
-Conceptually, a payment pointer is like an email address for a wallet. It's a publicly shareable address used to request and/or grant authorization to interact with the underlying wallet. Example interactions include sending and receiving payments. 
+Conceptually, a payment pointer is like an email address for an account or wallet. It's a publicly shareable address used to request and/or grant authorization to interact with the underlying account or wallet. Example interactions include sending and receiving payments. 
 
 The `<href>` value within the monetization `<link>` element must be a payment pointer.
 

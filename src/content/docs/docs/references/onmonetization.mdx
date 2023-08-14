@@ -7,13 +7,6 @@ import Specification from '/src/components/docs/Specification'
 import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/onmonetization.json'
 
-<div class='draft'>
-  <h5>Page Updates</h5>
-  <ul>
-    <li>Verify example</li>
-  </ul>
-</div>
-
 The `onmonetization` attribute of the <Tooltip content='Describes event handlers common to several interfaces like HTMLElement, Document, or Window' client:load><span>`GlobalEventHandlers`</span></Tooltip> mixin is used to process `monetization` events sent to the `Window`.
 
 `onmonetization` can be applied to any element and is used by the user agent (such as a web browser or WM agent) to notify that some `<link>` element is monetized.
@@ -30,7 +23,7 @@ Show a visitor an alert box and message when a Web Monetization event is trigger
 
 ```js
 window.onmonetization = function () {
-  alert('Web Monetization event triggered.')
+  alert('This page supports Web Monetization.')
 }
 ```
 

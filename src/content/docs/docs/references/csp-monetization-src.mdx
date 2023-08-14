@@ -7,13 +7,6 @@ import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/csp-monetization-src.json'
 import LinkOut from '/src/components/docs/LinkOut'
 
-<div class='draft'>
-  ##### Page Updates
-  
-  - Verify example
-
-</div>
-
 The `monetization-src` directive within the HTTP <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" >Content-Security-Policy</LinkOut> (CSP) allows you to restrict the URLs from which a payment pointer can be loaded.
 
 <table>
@@ -59,7 +52,7 @@ A website administrator wants to restrict the URLs from which a payment pointer 
 Given this CSP header:
 
 ```http
-Content-Security-Policy: monetization-src https://www.wallet.example
+Content-Security-Policy: monetization-src https://www.wallet.example;
 ```
 
 Fetches for the following monetization source will return a network error and not load, as the URL does not match the URL defined in the CSP source list.
