@@ -9,23 +9,23 @@
   --color-accent-secondary: hsl(176, 92%, 25%);
 
   /* Text size and line height */
-  --step--2: clamp(0.78rem, calc(0.79rem + -0.01vw), 0.79rem);
-  --step--1: clamp(0.89rem, calc(0.87rem + 0.07vw), 0.94rem);
-  --step-0: clamp(1rem, calc(0.96rem + 0.19vw), 1.13rem);
-  --step-1: clamp(1.13rem, calc(1.05rem + 0.33vw), 1.35rem);
-  --step-2: clamp(1.27rem, calc(1.15rem + 0.53vw), 1.62rem);
-  --step-3: clamp(1.42rem, calc(1.25rem + 0.77vw), 1.94rem);
-  --step-4: clamp(1.6rem, calc(1.36rem + 1.08vw), 2.33rem);
-  --step-5: clamp(1.8rem, calc(1.47rem + 1.48vw), 2.8rem);
-  --space-3xs: clamp(0.25rem, calc(0.23rem + 0.09vw), 0.31rem);
-  --space-2xs: clamp(0.5rem, calc(0.48rem + 0.09vw), 0.56rem);
-  --space-xs: clamp(0.75rem, calc(0.71rem + 0.19vw), 0.88rem);
-  --space-s: clamp(1rem, calc(0.96rem + 0.19vw), 1.13rem);
-  --space-m: clamp(1.5rem, calc(1.44rem + 0.28vw), 1.69rem);
-  --space-l: clamp(2rem, calc(1.92rem + 0.37vw), 2.25rem);
-  --space-xl: clamp(3rem, calc(2.88rem + 0.56vw), 3.38rem);
-  --space-2xl: clamp(4rem, calc(3.83rem + 0.74vw), 4.5rem);
-  --space-3xl: clamp(6rem, calc(5.75rem + 1.11vw), 6.75rem);
+  --step--2: clamp(0.69rem, calc(0.82rem + -0.14vw), 0.79rem);
+  --step--1: clamp(0.83rem, calc(0.9rem + -0.08vw), 0.89rem);
+  --step-0: clamp(1rem, calc(1rem + 0vw), 1rem);
+  --step-1: clamp(1.13rem, calc(1.1rem + 0.11vw), 1.2rem);
+  --step-2: clamp(1.27rem, calc(1.22rem + 0.25vw), 1.44rem);
+  --step-3: clamp(1.42rem, calc(1.34rem + 0.43vw), 1.73rem);
+  --step-4: clamp(1.6rem, calc(1.47rem + 0.67vw), 2.07rem);
+  --step-5: clamp(1.8rem, calc(1.61rem + 0.98vw), 2.49rem);
+  --space-3xs: clamp(0.25rem, calc(0.25rem + 0vw), 0.25rem);
+  --space-2xs: clamp(0.5rem, calc(0.5rem + 0vw), 0.5rem);
+  --space-xs: clamp(0.75rem, calc(0.75rem + 0vw), 0.75rem);
+  --space-s: clamp(1rem, calc(1rem + 0vw), 1rem);
+  --space-m: clamp(1.5rem, calc(1.5rem + 0vw), 1.5rem);
+  --space-l: clamp(2rem, calc(2rem + 0vw), 2rem);
+  --space-xl: clamp(3rem, calc(3rem + 0vw), 3rem);
+  --space-2xl: clamp(4rem, calc(4rem + 0vw), 4rem);
+  --space-3xl: clamp(6rem, calc(6rem + 0vw), 6rem);
 
   --sl-text-body: var(--step-0);
   --sl-text-body-sm: var(--step--1);
