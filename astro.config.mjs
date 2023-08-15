@@ -47,10 +47,6 @@ export default defineConfig({
               label: 'Web Monetization flow',
               link: '/docs/intro/web-monetization-flow',
             },
-            {
-              label: 'Privacy',
-              link: '/docs/intro/privacy',
-            },
           ],
         },
         {

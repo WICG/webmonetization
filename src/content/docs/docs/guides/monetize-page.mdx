@@ -2,8 +2,6 @@
 title: Add Web Monetization to a page
 ---
 
-<div class="draft"><h5>Page Updates</h5><ul><li>This page is still a draft and is under review by Alex</li><li>Update based on multiple link element support</li></ul></div>
-
 This page provides basic instructions for adding Web Monetization to a web page. If you're new to web monetizing content, this page is a great place to start.
 
 ## Prerequisites
@@ -17,7 +15,7 @@ Payment pointers are a required component of Web Monetization; however, there ar
 
 ## Monetize a page
 
-The HTML `<link>` element is used to add Web Monetization to a page. Simply add the `<link>` element to the `<head>` of each page you want to monetize.
+To add Web Monetization to a page, add the monetization `<link>` element to the page's `<head>`.
 
 The element’s `rel` value is always `monetization`. The `href` value is a payment pointer in URL format.
 
@@ -38,7 +36,9 @@ While an HTML document can contain an unlimited number of `<link>` elements, the
 
 ### Multiple payment pointers
 
-Since a `<link>` element can only support one `href` value, you can only define one payment pointer within a monetization `<link>`. One way to include multiple payment pointers within a page is through probabilistic revenue sharing. This method allows you to define a list of weighted payment pointers by adding a script to your page. Visit the [probabilistic revenue sharing](../set-up-probabilistic-revenue-sharing) page for more information.
+The monetization `<link>` element only supports one `href` value. As such, only one payment pointer can be defined within the `<link>`.
+
+[Probabilistic revenue sharing](../set-up-probabilistic-revenue-sharing) is one way to support multiple payment pointers on a page; however, it might not suit your use case. By adding a script to your site, this method will randomly choose from a list of predefined payment pointers each time a visitor loads the page.
 
 ## Respond to monetization events
 
