@@ -1,0 +1,16 @@
+.highlight {
+  display: inline-block;
+  font-weight: bold;
+  position: relative;
+}
+
+.highlight::after {
+  background-color: var(--color-accent-secondary);
+  height: 8px;
+  bottom: 2px;
+  z-index: -1;
+  position: absolute;
+  display: block;
+  width: calc(100% + 1em);
+  content: '';
+}

@@ -4,10 +4,10 @@ title: Web Monetization flow
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
 import LinkOut from '/src/components/docs/LinkOut'
-import LargeImg from '/src/components/docs/LargeImg'
-import Disclosure from '/src/components/docs/Disclosure'
+import CodeBlock from '/src/components/docs/CodeBlock'
+import StylishHeader from '/src/components/docs/StylishHeader'
 
-Web Monetization uses the <LinkOut href="https://openpayments.guide">Open Payments APIs</LinkOut> to coordinate transactions between Open Payments-enabled accounts. The Web Monetization (WM) agent issues API calls to both the receiving and sending accounts to obtain authorization and instructions for sending a payment. 
+Web Monetization uses the <LinkOut href="https://openpayments.guide">Open Payments APIs</LinkOut> to coordinate transactions between Open Payments-enabled accounts. The Web Monetization (WM) agent issues API calls to both the receiving and sending accounts to obtain authorization and instructions for sending a payment.
 
 This page provides an example set of API calls to illustrate the Web Monetization flow. The flow occurs between the key players defined below.
 
@@ -20,29 +20,35 @@ This page provides an example set of API calls to illustrate the Web Monetizatio
 
 ## Before you begin
 
-* It's up to the site visitor, not the web monetized site, to decide how often and how much to pay, as well as the currency in which to send a payment.
-* While Web Monetization helps coordinate payments, it doesn't move money. Payment processing and settlement must occur between the sending and receiving accounts, outside of Web Monetization, over a common payment rail. As such, the example below assumes the WM provider and WM receiver are peers and can transact with each other. 
+- It's up to the site visitor, not the web monetized site, to decide how often and how much to pay, as well as the currency in which to send a payment.
+- While Web Monetization helps coordinate payments, it doesn't move money. Payment processing and settlement must occur between the sending and receiving accounts, outside of Web Monetization, over a common payment rail. As such, the example below assumes the WM provider and WM receiver are peers and can transact with each other.
 
 ## Example flow
 
 Alice web monetizes her site by adding the monetization `<link>` element to each page. The `<link>` element contains her payment pointer, `https://wallet.example/alice`.
 
 Bob visits Alice's site and wants to send a Web Monetization payment. For this example, we assume:
-* Bob has a relationship with a WM provider and the provider has supplied him with a sending account (`https://anotherwallet.example/bob`)
-* Bob has installed a WM agent into his browser and linked the agent to his WM provider
-* The WM agent has a grant to create outgoing payments on the sending account
 
-### Step 1 - Check for Web Monetization
+- Bob has a relationship with a WM provider and the provider has supplied him with a sending account (`https://anotherwallet.example/bob`)
+- Bob has installed a WM agent into his browser and linked the agent to his WM provider
+- The WM agent has a grant to create outgoing payments on the sending account
 
-As Bob browses Alice's site, his WM agent detects a well-formed monetization `<link>` element and fires a `load` event. 
+<StylishHeader>Step 1 - Check for Web Monetization</StylishHeader>
+
+As Bob browses Alice's site, his WM agent detects a well-formed monetization `<link>` element and fires a `load` event.
 
 ```html
-<link rel="monetization" href="https://wallet.example/alice">
+<link rel="monetization" href="https://wallet.example/alice" />
 ```
 
-### Step 2 - Issue request to payment pointer
+<StylishHeader>Step 2 - Issue request to payment pointer</StylishHeader>
 
-<p style="font-size: 14px">Open Payments API: <LinkOut href="https://docs.openpayments.guide/reference/get-payment-pointer">GET Payment Pointer</LinkOut></p>
+<p style='font-size: 14px'>
+  Open Payments API:{' '}
+  <LinkOut href='https://docs.openpayments.guide/reference/get-payment-pointer'>
+    GET Payment Pointer
+  </LinkOut>
+</p>
 
 The WM agent issues a request to Alice's payment pointer URL to discover the Open Payments service endpoint.
 
@@ -70,11 +76,16 @@ Content-Type: application/json
 }
 ```
 
-### Step 3 - Send an incoming payment grant request
+<StylishHeader>Step 3 - Send an incoming payment grant request</StylishHeader>
 
-<p style="font-size: 14px">Open Payments API: <LinkOut href="https://docs.openpayments.guide/reference/post-request">POST Grant Request</LinkOut></p>
+<p style='font-size: 14px'>
+  Open Payments API:{' '}
+  <LinkOut href='https://docs.openpayments.guide/reference/post-request'>
+    POST Grant Request
+  </LinkOut>
+</p>
 
-The WM agent issues a request to the WM receiver's grant request endpoint (authorization server) to get an access token. 
+The WM agent issues a request to the WM receiver's grant request endpoint (authorization server) to get an access token.
 
 **Request**
 
@@ -85,8 +96,8 @@ POST /auth/ HTTP/1.1
 Accept: application/json
 Content-Type: application/json
 Host: wallet.example
-Content-Length: 218 
- 
+Content-Length: 218
+
 {
     "access_token": {
         "access":[
@@ -105,7 +116,7 @@ Content-Length: 218
 }
 ```
 
-**Response** 
+**Response**
 
 The grant request is non-interactive, so the WM receiver grants the request and issues an access token.
 
@@ -125,14 +136,19 @@ The grant request is non-interactive, so the WM receiver grants the request and 
 }
 ```
 
-### Step 4 - Create an incoming payment request
+<StylishHeader>Step 4 - Create an incoming payment request</StylishHeader>
 
-<p style="font-size: 14px">Open Payments API: <LinkOut href="https://docs.openpayments.guide/reference/create-incoming-payment">POST Incoming Payment</LinkOut></p>
+<p style='font-size: 14px'>
+  Open Payments API:{' '}
+  <LinkOut href='https://docs.openpayments.guide/reference/create-incoming-payment'>
+    POST Incoming Payment
+  </LinkOut>
+</p>
 
-The WM agent creates an incoming payment for the session (e.g., the open browser tab) by issuing an incoming payment request to the WM receiver. The request uses details obtained from the previous API calls. 
+The WM agent creates an incoming payment for the session (e.g., the open browser tab) by issuing an incoming payment request to the WM receiver. The request uses details obtained from the previous API calls.
 
 :::note
-*Incoming* payment is used here because the WM agent is requesting that the WM receiver allow an incoming payment to Alice's account. The payment itself has not been sent yet.
+_Incoming_ payment is used here because the WM agent is requesting that the WM receiver allow an incoming payment to Alice's account. The payment itself has not been sent yet.
 :::
 
 **Request**
@@ -147,7 +163,7 @@ Host: wallet.example
 
 **Response**
 
-The WM receiver approves the request by supplying unique payment details for the WM agent to use to address the payment to Alice's account. 
+The WM receiver approves the request by supplying unique payment details for the WM agent to use to address the payment to Alice's account.
 
 ```http
 {
@@ -164,15 +180,20 @@ The WM receiver approves the request by supplying unique payment details for the
 }
 ```
 
-### Step 5 - Send a quote request
+<StylishHeader>Step 5 - Send a quote request</StylishHeader>
 
-<p style="font-size: 14px">Open Payments API: <LinkOut href="https://docs.openpayments.guide/reference/create-quote">POST Quote</LinkOut></p>
+<p style='font-size: 14px'>
+  Open Payments API:{' '}
+  <LinkOut href='https://docs.openpayments.guide/reference/create-quote'>
+    POST Quote
+  </LinkOut>
+</p>
 
-Up to this point, the WM agent has communicated with Alice's WM receiver. Now, the WM agent issues a request to Bob's WM provider to create a quote. The purpose of the quote is to tell the WM provider how much to send from Bob's account. 
+Up to this point, the WM agent has communicated with Alice's WM receiver. Now, the WM agent issues a request to Bob's WM provider to create a quote. The purpose of the quote is to tell the WM provider how much to send from Bob's account.
 
 **Request**
 
-In this example, the WM agent creates a quote to send $0.02 USD from Bob to Alice. 
+In this example, the WM agent creates a quote to send $0.02 USD from Bob to Alice.
 
 Since we're assuming the WM agent already has a grant to create an outgoing payment on Bob's account, the grant access token will appear as the `Authorization` value in the header.
 
@@ -182,8 +203,8 @@ Accept: application/json
 Content-Type: application/json
 Authorization: {{ quoteGrant.accessToken.value }}
 Host: anotherwallet.example
- 
-{  
+
+{
     "receiver": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c"
     "sendAmount": {
         "value":"2",
@@ -217,9 +238,14 @@ The WM provider returns a quote with information about how much it will cost for
 }
 ```
 
-### Step 6 - Send outgoing payment request
+<StylishHeader>Step 6 - Send outgoing payment request</StylishHeader>
 
-<p style="font-size: 14px">Open Payments API: <LinkOut href="https://docs.openpayments.guide/reference/create-outgoing-payment">POST Outgoing Payment</LinkOut></p>
+<p style='font-size: 14px'>
+  Open Payments API:{' '}
+  <LinkOut href='https://docs.openpayments.guide/reference/create-outgoing-payment'>
+    POST Outgoing Payment
+  </LinkOut>
+</p>
 
 The WM agent uses the details obtained thus far to create an outgoing payment request against Bob's payment pointer. Note that this is just a request to send a payment. The payment itself has not been sent yet.
 
@@ -233,7 +259,7 @@ Authorization: {{ outgoingPaymentGrant.accessToken.value }}
 Host: anotherwallet.example
 Content-Length: 89
 
-{       
+{
      "quoteId":
 "https://anotherwallet.example/bob/quotes/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf"
 }
@@ -268,4 +294,23 @@ Content-Length: 89
 }
 ```
 
-The Web Monetization flow is complete. Now the WM provider can create a payment session with the WM receiver to process and settle the payment. 
+The Web Monetization flow is complete. Now the WM provider can create a payment session with the WM receiver to process and settle the payment.
+
+<CodeBlock title="Response">
+
+```http
+{
+    "id":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+    "paymentPointer":"https://wallet.example/alice",
+    "receivedAmount": {
+        "value":"0",
+        "assetCode":"USD",
+        "assetScale":2
+    },
+    "completed":false,
+    "createdAt":"2022-03-12T23:20:50.52Z",
+    "updatedAt":"2022-03-12T23:20:50.52Z",
+}
+```
+
+</CodeBlock>

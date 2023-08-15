@@ -68,7 +68,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
 
    This component will display a link to the relevant section of the [Web Monetization specification] (https://webmonetization.org/specification/) in a table. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue.
 
-   Import the Specification component like so:
+   Import the `Specification` component like so:
 
    ```
    import Specification from '/src/components/docs/Specification'
@@ -107,7 +107,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
 
    Use the tooltip component for adding a short explanation to specific terms. This component is built to be accessible in accordance to the guidance from [WAI Tooltip Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
 
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the Tooltip component like so:
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Tooltip` component like so:
 
    ```
    import Tooltip from '/src/components/docs/Tooltip'
@@ -129,7 +129,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
 
    Use this component if you need to add an external link to your content that opens in a new tab. This component adds the necessary attributes for external links and adds an external link indicator icon to the end of the link content. The icon can be turned off, if necessary.
 
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the LinkOut component like so:
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LinkOut` component like so:
 
    ```
    import LinkOut from '/src/components/docs/LinkOut'
@@ -151,7 +151,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
 
    Use this component if you have a diagram or image that is much larger than our available space and you would like users to view the full image in another tab. This adds a link to "View full image" with an external link indicator on the bottom right corner under the image. It takes in a `src` and `alt`, just like a normal `img` element.
 
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the LargeImg component like so:
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LargeImg` component like so:
 
    ```
    import LargeImg from '/src/components/docs/LargeImg'
@@ -167,7 +167,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
 
    Use this component if you have some content that you want to show/hide via a collapsible container. This component wraps around whatever content you wish to have this expand/collapse behaviour. Note that the `client:load` attribute is required for the functionality to work because this component relies on state.
 
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the Disclosure component like so:
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Disclosure` component like so:
 
    ```
    import Disclosure from '/src/components/docs/Disclosure'
@@ -211,7 +211,52 @@ We have extracted some of the commonly repeated patterns within the documentatio
    </Disclosure>
    ````
 
-7. `Hidden` component
+7. `CodeBlock` component
+
+   Use this component if you wish to add a title to your code block. It takes a `title` attribute, which will be displayed above the code. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `CodeBlock` component like so:
+
+   ```
+   import CodeBlock from '/src/components/docs/CodeBlock'
+   ```
+
+   Use the `<CodeBlock>` component within your content like so:
+
+   ````
+   <CodeBlock title="Response">
+
+   ```http
+   {
+      "id":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+      "paymentPointer":"https://wallet.example/alice",
+      "receivedAmount": {
+         "value":"0",
+         "assetCode":"USD",
+         "assetScale":2
+      },
+      "completed":false,
+      "createdAt":"2022-03-12T23:20:50.52Z",
+      "updatedAt":"2022-03-12T23:20:50.52Z",
+   }
+   ```
+
+   </CodeBlock>
+   ````
+
+8. `StylishHeader` component
+
+   Use this component if you wish to create a stylized heading that does not use the heading elements such that it will not appear in the ToC right sidebar. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `StylishHeader` component like so:
+
+   ```
+   import StylishHeader from '/src/components/docs/StylishHeader'
+   ```
+
+   Use the `<StylishHeader>` component within your content like so:
+
+   ```
+   <StylishHeader>Wow I'm a stylish header</StylishHeader>
+   ```
+
+9. `Hidden` component
 
    Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
 
