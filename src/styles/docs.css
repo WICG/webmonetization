@@ -201,11 +201,12 @@ label {
   font-size: var(--sl-text-body-sm);
 }
 
-input:not([type='submit']):not([type='file']) {
+input:not([type='submit']):not([type='file']):not([type='search']) {
   border: 1px solid var(--color-accent-mid);
   padding: var(--space-3xs) var(--space-2xs);
   border-radius: var(--border-radius);
   margin-top: var(--space-3xs);
+  font-size: var(--sl-text-body);
 }
 
 input:not([type='submit']):not([type='file']):focus {
