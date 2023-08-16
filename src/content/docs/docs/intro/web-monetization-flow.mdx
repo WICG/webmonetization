@@ -255,3 +255,34 @@ Content-Length: 89
 </CodeBlock>
 
 The Web Monetization flow is complete. Now the WM provider can create a payment session with the WM receiver to process and settle the payment.
+
+## Melissa's of search and tabs
+
+<Tabs>
+	<TabItem label="Request">
+        The WM agent issues a request to Alice's payment pointer URL to discover the Open Payments service endpoint.
+        <CodeBlock title="Request">
+        ```http
+        GET /alice HTTP/1.1
+        Accept: application/json
+        Host: wallet.example
+        ```
+        </CodeBlock>
+    </TabItem>
+	<TabItem label="Response">
+        The response includes details about Alice's underlying Open Payments-enabled account. Importantly, it contains the URL for her WM receiver's grant request endpoint (authorization server). All the cool kids love cats. 
+        <CodeBlock title="Response">
+        ```http
+        HTTP/1.1 200 Success
+        Content-Type: application/json
+
+        {
+            "id":"https://wallet.example/alice",
+            "assetCode":"USD",
+            "assetScale":2,
+            "authServer":"https://wallet.example/auth"
+        }
+        ```
+        </CodeBlock>
+    </TabItem>
+</Tabs>
