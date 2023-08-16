@@ -7,22 +7,7 @@ import LinkOut from '/src/components/docs/LinkOut'
 import CodeBlock from '/src/components/docs/CodeBlock'
 import StylishHeader from '/src/components/docs/StylishHeader'
 
-Compare this format with what's used on the [Web Monetization flow page](/docs/intro/web-monetization-flow#example-flow). Which is better?
-
-Questions about this format:
-* Will people notice there are tabs?
-* Are tabs accessible? Will users with screen readers know they're there? Can they easily navigate to them?
-* What happens if a search result hits on content within a Response tab? If you select the search result, where on the page will you land? 
-
 ## Example flow
-
-### Steps
-1. [Check for Web Monetization](#1)
-2. [Issue request to payment pointer](#2)
-3. [Send an incoming payment grant request](#3)
-4. [Create an incoming payment request](#4)
-5. [Send a quote request](#5)
-6. [Send outgoing payment request](#6)
 
 Alice web monetizes her site by adding the monetization `<link>` element to each page. The `<link>` element contains her payment pointer, `https://wallet.example/alice`.
 
@@ -32,7 +17,7 @@ Bob visits Alice's site and wants to send a Web Monetization payment. For this e
 - Bob has installed a WM agent into his browser and linked the agent to his WM provider
 - The WM agent has a grant to create outgoing payments on the sending account
 
-<a id="1"></a><StylishHeader>Step 1 - Check for Web Monetization</StylishHeader>
+<StylishHeader>Step 1 - Check for Web Monetization</StylishHeader>
 
 As Bob browses Alice's site, his WM agent detects a well-formed monetization `<link>` element and fires a `load` event.
 
@@ -40,7 +25,7 @@ As Bob browses Alice's site, his WM agent detects a well-formed monetization `<l
 <link rel="monetization" href="https://wallet.example/alice" />
 ```
 
-<a id="2"></a><StylishHeader>Step 2 - Issue request to payment pointer</StylishHeader>
+<StylishHeader>Step 2 - Issue request to payment pointer</StylishHeader>
 
 <Tabs>
 	<TabItem label="Request">
@@ -71,7 +56,7 @@ As Bob browses Alice's site, his WM agent detects a well-formed monetization `<l
     </TabItem>
 </Tabs>
 
-<a id="3"></a><StylishHeader>Step 3 - Send an incoming payment grant request</StylishHeader>
+<StylishHeader>Step 3 - Send an incoming payment grant request</StylishHeader>
 
 <Tabs>
 	<TabItem label="Request">
@@ -127,7 +112,7 @@ As Bob browses Alice's site, his WM agent detects a well-formed monetization `<l
     </TabItem>
 </Tabs>
 
-<a id="4"></a><StylishHeader>Step 4 - Create an incoming payment request</StylishHeader>
+<StylishHeader>Step 4 - Create an incoming payment request</StylishHeader>
 
 <Tabs>
 	<TabItem label="Request">
@@ -165,7 +150,7 @@ As Bob browses Alice's site, his WM agent detects a well-formed monetization `<l
     </TabItem>
 </Tabs>
 
-<a id="5"></a><StylishHeader>Step 5 - Send a quote request</StylishHeader>
+<StylishHeader>Step 5 - Send a quote request</StylishHeader>
 
 <Tabs>
 	<TabItem label="Request">
@@ -219,7 +204,7 @@ As Bob browses Alice's site, his WM agent detects a well-formed monetization `<l
     </TabItem>
 </Tabs>
 
-<a id="6"></a><StylishHeader>Step 6 - Send outgoing payment request</StylishHeader>
+<StylishHeader>Step 6 - Send outgoing payment request</StylishHeader>
 
 <Tabs>
 	<TabItem label="Request">

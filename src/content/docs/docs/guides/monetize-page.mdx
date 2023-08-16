@@ -9,10 +9,6 @@ This page provides basic instructions for adding Web Monetization to a web page.
 - Web monetized pages must be secure and served over HTTPS.
 - You must have the payment pointer assigned to you by your WM receiver.
 
-:::caution[Payment pointers]
-Payment pointers are a required component of Web Monetization; however, there are **no** payment pointer providers at this time. We'll update the site as providers become available.
-:::
-
 ## Monetize a page
 
 To add Web Monetization to a page, add the monetization `<link>` element to the page's `<head>`.
@@ -30,20 +26,10 @@ For example:
 </html>
 ```
 
-### Multiple link elements
+### Multiple monetization links
 
-While an HTML document can contain an unlimited number of `<link>` elements, the behavior of multiple monetization `<link>` elements is currently undefined. This includes instances where a parent page and an iframe's `src` are both web monetized. Until this behavior is defined, we recommend no more than one monetization `<link>` per browsing context/page.
+A single HTML document can contain multiple monetization `<link>` elements; however, it's up to each WM provider to decide how they want to handle this scenario. We recommend WM providers split the payments evenly between the links.
 
-### Multiple payment pointers
+## Next steps
 
-The monetization `<link>` element only supports one `href` value. As such, only one payment pointer can be defined within the `<link>`.
-
-[Probabilistic revenue sharing](../set-up-probabilistic-revenue-sharing) is one way to support multiple payment pointers on a page; however, it might not suit your use case. By adding a script to your site, this method will randomly choose from a list of predefined payment pointers each time a visitor loads the page.
-
-## Respond to monetization events
-
-A `monetization` event fires when an outgoing payment is successfully created. There’s no guarantee that any payments will follow or, if they do, how often or how large the payments will be.
-
-The event returns a URL as the `incomingPayment` attribute. Issuing a `GET` request to the URL returns the `receivedAmount`. A payment is considered received/successful when the `receivedAmount` is more than zero. You can then choose to have the page programmatically respond based on whether a payment was received. For example, you could [hide ads](../hide-ads) or [provide access to exclusive content](../provide-exclusive-content/) to web monetized visitors.
-
-Visit [Monetization Events](/docs/references/monetizationevent/) for more information about the `monetization` event object and its attributes.
+Now that you've web monetized your page, you can choose to [hide ads](/docs/guides/hide-ads), [provide exclusive content](/docs/guides/provide-exclusive-content), or respond to [monetization events](/docs/references/monetizationevent) in some other way when a web monetized visitor accesses your page.
