@@ -4,7 +4,7 @@ import CodeBlock from '../CodeBlock'
 
 export default function LinkTagGenerator() {
   const [pointerInput, setPointerInput] = useState('')
-  const [pointer, setPointer] = useState('https://YourPaymentPointer')
+  const [pointer, setPointer] = useState('https://paymentpointer.example/alice')
   const [invalidUrl, setInvalidUrl] = useState(false)
 
   const isValidPointer = (pointerInput) => {
@@ -24,7 +24,7 @@ export default function LinkTagGenerator() {
         return pointerUrl.href
       } else {
         setInvalidUrl(true)
-        return '$YourPaymentPointer'
+        return '$paymentpointer.example/alice'
       }
     }
   }
@@ -40,7 +40,7 @@ export default function LinkTagGenerator() {
           <input
             id='paymentPointer'
             label='Payment Pointer URL'
-            placeholder='$YourPaymentPointer'
+            placeholder='$paymentpointer.example/alice'
             value={pointerInput}
             onChange={(evt) => {
               setPointerInput(evt.target.value)
@@ -71,15 +71,11 @@ export default function LinkTagGenerator() {
       <CodeBlock>{`<link rel="monetization" href="${pointer}" />`}</CodeBlock>
 
       <p className={styles.text}>
-        To monetize your website add the above <code>&lt;link&gt;</code> tag to
-        the <code>&lt;head&gt;</code> section of all pages on your website.
+        After generating your <code>&lt;link&gt;</code> element, add the element to the <code>&lt;head&gt;</code> section of your website.
       </p>
 
       <p className={styles.text}>
-        Read our <a href='/docs'>docs</a> to learn more about Web Monetization.
-        If you're interested in splitting revenue between multiple parties,
-        check out the{' '}
-        <a href='/prob-revshare'>Probabilistic Revshare Generator</a>.
+        Visit our <a href='/docs'>docs</a> to learn more about Web Monetization.
       </p>
     </>
   )
