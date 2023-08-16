@@ -2,6 +2,7 @@
   display: inline-block;
   font-weight: bold;
   position: relative;
+  color: var(--sl-color-white);
 }
 
 .highlight::after {
