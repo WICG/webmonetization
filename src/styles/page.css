@@ -33,6 +33,7 @@
   --sl-color-accent-low: hsl(var(--sl-hue-accent), 100%, 97%); /* lightest */
   --color-accent-mid: hsl(324, 100%, 44%);
   --sl-color-red-high: hsl(339, 80%, 30%);
+  --sl-color-green-high: hsl(101, 80%, 22%);
 }
 
 /* CSS Resets */
