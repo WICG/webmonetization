@@ -80,6 +80,7 @@
   }
 }
 
+/* Stylized title */
 .container > h1:first-of-type {
   width: max-content;
 }
@@ -95,6 +96,24 @@
   content: '';
 }
 
+h3 {
+  display: inline-block;
+  position: relative;
+  color: var(--sl-color-white);
+}
+
+h3::after {
+  background-color: var(--color-accent-secondary);
+  height: 8px;
+  bottom: 0px;
+  z-index: -1;
+  position: absolute;
+  display: block;
+  width: calc(100% + 1em);
+  content: '';
+}
+
+/* Element spacing styling */
 .content-panel:first-of-type {
   padding: var(--space-m) var(--space-l) 0 var(--space-l);
 }
@@ -112,7 +131,7 @@
 
 .content.content
   :not(h1, h2, h3, h4, h5, h6)
-  + :is(h1, h2, h3, h4, h5, h6):not(:where(.not-content *)) {
+  + :is(h1, h2, h3, h4, h5, h6, .heading):not(:where(.not-content *)) {
   margin-top: var(--space-m);
 }
 
@@ -122,6 +141,12 @@
   margin-top: var(--space-2xs);
 }
 
+.content.content aside + div,
+.content.content div + div {
+  margin-top: var(--space-m);
+}
+
+/* Rounded corners and shadow flair */
 table,
 pre,
 .starlight-aside {
@@ -129,14 +154,26 @@ pre,
   box-shadow: var(--sl-shadow-sm);
 }
 
-starlight-tabs pre {
-  box-shadow: none;
-}
-
 code {
   border-radius: var(--border-radius);
 }
 
+/* Tab style overrides */
+starlight-tabs pre {
+  box-shadow: none;
+}
+
+starlight-tabs .tab > [role='tab'] {
+  color: var(--sl-color-accent);
+  text-decoration: underline;
+  padding-bottom: var(--space-3xs);
+}
+
+starlight-tabs .tab [role='tab'][aria-selected] {
+  text-decoration: none;
+}
+
+/* Table style overrides */
 .content.content table {
   display: table;
   width: 100%;
@@ -197,11 +234,12 @@ thead tr:first-of-type th {
   padding: var(--space-xs);
 }
 
+/* Input styles */
 label {
   font-size: var(--sl-text-body-sm);
 }
 
-input:not([type='submit']):not([type='file']):not([type='search']) {
+input:not([type='submit']):not([type='file']):not(.pagefind-ui__search-input) {
   border: 1px solid var(--color-accent-mid);
   padding: var(--space-3xs) var(--space-2xs);
   border-radius: var(--border-radius);
@@ -218,14 +256,7 @@ input:not([type='submit']):not([type='file']):focus {
   opacity: 0.6;
 }
 
-aside.starlight-aside {
-  padding: var(--space-xs);
-}
-
-.content astro-island > button[aria-expanded='false'] + div {
-  margin-top: 0;
-}
-
+/* Pagination override styles */
 .pagination-links {
   border-block-start: 1px solid var(--sl-color-gray-6);
 }
@@ -252,6 +283,15 @@ aside.starlight-aside {
 .pagination-links a:focus .link-title {
   color: var(--sl-color-text-accent);
   text-decoration: underline;
+}
+
+/* Misc tweaks and overrides */
+aside.starlight-aside {
+  padding: var(--space-xs);
+}
+
+.content astro-island > button[aria-expanded='false'] + div {
+  margin-top: 0;
 }
 
 /* Navigation sidebar styles */

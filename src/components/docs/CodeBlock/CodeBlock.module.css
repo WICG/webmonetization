@@ -1,6 +1,5 @@
 .codeBlock {
   position: relative;
-  margin-bottom: var(--space-s);
 }
 
 .codeBlock.codeBlock.codeBlock pre {
