@@ -5,7 +5,7 @@ title: Hide ads
 import NoPay from '/src/snippets/glitchNoPay.mdx'
 import ViewAs from '/src/snippets/glitchViewAs.mdx'
 
-Give your paying visitors an ad-free experience by hiding ads when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your ads will continue to appear to non-paying visitors.
+Give your web monetized visitors an ad-free experience by hiding ads when the `monetization` event fires. Since the `monetization` event only fires when an outgoing payment request is successfully created, your ads will continue to appear to non-web monetized visitors.
 
 ## Before you begin
 
@@ -78,7 +78,7 @@ function showAds() {
 }
 ```
 
-We want to bind the `monetization` event to its respective event handler if the visitor is web monetized. This triggers the removal of the ad once Web Monetization initializes. Assuming it initialized within the grace period, your ad isn't added to the page at all. This means any related images and trackers aren't loaded either.
+We want to bind the `monetization` event to its respective event handler if the visitor is web monetized. This prevents the ad from loading on the page once Web Monetization initializes. Assuming it initializes within the grace period, the ad isn't added to the page at all. This means any related images and trackers aren't loaded either.
 
 The `hasPaid` variable in the timer is for when/if Web Monetization starts after the grace period.
 
@@ -95,7 +95,7 @@ if (window.MonetizationEvent) {
 
 As soon as the page loads, the add will immediately appear to any visitor who isn't web monetized. This is handled via `!window.MonetizationEvent`, shown below.
 
-If the visitor has Web Monetization in their browser, then the `monetization` event must fire within 3 seconds (3000ms) to indicate that Web Monetization has initialized. If it hasn't intialized by the timeout, the ad is shown to the visitor.
+If the visitor has Web Monetization in their browser, then the `monetization` event must fire within 3 seconds (3000ms) to indicate that Web Monetization has initialized. If it doesn't initialize by the timeout, the ad is shown to the visitor.
 
 ```jsx
 window.addEventListener('load', () => {

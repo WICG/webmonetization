@@ -12,11 +12,9 @@ import Hidden from '/src/components/docs/Hidden'
 `incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>. <Hidden>Check the [Browser compatibility table](#browser-compatibility) before using.</Hidden>
 :::
 
-The `MonetizationEvent` `incomingPayment` attribute returns a URL that represents an incoming payment at the Web Monetization receiver.
+The `monetization` event's `incomingPayment` attribute can be used to verify the receipt of a payment. Today, the `monetization` event fires when the WM agent successfully creates an outgoing payment request at the WM provider. Since it's only a request to send an outgoing payment, there's no guarantee at this point that a payment has been received.
 
-## Value
-
-A string that represents a URL that can be used to verify payment at the Web Monetization receiver via the <LinkOut href="https://docs.openpayments.guide/reference/get-incoming-payment">Open Payments API standard</LinkOut>. The returned value is the value it was initialized with.
+The `incomingPayment` attribute returns the URL that represents the incoming payment at the WM receiver. The returned value is the value it was initialized with. By <LinkOut href="https://docs.openpayments.guide/reference/get-incoming-payment">querying the URL</LinkOut>, you can get the `receivedAmount`.
 
 ## Example
 

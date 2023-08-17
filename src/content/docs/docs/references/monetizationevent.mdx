@@ -8,7 +8,7 @@ import data from '/src/data/browser-compat-data/monetizationevent.json'
 
 The `MonetizationEvent` DOM events provide information about payments sent to WM receivers.
 
-The `monetization` event fires on a `<link rel="monetization">` element when the WM agent successfully creates an outgoing payment. There’s no guarantee that any payments will follow or, if they do, how often or how large the payments will be.
+The `monetization` event fires when a WM agent successfully creates an outgoing payment request at the WM provider. There’s no guarantee that any payments will follow or, if they do, how often or how large the payments will be.
 
 By listening for `monetization` events, you can use the returned details to verify the receipt of a payment. You can then choose to have the page programmatically respond to successful payments. For example, you could [hide ads](/docs/guides/hide-ads) or provide access to [exclusive content](/docs/guides/provide-exclusive-content).
 
@@ -35,7 +35,7 @@ By listening for `monetization` events, you can use the returned details to veri
 
 ## Current attributes
 
-- [amountSent](/docs/references/attributes/amountsent) - A dictionary containing the amount and currency code of the sent payment
+- [amountSent](/docs/references/attributes/amountsent) - Returns the amount and currency code of the sent payment
 - [incomingPayment](/docs/references/attributes/incomingpayment) - Returns the incoming payment URL
 - [paymentPointer](/docs/references/attributes/paymentpointer) - A URL representing the payment pointer endpoint
 

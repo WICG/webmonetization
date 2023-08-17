@@ -13,7 +13,7 @@ export function ImportView() {
   return (
     <div className={styles.importWrapper}>
       <textarea
-        placeholder='Enter your meta tag, link tag or payment pointer'
+        placeholder='Enter your link element here'
         multiline
         rows={4}
         value={tag}

@@ -110,7 +110,7 @@ export function tagToShares(tag) {
   if (!meta && !link) {
     console.log(node, node.head)
     throw new Error(
-      'Please copy the exact meta tag or link tag you got from this revshare tool. It seems to be malformed.'
+      'Please enter the exact link element you generated from this revshare tool. It seems to be malformed.'
     )
   }
 
@@ -133,7 +133,7 @@ function isRevsharePointer(str) {
 export function tagOrPointerToShares(tag) {
   const trimmedTag = tag.trim()
   if (!trimmedTag) {
-    throw new Error('Tag or pointer is empty')
+    throw new Error('Field is empty')
   }
 
   if (isRevsharePointer(trimmedTag)) {

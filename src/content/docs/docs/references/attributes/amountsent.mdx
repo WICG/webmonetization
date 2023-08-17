@@ -8,11 +8,11 @@ import data from '/src/data/browser-compat-data/amountSent.json'
 import LinkOut from '/src/components/docs/LinkOut'
 import Tooltip from '/src/components/docs/Tooltip'
 
-The `MonetizationEvent` `amountSent` attribute returns the amount and <Tooltip content='The ISO 4217 alphabetic code that represents a currency (USD, CAD, etc.)' client:load><span>currency code</span></Tooltip> of the money that was successfully sent in the last payment.
+The `monetization` event's `amountSent` attribute returns you the amount (`value`) and <Tooltip content='The ISO 4217 alphabetic code that represents a currency (USD, CAD, etc.)' client:load><span>currency code</span></Tooltip> (`currency`) of the Web Monetization payment sent to you. 
 
 ## Value
 
-A dictionary with the same data structure as the <LinkOut href="https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">`PaymentCurrencyAmount`</LinkOut> dictionary in the <LinkOut href="https://www.w3.org/TR/payment-request/">Payment Request API</LinkOut>. The returned value is the value it was initialized with.
+The `value` uses the same data structure as the <LinkOut href="https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">`PaymentCurrencyAmount`</LinkOut> dictionary in the <LinkOut href="https://www.w3.org/TR/payment-request/">Payment Request API</LinkOut>. The returned value is the value it was initialized with.
 
 ## Example
 

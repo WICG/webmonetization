@@ -5,7 +5,7 @@ title: Provide exclusive content
 import NoPay from '/src/snippets/glitchNoPay.mdx'
 import ViewAs from '/src/snippets/glitchViewAs.mdx'
 
-Give your paying visitors access to exclusive content when the `monetization` event fires. Since the `monetization` event only fires when a payment is sent, your exclusive content will only appear to paying visitors.
+Give your paying visitors access to exclusive content when the `monetization` event fires. Since the `monetization` event only fires when an outgoing payment request is successfully created, your exclusive content only appears to web monetized visitors.
 
 ## Example 1 - Simple
 
@@ -79,7 +79,7 @@ This example simulates hiding and showing exclusive content based on a visitor's
 In reality, you'll probably want your site to do more than simply show and hide content. In this example, we illustrate how to:
 
 - Show web monetized visitors an indicator while they wait for Web Monetization to initialize
-- Tell non-web monetized visitors that there's exclusive content they can get
+- Tell non-web monetized visitors that there's exclusive content they're missing out on
 
 The example below covers three states for showing:
 
@@ -165,7 +165,7 @@ if (!window.MonetizationEvent) {
 }
 ```
 
-If the visitor is web monetized, we'll listen for the `monetization` event that occurs when a payment is sent. When this event fires, the exclusive content will appear and the other `div`s will be hidden.
+If the visitor is web monetized, we'll listen for the `monetization` event that occurs when an outgoing payment request is successfully created. When this event fires, the exclusive content will appear and the other `div`s will be hidden.
 
 ```js
 if (window.MonetizationEvent) {

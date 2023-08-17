@@ -15,7 +15,7 @@ export function ActiveView() {
         <OnlyClient>
           <RevshareChart />
           <ShareList />
-          <h2 className='heading3'>Link Tag</h2>
+          <h2 className='heading3'>Link Element</h2>
           <SharesLinkTag />
         </OnlyClient>
       </>
@@ -23,20 +23,12 @@ export function ActiveView() {
   } else if (view === ViewStates.Import) {
     return (
       <>
-        <h2 className='heading3'>Importing Revshare</h2>
+        <h2 className='heading3'>Import an existing revshare</h2>
         <p className={styles.text}>
-          If you are using the deprecated <code>meta</code> tag implementation,
-          you can copy that (found in your site's <code>&lt;head&gt;</code>)
-          into the box below. Otherwise, copy the Web Monetization{' '}
-          <code>link</code> tag into the box below. Click "Import" to load it
-          into the editor.
+          Click <b>Import Existing Revshare</b> to edit a revshare. Then, enter your current <code>link</code> element into the field and click <b>Import</b>. The table will populate with your existing revshare's details.
         </p>
         <p className={styles.text}>
-          <strong>
-            Once you're finished editing, you must replace all old Web
-            Monetization meta tags or link tags on your site with the newly
-            generated one in order for the changes to take effect!
-          </strong>
+            If you make any changes, the <code>link</code> generated on this page will change. Be sure to replace your old <code>link</code> element with the updated version. Check out <a href="/docs/guides/monetize-page">Add Web Monetization to a page</a> if you need help.
         </p>
         <ImportView />
       </>
