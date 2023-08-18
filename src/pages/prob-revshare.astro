@@ -14,11 +14,14 @@ const description = t("site.description");
       <h1 class="heading2">Probabilistic Revshare Generator</h1>
       <p>Probabilistic revenue sharing (revshare) is one way to share a portion of a web monetized page’s earnings between multiple payment pointers.</p>
       <p>A monetization <code>link</code> element can only support one <code>href</code> value, and hence, one payment pointer. This tool allows you to input multiple payment pointers, then generate a monetization <code>link</code> element with an <code>href</code> URL that’s hosted on webmonetization.org.</p>
-      <p>Behind the scenes, we’ll apply revsharing to the list of payment pointers. With revsharing, one payment pointer is added to the web monetized page each time the page is loaded or reloaded. A payment pointer’s chance of being chosen is based on its weight. Its weight determines the percentage of the page’s total revenue the payment pointer should receive. As more web monetized visitors access the page, each payment pointer’s share will approach its set percentage.</p>If you don’t want to use the generator, you can still set up revsharing by including a <a href="/docs/guides/set-up-probabilistic-revenue-sharing">script</a> on your page. 
+      <p>Behind the scenes, we’ll apply revsharing to the list of payment pointers. With revsharing, one payment pointer is added to the web monetized page each time the page is loaded or reloaded. A payment pointer’s chance of being chosen is based on its weight. Its weight determines the percentage of the page’s total revenue the payment pointer should receive. As more web monetized visitors access the page, each payment pointer’s share will approach its set percentage.</p>
+      <p>If you don’t want to use the generator, you can still set up revsharing by including a <a href="/docs/guides/set-up-probabilistic-revenue-sharing">script</a> on your page.</p>
+
       <h2 class="heading3">Define a new revshare</h2>
       <p>Enter each payment pointer that will receive a split of the revenue. Names are optional. Click <b>Add Share</b> to add more rows.</p>
       <p>Set either a weight or a percent for each payment pointer. Adjusting one field will cause the others to update automatically. Note that the Percent field can’t be adjusted until there’s at least two payment pointers added to the table.</p>
       <p>As you adjust the weights and percentages, the <code>link</code> element generated below will change. Don’t copy the link element until you’re finished. Once finished, <a href="/docs/guides/monetize-page">add the link element</a> to your site.</p>
+
       <ProbRevshareGenerator client:load />
     </div>
   </section>

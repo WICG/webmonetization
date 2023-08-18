@@ -1,15 +1,16 @@
 const BASE_REVSHARE_POINTER = '$webmonetization.org/api/revshare/pay/'
 const POINTER_LIST_PARAM = 'p'
 const CHART_COLORS = [
-  '#6ADAAB',
-  '#5DC495',
-  '#50AF7F',
-  '#439A6B',
-  '#368657',
-  '#297244',
-  '#1C5F32',
-  '#0E4C21',
-  '#003A10',
+  '#fae6f1',
+  '#f5cce2',
+  '#f0b3d4',
+  '#eb99c6',
+  '#e680b8',
+  '#e066a9',
+  '#db4d9b',
+  '#d6338d',
+  '#d11a7e',
+  '#cc0070',
 ]
 
 export function getValidShares(shares) {
