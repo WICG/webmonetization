@@ -4,24 +4,21 @@ title: Set up probabilistic revenue sharing
 
 import NoPay from '/src/snippets/glitchNoPay.mdx'
 
-<div class="draft">
-  <h5>Page Updates</h5>
-  <ul>
-    <li>Update Glitch example's README</li>
-    <li>Change all references to $example.com/ to $wallet.example/ on page and in Glitch</li>
-    <li>Tie page into the revshare generator; make sure this page and the generator are accurate</li>
-  </ul>
-</div>
+How do you share a portion of a web monetized page's earnings when a monetization `<link>` element only supports one payment pointer as its `href` value?
 
-Since a monetization `<link>` element only supports one payment pointer as its `href` value, how do you share a portion of a web monetized page's earnings?
-
-One way is through probabilistic revenue sharing. Probabilistic revenue sharing works by randomly choosing from a list of predefined payment pointers each time a web monetized visitor loads the page. Payments are sent to the randomly chosen payment pointer until the visitor reloads or closes the page.
+One way is through probabilistic revenue sharing. Probabilistic revenue sharing works by choosing from a list of predefined payment pointers each time a web monetized visitor loads the page. Payments are sent to the chosen payment pointer until the visitor reloads or closes the page.
 
 A payment pointer's chance of being chosen is based on its assigned weight. For example, if Alice's payment pointer has a weight of 50 (out of 100), then her payment pointer has a 50% chance of being chosen. The laws of probability state that Alice's share of the page's total revenue will approach 50% as more web monetized visitors access the page.
 
 ## Example
 
-The example below shows how to define a list of weighted payment pointers. The easiest way to establish weight is to assign values that add up to 100.
+This example shows how to use probabilistic revenue sharing by including a script on your web monetized page. 
+
+:::note
+If you don't want to include a script on your page, you can use our [Probabilistic Revshare Generator](/prob-revshare). After entering your payment pointers and their weights, the generator will provide you with a monetization `<link>` element that contains a unique `href` URL hosted on `https://webmonetization.org/api/revshare/pay/`.
+:::
+
+The example below shows a list of weighted payment pointers. The easiest way to establish weight is to assign values that add up to 100.
 
 ```html
 <head>
@@ -29,10 +26,10 @@ The example below shows how to define a list of weighted payment pointers. The e
     // Define your revenue share here.
     // If the weights add up to 100 then they represent the percent each payment pointer gets.
     const pointers = {
-      '$example.com/alice': 50,
-      '$example.com/bob': 40,
-      '$example.com/connie': 9.5,
-      '$example.com/dave': 0.5,
+      '$wallet.example/alice': 50,
+      '$wallet.example/bob': 40,
+      '$wallet.example/connie': 9.5,
+      '$wallet.example/dave': 0.5,
     }
 
     function pickPointer() {
@@ -66,15 +63,15 @@ If the combined weights equal 100, then each weight represents the percentage at
 
 ```js
 const pointers = {
-  '$example.com/alice': 50,
-  '$example.com/bob': 40,
-  '$example.com/connie': 9.5,
-  '$example.com/dave': 0.5,
+  '$wallet.example/alice': 50,
+  '$wallet.example/bob': 40,
+  '$wallet.example/connie': 9.5,
+  '$wallet.example/dave': 0.5,
 }
 ```
 
 :::info
-Since this method bypasses the need to include a monetization `<link>` element, you can choose to use a payment pointer's shorthand form (e.g., `$example.com/alice`) rather than the endpoint URL that the payment pointer resolves to (e.g. `https://example.com/bob`).
+Since this method bypasses the need to include a monetization `<link>` element, you can choose to use a payment pointer's shorthand form (e.g., `$wallet.example/alice`) rather than the endpoint URL that the payment pointer resolves to (e.g. `https://wallet.example/alice`).
 :::
 
 Next, we define the function to cause payment pointers to be chosen based on weight.

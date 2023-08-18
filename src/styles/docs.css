@@ -376,21 +376,3 @@ div.caption {
   font-size: small;
   font-weight: 600;
 }
-
-/* Can be deleted after all To-Dos are taken care of internally */
-.draft {
-  background: #f2dddd;
-  color: #aa4546;
-  padding: var(--space-s);
-  border: 2px solid #aa4546;
-}
-
-.draft h5 {
-  color: #aa4546;
-  font-size: var(--step-0);
-}
-
-.draft.draft.draft ul,
-.draft.draft.draft p {
-  margin-top: var(--space-2xs);
-}
