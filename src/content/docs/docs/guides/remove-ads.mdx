@@ -1,5 +1,5 @@
 ---
-title: Hide ads
+title: Remove ads
 ---
 
 import NoPay from '/src/snippets/glitchNoPay.mdx'
@@ -15,13 +15,13 @@ For visitors with Web Monetization in their browser, there's a three-second grac
 
 **If Web Monetization...**
 
-- Initializes within the grace period, then ads are hidden
+- Initializes within the grace period, then ads are removed
 - Fails to initialize within the grace period, then ads are shown
-- Initializes any time after the grace period, then ads are hidden
+- Initializes any time after the grace period, then ads are removed
 
 ## Example
 
-The example below shows how to hide ads from web monetized visitors.
+The example below shows how to remove ads from web monetized visitors.
 
 ```html
 <head>
@@ -93,7 +93,7 @@ if (window.MonetizationEvent) {
 }
 ```
 
-As soon as the page loads, the add will immediately appear to any visitor who isn't web monetized. This is handled via `!window.MonetizationEvent`, shown below.
+As soon as the page loads, the ad will immediately appear to any visitor who isn't web monetized. This is handled via `!window.MonetizationEvent`, shown below.
 
 If the visitor has Web Monetization in their browser, then the `monetization` event must fire within 3 seconds (3000ms) to indicate that Web Monetization has initialized. If it doesn't initialize by the timeout, the ad is shown to the visitor.
 

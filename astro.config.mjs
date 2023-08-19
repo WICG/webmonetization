@@ -133,8 +133,8 @@ export default defineConfig({
               link: '/docs/guides/monetize-page',
             },
             {
-              label: 'Hide ads',
-              link: '/docs/guides/hide-ads',
+              label: 'Remove ads',
+              link: '/docs/guides/remove-ads',
             },
             {
               label: 'Provide exclusive content',
@@ -161,6 +161,10 @@ export default defineConfig({
             {
               label: 'Libraries',
               link: '/docs/resources/libraries',
+            },
+            {
+              label: 'Payment pointers',
+              link: '/docs/resources/paymentpointers',
             },
             {
               label: 'External resources',

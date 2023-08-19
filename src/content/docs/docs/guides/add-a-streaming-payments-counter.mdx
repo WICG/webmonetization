@@ -5,13 +5,11 @@ title: Add a streaming payments counter
 import NoPay from '/src/snippets/glitchNoPay.mdx'
 import ViewAs from '/src/snippets/glitchViewAs.mdx'
 
-Web Monetization allows you to know exactly how much you've received from a given visitor. The amount updates in real time as more payments come in during the session.
-
-By adding a streaming payments counter to your site, you can show your visitors how much they're supporting you.
+Web Monetization allows you to know exactly how much a web monetized visitor has sent to you. In cases where a web monetized visitor has chosen to pay you in time-based increments (such as per second or per minute), a streaming payments counter can be a helpful tool to show your visitor how much they've sent. The amount updates in real time as more payments come in during the session.
 
 ## Example
 
-The example below illustrates how to use the `monetization` event to show a web monetized visitor how much you're earning from their visit.
+The example below illustrates how to use the `monetization` event to show a web monetized visitor how much they've sent you during their current browsing session.
 
 ```html
 <head>
@@ -55,7 +53,7 @@ The example below illustrates how to use the `monetization` event to show a web 
 
 First, we'll bind the `monetization` event if the visitor is web monetized (`window.MonetizationEvent` is defined).
 
-The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and currency code of the last successful payment.
+The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and currency code of the sent payment. A currency code is a three-letter code, like USD, EUR, or GBP. 
 
 ```js
   if (window.MonetizationEvent) {
@@ -68,9 +66,7 @@ The `monetization` event contains details about the payments that occur. The `am
     console.log(`Browser sent ${currency} ${value}.`);
 ```
 
-The currency is set on the first payment and doesn't change. It represents the received currency, which may be different than the site visitor's preferred currency.
-
-`currency` is a three-letter code, like USD, EUR, or GBP. This code gets written to the `currency` span on the page.
+The `currency` is set on the first payment and doesn't change. Remember, it represents the sent payment's currency, which may be different from the currency you receive (depending on how your receiving account is set up with your WM receiver).
 
 ```js
 // initialize currency on first progress event
@@ -85,7 +81,7 @@ The amount in `value` is an integer, which we add to our total.
 total += Number(value)
 ```
 
-Finally, we update the text on the page with the new total. We want the total to be in a readable format, so we convert the number to a string and round it to a specified number of decimals, which in this example is `9`. This formatted version of the amount gets written to the `total` span on the page.
+Finally, we update the text on the page with the new total. We want the total to be in a readable format, so we convert the number to a string and round it to a specified number of decimals, which is `9` in this example. This formatted version of the amount gets written to the `total` span on the page.
 
 ```js
 document.getElementById('total').innerText = total.toFixed(9)
@@ -93,7 +89,7 @@ document.getElementById('total').innerText = total.toFixed(9)
 
 ## Interactive example
 
-This example simulates showing a visitor how much you're earning based off their visit. 
+This example simulates showing a visitor how much they are sending you based off how long they remain on your web monetized page.
 
 <NoPay />
 
