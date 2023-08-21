@@ -9,10 +9,9 @@
   text-underline-offset: 2px;
 }
 
-.toggle.toggle {
+.toggle {
   background-color: transparent;
   border: 0;
-  margin: 0;
   padding: 0 var(--space-3xs);
   font-size: 12px;
   font-weight: bold;
@@ -26,7 +25,6 @@
 
 .bubble {
   position: absolute;
-  z-index: 5;
   right: 0;
   bottom: 100%;
   background-color: var(--sl-color-bg-nav);
@@ -34,5 +32,23 @@
   padding: var(--space-2xs);
   border-radius: var(--border-radius);
   line-height: 1.25;
-  width: 15em;
+  width: 16em;
+}
+
+.shifted {
+  left: 0;
+}
+
+.wrapperAdjust {
+  position: initial;
+}
+
+.bubbleAdjust {
+  left: 0;
+  bottom: initial;
+}
+
+.btnAdjust {
+  right: initial;
+  bottom: initial;
 }

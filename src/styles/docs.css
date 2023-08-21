@@ -61,6 +61,10 @@
 }
 
 /* Main content area styles */
+body {
+  min-width: 320px;
+}
+
 .main-frame {
   font-size: var(--sl-text-body);
 }
@@ -295,8 +299,15 @@ aside.starlight-aside {
 }
 
 /* Navigation sidebar styles */
-.sidebar-content .sidebar {
-  padding: 0;
+
+@media (min-width: 50rem) {
+  .sidebar-pane {
+    z-index: auto;
+  }
+
+  .sidebar-content .sidebar {
+    padding: 0;
+  }
 }
 
 .sidebar-content .sidebar ul {
