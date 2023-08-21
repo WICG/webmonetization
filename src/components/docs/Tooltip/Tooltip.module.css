@@ -28,7 +28,7 @@
   right: 0;
   bottom: 100%;
   background-color: var(--sl-color-bg-nav);
-  border: 1px solid var(--sl-color-hairline);
+  border: 1px solid var(--sl-color-hairline-light);
   padding: var(--space-2xs);
   border-radius: var(--border-radius);
   line-height: 1.25;
