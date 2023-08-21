@@ -9,7 +9,7 @@ the proposed [spec](https://webmonetization.org/specification).
 
 ## Contribute
 
-This website was created with [Docusaurus](https://v2.docusaurus.io/) and contributions are welcome as pull requests.
+This website is built with [Starlight](https://starlight.astro.build/), a documentation framework based on [Astro](https://astro.build/).
 
 ### Local Development
 
@@ -30,51 +30,254 @@ $ yarn start
 
 ## Specification Development
 
-The source file for the specification document is at [static/specification-respec.html](https://github.com/WICG/webmonetization/tree/main/static/specification-respec.html). This is the raw ReSpec version that editors should make changes and updates to. Documentation of ReSpec can be accessed on the [ReSpec Wiki](https://github.com/w3c/respec/wiki/).
+The source file for the specification document is at [src/pages/specification/specification-respec.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/specification-respec.html). This is the raw ReSpec version that editors should make changes and updates to. Documentation of ReSpec can be accessed on the [ReSpec Wiki](https://github.com/w3c/respec/wiki/).
 
 On your local machine, once the dev server is running, you can see all your updates to the specification at `localhost:3000/specification-respec.html`. Once you're done with your changes, please generate new static HTML version of the specification by clicking the ReSpec button in the top-right corner.
 
-Rename this file to index.html and replace previous the [static/specification/index.html](https://github.com/WICG/webmonetization/tree/main/static/specification/index.html). In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. As such, we will only archive a version of the specification for major updates.
+Rename this file to index.html and replace previous the [src/pages/specification/index.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/index.html). In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. As such, we will only archive a version of the specification for major updates.
 
-For example, a copy of [version 1.0 of the specification](https://github.com/WICG/webmonetization/tree/main/static/specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [static/specification/versions/](https://github.com/WICG/webmonetization/tree/main/static/specification/versions).
+For example, a copy of [version 1.0 of the specification](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [src/pages/specification/versions/](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions).
 
 ## Editing Content
 
+Due to the nature of how Starlight deals with content and their generated URLs, for our documentation which wants to use a sub-folder URL style of https://webmonetization.org/docs for the documentation section, we have a double `docs` folder situation.
+
+The `docs.mdx` file in the root of the `content/docs` folder is essentially the landing page for our documentation and is what users see when they land on https://webmonetization.org/docs.
+
 ### Editing an existing docs page
 
-Edit docs by navigating to `docs/` and editing the corresponding document:
+Edit docs by navigating to `/src/content/docs/docs` and editing the corresponding document:
 
-`docs/doc-to-be-edited.md`
+`/src/content/docs/docs/RELEVANT_FOLDER/doc-to-be-edited.md`
 
 ```markdown
 ---
-id: page-needs-edit
 title: This Doc Needs To Be Edited
 ---
 
 Edit me...
 ```
 
-For more information about docs, click
-[here](https://v2.docusaurus.io/docs/docs-introduction/)
+Refer to the Starlight documentation on [authoring content](https://starlight.astro.build/guides/authoring-content/) for more detailed guidance.
+
+### Docs components
+
+We have extracted some of the commonly repeated patterns within the documentation pages into custom docs components that can be reused.
+
+1. `Specification` component
+
+   This component will display a link to the relevant section of the [Web Monetization specification] (https://webmonetization.org/specification/) in a table. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue.
+
+   Import the `Specification` component like so:
+
+   ```
+   import Specification from '/src/components/docs/Specification'
+   ```
+
+   Use the `<Specification>` component on your docs page where relevant under a "Specifications" heading like so:
+
+   ```
+   ## Specifications
+
+   <Specification anchor='link-type-monetization' />
+   ```
+
+   This component takes in an optional `anchor` prop which allows you to specify a particular section of the specification that is relevant to that individual docs page. If no `anchor` prop is provided, it will default to the specification itself.
+
+2. `BrowserCompat` component
+
+   This component will generate a compatibility table based on the browser compatibility data passed into it. The key is to pass the component the correct data. All our browser compatibility data files can be found in `/src/data/browser-compat-data`. our docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue.
+
+   Import the component and the relevant data file like so:
+
+   ```
+   import BrowserCompat from '/src/components/docs/BrowserCompat'
+   import data from '/src/data/browser-compat-data/monetization.json' /* this is the key */
+   ```
+
+   Use the `<BrowserCompat>` component in your docs page where relevant under a "Browser compatibility" heading like so:
+
+   ```
+   ## Browser compatibility
+
+   <BrowserCompat json={data} />
+   ```
+
+3. `Tooltip` component
+
+   Use the tooltip component for adding a short explanation to specific terms. This component is built to be accessible in accordance to the guidance from [WAI Tooltip Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/).
+
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Tooltip` component like so:
+
+   ```
+   import Tooltip from '/src/components/docs/Tooltip'
+   ```
+
+   Use the `<Tooltip>` component within your content like so:
+
+   ```
+   <Tooltip content='THIS CONTENT IS DISPLAYED IN THE TOOLTIP UPON INTERACTION' client:load><span>text that you are trying to explain</span></Tooltip>.
+   ```
+
+   If the text you are trying to explain is also a link to somewhere else, please put the link within the `<Tooltip>` like so:
+
+   ```
+   <Tooltip content='THIS CONTENT IS DISPLAYED IN THE TOOLTIP UPON INTERACTION' client:load><a href="/URL">text that you are trying to explain</a></Tooltip>.
+   ```
+
+4. `LinkOut` component
+
+   Use this component if you need to add an external link to your content that opens in a new tab. This component adds the necessary attributes for external links and adds an external link indicator icon to the end of the link content. The icon can be turned off, if necessary.
+
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LinkOut` component like so:
+
+   ```
+   import LinkOut from '/src/components/docs/LinkOut'
+   ```
+
+   Use the `<LinkOut>` component within your content like so:
+
+   ```
+   <LinkOut href="https://openpayments.guide/">OpenPayments API</LinkOut>
+   ```
+
+   If you do not want the external link icon to appear, you can set the `withIcon` prop to `false` like so:
+
+   ```
+   <LinkOut href="https://openpayments.guide/" withIcon={false}>OpenPayments API</LinkOut>
+   ```
+
+5. `LargeImg` component
+
+   Use this component if you have a diagram or image that is much larger than our available space and you would like users to view the full image in another tab. This adds a link to "View full image" with an external link indicator on the bottom right corner under the image. It takes in a `src` and `alt`, just like a normal `img` element.
+
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LargeImg` component like so:
+
+   ```
+   import LargeImg from '/src/components/docs/LargeImg'
+   ```
+
+   Use the `<LargeImg>` component within your content like so:
+
+   ```
+   <LargeImg src="/img/OMG_A_GIGANTIC_IMG.png" alt="A really large diagram" />
+   ```
+
+6. `Disclosure` component
+
+   Use this component if you have some content that you want to show/hide via a collapsible container. This component wraps around whatever content you wish to have this expand/collapse behaviour. Note that the `client:load` attribute is required for the functionality to work because this component relies on state.
+
+   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Disclosure` component like so:
+
+   ```
+   import Disclosure from '/src/components/docs/Disclosure'
+   ```
+
+   Use the `<Disclosure>` component within your content like so:
+
+   ```
+   <Disclosure toggleText='Show code snippets' client:load>
+      <!-- Your content, can be markup or markdown -->
+   </Disclosure>
+   ```
+
+   For the specific use-case of displaying multiple code-snippets, it might be worth considering also using the [built-in Starlight `<Tabs>`](https://starlight.astro.build/guides/components#tabs) component:
+
+   ````
+   <Disclosure toggleText='Show code snippets' client:load>
+      <Tabs>
+         <TabItem label='Request'>
+         ```bash
+         GET /alice HTTP/1.1
+         Accept: application/json
+         Host: wallet.example
+         ```
+         </TabItem>
+         <TabItem label='Response'>
+         ```bash
+         HTTP/1.1 200 Success
+         Content-Type: application/json
+
+         {
+            "id":"https://wallet.example/alice",
+            "assetCode":"USD",
+            "assetScale":2,
+            "authServer":"https://wallet.example/auth",
+         }
+         ```
+         </TabItem>
+
+      </Tabs>
+   </Disclosure>
+   ````
+
+7. `CodeBlock` component
+
+   Use this component if you wish to add a title to your code block. It takes a `title` attribute, which will be displayed above the code. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `CodeBlock` component like so:
+
+   ```
+   import CodeBlock from '/src/components/docs/CodeBlock'
+   ```
+
+   Use the `<CodeBlock>` component within your content like so:
+
+   ````
+   <CodeBlock title="Response">
+
+   ```http
+   {
+      "id":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+      "paymentPointer":"https://wallet.example/alice",
+      "receivedAmount": {
+         "value":"0",
+         "assetCode":"USD",
+         "assetScale":2
+      },
+      "completed":false,
+      "createdAt":"2022-03-12T23:20:50.52Z",
+      "updatedAt":"2022-03-12T23:20:50.52Z",
+   }
+   ```
+
+   </CodeBlock>
+   ````
+
+8. `StylishHeader` component
+
+   Use this component if you wish to create a stylized heading that does not use the heading elements such that it will not appear in the ToC right sidebar. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `StylishHeader` component like so:
+
+   ```
+   import StylishHeader from '/src/components/docs/StylishHeader'
+   ```
+
+   Use the `<StylishHeader>` component within your content like so:
+
+   ```
+   <StylishHeader>Wow I'm a stylish header</StylishHeader>
+   ```
+
+9. `Hidden` component
+
+   Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
+
+   Unfortunately, due to the nature of how the ToC on the right is generated, if we want to hide an entire section (including the header), we will have to manually hide the section heading by either commenting it out or deleting it.
 
 ## Adding Content
 
 ### Adding a new docs page to an existing sidebar
 
-1. Create the doc as a new markdown file in `/docs`, example
-   `docs/newly-created-doc.md`:
+1. Create the doc as a new markdown file in `/src/content/docs/docs/RELEVANT_FOLDER`, example
+   `/src/content/docs/docs/RELEVANT_FOLDER/newly-created-doc.md`:
 
 ```md
 ---
-id: newly-created-doc
-title: This Doc Needs To Be Edited
+title: This Doc Needs To Be Written
 ---
 
 My new content here..
 ```
 
-1. Refer to that doc's ID in an existing sidebar in `website/sidebar.json`:
+The sidebar of the documentation site is configured in the `astro.config.mjs`.
 
 ```javascript
 // Add newly-created-doc to the Getting Started category of docs
@@ -90,83 +293,23 @@ My new content here..
 }
 ```
 
-For more information about adding new docs, click
-[here](https://v2.docusaurus.io/docs/docs-introduction/)
-
-### Adding items to your site's top navigation bar
-
-1. Add links to docs, custom pages or external links by editing the `themeConfig.navbar.links` field of `docusaurus.config.js`:
-
-`docusaurus.config.js`
-
-```javascript
-module.exports = {
-  // ...
-  themeConfig: {
-    navbar: {
-      links: [
-        {
-          // Client-side routing, used for navigating within the website.
-          // The baseUrl will be automatically prepended to this value.
-          to: 'docs/introduction',
-          // A full-page navigation, used for navigating outside of the website.
-          // You should only use either `to` or `href`.
-          href: 'https://www.facebook.com',
-          // Prepends the baseUrl to href values.
-          prependBaseUrlToHref: true,
-          // The string to be shown.
-          label: 'Introduction',
-          // Left or right side of the navbar.
-          position: 'left', // or 'right'
-          // To apply the active class styling on all
-          // routes starting with this path.
-          // This usually isn't necessary
-          activeBasePath: 'docs',
-          // Alternative to activeBasePath if required.
-          activeBaseRegex: 'docs/(next|v8)',
-          // Custom CSS class (for styling any item).
-          className: '',
-        },
-        // ... other links
-      ],
-    },
-    // ...
-  },
-}
-```
-
-For more information about the navigation bar, click
-[here](https://v2.docusaurus.io/docs/theme-bootstrap/#navbar)
+Refer to the Starlight documentation on [sidebar configuration](https://starlight.astro.build/reference/configuration/#sidebar/) for more detailed guidance.
 
 ### Adding custom pages
 
-1. Docusaurus uses React components to build pages. The components are saved as
-   .js files in `src/pages`:
-1. If you want your page to show up in your navigation header, you will need to
-   update the `themeConfig.navbar.links` field of `docusaurus.config.js` (see above).
+Astro is a content-focused web framework that integrates with a lot of existing framework libraries, making it relatively flexible for building customised sites.
 
-`website/siteConfig.js`
+Pages exist in the `/src/pages` directory, and out-of-the-box come with absolutely nothing. For the web monetization website, we have created custom layout components that form the frame of a basic HTML web page, and allow you to add content that would populate the `main` element of the page via a concept known as [slots](https://docs.astro.build/en/core-concepts/astro-components/#slots). A `<slot />` allows you to specify where individual page content should be injected.
 
-```javascript
-module.exports = {
-  // ...
-  themeConfig: {
-    navbar: {
-      links: [
-        {
-          to: 'my-new-custom-page',
-          label: 'My New Custom Page',
-          position: 'left', // or 'right'
-        },
-      ],
-    },
-  },
-}
+```
+---
+import i18next, { t, changeLanguage } from "i18next";
+import Base from '../layouts/Base.astro';
+---
+<Base>
+  /* Page content goes here */
+</Base>
+
 ```
 
-For more information about custom pages, click
-[here](https://v2.docusaurus.io/docs/creating-pages/).
-
-## Full Documentation
-
-Full documentation can be found on the [Docusaurus website](https://v2.docusaurus.io/).
+Refer to the Astro documentation on [pages](https://docs.astro.build/en/core-concepts/astro-pages/) for more detailed guidance.

@@ -1,0 +1,100 @@
+.tableWrapper {
+  overflow-x: auto;
+  margin-bottom: var(--space-xs);
+  box-shadow: var(--sl-shadow-sm);
+  border-radius: var(--border-radius);
+}
+
+.revShareTable .input.input {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
+  padding: var(--space-3xs);
+  transition: box-shadow 200ms ease-in;
+  width: 100%;
+}
+
+.revShareTable input[disabled].input.input {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px dotted;
+  cursor: not-allowed;
+}
+
+.revShareTable input:focus {
+  box-shadow: 0 -1px 0 var(--sl-color-accent) inset;
+  outline: none;
+}
+
+.weightCell input[type='number'].input,
+.percentCell input[type='number'].input {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid;
+  width: 4em;
+}
+
+.removeCell.removeCell {
+  vertical-align: middle;
+  text-align: center;
+  width: 2em;
+}
+
+.removeCell button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.removeCell button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.shareInputBtns {
+  margin-bottom: var(--space-m);
+}
+
+.btn {
+  border: 0;
+  background-color: var(--sl-color-accent);
+  color: var(--sl-color-white);
+  border-radius: var(--border-radius);
+  padding: var(--space-2xs) var(--space-xs);
+  transition: background-color 150ms ease-in;
+  font-size: var(--step--1);
+  font-weight: bold;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--sl-color-accent-high);
+}
+
+.importControls {
+  margin-top: var(--space-xs);
+}
+
+.importSharesButton.importSharesButton {
+  margin-left: var(--space-xs);
+}
+
+.text {
+  margin-bottom: var(--space-s);
+}
+
+.importWrapper textarea {
+  width: 100%;
+  border: 1px solid var(--color-accent-mid);
+  padding: var(--space-2xs);
+  border-radius: var(--border-radius);
+}
+
+.error {
+  font-size: var(--step--1);
+  color: var(--sl-color-red-high);
+}
+
+.revShareChart {
+  margin-bottom: var(--space-m);
+}

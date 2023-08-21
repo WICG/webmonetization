@@ -1,0 +1,35 @@
+---
+title: Add Web Monetization to a page
+---
+
+This page provides basic instructions for adding Web Monetization to a web page. If you're new to web monetizing content, this page is a great place to start.
+
+## Prerequisites
+
+- Web monetized pages must be secure and served over HTTPS.
+- You must have the payment pointer assigned to you by your WM receiver.
+
+## Monetize a page
+
+To add Web Monetization to a page, add the monetization `<link>` element to the page's `<head>`.
+
+The element’s `rel` value is always `monetization`. The `href` value is a payment pointer in URL format.
+
+For example:
+
+```html
+<html>
+  <head>
+    <title>My Site</title>
+    <link rel="monetization" href="https://wallet.example/alice" />
+  </head>
+</html>
+```
+
+### Multiple monetization links
+
+A single HTML document can contain multiple monetization `<link>` elements; however, it's up to each WM provider to decide how they want to handle this scenario. We recommend WM providers split the payments evenly between the links.
+
+## Next steps
+
+Now that you've web monetized your page, you can choose to [remove ads](/docs/guides/remove-ads), [provide exclusive content](/docs/guides/provide-exclusive-content), or respond to [`monetization` events](/docs/references/monetizationevent) in some other way when a web monetized visitor accesses your page.

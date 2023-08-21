@@ -1,18 +1,33 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
 .DS_Store
-.idea
-node_modules
-yarn-error.log
 
-lib/core/metadata.js
-lib/core/MetadataBlog.js
+# editors
+.vscode
 
-website/translated_docs
-website/build/
-website/yarn.lock
-website/node_modules
-website/i18n/*
-
-.cache-loader
-.docusaurus
-
-build/
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

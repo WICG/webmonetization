@@ -1,0 +1,60 @@
+---
+import Search from "@astrojs/starlight/components/Search.astro";
+import ThemeSelect from "@astrojs/starlight/components/ThemeSelect.astro";
+// import LanguageSelect from "@astrojs/starlight/components/LanguageSelect.astro";
+
+const { locale } = Astro.props;
+---
+<div class="header flex">
+  <a href="/" class="site-logo">
+    <img src="/img/wm-logo.svg" alt="Web Monetization logo">
+    <span>Web Monetization</span>
+  </a>
+  <div class="secondary-wrap">
+    <Search {locale} />
+    <div class="hidden selects md:flex">
+      <ThemeSelect {locale} />
+      <!-- <LanguageSelect {locale} /> -->
+    </div>
+  </div>
+</div>
+
+<style>
+  .header { 
+    gap: var(--sl-nav-gap);
+    align-items: center;
+    height: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--sl-color-text);
+  }
+
+  .secondary-wrap {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--sl-nav-gap);
+  }
+
+  .selects {
+    display: flex;
+    gap: var(--sl-nav-gap);
+  }
+
+  .site-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .site-logo img {
+    width: 2.5em;
+  }
+
+  .site-logo span {
+    font-size: larger;
+    white-space: nowrap;
+  }
+</style>

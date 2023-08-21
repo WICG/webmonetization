@@ -1,0 +1,389 @@
+:root,
+::backdrop {
+  /* Colors (dark mode) */
+  --sl-hue-accent: 327;
+  --sl-color-accent-low: hsl(var(--sl-hue-accent), 60%, 15%); /* darkest */
+  --sl-color-accent: hsl(var(--sl-hue-accent), 90%, 60%);
+  --sl-color-accent-high: hsl(var(--sl-hue-accent), 100%, 87%); /* lightest */
+  --color-accent-mid: hsl(324, 100%, 44%);
+  --color-accent-secondary: hsl(176, 92%, 25%);
+
+  /* Text size and line height */
+  --step--2: clamp(0.69rem, calc(0.82rem + -0.14vw), 0.79rem);
+  --step--1: clamp(0.83rem, calc(0.9rem + -0.08vw), 0.89rem);
+  --step-0: clamp(1rem, calc(1rem + 0vw), 1rem);
+  --step-1: clamp(1.13rem, calc(1.1rem + 0.11vw), 1.2rem);
+  --step-2: clamp(1.27rem, calc(1.22rem + 0.25vw), 1.44rem);
+  --step-3: clamp(1.42rem, calc(1.34rem + 0.43vw), 1.73rem);
+  --step-4: clamp(1.6rem, calc(1.47rem + 0.67vw), 2.07rem);
+  --step-5: clamp(1.8rem, calc(1.61rem + 0.98vw), 2.49rem);
+  --space-3xs: clamp(0.25rem, calc(0.25rem + 0vw), 0.25rem);
+  --space-2xs: clamp(0.5rem, calc(0.5rem + 0vw), 0.5rem);
+  --space-xs: clamp(0.75rem, calc(0.75rem + 0vw), 0.75rem);
+  --space-s: clamp(1rem, calc(1rem + 0vw), 1rem);
+  --space-m: clamp(1.5rem, calc(1.5rem + 0vw), 1.5rem);
+  --space-l: clamp(2rem, calc(2rem + 0vw), 2rem);
+  --space-xl: clamp(3rem, calc(3rem + 0vw), 3rem);
+  --space-2xl: clamp(4rem, calc(4rem + 0vw), 4rem);
+  --space-3xl: clamp(6rem, calc(6rem + 0vw), 6rem);
+
+  --sl-text-body: var(--step-0);
+  --sl-text-body-sm: var(--step--1);
+  --sl-text-code: var(--step--1);
+  --sl-text-code-sm: var(--step--1);
+  --sl-text-h1: var(--step-3);
+  --sl-text-h2: var(--step-2);
+  --sl-text-h3: var(--step-1);
+  --sl-text-h4: var(--step-1);
+  --sl-text-h5: var(--step-1);
+
+  --sl-line-height: 1.5;
+  --sl-line-height-headings: 1.2;
+
+  --sl-nav-pad-x: var(--space-s);
+
+  --border-radius: 6px;
+}
+
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+  /* Colours (light mode) */
+  --sl-color-accent-high: hsl(var(--sl-hue-accent), 80%, 30%); /* darkest */
+  --sl-color-accent: hsl(var(--sl-hue-accent), 100%, 40%);
+  --sl-color-accent-low: hsl(var(--sl-hue-accent), 100%, 97%); /* lightest */
+  --color-accent-mid: hsl(324, 100%, 44%);
+  --color-accent-secondary: hsl(165, 90%, 78%);
+}
+
+:focus-visible {
+  outline-color: var(--color-accent-mid);
+  border-radius: var(--border-radius);
+}
+
+/* Main content area styles */
+body {
+  min-width: 320px;
+}
+
+.main-frame {
+  font-size: var(--sl-text-body);
+}
+
+.container.container {
+  max-width: 100%;
+}
+
+@media (min-width: 72rem) and (max-width: 80rem) {
+  [data-has-sidebar] .main-frame .main-pane {
+    --sl-sidebar-width: 14rem;
+    width: calc(100% - var(--sl-sidebar-width));
+  }
+
+  .main-frame .right-sidebar-container {
+    --sl-sidebar-width: 14rem;
+  }
+}
+
+/* Stylized title */
+.container > h1:first-of-type {
+  width: max-content;
+}
+
+.container > h1:first-of-type::after {
+  background-color: var(--color-accent-secondary);
+  height: 12px;
+  top: -12px;
+  z-index: -1;
+  position: relative;
+  display: block;
+  width: calc(100% + 1em);
+  content: '';
+}
+
+h3 {
+  display: inline-block;
+  position: relative;
+  color: var(--sl-color-white);
+}
+
+h3::after {
+  background-color: var(--color-accent-secondary);
+  height: 8px;
+  bottom: 0px;
+  z-index: -1;
+  position: absolute;
+  display: block;
+  width: calc(100% + 1em);
+  content: '';
+}
+
+/* Element spacing styling */
+.content-panel:first-of-type {
+  padding: var(--space-m) var(--space-l) 0 var(--space-l);
+}
+
+.content-panel + .content-panel {
+  border-block-start: 0;
+  padding: var(--space-m) var(--space-l);
+}
+
+.content.content
+  :not(a, strong, em, del, span, label, input)
+  + :not(a, strong, em, del, span, label, input, :where(.not-content *)) {
+  margin-top: var(--space-s);
+}
+
+.content.content
+  :not(h1, h2, h3, h4, h5, h6)
+  + :is(h1, h2, h3, h4, h5, h6, .heading):not(:where(.not-content *)) {
+  margin-top: var(--space-m);
+}
+
+.content.content li > ul,
+.content.content li > ol,
+.content.content li + li:not(:where(.not-content *)) {
+  margin-top: var(--space-2xs);
+}
+
+.content.content aside + div,
+.content.content div + div {
+  margin-top: var(--space-m);
+}
+
+/* Rounded corners and shadow flair */
+table,
+pre,
+.starlight-aside {
+  border-radius: var(--border-radius);
+  box-shadow: var(--sl-shadow-sm);
+}
+
+code {
+  border-radius: var(--border-radius);
+}
+
+/* Tab style overrides */
+starlight-tabs pre {
+  box-shadow: none;
+}
+
+starlight-tabs .tab > [role='tab'] {
+  color: var(--sl-color-accent);
+  text-decoration: underline;
+  padding-bottom: var(--space-3xs);
+}
+
+starlight-tabs .tab [role='tab'][aria-selected] {
+  text-decoration: none;
+}
+
+/* Table style overrides */
+.content.content table {
+  display: table;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+thead tr:first-of-type th {
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.content thead + tbody tr:nth-child(2n):not(:where(.not-content *)) {
+  background-color: var(--sl-color-gray-7, var(--sl-color-gray-6));
+}
+
+.content thead + tbody tr:nth-child(2n + 1):not(:where(.not-content *)) {
+  background-color: initial;
+}
+
+.content tr:nth-child(2n):not(:where(.not-content *)) {
+  background-color: initial;
+}
+
+.content tr:nth-child(2n + 1):not(:where(.not-content *)) {
+  background-color: var(--sl-color-gray-7, var(--sl-color-gray-6));
+}
+
+.content :is(th, td):not(:where(.not-content *)) {
+  border: 0;
+  padding: var(--space-2xs) var(--space-xs);
+}
+
+.content tbody tr:first-of-type:not(:where(.not-content *)) th:first-child,
+.content tbody tr:first-of-type:not(:where(.not-content *)) td:first-child {
+  border-top-left-radius: var(--border-radius);
+}
+
+.content tbody tr:first-of-type:not(:where(.not-content *)) th:last-child,
+.content tbody tr:first-of-type:not(:where(.not-content *)) td:last-child {
+  border-top-right-radius: var(--border-radius);
+}
+
+.content tbody tr:last-of-type:not(:where(.not-content *)) th:first-child,
+.content tbody tr:last-of-type:not(:where(.not-content *)) td:first-child {
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.content tbody tr:last-of-type:not(:where(.not-content *)) th:last-child,
+.content tbody tr:last-of-type:not(:where(.not-content *)) td:last-child {
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.content.content pre:not(:where(.not-content *)) {
+  border: 0;
+  padding: var(--space-xs);
+}
+
+/* Input styles */
+label {
+  font-size: var(--sl-text-body-sm);
+}
+
+input:not([type='submit']):not([type='file']):not(.pagefind-ui__search-input) {
+  border: 1px solid var(--color-accent-mid);
+  padding: var(--space-3xs) var(--space-2xs);
+  border-radius: var(--border-radius);
+  margin-top: var(--space-3xs);
+  font-size: var(--sl-text-body);
+}
+
+input:not([type='submit']):not([type='file']):focus {
+  background-color: var(--sl-color-accent-low);
+}
+
+::placeholder {
+  color: var(--color-accent-mid);
+  opacity: 0.6;
+}
+
+/* Pagination override styles */
+.pagination-links {
+  border-block-start: 1px solid var(--sl-color-gray-6);
+}
+
+.pagination-links a {
+  border: 0;
+  box-shadow: initial;
+  border-radius: var(--border-radius);
+}
+
+.pagination-links a > span {
+  color: var(--sl-color-text-accent);
+  font-size: var(--sl-text-body-sm);
+  font-weight: 600;
+}
+
+.pagination-links a .link-title {
+  font-size: var(--sl-text-body);
+  font-weight: 400;
+  transition: color 200ms ease-out;
+}
+
+.pagination-links a:hover .link-title,
+.pagination-links a:focus .link-title {
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+}
+
+/* Misc tweaks and overrides */
+aside.starlight-aside {
+  padding: var(--space-xs);
+}
+
+.content astro-island > button[aria-expanded='false'] + div {
+  margin-top: 0;
+}
+
+/* Navigation sidebar styles */
+
+@media (min-width: 50rem) {
+  .sidebar-pane {
+    z-index: auto;
+  }
+
+  .sidebar-content .sidebar {
+    padding: 0;
+  }
+}
+
+.sidebar-content .sidebar ul {
+  --sl-sidebar-item-padding-inline: var(--space-s);
+}
+
+.sidebar-content .sidebar li {
+  margin: 0;
+}
+
+.sidebar-content .sidebar a {
+  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
+}
+
+.sidebar-content .sidebar summary {
+  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
+}
+
+.sidebar-content .sidebar a[aria-current='page'],
+.sidebar-content .sidebar a[aria-current='page']:hover,
+.sidebar-content .sidebar a[aria-current='page']:focus {
+  color: var(--sl-color-text-accent);
+  background-color: var(--sl-color-accent-low);
+  border-radius: 0;
+}
+
+/* ToC right sidebar styles */
+@media (min-width: 72rem) {
+  .right-sidebar.right-sidebar {
+    border-inline-start: 0;
+  }
+
+  .right-sidebar .right-sidebar-panel {
+    border-inline-start: 1px solid var(--sl-color-gray-6);
+    margin-top: var(--space-xs);
+  }
+}
+
+.right-sidebar-panel starlight-toc h2 {
+  font-size: var(--step-0);
+}
+
+.right-sidebar-panel starlight-toc a[aria-current='true'],
+.right-sidebar-panel starlight-toc a[aria-current='true']:hover,
+.right-sidebar-panel starlight-toc a[aria-current='true']:focus {
+  color: var(--sl-color-text-accent);
+  background-color: initial;
+}
+
+/* Very large screen size handling styles */
+@media (min-width: 80rem) {
+  .page {
+    flex-direction: row;
+    max-width: 95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  div.header {
+    max-width: 95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  nav.sidebar .sidebar-pane {
+    position: sticky;
+  }
+
+  div.main-frame {
+    padding-inline-start: initial;
+    flex: 1;
+  }
+}
+
+/* This is for adding captions to images and diagrams */
+div.caption {
+  font-size: small;
+  font-weight: 600;
+}

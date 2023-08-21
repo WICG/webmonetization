@@ -1,35 +1,24 @@
 {
   "license": "Apache-2.0",
+  "type": "module",
   "scripts": {
-    "start": "docusaurus start",
-    "serve": "docusaurus serve",
-    "build": "docusaurus build",
-    "swizzle": "docusaurus swizzle",
-    "deploy": "docusaurus deploy"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.4.0",
-    "@docusaurus/preset-classic": "^2.4.0",
-    "@docusaurus/theme-mermaid": "^2.4.1",
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.13.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-minimal-pie-chart": "^8.2.0",
-    "react-syntax-highlighter": "^15.4.4"
+    "@astrojs/react": "^2.3.2",
+    "@astrojs/starlight": "^0.7.2",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "astro": "2.10.12",
+    "astro-i18next": "^1.0.0-beta.21",
+    "prism-react-renderer": "^2.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-minimal-pie-chart": "^8.4.0",
+    "sharp": "^0.32.5"
   }
 }
