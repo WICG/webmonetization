@@ -299,7 +299,6 @@ aside.starlight-aside {
 }
 
 /* Navigation sidebar styles */
-
 @media (min-width: 50rem) {
   .sidebar-pane {
     z-index: auto;
@@ -374,6 +373,7 @@ aside.starlight-aside {
 
   nav.sidebar .sidebar-pane {
     position: sticky;
+    height: 100%;
   }
 
   div.main-frame {
