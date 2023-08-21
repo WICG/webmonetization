@@ -9,7 +9,7 @@ import Tooltip from '/src/components/docs/Tooltip'
 
 Web Monetization (WM) relies on <LinkOut href="https://openpayments.guide">Open Payments</LinkOut> (OP) and OP-enabled accounts to coordinate payments.
 
-The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="./resources/glossary#web-monetization-agent">WM agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="./resources/glossary#payment-pointer">payment pointer</a></Tooltip>, then to the sending account's payment pointer, to obtain the necessary authorization and instructions for sending a payment. This page describes the Web Monetization flow by providing an example set of these API calls.
+The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="/docs/resources/glossary#web-monetization-agent">WM agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="/docs/resources/glossary#payment-pointer">payment pointer</a></Tooltip>, then to the sending account's payment pointer, to obtain the necessary authorization and instructions for sending a payment. This page describes the Web Monetization flow by providing an example set of these API calls.
 
 ## Reminders
 
@@ -21,9 +21,9 @@ There's a few points to keep in mind as you review the example.
 
 ## Web Monetization flow
 
-Alice has web monetized her site by adding the monetization `<link>` element to each page. Included within each `<link>` is her payment pointer (`https://wallet.example/alice`), assigned to her by her <Tooltip content='An entity that provides an Open Payments-enabled account into which payments can be received' client:load><a href="./resources/glossary#web-monetization-receiver">WM receiver</a></Tooltip>.
+Alice has web monetized her site by adding the monetization `<link>` element to each page. Included within each `<link>` is her payment pointer (`https://wallet.example/alice`), assigned to her by her <Tooltip content='An entity that provides an Open Payments-enabled account into which payments can be received' client:load><a href="/docs/resources/glossary#web-monetization-receiver">WM receiver</a></Tooltip>.
 
-Bob has signed up with a <Tooltip content='An entity that provides a funded Open Payments-enabled account from which payments can be sent' client:load><a href="./resources/glossary#web-monetization-provider">WM provider</a></Tooltip> who's supplied him with a funded sending account. The sending account's payment pointer is `https://anotherwallet.example/bob`. After installing a WM agent into his browser and linking the WM agent to his WM provider, his WM agent now has permission to request payments be sent from his account.
+Bob has signed up with a <Tooltip content='An entity that provides a funded Open Payments-enabled account from which payments can be sent' client:load><a href="/docs/resources/glossary#web-monetization-provider">WM provider</a></Tooltip> who's supplied him with a funded sending account. The sending account's payment pointer is `https://anotherwallet.example/bob`. After installing a WM agent into his browser and linking the WM agent to his WM provider, his WM agent now has permission to request payments be sent from his account.
 
 :::note
 This example assumes the WM provider and WM receiver have already peered with each other and share a common payment rail over which transactions can be processed and settled.
