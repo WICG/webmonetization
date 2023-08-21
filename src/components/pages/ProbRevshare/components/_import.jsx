@@ -14,7 +14,6 @@ export function ImportView() {
     <div className={styles.importWrapper}>
       <textarea
         placeholder='Enter your link element here'
-        multiline
         rows={4}
         value={tag}
         onChange={(evt) => {

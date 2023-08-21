@@ -2,7 +2,7 @@ import styles from '../styles.module.css'
 
 export function ShareInputContainer({ children }) {
   return (
-    <div class={styles.tableWrapper}>
+    <div className={styles.tableWrapper}>
       <table className={styles.revShareTable}>
         <thead>
           <tr>

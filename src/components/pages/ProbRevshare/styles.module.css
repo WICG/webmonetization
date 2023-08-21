@@ -85,9 +85,9 @@
 
 .importWrapper textarea {
   width: 100%;
-  border-radius: var(--border-radius);
-  border: 1px solid var(--sl-color-gray-2);
+  border: 1px solid var(--color-accent-mid);
   padding: var(--space-2xs);
+  border-radius: var(--border-radius);
 }
 
 .error {
