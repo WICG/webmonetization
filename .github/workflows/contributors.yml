@@ -1,4 +1,4 @@
-name: Github API
+name: Update contributors
 on: workflow_dispatch
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: 18
       - run: npm install @octokit/action
-      - run: node .github/actions/get-contributors.js
+      - run: node .github/actions/get-contributors.cjs
       - run: |
           git config --global user.email "no-reply@github.com"
           git config --global user.name "GitHub Actions"
