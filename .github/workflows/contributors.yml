@@ -1,4 +1,4 @@
-name: Update contributors
+name: Update contributors listing
 on: workflow_dispatch
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -6,16 +6,29 @@ jobs:
   get-contributors:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout code with Git
+        uses: actions/checkout@v3
+
+      - name: Install and setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Capture current date
+        run: echo "NOW=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
       - run: npm install @octokit/action
       - run: node .github/actions/get-contributors.cjs
       - run: |
           git config --global user.email "no-reply@github.com"
           git config --global user.name "GitHub Actions"
+          git branch bot/update-contributors-${{ env.NOW }}
+          git checkout bot/update-contributors-${{ env.NOW }}
           git add src/data/contributors.json
           git commit -m "Update contributors.json"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git push
+          git push --set-upstream origin bot/update-contributors-${{ env.NOW }}
+
+      - name: Create pull request
+        run: |
+          gh pr create -B main -H bot/update-contributors-${{ env.NOW }} --title 'chore: update contributors data' --body 'This PR updates the contributors.json file used to display contributors on the home page.'
