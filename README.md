@@ -163,6 +163,12 @@ We have extracted some of the commonly repeated patterns within the documentatio
    <LargeImg src="/img/OMG_A_GIGANTIC_IMG.png" alt="A really large diagram" />
    ```
 
+   For user doc diagrams, be sure to include the `docs` folder in the path.
+
+   ```
+   <LargeImg src="/img/docs/OMG_A_GIGANTIC_IMG.png" alt="A really large diagram" />
+   ```
+
 6. `Disclosure` component
 
    Use this component if you have some content that you want to show/hide via a collapsible container. This component wraps around whatever content you wish to have this expand/collapse behaviour. Note that the `client:load` attribute is required for the functionality to work because this component relies on state.
