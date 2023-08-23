@@ -2,7 +2,6 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -10,8 +9,8 @@
   },
   "dependencies": {
     "@astrojs/react": "^2.3.2",
-    "@astrojs/starlight": "^0.7.2",
-    "@types/react": "^18.2.20",
+    "@astrojs/starlight": "^0.7.3",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "astro": "2.10.12",
     "astro-i18next": "^1.0.0-beta.21",

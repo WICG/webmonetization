@@ -48,6 +48,10 @@
 :root[data-theme='light'],
 [data-theme='light'] ::backdrop {
   /* Colours (light mode) */
+  --sl-color-orange-low: hsl(var(--sl-hue-orange), 90%, 94%); /* lightest */
+  --sl-color-blue-low: hsl(var(--sl-hue-blue), 88%, 96%); /* lightest */
+  --sl-color-purple-low: hsl(var(--sl-hue-purple), 80%, 96%); /* lightest */
+  --sl-color-red-low: hsl(var(--sl-hue-red), 80%, 96%); /* lightest */
   --sl-color-accent-high: hsl(var(--sl-hue-accent), 80%, 30%); /* darkest */
   --sl-color-accent: hsl(var(--sl-hue-accent), 100%, 40%);
   --sl-color-accent-low: hsl(var(--sl-hue-accent), 100%, 97%); /* lightest */
@@ -61,10 +65,6 @@
 }
 
 /* Main content area styles */
-body {
-  min-width: 320px;
-}
-
 .main-frame {
   font-size: var(--sl-text-body);
 }
@@ -84,7 +84,104 @@ body {
   }
 }
 
-/* Stylized title */
+/* Navigation sidebar styles */
+.sidebar-content .sidebar ul {
+  --sl-sidebar-item-padding-inline: var(--space-s);
+}
+
+.sidebar-content .sidebar li {
+  margin: 0;
+}
+
+.sidebar-content .sidebar a {
+  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
+}
+
+.sidebar-content .sidebar summary {
+  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
+}
+
+.sidebar-content .sidebar a[aria-current='page'],
+.sidebar-content .sidebar a[aria-current='page']:hover,
+.sidebar-content .sidebar a[aria-current='page']:focus {
+  color: var(--sl-color-text-accent);
+  background-color: var(--sl-color-accent-low);
+  border-radius: 0;
+}
+
+@media (min-width: 50rem) {
+  nav.sidebar .sidebar-pane {
+    background-color: initial;
+    border-inline-end: 0;
+    z-index: 0;
+  }
+
+  .sidebar-content .sidebar {
+    padding: 0;
+  }
+}
+
+@media (min-width: 50rem) and (max-width: 80rem) {
+  nav.sidebar .sidebar-content {
+    border-inline-end: 1px solid var(--sl-color-hairline-light);
+  }
+}
+
+@media (min-width: 80em) {
+  nav.sidebar {
+    border-inline-end: 1px solid var(--sl-color-hairline-light);
+  }
+}
+
+/* ToC right sidebar styles */
+@media (min-width: 72rem) {
+  .right-sidebar.right-sidebar {
+    border-inline-start: 0;
+  }
+
+  .right-sidebar .right-sidebar-panel {
+    border-inline-start: 1px solid var(--sl-color-gray-6);
+    margin-top: var(--space-xs);
+  }
+}
+
+.right-sidebar-panel starlight-toc h2 {
+  font-size: var(--step-0);
+}
+
+.right-sidebar-panel starlight-toc a[aria-current='true'],
+.right-sidebar-panel starlight-toc a[aria-current='true']:hover,
+.right-sidebar-panel starlight-toc a[aria-current='true']:focus {
+  color: var(--sl-color-text-accent);
+  background-color: initial;
+}
+
+/* Very large screen size handling styles */
+@media (min-width: 80rem) {
+  .page {
+    flex-direction: row;
+    max-width: 95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  div.header {
+    max-width: 95rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  nav.sidebar .sidebar-pane {
+    position: sticky;
+  }
+
+  div.main-frame {
+    padding-inline-start: initial;
+    flex: 1;
+  }
+}
+
+/* Stylized title and headings */
 .container > h1:first-of-type {
   width: max-content;
 }
@@ -117,7 +214,7 @@ h3::after {
   content: '';
 }
 
-/* Element spacing styling */
+/* Element spacing styles */
 .content-panel:first-of-type {
   padding: var(--space-m) var(--space-l) 0 var(--space-l);
 }
@@ -183,12 +280,19 @@ starlight-tabs .tab [role='tab'][aria-selected] {
   width: 100%;
 }
 
+table code {
+  word-break: break-all;
+}
+
 th {
   text-align: left;
 }
 
-thead tr:first-of-type th {
+thead tr:first-of-type th:first-of-type {
   border-top-left-radius: var(--border-radius);
+}
+
+thead tr:first-of-type th:last-of-type {
   border-top-right-radius: var(--border-radius);
 }
 
@@ -238,28 +342,6 @@ thead tr:first-of-type th {
   padding: var(--space-xs);
 }
 
-/* Input styles */
-label {
-  font-size: var(--sl-text-body-sm);
-}
-
-input:not([type='submit']):not([type='file']):not(.pagefind-ui__search-input) {
-  border: 1px solid var(--color-accent-mid);
-  padding: var(--space-3xs) var(--space-2xs);
-  border-radius: var(--border-radius);
-  margin-top: var(--space-3xs);
-  font-size: var(--sl-text-body);
-}
-
-input:not([type='submit']):not([type='file']):focus {
-  background-color: var(--sl-color-accent-low);
-}
-
-::placeholder {
-  color: var(--color-accent-mid);
-  opacity: 0.6;
-}
-
 /* Pagination override styles */
 .pagination-links {
   border-block-start: 1px solid var(--sl-color-gray-6);
@@ -289,6 +371,28 @@ input:not([type='submit']):not([type='file']):focus {
   text-decoration: underline;
 }
 
+/* Input styles */
+label {
+  font-size: var(--sl-text-body-sm);
+}
+
+input:not([type='submit']):not([type='file']):not(.pagefind-ui__search-input) {
+  border: 1px solid var(--color-accent-mid);
+  padding: var(--space-3xs) var(--space-2xs);
+  border-radius: var(--border-radius);
+  margin-top: var(--space-3xs);
+  font-size: var(--sl-text-body);
+}
+
+input:not([type='submit']):not([type='file']):focus {
+  background-color: var(--sl-color-accent-low);
+}
+
+::placeholder {
+  color: var(--color-accent-mid);
+  opacity: 0.6;
+}
+
 /* Misc tweaks and overrides */
 aside.starlight-aside {
   padding: var(--space-xs);
@@ -298,92 +402,26 @@ aside.starlight-aside {
   margin-top: 0;
 }
 
-/* Navigation sidebar styles */
-@media (min-width: 50rem) {
-  .sidebar-pane {
-    z-index: auto;
-  }
-
-  .sidebar-content .sidebar {
-    padding: 0;
-  }
+/* MathJax styles */
+.math-inline {
+  display: inline-block;
+  vertical-align: middle;
 }
 
-.sidebar-content .sidebar ul {
-  --sl-sidebar-item-padding-inline: var(--space-s);
+/* Can be deleted after all To-Dos are taken care of internally */
+.draft {
+  background: #f2dddd;
+  color: #aa4546;
+  padding: var(--space-s);
+  border: 2px solid #aa4546;
 }
 
-.sidebar-content .sidebar li {
-  margin: 0;
-}
-
-.sidebar-content .sidebar a {
-  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
-}
-
-.sidebar-content .sidebar summary {
-  padding: var(--space-2xs) var(--sl-sidebar-item-padding-inline);
-}
-
-.sidebar-content .sidebar a[aria-current='page'],
-.sidebar-content .sidebar a[aria-current='page']:hover,
-.sidebar-content .sidebar a[aria-current='page']:focus {
-  color: var(--sl-color-text-accent);
-  background-color: var(--sl-color-accent-low);
-  border-radius: 0;
-}
-
-/* ToC right sidebar styles */
-@media (min-width: 72rem) {
-  .right-sidebar.right-sidebar {
-    border-inline-start: 0;
-  }
-
-  .right-sidebar .right-sidebar-panel {
-    border-inline-start: 1px solid var(--sl-color-gray-6);
-    margin-top: var(--space-xs);
-  }
-}
-
-.right-sidebar-panel starlight-toc h2 {
+.draft h5 {
+  color: #aa4546;
   font-size: var(--step-0);
 }
 
-.right-sidebar-panel starlight-toc a[aria-current='true'],
-.right-sidebar-panel starlight-toc a[aria-current='true']:hover,
-.right-sidebar-panel starlight-toc a[aria-current='true']:focus {
-  color: var(--sl-color-text-accent);
-  background-color: initial;
-}
-
-/* Very large screen size handling styles */
-@media (min-width: 80rem) {
-  .page {
-    flex-direction: row;
-    max-width: 95rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  div.header {
-    max-width: 95rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  nav.sidebar .sidebar-pane {
-    position: sticky;
-    height: 100%;
-  }
-
-  div.main-frame {
-    padding-inline-start: initial;
-    flex: 1;
-  }
-}
-
-/* This is for adding captions to images and diagrams */
-div.caption {
-  font-size: small;
-  font-weight: 600;
+.draft.draft.draft ul,
+.draft.draft.draft p {
+  margin-top: var(--space-2xs);
 }

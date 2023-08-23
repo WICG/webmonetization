@@ -2,6 +2,10 @@
   text-align: right;
 }
 
+.imgWrapper img[src$='.svg' i] {
+  background-color: white;
+}
+
 .outLink {
   white-space: nowrap;
   display: inline-flex;
