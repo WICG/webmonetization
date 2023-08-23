@@ -2,7 +2,7 @@
 ---
 <header>
   <nav class="site-nav">
-    <a href="/" class="site-logo">
+    <a href="/" class="site-title">
       <img src="/img/wm-logo.svg" alt="Web Monetization logo">
       <span>Web Monetization</span>
     </a>
@@ -39,18 +39,19 @@
     margin-right: auto;
   }
 
-  .site-logo {
+  .site-title {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    gap: var(--space-xs);
   }
 
-  .site-logo img {
+  .site-title img {
     width: 2.5em;
     flex: none;
   }
 
-  .site-logo span {
+  .site-title span {
+    font-size: larger;
     white-space: nowrap;
   }
 
@@ -64,7 +65,7 @@
   .menu-toggle {
     border: 0;
     background: initial;
-    padding: 0.5em 0;
+    padding: var(--space-xs) 0;
     margin-left: auto;
   }
 

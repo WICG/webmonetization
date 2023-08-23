@@ -12,7 +12,7 @@ export default defineConfig({
     overrideIntegration(),
     starlight({
       title: 'Web Monetization',
-      customCss: ['./src/styles/docs.css'],
+      customCss: ['./src/styles/ilf-docs.css'],
       locales: {
         root: {
           label: 'English',
