@@ -4,10 +4,16 @@ import astroI18next from 'astro-i18next'
 
 import react from '@astrojs/react'
 import overrideIntegration from './src/overrideIntegration.mjs'
+import rehypeMermaid from 'rehype-mermaidjs'
+import remarkMermaid from 'remark-mermaidjs'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://webmonetization.org',
+  markdown: {
+    remarkPlugins: [remarkMermaid],
+    rehypePlugins: [rehypeMermaid],
+  },
   integrations: [
     overrideIntegration(),
     starlight({
