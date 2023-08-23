@@ -7,24 +7,51 @@ import LinkOut from '/src/components/docs/LinkOut'
 import CodeBlock from '/src/components/docs/CodeBlock'
 import Tooltip from '/src/components/docs/Tooltip'
 import LargeImg from '/src/components/docs/LargeImg'
-import Hidden from '/src/components/docs/Hidden'
+import MermaidWrapper from '/src/components/docs/MermaidWrapper'
 
 Web Monetization (WM) relies on <LinkOut href="https://openpayments.guide">Open Payments</LinkOut> (OP) and OP-enabled accounts to coordinate payments.
 
-The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="/docs/resources/glossary#web-monetization-agent">WM agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="/docs/resources/glossary#payment-pointer">payment pointer</a></Tooltip>, then to the sending account's payment pointer, to obtain the necessary authorization and instructions for sending a payment. 
+The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="/docs/resources/glossary#web-monetization-agent">WM agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="/docs/resources/glossary#payment-pointer">payment pointer</a></Tooltip>, then to the sending account's payment pointer, to obtain the necessary authorization and instructions for sending a payment.
 
 ## Sequence diagram
 
-<LargeImg src="/img/docs/diagram-wm-flow.svg" alt="" />
+<MermaidWrapper client:load>
+```mermaid
+sequenceDiagram
+autonumber
+    box aliceblue WM provider
+    participant OPS as Open Payments<br/>sending account
+    end
+    participant WMA as WM agent
+    participant page as Web page
+    box aliceblue WM receiver
+    participant OPR as Open Payments<br/>receiving account
+    participant AS as Auth server
+    end
+note over AS,OPR: The auth server can be<br/>located outside of the <br/>WM receiver's domain
+WMA->>page: Detects monetization <link> element,<br/>extracts payment pointer
+WMA->>OPR: Requests the payment pointer's public info
+OPR->>WMA: Returns info, including auth server URL
+WMA->>AS: Requests access rights
+AS->>WMA: Returns access token
+WMA->>OPR: Requests creation of an incoming payment resource
+OPR->>WMA: Responds with unique payment details for addressing the payment to the account
+WMA->>+OPS: Requests an outgoing payment be<br/>created against the sending account
+note left of OPS: Connection persists until<br/>request moves from 'pending'<br/>state to 'sending' state
+OPS->>-WMA: Responds with details about the<br/>'receive', 'send', and 'sent' amounts
+WMA->>WMA: Fires monetization event
+note over OPS,OPR: Payment processing and settlement occurs between the WM provider and WM receiver, outside of the WM flow
+```
+</MermaidWrapper>
 
 ## Web Monetization flow example
 
-This section provides an example of the API calls that occur when a web monetized user visits a web monetized site. 
+This section provides an example of the API calls that occur when a web monetized user visits a web monetized site.
 
 There's a few points to keep in mind as you review the example.
 
-* It's up to the site visitor, not the web monetized site, to decide how often and how much to pay, as well as the currency in which to send a payment.
-* While Web Monetization and Open Payments work together to coordinate payments, neither moves money. Payment processing and settlement must occur between the sending and receiving accounts over a common payment rail.
+- It's up to the site visitor, not the web monetized site, to decide how often and how much to pay, as well as the currency in which to send a payment.
+- While Web Monetization and Open Payments work together to coordinate payments, neither moves money. Payment processing and settlement must occur between the sending and receiving accounts over a common payment rail.
 
 ### Scenario
 
@@ -65,7 +92,7 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
     ```http
     HTTP/1.1 200 Success
     Content-Type: application/json
-    
+
     {
       "id":"https://wallet.example/alice",
       "assetCode":"USD",
@@ -74,6 +101,7 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
     }
     ```
     </CodeBlock>
+
   </TabItem>
 </Tabs>
 
@@ -161,6 +189,7 @@ The request is for an _incoming_ payment because the WM agent is requesting that
     Host: wallet.example
     ```
     </CodeBlock>
+
   </TabItem>
   <TabItem label="Response">
     Alice's WM receiver (who hosts her account and payment pointer) approves the request by supplying unique payment details for the WM agent to use to address the payment to Alice's account.
@@ -231,34 +260,6 @@ The request is for an _incoming_ payment because the WM agent is requesting that
     </CodeBlock>
 
     The Web Monetization flow is complete. It's now up to the WM provider to process the payment and settle with the WM receiver.
+
   </TabItem>
 </Tabs>
-
-<Hidden>
-```
-sequenceDiagram
-autonumber
-    box aliceblue WM provider
-    participant OPS as Open Payments<br/>sending account
-    end
-    participant WMA as WM agent
-    participant page as Web page
-    box aliceblue WM receiver
-    participant OPR as Open Payments<br/>receiving account
-    participant AS as Auth server
-    end
-note over AS,OPR: The auth server can be<br/>located outside of the <br/>WM receiver's domain
-WMA->>page: Detects monetization <link> element,<br/>extracts payment pointer
-WMA->>OPR: Requests the payment pointer's public info
-OPR->>WMA: Returns info, including auth server URL
-WMA->>AS: Requests access rights
-AS->>WMA: Returns access token
-WMA->>OPR: Requests creation of an incoming payment resource
-OPR->>WMA: Responds with unique payment details for addressing the payment to the account
-WMA->>+OPS: Requests an outgoing payment be<br/>created against the sending account
-note left of OPS: Connection persists until<br/>request moves from 'pending'<br/>state to 'sending' state
-OPS->>-WMA: Responds with details about the<br/>'receive', 'send', and 'sent' amounts
-WMA->>WMA: Fires monetization event
-note over OPS,OPR: Payment processing and settlement occurs between the WM provider and WM receiver, outside of the WM flow
-```
-</Hidden>

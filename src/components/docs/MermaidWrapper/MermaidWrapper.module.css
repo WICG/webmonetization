@@ -1,0 +1,33 @@
+.diagramWrapper {
+  text-align: right;
+  margin-top: var(--space-m);
+}
+
+.diagramWrapper svg {
+  background-color: white;
+}
+
+.btn {
+  background-color: initial;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.outLink {
+  white-space: nowrap;
+  display: inline-flex;
+  gap: var(--space-3xs);
+  color: var(--sl-color-text-accent);
+  text-decoration: underline;
+}
+
+.btn:hover .outLink {
+  color: var(--sl-color-white);
+}
+
+.outLink::after {
+  content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18"><path stroke="hsl(221,8%,56%)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 3H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4M11 1h6m0 0v6m0-6L7 11"/></svg>');
+  height: 0.75em;
+  width: 0.75em;
+}
