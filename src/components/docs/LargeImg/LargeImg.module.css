@@ -10,6 +10,7 @@
   white-space: nowrap;
   display: inline-flex;
   gap: var(--space-3xs);
+  margin-top: var(--space-3xs);
 }
 
 .outLink::after {

@@ -173,6 +173,7 @@
 
   nav.sidebar .sidebar-pane {
     position: sticky;
+    height: 100vh;
   }
 
   div.main-frame {
@@ -250,6 +251,7 @@ h3::after {
 /* Rounded corners and shadow flair */
 table,
 pre,
+img,
 .starlight-aside {
   border-radius: var(--border-radius);
   box-shadow: var(--sl-shadow-sm);
@@ -257,6 +259,10 @@ pre,
 
 code {
   border-radius: var(--border-radius);
+}
+
+img {
+  border: 1px solid var(--sl-color-hairline-light);
 }
 
 /* Tab style overrides */

@@ -5,6 +5,9 @@
 
 .diagramWrapper svg {
   background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--sl-shadow-sm);
+  border: 1px solid var(--sl-color-hairline-light);
 }
 
 .btn {
