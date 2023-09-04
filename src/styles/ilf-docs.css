@@ -69,7 +69,7 @@
   font-size: var(--sl-text-body);
 }
 
-.container.container {
+.sl-container.sl-container {
   max-width: 100%;
 }
 
@@ -158,7 +158,7 @@
 
 /* Very large screen size handling styles */
 @media (min-width: 80rem) {
-  .page {
+  .page.page {
     flex-direction: row;
     max-width: 95rem;
     margin-left: auto;
@@ -176,18 +176,18 @@
     height: 100vh;
   }
 
-  div.main-frame {
+  .main-frame.main-frame {
     padding-inline-start: initial;
     flex: 1;
   }
 }
 
 /* Stylized title and headings */
-.container > h1:first-of-type {
+.sl-container > h1:first-of-type {
   width: max-content;
 }
 
-.container > h1:first-of-type::after {
+.sl-container > h1:first-of-type::after {
   background-color: var(--color-accent-secondary);
   height: 12px;
   top: -12px;
