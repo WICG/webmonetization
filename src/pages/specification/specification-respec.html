@@ -124,27 +124,8 @@
           handler IDL attribute=] exist on the {{Window}} object.
         </p>
         <aside class="example">
-          <pre class="HTML">
-            &lt;link rel="monetization" href="https://example.com/monetization.js"&gt;
-            &lt;script&gt;
-              // Checking via DOMTokenList
-              const link = document.querySelector('link[rel="monetization"]') ||
-                document.createElement("link");
-              if (link.relList.supports("monetization")) {
-                console.log("Web Monetization is supported.");
-              }
-
-              // Checking global scope for MonetizationEvent
-              if (window.MonetizationEvent) {
-                console.log("Web Monetization is supported.");
-              }
-
-              // Checking if it's a global event handler
-              if (window.hasOwnProperty("onmonetization")) {
-                console.log("Web Monetization is supported.");
-              }
-            &lt;/script&gt;
-          </pre>
+          <pre class='html' data-include-format="text" data-include=
+          "includes/is-supported-example.html"></pre>
         </aside>
       </section>
       <section>
@@ -152,21 +133,8 @@
           Monetizing a web page
         </h3>
         <aside class="example">
-          <pre class="html">
-            &lt;!DOCTYPE html&gt;
-            &lt;html lang="en"&gt;
-            &lt;meta charset="utf-8"&gt;
-            &lt;title&gt;My Blog&lt;/title&gt;
-            &lt;link
-              rel="monetization"
-              href="https://example.com/pay"
-              onmonetization="sayThanks(this)"&gt;
-
-            &lt;script&gt;
-              function sayThanks(monetizedLink) {
-                // Do something here
-              }
-            &lt;/script&gt;
+          <pre class="html" data-include-format="text" data-include=
+          "includes/say-thanks-example.html">
           </pre>
         </aside>
       </section>
@@ -188,19 +156,8 @@
           ancestors) via JavaScript:
         </p>
         <aside class="example">
-          <pre class="html">
-            &lt;link rel="monetization" href="https://example.com/pay"&gt;
-            &lt;script&gt;
-              const link = document.querySelector('link[rel="monetization"]');
-              link.addEventListener("monetization", event =&gt; {
-                // See how much was sent and in what currency
-                const { amountSent : { value, currency }} = event;
-                console.log(`Browser sent ${currency} ${value}.`);
-
-                // Use the incoming payment URL to verify the payment at the receiver.
-                verifyPayment(event);
-              });
-            &lt;/script&gt;
+          <pre class="html" data-include-format="text" data-include=
+          "includes/monetization-event-example.html">
           </pre>
         </aside>
       </section>
@@ -232,32 +189,8 @@
           to verify that a new payment has been received.
         </p>
         <aside class="example">
-          <pre class="JS">
-            /** @type {MonetizationEvent} event */
-            async function verifyPayment(event) {
-              // Legacy receivers don't support returning incoming payment URLs
-              if(!event.incomingPayment){
-                throw new Error('No incoming payment URL')
-              }
-
-              // Poll the incoming payment to check the amount received
-              const response = await fetch(event.incomingPayment, {
-                credentials: 'same-origin',
-                mode: 'same-origin',
-                cache: 'no-cache',
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              });
-
-              if (response.ok) {
-                // The incoming payment was fetched successfully
-                const { receivedAmount } = JSON.parse(await response.json())
-                const { amount, assetCode, assetScale } = receivedAmount;
-                console.log(`Received ${assetCode}${amount / (10 ** assetScale)}.`);
-                return receivedAmount;
-              }
-            }
+          <pre class="JS" data-include-format="text" data-include=
+          "includes/verify-payment-example.js">
           </pre>
         </aside>
       </section>
@@ -270,18 +203,8 @@
           using different [=payment pointers=].
         </p>
         <aside class="example">
-          <pre class="html">
-            &lt;video src="myvideo" onmonetization="sayThanks(this)"&gt;
-              &lt;link rel="monetization" href="https://example.com/video/pay"&gt;
-            &lt;/video&gt;
-
-            &lt;audio src="music.mp3" onmonetization="sayThanks(this)"&gt;
-              &lt;link rel="monetization" href="https://example.com/audio/pay"&gt;
-            &lt;/audio&gt;
-
-            &lt;picture srcset="cat.jpeg" onmonetization="sayThanks(this)"&gt;
-              &lt;link rel="monetization" href="https://example.com/images/pay"&gt;
-            &lt;/picture&gt;
+          <pre class="html" data-include-format="text" data-include=
+          "includes/media-example.html">
           </pre>
         </aside>
       </section>
@@ -811,7 +734,13 @@
         </p>
       </aside>
       <aside class="note">
-        <p>The <a href="https://html.spec.whatwg.org/#attr-iframe-allow">allow</a> attributes only take effect when the content navigable of the iframe is navigated. Adding or removing the monetization attribute has no effect on an already-loaded document.</p>
+        <p>
+          The <a href=
+          "https://html.spec.whatwg.org/#attr-iframe-allow">allow</a>
+          attributes only take effect when the content navigable of the iframe
+          is navigated. Adding or removing the monetization attribute has no
+          effect on an already-loaded document.
+        </p>
       </aside>
     </section>
     <section data-cite="CSP">

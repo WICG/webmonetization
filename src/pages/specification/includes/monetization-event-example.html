@@ -1,0 +1,14 @@
+<link rel="monetization" href="https://example.com/pay" />
+<script>
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', (event) => {
+    // See how much was sent and in what currency
+    const {
+      amountSent: { value, currency },
+    } = event
+    console.log(`Browser sent ${currency} ${value}.`)
+
+    // Use the incoming payment URL to verify the payment at the receiver.
+    verifyPayment(event)
+  })
+</script>
