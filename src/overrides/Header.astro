@@ -14,7 +14,7 @@ const { locale } = Astro.props;
   <div class="secondary-wrap">
     <Search {locale} />
     <SocialIcons />
-    <div class="hidden selects md:flex">
+    <div class="sl-hidden selects md:sl-flex">
       <ThemeSelect {locale} />
       <!-- <LanguageSelect {locale} /> -->
     </div>
@@ -41,7 +41,6 @@ const { locale } = Astro.props;
   }
 
   .selects {
-    display: flex;
     gap: var(--sl-nav-gap);
   }
 
