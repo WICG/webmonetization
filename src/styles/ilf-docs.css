@@ -158,7 +158,7 @@
 
 /* Very large screen size handling styles */
 @media (min-width: 80rem) {
-  .page.page {
+  .page {
     flex-direction: row;
     max-width: 95rem;
     margin-left: auto;
@@ -176,7 +176,7 @@
     height: 100vh;
   }
 
-  .main-frame.main-frame {
+  div.main-frame {
     padding-inline-start: initial;
     flex: 1;
   }
@@ -251,7 +251,7 @@ h3::after {
 /* Rounded corners and shadow flair */
 table,
 pre,
-img,
+.content img,
 .starlight-aside {
   border-radius: var(--border-radius);
   box-shadow: var(--sl-shadow-sm);
@@ -261,7 +261,7 @@ code {
   border-radius: var(--border-radius);
 }
 
-img {
+.content img {
   border: 1px solid var(--sl-color-hairline-light);
 }
 
@@ -406,6 +406,10 @@ aside.starlight-aside {
 
 .content astro-island > button[aria-expanded='false'] + div {
   margin-top: 0;
+}
+
+.content :is(iframe):not(:where(.not-content *)) {
+  aspect-ratio: 16 / 9;
 }
 
 /* MathJax styles */
