@@ -1,3 +1,4 @@
+/* Custom styles for non-Starlight pages */
 :root {
   --step--2: clamp(0.69rem, calc(0.82rem + -0.14vw), 0.79rem);
   --step--1: clamp(0.83rem, calc(0.9rem + -0.08vw), 0.89rem);
@@ -28,11 +29,7 @@
   --sl-color-black: hsl(223, 13%, 10%);
   --sl-shadow-sm: 0px 1px 1px hsla(0, 0%, 0%, 0.06),
     0px 2px 1px hsla(0, 0%, 0%, 0.06);
-  --sl-hue-accent: 327;
-  --sl-color-accent-high: hsl(var(--sl-hue-accent), 80%, 30%); /* darkest */
-  --sl-color-accent: hsl(var(--sl-hue-accent), 100%, 40%);
-  --sl-color-accent-low: hsl(var(--sl-hue-accent), 100%, 97%); /* lightest */
-  --color-accent-mid: hsl(324, 100%, 44%);
+
   --sl-color-red-high: hsl(339, 80%, 30%);
   --sl-color-green-high: hsl(101, 80%, 22%);
 

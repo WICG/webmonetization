@@ -10,7 +10,8 @@
   "dependencies": {
     "@astrojs/react": "^3.0.2",
     "@astrojs/starlight": "^0.10.0",
-    "@types/react": "^18.2.21",
+    "@interledger/docs-design-system": "0.0.11",
+    "@types/react": "^18.2.22",
     "@types/react-dom": "^18.2.7",
     "astro": "3.1.0",
     "astro-i18next": "^1.0.0-beta.21",
@@ -19,7 +20,7 @@
     "react-dom": "^18.2.0",
     "react-minimal-pie-chart": "^8.4.0",
     "remark-mermaidjs": "^5.0.2",
-    "sharp": "^0.32.5"
+    "sharp": "^0.32.6"
   },
   "devDependencies": {
     "netlify-plugin-playwright-cache": "^0.0.1"

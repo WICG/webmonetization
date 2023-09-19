@@ -75,26 +75,28 @@ Refer to the Starlight documentation on [authoring content](https://starlight.as
 
 ### Docs components
 
-We have extracted some of the commonly repeated patterns within the documentation pages into custom docs components that can be reused.
+We have extracted some of the commonly repeated patterns within the documentation pages into custom docs components that can be reused. There are components which are shared across all our Starlight documentation sites and those which are specific to Web Monetization only. This will determine what the import path is.
 
-- [CodeBlock](#codeblock-component)
-- [Disclosure](#disclosure-component)
-- [Hidden](#hidden-component)
-- [LargeImg](#largeimg-component)
-- [LinkOut](#linkout-component)
-- [MermaidWrapper](#mermaidwrapper-component)
-- [StylishHeader](#stylishheader-component)
-- [Tooltip](#tooltip-component)
+- [CodeBlock](#codeblock-component) (Shared)
+- [Disclosure](#disclosure-component) (Shared)
+- [Hidden](#hidden-component) (Shared)
+- [LargeImg](#largeimg-component) (Shared)
+- [LinkOut](#linkout-component) (Shared)
+- [MermaidWrapper](#mermaidwrapper-component) (Shared)
+- [StylishHeader](#stylishheader-component) (Shared)
+- [Tooltip](#tooltip-component) (Shared)
 
 - [BrowserCompat](#browsercompat-component) (Webmon-specific)
 - [Specification](#specification-component) (Webmon-specific)
+
+For more information about importing things in Javascript, please refer to [import on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
 1. #### `CodeBlock` component
 
    Use this component if you wish to add a title to your code block. It takes a `title` attribute, which will be displayed above the code. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `CodeBlock` component like so:
 
-   ```
-   import CodeBlock from '/src/components/docs/CodeBlock'
+   ```jsx
+   import { CodeBlock } from '@interledger/docs-design-system'
    ```
 
    Use the `<CodeBlock>` component within your content like so:
@@ -127,7 +129,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
    To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Disclosure` component like so:
 
    ```jsx
-   import Disclosure from '/src/components/docs/Disclosure'
+   import { Disclosure } from '@interledger/docs-design-system'
    ```
 
    Use the `<Disclosure>` component within your content like so:
@@ -172,6 +174,10 @@ We have extracted some of the commonly repeated patterns within the documentatio
 
    Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
 
+   ```jsx
+   import { Hidden } from '@interledger/docs-design-system'
+   ```
+
    Unfortunately, due to the nature of how the ToC on the right is generated, if we want to hide an entire section (including the header), we will have to manually hide the section heading by either commenting it out or deleting it.
 
 1. #### `LargeImg` component
@@ -181,13 +187,19 @@ We have extracted some of the commonly repeated patterns within the documentatio
    To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LargeImg` component like so:
 
    ```jsx
-   import LargeImg from '/src/components/docs/LargeImg'
+   import { LargeImg } from '@interledger/docs-design-system'
    ```
 
    Use the `<LargeImg>` component within your content like so:
 
    ```jsx
    <LargeImg src='/img/OMG_A_GIGANTIC_IMG.png' alt='A really large diagram' />
+   ```
+
+   By default, there will be a border around the image, but if you want to remove the border, pass in a `hasBorder={false}` attribute.
+
+   ```jsx
+   <LargeImg src='/img/OMG_A_GIGANTIC_IMG.png' alt='A really large diagram' hasBorder={false} />
    ```
 
    For user doc diagrams, be sure to include the `docs` folder in the path.
@@ -203,7 +215,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
    To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LinkOut` component like so:
 
    ```jsx
-   import LinkOut from '/src/components/docs/LinkOut'
+   import { LinkOut } from '@interledger/docs-design-system'
    ```
 
    Use the `<LinkOut>` component within your content like so:
@@ -227,7 +239,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
    To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `MermaidWrapper` component like so:
 
    ```jsx
-   import MermaidWrapper from '/src/components/docs/MermaidWrapper'
+   import { MermaidWrapper } from '@interledger/docs-design-system'
    ```
 
    Use the `<MermaidWrapper>` component within your content like so:
@@ -244,12 +256,26 @@ We have extracted some of the commonly repeated patterns within the documentatio
    </MermaidWrapper>
    ````
 
+   By default, there will be a border around the image, but if you want to remove the border, pass in a `hasBorder={false}` attribute.
+
+   ````jsx
+   <MermaidWrapper client:load hasBorder={false}>
+     ```mermaid sequenceDiagram Alice ->> Bob: Hello Bob, how are you? Bob-->>John: How about you John? Bob--x Alice: I am good thanks! Bob-x John: I am good thanks! Note right of John: Bob thinks a long
+     <br />
+     long time, so long
+     <br />
+     that the text does
+     <br />
+     not fit on a row. Bob-->Alice: Checking with John... Alice->John: Yes... John, how are you? ```
+   </MermaidWrapper>
+   ````
+
 1. #### `StylishHeader` component
 
    Use this component if you wish to create a stylized heading that does not use the heading elements such that it will not appear in the ToC right sidebar. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `StylishHeader` component like so:
 
    ```jsx
-   import StylishHeader from '/src/components/docs/StylishHeader'
+   import { StylishHeader } from '@interledger/docs-design-system'
    ```
 
    Use the `<StylishHeader>` component within your content like so:
@@ -265,7 +291,7 @@ We have extracted some of the commonly repeated patterns within the documentatio
    To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Tooltip` component like so:
 
    ```jsx
-   import Tooltip from '/src/components/docs/Tooltip'
+   import { Tooltip } from '@interledger/docs-design-system'
    ```
 
    Use the `<Tooltip>` component within your content like so:

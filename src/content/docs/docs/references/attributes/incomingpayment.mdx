@@ -5,11 +5,10 @@ title: incomingPayment
 import Specification from '/src/components/docs/Specification'
 import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/incomingPayment.json'
-import LinkOut from '/src/components/docs/LinkOut'
-import Hidden from '/src/components/docs/Hidden'
+import { LinkOut, Hidden } from '@interledger/docs-design-system'
 
 :::tip[Experimental Attribute]
-`incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>. <Hidden>Check the [Browser compatibility table](#browser-compatibility) before using.</Hidden>
+`incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>.<Hidden>Check the [Browser compatibility table](#browser-compatibility) before using.</Hidden>
 :::
 
 The `monetization` event's `incomingPayment` attribute can be used to verify the receipt of a payment. Today, the `monetization` event fires when the WM agent successfully creates an outgoing payment request at the WM provider. Since it's only a request to send an outgoing payment, there's no guarantee at this point that a payment has been received.
