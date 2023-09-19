@@ -16,7 +16,10 @@ export default defineConfig({
     overrideIntegration(),
     starlight({
       title: 'Web Monetization',
-      customCss: ['./src/styles/ilf-docs.css'],
+      customCss: [
+        './node_modules/@interledger/docs-design-system/src/styles/green-theme.css',
+        './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',
+      ],
       locales: {
         root: {
           label: 'English',
@@ -81,20 +84,24 @@ export default defineConfig({
                       link: '/docs/references/attributes/paymentpointer',
                     },
                     {
-                      label: 'amount (deprecated)',
+                      label: 'amount',
                       link: '/docs/references/attributes/amount',
+                      badge: { text: 'deprecated', variant: 'danger' },
                     },
                     {
-                      label: 'assetCode (deprecated)',
+                      label: 'assetCode',
                       link: '/docs/references/attributes/assetcode',
+                      badge: { text: 'deprecated', variant: 'danger' },
                     },
                     {
-                      label: 'assetScale (deprecated)',
+                      label: 'assetScale',
                       link: '/docs/references/attributes/assetscale',
+                      badge: { text: 'deprecated', variant: 'danger' },
                     },
                     {
-                      label: 'receipt (deprecated)',
+                      label: 'receipt',
                       link: '/docs/references/attributes/receipt',
+                      badge: { text: 'deprecated', variant: 'danger' },
                     },
                   ],
                 },

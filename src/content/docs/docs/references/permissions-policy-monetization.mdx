@@ -5,7 +5,7 @@ title: Permissions Policy
 import Specification from '/src/components/docs/Specification'
 import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/permissionpolicy.json'
-import LinkOut from '/src/components/docs/LinkOut'
+import { LinkOut } from '@interledger/docs-design-system'
 
 The `monetization` directive within the HTTP <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy">Permissions-Policy</LinkOut> header controls whether the current document and any nesting browsing contexts (iframes) are allowed to use the Web Monetization API.
 
@@ -28,7 +28,7 @@ Permissions-Policy: monetization=(self)
 This is the default policy for `monetization`.
 
 :::note
-The `allowlist` attributes only take effect when the *content navigable* of the iframe is navigated. Adding or removing the monetization attribute has no effect on an already-loaded document.
+The `allowlist` attributes only take effect when the _content navigable_ of the iframe is navigated. Adding or removing the monetization attribute has no effect on an already-loaded document.
 :::
 
 ## Specifications

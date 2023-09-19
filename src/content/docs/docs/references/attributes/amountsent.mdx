@@ -5,10 +5,9 @@ title: amountSent
 import Specification from '/src/components/docs/Specification'
 import BrowserCompat from '/src/components/docs/BrowserCompat'
 import data from '/src/data/browser-compat-data/amountSent.json'
-import LinkOut from '/src/components/docs/LinkOut'
-import Tooltip from '/src/components/docs/Tooltip'
+import { LinkOut, Tooltip } from '@interledger/docs-design-system'
 
-The `monetization` event's `amountSent` attribute returns you the amount (`value`) and <Tooltip content='The ISO 4217 alphabetic code that represents a currency (USD, CAD, etc.)' client:load><span>currency code</span></Tooltip> (`currency`) of the Web Monetization payment sent to you. 
+The `monetization` event's `amountSent` attribute returns you the amount (`value`) and <Tooltip content='The ISO 4217 alphabetic code that represents a currency (USD, CAD, etc.)' client:load><span>currency code</span></Tooltip> (`currency`) of the Web Monetization payment sent to you.
 
 ## Value
 

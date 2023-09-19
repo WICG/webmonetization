@@ -3,7 +3,9 @@ import i18next, { t, changeLanguage } from "i18next";
 import { HeadHrefLangs } from "astro-i18next/components";
 import TopNav from "../components/pages/TopNav.astro";
 import Footer from "../components/pages/Footer.astro";
+import '/node_modules/@interledger/docs-design-system/src/styles/green-theme.css';
 import '../styles/webm.css';
+
 interface Props {
 	title: string;
 	description: string;
@@ -14,7 +16,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title = t("site.title"), description = t("site.description"), image = '/img/placeholder-social.png' } = Astro.props;
 changeLanguage("en");
 ---
-<html lang={i18next.language}>
+<html lang={i18next.language} data-theme="light">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
