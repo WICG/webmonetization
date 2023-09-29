@@ -1,0 +1,24 @@
+name: Respec
+on:
+  workflow_dispatch: {}
+  push:
+    paths:
+      - 'src/pages/specification/includes'
+      - 'src/pages/specification/specification-respec.html'
+    branches:
+      - gh-pages
+
+jobs:
+  tidy:
+    name: Rebuild Static
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: brew install tidy-html5
+      - run: yarn
+      - run: ./src/pages/specification/respec.sh
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          title: 'chore(respec): tidy respec and rebuild static'
+          commit-message: 'chore(respec): tidy respec and rebuild static'
+          branch: html-tidy
