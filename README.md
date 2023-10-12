@@ -53,9 +53,15 @@ For example, a copy of [version 1.0 of the specification](https://github.com/WIC
 
 ## Editing Content
 
-Due to the nature of how Starlight deals with content and their generated URLs, for our documentation which wants to use a sub-folder URL style of https://webmonetization.org/docs for the documentation section, we have a double `docs` folder situation.
+Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name. Due to the nature of how Starlight deals with content and their generated URLs, for our documentation which wants to use a sub-folder URL style of https://webmonetization.org/docs for the documentation section, we have a double `docs` folder situation.
 
 The `docs.mdx` file in the root of the `content/docs` folder is essentially the landing page for our documentation and is what users see when they land on https://webmonetization.org/docs.
+
+Static assets, like favicons or images, can be placed in the `public/` directory. When referencing these assets in your markdown, you do not have to include `public/` in the file path, so an image would have a path like:
+
+```md
+![A lovely description of your beautiful image](/img/YOUR_BEAUTIFUL_IMAGE.png)
+```
 
 ### Editing an existing docs page
 
@@ -75,236 +81,29 @@ Refer to the Starlight documentation on [authoring content](https://starlight.as
 
 ### Docs components
 
-We have extracted some of the commonly repeated patterns within the documentation pages into custom docs components that can be reused. There are components which are shared across all our Starlight documentation sites and those which are specific to Web Monetization only. This will determine what the import path is.
+We have extracted some of the commonly repeated patterns within the documentation pages into custom docs components that can be reused. There are components which are shared across all our Starlight documentation sites and those which are specific to this project only. This will determine what the import path is.
 
-- [CodeBlock](#codeblock-component) (Shared)
-- [Disclosure](#disclosure-component) (Shared)
-- [Hidden](#hidden-component) (Shared)
-- [LargeImg](#largeimg-component) (Shared)
-- [LinkOut](#linkout-component) (Shared)
-- [MermaidWrapper](#mermaidwrapper-component) (Shared)
-- [StylishHeader](#stylishheader-component) (Shared)
-- [Tooltip](#tooltip-component) (Shared)
+- CodeBlock (Shared)
+- Disclosure (Shared)
+- Hidden (Shared)
+- LargeImg (Shared)
+- LinkOut (Shared)
+- MermaidWrapper (Shared)
+- StylishHeader (Shared)
+- Tooltip (Shared)
 
 - [BrowserCompat](#browsercompat-component) (Webmon-specific)
 - [Specification](#specification-component) (Webmon-specific)
 
+For the shared components, if you are using both `CodeBlock` and `Disclosure` on the same page, you can import them both like so:
+
+```jsx
+import { CodeBlock, Disclosure } from '@interledger/docs-design-system'
+```
+
 For more information about importing things in Javascript, please refer to [import on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
-1. #### `CodeBlock` component
-
-   Use this component if you wish to add a title to your code block. It takes a `title` attribute, which will be displayed above the code. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `CodeBlock` component like so:
-
-   ```jsx
-   import { CodeBlock } from '@interledger/docs-design-system'
-   ```
-
-   Use the `<CodeBlock>` component within your content like so:
-
-   ````
-   <CodeBlock title="Response">
-
-   ```http
-   {
-      "id":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
-      "paymentPointer":"https://wallet.example/alice",
-      "receivedAmount": {
-         "value":"0",
-         "assetCode":"USD",
-         "assetScale":2
-      },
-      "completed":false,
-      "createdAt":"2022-03-12T23:20:50.52Z",
-      "updatedAt":"2022-03-12T23:20:50.52Z",
-   }
-   ```
-
-   </CodeBlock>
-   ````
-
-1. #### `Disclosure` component
-
-   Use this component if you have some content that you want to show/hide via a collapsible container. This component wraps around whatever content you wish to have this expand/collapse behaviour. Note that the `client:load` attribute is required for the functionality to work because this component relies on state.
-
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Disclosure` component like so:
-
-   ```jsx
-   import { Disclosure } from '@interledger/docs-design-system'
-   ```
-
-   Use the `<Disclosure>` component within your content like so:
-
-   ```jsx
-   <Disclosure toggleText='Show code snippets' client:load>
-      <!-- Your content, can be markup or markdown -->
-   </Disclosure>
-   ```
-
-   For the specific use-case of displaying multiple code-snippets, it might be worth considering also using the [built-in Starlight `<Tabs>`](https://starlight.astro.build/guides/components#tabs) component:
-
-   ````jsx
-   <Disclosure toggleText='Show code snippets' client:load>
-      <Tabs>
-         <TabItem label='Request'>
-         ```bash
-         GET /alice HTTP/1.1
-         Accept: application/json
-         Host: wallet.example
-         ```
-         </TabItem>
-         <TabItem label='Response'>
-         ```bash
-         HTTP/1.1 200 Success
-         Content-Type: application/json
-
-         {
-            "id":"https://wallet.example/alice",
-            "assetCode":"USD",
-            "assetScale":2,
-            "authServer":"https://wallet.example/auth",
-         }
-         ```
-         </TabItem>
-
-      </Tabs>
-   </Disclosure>
-   ````
-
-1. #### `Hidden` component
-
-   Use this component to hide content that is temporarily not ready to be shown to the public. This is not meant for long-term use, but a stop-gap when the current implementation is still far away from our documentation/specifications, and the content we have will be relevant but in the future.
-
-   ```jsx
-   import { Hidden } from '@interledger/docs-design-system'
-   ```
-
-   Unfortunately, due to the nature of how the ToC on the right is generated, if we want to hide an entire section (including the header), we will have to manually hide the section heading by either commenting it out or deleting it.
-
-1. #### `LargeImg` component
-
-   Use this component if you have a diagram or image that is much larger than our available space and you would like users to view the full image in another tab. This adds a link to "View full image" with an external link indicator on the bottom right corner under the image. It takes in a `src` and `alt`, just like a normal `img` element.
-
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LargeImg` component like so:
-
-   ```jsx
-   import { LargeImg } from '@interledger/docs-design-system'
-   ```
-
-   Use the `<LargeImg>` component within your content like so:
-
-   ```jsx
-   <LargeImg src='/img/OMG_A_GIGANTIC_IMG.png' alt='A really large diagram' />
-   ```
-
-   By default, there will be a border around the image, but if you want to remove the border, pass in a `hasBorder={false}` attribute.
-
-   ```jsx
-   <LargeImg src='/img/OMG_A_GIGANTIC_IMG.png' alt='A really large diagram' hasBorder={false} />
-   ```
-
-   For user doc diagrams, be sure to include the `docs` folder in the path.
-
-   ```jsx
-   <LargeImg src='/img/docs/OMG_A_GIGANTIC_IMG.png' alt='A really large diagram' />
-   ```
-
-1. #### `LinkOut` component
-
-   Use this component if you need to add an external link to your content that opens in a new tab. This component adds the necessary attributes for external links and adds an external link indicator icon to the end of the link content. The icon can be turned off, if necessary.
-
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `LinkOut` component like so:
-
-   ```jsx
-   import { LinkOut } from '@interledger/docs-design-system'
-   ```
-
-   Use the `<LinkOut>` component within your content like so:
-
-   ```jsx
-   <LinkOut href='https://openpayments.guide/'>OpenPayments API</LinkOut>
-   ```
-
-   If you do not want the external link icon to appear, you can set the `withIcon` prop to `false` like so:
-
-   ```jsx
-   <LinkOut href='https://openpayments.guide/' withIcon={false}>
-     OpenPayments API
-   </LinkOut>
-   ```
-
-1. #### `MermaidWrapper` component
-
-   Use this component if your Mermaid diagram is much larger than our available space and you would like users to view the full diagram in another tab. This adds "View full diagram" button with an external link indicator on the bottom right corner under the diagram. Note that the `client:load` attribute is required for the functionality to work because this component relies on state.
-
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `MermaidWrapper` component like so:
-
-   ```jsx
-   import { MermaidWrapper } from '@interledger/docs-design-system'
-   ```
-
-   Use the `<MermaidWrapper>` component within your content like so:
-
-   ````jsx
-   <MermaidWrapper client:load>
-     ```mermaid sequenceDiagram Alice ->> Bob: Hello Bob, how are you? Bob-->>John: How about you John? Bob--x Alice: I am good thanks! Bob-x John: I am good thanks! Note right of John: Bob thinks a long
-     <br />
-     long time, so long
-     <br />
-     that the text does
-     <br />
-     not fit on a row. Bob-->Alice: Checking with John... Alice->John: Yes... John, how are you? ```
-   </MermaidWrapper>
-   ````
-
-   By default, there will be a border around the image, but if you want to remove the border, pass in a `hasBorder={false}` attribute.
-
-   ````jsx
-   <MermaidWrapper client:load hasBorder={false}>
-     ```mermaid sequenceDiagram Alice ->> Bob: Hello Bob, how are you? Bob-->>John: How about you John? Bob--x Alice: I am good thanks! Bob-x John: I am good thanks! Note right of John: Bob thinks a long
-     <br />
-     long time, so long
-     <br />
-     that the text does
-     <br />
-     not fit on a row. Bob-->Alice: Checking with John... Alice->John: Yes... John, how are you? ```
-   </MermaidWrapper>
-   ````
-
-1. #### `StylishHeader` component
-
-   Use this component if you wish to create a stylized heading that does not use the heading elements such that it will not appear in the ToC right sidebar. To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `StylishHeader` component like so:
-
-   ```jsx
-   import { StylishHeader } from '@interledger/docs-design-system'
-   ```
-
-   Use the `<StylishHeader>` component within your content like so:
-
-   ```jsx
-   <StylishHeader>Wow I'm a stylish header</StylishHeader>
-   ```
-
-1. #### `Tooltip` component
-
-   Use the tooltip component for adding a short explanation to specific terms. This component is built to be accessible in accordance to the guidance from [WAI Tooltip Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/). Note that the `client:load` attribute is required for the functionality to work because this component relies on state.
-
-   To use it, your docs page must be in `.mdx` format. Please change the format from `.md` to `.mdx` if necessary. All your existing markdown will still be supported without issue. Import the `Tooltip` component like so:
-
-   ```jsx
-   import { Tooltip } from '@interledger/docs-design-system'
-   ```
-
-   Use the `<Tooltip>` component within your content like so:
-
-   ```jsx
-   <Tooltip content='THIS CONTENT IS DISPLAYED IN THE TOOLTIP UPON INTERACTION' client:load><span>text that you are trying to explain</span></Tooltip>.
-   ```
-
-   If the text you are trying to explain is also a link to somewhere else, please put the link within the `<Tooltip>` like so:
-
-   ```jsx
-   <Tooltip content='THIS CONTENT IS DISPLAYED IN THE TOOLTIP UPON INTERACTION' client:load><a href="/URL">text that you are trying to explain</a></Tooltip>.
-   ```
+The available shared components are documented at our [documentation style guide](https://interledger.tech).
 
 1. #### `BrowserCompat` component
 
@@ -360,23 +159,7 @@ title: This Doc Needs To Be Written
 My new content here..
 ```
 
-The sidebar of the documentation site is configured in the `astro.config.mjs`.
-
-```javascript
-// Add newly-created-doc to the Getting Started category of docs
-{
-  "docs": {
-    "Getting Started": [
-      "quick-start",
-      "newly-created-doc" // new doc here
-    ],
-    ...
-  },
-  ...
-}
-```
-
-Refer to the Starlight documentation on [sidebar configuration](https://starlight.astro.build/reference/configuration/#sidebar/) for more detailed guidance.
+The sidebar of the documentation site is configured in the `astro.config.mjs`. Refer to the Starlight documentation on [sidebar configuration](https://starlight.astro.build/reference/configuration/#sidebar/) for more detailed guidance.
 
 ### Adding custom pages
 
@@ -395,3 +178,11 @@ import Base from '../layouts/Base.astro';
 ```
 
 Refer to the Astro documentation on [pages](https://docs.astro.build/en/core-concepts/astro-pages/) for more detailed guidance.
+
+### Adding translated content
+
+Starlight supports [Internationalization (i18n)](https://starlight.astro.build/guides/i18n/) out-of-the-box. Our documentation sites follow the root locale pattern documented at https://starlight.astro.build/guides/i18n/#use-a-root-locale. If you wish to contribute to a language that has not been configured, you will have to edit the astro.config.mjs to add the language to the `locales` options.
+
+The translated content should be in their respective language folder within `/src/content/docs/LANG_CODE`. The file path should follow its corresponding source English path exactly. Once a new language is "activated" translated content should be accessible via the language select in the header.
+
+If a English source page does not have corresponding translations in the selected language, a note will appear at the top of the page informing the user that the page has not been translated yet.
