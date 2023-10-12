@@ -23,7 +23,7 @@ export default defineConfig({
       locales: {
         root: {
           label: 'English',
-          lang: 'en', // lang is required for root locales
+          lang: 'en',
         },
       },
       components: {
