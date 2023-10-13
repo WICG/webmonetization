@@ -1,0 +1,49 @@
+---
+const { anchor } = Astro.props;
+---
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Specification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <a
+            href={'/specification#' + anchor}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <p>Web Monetization</p>
+            <small>{anchor && `#${anchor}`}</small>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+table {
+  border-collapse: collapse;
+  margin-top: var(--space-m);
+}
+
+tr:nth-child(even) td {
+  background-color: var(--sl-color-gray-7);
+}
+
+th,
+td {
+  vertical-align: middle;
+}
+
+th {
+  background-color: var(--sl-color-gray-7);
+  font-weight: bold;
+  line-height: 1.5;
+  text-align: left;
+}
+</style>

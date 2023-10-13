@@ -2,8 +2,8 @@
 title: assetCode
 ---
 
-import Specification from '/src/components/docs/Specification'
-import BrowserCompat from '/src/components/docs/BrowserCompat'
+import Specification from '/src/components/docs/Specification.astro'
+import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/assetCode.json'
 
 :::danger[Caution - Deprecated Attribute]
@@ -26,7 +26,7 @@ A string representing the three-character currency code on the last payment rece
     // See how much your received and in what currency
     const { amount, assetCode, assetScale } = event
     console.log(
-      `Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`
+      `Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`,
     )
   })
 </script>

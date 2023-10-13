@@ -1,0 +1,56 @@
+---
+const { tools } = Astro.props;
+
+const findStartWith = (array: any[], arg: string) => {
+  return (
+    array.find((value: string) => {
+      return value.startsWith(arg)
+    }) !== undefined
+  )
+}
+---
+<table>
+  <thead>
+    <tr>
+      <th class="cellLeft">Name</th>
+      <th class="cellCenter">v2.0</th>
+      <th class="cellCenter">v1.0</th>
+      <th class="cellCenter">GitHub</th>
+    </tr>
+  </thead>
+  <tbody>
+    {tools.map((tool: {name: string, desc: string, version: String[], link: string}) => (
+      <tr>
+        <td>
+          <strong>{tool.name}</strong>
+          <br />
+          {tool.desc}
+        </td>
+        <td class="cellCenter">
+          {findStartWith(tool.version, '2.') ? '✅' : '❌'}
+        </td>
+        <td class="cellCenter">
+          {findStartWith(tool.version, '1.') ? '✅' : '❌'}
+        </td>
+        <td class="cellCenter">
+          <a href={tool.link}>
+            <img
+              alt={`Link to ${tool.name}'s GitHub repo`}
+              src='/img/octocat.svg'
+            />
+          </a>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<style>
+.cellLeft {
+  text-align: left;
+}
+
+.cellCenter {
+  text-align: center;
+}
+</style>
