@@ -2,8 +2,8 @@
 title: assetScale
 ---
 
-import Specification from '/src/components/docs/Specification'
-import BrowserCompat from '/src/components/docs/BrowserCompat'
+import Specification from '/src/components/docs/Specification.astro'
+import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/assetScale.json'
 
 :::danger[Caution - Deprecated Attribute]
@@ -26,7 +26,7 @@ An integer that represents the scale on the amount of money received in the last
     // See how much your received and in what currency
     const { amount, assetCode, assetScale } = event
     console.log(
-      `Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`
+      `Browser sent ${assetCode}${amount / Math.pow(10, assetScale)}.`,
     )
   })
 </script>

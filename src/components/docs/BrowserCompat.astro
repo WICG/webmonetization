@@ -1,0 +1,317 @@
+---
+const { json } = Astro.props;
+
+const compatData = json.api
+---
+<div class="browserCompat">
+  <table>
+    <thead>
+      <tr class="platforms">
+        <td></td>
+        <th class="desktop" colSpan='6' title='desktop'>
+          <img
+            src={`/img/icon-desktop.svg`}
+            alt=''
+            width='24'
+            height='24'
+          />
+          <span class='visually-hidden'>desktop</span>
+        </th>
+        <th class="mobile" colSpan='7' title='mobile'>
+          <img src={`/img/icon-phone.svg`} alt='' width='24' height='24' />
+          <span class='visually-hidden'>mobile</span>
+        </th>
+      </tr>
+      <tr class="browsers">
+        <td></td>
+        <th class="browser browserChrome">
+          <div class="browserLabel">Chrome</div>
+        </th>
+        <th class="browser browserEdge">
+          <div class="browserLabel">Edge</div>
+        </th>
+        <th class="browser browserFirefox">
+          <div class="browserLabel">Firefox</div>
+        </th>
+        <th class="browser browserIe">
+          <div class="browserLabel">Internet Explorer</div>
+        </th>
+        <th class="browser browserOpera">
+          <div class="browserLabel">Opera</div>
+        </th>
+        <th class="browser browserSafari">
+          <div class="browserLabel">Safari</div>
+        </th>
+        <th class="browser browserWebview">
+          <div class="browserLabel">WebView Android</div>
+        </th>
+        <th class="browser browserChrome">
+          <div class="browserLabel">Chrome Android</div>
+        </th>
+        <th class="browser browserFirefox">
+          <div class="browserLabel">Firefox for Android</div>
+        </th>
+        <th class="browser browserOpera">
+          <div class="browserLabel">Opera Android</div>
+        </th>
+        <th class="browser browserSafari">
+          <div class="browserLabel">Safari on iOS</div>
+        </th>
+        <th class="browser browserSamsung">
+          <div class="browserLabel">Samsung Internet</div>
+        </th>
+        <th class="browser browserPuma">
+          <div class="browserLabel">Puma Browser</div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {Object.keys(compatData).map((key) => (
+        <tr key={key}>
+          <th class="feature" scope='row'>
+            <div>
+              <code>{key}</code>
+            </div>
+          </th>
+          {Object.keys(compatData[key].__compat.support).map((platform) => (
+            (platform !== "status") && (
+              <td>
+                {compatData[key].__compat.support[platform]
+                  .version_added && (
+                  <img
+                    src={`/img/icon-check.svg`}
+                    alt=''
+                    width='18'
+                    height='18'
+                    class="iconGreen"
+                  />
+                )}
+                {!compatData[key].__compat.support[platform]
+                  .version_added && (
+                  <img
+                    src={`/img/icon-cancel.svg`}
+                    alt=''
+                    width='18'
+                    height='18'
+                    class="iconRed"
+                  />
+                )}
+                <span>
+                  {compatData[key].__compat.support[platform]
+                    .version_added === true && 'Yes'}
+                  {compatData[key].__compat.support[platform]
+                    .version_added === false && 'No'}
+                  {compatData[key].__compat.support[platform]
+                    .version_added !== false &&
+                    compatData[key].__compat.support[platform]
+                      .version_added !== true &&
+                    compatData[key].__compat.support[platform]
+                      .version_added}
+                </span>
+                {compatData[key].__compat.support[platform].notes && (
+                  <img
+                    src={`/img/icon-extension.svg`}
+                    alt=''
+                    width='18'
+                    height='18'
+                    class="iconGreen"
+                  />
+                )}
+              </td>
+            )
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<dl class="legend">
+  <div class="legendItem">
+    <dt>
+      <img
+        src={`/img/icon-check.svg`}
+        alt=''
+        width='24'
+        height='24'
+        class="iconGreen"
+      />
+    </dt>
+    <dd>Full Support</dd>
+  </div>
+  <div class="legendItem">
+    <dt>
+      <img
+        src={`/img/icon-cancel.svg`}
+        alt=''
+        width='24'
+        height='24'
+        class="iconRed"
+      />
+    </dt>
+    <dd>No Support</dd>
+  </div>
+  <div class="legendItem">
+    <dt>
+      <img
+        src={`/img/icon-extension.svg`}
+        alt=''
+        width='24'
+        height='24'
+        class="iconGreen"
+      />
+    </dt>
+    <dd>You'll need to use a Web Monetization Extension</dd>
+  </div>
+</dl>
+
+<style>
+.browserCompat {
+  border-radius: var(--border-radius);
+  box-shadow: var(--sl-shadow-sm);
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0;
+  width: 100%;
+}
+
+th {
+  background: inherit;
+  padding: 0.25rem 0.75rem;
+  width: 2rem;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+th,
+td {
+  border: 1px solid var(--sl-color-hairline-light);
+  font-size: 0.75rem;
+}
+
+th code {
+  white-space: nowrap;
+}
+
+tbody th {
+  vertical-align: middle;
+}
+
+tbody td {
+  text-align: center;
+  padding: 0.25rem 0;
+  vertical-align: top;
+}
+
+tbody td img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.platforms {
+  height: 2em;
+}
+
+.platforms th {
+  vertical-align: revert;
+}
+
+.platforms th img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.browserLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  line-height: 1;
+  position: relative;
+  padding-top: 0.5rem;
+  margin-left: 2px;
+}
+
+.browser::after {
+  height: 1.25em;
+  width: 1.25em;
+  display: block;
+}
+
+.browserChrome::after {
+  content: url(/img/browser-chrome.svg);
+}
+
+.browserEdge::after {
+  content: url(/img/browser-edge.svg);
+}
+
+.browserFirefox::after {
+  content: url(/img/browser-firefox.svg);
+}
+
+.browserIe::after {
+  content: url(/img/browser-ie.svg);
+}
+
+.browserOpera::after {
+  content: url(/img/browser-opera.svg);
+}
+
+.browserPuma::after {
+  content: url(/img/browser-puma.svg);
+}
+
+.browserSafari::after {
+  content: url(/img/browser-safari.svg);
+}
+
+.browserSamsung::after {
+  content: url(/img/browser-samsung.svg);
+}
+
+.browserWebview::after {
+  content: url(/img/browser-webview.svg);
+}
+
+.feature div {
+  align-items: baseline;
+  display: inline-flex;
+  width: 100%;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.legendItem {
+  align-items: center;
+  display: flex;
+  font-size: 0.75rem;
+  margin-top: 0;
+  margin-right: var(--space-s);
+}
+
+.legendItem dd {
+  padding-inline-start: var(--space-3xs);
+}
+
+.legendItem.legendItem.legendItem,
+.legendItem.legendItem.legendItem dd {
+  margin-top: 0;
+}
+
+.iconGreen {
+  filter: invert(20%) sepia(98%) saturate(2364%) hue-rotate(143deg)
+    brightness(92%) contrast(102%);
+}
+
+.iconRed {
+  filter: invert(6%) sepia(98%) saturate(7375%) hue-rotate(340deg)
+    brightness(120%) contrast(100%);
+}
+</style>

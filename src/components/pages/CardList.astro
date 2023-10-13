@@ -1,3 +1,42 @@
+---
+const { cards } = Astro.props;
+---
+{cards.map((card: {name: string, desc: string, link: string, image: string}) => (
+  (card.desc ? (
+    <a
+      key={card.name}
+      href={card.link}
+      target="_blank"
+      rel="noreferrer noopener"
+      class="card cardWide"
+    >
+      <img
+        class="cardLogo"
+        src={`/img/${card.image}`}
+        alt={card.name}
+        width="96"
+        height="96"
+      />
+      <div class="cardContent">
+        <h3 class="bodyText">{card.name}</h3>
+        <p>{card.desc}</p>
+      </div>
+    </a>
+  ) :
+  (
+    <a
+      href={card.link}
+      target="_blank"
+      rel="noreferrer noopener"
+      key={card.name}
+      class="card cardBasic"
+    >
+      <img src={`/img/${card.image}`} alt={card.name} width="267" height="78" />
+    </a>
+  ))
+))}
+
+<style>
 .card {
   display: flex;
   align-items: center;
@@ -67,3 +106,4 @@
   font-size: var(--step-0);
   margin-bottom: 0;
 }
+</style>
