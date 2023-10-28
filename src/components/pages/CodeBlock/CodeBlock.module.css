@@ -52,7 +52,8 @@
 
 .btnSuccessIcon {
   color: var(--sl-color-green-high);
-  left: 50%;
+ 
+  translate: (50%, 0%);
   opacity: 0;
   top: 50%;
   transform: translate(-50%, -50%) scale(0.33);
