@@ -1,0 +1,56 @@
+---
+título: Introducción a la monetización web
+---
+
+importar {LargeImg, LinkOut, Tooltip} desde '@interledger/docs-design-system'
+
+Como usuario de un sitio web, es común encontrar un titular que capte su atención, sólo para encontrar el artículo bloqueado detrás de un muro de pago. ¿Con qué frecuencia pagas una suscripción para leer un solo artículo? ¿Qué pasaría si pudieras pagar una fracción del precio de la suscripción para acceder al artículo y evitar la suscripción por completo?
+
+Como propietario de un sitio web, anticipa perder algunos visitantes debido al contenido de pago. Incluso si ofrece suscripciones semanales, el precio puede ser mayor de lo que un visitante está dispuesto a pagar. Pero en lugar de suscripciones, ¿qué pasaría si pudieras generar ingresos por contenido, o incluso en función de la cantidad de tiempo que un visitante dedica al contenido?
+
+Éstas son sólo dos formas en que la monetización web puede facilitar los pagos. Con la monetización web, los visitantes del sitio web pueden enviar pagos directamente a los sitios web utilizando una extensión de navegador o cualquier navegador que implemente de forma nativa la especificación de monetización web.
+
+## Infraestructura de pagos actual
+
+Puede llevar un poco de trabajo implementar pagos en un sitio web. Si su sitio ya acepta pagos, es posible que esté familiarizado con lo que se necesita para aceptar múltiples métodos de pago y monedas. El proceso normalmente se parece a esto:
+
+1. Te registras con uno o más proveedores de pago, según los métodos de pago y las monedas que desees aceptar.
+2. Integras sus servicios en tu sitio. Por ejemplo, puede crear y alojar su propio formulario de pago que esté conectado al servicio, o utilizar un formulario proporcionado por el proveedor de pagos.
+3. Dependiendo del método de pago que su visitante desee utilizar, es posible que deba crear una cuenta con usted o con el proveedor de pagos.
+4. Su visitante completa el formulario de pago. Lo ideal es que permanezcan en su sitio para completar la transacción, pero es posible que deban acceder al sitio del proveedor.
+
+## Presentamos la monetización web
+
+Web Monetization (WM) tiene como objetivo simplificar la experiencia de pago para usted y los visitantes de su sitio web. Es una tecnología abierta que permite a los sitios web recibir automáticamente pagos de los visitantes, facilitados por el navegador del visitante y su proveedor de WM preferido.
+
+Es un estándar propuesto que permite a los visitantes pagar una cantidad de su elección con poca o ninguna interacción del usuario. Permite que un sitio web indique automáticamente a los navegadores web que puede aceptar pagos y permite a los navegadores web facilitar un pago mediante:
+
+- Obtención de autorización para iniciar el pago.
+- Recopilar detalles y emitir instrucciones para iniciar el proceso de movimiento de dinero.
+- Creación de una sesión de pago.
+- Comunicar eventos de pago al sitio para que el sitio pueda responder opcionalmente. Por ejemplo, el sitio podría [eliminar anuncios](/docs/guides/remove-ads) o proporcionar [acceso a contenido exclusivo](/docs/guides/provide-exclusive-content) para los visitantes que pagan.
+
+### Flujo de alto nivel
+
+La siguiente imagen muestra el flujo de monetización web en un nivel alto. Algunos pasos se han combinado o excluido. Se proporciona una explicación más detallada en la página [Flujo de monetización web](/docs/intro/web-monetization-flow).
+
+<Imagen grande
+   src='/img/docs/diagram-wm-overview.png'
+   alt='Descripción general de alto nivel del flujo de monetización web'
+/>
+
+1. Bob visita una [página web monetizada](/docs/guides/monetize-page). El elemento de monetización `<link>` es la forma en que el sitio web indica su aceptación de pagos al navegador.
+2. El navegador de Bob, ya sea de forma nativa o mediante una extensión del navegador, analiza el elemento `<link>` para obtener <Tooltip content='Una URL que identifica una cuenta de Open Payments' client:load><a href="./resources /glossary#paid-pointer">puntero de pago</a></Tooltip> para Alice, la propietaria del sitio.
+3. El navegador/extensión de Bob envía solicitudes al puntero de pago de Alice para obtener autorización e instrucciones para enviar un pago.
+4. Con la autorización concedida y las instrucciones de pago recibidas, el navegador/extensión envía solicitudes al puntero de pago de Bob para iniciar el pago saliente.
+5. Finaliza el flujo de Monetización Web. El procesamiento de pagos, el cambio de divisas y la liquidación se realizan entre las dos cuentas a través de una vía de pago común.
+
+### Especificación de montos de pago y monedas
+
+La monetización web no permite que un sitio web especifique un monto de pago o moneda. Solo permite que el sitio le indique al navegador que puede aceptar pagos.
+
+Con la ayuda de un <Tooltip content='La entidad que envía un pago' client:load><a href="./resources/glossary#web-monetization-provider">proveedor de WM</a></Tooltip>, su El visitante decide si realiza un pago, cuánto y con qué frecuencia y en qué moneda. Su <Tooltip content='La entidad que recibe un pago' cliente:load><a href="./resources/glossary#web-monetization-receiver">receptor de WM</a></Tooltip> puede entonces cambiar la moneda de pagos entrantes en función de lo que desea recibir. Esta flexibilidad le permite a usted y a sus visitantes elegir los métodos de monetización que mejor se adapten a sus necesidades.
+
+### Procesamiento y liquidación de pagos
+
+Web lunes
