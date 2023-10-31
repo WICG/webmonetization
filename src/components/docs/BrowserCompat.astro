@@ -8,7 +8,7 @@ const compatData = json.api
     <thead>
       <tr class="platforms">
         <td></td>
-        <th class="desktop" colSpan='6' title='desktop'>
+        <th class="desktop" colspan='6' title='desktop'>
           <img
             src={`/img/icon-desktop.svg`}
             alt=''
@@ -17,7 +17,7 @@ const compatData = json.api
           />
           <span class='visually-hidden'>desktop</span>
         </th>
-        <th class="mobile" colSpan='7' title='mobile'>
+        <th class="mobile" colspan='7' title='mobile'>
           <img src={`/img/icon-phone.svg`} alt='' width='24' height='24' />
           <span class='visually-hidden'>mobile</span>
         </th>
@@ -67,7 +67,7 @@ const compatData = json.api
     </thead>
     <tbody>
       {Object.keys(compatData).map((key) => (
-        <tr key={key}>
+        <tr>
           <th class="feature" scope='row'>
             <div>
               <code>{key}</code>
