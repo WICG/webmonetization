@@ -8,20 +8,20 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.4",
-    "@astrojs/starlight": "^0.11.2",
+    "@astrojs/react": "^3.0.5",
+    "@astrojs/starlight": "^0.12.1",
     "@interledger/docs-design-system": "^0.1.2",
-    "@types/react": "^18.2.33",
-    "@types/react-dom": "^18.2.14",
-    "astro": "3.4.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "astro": "3.5.5",
     "astro-i18next": "^1.0.0-beta.21",
-    "prettier": "^3.0.3",
-    "prism-react-renderer": "^2.1.0",
+    "prettier": "^3.1.0",
+    "prism-react-renderer": "^2.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-minimal-pie-chart": "^8.4.0",
     "remark-mermaidjs": "^6.0.0",
-    "respec": "^34.2.0",
+    "respec": "^34.2.2",
     "sharp": "^0.32.6"
   },
   "devDependencies": {
