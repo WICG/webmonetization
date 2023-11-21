@@ -13,7 +13,7 @@ import { LinkOut, Hidden } from '@interledger/docs-design-system'
 
 The `monetization` event's `incomingPayment` attribute can be used to verify the receipt of a payment. Today, the `monetization` event fires when the WM agent successfully creates an outgoing payment request at the WM provider. Since it's only a request to send an outgoing payment, there's no guarantee at this point that a payment has been received.
 
-The `incomingPayment` attribute returns the URL that represents the incoming payment at the WM receiver. The returned value is the value it was initialized with. By <LinkOut href="https://docs.openpayments.guide/reference/get-incoming-payment">querying the URL</LinkOut>, you can get the `receivedAmount`.
+The `incomingPayment` attribute returns the URL that represents the incoming payment at the WM receiver. The returned value is the value it was initialized with. By <LinkOut href="https://openpayments.guide/apis/resource-server/operations/get-incoming-payment/">querying the URL</LinkOut>, you can get the `receivedAmount`.
 
 ## Example
 

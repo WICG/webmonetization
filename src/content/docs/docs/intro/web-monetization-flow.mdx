@@ -7,7 +7,7 @@ import { CodeBlock, LargeImg, LinkOut, MermaidWrapper, Tooltip } from '@interled
 
 Web Monetization (WM) relies on <LinkOut href="https://openpayments.guide">Open Payments</LinkOut> (OP) and OP-enabled accounts to coordinate payments.
 
-The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="/docs/resources/glossary#web-monetization-agent">WM agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="/docs/resources/glossary#payment-pointer">payment pointer</a></Tooltip>, then to the sending account's payment pointer, to obtain the necessary authorization and instructions for sending a payment.
+The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="/docs/resources/glossary#web-monetization-agent">WM agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="/docs/resources/glossary#wallet-address">wallet address</a></Tooltip>, then to the sending account's wallet address, to obtain the necessary authorization and instructions for sending a payment.
 
 ## Sequence diagram
 
@@ -25,8 +25,8 @@ autonumber
     participant AS as Auth server
     end
 note over AS,OPR: The auth server can be<br/>located outside of the <br/>WM receiver's domain
-WMA->>page: Detects monetization <link> element,<br/>extracts payment pointer
-WMA->>OPR: Requests the payment pointer's public info
+WMA->>page: Detects monetization <link> element,<br/>extracts wallet address
+WMA->>OPR: Requests the public info for the wallet address
 OPR->>WMA: Returns info, including auth server URL
 WMA->>AS: Requests access rights
 AS->>WMA: Returns access token
@@ -51,9 +51,9 @@ There's a few points to keep in mind as you review the example.
 
 ### Scenario
 
-Alice adds the monetization `<link>` element to her website. Included within the `<link>` is her payment pointer, `https://wallet.example/alice`, assigned to her by her <Tooltip content='An entity that provides an Open Payments-enabled account into which payments can be received' client:load><a href="/docs/resources/glossary#web-monetization-receiver">WM receiver</a></Tooltip>.
+Alice adds the monetization `<link>` element to her website. Included within the `<link>` is her wallet address, `https://wallet.example/alice`, assigned to her by her <Tooltip content='An entity that provides an Open Payments-enabled account into which payments can be received' client:load><a href="/docs/resources/glossary#web-monetization-receiver">WM receiver</a></Tooltip>.
 
-Bob signs up with a <Tooltip content='An entity that provides a funded Open Payments-enabled account from which payments can be sent' client:load><a href="/docs/resources/glossary#web-monetization-provider">WM provider</a></Tooltip> who supplies him with a funded sending account. The sending account's payment pointer is `https://anotherwallet.example/bob`. After installing a WM agent in his browser and linking the WM agent to his WM provider, his WM agent now has permission to request payments be sent from his account.
+Bob signs up with a <Tooltip content='An entity that provides a funded Open Payments-enabled account from which payments can be sent' client:load><a href="/docs/resources/glossary#web-monetization-provider">WM provider</a></Tooltip> who supplies him with a funded sending account. The sending account's wallet address is `https://anotherwallet.example/bob`. After installing a WM agent in his browser and linking the WM agent to his WM provider, his WM agent now has permission to request payments be sent from his account.
 
 :::note
 This example assumes the WM provider and WM receiver have already peered with each other and share a common payment rail over which transactions can be processed and settled.
@@ -67,11 +67,11 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
 <link rel="monetization" href="https://wallet.example/alice" />
 ```
 
-### 2 - Send request to payment pointer (receiving account)
+### 2 - Send request to wallet address (receiving account)
 
 <Tabs>
 	<TabItem label="Request">
-    The WM agent issues a request to Alice's payment pointer to discover the Open Payments service endpoint.
+    The WM agent issues a request to Alice's wallet address to discover the Open Payments service endpoint.
     
     <CodeBlock title="Request">
     ```http
@@ -166,11 +166,11 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
   </TabItem>
 </Tabs>
 
-### 4 - Send incoming payment request to payment pointer (receiving account)
+### 4 - Send incoming payment request to wallet address (receiving account)
 
 <Tabs>
   <TabItem label="Request">
-    The WM agent creates an incoming payment for the session (e.g., the open browser tab) by issuing an incoming payment request to Alice's payment pointer. The request uses details obtained from the previous API calls.
+    The WM agent creates an incoming payment for the session (e.g., the open browser tab) by issuing an incoming payment request to Alice's wallet address. The request uses details obtained from the previous API calls.
 
 :::note
 The request is for an _incoming_ payment because the WM agent is requesting that Alice's account accept an incoming payment. The payment itself has not been sent yet.
@@ -188,13 +188,13 @@ The request is for an _incoming_ payment because the WM agent is requesting that
 
   </TabItem>
   <TabItem label="Response">
-    Alice's WM receiver (who hosts her account and payment pointer) approves the request by supplying unique payment details for the WM agent to use to address the payment to Alice's account.
+    Alice's WM receiver (who hosts her account and wallet address) approves the request by supplying unique payment details for the WM agent to use to address the payment to Alice's account.
     
     <CodeBlock title="Response">
     ```http
     {
       "id":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
-      "paymentPointer":"https://wallet.example/alice",
+      "walletAddress":"https://wallet.example/alice",
       "receivedAmount":{
         "value":"0",
         "assetCode":"USD",
@@ -209,11 +209,11 @@ The request is for an _incoming_ payment because the WM agent is requesting that
   </TabItem>
 </Tabs>
 
-### 5 - Send outgoing payment request to payment pointer (sending account)
+### 5 - Send outgoing payment request to wallet address (sending account)
 
 <Tabs>
   <TabItem label="Request">
-    The WM agent uses the details obtained thus far to create an outgoing payment request against Bob's account (via his payment pointer). Note that this is just a request to send a payment. The payment itself has not been sent and the request is in a pending state. 
+    The WM agent uses the details obtained thus far to create an outgoing payment request against Bob's account (via his wallet address). Note that this is just a request to send a payment. The payment itself has not been sent and the request is in a pending state. 
     
     <CodeBlock title="Request">
     ```http
@@ -232,7 +232,7 @@ The request is for an _incoming_ payment because the WM agent is requesting that
     ```http
     {
       "id":"https://anotherwallet.example/bob/outgoing-payments/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf",
-      "paymentPointer":"https://anotherwallet.example/bob/",
+      "walletAddress":"https://anotherwallet.example/bob/",
       "receiver":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
       "receiveAmount":{
         "value":"2",

@@ -173,8 +173,8 @@ export default defineConfig({
               link: '/docs/resources/libraries',
             },
             {
-              label: 'Payment pointers',
-              link: '/docs/resources/paymentpointers',
+              label: 'Open Payments-enabled wallets',
+              link: '/docs/resources/op-wallets',
             },
             {
               label: 'External resources',
@@ -183,22 +183,27 @@ export default defineConfig({
                 {
                   label: 'Interledger',
                   link: 'https://interledger.org/',
+                  attrs: { target: '_blank'},
                 },
                 {
                   label: 'Open Payments API',
-                  link: 'https://docs.openpayments.guide/',
+                  link: 'https://openpayments.guide/',
+                  attrs: { target: '_blank'},
                 },
                 {
                   label: 'Payment Handler API',
                   link: 'https://w3c.github.io/payment-handler/',
+                  attrs: { target: '_blank'},
                 },
                 {
-                  label: 'Payment Pointers',
+                  label: 'Payment pointers',
                   link: 'https://paymentpointers.org/',
+                  attrs: { target: '_blank'},
                 },
                 {
                   label: 'Payment Request API',
                   link: 'https://www.w3.org/TR/payment-request/',
+                  attrs: { target: '_blank'},
                 },
               ],
             },
@@ -207,6 +212,7 @@ export default defineConfig({
         {
           label: 'Specification',
           link: 'https://webmonetization.org/specification/',
+          attrs: { target: '_blank'},
         },
       ],
     }),

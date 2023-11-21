@@ -42,7 +42,7 @@ accounts, rather than requiring users to create new accounts. The ability to the
 execute payments between accounts contained within Open Payments-enabled wallets
 relies on the availability of a common payment rail between the wallets.{' '}
 
-Web Monetization relies on Open Payments though its use of payment pointers.
+Web Monetization relies on Open Payments though its use of wallet addresses.
 
 ## P
 
@@ -50,11 +50,7 @@ Web Monetization relies on Open Payments though its use of payment pointers.
 
 ### Payment pointer
 
-Every <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut> account within a digital wallet, or the Open Payments-enabled digital wallet itself (depending on implementation), is identified by a unique URL called a <LinkOut href="https://paymentpointers.org/">payment pointer</LinkOut>. The URL not only identifies the account or wallet, but also provides the entry point to the Open Payments APIs.
-
-Conceptually, a payment pointer is like an email address for an account or wallet. It's a publicly shareable address used to request and/or grant authorization to interact with the underlying account or wallet. Example interactions include sending and receiving payments.
-
-The `<href>` value within the monetization `<link>` element must be a payment pointer.
+A payment pointer is a type of Open Payments-enabled [wallet address](#wallet-address). Payment pointers usually begin with a `$`. For example: `$wallet.example.com/alice`. Visit <LinkOut href="https://paymentpointers.org/">paymentpointers.org</LinkOut> for additional information. 
 
 ### Payment session
 
@@ -63,7 +59,7 @@ A session between a Web Monetization provider and Web Monetization receiver, ini
 The provider can initiate multiple payment sessions during a Web Monetization session:
 
 - At the same time, when there’s multiple monetization `<link>` elements on a page
-- Sequentially, when an incoming payment completes/expires and a new incoming payment is created on the same payment pointer
+- Sequentially, when an incoming payment completes/expires and a new incoming payment is created on the same wallet address
 
 ## U
 
@@ -78,6 +74,14 @@ A web browser is an example of a user agent.
 ## W
 
 <hr />
+
+### Wallet address
+
+Every <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut> account within a digital wallet, or the Open Payments-enabled digital wallet itself (depending on implementation), is identified by a unique URL called a wallet address. The URL not only identifies the account or wallet, but also provides the entry point to the Open Payments APIs.
+
+Conceptually, a wallet address is like an email address for an account or wallet. It's a publicly shareable address used to request and/or grant authorization to interact with the underlying account or wallet. Example interactions include sending and receiving payments.
+
+The `<href>` value within the monetization `<link>` element must be an Open Payments-enabled wallet address.
 
 ### Web Monetization (WM)
 

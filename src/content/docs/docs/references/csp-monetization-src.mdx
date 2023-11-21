@@ -7,7 +7,7 @@ import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/csp-monetization-src.json'
 import { LinkOut } from '@interledger/docs-design-system'
 
-The `monetization-src` directive within the HTTP <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" >Content-Security-Policy</LinkOut> (CSP) allows you to restrict the URLs from which a payment pointer can be loaded.
+The `monetization-src` directive within the HTTP <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" >Content-Security-Policy</LinkOut> (CSP) allows you to restrict the URLs from which an Open Payments-enabled wallet address, such as a payment pointer, can be loaded.
 
 <table>
   <tbody>
@@ -47,7 +47,7 @@ Content-Security-Policy: monetization-src <source>, <source>;
 
 ### Violation case
 
-A website administrator wants to restrict the URLs from which a payment pointer can be loaded.
+A website administrator wants to restrict the URLs from which a wallet address can be loaded.
 
 Given this CSP header:
 
