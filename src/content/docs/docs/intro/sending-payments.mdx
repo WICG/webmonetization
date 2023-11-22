@@ -31,23 +31,19 @@ In addition to providing funded accounts, WM providers are responsible for defin
 
 For a provider to send a Web Monetization payment on behalf of an individual, the provider must support the Open Payments specification.
 
-## Open Payments and payment pointers
+## Open Payments and wallet addresses
 
-Web Monetization works with two complementary technologies that enable open and interoperable payments between WM providers and WM receivers: Open Payments and payment pointers.
-
-### Open Payments
-
-Accounts supplied by both WM providers and WM receivers must implement the <LinkOut href="https://openpayments.guide">Open Payments (OP) specification</LinkOut>.
+Open Payments enables open and interoperable payments between WM providers and WM receivers. As such, accounts supplied by both WM providers and WM receivers must implement the <LinkOut href="https://openpayments.guide">Open Payments (OP) specification</LinkOut>.
 
 The OP specification defines standards for **_access_** to accounts. When granted access, applications and other entities can integrate payments into their feature sets by connecting to their users’ accounts. The ability to then **_execute_** payments between OP-enabled accounts relies on the availability of a common payment rail between the accounts.
 
-### Payment pointers
+### Wallet addresses
 
-Access to an OP-enabled account, whether for sending or receiving, always starts with a <LinkOut href="https://paymentpointers.org">payment pointer</LinkOut>. A payment pointer is a unique, standardized identifier for a payment account and always resolves to an HTTPS URL.
+Access to an OP-enabled account, whether for sending or receiving, always starts with a wallet address. In this context, a wallet address is a unique URL that identifies an OP account and provides an entry point for the Open Payments API.
 
-A payment pointer allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
+A wallet address allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
 
-Depending on the form a WM provider takes, the provider's user may not know, nor have a need to know, any details about the sending account's payment pointer.
+Depending on the form a WM provider takes, the provider's user may not know, nor have a need to know, any details about the sending account's wallet address.
 
 ## WM agents
 
@@ -57,7 +53,7 @@ The WM agent is code that discovers web monetized pages, exposes the Web Monetiz
 
 ### How it works
 
-The WM agent checks each page an individual visits for a monetization `<link>` element. A monetization `<link>` element must contain a payment pointer. For example:
+The WM agent checks each page an individual visits for a monetization `<link>` element. A monetization `<link>` element must contain a valid Open Payments wallet address. For example:
 
 ```html
 <link rel=”monetization” href=”https://wallet.example/alice”>

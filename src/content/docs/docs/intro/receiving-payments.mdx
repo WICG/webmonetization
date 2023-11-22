@@ -16,23 +16,19 @@ A WM receiver is an entity that provides an Open Payments-enabled account into w
 
 We anticipate most WM receivers to offer some form of digital wallet to their users. Many digital wallet providers, not just WM receivers, are often required to verify their users’ identities before allowing funds to be withdrawn.
 
-## Open Payments and payment pointers
+## Open Payments and wallet addresses
 
-Web Monetization works with two complementary technologies that enable open and interoperable payments between WM providers and WM receivers: Open Payments and payment pointers.
-
-### Open Payments
-
-Accounts supplied by both WM providers and WM receivers must implement the <LinkOut href="https://openpayments.guide">Open Payments (OP) specification</LinkOut>.
+Open Payments enables open and interoperable payments between WM providers and WM receivers. As such, accounts supplied by both WM providers and WM receivers must implement the <LinkOut href="https://openpayments.guide">Open Payments (OP) specification</LinkOut>.
 
 The OP specification defines standards for **_access_** to accounts. When granted access, applications and other entities can integrate payments into their feature sets by connecting to their users’ accounts. The ability to then **_execute_** payments between OP-enabled accounts relies on the availability of a common payment rail between the accounts.
 
-### Payment pointers
+### Wallet addresses
 
-Access to an OP-enabled account, whether for sending or receiving, always starts with a <LinkOut href="https://paymentpointers.org">payment pointer</LinkOut>. A payment pointer is a unique, standardized identifier for a payment account that always resolves to an HTTPS URL.
+Access to an OP-enabled account, whether for sending or receiving, always starts with a wallet address. In this context, a wallet address is a unique URL that identifies an OP account and provides an entry point for the Open Payments API.
 
-When an individual establishes an account with a WM receiver, the receiver assigns the account a payment pointer. The payment pointer allows certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
+When an individual establishes an account with a WM receiver, the receiver assigns the account one or more wallet addresses. Wallet addresses allow certain account details to be safely shared with third-parties. Third-parties use the details to initiate payments to or from the account. A WM agent is an example of a third-party.
 
-A payment pointer is required to web monetize a page and must be added as the `href` value within the monetization `<link>` element.
+A wallet address is required to web monetize a page and must be added as the `href` value within the monetization `<link>` element.
 
 For example:
 
@@ -40,11 +36,11 @@ For example:
 <link rel="monetization" href="https://wallet.example/alice" />
 ```
 
-The WM agent uses the payment pointer to begin the money movement process.
+The WM agent uses the wallet address to begin the money movement process.
 
 ## Receiving a payment
 
-When an individual visits a web monetized page, their WM agent detects the monetization `<link>` element and associated payment pointer. The WM agent sends a request to the payment pointer, which is the beginning of a series of API calls needed to:
+When an individual visits a web monetized page, their WM agent detects the monetization `<link>` element and associated wallet address. The WM agent sends a request to the wallet address, which is the beginning of a series of API calls needed to:
 
 1. Get the details about the underlying receiving account
 2. Receive permission to send a payment to the account

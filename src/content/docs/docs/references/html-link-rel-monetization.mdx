@@ -7,7 +7,7 @@ import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/link.json'
 import { LinkOut } from '@interledger/docs-design-system'
 
-The `<link>` element enables you to [add Web Monetization to an HTML document](/docs/guides/monetize-page). The `rel` value must be `monetization`. The `href` value must be a URL representing a payment pointer.
+The `<link>` element enables you to [add Web Monetization to an HTML document](/docs/guides/monetize-page). The `rel` value must be `monetization`. The `href` value must be a URL representing an Open Payments-enabled wallet address, such as a payment pointer.
 
 ```html
 <link rel="monetization" href="https://wallet.example/alice" />
@@ -15,13 +15,15 @@ The `<link>` element enables you to [add Web Monetization to an HTML document](/
 
 A single HTML document can contain multiple monetization `<link>` elements; however, it's up to each WM provider to decide how they want to handle this scenario. We recommend WM providers split the payments evenly between the links.
 
-## Payment pointers
+## Payment pointers and meta elements
 
-The first version of the Web Monetization spec favored `<meta>` over `<link>`. The `<meta>` element supported payment pointers written in shorthand form (e.g., `$wallet.example/alice`).
+The first version of the Web Monetization spec supported both the `<meta>` and `<link>` elements. The `<meta>` element supported payment pointers written in shorthand form (e.g., `$wallet.example/alice`).
 
-The `<link>` element doesn't support shorthand and requires the `href` value be the URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`).
+Now, Web Monetization only supports the `<link>` element. The `<link>` element does not support shorthand and requires payment pointers be in URL format (e.g., `https://wallet.example/alice`). In most cases, you can simply replace the `$` with `https://`. However, we suggest entering your payment pointer into the input field on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut> to convert it from shorthand to URL.
 
-If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. In most cases, you can simply replace the `$` with `https://`.
+:::note
+The Web Monetization specification references payment pointers, but any Open Payments-enabled wallet address in URL form can be used as the 'href' value.
+:::
 
 ## Specifications
 

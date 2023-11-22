@@ -40,9 +40,9 @@ The following image shows the Web Monetization flow at a high level. Some steps 
 />
 
 1. Bob visits a [web monetized page](/docs/guides/monetize-page). The monetization `<link>` element is how the website signals its acceptance of payments to the browser.
-2. Bob’s browser, either natively or via a browser extension, parses the `<link>` element to get the <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="./resources/glossary#payment-pointer">payment pointer</a></Tooltip> for Alice, the site owner.
-3. Bob’s browser/extension sends requests to Alice’s payment pointer to obtain authorization and instructions for sending a payment.
-4. With authorization granted and payment instructions received, the browser/extension sends requests to Bob’s payment pointer to initiate the outgoing payment.
+2. Bob’s browser, either natively or via a browser extension, parses the `<link>` element to get the <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="./resources/glossary#wallet-address">wallet address</a></Tooltip> for Alice, the site owner.
+3. Bob’s browser/extension sends requests to Alice’s wallet address to obtain authorization and instructions for sending a payment.
+4. With authorization granted and payment instructions received, the browser/extension sends requests to Bob’s wallet address to initiate the outgoing payment.
 5. The Web Monetization flow ends. Payment processing, currency exchange, and settlement occurs between the two accounts via a common payment rail.
 
 ### Specifying payment amounts and currencies
@@ -63,6 +63,6 @@ Web Monetization communicates with the sending and receiving accounts to obtain 
 
 A new version of the Web Monetization specification was published in June 2023. Users of the previous version should be aware of the following:
 
-- The previous version only used Interledger's Simple Payment Setup Protocol (SPSP). The new version uses <LinkOut href="https://docs.openpayments.guide/">Open Payments</LinkOut>.
+- The previous version only used Interledger's Simple Payment Setup Protocol (SPSP). The new version uses <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut>.
 - The `<meta>` element is deprecated in favor of the [`<link>`](./references/html-link-rel-monetization/) element.
 - The `<link>` element does not support the shorthand form of a payment pointer (e.g., `$wallet.example/alice`). You must use the endpoint URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`). If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. In most cases, you can simply replace the `$` with `https://`.

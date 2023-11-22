@@ -2,18 +2,20 @@
 title: Add Web Monetization to a page
 ---
 
+import { LinkOut } from '@interledger/docs-design-system'
+
 This page provides basic instructions for adding Web Monetization to a web page. If you're new to web monetizing content, this page is a great place to start.
 
 ## Prerequisites
 
 - Web monetized pages must be secure and served over HTTPS.
-- You must have the payment pointer assigned to you by your WM receiver.
+- You must have the wallet address assigned to you by your WM receiver.
 
 ## Monetize a page
 
 To add Web Monetization to a page, add the monetization `<link>` element to the page's `<head>`.
 
-The element’s `rel` value is always `monetization`. The `href` value is a payment pointer in URL format.
+The element’s `rel` value is always `monetization`. The `href` value is your wallet address. If your wallet address is a payment pointer, it must be entered in <LinkOut href='https://paymentpointers.org/'>URL format</LinkOut>.
 
 For example:
 
