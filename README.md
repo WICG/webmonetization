@@ -2,10 +2,9 @@
 
 This repo is the code behind [webmonetization.org](https://webmonetization.org)
 
-It is the home of the proposed Web Monetization standard currently incubating at the [WICG](https://wicg.org).
+It is the home of the proposed Web Monetization standard currently incubating at the [WICG](https://wicg.io/).
 
-You can view the [explainer](https://webmonetization.org/docs/explainer), or read
-the proposed [spec](https://webmonetization.org/specification).
+You can read the [docs](https://webmonetization.org/docs/r), or read the proposed [spec](https://webmonetization.org/specification).
 
 ## Contribute
 
@@ -53,9 +52,15 @@ For example, a copy of [version 1.0 of the specification](https://github.com/WIC
 
 ## Editing Content
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name. Due to the nature of how Starlight deals with content and their generated URLs, for our documentation which wants to use a sub-folder URL style of https://webmonetization.org/docs for the documentation section, we have a double `docs` folder situation.
+Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name. 
+
+### Double docs sub-folder
+
+Our documentation uses a sub-folder URL style of https://webmonetization.org/docs for the doc section. This means we have a double `docs` folder situation due to how Starlight deals with content and generated URLs (`src/content/docs/docs`).
 
 The `docs.mdx` file in the root of the `content/docs` folder is essentially the landing page for our documentation and is what users see when they land on https://webmonetization.org/docs.
+
+### Static assets
 
 Static assets, like favicons or images, can be placed in the `public/` directory. When referencing these assets in your markdown, you do not have to include `public/` in the file path, so an image would have a path like:
 
@@ -67,7 +72,7 @@ Static assets, like favicons or images, can be placed in the `public/` directory
 
 Edit docs by navigating to `/src/content/docs/docs` and editing the corresponding document:
 
-`/src/content/docs/docs/RELEVANT_FOLDER/doc-to-be-edited.md`
+`/src/content/docs/docs/RELEVANT_FOLDER/doc-to-be-edited.mdx`
 
 ```markdown
 ---
@@ -159,7 +164,7 @@ title: This Doc Needs To Be Written
 My new content here..
 ```
 
-The sidebar of the documentation site is configured in the `astro.config.mjs`. Refer to the Starlight documentation on [sidebar configuration](https://starlight.astro.build/reference/configuration/#sidebar/) for more detailed guidance.
+The sidebar of the documentation site is configured in the `astro.config.mjs`. Refer to the Starlight documentation on [sidebar configuration](https://starlight.astro.build/reference/configuration/#sidebar) for more detailed guidance.
 
 ### Adding custom pages
 
