@@ -6,6 +6,7 @@ import { Tabs, TabItem } from '@astrojs/starlight/components'
 import {
   CodeBlock,
   LinkOut,
+  Mermaid,
   MermaidWrapper,
   Tooltip,
 } from '@interledger/docs-design-system'
@@ -17,32 +18,35 @@ The <Tooltip content='Code in a web browser, such as an extension, that discover
 ## Sequence diagram
 
 <MermaidWrapper client:load>
-```mermaid
-sequenceDiagram
-autonumber
-    box aliceblue WM provider
-    participant OPS as Open Payments<br/>sending account
-    end
-    participant WMA as WM agent
-    participant page as Web page
-    box aliceblue WM receiver
-    participant OPR as Open Payments<br/>receiving account
-    participant AS as Auth server
-    end
-note over AS,OPR: The auth server can be<br/>located outside of the <br/>WM receiver's domain
-WMA->>page: Detects monetization <link> element,<br/>extracts wallet address
-WMA->>OPR: Requests the public info for the wallet address
-OPR->>WMA: Returns info, including auth server URL
-WMA->>AS: Requests access rights
-AS->>WMA: Returns access token
-WMA->>OPR: Requests creation of an incoming payment resource
-OPR->>WMA: Responds with unique payment details for addressing the payment to the account
-WMA->>+OPS: Requests an outgoing payment be<br/>created against the sending account
-note left of OPS: Connection persists until<br/>request moves from 'pending'<br/>state to 'sending' state
-OPS->>-WMA: Responds with details about the<br/>'receive', 'send', and 'sent' amounts
-WMA->>WMA: Fires monetization event
-note over OPS,OPR: Payment processing and settlement occurs between the WM provider and WM receiver, outside of the WM flow
-```
+
+<Mermaid
+  graph={`sequenceDiagram
+    autonumber
+      box aliceblue WM provider
+      participant OPS as Open Payments<br/>sending account
+      end
+      participant WMA as WM agent
+      participant page as Web page
+      box aliceblue WM receiver
+      participant OPR as Open Payments<br/>receiving account
+      participant AS as Auth server
+      end
+    note over AS,OPR: The auth server can be<br/>located outside of the <br/>WM receiver's domain
+    WMA->>page: Detects monetization <link> element,<br/>extracts wallet address
+    WMA->>OPR: Requests the public info for the wallet address
+    OPR->>WMA: Returns info, including auth server URL
+    WMA->>AS: Requests access rights
+    AS->>WMA: Returns access token
+    WMA->>OPR: Requests creation of an incoming payment resource
+    OPR->>WMA: Responds with unique payment details for addressing the payment to the account
+    WMA->>+OPS: Requests an outgoing payment be<br/>created against the sending account
+    note left of OPS: Connection persists until<br/>request moves from 'pending'<br/>state to 'sending' state
+    OPS->>-WMA: Responds with details about the<br/>'receive', 'send', and 'sent' amounts
+    WMA->>WMA: Fires monetization event
+    note over OPS,OPR: Payment processing and settlement occurs between the WM provider and WM receiver, outside of the WM flow
+`}
+/>
+
 </MermaidWrapper>
 
 ## Web Monetization flow example

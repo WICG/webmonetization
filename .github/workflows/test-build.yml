@@ -17,6 +17,5 @@ jobs:
 
       - name: Install dependencies
         run: bun install
-      - run: bunx playwright install --with-deps chromium
       - name: Test build website
         run: bun run build
