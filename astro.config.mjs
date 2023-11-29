@@ -1,16 +1,11 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import astroI18next from 'astro-i18next'
-
 import react from '@astrojs/react'
-import remarkMermaid from 'remark-mermaidjs'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://webmonetization.org',
-  markdown: {
-    remarkPlugins: [remarkMermaid],
-  },
   integrations: [
     starlight({
       title: 'Web Monetization',
