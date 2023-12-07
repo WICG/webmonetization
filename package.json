@@ -8,12 +8,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.6",
-    "@astrojs/starlight": "^0.13.1",
+    "@astrojs/react": "^3.0.7",
+    "@astrojs/starlight": "^0.15.0",
     "@interledger/docs-design-system": "^0.2.1",
-    "@types/react": "^18.2.39",
+    "@types/react": "^18.2.42",
     "@types/react-dom": "^18.2.17",
-    "astro": "3.6.3",
+    "astro": "4.0.3",
     "astro-i18next": "^1.0.0-beta.21",
     "prettier": "^3.1.0",
     "prism-react-renderer": "^2.3.0",
@@ -22,7 +22,7 @@
     "react-minimal-pie-chart": "^8.4.0",
     "remark-mermaidjs": "^6.0.0",
     "respec": "^34.2.2",
-    "sharp": "^0.32.6"
+    "sharp": "^0.33.0"
   },
   "devDependencies": {
     "netlify-plugin-playwright-cache": "^0.0.1"
