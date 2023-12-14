@@ -10,6 +10,13 @@
   ],
   "tools": [
     {
+      "name": "Astro Monetization",
+      "image": "logo-tool-astro.png",
+      "link": "https://github.com/devcer/astro-monetization",
+      "desc": "This Astro component simplifies the process of adding monetization links to your Astro sites.",
+      "version": ["2.0"]
+    },
+    {
       "name": "Hugo Web Monetization Component",
       "image": "logo-tool-hugo.svg",
       "link": "https://github.com/sabinebertram/hugo-webmonetization-component",
@@ -19,9 +26,9 @@
     {
       "name": "Monetize 11ty",
       "image": "logo-tool-11ty.svg",
-      "link": "https://github.com/DanCanetti/eleventy-plugin-monetization",
+      "link": "https://github.com/devcer/eleventy-plugin-monetization",
       "desc": "An Eleventy plugin to monetize posts and site content by creating exclusive content areas",
-      "version": ["1.0"]
+      "version": ["1.0", "2.0"]
     },
     {
       "name": "gridsome-plugin-monetization",
