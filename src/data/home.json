@@ -11,7 +11,7 @@
   "tools": [
     {
       "name": "Astro Monetization",
-      "image": "logo-tool-astro.png",
+      "image": "logo-tool-astro.svg",
       "link": "https://github.com/devcer/astro-monetization",
       "desc": "This Astro component simplifies the process of adding monetization links to your Astro sites.",
       "version": ["2.0"]
