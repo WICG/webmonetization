@@ -117,12 +117,9 @@
           Checking if Web Monetization is supported
         </h3>
         <p>
-          There are multiple ways to check if Web Monetization is supported.
-          One way is to call {{DOMTokenList/supports()}} on a [^link^]
-          element's {{HTMLLinkElement/relList}} passing the `"monetization"`
-          keyword. Alternatively, you can check if either the
-          {{MonetizationEvent}} interface or the "`onmonetization`" [=event
-          handler IDL attribute=] exist on the {{Window}} object.
+          Call {{DOMTokenList/supports()}} on a [^link^] element’s
+          {{HTMLLinkElement/relList}} passing the `"monetization"` keyword to
+          check if Web Monetization is supported by the user agent.
         </p>
         <aside class="example">
           <pre class='html' data-include-format="text" data-include=
