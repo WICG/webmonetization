@@ -7,6 +7,9 @@ set -ex
 
 TIDY_PATH="$(brew --prefix)/bin/tidy"
 REPO_ROOT=$(git rev-parse --show-toplevel)
+# Prettier removed, as it conflicts with W3C spec code format style
+# If Prettier allows removal of trailing slashes on void elements,
+# it can be allowed back into the workflow.
 # PRETTIER_PATH="$REPO_ROOT/node_modules/.bin/prettier"
 
 SPEC_PATH="$REPO_ROOT/src/pages/specification"
