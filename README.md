@@ -44,9 +44,9 @@ bun run build
 
 The source file for the specification document is at [src/pages/specification/specification-respec.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/specification-respec.html). This is the raw ReSpec version that editors should make changes and updates to. Documentation of ReSpec can be accessed on the [ReSpec Wiki](https://github.com/w3c/respec/wiki/).
 
-Use `npx http-server ./src/pages/specification/` to view your changes locally at http://localhost:8080/specification-respec.html . (The Astro dev server interferes with example inclusion.)
+Preview changes with `npx http-server ./src/pages/specification/` and opening http://localhost:8080/specification-respec.html . (The Astro dev server interferes with example inclusion.)
 
-Export a static HTML version of the specification when your changes are done by clicking the ReSpec button in the top-right corner. Rename this file to index.html and replace previous the [src/pages/specification/index.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/index.html).
+Export a static HTML version of the specification when your changes are done with `src/pages/specification/respec.sh` . (You may need to install `tidy` with `brew install tidy-html5`.)
 
 In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. We only archive major versions of the specification. For example, a copy of the [2021-03-17 draft report](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [src/pages/specification/versions/](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions).
 

@@ -7,13 +7,13 @@ set -ex
 
 TIDY_PATH="$(brew --prefix)/bin/tidy"
 REPO_ROOT=$(git rev-parse --show-toplevel)
-PRETTIER_PATH="$REPO_ROOT/node_modules/.bin/prettier"
+# PRETTIER_PATH="$REPO_ROOT/node_modules/.bin/prettier"
 
 SPEC_PATH="$REPO_ROOT/src/pages/specification"
 RESPEC_SOURCE="$SPEC_PATH/specification-respec.html"
 RESPEC_STATIC="$SPEC_PATH/index.html"
 
-"$PRETTIER_PATH" "$SPEC_PATH/includes" --write
+# "$PRETTIER_PATH" "$SPEC_PATH/includes" --write
 "$TIDY_PATH" -config "$SPEC_PATH/tidyconfig.txt" -m "$RESPEC_SOURCE"
 
 pushd $SPEC_PATH
