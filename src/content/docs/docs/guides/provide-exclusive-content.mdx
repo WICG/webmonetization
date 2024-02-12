@@ -62,17 +62,17 @@ document.getElementById('exclusive').classList.remove('hidden')
 
 ### Interactive example
 
-This example simulates hiding and showing exclusive content based on a visitor's Web Monetization state. 
+This example simulates hiding and showing exclusive content based on a visitor's Web Monetization state.
 
 <NoPay />
 
 <ViewAs />
 
 <iframe
-  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-simple?path=README.md&previewSize=100"
-  title="wm-exclusive-content-basic on Glitch"
-  style='height:100%;width:100%;border:0;min-height:420px'>
-</iframe>
+  src='https://glitch.com/embed/#!/embed/wm2-exclusive-content-simple?path=README.md&previewSize=100'
+  title='wm-exclusive-content-basic on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>
 
 ## Example 2 - Complex
 
@@ -100,9 +100,9 @@ The example below covers three states for showing:
 
   <script>
     function showExclusiveContent() {
-      document.getElementById("loading").classList.add("hidden");
-      document.getElementById("cta").classList.add("hidden");
-      document.getElementById("exclusive").classList.remove("hidden");
+      document.getElementById('loading').classList.add('hidden')
+      document.getElementById('cta').classList.add('hidden')
+      document.getElementById('exclusive').classList.remove('hidden')
     }
 
     function showCTA() {
@@ -134,7 +134,9 @@ The example below covers three states for showing:
 <body>
   <div id="loading" class="hidden">Loading exclusive content...</div>
   <div id="exclusive" class="hidden">Here's some exclusive content!</div>
-  <div id="cta" class="hidden">Please install a Web Monetization extension to support me!</div>
+  <div id="cta" class="hidden">
+    Please install a Web Monetization extension to support me!
+  </div>
 </body>
 ```
 
@@ -183,7 +185,7 @@ This example simulates hiding and showing exclusive content based on a visitor's
 <ViewAs />
 
 <iframe
-  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-complex?path=README.md&previewSize=100"
-  title="wm-exclusive-content-advanced on Glitch"
-  style='height:100%;width:100%;border:0;min-height:420px'>
-</iframe>
+  src='https://glitch.com/embed/#!/embed/wm2-exclusive-content-complex?path=README.md&previewSize=100'
+  title='wm-exclusive-content-advanced on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>

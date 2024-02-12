@@ -54,9 +54,9 @@ export function ShareList() {
                 setShares(
                   changeList(shares, i, {
                     weight: trimDecimal(
-                      weightFromPercent(percent, share.weight, totalWeight)
+                      weightFromPercent(percent, share.weight, totalWeight),
                     ),
-                  })
+                  }),
                 )
               }
               onRemove={() => setShares(dropIndex(shares, i))}

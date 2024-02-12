@@ -77,7 +77,7 @@ export function pointerToShares(pointer) {
 
     if (!encodedList) {
       throw new Error(
-        'No share data found. Make sure you copy the whole "content" field from your meta tag.'
+        'No share data found. Make sure you copy the whole "content" field from your meta tag.',
       )
     }
 
@@ -85,7 +85,7 @@ export function pointerToShares(pointer) {
 
     if (!validatePointerList(pointerList)) {
       throw new Error(
-        'Share data is invalid. Make sure you copy the whole "content" from your meta tag.'
+        'Share data is invalid. Make sure you copy the whole "content" from your meta tag.',
       )
     }
     return sharesFromPointerList(pointerList)
@@ -94,7 +94,7 @@ export function pointerToShares(pointer) {
       throw new Error('Meta tag or payment pointer is malformed')
     } else if (err.name === 'SyntaxError') {
       throw new Error(
-        'Payment pointer has malformed share data. Make sure to copy the entire pointer.'
+        'Payment pointer has malformed share data. Make sure to copy the entire pointer.',
       )
     } else {
       throw err
@@ -111,7 +111,7 @@ export function tagToShares(tag) {
   if (!meta && !link) {
     console.log(node, node.head)
     throw new Error(
-      'Please enter the exact link element you generated from this revshare tool. It seems to be malformed.'
+      'Please enter the exact link element you generated from this revshare tool. It seems to be malformed.',
     )
   }
 
