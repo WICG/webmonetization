@@ -26,7 +26,7 @@ The example below shows how to remove ads from web monetized visitors.
 ```html
 <head>
   <!-- Set the href to your own wallet address -->
-  <link rel="monetization" href="https://wallet.example/alice" />
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <script>
     const adCode = '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'
@@ -41,7 +41,7 @@ The example below shows how to remove ads from web monetized visitors.
     let hasPaid = false
     if (window.MonetizationEvent) {
       const link = document.querySelector('link[rel="monetization"]')
-      link.addEventListener('monetization', (ev) => {
+      link.addEventListener('monetization', () => {
         hasPaid = true
         removeAds()
       })
@@ -86,7 +86,7 @@ The `hasPaid` variable in the timer is for when/if Web Monetization starts after
 let hasPaid = false
 if (window.MonetizationEvent) {
   const link = document.querySelector('link[rel="monetization"]')
-  link.addEventListener('monetization', (ev) => {
+  link.addEventListener('monetization', () => {
     hasPaid = true
     removeAds()
   })

@@ -14,7 +14,7 @@ The example below illustrates a simple way to show exclusive content to web mone
 ```html
 <head>
   <!-- this should be set to your own wallet address -->
-  <link rel="monetization" href="https://wallet.example/alice" />
+  <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <style>
     .hidden {
@@ -69,7 +69,7 @@ This example simulates hiding and showing exclusive content based on a visitor's
 <ViewAs />
 
 <iframe
-  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-basic?path=README.md&previewSize=100"
+  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-simple?path=README.md&previewSize=100"
   title="wm-exclusive-content-basic on Glitch"
   style='height:100%;width:100%;border:0;min-height:420px'>
 </iframe>
@@ -100,9 +100,9 @@ The example below covers three states for showing:
 
   <script>
     function showExclusiveContent() {
-      document.getElementById('exclusive').classList.remove('hidden')
-      document.getElementById('loading').classList.add('hidden')
-      document.getElementById('cta').classList.add('hidden')
+      document.getElementById("loading").classList.add("hidden");
+      document.getElementById("cta").classList.add("hidden");
+      document.getElementById("exclusive").classList.remove("hidden");
     }
 
     function showCTA() {
@@ -183,7 +183,7 @@ This example simulates hiding and showing exclusive content based on a visitor's
 <ViewAs />
 
 <iframe
-  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-advanced?path=README.md&previewSize=100"
+  src="https://glitch.com/embed/#!/embed/wm2-exclusive-content-complex?path=README.md&previewSize=100"
   title="wm-exclusive-content-advanced on Glitch"
   style='height:100%;width:100%;border:0;min-height:420px'>
 </iframe>
