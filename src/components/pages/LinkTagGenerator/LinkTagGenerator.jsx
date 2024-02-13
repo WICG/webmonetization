@@ -71,7 +71,8 @@ export default function LinkTagGenerator() {
       <CodeBlock>{`<link rel="monetization" href="${pointer}" />`}</CodeBlock>
 
       <p className={styles.text}>
-        After generating your <code>&lt;link&gt;</code> element, add the element to the <code>&lt;head&gt;</code> section of your website.
+        After generating your <code>&lt;link&gt;</code> element, add the element
+        to the <code>&lt;head&gt;</code> section of your website.
       </p>
 
       <p className={styles.text}>

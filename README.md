@@ -52,7 +52,7 @@ For example, a copy of [version 1.0 of the specification](https://github.com/WIC
 
 ## Editing Content
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name. 
+Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
 
 ### Double docs sub-folder
 

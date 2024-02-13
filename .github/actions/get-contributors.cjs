@@ -12,7 +12,7 @@ async function getContributors() {
       headers: {
         'X-GitHub-Api-Version': '2022-11-28',
       },
-    }
+    },
   )
   const contributors = JSON.stringify(data)
   fs.writeFileSync('src/data/contributors.json', contributors)

@@ -26,14 +26,17 @@ The example below shows a list of weighted payment pointers. The easiest way to 
     // Define your revenue share here.
     // If the weights add up to 100 then they represent the percent each payment pointer gets.
     const pointers = {
-      '$wallet.example/alice': 50,
-      '$wallet.example/bob': 40,
-      '$wallet.example/connie': 9.5,
-      '$wallet.example/dave': 0.5,
+      '$wallet.example.com/alice': 50,
+      '$wallet.example.com/bob': 40,
+      '$wallet.example.com/connie': 9.5,
+      '$wallet.example.com/dave': 0.5,
     }
 
     function pickPointer() {
-      const sum = Object.values(pointers).reduce((sum, weight) => sum + weight, 0)
+      const sum = Object.values(pointers).reduce(
+        (sum, weight) => sum + weight,
+        0,
+      )
       let choice = Math.random() * sum
 
       for (const pointer in pointers) {
@@ -63,10 +66,10 @@ If the combined weights equal 100, then each weight represents the percentage at
 
 ```js
 const pointers = {
-  '$wallet.example/alice': 50,
-  '$wallet.example/bob': 40,
-  '$wallet.example/connie': 9.5,
-  '$wallet.example/dave': 0.5,
+  '$wallet.example.com/alice': 50,
+  '$wallet.example.com/bob': 40,
+  '$wallet.example.com/connie': 9.5,
+  '$wallet.example.com/dave': 0.5,
 }
 ```
 
@@ -104,14 +107,14 @@ window.addEventListener('load', () => {
 
 ### Interactive example
 
-This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a pointer and it will show you the results. 
+This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a pointer and it will show you the results.
 
 <NoPay />
 
 If you see the source files instead of the example, click **View App** in the bottom right.
 
 <iframe
-  src="https://glitch.com/embed/#!/embed/wm2-probablistic-revenue-share?path=README.md&previewSize=100"
-  title="probabalistic-revenue-share-experiment on Glitch"
-  style='height:100%;width:100%;border:0;min-height:420px'>
-</iframe>
+  src='https://glitch.com/embed/#!/embed/wm2-probablistic-revenue-share?path=README.md&previewSize=100'
+  title='probabalistic-revenue-share-experiment on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>
