@@ -23,8 +23,5 @@
     "remark-mermaidjs": "^6.0.0",
     "respec": "^34.4.0",
     "sharp": "^0.33.2"
-  },
-  "devDependencies": {
-    "netlify-plugin-playwright-cache": "^0.0.1"
   }
 }
