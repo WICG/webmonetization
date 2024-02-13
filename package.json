@@ -8,21 +8,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.9",
-    "@astrojs/starlight": "^0.15.2",
+    "@astrojs/react": "^3.0.10",
+    "@astrojs/starlight": "^0.18.0",
     "@interledger/docs-design-system": "^0.2.1",
-    "@types/react": "^18.2.46",
-    "@types/react-dom": "^18.2.18",
-    "astro": "4.0.9",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "astro": "4.3.6",
     "astro-i18next": "^1.0.0-beta.21",
-    "prettier": "^3.1.1",
+    "prettier": "^3.2.5",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-minimal-pie-chart": "^8.4.0",
     "remark-mermaidjs": "^6.0.0",
-    "respec": "^34.3.0",
-    "sharp": "^0.33.1"
+    "respec": "^34.4.0",
+    "sharp": "^0.33.2"
   },
   "devDependencies": {
     "netlify-plugin-playwright-cache": "^0.0.1"
