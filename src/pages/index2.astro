@@ -1,0 +1,53 @@
+---
+import i18next, { t, changeLanguage } from "i18next";
+import Base from "../layouts/Base.astro";
+import data from "../data/home.json";
+import contributors from "../data/contributors.json";
+import CardList from "../components/pages/CardList.astro";
+import PrCta from "../components/pages/PrCta.astro";
+
+changeLanguage("en");
+
+const title = t("site.title");
+const description = t("site.description");
+---
+<Base title={title} description={description}>
+  <section class="section hero">
+    <div class="contentWrapperSm">
+      <h2>Pay the web forward</h2>
+      <img
+        alt="Web Monetization Icon"
+        class="heroIcon"
+        src="/img/wm-logo--animated.svg"
+        width="120"
+        height="86"
+      />
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero section styles */
+  .hero {
+    background-image:  url("/img/bg-pattern-bottom.svg");
+    /* background-image: url("/img/bg-pattern.svg"); */
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: bottom;
+    padding-bottom: 0;
+    height: 60vh;
+    display: flex
+  }
+
+  .hero > div {
+    display: flex;
+    align-items: center;
+    margin: auto;
+    gap: var(--space-m);
+  }
+
+  .heroIcon {
+    width: 12em;
+    height: 8.6em;
+  }
+</style>
