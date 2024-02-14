@@ -28,8 +28,10 @@ If you are interested in actually making changes to the specification, please se
 
 The source file for the specification document is at [src/pages/specification/specification-respec.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/specification-respec.html). This is the raw ReSpec version that editors should make changes and updates to. Documentation of ReSpec can be accessed on the [ReSpec Wiki](https://github.com/w3c/respec/wiki/).
 
-On your local machine, once the dev server is running, you can see all your updates to the specification at `localhost:1100/specification/specification-respec.html`. Once you're done with your changes, please generate new static HTML version of the specification by clicking the ReSpec button in the top-right corner.
+Preview changes with `npx http-server ./src/pages/specification/` and opening http://localhost:8080/specification-respec.html . (The Astro dev server interferes with example inclusion.)
 
-Rename this file to index.html and replace previous the [src/pages/specification/index.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/index.html). In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. As such, we will only archive a version of the specification for major updates.
+Export a static HTML version of the specification when your changes are done with `src/pages/specification/respec.sh` . (You may need to install `tidy` with `brew install tidy-html5`.)
 
-For example, a copy of [version 1.0 of the specification](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [src/pages/specification/versions/](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions).
+In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. We only archive major versions of the specification. For example, a copy of the [2021-03-17 draft report](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [src/pages/specification/versions/](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions).
+
+Prettier is disabled on `src/pages/specification` as it conflicts with the code format style used by W3C specifications. There is [no way](https://github.com/prettier/prettier/issues/5246) to configure Prettier to follow the [W3C recommendation](https://github.com/validator/validator/wiki/Markup-%C2%BB-Void-elements) of not using trailing slashes on void elements.
