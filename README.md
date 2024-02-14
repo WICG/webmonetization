@@ -6,7 +6,7 @@ The website is the home of the proposed Web Monetization standard currently incu
 
 You can read the [docs](https://webmonetization.org/docs/), or read the proposed [specification](https://webmonetization.org/specification).
 
-# Contribute
+# Contribute to the Docs
 
 The Web Monetization website is built with [Starlight](https://starlight.astro.build/), a documentation framework based on [Astro](https://astro.build/).
 
@@ -158,3 +158,11 @@ After a translation is provided, it must be reviewed by an additional contributo
 ## Reviews and Approvals
 
 After a PR is submitted, it will be reviewed by a member of the Web Incubator Community Group (WICG). Ensure you're able to receive GitHub notifications so you'll know when the PR is approved and can be merged or if updates are required before approval is given.
+
+# Contribute to the Spec
+
+The source file for the Web Monetization specification document is at [src/pages/specification/specification-respec.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/specification-respec.html). This is the raw ReSpec version that editors should make changes and updates to. Documentation of ReSpec can be accessed on the [ReSpec Wiki](https://github.com/w3c/respec/wiki/).
+
+Start your local dev server (`bun run start`). By default, the server is at `localhost:1100`. Check your updates to the specification by going to `localhost:1100/specification/specification-respec.html`. When you are done with your changes, click **ReSpec** in the top-right corner, then select **Export**. Generate a new static HTML version of the specification and rename the downloaded file to `index.html`. Replace the existing index file with the new file within [src/pages/specification/index.html](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/index.html). 
+
+In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. As such, we will only archive a version of the specification for major updates. For example, a copy of [version 1.0 of the specification](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [src/pages/specification/versions/](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions).
