@@ -1,12 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <title>
-      Web Monetization
-    </title>
-    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"
-    defer></script>
+    <meta charset="utf-8" />
+    <title>Web Monetization</title>
+    <script
+      src="https://www.w3.org/Tools/respec/respec-w3c"
+      class="remove"
+      defer
+    ></script>
     <script class="remove">
       'use strict'
       // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
@@ -29,7 +30,7 @@
             email: 'adrian@fynbos.dev',
             company: 'Fynbos Technologies Limited',
             companyURL: 'https://fynbos.dev',
-          }
+          },
         ],
         formerEditors: [
           {
@@ -51,7 +52,7 @@
             company: 'W3C',
             companyURL: 'https://w3.org/',
             retiredDate: '2022-03-23',
-          }
+          },
         ],
         shortName: 'web-monetization',
         specStatus: 'CG-DRAFT',
@@ -82,71 +83,67 @@
     <section id="abstract">
       <p>
         Web Monetization allows websites to automatically receive payments from
-        users, facilitated by the user agent and a user's preferred
-        monetization provider.
+        users, facilitated by the user agent and a user's preferred monetization
+        provider.
       </p>
     </section>
     <section id="sotd">
       <div class="warning">
         <p>
           This specification is a work in progress within the community on the
-          best shape it should take. Please see the <a href=
-          "./docs/explainer">explainer</a> for more info.
+          best shape it should take. Please see the
+          <a href="./docs/explainer">explainer</a> for more info.
         </p>
         <p>
           The specification reflects the desired end-state of the Web
           Monetization APIs as currently anticipated and agreed to between the
           contributors. The specification is being prepared here, in this
-          format, to collect the input of the Web community and prepare the
-          work to ultimately follow the W3C standards track should it have the
+          format, to collect the input of the Web community and prepare the work
+          to ultimately follow the W3C standards track should it have the
           necessary support to do so.
         </p>
         <p>
           For the most accurate reflection of the APIs that have been
-          implemented by providers see the <a href="./docs/api">API
-          documentation</a>.
+          implemented by providers see the
+          <a href="./docs/api">API documentation</a>.
         </p>
       </div>
     </section>
     <section class="informative">
-      <h2>
-        Usage examples
-      </h2>
+      <h2>Usage examples</h2>
       <section>
-        <h3>
-          Checking if Web Monetization is supported
-        </h3>
+        <h3>Checking if Web Monetization is supported</h3>
         <p>
           Call {{DOMTokenList/supports()}} on a [^link^] element’s
           {{HTMLLinkElement/relList}} passing the `"monetization"` keyword to
           check if Web Monetization is supported by the user agent.
         </p>
         <aside class="example">
-          <pre class='html' data-include-format="text" data-include=
-          "includes/is-supported-example.html"></pre>
+          <pre
+            class="html"
+            data-include-format="text"
+            data-include="includes/is-supported-example.html"
+          ></pre>
         </aside>
       </section>
       <section>
-        <h3>
-          Monetizing a web page
-        </h3>
+        <h3>Monetizing a web page</h3>
         <aside class="example">
-          <pre class="html" data-include-format="text" data-include=
-          "includes/say-thanks-example.html">
-          </pre>
+          <pre
+            class="html"
+            data-include-format="text"
+            data-include="includes/say-thanks-example.html"
+          ></pre>
         </aside>
       </section>
       <section>
-        <h3>
-          Monetization events
-        </h3>
+        <h3>Monetization events</h3>
         <p>
           The {{MonetizationEvent}} DOM events provide information such as the
           amount sent, the currency of the payment, and a link to the incoming
           payment at the [=monetization receiver=] which can be used to verify
-          the receipt of payment. As in the previous example above, these
-          events are dispatched to [^link^] elements and bubble up the DOM
-          tree.
+          the receipt of payment. As in the previous example above, these events
+          are dispatched to [^link^] elements and bubble up the DOM tree.
         </p>
         <p>
           To listen for {{MonetizationEvent}} events, an [=event listener=]
@@ -154,15 +151,15 @@
           ancestors) via JavaScript:
         </p>
         <aside class="example">
-          <pre class="html" data-include-format="text" data-include=
-          "includes/monetization-event-example.html">
-          </pre>
+          <pre
+            class="html"
+            data-include-format="text"
+            data-include="includes/monetization-event-example.html"
+          ></pre>
         </aside>
       </section>
       <section>
-        <h3>
-          Verifying a payment
-        </h3>
+        <h3>Verifying a payment</h3>
         <p>
           The {{MonetizationEvent}}'s {{MonetizationEvent/incomingPayment}}
           attribute is a URL that can be used to verify the payment at the
@@ -170,10 +167,10 @@
         </p>
         <p>
           In most cases requests to the {{MonetizationEvent/incomingPayment}}
-          URL will need to be authenticated as they fetch sensitive details
-          such as the `receivedAmount`. The specifics of this authentication
-          are agreed by the website and the [=monetization receiver=] when
-          setting up the receiving account.
+          URL will need to be authenticated as they fetch sensitive details such
+          as the `receivedAmount`. The specifics of this authentication are
+          agreed by the website and the [=monetization receiver=] when setting
+          up the receiving account.
         </p>
         <p>
           Below is a hypothetical naive verification method that will make a
@@ -187,61 +184,56 @@
           to verify that a new payment has been received.
         </p>
         <aside class="example">
-          <pre class="JS" data-include-format="text" data-include=
-          "includes/verify-payment-example.js">
-          </pre>
+          <pre
+            class="JS"
+            data-include-format="text"
+            data-include="includes/verify-payment-example.js"
+          ></pre>
         </aside>
       </section>
       <section>
-        <h3>
-          Monetizing media
-        </h3>
+        <h3>Monetizing media</h3>
         <p>
           The following example shows how to monetize various types of media
           using different [=payment pointers=].
         </p>
         <aside class="example">
-          <pre class="html" data-include-format="text" data-include=
-          "includes/media-example.html">
-          </pre>
+          <pre
+            class="html"
+            data-include-format="text"
+            data-include="includes/media-example.html"
+          ></pre>
         </aside>
       </section>
     </section>
     <section id="model">
-      <h2>
-        Model
-      </h2>
+      <h2>Model</h2>
       <dl>
-        <dt>
-          <dfn data-lt="monetized">Monetization</dfn>:
-        </dt>
+        <dt><dfn data-lt="monetized">Monetization</dfn>:</dt>
         <dd>
           Payments made by a user to a website, facilitated through a
           [=monetization provider=].
         </dd>
-        <dt>
-          <dfn data-lt="provider">Monetization provider</dfn>:
-        </dt>
+        <dt><dfn data-lt="provider">Monetization provider</dfn>:</dt>
         <dd>
           The party making payments on behalf of the user. A monetization
           provider leverages the [[[Interledger]]] suite of protocols and
           technologies (e.g., [[Open Payments]] based on [[STREAM]]) to provide
           a high-level way to pay a [=monetization receiver=].
         </dd>
-        <dt>
-          <dfn>Monetization receiver</dfn>:
-        </dt>
+        <dt><dfn>Monetization receiver</dfn>:</dt>
         <dd>
           The party receiving payments on behalf of the website, whose details
           are provided by a [=payment pointer=].
         </dd>
-        <dt>
-          <dfn>Payment Pointer</dfn>:
-        </dt>
+        <dt><dfn>Payment Pointer</dfn>:</dt>
         <dd>
-          A [=URL=] to an <a data-cite="Open Payments#specification">Open
-          Payments API entry-point</a> (i.e., a JSON resource containing
-          details that facilitate payment to an account).
+          A [=URL=] to an
+          <a data-cite="Open Payments#specification"
+            >Open Payments API entry-point</a
+          >
+          (i.e., a JSON resource containing details that facilitate payment to
+          an account).
         </dd>
         <dt>
           <dfn>Payment session</dfn>
@@ -255,32 +247,32 @@
       </dl>
     </section>
     <section id="goals" class="informative">
-      <h2>
-        Goals
-      </h2>
+      <h2>Goals</h2>
       <ul>
-        <li>Suitable for static HTML documents, without requiring backend
-        infrastructure.
+        <li>
+          Suitable for static HTML documents, without requiring backend
+          infrastructure.
         </li>
-        <li>Doesn't require user interaction, but user retains control over
-        which sites they monetize and how much they spend.
+        <li>
+          Doesn't require user interaction, but user retains control over which
+          sites they monetize and how much they spend.
         </li>
-        <li>Developers have a way to associate payments with their users, in
-        order to provide a range of experiences.
+        <li>
+          Developers have a way to associate payments with their users, in order
+          to provide a range of experiences.
         </li>
-        <li>Users retain control of if, when, and how payments are made to the
-        site. For example, micropayments of a predetermined monetary value
-        could be "streamed" to the site over time. Alternatively, the user
-        could make one or many discreet "one-off" payment(s) of any arbitrary
-        monetary amount, even while micropayments are simultaneously being
-        streamed.
+        <li>
+          Users retain control of if, when, and how payments are made to the
+          site. For example, micropayments of a predetermined monetary value
+          could be "streamed" to the site over time. Alternatively, the user
+          could make one or many discreet "one-off" payment(s) of any arbitrary
+          monetary amount, even while micropayments are simultaneously being
+          streamed.
         </li>
       </ul>
     </section>
     <section>
-      <h2>
-        Link type "monetization"
-      </h2>
+      <h2>Link type "monetization"</h2>
       <aside class="issue">
         <p>
           This is a "monkey patch" for the [[HTML]] specification: If accepted,
@@ -310,71 +302,81 @@
       </p>
       <div>
         <p>
-          The default type for resources given by the <code data-x=
-          "rel-monetization">monetization</code> keyword is
+          The default type for resources given by the
+          <code data-x="rel-monetization">monetization</code> keyword is
           <code>application/json</code>.
         </p>
         <p>
-          The appropriate times to <span data-x=
-          "fetch and process the linked resource">fetch and process</span> this
-          type of link is:
+          The appropriate times to
+          <span data-x="fetch and process the linked resource"
+            >fetch and process</span
+          >
+          this type of link is:
         </p>
         <ul>
           <li>
             <p>
               When the <span>external resource link</span> is created on a
-              <code>link</code> element that is already <span>browsing-context
-              connected</span>.
+              <code>link</code> element that is already
+              <span>browsing-context connected</span>.
             </p>
-          </li><!-- e.g. rel="" changed, href="" set... -->
+          </li>
+          <!-- e.g. rel="" changed, href="" set... -->
           <li>
             <p>
-              When the <span>external resource link</span>'s <code>link</code>
-              element <span>becomes browsing-context connected</span>.
+              When the <span>external resource link</span>'s
+              <code>link</code> element
+              <span>becomes browsing-context connected</span>.
             </p>
           </li>
           <li>
             <p>
               When the <code data-x="attr-link-href">href</code> attribute of
-              the <code>link</code> element of an <span>external resource
-              link</span> that is already <span>browsing-context
-              connected</span> is changed.
+              the <code>link</code> element of an
+              <span>external resource link</span> that is already
+              <span>browsing-context connected</span> is changed.
             </p>
           </li>
           <li>
             <p>
-              When the <code data-x="attr-link-disabled">disabled</code>
-              attribute of the <code>link</code> element of an <span>external
-              resource link</span> that is already <span>browsing-context
-              connected</span> is set, changed, or removed.
+              When the
+              <code data-x="attr-link-disabled">disabled</code> attribute of the
+              <code>link</code> element of an
+              <span>external resource link</span> that is already
+              <span>browsing-context connected</span> is set, changed, or
+              removed.
             </p>
           </li>
           <li>
             <p>
-              When the <code data-x="attr-link-crossorigin">crossorigin</code>
-              attribute of the <code>link</code> element of an <span data-x=
-              "external resource link">external resource link</span> that is
-              already <span>browsing-context connected</span> is set, changed,
-              or removed.
-            </p>
-          </li>
-          <li>
-            <p>
-              When the <code data-x="attr-link-type">type</code> attribute of
-              the <code>link</code> element of an <span>external resource
-              link</span> that is already <span>browsing-context
-              connected</span> is set or changed to a value that does not or no
-              longer matches the <span data-x="Content-Type">Content-Type
-              metadata</span> of the previous obtained external resource, if
-              any.
+              When the
+              <code data-x="attr-link-crossorigin">crossorigin</code> attribute
+              of the <code>link</code> element of an
+              <span data-x="external resource link"
+                >external resource link</span
+              >
+              that is already <span>browsing-context connected</span> is set,
+              changed, or removed.
             </p>
           </li>
           <li>
             <p>
               When the <code data-x="attr-link-type">type</code> attribute of
-              the <code>link</code> element of an <span>external resource
-              link</span> that is already <span>browsing-context
-              connected</span>, but was previously not obtained due to the
+              the <code>link</code> element of an
+              <span>external resource link</span> that is already
+              <span>browsing-context connected</span> is set or changed to a
+              value that does not or no longer matches the
+              <span data-x="Content-Type">Content-Type metadata</span> of the
+              previous obtained external resource, if any.
+            </p>
+          </li>
+          <li>
+            <p>
+              When the <code data-x="attr-link-type">type</code> attribute of
+              the <code>link</code> element of an
+              <span>external resource link</span> that is already
+              <span>browsing-context connected</span>, but was previously not
+              obtained due to the
               <code data-x="attr-link-type">type</code> attribute specifying an
               unsupported type, is set, removed, or changed.
             </p>
@@ -386,9 +388,9 @@
         </p>
         <p>
           The <span>linked resource fetch setup steps</span> for this type of
-          linked resource, given a <code>link</code> element <var>element</var>
-          and <span data-x="concept-request">request</span> <var>request</var>,
-          are:
+          linked resource, given a <code>link</code> element
+          <var>element</var> and <span data-x="concept-request">request</span>
+          <var>request</var>, are:
         </p>
         <ol>
           <li>
@@ -406,51 +408,58 @@
           </li>
           <li>
             <p>
-              Let <var>context</var> be <var>element</var>'s <span>node
-              document</span>'s <span data-x="concept-document-bc">browsing
-              context</span>.
+              Let <var>context</var> be <var>element</var>'s
+              <span>node document</span>'s
+              <span data-x="concept-document-bc">browsing context</span>.
             </p>
           </li>
           <li>
             <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-initiator">initiator</span> to "`document`".
+              Set <var>request</var>'s
+              <span data-x="concept-request-initiator">initiator</span> to
+              "`document`".
             </p>
           </li>
           <li>
             <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-destination">destination</span> to
+              Set <var>request</var>'s
+              <span data-x="concept-request-destination">destination</span> to
               "<code data-x="">monetization</code>".
             </p>
           </li>
           <li>
             <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-mode">mode</span> to "<code data-x=
-              "">cors</code>".
+              Set <var>request</var>'s
+              <span data-x="concept-request-mode">mode</span> to "<code
+                data-x=""
+                >cors</code
+              >".
             </p>
           </li>
           <li>
             <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-credentials-mode">credentials mode</span> to the
-              <span>CORS settings attribute credentials mode</span> for
-              <var>element</var>'s <code data-x=
-              "attr-link-crossorigin">crossorigin</code> content attribute.
+              Set <var>request</var>'s
+              <span data-x="concept-request-credentials-mode"
+                >credentials mode</span
+              >
+              to the <span>CORS settings attribute credentials mode</span> for
+              <var>element</var>'s
+              <code data-x="attr-link-crossorigin">crossorigin</code> content
+              attribute.
             </p>
           </li>
           <li>
-            <p>
-              Return true.
-            </p>
+            <p>Return true.</p>
           </li>
         </ol>
         <p>
-          To <span data-x="process the linked resource">process this type of
-          linked resource</span> given a <code>link</code> element
-          <var>element</var>, boolean <var>success</var>, and <span data-x=
-          "concept-response">response</span> <var>response</var>:
+          To
+          <span data-x="process the linked resource"
+            >process this type of linked resource</span
+          >
+          given a <code>link</code> element <var>element</var>, boolean
+          <var>success</var>, and
+          <span data-x="concept-response">response</span> <var>response</var>:
         </p>
         <ol>
           <li>
@@ -461,16 +470,18 @@
           </li>
           <li>
             <p>
-              Otherwise, if <var>response</var>'s <span data-x=
-              "Content-Type">Content-Type metadata</span> is not a
+              Otherwise, if <var>response</var>'s
+              <span data-x="Content-Type">Content-Type metadata</span> is not a
               <code>application/json</code>, then set <var>success</var> to
               false.
             </p>
           </li>
-          <li>Let |json| be the result of [=parse JSON bytes to an Infra
-          value=] passing |response|'s [=Response/body=].
+          <li>
+            Let |json| be the result of [=parse JSON bytes to an Infra value=]
+            passing |response|'s [=Response/body=].
           </li>
-          <li>If |json| is an exception, then set <var>success</var> to false.
+          <li>
+            If |json| is an exception, then set <var>success</var> to false.
           </li>
           <li>
             <p>
@@ -478,29 +489,30 @@
               sessions=], set |success| to false.
             </p>
           </li>
-          <li>Otherwise, establish a new [=payment session=].
-          </li>
-          <li>[=Queue an element task=] on the [=networking task source=] given
-          |element| and the following steps:
+          <li>Otherwise, establish a new [=payment session=].</li>
+          <li>
+            [=Queue an element task=] on the [=networking task source=] given
+            |element| and the following steps:
             <ol>
-              <li>If |success| is true, [=fire an event=] named `"load"` at
-              |element|.
+              <li>
+                If |success| is true, [=fire an event=] named `"load"` at
+                |element|.
               </li>
-              <li>Otherwise, [=fire an event=] named `"error"` at |element|.
+              <li>
+                Otherwise, [=fire an event=] named `"error"` at |element|.
               </li>
             </ol>
           </li>
         </ol>
       </div>
       <p>
-        If a "monetization" <code>link</code> <span>becomes browsing-context
-        disconnected</span>, a user agent MUST stop the [=payment session=].
+        If a "monetization" <code>link</code>
+        <span>becomes browsing-context disconnected</span>, a user agent MUST
+        stop the [=payment session=].
       </p>
     </section>
     <section>
-      <h2>
-        `onmonetization` event handler
-      </h2>
+      <h2>`onmonetization` event handler</h2>
       <p>
         The `onmonetization` event handler is an [=event handler content
         attribute=] that can be applied to any [=element=]. The user agent uses
@@ -508,49 +520,44 @@
       </p>
     </section>
     <section id="events">
-      <h2>
-        monetization event
-      </h2>
+      <h2>monetization event</h2>
       <p>
         When the [=payment session=] has sent a |payment| with a non-zero
         amount, perform the following steps:
       </p>
       <ol class="algorithm">
-        <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} associated
-        with the [=payment session=].
+        <li>
+          Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} associated
+          with the [=payment session=].
         </li>
-        <li>If |target| is `null`, then return.
+        <li>If |target| is `null`, then return.</li>
+        <li>
+          Let |eventInitDict:MonetizationEventInit| be a
+          {{MonetizationEventInit}} dictionary, whose members are initialized to
+          match |payment|'s details.
         </li>
-        <li>Let |eventInitDict:MonetizationEventInit| be a
-        {{MonetizationEventInit}} dictionary, whose members are initialized to
-        match |payment|'s details.
+        <li>
+          Let |event:MonetizationEvent| be a newly constructed
+          {{MonetizationEvent}} initialized with |eventInitDict|.
         </li>
-        <li>Let |event:MonetizationEvent| be a newly constructed
-        {{MonetizationEvent}} initialized with |eventInitDict|.
-        </li>
-        <li>[=Queue a task=] on the [=monetization task source=] to perform the
-        following steps:
+        <li>
+          [=Queue a task=] on the [=monetization task source=] to perform the
+          following steps:
           <ol>
-            <li>If |target| is not connected, return.
-            </li>
-            <li>[=Fire an event=] named `"monetization"` at |target|, with
-            {{Event/bubbles}} initialized to true.
+            <li>If |target| is not connected, return.</li>
+            <li>
+              [=Fire an event=] named `"monetization"` at |target|, with
+              {{Event/bubbles}} initialized to true.
             </li>
           </ol>
         </li>
       </ol>
     </section>
     <section>
-      <h2>
-        Task sources
-      </h2>
-      <p>
-        The following [=task source=] is defined by this specifications.
-      </p>
+      <h2>Task sources</h2>
+      <p>The following [=task source=] is defined by this specifications.</p>
       <dl>
-        <dt>
-          The <dfn>monetization task source</dfn>
-        </dt>
+        <dt>The <dfn>monetization task source</dfn></dt>
         <dd>
           Used by this specification to queue up non-blocking
           {{MonetizationEvent}}s.
@@ -558,9 +565,7 @@
       </dl>
     </section>
     <section data-dfn-for="MonetizationCurrencyAmount">
-      <h2>
-        `MonetizationCurrencyAmount` interface
-      </h2>
+      <h2>`MonetizationCurrencyAmount` interface</h2>
       <p>
         The `MonetizationCurrencyAmount` interface maps directly to the
         {{PaymentCurrencyAmount}} dictionary as defined in [[payment-request]].
@@ -573,9 +578,7 @@
           };
       </pre>
       <section>
-        <h2>
-          <dfn>currency</dfn> member
-        </h2>
+        <h2><dfn>currency</dfn> member</h2>
         <p>
           The currency of the MonetizationCurrencyAmount. See the definition of
           the `currency` member of {{PaymentCurrencyAmount}} in
@@ -583,9 +586,7 @@
         </p>
       </section>
       <section>
-        <h2>
-          <dfn>value</dfn> member
-        </h2>
+        <h2><dfn>value</dfn> member</h2>
         <p>
           The amount of the MonetizationAmount. See the definition of the
           `value` member in of {{PaymentCurrencyAmount}} in [[payment-request]]
@@ -594,9 +595,7 @@
       </section>
     </section>
     <section data-dfn-for="MonetizationEvent">
-      <h2>
-        `MonetizationEvent` interface
-      </h2>
+      <h2>`MonetizationEvent` interface</h2>
       <pre class="idl">
         [SecureContext, Exposed=Window]
         interface MonetizationEvent : Event {
@@ -638,9 +637,7 @@
         </p>
       </div>
       <section>
-        <h2>
-          <dfn>amount</dfn> attribute (deprecated)
-        </h2>
+        <h2><dfn>amount</dfn> attribute (deprecated)</h2>
         <p>
           The amount <em>received</em> as reflected in the receipt from the
           [=monetization receiver=]. When getting, returns the value it was
@@ -648,9 +645,7 @@
         </p>
       </section>
       <section>
-        <h2>
-          <dfn>assetCode</dfn> attribute (deprecated)
-        </h2>
+        <h2><dfn>assetCode</dfn> attribute (deprecated)</h2>
         <p>
           The three letter asset code identifying the amount's units (e.g.,
           "USD" for US dollars). When getting, returns the value it was
@@ -658,9 +653,7 @@
         </p>
       </section>
       <section>
-        <h2>
-          <dfn>assetScale</dfn> attribute (deprecated)
-        </h2>
+        <h2><dfn>assetScale</dfn> attribute (deprecated)</h2>
         <p>
           The scale of the amount. For example, USD would have an
           <code>assetScale</code> of <code>2</code> when denominated in cents.
@@ -674,9 +667,7 @@
         guidance on processing and display of these attributes.
       </div>
       <section>
-        <h2>
-          <dfn>amountSent</dfn> attribute
-        </h2>
+        <h2><dfn>amountSent</dfn> attribute</h2>
         <p>
           The amount <em>sent</em>. This should be processed in the same way as
           a {{PaymentCurrencyAmount}} dictionary as defined in
@@ -685,9 +676,7 @@
         </p>
       </section>
       <section>
-        <h2>
-          <dfn>receipt</dfn> attribute (deprecated)
-        </h2>
+        <h2><dfn>receipt</dfn> attribute (deprecated)</h2>
         <p>
           `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
           receiver=] to the [=monetization provider=] as proof of the total
@@ -696,18 +685,14 @@
         </p>
       </section>
       <section>
-        <h2>
-          <dfn>paymentPointer</dfn> attribute
-        </h2>
+        <h2><dfn>paymentPointer</dfn> attribute</h2>
         <p>
           A [=URL=] representing the [=payment pointer=] that has been
           monetized. When getting, returns the value it was initialized with.
         </p>
       </section>
       <section>
-        <h2>
-          <dfn>incomingPayment</dfn> attribute
-        </h2>
+        <h2><dfn>incomingPayment</dfn> attribute</h2>
         <p>
           A [=URL=] representing an incoming payment at the [=monetization
           receiver=]. When getting, returns the value it was initialized with.
@@ -715,26 +700,24 @@
       </section>
     </section>
     <section id="permissions-policy" data-cite="permissions-policy">
-      <h2>
-        Permissions Policy integration
-      </h2>
+      <h2>Permissions Policy integration</h2>
       <p>
-        This specification defines a [=policy-controlled feature=] identified
-        by the string <dfn class="permission export">"monetization"</dfn>. Its
+        This specification defines a [=policy-controlled feature=] identified by
+        the string <dfn class="permission export">"monetization"</dfn>. Its
         default <a>allowlist</a> is `'self'`.
       </p>
       <aside class="note">
         <p>
-          A <a>document</a>'s [=Document/permissions policy=] determines
-          whether [^link^] elements are monetized - particularly in third-party
-          content, such as an [^iframe^]. When disabled, monetization is
-          disabled and related events won't be dispatched.
+          A <a>document</a>'s [=Document/permissions policy=] determines whether
+          [^link^] elements are monetized - particularly in third-party content,
+          such as an [^iframe^]. When disabled, monetization is disabled and
+          related events won't be dispatched.
         </p>
       </aside>
       <aside class="note">
         <p>
-          The <a href=
-          "https://html.spec.whatwg.org/#attr-iframe-allow">allow</a>
+          The
+          <a href="https://html.spec.whatwg.org/#attr-iframe-allow">allow</a>
           attributes only take effect when the content navigable of the iframe
           is navigated. Adding or removing the monetization attribute has no
           effect on an already-loaded document.
@@ -742,30 +725,24 @@
       </aside>
     </section>
     <section data-cite="CSP">
-      <h2>
-        Content Security Policy
-      </h2>
+      <h2>Content Security Policy</h2>
       <p class="note" title="Monkey patch 🐒">
         This section will eventually be moved into the [[CSP]] and [[FETCH]]
         specifications.
       </p>
       <section>
-        <h3>
-          <dfn class="export">monetization-src</dfn> directive
-        </h3>
+        <h3><dfn class="export">monetization-src</dfn> directive</h3>
         <p>
           The monetization-src directive restricts the URLs from which a
-          [=payment pointer=] is loaded. The syntax for the directive's name
-          and value is described by the following ABNF:
+          [=payment pointer=] is loaded. The syntax for the directive's name and
+          value is described by the following ABNF:
         </p>
         <pre class="abnf">
           directive-name  = "monetization-src"
           directive-value = serialized-source-list
         </pre>
         <aside class="example">
-          <p>
-            Given a page with the following Content Security Policy:
-          </p>
+          <p>Given a page with the following Content Security Policy:</p>
           <pre class="http">
             Content-Security-Policy: monetization-src https://example.com/
           </pre>
@@ -778,63 +755,57 @@
           </pre>
         </aside>
         <section data-cite="CSP">
-          <h4>
-            `monetization-src` Pre-request check
-          </h4>
-          <p>
-            This directive's pre-request check is as follows:
-          </p>
+          <h4>`monetization-src` Pre-request check</h4>
+          <p>This directive's pre-request check is as follows:</p>
           <p>
             Given a [=request=] (|request|) and a [=violation/policy=]
             (|policy|):
           </p>
           <ol class="algorithm">
-            <li>Let |name| be the result of executing "Get the effective
-            directive for request" on |request|.
+            <li>
+              Let |name| be the result of executing "Get the effective directive
+              for request" on |request|.
             </li>
-            <li>If the result of executing "Should fetch directive execute" on
-            |name|, `monetization-src` and |policy| is "No", return "Allowed".
+            <li>
+              If the result of executing "Should fetch directive execute" on
+              |name|, `monetization-src` and |policy| is "No", return "Allowed".
             </li>
-            <li>If the result of executing "Does request match source list?" on
-            |request|, this directive's value, and |policy|, is "Does Not
-            Match", return "Blocked".
+            <li>
+              If the result of executing "Does request match source list?" on
+              |request|, this directive's value, and |policy|, is "Does Not
+              Match", return "Blocked".
             </li>
-            <li>Return "Allowed".
-            </li>
+            <li>Return "Allowed".</li>
           </ol>
         </section>
         <section>
-          <h4>
-            `monetization-src` Post-request check
-          </h4>
-          <p>
-            This directive's post-request check is as follows:
-          </p>
+          <h4>`monetization-src` Post-request check</h4>
+          <p>This directive's post-request check is as follows:</p>
           <p>
             Given a [=request=] (|request|) and a [=violation/policy=]
             (|policy|):
           </p>
           <ol>
-            <li>Let |name| be the result of executing "Get the effective
-            directive for request" on |request|.
+            <li>
+              Let |name| be the result of executing "Get the effective directive
+              for request" on |request|.
             </li>
-            <li>If the result of executing "Should fetch directive execute" on
-            |name|, `monetization-src` and |policy| is "No", return "Allowed".
+            <li>
+              If the result of executing "Should fetch directive execute" on
+              |name|, `monetization-src` and |policy| is "No", return "Allowed".
             </li>
-            <li>If the result of executing "Does response to request match
-            source list?" on |response|, |request|, this directive's value, and
-            |policy|, is "Does Not Match", return "Blocked".
+            <li>
+              If the result of executing "Does response to request match source
+              list?" on |response|, |request|, this directive's value, and
+              |policy|, is "Does Not Match", return "Blocked".
             </li>
-            <li>Return "Allowed".
-            </li>
+            <li>Return "Allowed".</li>
           </ol>
         </section>
       </section>
     </section>
     <section>
-      <h2>
-        Security considerations
-      </h2>
+      <h2>Security considerations</h2>
       <p>
         It is RECOMMENDED that a user agent provide some UI or indicator that
         allows the user to know when [=monetization=] is possible and/or when
@@ -849,18 +820,18 @@
         service. To mitigate such an attack, it is RECOMMENDED that developers:
       </p>
       <ul>
-        <li>host a [=payment pointer=] on their own servers and proxy [[Open
-        Payments]] requests on the server as needed.
+        <li>
+          host a [=payment pointer=] on their own servers and proxy [[Open
+          Payments]] requests on the server as needed.
         </li>
-        <li>Set the `monetization-src` CSP directive to restrict requests to
-        origins they control and trust to host [=payment pointers=].
+        <li>
+          Set the `monetization-src` CSP directive to restrict requests to
+          origins they control and trust to host [=payment pointers=].
         </li>
       </ul>
     </section>
     <section>
-      <h2>
-        Privacy considerations
-      </h2>
+      <h2>Privacy considerations</h2>
       <p>
         Web Monetization is designed to be privacy-preserving: The user agent
         does not send any data to the [=monetization provider=]. Instead, it
@@ -875,14 +846,11 @@
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
-      <h2>
-        Relation to Web Payments
-      </h2>
+      <h2>Relation to Web Payments</h2>
       <p>
         Unlike [[[Payment-Request]]] and the [[[Payment-Handler]]], which only
         supports "one-off" payments, Web Monetization provides a [=payment
-        session=] that supports both continuous payments and "one-off"
-        payments.
+        session=] that supports both continuous payments and "one-off" payments.
       </p>
     </section>
     <section id="conformance" class="appendix"></section>

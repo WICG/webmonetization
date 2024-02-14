@@ -2,10 +2,10 @@ import { fromBase64Url } from './base64'
 
 const POINTER_LIST_PARAM = 'p'
 
-export type PointerEntry = [ string, number ]
+export type PointerEntry = [string, number]
 export type PointerList = PointerEntry[]
 
-export function pickPointer (pointers: PointerList): string {
+export function pickPointer(pointers: PointerList): string {
   const sum = pointers.reduce((sum, entry) => sum + entry[1], 0)
   let choice = Math.random() * sum
 
@@ -20,7 +20,7 @@ export function pickPointer (pointers: PointerList): string {
   throw new Error('unable to choose pointer; drew invalid value')
 }
 
-export function resolvePointer (pointer: string): string {
+export function resolvePointer(pointer: string): string {
   if (!pointer.startsWith('$')) {
     return pointer
   }
@@ -33,13 +33,13 @@ export function resolvePointer (pointer: string): string {
   return url.href
 }
 
-export function parsePointerMap (url: string): PointerList {
+export function parsePointerMap(url: string): PointerList {
   const parsed = new URL(url)
   const search = new URLSearchParams(parsed.search)
 
   // pointer list could be in final path segment or query param
-  const pointerListB64 = search.get(POINTER_LIST_PARAM)
-    || parsed.pathname.split('/').pop()
+  const pointerListB64 =
+    search.get(POINTER_LIST_PARAM) || parsed.pathname.split('/').pop()
 
   if (!pointerListB64) {
     throw new Error('request does not include pointer list')

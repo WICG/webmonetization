@@ -1,6 +1,6 @@
 import { parsePointerMap, pickPointer, resolvePointer } from './lib/pointers'
 
-addEventListener('fetch', event => {
+addEventListener('fetch', (event) => {
   console.log('handling a request', event.request.url)
   event.respondWith(handleRequest(event.request))
 })
@@ -14,7 +14,7 @@ async function handleRequest(request: Request) {
     return Response.redirect(spspUrl, 302)
   } catch (e) {
     return new Response(e.message, {
-      status: 400
+      status: 400,
     })
   }
 }
