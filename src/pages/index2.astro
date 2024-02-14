@@ -29,14 +29,14 @@ const description = t("site.description");
 <style>
   /* Hero section styles */
   .hero {
-    background-image:  url("/img/bg-pattern-bottom.svg");
-    /* background-image: url("/img/bg-pattern.svg"); */
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: bottom;
+    background-image: url("/img/lines.svg"), url("/img/wm-bg-tile.svg");
+    background-repeat: repeat-x, repeat;
+    background-size: 20em, 40%;
+    background-position: bottom, center;
     padding-bottom: 0;
     height: 60vh;
-    display: flex
+    display: flex;
+    
   }
 
   .hero > div {
@@ -47,7 +47,7 @@ const description = t("site.description");
   }
 
   .heroIcon {
-    width: 12em;
-    height: 8.6em;
+    width: 26em;
+    height: 15em;
   }
 </style>
