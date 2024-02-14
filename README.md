@@ -10,14 +10,14 @@ You can read the [docs](https://webmonetization.org/docs/), or read the proposed
 
 The Web Monetization website is built with [Starlight](https://starlight.astro.build/), a documentation framework based on [Astro](https://astro.build/).
 
-* [Get Set Up](#get-set-up)
-* [Content](#content)
-* [Localization/Internationalization](#localizationinternationalization)
-* [Reviews and Approvals](#reviews-and-approvals)
+- [Get Set Up](#get-set-up)
+- [Content](#content)
+- [Localization/Internationalization](#localizationinternationalization)
+- [Reviews and Approvals](#reviews-and-approvals)
 
 ## Get Set Up
 
-We use [Bun](https://bun.sh/) in this repository, but you could theoretically use the package manager of your choice. 
+We use [Bun](https://bun.sh/) in this repository, but you could theoretically use the package manager of your choice.
 
 ### Install Bun
 
@@ -46,6 +46,10 @@ All commands are run from the root of the project, from a terminal:
 
 You can substitute the bun commands with your chosen package manager's commands.
 
+## Specification Development
+
+Please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md#specification-development).
+
 ## Content
 
 Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
@@ -60,11 +64,11 @@ The `docs.mdx` file in the root of the `content/docs` folder is essentially the 
 
 ### Editing content
 
-* [Static image assets](#static-image-assets)
-* [Components](#components)
-* [Edit existing doc](#edit-existing-doc)
-* [Add a new doc](#add-a-new-doc)
-* [Add a custom page](#add-a-custom-page)
+- [Static image assets](#static-image-assets)
+- [Components](#components)
+- [Edit existing doc](#edit-existing-doc)
+- [Add a new doc](#add-a-new-doc)
+- [Add a custom page](#add-a-custom-page)
 
 #### Static image assets
 
@@ -82,10 +86,10 @@ Static image assets should be placed in the `public/img/docs` directory. When re
 
 Some of the commonly repeated patterns within the documentation pages are extracted into custom doc components that can be reused. Some components are shared across other Interledger-related documentation sites and others are specific to Web Monetization. Whether a component is shared determines its import path.
 
-The `BrowserCompat` and `Specification` components are specific to Web Monetization. 
+The `BrowserCompat` and `Specification` components are specific to Web Monetization.
 
-* `BrowserCompat` generates a compatibility table based on the browser compatibility data passed into it. Additional information can be found [here](https://interledger.tech/webm/browsercompat).
-* `Specification` displays a link to the relevant section of the Web Monetization specification in a table. Additional information can be found [here](https://interledger.tech/webm/specification).
+- `BrowserCompat` generates a compatibility table based on the browser compatibility data passed into it. Additional information can be found [here](https://interledger.tech/webm/browsercompat).
+- `Specification` displays a link to the relevant section of the Web Monetization specification in a table. Additional information can be found [here](https://interledger.tech/webm/specification).
 
 Documentation on how to import and use shared components is available on https://interledger.tech/. If you are using multiple shared components on the same page, you can import them like so:
 
@@ -143,7 +147,7 @@ Refer to the Astro documentation on [pages](https://docs.astro.build/en/core-con
 
 Starlight supports [Internationalization (i18n)](https://starlight.astro.build/guides/i18n/) out-of-the-box. The Web Monetization site follows the root locale pattern documented at https://starlight.astro.build/guides/i18n/#use-a-root-locale.
 
-If you want to contribute documentation in a language that has not been configured, you must edit  `astro.config.mjs` to add the language to the `locales` option. As of January 2024, Web Monetization is configured for English (en) and Español (es).
+If you want to contribute documentation in a language that has not been configured, you must edit `astro.config.mjs` to add the language to the `locales` option. As of January 2024, Web Monetization is configured for English (en) and Español (es).
 
 Translated content should be in its respective language folder within `/src/content/docs/`. English content is located within `/src/content/docs/docs`. Content in Español is located within `src/content/docs/es`. Create the language folder if it doesn't exist.
 
