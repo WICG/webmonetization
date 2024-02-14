@@ -32,7 +32,7 @@ Il s'agit d'une norme proposée qui permet à vos visiteurs de payer le montant 
 
 ### Flux à haut niveau
 
-L'image suivante montre le flux de la Monetization Web à un niveau élevé. Certaines étapes ont été combinées ou exclues. Une explication plus détaillée est fournie dans la page [Flux de la Web Monetisation](/fr/docs/intro/web-monetization-flow).
+L'image suivante montre le flux de la Web Monetization à un niveau élevé. Certaines étapes ont été combinées ou exclues. Une explication plus détaillée est fournie dans la page [Flux de la Web Monetisation](/fr/docs/intro/web-monetization-flow).
 
 <LargeImg
   src='/img/docs/diagram-wm-overview.png'
@@ -43,7 +43,7 @@ L'image suivante montre le flux de la Monetization Web à un niveau élevé. Cer
 2. Le navigateur de Bob, soit de manière native, soit via une extension du navigateur, analyse l'élément `<link>` pour obtenir l'élément <Tooltip content='Une URL qui identifie un compte Open Payments' client:load><a href="./resources/glossary#wallet-address">l'adresse du portefeuille</a></Tooltip> pour Alice, propriétaire du site.
 3. Le navigateur de Bob ou l'extension, envoie des demandes à l'adresse du portefeuille d'Alice pour obtenir l'autorisation et les instructions nécessaires à l'envoi d'un paiement.
 4. Une fois l'autorisation accordée et les instructions de paiement reçues, le navigateur/extension envoie des demandes à l'adresse du portefeuille de Bob pour initier le paiement sortant.
-5. Le flux de monétisation Web se termine. Le traitement des paiements, l'échange de devises et le règlement ont lieu entre les deux comptes par l'intermédiaire d'un rail de paiement commun.
+5. Le flux de la Web Monetization se fini. Le traitement des paiements, l'échange de devises et le règlement ont lieu entre les deux comptes par l'intermédiaire d'un rail de paiement commun.
 
 ### Spécification des montants et des devises de paiement
 
@@ -57,7 +57,7 @@ Le rôle de la Web Monetization est d'aider à coordonner les paiements. Elle ne
 
 À chaque extrémité de la Web Monetization se trouve un compte qui prend en charge les <LinkOut href="https://openpayments.guide">Paiements ouverts</LinkOut>. Le fournisseur WM fournit à votre visiteur un compte d'envoi financé. Dans certains cas, le visiteur peut même agir comme son propre fournisseur WM. Le destinataire WM vous fournit un compte de réception.
 
-Web Monetization communique avec les comptes émetteur et récepteur afin d'obtenir les autorisations et instructions nécessaires à l'envoi et à la réception d'un paiement. Le traitement et le règlement du paiement s'effectuent ensuite entre les comptes émetteur et récepteur, en dehors du flux de la Web Monetisation.
+La Web Monetization communique avec les comptes émetteur et récepteur afin d'obtenir les autorisations et instructions nécessaires à l'envoi et à la réception d'un paiement. Le traitement et le règlement du paiement s'effectuent ensuite entre les comptes émetteur et récepteur, en dehors du flux de la Web Monetisation.
 
 ## Version antérieure de la spécification
 
