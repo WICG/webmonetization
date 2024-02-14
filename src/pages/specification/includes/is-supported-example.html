@@ -1,20 +1,8 @@
-<link rel="monetization" href="https://example.com/monetization.js" />
+<link rel="monetization" href="https://example.com/pay">
 <script>
-  // Checking via DOMTokenList
-  const link =
-    document.querySelector('link[rel="monetization"]') ||
-    document.createElement('link')
-  if (link.relList.supports('monetization')) {
-    console.log('Web Monetization is supported.')
-  }
+  const link = document.createElement("link");
 
-  // Checking global scope for MonetizationEvent
-  if (window.MonetizationEvent) {
-    console.log('Web Monetization is supported.')
-  }
-
-  // Checking if it's a global event handler
-  if (window.hasOwnProperty('onmonetization')) {
-    console.log('Web Monetization is supported.')
+  if (link.relList.supports("monetization")) {
+    console.log("Web Monetization is supported.");
   }
 </script>
