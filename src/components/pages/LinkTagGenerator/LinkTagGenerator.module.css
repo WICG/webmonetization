@@ -1,10 +1,9 @@
 .form {
-  margin-bottom: var(--space-s);
-  margin-top: var(--space-s);
+  margin-block: var(--space-s);
 }
 
 .text {
-  margin-bottom: var(--space-s);
+  margin-block-end: var(--space-s);
 }
 
 .inputWrapper {

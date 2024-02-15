@@ -12,16 +12,14 @@ const title = t("site.title");
 const description = t("site.description");
 ---
 <Base title={title} description={description}>
-  <section class="section hero">
-    <div class="contentWrapperSm">
-      <h2>Pay the web forward</h2>
+  <section class="hero">
+    <div class="heroContent">
       <img
-        alt="Web Monetization Icon"
-        class="heroIcon"
+        alt="Web Monetization Logo"
+        class="heroLogo"
         src="/img/wm-logo--animated.svg"
-        width="120"
-        height="86"
       />
+      <h2 class="heroHeading">Pay the Web forward</h2>
     </div>
   </section>
 </Base>
@@ -29,25 +27,28 @@ const description = t("site.description");
 <style>
   /* Hero section styles */
   .hero {
-    background-image: url("/img/lines.svg"), url("/img/wm-bg-tile.svg");
+    background-image: url("/img/bg-lines.svg"), url("/img/bg-tile.svg");
     background-repeat: repeat-x, repeat;
-    background-size: 20em, 40%;
+    background-size: 25em, 40%;
     background-position: bottom, center;
-    padding-bottom: 0;
-    height: 60vh;
+    padding-block-end: 0;
+    height: 50vh;
     display: flex;
-    
   }
 
-  .hero > div {
-    display: flex;
-    align-items: center;
+  .heroContent {
     margin: auto;
-    gap: var(--space-m);
+    text-align: center;
+  }
+  
+  .heroLogo {
+    max-width: 16em;
+    margin-block-end: var(--space-l);
   }
 
-  .heroIcon {
-    width: 26em;
-    height: 15em;
+  .heroHeading {
+    font-size: var(--step-6);
+    line-height: 1.2;
+    color: var(--wm-accent);
   }
 </style>

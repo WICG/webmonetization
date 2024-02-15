@@ -1,6 +1,6 @@
 .codeBlock {
   position: relative;
-  margin-bottom: var(--space-s);
+  margin-block-end: var(--space-s);
 }
 
 .pre {
@@ -56,7 +56,7 @@
   opacity: 0;
   top: 50%;
   transform: translate(-50%, -50%) scale(0.33);
-  margin-top: 0;
+  margin-block-start: 0;
 }
 
 .copied .btnSuccessIcon {

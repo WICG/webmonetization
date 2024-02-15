@@ -1,24 +1,27 @@
 /* Custom styles for non-Starlight pages */
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.125,1440,16,1.2,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 :root {
-  --step--2: clamp(0.69rem, calc(0.82rem + -0.14vw), 0.79rem);
-  --step--1: clamp(0.83rem, calc(0.9rem + -0.08vw), 0.89rem);
-  --step-0: clamp(1rem, calc(1rem + 0vw), 1rem);
-  --step-1: clamp(1.13rem, calc(1.1rem + 0.11vw), 1.2rem);
-  --step-2: clamp(1.27rem, calc(1.22rem + 0.25vw), 1.44rem);
-  --step-3: clamp(1.42rem, calc(1.34rem + 0.43vw), 1.73rem);
-  --step-4: clamp(1.6rem, calc(1.47rem + 0.67vw), 2.07rem);
-  --step-5: clamp(1.8rem, calc(1.61rem + 0.98vw), 2.49rem);
-  --space-3xs: clamp(0.25rem, calc(0.25rem + 0vw), 0.25rem);
-  --space-2xs: clamp(0.5rem, calc(0.5rem + 0vw), 0.5rem);
-  --space-xs: clamp(0.75rem, calc(0.75rem + 0vw), 0.75rem);
-  --space-s: clamp(1rem, calc(1rem + 0vw), 1rem);
-  --space-m: clamp(1.5rem, calc(1.5rem + 0vw), 1.5rem);
-  --space-l: clamp(2rem, calc(2rem + 0vw), 2rem);
-  --space-xl: clamp(3rem, calc(3rem + 0vw), 3rem);
-  --space-2xl: clamp(4rem, calc(4rem + 0vw), 4rem);
-  --space-3xl: clamp(6rem, calc(6rem + 0vw), 6rem);
+  --step--2: clamp(0.6944rem, 0.8175rem + -0.1367vi, 0.7901rem);
+  --step--1: clamp(0.8333rem, 0.9048rem + -0.0794vi, 0.8889rem);
+  --step-0: clamp(1rem, 1rem + 0vi, 1rem);
+  --step-1: clamp(1.125rem, 1.1036rem + 0.1071vi, 1.2rem);
+  --step-2: clamp(1.2656rem, 1.2158rem + 0.2491vi, 1.44rem);
+  --step-3: clamp(1.4238rem, 1.3369rem + 0.4345vi, 1.728rem);
+  --step-4: clamp(1.6018rem, 1.467rem + 0.674vi, 2.0736rem);
+  --step-5: clamp(1.802rem, 1.606rem + 0.9804vi, 2.4883rem);
+  --step-6: clamp(2.0273rem, 1.7534rem + 1.3696vi, 2.986rem);
+  --space-3xs: clamp(0.25rem, 0.25rem + 0vi, 0.25rem);
+  --space-2xs: clamp(0.5rem, 0.5rem + 0vi, 0.5rem);
+  --space-xs: clamp(0.75rem, 0.75rem + 0vi, 0.75rem);
+  --space-s: clamp(1rem, 1rem + 0vi, 1rem);
+  --space-m: clamp(1.5rem, 1.5rem + 0vi, 1.5rem);
+  --space-l: clamp(2rem, 2rem + 0vi, 2rem);
+  --space-xl: clamp(3rem, 3rem + 0vi, 3rem);
+  --space-2xl: clamp(4rem, 4rem + 0vi, 4rem);
+  --space-3xl: clamp(6rem, 6rem + 0vi, 6rem);
   --border-radius: 6px;
 
+  --wm-accent: hsl(180 100% 23%);
   --sl-color-white: hsl(0, 0%, 100%);
   --sl-color-gray-1: hsl(231, 23%, 94%);
   --sl-color-gray-2: hsl(228, 8%, 77%);
@@ -188,31 +191,31 @@ td {
 }
 
 thead tr:first-of-type th:first-child {
-  border-top-left-radius: var(--border-radius);
+  border-start-start-radius: var(--border-radius);
 }
 
 thead tr:first-of-type th:last-child {
-  border-top-right-radius: var(--border-radius);
+  border-start-end-radius: var(--border-radius);
 }
 
 tbody tr:first-of-type th:first-child,
 tbody tr:first-of-type td:first-child {
-  border-top-left-radius: var(--border-radius);
+  border-start-start-radius: var(--border-radius);
 }
 
 tbody tr:first-of-type th:last-child,
 tbody tr:first-of-type td:last-child {
-  border-top-right-radius: var(--border-radius);
+  border-start-end-radius: var(--border-radius);
 }
 
 tbody tr:last-of-type th:first-child,
 tbody tr:last-of-type td:first-child {
-  border-bottom-left-radius: var(--border-radius);
+  border-end-start-radius: var(--border-radius);
 }
 
 tbody tr:last-of-type th:last-child,
 tbody tr:last-of-type td:last-child {
-  border-bottom-right-radius: var(--border-radius);
+  border-end-end-radius: var(--border-radius);
 }
 
 /* Typography styles */
@@ -223,19 +226,19 @@ tbody tr:last-of-type td:last-child {
 .heading2 {
   font-size: var(--step-3);
   font-weight: 700;
-  margin-bottom: var(--space-s);
+  margin-block-end: var(--space-s);
 }
 
 .heading3 {
   font-size: var(--step-2);
   font-weight: 700;
-  margin-bottom: var(--space-2xs);
+  margin-block-end: var(--space-2xs);
 }
 
 .heading4 {
   font-size: var(--step-1);
   font-weight: 700;
-  margin-bottom: var(--space-2xs);
+  margin-block-end: var(--space-2xs);
 }
 
 .bodyText {
@@ -245,31 +248,24 @@ tbody tr:last-of-type td:last-child {
 /* Shared section styles */
 .contentWrapperSm {
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-s);
-  padding-right: var(--space-s);
+  margin-inline: auto;
+  padding-inline: var(--space-s);
 }
 
 .contentWrapperMd {
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-s);
-  padding-right: var(--space-s);
+  margin-inline: auto;
+  padding-inline: var(--space-s);
 }
 
 .contentWrapperLg {
   max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-s);
-  padding-right: var(--space-s);
+  margin-inline: auto;
+  padding-inline: var(--space-s);
 }
 
 .section {
-  padding-top: var(--space-l);
-  padding-bottom: var(--space-l);
+  padding-block: var(--space-l);
 }
 
 .sectionHeader {
@@ -277,7 +273,7 @@ tbody tr:last-of-type td:last-child {
 }
 
 .sectionHeader p {
-  margin-bottom: var(--space-s);
+  margin-block-end: var(--space-s);
 }
 
 /* Grid layout styles */
