@@ -31,12 +31,10 @@
   .site-nav {
     display: flex;
     align-items: center;
-    padding-left: var(--space-s);
-    padding-right: var(--space-s);
+    padding-inline: var(--space-s);
     position: relative;
     max-width: 95rem;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
   }
 
   .site-title {
@@ -58,15 +56,14 @@
   a {
     text-decoration: none;
     color: var(--sl-color-text);
-    padding-top: var(--space-xs);
-    padding-bottom: var(--space-xs);
+    padding-block: var(--space-xs);
   }
 
   .menu-toggle {
     border: 0;
     background: initial;
     padding: var(--space-xs) 0;
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 
   .menu-icon {
@@ -119,7 +116,7 @@
     transform: rotate(-45deg);
   }
   .nav-link__github {
-    margin-left: auto;
+    margin-inline-start: auto;
     flex: none;
   }
 
@@ -146,8 +143,7 @@
 
     .nav-menu a {
       display: block;
-      padding-left: var(--space-xs);
-      padding-right: var(--space-xs);
+      padding-inline: var(--space-xs);
     }
   }
 

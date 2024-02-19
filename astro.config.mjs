@@ -12,7 +12,7 @@ export default defineConfig({
       description:
         "Web Monetization allows websites to automatically receive payments from users, facilitated by the user agent and a user's preferred monetization provider.",
       customCss: [
-        './node_modules/@interledger/docs-design-system/src/styles/green-theme.css',
+        './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
         './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',
       ],
       expressiveCode: {

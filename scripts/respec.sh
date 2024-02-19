@@ -17,11 +17,11 @@ RESPEC_SOURCE="$SPEC_PATH/specification-respec.html"
 RESPEC_STATIC="$SPEC_PATH/index.html"
 
 # "$PRETTIER_PATH" "$SPEC_PATH/includes" --write
-"$TIDY_PATH" -config "$SPEC_PATH/tidyconfig.txt" -m "$RESPEC_SOURCE"
+"$TIDY_PATH" -config "$REPO_ROOT/scripts/tidyconfig.txt" -m "$RESPEC_SOURCE"
 
 pushd $SPEC_PATH
 # respec doesn't support absolute paths
 npx respec --localhost specification-respec.html index.html
 popd
 
-"$TIDY_PATH" -config "$SPEC_PATH/tidyconfig.txt" --hide-comments yes -m "$RESPEC_STATIC"
+"$TIDY_PATH" -config "$REPO_ROOT/scripts/tidyconfig.txt" --hide-comments yes -m "$RESPEC_STATIC"

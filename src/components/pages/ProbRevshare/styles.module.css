@@ -1,6 +1,6 @@
 .tableWrapper {
   overflow-x: auto;
-  margin-bottom: var(--space-xs);
+  margin-block-end: var(--space-xs);
   box-shadow: var(--sl-shadow-sm);
   border-radius: var(--border-radius);
 }
@@ -8,7 +8,7 @@
 .revShareTable .input.input {
   border: 0;
   border-radius: 0;
-  border-bottom: 1px solid;
+  border-block-end: 1px solid;
   padding: var(--space-3xs);
   transition: box-shadow 200ms ease-in;
   width: 100%;
@@ -17,7 +17,7 @@
 .revShareTable input[disabled].input.input {
   border: 0;
   border-radius: 0;
-  border-bottom: 1px dotted;
+  border-block-end: 1px dotted;
   cursor: not-allowed;
 }
 
@@ -30,7 +30,7 @@
 .percentCell input[type='number'].input {
   border: 0;
   border-radius: 0;
-  border-bottom: 1px solid;
+  border-block-end: 1px solid;
   width: 4em;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .shareInputBtns {
-  margin-bottom: var(--space-m);
+  margin-block-end: var(--space-m);
 }
 
 .btn {
@@ -72,15 +72,15 @@
 }
 
 .importControls {
-  margin-top: var(--space-xs);
+  margin-block-start: var(--space-xs);
 }
 
 .importSharesButton.importSharesButton {
-  margin-left: var(--space-xs);
+  margin-inline-start: var(--space-xs);
 }
 
 .text {
-  margin-bottom: var(--space-s);
+  margin-block-end: var(--space-s);
 }
 
 .importWrapper textarea {
@@ -96,5 +96,5 @@
 }
 
 .revShareChart {
-  margin-bottom: var(--space-m);
+  margin-block-end: var(--space-m);
 }

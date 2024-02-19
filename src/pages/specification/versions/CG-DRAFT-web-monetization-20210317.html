@@ -25,13 +25,13 @@
         color: #000;
       }
       :is(aside, div).example {
-        border-left-width: 0.5em;
-        border-left-style: solid;
+        border-inline-start-width: 0.5em;
+        border-inline-start-style: solid;
         border-color: #e0cb52;
         background: #fcfaee;
       }
       aside.example div.example {
-        border-left-width: 0.1em;
+        border-inline-start-width: 0.1em;
         border-color: #999;
         background: #fff;
       }
@@ -44,12 +44,12 @@
         text-transform: initial;
       }
       .warning > p:first-child {
-        margin-top: 0;
+        margin-block-start: 0;
       }
       .warning {
         padding: 0.5em;
-        border-left-width: 0.5em;
-        border-left-style: solid;
+        border-inline-start-width: 0.5em;
+        border-inline-start-style: solid;
       }
       span.warning {
         padding: 0.1em 0.5em 0.15em;
@@ -71,8 +71,8 @@
         content: '⚠';
         font-size: 1.3em;
         float: left;
-        padding-right: 0.3em;
-        margin-top: -0.3em;
+        padding-inline-end: 0.3em;
+        margin-block-start: -0.3em;
       }
       li.task-list-item {
         list-style: none;
@@ -120,9 +120,9 @@
         line-height: 28px;
       }
       .idlHeader a.self-link {
-        margin-left: 0.3cm;
+        margin-inline-start: 0.3cm;
         text-decoration: none;
-        border-bottom: none;
+        border-block-end: none;
       }
       .idlID {
         font-weight: 700;
@@ -136,12 +136,12 @@
       }
       .idlName a {
         color: #ff4500;
-        border-bottom: 1px dotted #ff4500;
+        border-block-end: 1px dotted #ff4500;
         text-decoration: none;
       }
       a.idlEnumItem {
         color: #000;
-        border-bottom: 1px dotted #ccc;
+        border-block-end: 1px dotted #ccc;
         text-decoration: none;
       }
       .idlSuperclass {
@@ -223,7 +223,7 @@
         min-width: 300px;
         max-width: 500px;
         padding: 0.5em 0.75em;
-        margin-top: 0.6em;
+        margin-block-start: 0.6em;
         font-family: 'Helvetica Neue', sans-serif;
         font-size: small;
         background: #fff;
@@ -242,12 +242,12 @@
         content: '';
         position: absolute;
         border: 10px solid transparent;
-        border-top: 0;
-        border-bottom: 10px solid #fff;
+        border-block-start: 0;
+        border-block-end: 10px solid #fff;
         top: 0;
       }
       .dfn-panel:not(.docked) > .caret::before {
-        border-bottom: 9px solid #a2a9b1;
+        border-block-end: 9px solid #a2a9b1;
       }
       .dfn-panel * {
         margin: 0;
@@ -255,7 +255,7 @@
       .dfn-panel b {
         display: block;
         color: #000;
-        margin-top: 0.25em;
+        margin-block-start: 0.25em;
       }
       .dfn-panel ul a[href] {
         color: #333;
@@ -265,11 +265,11 @@
       }
       .dfn-panel a.self-link {
         font-weight: 700;
-        margin-right: auto;
+        margin-inline-end: auto;
       }
       .dfn-panel .marker {
         padding: 0.1em;
-        margin-left: 0.5em;
+        margin-inline-start: 0.5em;
         border-radius: 0.2em;
         text-align: center;
         white-space: nowrap;
@@ -286,16 +286,16 @@
       }
       .dfn-panel a:not(:hover) {
         text-decoration: none !important;
-        border-bottom: none !important;
+        border-block-end: none !important;
       }
       .dfn-panel a[href]:hover {
-        border-bottom-width: 1px;
+        border-block-end-width: 1px;
       }
       .dfn-panel ul {
         padding: 0;
       }
       .dfn-panel li {
-        margin-left: 1em;
+        margin-inline-start: 1em;
       }
       .dfn-panel.docked {
         position: fixed;
@@ -332,12 +332,12 @@
       }
       a.internalDFN {
         color: inherit;
-        border-bottom: 1px solid #99c;
+        border-block-end: 1px solid #99c;
         text-decoration: none;
       }
       a.externalDFN {
         color: inherit;
-        border-bottom: 1px dotted #ccc;
+        border-block-end: 1px dotted #ccc;
         text-decoration: none;
       }
       a.bibref {
@@ -367,11 +367,10 @@
         font-style: normal;
       }
       a[href].orcid {
-        padding-left: 4px;
-        padding-right: 4px;
+        padding-inline: 4px;
       }
       a[href].orcid > svg {
-        margin-bottom: -2px;
+        margin-block-end: -2px;
       }
       .toc a,
       .tof a {
@@ -386,13 +385,13 @@
         list-style: none outside none;
       }
       .caption {
-        margin-top: 0.5em;
+        margin-block-start: 0.5em;
         font-style: italic;
       }
       table.simple {
         border-spacing: 0;
         border-collapse: collapse;
-        border-bottom: 3px solid #005a9c;
+        border-block-end: 3px solid #005a9c;
       }
       .simple th {
         background: #005a9c;
@@ -408,27 +407,27 @@
       .simple th[scope='row'] {
         background: inherit;
         color: inherit;
-        border-top: 1px solid #ddd;
+        border-block-start: 1px solid #ddd;
       }
       .simple td {
         padding: 3px 10px;
-        border-top: 1px solid #ddd;
+        border-block-start: 1px solid #ddd;
       }
       .simple tr:nth-child(even) {
         background: #f0f6ff;
       }
       .section dd > p:first-child {
-        margin-top: 0;
+        margin-block-start: 0;
       }
       .section dd > p:last-child {
-        margin-bottom: 0;
+        margin-block-end: 0;
       }
       .section dd {
-        margin-bottom: 1em;
+        margin-block-end: 1em;
       }
       .section dl.attrs dd,
       .section dl.eldef dd {
-        margin-bottom: 0;
+        margin-block-end: 0;
       }
       #issue-summary > ul {
         column-count: 2;
@@ -438,12 +437,12 @@
         display: inline-block;
       }
       details.respec-tests-details {
-        margin-left: 1em;
+        margin-inline-start: 1em;
         display: inline-block;
         vertical-align: top;
       }
       details.respec-tests-details > * {
-        padding-right: 2em;
+        padding-inline-end: 2em;
       }
       details.respec-tests-details[open] {
         z-index: 999999;
@@ -451,20 +450,20 @@
         border: thin solid #cad3e2;
         border-radius: 0.3em;
         background-color: #fff;
-        padding-bottom: 0.5em;
+        padding-block-end: 0.5em;
       }
       details.respec-tests-details[open] > summary {
-        border-bottom: thin solid #cad3e2;
-        padding-left: 1em;
-        margin-bottom: 1em;
+        border-block-end: thin solid #cad3e2;
+        padding-inline-start: 1em;
+        margin-block-end: 1em;
         line-height: 2em;
       }
       details.respec-tests-details > ul {
         width: 100%;
-        margin-top: -0.3em;
+        margin-block-start: -0.3em;
       }
       details.respec-tests-details > li {
-        padding-left: 1em;
+        padding-inline-start: 1em;
       }
       .self-link:hover {
         opacity: 1;
@@ -508,7 +507,7 @@
       }
       @media (max-width: 767px) {
         dd {
-          margin-left: 0;
+          margin-inline-start: 0;
         }
       }
       @media print {
@@ -611,7 +610,7 @@
         border-width: 4px 6px 0 6px;
         border-style: solid;
         border-color: transparent;
-        border-top-color: #000;
+        border-block-start-color: #000;
       }
       var[data-type]::after {
         content: attr(data-type);
