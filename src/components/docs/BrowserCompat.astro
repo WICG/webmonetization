@@ -10,7 +10,7 @@ const compatData = json.api
         <td></td>
         <th class="desktop" colspan='6' title='desktop'>
           <img
-            src={`/img/icon-desktop.svg`}
+            src={`/img/components/browsercompat/icon-desktop.svg`}
             alt=''
             width='24'
             height='24'
@@ -18,7 +18,7 @@ const compatData = json.api
           <span class='visually-hidden'>desktop</span>
         </th>
         <th class="mobile" colspan='7' title='mobile'>
-          <img src={`/img/icon-phone.svg`} alt='' width='24' height='24' />
+          <img src={`/img/components/browsercompat/icon-phone.svg`} alt='' width='24' height='24' />
           <span class='visually-hidden'>mobile</span>
         </th>
       </tr>
@@ -79,7 +79,7 @@ const compatData = json.api
                 {compatData[key].__compat.support[platform]
                   .version_added && (
                   <img
-                    src={`/img/icon-check.svg`}
+                    src={`/img/components/browsercompat/icon-check.svg`}
                     alt=''
                     width='18'
                     height='18'
@@ -89,7 +89,7 @@ const compatData = json.api
                 {!compatData[key].__compat.support[platform]
                   .version_added && (
                   <img
-                    src={`/img/icon-cancel.svg`}
+                    src={`/img/components/browsercompat/icon-cancel.svg`}
                     alt=''
                     width='18'
                     height='18'
@@ -110,7 +110,7 @@ const compatData = json.api
                 </span>
                 {compatData[key].__compat.support[platform].notes && (
                   <img
-                    src={`/img/icon-extension.svg`}
+                    src={`/img/components/browsercompat/icon-extension.svg`}
                     alt=''
                     width='18'
                     height='18'
@@ -130,7 +130,7 @@ const compatData = json.api
   <div class="legendItem">
     <dt>
       <img
-        src={`/img/icon-check.svg`}
+        src={`/img/components/browsercompat/icon-check.svg`}
         alt=''
         width='24'
         height='24'
@@ -142,7 +142,7 @@ const compatData = json.api
   <div class="legendItem">
     <dt>
       <img
-        src={`/img/icon-cancel.svg`}
+        src={`/img/components/browsercompat/icon-cancel.svg`}
         alt=''
         width='24'
         height='24'
@@ -154,7 +154,7 @@ const compatData = json.api
   <div class="legendItem">
     <dt>
       <img
-        src={`/img/icon-extension.svg`}
+        src={`/img/components/browsercompat/icon-extension.svg`}
         alt=''
         width='24'
         height='24'
@@ -240,39 +240,39 @@ tbody td img {
 }
 
 .browserChrome::after {
-  content: url(/img/browser-chrome.svg);
+  content: url(/img/components/browsercompat/browser-chrome.svg);
 }
 
 .browserEdge::after {
-  content: url(/img/browser-edge.svg);
+  content: url(/img/components/browsercompat/browser-edge.svg);
 }
 
 .browserFirefox::after {
-  content: url(/img/browser-firefox.svg);
+  content: url(/img/components/browsercompat/browser-firefox.svg);
 }
 
 .browserIe::after {
-  content: url(/img/browser-ie.svg);
+  content: url(/img/components/browsercompat/browser-ie.svg);
 }
 
 .browserOpera::after {
-  content: url(/img/browser-opera.svg);
+  content: url(/img/components/browsercompat/browser-opera.svg);
 }
 
 .browserPuma::after {
-  content: url(/img/browser-puma.svg);
+  content: url(/img/components/browsercompat/browser-puma.svg);
 }
 
 .browserSafari::after {
-  content: url(/img/browser-safari.svg);
+  content: url(/img/components/browsercompat/browser-safari.svg);
 }
 
 .browserSamsung::after {
-  content: url(/img/browser-samsung.svg);
+  content: url(/img/components/browsercompat/browser-samsung.svg);
 }
 
 .browserWebview::after {
-  content: url(/img/browser-webview.svg);
+  content: url(/img/components/browsercompat/browser-webview.svg);
 }
 
 .feature div {

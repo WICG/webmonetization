@@ -1,10 +1,6 @@
 ---
 import i18next, { t, changeLanguage } from "i18next";
 import Base from "../layouts/Base.astro";
-import data from "../data/home.json";
-import contributors from "../data/contributors.json";
-import CardList from "../components/pages/CardList.astro";
-import PrCta from "../components/pages/PrCta.astro";
 
 changeLanguage("en");
 
@@ -12,289 +8,89 @@ const title = t("site.title");
 const description = t("site.description");
 ---
 <Base title={title} description={description}>
-  <section class="section hero">
-    <div class="contentWrapperSm">
+  <section class="hero">
+    <div class="heroContent">
       <img
-        alt="Web Monetization Icon"
-        class="heroIcon"
+        alt="Web Monetization Logo"
+        class="heroLogo"
         src="/img/wm-logo--animated.svg"
-        width="120"
-        height="86"
       />
-      <h1 class="heading2">Web Monetization</h1>
-      <p class="heroTagline heading4">
-        The Web Monetization API allows websites to automatically and
-        passively receive payments from Web Monetization-enabled visitors.
-      </p>
+      <h2 class="heroHeading">Pay the Web forward</h2>
     </div>
-    <footer class="heroFooter">
-      <div class="contentWrapperSm">
-        <p>
-          Web Monetization is being proposed as a W3C standard at <a
-            href="https://github.com/WICG/webmonetization"
-            rel="noreferrer noopener"
-            target="_blank"
-          >
-            the Web Platform Incubator Community Group</a>.
-        </p>
-      </div>
-    </footer>
   </section>
+
   <section class="section">
-    <div class="contentWrapperLg twoColGrid">
-      <div class="gridItem">
-        <h2 class="heading3">Motivation</h2>
-        <p>
-          The ability to transfer money has been a long-standing omission
-          from the web platform. As a result, the web suffers from a flood
-          of advertising and broken business models. Web Monetization
-          provides an open, native, efficient, and automatic way to
-          compensate creators, pay for content, and support crucial web
-          infrastructure.
-        </p>
-      </div>
-      <div class="gridItem">
-        <h2 class="heading3">Why Now?</h2>
-        <p>
-          Until recently, there hasn't been an open, neutral and cost-efficient protocol for transferring money. <a href="https://interledger.org" rel="noreferrer noopener" target="_blank">Interledger</a> provides a simple, interoperable, and currency-agnostic method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes more Web Monetization use cases possible for the first time.
-        </p>
-      </div>
+    <div class="contentWrapperMd">
+      <p>Web Monetization is a web technology that enables websites to receive small payments from users/supporters as they interact with the website and its content. It provides a way for creators and website owners to be compensated for their work without relying solely on ads or subscriptions.</p>
+      <p>Notably, WM offers two unique features, small payments and no user interaction, which address several important scenarios currently unmet on the web.</p>
+      <p>Web Monetization is for consumers of web content who would like to support the creators they value, in other words, folks who would like to pay and be paid on the web.</p>
     </div>
   </section>
+
   <section class="section">
-    <div class="contentWrapperLg twoColGrid">
-      {data.wallets.length > 0 && (
-        <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">Web Monetization Wallets</h2>
-            <p>
-              These providers offer ILP-enabled wallets that you can use to
-              become Web Monetized:
-            </p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.wallets} />
-          </div>
-          <PrCta label="wallet" />
-        </div>
-      )}
-      {data.search.length > 0 && (
-        <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">
-              Web Monetization Enabled Search Engines
-            </h2>
-            <p>These search engines implement Web Monetization features:</p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.search} />
-          </div>
-          <PrCta label="search engine" />
-        </div>
-      )}
+    <div class="contentWrapperMd">
+      <h2 class="heading2">Key Concepts</h2>
+      <p>Web Monetization gives users more options and control over who to pay, if and when to pay, as well as how much to pay.</p>
+      <p>Being a web technology, folks who build on the web would be able to implement Web Monetization on websites via Javascript APIs. And since Web Monetization is an open standard, any interested party can also become a WM provider if they wish to.</p>
     </div>
   </section>
-  {data.providers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Providers</h2>
-          <p>These providers offer Web Monetization services:</p>
-        </div>
-        <div class="cards">
-          <CardList cards={data.providers} />
-        </div>
-        <PrCta label="provider" />
-      </div>
-    </section>
-  )}
-  {data.browsers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">
-            Web Monetization Supported Browsers
-          </h2>
-          <p>
-            These browsers implement Web Monetization natively or via an
-            extension:
-          </p>
-        </div>
-        <div class="cards">
-          <CardList cards={data.browsers} />
-        </div>
-        <PrCta label="browser" />
-      </div>
-    </section>
-  )}
-  {data.tools.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Tools</h2>
-          <p>These tools enable Web Monetization features:</p>
-        </div>
-        <div class="cards">
-          <CardList cards={data.tools} />
-        </div>
-        <PrCta label="tool" />
-      </div>
-    </section>
-  )}
-  <section class="section resources">
-    <div class="contentWrapperLg">
-      <h2 class="heading3">Resources</h2>
-      <div class="fourColGrid">
-        <div class="gridItem">
-          <h3 class="heading4">Documentation</h3>
-          <p>Resource on how to add Web Monetization to your site.</p>
-          <a href="/docs/">Read docs ›</a>
-        </div>
-        <div class="gridItem">
-          <h3 class="heading4">Specification</h3>
-          <p>The formal specification.</p>
-          <a href="/specification">Read specs ›</a>
-        </div>
-        <div class="gridItem">
-          <h3 class="heading4">
-            <img
-              src={`/img/awesome-badge.svg`}
-              alt=""
-              width="86"
-              height="20"
-            />
-          </h3>
-          <p>
-            An{" "}
-            <a
-              href="https://github.com/sindresorhus/awesome#readme"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              awesome
-            </a>{" "}
-            list of additional Web Monetization resources.
-          </p>
-          <a
-            href="https://github.com/thomasbnt/awesome-web-monetization"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            View list ›
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+
   <section class="section">
-    <div class="contentWrapperLg">
-      <div class="sectionHeader">
-        <h2 class="heading3">Contributors</h2>
-        <p>Thank you to all our contributors.</p>
-      </div>
-      {contributors.length > 0 && (
-        <ul class="contributors">
-          {contributors.map((contributor) => (
-            <li class="contributor">
-              <a href={contributor.html_url}>
-                <img alt={contributor.login} src={contributor.avatar_url} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div class="contentWrapperMd">
+      <img src="/img/wm-intro.svg" alt="Diagram of a mobile device displaying a website and a computer showing the source code of the website emphasing the <link> tag which implements Web Monetization" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="contentWrapperMd">
+      <h2 class="heading2">Getting Started</h2>
+      <p>Regardless of what you want to do with Web Monetization, the start of everything is getting a wallet address. A wallet address is a secure, unique URL that represents an Open Payments-enabled account.</p>
+      <p>Similar to how an email address is a publicly shareable ID for an email account, a wallet address is a publicly shareable payment address for the underlying account. You can get a digital wallet from a provider like <a href="https://fynbos.app/">Fynbos</a>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="contentWrapperMd">
+      <h2 class="heading2">Getting Started</h2>
+      
     </div>
   </section>
 </Base>
 
 <style>
-  .section {
-    border-block-end: 1px solid var(--sl-color-gray-2);
-  }
-/* Hero section styles */
-.hero {
-  color: var(--sl-color-white);
-  background-color: var(--sl-color-gray-6);
-  background-image: url("/img/wm-logo--grey.svg");
-  background-repeat: no-repeat;
-  background-position: 100% 60%;
-  background-size: 60vw;
-  text-align: center;
-  padding-block-end: 0;
-}
-
-@media screen and (min-aspect-ratio: 3 / 4) {
+  /* Hero section styles */
   .hero {
-    background-size: 40vmin;
-    background-position: 85%;
+    background-image: url("/img/bg-lines--light.svg"), url("/img/bg-tile.svg");
+    background-repeat: repeat-x, repeat;
+    background-size: 17em, 40%;
+    background-position: bottom, center;
+    min-height: 50vh;
+    display: flex;
+    margin-block-end: var(--space-xl);
+    padding-block: var(--space-3xl);
   }
-}
 
-.hero > div {
-  padding-block-end: var(--space-l);
-}
+  .heroContent {
+    margin: auto;
+    text-align: center;
+  }
+  
+  .heroLogo {
+    max-width: 12em;
+    margin-block-end: var(--space-l);
+  }
 
-.hero h1 {
-  font-weight: normal;
-}
+  .heroHeading {
+    font-size: var(--step-5);
+    line-height: 1.2;
+    color: var(--wm-accent);
+  }
 
-.hero p {
-  font-weight: normal;
-}
+  p {
+    font-size: var(--step-1);
+  }
 
-.hero.hero a {
-  color: var(--sl-color-white);
-}
-
-.heroTagline {
-  color: var(--sl-color-gray-2);
-}
-
-.heroIcon {
-  width: 120px;
-  margin-block-end: var(--space-s);
-  margin-inline: auto;
-}
-
-.heroFooter {
-  background-color: var(--sl-color-black);
-  padding: var(--space-m);
-}
-
-.heroFooter a {
-  color: var(--sl-color-white);
-  text-decoration: underline;
-}
-
-/* Card wrapper styles */
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-s);
-  margin-block-end: var(--space-s);
-  justify-content: center;
-}
-
-/* Resources section styles */
-.resources p {
-  margin-block-end: var(--space-s);
-}
-
-/* Contributor section styles */
-.contributors {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-xs);
-  padding: 0;
-}
-
-.contributor {
-  flex: 0 0 3em;
-}
-
-.contributor img {
-  border-radius: 50%;
-}
+  p:not(:last-of-type) {
+    margin-block-end: var(--space-s);
+  }
 </style>

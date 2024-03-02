@@ -4,14 +4,8 @@
   <div class="contentWrapperLg">
     <div class="linkWrapper">
       <ul>
-        <li><a href="/play">Web Monetization Playground</a></li>
         <li><a href="/link-tag">Link Element Generator</a></li>
         <li><a href="/prob-revshare">Probabilistic Revshare Generator</a></li>
-      </ul>
-      <ul>
-        <li><a href="https://www.iubenda.com/privacy-policy/95080147">Privacy policy</a></li>
-        <li><a href="https://www.iubenda.com/privacy-policy/95080147/cookie-policy">Cookie policy</a></li>
-        <li><a href="https://www.iubenda.com/terms-and-conditions/95080147">Terms & Conditions</a></li>
       </ul>
       <ul>
         <li><a href="https://github.com/WICG/webmonetization">Github</a></li>
@@ -32,40 +26,34 @@
 
 <style>
   footer {
-    padding: var(--space-s);
-    background-color: var(--sl-color-gray-5);
-    color: var(--sl-color-white);
-  }
+    padding: var(--space-xs);
+    padding-top: calc(var(--space-xs) + 3px);
+    font-size: var(--step--1);
+    text-align: center;
+    color: #333;
 
-  .linkWrapper {
-    display: flex;
-    gap: var(--space-l);
-    flex-direction: column;
-    padding-block-start:var(--space-s);
-    padding-block-end: var(--space-m);
-  }
-
-  @media screen and (min-width: 500px) {
-    .linkWrapper {
-      flex-direction: row;
-    }
+    background-image: url("/img/bg-lines.svg");
+    background-size: 100% 3px;
+    background-position: top;
+    background-repeat: no-repeat;
   }
 
   ul {
     list-style: none;
     padding: 0;
-  }
-
-  li {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-s);
     margin-block-end: var(--space-xs);
   }
 
   a {
-    color: var(--sl-color-white);
     text-decoration: none;
+    color: #333;
   }
 
   a:hover {
     text-decoration: underline;
+    color: var(--wm-accent);
   }
 </style>
