@@ -18,7 +18,7 @@ This example shows how to use probabilistic revenue sharing by including a scrip
 If you don't want to include a script on your page, you can use our [Probabilistic Revshare Generator](/prob-revshare). After entering your payment pointers and/or other Open Payments-enabled wallet addresses, along with weights, the generator will provide you with a monetization `<link>` element that contains a unique `href` URL hosted on `https://webmonetization.org/prob-revshare/`.
 :::
 
-The example below shows a list of weighted payment pointers. The easiest way to establish weight is to assign values that add up to 100.
+The example below shows a list of weighted [payment pointers](/docs/resources/glossary#payment-pointer). The easiest way to establish weight is to assign values that add up to 100.
 
 ```html
 <head>
@@ -62,7 +62,7 @@ The example below shows a list of weighted payment pointers. The easiest way to 
 
 First, we list the payment pointers and assign each one a weight.
 
-If the combined weights equal 100, then each weight represents the percentage at which each payment pointer will be chosen. For example, `$wallet.example/connie` has a 9.5% chance of being chosen, resulting in Connie's share approaching 9.5% of the page's total revenue as more web monetized visitors access the site.
+If the combined weights equal 100, then each weight represents the percentage at which each payment pointer will be chosen. For example, `$wallet.example.com/connie` has a 9.5% chance of being chosen, resulting in Connie's share approaching 9.5% of the page's total revenue as more web monetized visitors access the site.
 
 ```js
 const pointers = {
@@ -74,7 +74,7 @@ const pointers = {
 ```
 
 :::info
-Since this method bypasses the need to include a monetization `<link>` element, you can choose to use a payment pointer's shorthand form (e.g., `$wallet.example/alice`) rather than the endpoint URL that the payment pointer resolves to (e.g. `https://wallet.example/alice`).
+Since this method bypasses the need to include a monetization `<link>` element, you can choose to use a payment pointer's shorthand form (e.g., `$wallet.example.com/alice`) rather than the endpoint URL that the payment pointer resolves to (e.g. `https://wallet.example.com/alice`).
 :::
 
 Next, we define the function to cause payment pointers to be chosen based on weight.
