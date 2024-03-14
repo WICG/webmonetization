@@ -69,7 +69,7 @@ export default defineConfig({
               link: '/docs/support/payments',
             },
           ],
-        },   
+        },
         {
           label: 'Implement Web Monetization',
           collapsed: true,
@@ -103,11 +103,11 @@ export default defineConfig({
                 {
                   label: 'Web Monetization API',
                   collapsed: true,
-                  items: [ 
+                  items: [
                     {
                       label: 'Monetization interfaces',
                       link: '/docs/implement/wmapi-interfaces',
-                    },                
+                    },
                     {
                       label: 'Monetization events',
                       link: '/docs/implement/events',
@@ -166,7 +166,6 @@ export default defineConfig({
                 },
               ],
             },
-
             {
               label: 'Resources',
               collapsed: true,
