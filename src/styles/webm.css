@@ -1,25 +1,25 @@
 /* Custom styles for non-Starlight pages */
-/* @link https://utopia.fyi/type/calculator?c=320,16,1.333,1440,20,1.333,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.25,1440,19,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
 :root {
-  --step--2: clamp(0.5628rem, 0.5226rem + 0.201vi, 0.7035rem);
-  --step--1: clamp(0.7502rem, 0.6966rem + 0.2679vi, 0.9377rem);
-  --step-0: clamp(1rem, 0.9286rem + 0.3571vi, 1.25rem);
-  --step-1: clamp(1.333rem, 1.2378rem + 0.4761vi, 1.6663rem);
-  --step-2: clamp(1.7769rem, 1.65rem + 0.6346vi, 2.2211rem);
-  --step-3: clamp(2.3686rem, 2.1994rem + 0.8459vi, 2.9607rem);
-  --step-4: clamp(3.1573rem, 2.9318rem + 1.1276vi, 3.9467rem);
-  --step-5: clamp(4.2087rem, 3.9081rem + 1.5031vi, 5.2609rem);
-  --step-6: clamp(5.6102rem, 5.2095rem + 2.0037vi, 7.0128rem);
+  --step--2: clamp(0.64rem, 0.6057rem + 0.1714vi, 0.76rem);
+  --step--1: clamp(0.8rem, 0.7571rem + 0.2143vi, 0.95rem);
+  --step-0: clamp(1rem, 0.9464rem + 0.2679vi, 1.1875rem);
+  --step-1: clamp(1.25rem, 1.183rem + 0.3348vi, 1.4844rem);
+  --step-2: clamp(1.5625rem, 1.4788rem + 0.4185vi, 1.8555rem);
+  --step-3: clamp(1.9531rem, 1.8485rem + 0.5232vi, 2.3193rem);
+  --step-4: clamp(2.4414rem, 2.3106rem + 0.6539vi, 2.8992rem);
+  --step-5: clamp(3.0518rem, 2.8883rem + 0.8174vi, 3.624rem);
+  --step-6: clamp(3.8147rem, 3.6103rem + 1.0218vi, 4.53rem);
   --space-3xs: clamp(0.25rem, 0.2321rem + 0.0893vi, 0.3125rem);
   --space-2xs: clamp(0.5rem, 0.4643rem + 0.1786vi, 0.625rem);
-  --space-xs: clamp(0.75rem, 0.6964rem + 0.2679vi, 0.9375rem);
-  --space-s: clamp(1rem, 0.9286rem + 0.3571vi, 1.25rem);
-  --space-m: clamp(1.5rem, 1.3929rem + 0.5357vi, 1.875rem);
-  --space-l: clamp(2rem, 1.8571rem + 0.7143vi, 2.5rem);
-  --space-xl: clamp(3rem, 2.7857rem + 1.0714vi, 3.75rem);
-  --space-2xl: clamp(4rem, 3.7143rem + 1.4286vi, 5rem);
-  --space-3xl: clamp(6rem, 5.5714rem + 2.1429vi, 7.5rem);
+  --space-xs: clamp(0.75rem, 0.7143rem + 0.1786vi, 0.875rem);
+  --space-s: clamp(1rem, 0.9464rem + 0.2679vi, 1.1875rem);
+  --space-m: clamp(1.5rem, 1.4107rem + 0.4464vi, 1.8125rem);
+  --space-l: clamp(2rem, 1.8929rem + 0.5357vi, 2.375rem);
+  --space-xl: clamp(3rem, 2.8393rem + 0.8036vi, 3.5625rem);
+  --space-2xl: clamp(4rem, 3.7857rem + 1.0714vi, 4.75rem);
+  --space-3xl: clamp(6rem, 5.6786rem + 1.6071vi, 7.125rem);
   --border-radius: 6px;
 
   --wm-accent: hsl(180 100% 23%);
