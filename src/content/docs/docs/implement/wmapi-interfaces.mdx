@@ -1,0 +1,49 @@
+---
+title: Monetization interfaces
+---
+
+import { LinkOut } from "@interledger/docs-design-system";
+
+The Web Monetization API is made up of the following interfaces:
+* `MonetizationEvent`
+* `MonetizationCurrencyAmount`
+
+These interfaces expose the Web Monetization API and allow you to retrieve basic payment information.
+
+## `MonetizationEvent` interface
+
+`MonetizationEvent` DOM events provide information about **sent** payments. 
+
+<table>
+  <tbody>
+    <tr>
+      <td>`Event.bubbles`</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>`Event.cancelable`</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Event handler</td>
+      <td>[`onmonetization`](/docs/implement/onmonetization)</td>
+    </tr>
+  </tbody>
+</table>
+
+By listening for [`monetization`](/docs/implement/events) events, you can use the information returned by the following attributes to find out basic payment details.
+
+* `amountSent` - The amount sent, not received. The `MonetizationCurrencyAmount` constructs the value for this attribute.
+* `incomingPayment` - A URL representing an incoming payment that can be used to determine the amount received. 
+* `paymentPointer` - A URL representing the wallet address that an incoming payment request was sent to.
+
+Visit the [Monetization Events](/docs/implement/events) page for more information.
+
+## `MonetizationCurrencyAmount` interface
+
+The members within `MonetizationCurrencyAmount` are used to construct the `MonetizationEvent` interface's `amountSent`.
+
+* `currency` - An <LinkOut href="https://www.iban.com/currency-codes">ISO4217</LinkOut> well-formed 3-letter alphabetic code.
+* `value` - A <LinkOut href="https://www.w3.org/TR/payment-request/#dfn-valid-decimal-monetary-value">valid decimal monetary value</LinkOut> containing a monetary amount.
+
+The members of this interface map directly to the Payment Request API's <LinkOut href="https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">`PaymentCurrencyAmount`</LinkOut> dictionary.

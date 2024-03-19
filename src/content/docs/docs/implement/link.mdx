@@ -1,0 +1,80 @@
+---
+title: Monetization <Link> Element
+---
+
+import { LinkOut } from "@interledger/docs-design-system";
+import { Steps } from '@astrojs/starlight/components';
+
+To web monetize an HTML document, such as a web page:
+* The document must be secure and served over HTTPS
+* You must have a valid [wallet address](/docs/wallet/wallets)
+* The document must contain one or more monetization `<link>` elements
+
+## Monetization `<link>` element
+
+Web Monetization (WM) extends the capabilities of the standard HTML `<link>` element to add support for `rel="monetization"`.
+
+### Syntax
+
+```html
+<link rel="monetization" href="https://(walletaddress)">
+```
+
+* The `rel` attribute is always `monetization`
+* The `href` attribute equals your wallet address
+
+For example:
+
+```html
+<link rel="monetization" href="https://wallet.example.com/alice">
+```
+
+:::note
+The `href` attribute only supports a wallet address in URL format. If your wallet address begins with `$`, visit <LinkOut href='https://paymentpointers.org/'>paymentpointers.org</LinkOut> and enter your address into the _Payment Pointer_ field. Use the address that appears in the adjacent _URL_ field as your `href` value.
+:::
+
+### How it works
+
+<Steps>
+1. Your site visitor installs a <mark>WM agent</mark>, then visits your page.
+2. Their WM agent identifies your monetization `<link>` and parses the link to get your wallet address.
+3. Their WM agent requests authorization and instructions from your wallet to send you a payment.
+4. Their WM agent sends the authorization and instructions to the visitor's wallet.
+5. The visitor's wallet initiates an outgoing payment to your wallet. 
+</Steps>
+
+#### WM agents
+
+The `rel="monetization"` link type isn't a <LinkOut href="https://html.spec.whatwg.org/dev/links.html#linkTypes">standard</LinkOut> link type. Until it becomes a standard, web browsers will require help from WM agents (for example, WM extensions) to interpret the link type and facilitate payments.
+
+## Link placement
+
+The `monetization` link type is `body-ok`, meaning the `<link>` element is allowed in the `<head>` and/or `<body>`.
+
+## Multiple monetization links
+
+A single HTML document can contain multiple monetization `<link>` elements; however, the visitor's WM agent (e.g., extension) is responsible for handling this scenario. One WM agent could choose to split payments evenly between all links while another could choose to only send payments to the first link on the page.
+
+:::tip[Recommendation]
+The Interledger WM extension splits payments evenly between links, regardless of the payment being a tip or a stream. We recommend other WM agents follow this approach.
+:::
+
+## Monetizing media 
+
+The following elements can be web monetized by adding the monetization `<link>` element between the open and close tags.
+
+* `<video>`
+* `<audio>`
+* `<picture>`
+
+For example:
+
+```html
+<audio src="music.mp3">
+    <link rel=”monetization” href=”https://wallet.example.com/bob”>
+</audio>
+```
+
+<p><mark>If the site visitor is streaming a payment, then… (does the media element have to be active/playing?)</mark></p>
+
+<p><mark>If the site visitor tips, then… (will the wallet defined for media receive a tip if it's not active/playing?)</mark></p>

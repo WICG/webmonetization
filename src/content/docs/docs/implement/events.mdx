@@ -1,0 +1,134 @@
+---
+title: Monetization events
+---
+
+import { LinkOut } from "@interledger/docs-design-system";
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+A `monetization` event fires when an outgoing payment is successfully created by the visitor's wallet. Outgoing payment requests are sent by the <mark>Web Monetization agent</mark> to the visitor's wallet by calling the Open Payments <LinkOut href="https://openpayments.guide/apis/resource-server/operations/create-outgoing-payment/">`outgoing-payments`</LinkOut> endpoint. 
+
+Monetization events provide:
+* Information about the [amount and currency](#amountsent) of a sent payment
+* A URL representing an [incoming payment](#incomingpayment) that an be used to determine the amount received
+* The URL representing the [wallet address](#paymentpointer) that an incoming payment request was sent to
+
+The firing of a `monetization` event does not guarantee that any payments will follow or, if they do, how often or how large the payments will be. An event only means that the visitor's wallet is trying to make a payment. By adding an event listener to the monetization `<link>` element, you can determine the amount and currency of a payment that was sent, as well as verify that the payment was received. 
+
+## Event attributes
+
+### amountSent
+
+The `amountSent` attribute returns the amount (`value`) and currency code (`currency`) of the payment sent to you.
+
+* `value` - a <LinkOut href="https://www.w3.org/TR/payment-request/#dfn-valid-decimal-monetary-value">valid decimal monetary value</LinkOut> containing a monetary amount
+* `currency` - an <LinkOut href="https://www.iban.com/currency-codes">ISO4217</LinkOut> well-formed 3-letter alphabetic code
+
+```js title="Example"
+"value": "1.23"
+"currency": "USD"
+```
+
+:::note[Received amount]
+The `amountSent` is not necessarily the amount you'll receive. For example, if your wallet account is set up for GBP, but you are sent $5 USD, then exchange rates and currency conversion fees could affect the amount you receive.
+:::
+
+#### Example
+
+```js
+<link rel="monetization" href="https://wallet.example.com/alice">
+<script>
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', (event) => {
+    const {
+      amountSent: { value, currency },
+    } = event
+    console.log(`Browser sent ${currency} ${value}.`)
+  })
+</script>
+```
+
+### incomingPayment
+
+:::tip[Experimental]
+`incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>.
+:::
+
+The `incomingPayment` attribute allows you to verify you've received an incoming payment. The attribute returns a URL that represents the incoming payment at your wallet, similar to a receipt. By querying the URL, you can get the `receivedAmount`. 
+
+The example below shows a hypothetical verification method that makes a basic request to the URL and returns the results. For simplicity, it has no logic for authenticating the request.
+
+#### Example
+```js
+/** @type {MonetizationEvent} event */
+async function verifyPayment(event) {
+  // Legacy receivers don't support returning incoming payment URLs
+  if (!event.incomingPayment) {
+    throw new Error('No incoming payment URL')
+  }
+
+  const response = await fetch(event.incomingPayment, {
+    method: 'GET',
+    credentials: 'same-origin',
+    mode: 'same-origin',
+    cache: 'no-cache',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+
+  if (response.ok) {
+    const { receivedAmount } = JSON.parse(response.json())
+    const { amount, assetCode, assetScale } = receivedAmount
+    console.log(`Received ${assetCode}${amount / Math.pow(10, assetScale)}.`)
+  }
+}
+```
+
+:::note[Authentication]
+In many cases, requests to the `incomingPayment` URL must be authenticated because you're fetching sensitive details. Your wallet provider should communicate these specifics to you when setting up your account.
+:::
+
+### paymentPointer
+
+The `paymentPointer` attribute returns a URL that represents your (the recipient's) wallet address. 
+
+In most cases, the value will be the same as the wallet address within the monetization `<link>` tag. 
+
+#### Example
+
+```js
+<link rel="monetization" href="https://wallet.example.com/alice">
+<script>
+  const link = document.querySelector(“link[rel=‘monetization’]“);
+  link.addEventListener(“monetization”, (event) => {
+  console.log(event.paymentPointer)})
+</script>
+```
+
+## Use cases
+
+### amountSent
+
+When `amountSent` returns a non-zero amount, you can have your page programmatically respond by showing a thank you message to your visitor. In this use case, you aren't concerned with the amount you've received, just that an amount was sent.
+
+### incomingPayment
+
+Remove ads or provide access to exclusive content to a visitor after receiving a specific amount. 
+
+Query the URL returned by `incomingPayment` to track your `receivedAmount`. If needed, ensure the amount is increasing after each `monetization` event to verify that a new payment was received.
+
+### paymentPointer
+
+#### Vanity wallet address
+
+Let's say your wallet address is `https://wallet.example.com/GK9D420BL42M`. That's hard to remember, so your wallet provider let you set up a vanity wallet address, similar to an alias. You choose `https://wallet.example.com/bob`.
+
+You'll use `https://wallet.example.com/bob` as the `href` value in your monetization `<link>` element. By listening for `paymentPointer`, you'll get the URL of your wallet address, `https://wallet.example.com/GK9D420BL42M`.
+
+#### Probabilistic revenue sharing
+
+Probabilistic revenue sharing itself is more of an advanced use case. You can find out more about it [here](/docs/guides/set-up-probabilistic-revenue-sharing).
+
+When you use our Probabilistic Revshare Generator, you enter multiple wallet addresses and are given a monetization `<link>` element that contains a unique `href` URL. The URL is hosted on `https://webmonetization.org/api/revshare/pay/`. For example: `https://webmonetization.org/api/revshare/pay/W1siJGFsaWNlLndhbGxldC5jb20iLDUwLCIkYWxpY2Uud2FsbGV0LmNvbSJdXQ"`.
+
+You'll use the generated URL as the `href` value in your monetization `<link>` element, but that won't tell you which wallet address received a payment for a given page load. By listening for `paymentPointer`, you'll get the URL of the wallet address that received the payment.

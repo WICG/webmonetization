@@ -1,0 +1,31 @@
+---
+title: Overview
+---
+
+<p><mark>Needs overview, inline link to quick start guide</mark></p>
+
+## Benefits of Web Monetization
+
+As a web monetized site visitor, you:
+* Control whether to pay, how much to pay, and how often to pay
+* Pay in your preferred currency
+* Can stream a payment and/or tip without entering your billing details on each site
+*  Have a platform-free and subscription-free way to support your favorite web monetized sites
+
+## How it works
+
+As you browse, your WM agent (e.g., extension, browser) checks each page for a Monetization `<link>` element. The `<link>` element contains the recipient's wallet address ([learn more](/docs/implement/link/)).
+
+When found, your WM agent begins communicating with the recipient's wallet and your wallet to set up the payment. This all happens behind the scenes and requires no interaction from you ([learn more](/docs/support/payments)).
+
+### Streaming payments
+
+You're required to set the amount and frequency of your payments as part of enabling streaming payments in your WM agent. For example $0.01 USD every five minutes. Your WM agent will use these details when setting up a payment. Since the WM agent has these details before you start browsing, it doesn't have to ask for your permission or for payment details each time you land on a web monetized site.
+
+<p><mark>Content above needs a link to config doc when available.</mark></p>
+
+### One-time payments (tips)
+
+Your WM agent allows you to send a one-time payment, such as a tip, to web monetized sites. One-time payments are not automatic. You must specify the amount to send in your WM agent when you are on the site you want to pay.
+
+<p><mark>Content above needs a link to config doc when available.</mark></p>

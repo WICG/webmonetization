@@ -1,0 +1,41 @@
+---
+title: Web monetize a page
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+import { Steps } from '@astrojs/starlight/components';
+
+This page provides basic instructions for adding a Web Monetization (WM) `<link>` element to a web page.
+
+## Prerequisites
+
+- Web monetized pages must be secure and served over HTTPS.
+- You must have the wallet address assigned to you by your [wallet provider](/docs/wallet/wallets).
+
+## Monetize a page
+
+<Steps>
+
+1. Decide whether to add the `<link>` element to the `<head>` or `<body>` of your page.
+
+    :::note
+    * Head - 
+    * Body - 
+    :::
+
+2. Format the `<link>` element as shown below. The `rel` value is always `monetization`. The `href` value is your wallet address.
+
+    ```html title="Example link in head"
+    <html>
+      <head>
+        <title>My Site</title>
+        <link rel="monetization" href="https://wallet.example.com/alice">
+      </head>
+    </html>
+    ```
+
+    :::note[$wallet.example/alice]
+    If your wallet address begins with `$`, visit <LinkOut href='https://paymentpointers.org/'>paymentpointers.org</LinkOut> and enter your address into the _Payment Pointer_ field. Use the address that appears in the adjacent _URL_ field as your `href` value.
+    :::
+
+</Steps>

@@ -1,0 +1,31 @@
+---
+title: onmonetization event handler
+---
+
+import { LinkOut } from "@interledger/docs-design-system";
+
+The `onmonetization` attribute of the `GlobalEventHandlers` mixin is used to process `monetization` events sent to the `window` object. 
+
+`onmonetization` can be applied to any element and is used by the user agent, such as a web browser, to notify that some `<link>` element is [monetized](/docs/implement/link).
+
+In a tabbed browser, each tab is represented by its own `window` object.
+
+## Syntax
+
+```js
+window.onmonetization = functionRef
+```
+
+<p><mark>Check the following statement.</mark></p>
+
+`functionRef` is a reference to a function that will execute when a `monetization` event is sent to the `window`.
+
+## Example
+
+Show a visitor an alert box and message when a [Web Monetization event](/docs/implement/events) fires.
+
+```js
+window.onmonetization = function () {
+  alert('This page supports Web Monetization.')
+}
+```

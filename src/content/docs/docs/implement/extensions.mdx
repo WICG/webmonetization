@@ -1,0 +1,15 @@
+---
+title: Web Monetization extensions
+---
+
+<p>
+<mark>This page isn't in the sidenav yet.</mark>
+</p>
+
+Discuss:
+* WM doesn't have a UI, that's why extension/browser implementation is needed
+* Each time a visitor accesses a web page, the extension checks the page for the `<link>` element(s). When found, X starts a `monetization` session. The session is implemented through a series of HTTP requests between the extension, the visitor’s wallet, and the recipient’s wallet. Initially, the extension requests the WM receiver for payment details, then repeatedly asks the user’s wallet to send money to the receiver until the session is complete. After a single money transaction is completed, the browser fires a monetization event on the link.
+
+
+
+

@@ -1,0 +1,81 @@
+---
+title: Overview
+---
+
+<p><mark>Need overview</mark></p>
+
+## Benefits
+
+As a creator, Web Monetization provides you:
+* An additional revenue model
+* Passive income
+* The ability to accept payments in your preferred currency, regardless of your site visitor's chosen currency
+* A solution without app store, service provider, or platform fees
+* A solution you aren't locked into
+
+As a web developer, Web Monetization provides you with:
+* An easy-to-implement solution that's only one line of HTML
+* An alternative to integrating with a payment processing service and developing/maintaining payment forms and CMS tools
+
+## Unsupported functionality
+
+Web Monetization does **not** allow your site to initiate payments. The site visitor retains control over which sites they pay and how much they spend. As such, Web Monetization does not allow you to define the amount a visitor must pay.
+
+NOT FOR RETAIL/COMMERCE
+
+## How it works
+
+The Web Monetization API is designed as a browser API; however, it's not yet a standard. 
+
+Until major web browsers include the API in their builds, your site visitors must use a Web Monetization agent.
+
+
+
+
+A Web Monetization agent is the code within a browser that discovers web monetized pages, exposes the API, and calls the Open Payments APIs. 
+
+
+
+
+
+
+When a vendor natively builds Web Monetization into their browser, the browser (user agent) acts as the Web Monetization agent. Until then, a separate Web Monetization agent, such as a browser extension, is required.
+
+
+The Web Monetization API is made up of the `MonetizationEvent` and `MonetizationCurrencyAmount` [interfaces](/docs/implement/wmapi-interfaces), which allow you to retrieve basic payment information.
+
+
+<p><mark>Chromium</mark></p>
+
+The API sits between the Web Monetization agent and whatever is trying to talk to the WM agent from the page. The agent lives in the browser as an extension and populates the API interfaces.
+
+The API provides you with an interface for your site to talk to the WM agent. On the other side, it provides a separate interface for the WM provider to talk to the WM agent. Your website cannot access the provider interface.
+
+
+
+
+
+
+
+The WM provider talks to the user agent. The user agent instruments payments with the provider information. 
+
+
+
+
+
+## How it works
+
+
+Site visitor, who also has a wallet address
+Web Monetization agent, which could be a browser or a third-party extension
+
+
+
+
+
+
+1. Recognizing when an HTML document/page/site contains one or more Monetization `<link>` elements
+2. Extracting the wallet address defined within each `<link>` element
+3. <mark>Issuing a request to the wallet address to obtain authorization and instructions for sending a payment</mark>
+4. <mark>Communicating the information to the site visitor’s wallet</mark>
+

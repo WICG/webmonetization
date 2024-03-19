@@ -1,0 +1,31 @@
+---
+title: Get started
+---
+
+import { LinkOut } from "@interledger/docs-design-system";
+
+Before you implement Web Monetization (WM) on your site or send a payment to someone who has, you must have an account with a [digital wallet provider](/docs/wallet/wallets/) that supports WM payments.
+
+## Web monetization payments
+
+Digital wallet providers support WM payments by integrating with the <LinkOut href="https://openpayments.guide/">Open Payments standard</LinkOut>. Integrating with the standard takes a bit of work, so there's only a handful of providers who currently support WM payments.
+
+## Wallet addresses
+
+When a wallet provider integrates with the Open Payments standard, each payment account for each customer is assigned at least one wallet address.
+
+The term *wallet address* has existed for some time and is used in a number of different contexts. Here, it's a publicly shareable URL that looks something like this: `https://wallet.example.com/alice`. 
+
+A wallet address is required for sending and receiving WM payments.
+
+## Sending payments
+
+You must either install a <mark>[Web Monetization extension](/docs/support/get-started/) or configure [Chromium's About page](/docs/support/get-started/)</mark> to send WM payments. In either case, you're required to enter the wallet address assigned to you by your wallet provider. The underlying payment account is the account from which your payments are sent.
+
+## Receiving payments
+
+To web monetize a site, you must add a Monetization [`<link>`](/docs/implement/link) element to each page. The destination of the link (the `href`) must point to the wallet address assigned to you by your wallet provider. The underlying payment account is the account into which your payments are received.
+
+:::note[Underlying payment account]
+Your underlying payment account supports sending and receiving. If you're both a supporter and publisher of web monetized content, you can use the same wallet address in your <mark>extension/About page</mark> that you use in the Monetization `<link>` element on your website.
+:::

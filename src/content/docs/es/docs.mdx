@@ -28,7 +28,7 @@ Es un estándar propuesto que permite a los visitantes pagar una cantidad de su 
 - Obtención de autorización para iniciar el pago.
 - Recopilar detalles y emitir instrucciones para iniciar el proceso de movimiento de dinero.
 - Crear una sesión de pago.
-- Comunicar eventos de pago al sitio para que el sitio pueda responder opcionalmente. Por ejemplo, el sitio podría [eliminar anuncios](/docs/guides/remove-ads) o proporcionar [acceso a contenido exclusivo](/docs/guides/provide-exclusive-content) para los visitantes que pagan.
+- Comunicar eventos de pago al sitio para que el sitio pueda responder opcionalmente. Por ejemplo, el sitio podría [eliminar anuncios](/docs/resources/remove-ads) o proporcionar [acceso a contenido exclusivo](/docs/resources/provide-exclusive-content) para los visitantes que pagan.
 
 ### Flujo de alto nivel
 
@@ -39,7 +39,7 @@ La siguiente imagen muestra el flujo de monetización web en un nivel alto. Algu
   alt='Descripción general de alto nivel del flujo de monetización web'
 />
 
-1. Bob visita una [página web monetizada](/docs/guides/monetize-page). El elemento de monetización `<link>` es la forma en que el sitio web indica su aceptación de pagos al navegador.
+1. Bob visita una [página web monetizada](/docs/resources/monetize-page). El elemento de monetización `<link>` es la forma en que el sitio web indica su aceptación de pagos al navegador.
 2. El navegador de Bob, ya sea de forma nativa o mediante una extensión del navegador, analiza el elemento `<link>` para obtener <Tooltip content='Una URL que identifica una cuenta de Open Payments' client:load><a href="./resources/glossary#wallet-address">dirección de billetera</a></Tooltip> de Alice, la propietaria del sitio.
 3. El navegador/extensión de Bob envía solicitudes a la dirección de la billetera de Alice para obtener autorización e instrucciones para enviar un pago.
 4. Con la autorización concedida y las instrucciones de pago recibidas, el navegador/extensión envía solicitudes a la dirección de la billetera de Bob para iniciar el pago.
