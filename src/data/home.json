@@ -31,6 +31,13 @@
       "version": ["1.0", "2.0"]
     },
     {
+      "name": "react-monetize",
+      "image": "logo-react.svg",
+      "link": "https://github.com/guidovizoso/react-monetize",
+      "desc": "Helpers and hooks to speed up your integration with Web Monetization API",
+      "version": ["1.0", "2.0"]
+    },
+    {
       "name": "gridsome-plugin-monetization",
       "image": "logo-tool-gridsome.svg",
       "link": "https://github.com/Sergix/gridsome-plugin-monetization",
