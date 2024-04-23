@@ -30,6 +30,10 @@ export default defineConfig({
           label: 'Español',
           lang: 'es',
         },
+        fr: {
+          label: 'Français',
+          lang: 'fr',
+        }
       },
       components: {
         Header: './src/components/docs/Header.astro',
