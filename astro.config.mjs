@@ -186,6 +186,10 @@ export default defineConfig({
               link: '/docs/resources/op-wallets',
             },
             {
+              label: 'Get involved',
+              link: '/docs/resources/get-involved',
+            },
+            {
               label: 'External resources',
               collapsed: true,
               items: [
