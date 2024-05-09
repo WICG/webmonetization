@@ -33,7 +33,7 @@ export default defineConfig({
         fr: {
           label: 'Français',
           lang: 'fr',
-        }
+        },
       },
       components: {
         Header: './src/components/docs/Header.astro',
@@ -190,42 +190,33 @@ export default defineConfig({
               link: '/docs/resources/get-involved',
             },
             {
-              label: 'External resources',
-              collapsed: true,
-              items: [
-                {
-                  label: 'Interledger',
-                  link: 'https://interledger.org/',
-                  attrs: { target: '_blank' },
-                },
-                {
-                  label: 'Open Payments API',
-                  link: 'https://openpayments.guide/',
-                  attrs: { target: '_blank' },
-                },
-                {
-                  label: 'Payment Handler API',
-                  link: 'https://w3c.github.io/payment-handler/',
-                  attrs: { target: '_blank' },
-                },
-                {
-                  label: 'Payment pointers',
-                  link: 'https://paymentpointers.org/',
-                  attrs: { target: '_blank' },
-                },
-                {
-                  label: 'Payment Request API',
-                  link: 'https://www.w3.org/TR/payment-request/',
-                  attrs: { target: '_blank' },
-                },
-              ],
+              label: 'Interledger',
+              link: 'https://interledger.org/',
+              attrs: {
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                'data-icon': 'external',
+              },
+            },
+            {
+              label: 'Open Payments API',
+              link: 'https://openpayments.guide/',
+              attrs: {
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                'data-icon': 'external',
+              },
             },
           ],
         },
         {
           label: 'Specification',
           link: 'https://webmonetization.org/specification/',
-          attrs: { target: '_blank' },
+          attrs: {
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            'data-icon': 'external',
+          },
         },
       ],
     }),
