@@ -17,7 +17,7 @@ async function verifyPayment(event) {
 
   if (response.ok) {
     // The incoming payment was fetched successfully
-    const { receivedAmount } = JSON.parse(await response.json())
+    const { receivedAmount } = await response.json()
     const { amount, assetCode, assetScale } = receivedAmount
     console.log(`Received ${assetCode}${amount / 10 ** assetScale}.`)
     return receivedAmount
