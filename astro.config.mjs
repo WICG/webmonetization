@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import astroI18next from 'astro-i18next'
 import react from '@astrojs/react'
+import starlightLinksValidator from 'starlight-links-validator'
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +15,12 @@ export default defineConfig({
       customCss: [
         './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
         './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',
+      ],
+      plugins: [
+        starlightLinksValidator({
+          errorOnFallbackPages: false,
+          exclude: ['/prob-revshare'],
+        }),
       ],
       expressiveCode: {
         styleOverrides: {

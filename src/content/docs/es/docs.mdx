@@ -28,18 +28,18 @@ Es un estándar propuesto que permite a los visitantes pagar una cantidad de su 
 - Obtención de autorización para iniciar el pago.
 - Recopilar detalles y emitir instrucciones para iniciar el proceso de movimiento de dinero.
 - Crear una sesión de pago.
-- Comunicar eventos de pago al sitio para que el sitio pueda responder opcionalmente. Por ejemplo, el sitio podría [eliminar anuncios](/docs/guides/remove-ads) o proporcionar [acceso a contenido exclusivo](/docs/guides/provide-exclusive-content) para los visitantes que pagan.
+- Comunicar eventos de pago al sitio para que el sitio pueda responder opcionalmente. Por ejemplo, el sitio podría [eliminar anuncios](/es/docs/guides/remove-ads) o proporcionar [acceso a contenido exclusivo](/es/docs/guides/provide-exclusive-content) para los visitantes que pagan.
 
 ### Flujo de alto nivel
 
-La siguiente imagen muestra el flujo de monetización web en un nivel alto. Algunos pasos se han combinado o excluido. Se proporciona una explicación más detallada en la página [Flujo de monetización web](/docs/intro/web-monetization-flow).
+La siguiente imagen muestra el flujo de monetización web en un nivel alto. Algunos pasos se han combinado o excluido. Se proporciona una explicación más detallada en la página [Flujo de monetización web](/es/docs/intro/web-monetization-flow).
 
 <LargeImg
   src='/img/docs/diagram-wm-overview.png'
   alt='Descripción general de alto nivel del flujo de monetización web'
 />
 
-1. Bob visita una [página web monetizada](/docs/guides/monetize-page). El elemento de monetización `<link>` es la forma en que el sitio web indica su aceptación de pagos al navegador.
+1. Bob visita una [página web monetizada](/es/docs/guides/monetize-page). El elemento de monetización `<link>` es la forma en que el sitio web indica su aceptación de pagos al navegador.
 2. El navegador de Bob, ya sea de forma nativa o mediante una extensión del navegador, analiza el elemento `<link>` para obtener <Tooltip content='Una URL que identifica una cuenta de Open Payments' client:load><a href="./resources/glossary#wallet-address">dirección de billetera</a></Tooltip> de Alice, la propietaria del sitio.
 3. El navegador/extensión de Bob envía solicitudes a la dirección de la billetera de Alice para obtener autorización e instrucciones para enviar un pago.
 4. Con la autorización concedida y las instrucciones de pago recibidas, el navegador/extensión envía solicitudes a la dirección de la billetera de Bob para iniciar el pago.
@@ -64,5 +64,5 @@ La monetización web se comunica con las cuentas emisoras y receptoras para obte
 En junio de 2023 se publicó una nueva versión de la especificación de Monetización web. Los usuarios de la versión anterior deben tener en cuenta lo siguiente:
 
 - La versión anterior solo utilizaba el Protocolo de configuración de pago simple (SPSP) de Interledger. La nueva versión utiliza <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut>.
-- El elemento `<meta>` está obsoleto en favor del elemento [`<link>`](./references/html-link-rel-monetization/).
+- El elemento `<meta>` está obsoleto en favor del elemento [`<link>`](/es/docs/references/html-link-rel-monetization/).
 - El elemento `<link>` no admite la forma abreviada de un puntero de pago (por ejemplo, `$wallet.example/alice`). Debes utilizar la URL completa a la que se resuelve el puntero de pago (por ejemplo, `https://wallet.example/alice`). Si necesitas ayuda para convertir un indicador de pago de una abreviatura a su URL equivalente, ingresa su indicador de pago en el campo de entrada en <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. En la mayoría de los casos, puedes simplemente reemplazar `$` por `https://`.
