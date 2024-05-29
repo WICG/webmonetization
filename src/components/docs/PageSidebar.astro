@@ -1,0 +1,18 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/PageSidebar.astro';
+
+const removeOverview = [
+ 'docs/resources/glossary',
+]
+const noOverview = removeOverview.includes(Astro.props.slug);
+console.log(noOverview);
+const toc = noOverview
+	? {
+			...Astro.props.toc,
+			items: Astro.props.toc?.items.slice(1),
+	  } 
+	: Astro.props.toc;
+---
+
+<Default {...Astro.props} {toc}><slot /></Default>

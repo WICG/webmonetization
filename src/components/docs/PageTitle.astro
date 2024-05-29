@@ -1,0 +1,24 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+const { labels, lang, lastUpdated } = Astro.props;
+---
+
+<Default {...Astro.props}><slot /></Default>
+{
+	lastUpdated && (
+		<p class="last-updated">
+			{labels['page.lastUpdated']}{' '}
+			<time datetime={lastUpdated.toISOString()}>
+				{lastUpdated.toLocaleDateString(lang, { dateStyle: 'medium', timeZone: 'UTC' })}
+			</time>
+		</p>
+	)
+}
+
+<style>
+  .last-updated {
+    margin-block-start: var(--space-2xs);
+    font-style: italic;
+  }
+</style>
