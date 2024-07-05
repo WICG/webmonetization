@@ -22,7 +22,7 @@
   --space-3xl: clamp(6rem, 5.6786rem + 1.6071vi, 7.125rem);
   --border-radius: 6px;
 
-  --wm-accent: hsl(180 100% 23%);
+  --wm-accent: oklch(51.54% 0.088 194.769);
   --sl-color-white: hsl(0, 0%, 100%);
   --sl-color-gray-1: hsl(231, 23%, 94%);
   --sl-color-gray-2: hsl(228, 8%, 77%);
