@@ -1,0 +1,37 @@
+---
+title: How payments work
+---
+
+## Digital wallets
+
+To receive (and send) Web Monetization payments, you must have an account with a compatible digital wallet. Not all digital wallets support Web Monetization payments.
+
+A digital wallet is the entity that supplies you with the account you’ll use to receive payments. Withdrawing your funds typically requires you to link a card or bank account to your wallet. 
+
+Since wallet providers are a type of financial entity, they are regulated within the countries they operate. One type of regulation, known as KYC (Know Your Customer), requires such entities to collect personal information and verify your identity before allowing you to open an account.
+
+## Web Monetization-compatible digital wallets
+
+You must have an account with a [compatible digital wallet](/resources/wallets) to receive Web Monetization payments. Be sure to select a wallet that’s available in your region and supports your preferred currency.
+
+Your wallet provider will assign your account a unique ID called either a *payment pointer* or a *wallet address*. This ID is kind of like an account name. It’s a publicly shareable ID that you will need when adding Web Monetization to your content. 
+
+The format of the ID depends on whether your wallet provider is using payment pointers or wallet addresses.
+
+| ID name | Example format |
+| ------- | -------------- |
+| Payment pointer | `$wallet.example.com/alice` |
+| Wallet address | `https://wallet.example.com/alice` |
+
+
+## Web monetized content
+
+Once you have your payment pointer or wallet address, you're ready to add the Web Monetization `<link>` element to each page of your site you want to monetize. Visit the [quick start guide](/experiment/quick-start) for more information.
+
+When you include the `<link>` element on a page, you're telling your visitors' browsers that you can accept Web Monetization payments. Visitors who have installed and configured the [Web Monetization extension](/support/use-extension) can then choose to send you payments in the amount and frequency of their choosing.
+
+## Web Monetization payments
+
+The Web Monetization extension acts like a messaging service. When a web monetized visitor lands on your page, their extension identifies the `<link>` element and parses your payment URL. 
+
+Then, a component within the extension--called the Web Monetization agent--issues a `GET` request to your payment URL. In return, it receives information it needs to begin setting up a payment. The Web Monetization agent passes the information, along with the visitor's payment instructions, to the visitor's wallet provider. The visitor's wallet provider then sends the payment to your wallet provider who credits your account.  

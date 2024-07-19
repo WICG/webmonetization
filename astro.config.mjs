@@ -33,14 +33,6 @@ export default defineConfig({
           label: 'English',
           lang: 'en',
         },
-        es: {
-          label: 'Español',
-          lang: 'es',
-        },
-        fr: {
-          label: 'Français',
-          lang: 'fr',
-        },
       },
       components: {
         Header: './src/components/docs/Header.astro',
@@ -51,128 +43,109 @@ export default defineConfig({
       sidebar: [
         {
           label: 'Intro to Web Monetization',
+          link: '/docs/'
+        },
+        {
+          label: 'Support web monetized content',
           collapsed: true,
           items: [
             {
               label: 'Overview',
-              link: '/docs/',
+              link: '/support/overview',
             },
             {
-              label: 'Sending payments',
-              link: '/docs/intro/sending-payments',
+              label: 'Quick start guide',
+              link: '/support/quick-start',
             },
             {
-              label: 'Receiving payments',
-              link: '/docs/intro/receiving-payments',
+              label: 'Use the extension',
+              link: '/support/use-extension',
             },
             {
-              label: 'Web Monetization flow',
-              link: '/docs/intro/web-monetization-flow',
+              label: 'How payments work',
+              link: '/support/how-payments-work',
             },
           ],
         },
         {
-          label: 'References',
+          label: 'Experiment with Web Monetization',
           collapsed: true,
           items: [
             {
-              label: 'Web Monetization API',
+              label: 'Overview',
+              link: '/experiment/overview',
+            },
+            {
+              label: 'Quick start guide',
+              link: '/experiment/quick-start',
+            },
+            {
+              label: 'How payments work',
+              link: '/experiment/how-payments-work',
+            },
+            {
+              label: 'Thing',
+              collapsed: true,
               items: [
                 {
-                  label: 'HTML <link> rel=monetization',
-                  link: '/docs/references/html-link-rel-monetization',
-                },
-                {
-                  label: 'Monetization events',
+                  label: 'APIs',
                   collapsed: true,
                   items: [
                     {
-                      label: 'MonetizationEvent',
-                      link: '/docs/references/monetizationevent',
+                      label: 'HTML DOM API',
+                      collapsed: false,
+                      items: [
+                        {
+                          label: 'Monetization <link> element',
+                          link: '/experiment/link-element',
+                        },
+                        {
+                          label: 'onmonetization event handler',
+                          link: '/experiment/onmonetization',
+                        },
+                      ],
                     },
                     {
-                      label: 'amountSent',
-                      link: '/docs/references/attributes/amountsent',
+                      label: 'Web Monetization API',
+                      collapsed: false,
+                      items: [ 
+                        {
+                          label: 'Monetization interfaces',
+                          link: '/experiment/wmapi-interfaces',
+                        },                
+                        {
+                          label: 'Monetization events',
+                          link: '/experiment/events',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  label: 'HTTP Headers',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'Content Security Policy (CSP)',
+                      link: '/experiment/csp',
                     },
                     {
-                      label: 'incomingPayment',
-                      link: '/docs/references/attributes/incomingpayment',
-                    },
-                    {
-                      label: 'paymentPointer',
-                      link: '/docs/references/attributes/paymentpointer',
-                    },
-                    {
-                      label: 'amount',
-                      link: '/docs/references/attributes/amount',
-                      badge: { text: 'deprecated', variant: 'danger' },
-                    },
-                    {
-                      label: 'assetCode',
-                      link: '/docs/references/attributes/assetcode',
-                      badge: { text: 'deprecated', variant: 'danger' },
-                    },
-                    {
-                      label: 'assetScale',
-                      link: '/docs/references/attributes/assetscale',
-                      badge: { text: 'deprecated', variant: 'danger' },
-                    },
-                    {
-                      label: 'receipt',
-                      link: '/docs/references/attributes/receipt',
-                      badge: { text: 'deprecated', variant: 'danger' },
+                      label: 'Permissions Policy',
+                      link: '/experiment/permissions-policy',
                     },
                   ],
                 },
               ],
             },
             {
-              label: 'HTTP headers',
+              label: 'Guides',
+              collapsed: true,
               items: [
                 {
-                  label: 'Content-Security-Policy: monetization-src',
-                  link: '/docs/references/csp-monetization-src',
-                },
-                {
-                  label: 'Permissions-Policy: monetization',
-                  link: '/docs/references/permissions-policy-monetization',
+                  label: 'Test Web Monetization',
+                  link: '/experiment/guides/test-web-monetization',
                 },
               ],
-            },
-            {
-              label: 'Events',
-              items: [
-                {
-                  label: 'GlobalEventHandlers: onmonetization',
-                  link: '/docs/references/onmonetization',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: 'Guides',
-          collapsed: true,
-          items: [
-            {
-              label: 'Add Web Monetization to a page',
-              link: '/docs/guides/monetize-page',
-            },
-            {
-              label: 'Remove ads',
-              link: '/docs/guides/remove-ads',
-            },
-            {
-              label: 'Provide exclusive content',
-              link: '/docs/guides/provide-exclusive-content',
-            },
-            {
-              label: 'Set up probabilistic revenue sharing',
-              link: '/docs/guides/set-up-probabilistic-revenue-sharing',
-            },
-            {
-              label: 'Add a streaming payments counter',
-              link: '/docs/guides/add-a-streaming-payments-counter',
             },
           ],
         },
@@ -181,49 +154,43 @@ export default defineConfig({
           collapsed: true,
           items: [
             {
+              label: 'Compatible digital wallets',
+              link: '/resources/wallets',
+            },
+            {
               label: 'Glossary',
-              link: '/docs/resources/glossary',
+              link: '/resources/glossary',
             },
             {
-              label: 'Libraries',
-              link: '/docs/resources/libraries',
-            },
-            {
-              label: 'Open Payments-enabled wallets',
-              link: '/docs/resources/op-wallets',
-            },
-            {
-              label: 'Get involved',
-              link: '/docs/resources/get-involved',
+              label: 'Specification',
+              link: 'https://webmonetization.org/specification/',
+              attrs: { target: '_blank' },
             },
             {
               label: 'Interledger',
-              link: 'https://interledger.org/',
-              attrs: {
-                target: '_blank',
-                rel: 'noopener noreferrer',
-                'data-icon': 'external',
-              },
+              link: 'https://interledger.org',
+              attrs: { target: '_blank' },
             },
             {
-              label: 'Open Payments API',
-              link: 'https://openpayments.guide/',
-              attrs: {
-                target: '_blank',
-                rel: 'noopener noreferrer',
-                'data-icon': 'external',
-              },
+              label: 'Open Payments',
+              link: 'https://openpayments.dev/',
+              attrs: { target: '_blank' },
+            },
+            {
+              label: 'Community',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Get involved',
+                  link: '/resources/community/get-involved'
+                },
+                {
+                  label: 'Libraries',
+                  link: '/resources/community/libraries'
+                },
+              ],
             },
           ],
-        },
-        {
-          label: 'Specification',
-          link: 'https://webmonetization.org/specification/',
-          attrs: {
-            target: '_blank',
-            rel: 'noopener noreferrer',
-            'data-icon': 'external',
-          },
         },
       ],
     }),
