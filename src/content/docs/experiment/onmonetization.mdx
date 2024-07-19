@@ -1,0 +1,50 @@
+---
+title: onmonetization event handler
+---
+
+import { LinkOut, Hidden } from "@interledger/docs-design-system";
+import Specification from '/src/components/docs/Specification.astro'
+import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
+import data from '/src/data/browser-compat-data/onmonetization.json'
+
+By creating an `onmonetization` event handler, you can allow your web page to programmatically respond to `monetization` events.
+
+## `window.onmonetization` 
+
+The `onmonetization` event handler is used by the [Web Monetization agent](/docs/resources/glossary#wm-agent) to process `monetization` events sent to the browser `window` (the event target). 
+
+The `onmonetization` property can be applied to any element and is used by the browser to notify that some `<link>` element is [monetized](/docs/implement/link). 
+
+In a tabbed browser, each tab is represented by its own `window` object.
+
+## Syntax
+
+```js 
+window.onmonetization=functionRef
+```
+
+Where `functionRef` is the event handler function to execute when a `monetization` event fires.
+
+## Example 
+
+Show a message to site visitors to let them know that the page supports Web Monetization. 
+
+```js
+<script type="text/javascript">
+window.onmonetization = function () {
+  alert('This page supports Web Monetization.')
+  }
+</script>
+```
+
+<Hidden>
+
+// ## Browser compatibility
+
+<BrowserCompat json={data} />
+
+</Hidden>
+
+## Specifications
+
+<Specification anchor='onmonetization-event-handler' />
