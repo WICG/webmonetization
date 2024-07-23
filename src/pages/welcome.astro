@@ -383,12 +383,17 @@ changeLanguage('en')
 
       const DEFAULT_ERROR_MESSAGE = 'Something went wrong. Please try reconnecting your wallet.'
 
-      // TODO(@raducristianpopa): Versioning - extension
+      /**
+       * Includes versioning for future proof if needed.
+       */
       const ERROR_MESSAGES = {
-        continuation_failed: 'An error occurred. Please try reconnecting the wallet.',
-        hash_failed: 'An error occurred. Please try reconnecting the wallet.',
+        continuation_failed(_version: string): string {
+          return 'An error occurred. Please try reconnecting the wallet.'
+        },
+        hash_failed(_version: string): string {
+          return 'An error occurred. Please try reconnecting the wallet.'
+        }
       }
-
       type ErrorCode = keyof typeof ERROR_MESSAGES
 
       const searchParams = new URL(document.location.href).searchParams
@@ -398,6 +403,7 @@ changeLanguage('en')
       const heroHeading = document.querySelector('.heroHeading') as HTMLHeadingElement
       const result = searchParams.get('result') as SuccessParam
       const errorCode = searchParams.get('errorCode') as ErrorCode
+      const version = searchParams.get('version') ?? 'default'
 
       switch (result) {
         case SuccessParam.SUCCESS:
@@ -415,7 +421,7 @@ changeLanguage('en')
           heroInfo.textContent = 'You can now close this tab.'
           heroHeading.textContent = 'Something went wrong. Please try again.'
           if (errorCode in ERROR_MESSAGES) {
-            heroHeading.textContent = ERROR_MESSAGES[errorCode]
+            heroHeading.textContent = ERROR_MESSAGES[errorCode](version)
           } else {
             heroHeading.textContent = DEFAULT_ERROR_MESSAGE
           }
