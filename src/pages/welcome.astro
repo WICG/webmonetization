@@ -392,14 +392,10 @@ changeLanguage('en')
       type ErrorCode = keyof typeof ERROR_MESSAGES
 
       const searchParams = new URL(document.location.href).searchParams
-      const heroContent = document.querySelector(
-        '.heroContent'
-      ) as HTMLDivElement
+      const heroContent = document.querySelector('.heroContent') as HTMLDivElement
       const heroInfo = heroContent.querySelector('p') as HTMLParagraphElement
       const heroLogo = document.querySelector('.heroLogo') as HTMLImageElement
-      const heroHeading = document.querySelector(
-        '.heroHeading'
-      ) as HTMLHeadingElement
+      const heroHeading = document.querySelector('.heroHeading') as HTMLHeadingElement
       const result = searchParams.get('result') as SuccessParam
       const errorCode = searchParams.get('errorCode') as ErrorCode
 
