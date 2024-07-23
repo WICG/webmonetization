@@ -86,7 +86,7 @@ export default defineConfig({
               link: '/experiment/how-payments-work',
             },
             {
-              label: 'Thing',
+              label: 'Developer tools',
               collapsed: true,
               items: [
                 {
@@ -137,10 +137,23 @@ export default defineConfig({
                     },
                   ],
                 },
+                {
+                  label: 'Testing',
+                  link: '/experiment/guides/test-web-monetization',
+                },
+                {
+                  label: 'Libraries',
+                  link: '/resources/community/libraries',
+                },
+                {
+                  label: 'Web Monetization Specification',
+                  link: 'https://webmonetization.org/specification/',
+                  attrs: { target: '_blank' },
+                },
               ],
             },
             {
-              label: 'Guides',
+              label: 'Developer guides',
               collapsed: true,
               items: [
                 {
@@ -164,21 +177,6 @@ export default defineConfig({
               link: '/resources/glossary',
             },
             {
-              label: 'Specification',
-              link: 'https://webmonetization.org/specification/',
-              attrs: { target: '_blank' },
-            },
-            {
-              label: 'Interledger',
-              link: 'https://interledger.org',
-              attrs: { target: '_blank' },
-            },
-            {
-              label: 'Open Payments',
-              link: 'https://openpayments.dev/',
-              attrs: { target: '_blank' },
-            },
-            {
               label: 'Community',
               collapsed: true,
               items: [
@@ -187,8 +185,8 @@ export default defineConfig({
                   link: '/resources/community/get-involved',
                 },
                 {
-                  label: 'Libraries',
-                  link: '/resources/community/libraries',
+                  label: 'Recommended web monetized sites',
+                  link: '/resources/recommended-sites',
                 },
               ],
             },

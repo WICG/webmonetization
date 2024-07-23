@@ -10,7 +10,7 @@ import amountSent from '/src/data/browser-compat-data/amountSent.json'
 import incomingPayment from '/src/data/browser-compat-data/incomingPayment.json'
 import paymentPointer from '/src/data/browser-compat-data/paymentPointer.json'
 
-One responsibility of the [Web Monetization agent](/docs/resources/glossary#wm-agent) is to instrument payments. The agent does this by calling the Open Payments APIs. Calls are made to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/">`/incoming-payments`</LinkOut> endpoint at the recipient's digital wallet provider and to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/">`/outgoing-payments`</LinkOut> endpoint at the site visitor's digital wallet provider.
+One responsibility of the Web Monetization agent is to instrument payments. The agent does this by calling the Open Payments APIs. Calls are made to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/">`/incoming-payments`</LinkOut> endpoint at the recipient's digital wallet provider and to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/">`/outgoing-payments`</LinkOut> endpoint at the site visitor's digital wallet provider.
 
 Each time the Web Monetization agent receives a `201 outgoing payment created` response from the site visitor's digital wallet provider, the Web Monetization agent fires a `monetization` event on the browser window. 
 
@@ -143,7 +143,7 @@ async function verifyPayment(event) {
 The `paymentPointer` property returns the URL that represents the wallet address that the payment was sent to. In most cases, the value will be the same as the wallet address within the monetization `<link>` tag.
 
 :::note[Property name]
-Earlier versions of the Web Monetization specification only used Interledger's Simple Payment Setup Protocol (SPSP). As such, [payment pointers](/docs/resources/glossary#payment-pointer) were the only type of supported [wallet address](/docs/resources/glossary#wallet-address). This is why the property was named `paymentPointer`. 
+Earlier versions of the Web Monetization specification only used Interledger's Simple Payment Setup Protocol (SPSP). As such, payment pointers were the only type of supported wallet address. This is why the property was named `paymentPointer`. 
 
 As of v3, all wallet addresses associated with Open Payments-enabled accounts are returned by this property. GitHub issue <LinkOut href="https://github.com/WICG/webmonetization/issues/439">439</LinkOut> is opened to discuss changing the property name.
 :::
@@ -209,7 +209,7 @@ https://wallet.example.com/GK9D420BL42M
 
 #### Probabilistic revenue sharing
 
-For this use case, let's assume you are familiar with probabilistic revenue sharing. [Probabilistic revenue sharing](/docs/guides/set-up-probabilistic-revenue-sharing) itself is an advanced use case. 
+For this use case, let's assume you are familiar with probabilistic revenue sharing. <mark>Probabilistic revenue sharing</mark> itself is an advanced use case. 
 
 When you use our Probabilistic Revshare Generator, you enter multiple wallet addresses and assign each address a weight. When finished, the generator creates a unique URL.
 

@@ -8,7 +8,7 @@ import { Steps } from '@astrojs/starlight/components';
 ## Prerequisites
 
 - You must have a wallet address or payment pointer assigned to you by your [wallet provider](/resources/wallets). 
-- Your page must be secure and served over HTTPS.
+- Each page you want to monetize must served over HTTPS.
 
 ## Step 1 - Get your payment URL 
 
@@ -33,10 +33,18 @@ Enter your payment pointer into the _Payment Pointer_ field. Take note of the UR
 
 <Steps>
 
-1. Copy the code block below and replace the `href` value with your wallet address or your payment pointer in URL format.
+1. Create your Web Monetization link tag using the format below. Add your payment URL as the `href` value.
+
+    ```http
+    <link rel="monetization" href="your_url">
+    ```
+
+    For example:
+
     ```http
     <link rel="monetization" href="https://wallet.example.com/alice">
     ```
+
 2. Add the `<link>` to the `<head>` section of your page.
     ```html title="Example"
     <html>
@@ -50,4 +58,4 @@ Enter your payment pointer into the _Payment Pointer_ field. Take note of the UR
 
 Congratulations! Your page is now web monetized. Add the `<link>` to any page of your site you want to monetize. 
 
-For more information about how you can use monetization links, visit the [Monetization link element](/experiment/link-element) page.
+For more information, visit the [Monetization link element](/experiment/link-element) page.

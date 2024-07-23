@@ -11,7 +11,7 @@ The Web Monetization API consists of two interfaces: `MonetizationEvent` and `Mo
 
 ## `MonetizationEvent`
 
-The `MonetizationEvent` interface describes the [`monetization`](/docs/implement/events) event that fires when an outgoing payment is successfully created.  
+The `MonetizationEvent` interface describes the [`monetization`](/experiment/events) event that fires when an outgoing payment is successfully created.  
 
 <table>
   <tr>
@@ -24,17 +24,17 @@ The `MonetizationEvent` interface describes the [`monetization`](/docs/implement
   </tr>
   <tr>
     <th>Event handler property</th>
-    <td>[onmonetization](/docs/implement/onmonetization)</td>
+    <td>[onmonetization](/experiment/onmonetization)</td>
   </tr>
 </table>
 
 By listening for `monetization` events, you can use the information returned by the following properties to verify payments.
 
-* [amountSent](/docs/implement/events#amountsent) - The currency amount and code of the sent payment. Contains two variables, `value` and `currency`, constructed by the `MonetizationCurrencyAmount` interface.
-* [incomingPayment](/docs/implement/events#incomingpayment) - A URL you can use to determine if a payment was received and, if so, the amount.
-* [paymentPointer](/docs/implement/events#paymentpointer) - The URL of the wallet address that the incoming payment request was sent to.
+* [amountSent](/experiment/events#amountsent) - The currency amount and code of the sent payment. Contains two variables, `value` and `currency`, constructed by the `MonetizationCurrencyAmount` interface.
+* [incomingPayment](/experiment/events#incomingpayment) - A URL you can use to determine if a payment was received and, if so, the amount.
+* [paymentPointer](/experiment/events#paymentpointer) - The URL of the wallet address that the incoming payment request was sent to.
 
-Visit the [Monetization Events](/docs/implement/events) page for more information.
+Visit the [Monetization Events](/experiment/events) page for more information.
 
 <Hidden>
 

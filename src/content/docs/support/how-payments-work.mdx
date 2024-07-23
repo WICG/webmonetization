@@ -6,19 +6,19 @@ import { CodeBlock,Tooltip,LinkOut } from "@interledger/docs-design-system";
 
 ## Digital wallets
 
-To send (and receive) Web Monetization payments, you must have an account with a compatible digital wallet. Not all digital wallets support Web Monetization payments. 
+To send (and receive) payments, you must have an account with a compatible digital wallet. Not all digital wallets support sending payments with Web Monetization. 
 
-A digital wallet is the entity that supplies you with the account you'll use to make  payments. Funding your account typically requires you to link a card or bank to your wallet. 
+A digital wallet is the entity that supplies you with the financial account you'll use to make payments. Funding your account typically requires you to link a card or bank to your wallet. 
 
 Since wallet providers are a type of financial entity, they are regulated within the countries they operate. One type of regulation, known as KYC (Know Your Customer), requires such entities to collect personal information and verify your identity before allowing you to open an account.
 
 ## Web Monetization-compatible digital wallets
 
-You must have an account with a [compatible digital wallet](/resources/wallets) to send Web Monetization payments. Be sure to select a wallet that's available in your region and supports your preferred currency. 
+You must have an account with a [compatible digital wallet](/resources/wallets) to send payments. Be sure to select a wallet that's available in your region and supports your preferred currency. 
 
 Your wallet provider will assign your account a unique ID called either a *payment pointer* or a *wallet address*. This ID is kind of like an account name. It's a publicly shareable ID that you will need when linking your Web Monetization extension to your wallet. 
 
-The format of the ID depends on whether your wallet provider is using payment pointers or wallet addresses. 
+The format of the ID depends on whether your wallet provider assigned you a payment pointer or a wallet address. 
 
 | ID name | Example format |
 | ------- | -------------- |
@@ -27,11 +27,7 @@ The format of the ID depends on whether your wallet provider is using payment po
 
 ## Web Monetization extension
 
-The [Web Monetization extension](/support/use-extension) for Google Chrome is what you'll use to enable and configure Web Monetization payments. 
-
-:::tip[Browser support]
-The extension is only available on Google Chrome. More browsers will be supported in the future.
-:::
+<mark>You'll use the [Web Monetization extension](/support/use-extension) to enable and configure payments.</mark>
 
 :::danger
 Need the extension doc before I can tighten up the rest of this section. Pieces to include:
@@ -42,6 +38,6 @@ Need the extension doc before I can tighten up the rest of this section. Pieces 
 * A bit about how it works. As you browse, the extension checks each page for WM. When found, the extension grabs the wallet address/payment pointer from the page's code to set up a payment based on your settings. Don't go too much into payments. That's the next section.
 :::
 
-## Web Monetization payments
+## Payments
 
 Your Web Monetization extension acts like a messaging service. It requests information from the recipient's wallet provider, then passes the information, along with your payment instructions, to your wallet provider. It's now up to your wallet provider to deduct the payment from your account and send it to the recipient. 
