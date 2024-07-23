@@ -407,17 +407,17 @@ changeLanguage('en')
 
       switch (result) {
         case SuccessParam.SUCCESS:
-          heroLogo.src = 'success.svg'
+          heroLogo.src = '/img/success.svg'
           heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Your wallet was successfully connected to the extension.'
           break
         case SuccessParam.REJECTED:
-          heroLogo.src = 'warning.svg'
+          heroLogo.src = '/img/warning.svg'
           heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Your request was successfully rejected.'
           break
         case SuccessParam.ERROR:
-          heroLogo.src = 'error.svg'
+          heroLogo.src = '/img/error.svg'
           heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Something went wrong. Please try again.'
           if (errorCode in ERROR_MESSAGES) {
@@ -427,7 +427,7 @@ changeLanguage('en')
           }
           break
         case SuccessParam.INVALID:
-          heroLogo.src = 'error.svg'
+          heroLogo.src = '/img/error.svg'
           heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Something went wrong with your request. Please try reconnecting your wallet.'
           break
