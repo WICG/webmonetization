@@ -287,7 +287,7 @@ changeLanguage('en')
         font-size: var(--step-4);
         line-height: 1.2;
         color: var(--wm-accent);
-        width: 30ch;
+        width: 25ch;
       }
 
       .heroContent p {
@@ -383,10 +383,10 @@ changeLanguage('en')
 
       const DEFAULT_ERROR_MESSAGE = 'Something went wrong. Please try reconnecting your wallet.'
 
-      // TODO(@raducristianpopa): PASS EXTENSION VERSION
+      // TODO(@raducristianpopa): Versioning - extension
       const ERROR_MESSAGES = {
-        continuation_failed: 'An error occurred, preventing the extension from completing the request. Please try reconnecting your wallet.',
-        hash_failed: 'An error occurred, preventing the extension from completing the request. Please try reconnecting your wallet.',
+        continuation_failed: 'An error occurred. Please try reconnecting the wallet.',
+        hash_failed: 'An error occurred. Please try reconnecting the wallet.',
       }
 
       type ErrorCode = keyof typeof ERROR_MESSAGES
