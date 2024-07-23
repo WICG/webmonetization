@@ -84,9 +84,19 @@ export default defineConfig({
               link: '/experiment/how-payments-work',
             },
             {
-              label: 'Developer tools',
+              label: 'Developer corner',
               collapsed: true,
               items: [
+                {
+                  label: 'Guides',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'Test Web Monetization',
+                      link: '/experiment/guides/test-web-monetization',
+                    },
+                  ],
+                },
                 {
                   label: 'APIs',
                   collapsed: true,
@@ -141,22 +151,12 @@ export default defineConfig({
                 },
                 {
                   label: 'Libraries',
-                  link: '/resources/community/libraries',
+                  link: '/experiment/libraries',
                 },
                 {
                   label: 'Web Monetization Specification',
                   link: 'https://webmonetization.org/specification/',
                   attrs: { target: '_blank' },
-                },
-              ],
-            },
-            {
-              label: 'Developer guides',
-              collapsed: true,
-              items: [
-                {
-                  label: 'Test Web Monetization',
-                  link: '/experiment/guides/test-web-monetization',
                 },
               ],
             },

@@ -2,20 +2,87 @@
 title: Glossary
 ---
 
-Digital wallet/wallet
+## D
 
-Web Monetization agent
+<hr/>
 
-Test network/test wallet
+### Digital wallet, digital wallet provider
 
-Wallet address
+TBD
 
-Payment pointer
+## I
 
-Web Monetization service provider
+<hr/>
 
-Interledger Foundation (ILF)
+### Interledger Foundation (ILF)
 
-Interledger protocol (ILP)
+TBD
 
-Open payments
+### Interledger protocol (ILP)
+
+TBD
+
+## O
+
+<hr/>
+
+### Open Payments
+
+TBD
+
+## P
+
+<hr/>
+
+### Payment pointer
+
+TBD
+
+## T
+
+<hr/>
+
+### Test network
+
+TBD
+
+### Test wallet 
+
+TBD
+
+## W
+
+<hr/>
+
+### Wallet
+
+TBD
+
+### Wallet address
+
+TBD
+
+### Web Monetization agent
+
+A non-user facing component of a Web Monetization extension or web browser. The purpose of the Web Monetization agent is to:
+
+* Recognize when an HTML document contains one or more monetization `<link>` elements
+* Parse the payment pointer or wallet address in a monetization `<link>`
+* Extend the HTML DOM API so that `monetization` is a valid link type
+* Instrument payments by calling the Open Payments APIs
+* Fire `monetization` events after an outgoing payment is created
+* Process `monetization` events sent to the browser window via the `onmonetization` event handler
+* Enable CSP `monetization-src` and Permissions Policy `monetization` directives
+
+### Web Monetization service provider
+
+An entity that has:
+* Full control over the financial account from which payments will be made
+* Ownership of the financial account's associated payment pointer or wallet address
+* The ability to grant authorization for payments to be sent from the account
+
+If you, as an individual, meet the criteria above, then you are acting as your own Web Monetization service provider.
+
+In some jurisdictions, it may be impossible to obtain your own Web Monetization payment account. If you're unable to obtain your own account for this or any other reason, you may be able to sign up with a third-party Web Monetization service provider. 
+
+A third-party Web Monetization service provider is an entity that meets the above criteria and with whom you enter into a service agreement. In return, the service provider authorizes you to send payments from their account. The service provider retains full control over the account and can grant/revoke your authorization to send from the account at any time.
