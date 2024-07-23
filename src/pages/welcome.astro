@@ -70,9 +70,9 @@ changeLanguage('en')
         <ul id='navMenu' class='nav-menu collapsed'>
           <li class='nav-link__docs'><a href='/docs/'>Documentation</a></li>
           <li class='nav-link__docs'>
-            <a href='https://community.interledger.org/t/webmonetization'
-              >Community</a
-            >
+            <a href='https://community.interledger.org/t/webmonetization'>
+              Community
+            </a>
           </li>
           <li class='nav-link__github'>
             <a href='https://github.com/WICG/webmonetization/'>
@@ -80,8 +80,7 @@ changeLanguage('en')
                 src='/img/icon-github.svg'
                 alt='Link to Github repository'
                 />
-            </a
-            >
+            </a>
           </li>
         </ul>
       </nav>
@@ -382,6 +381,7 @@ changeLanguage('en')
       }
 
       const DEFAULT_ERROR_MESSAGE = 'Something went wrong. Please try reconnecting your wallet.'
+      const CLOSE_TAB_MESSAGE = 'You can now close this tab.'
 
       /**
        * Includes versioning for future proof if needed.
@@ -408,17 +408,17 @@ changeLanguage('en')
       switch (result) {
         case SuccessParam.SUCCESS:
           heroLogo.src = 'success.svg'
-          heroInfo.textContent = 'You can now close this tab.'
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Your wallet was successfully connected to the extension.'
           break
         case SuccessParam.REJECTED:
           heroLogo.src = 'warning.svg'
-          heroInfo.textContent = 'You can now close this tab.'
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Your request was successfully rejected.'
           break
         case SuccessParam.ERROR:
           heroLogo.src = 'error.svg'
-          heroInfo.textContent = 'You can now close this tab.'
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Something went wrong. Please try again.'
           if (errorCode in ERROR_MESSAGES) {
             heroHeading.textContent = ERROR_MESSAGES[errorCode](version)
@@ -428,7 +428,7 @@ changeLanguage('en')
           break
         case SuccessParam.INVALID:
           heroLogo.src = 'error.svg'
-          heroInfo.textContent = 'You can now close this tab.'
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Something went wrong with your request. Please try reconnecting your wallet.'
           break
         default:
