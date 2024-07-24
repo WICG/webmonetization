@@ -383,21 +383,56 @@ changeLanguage('en')
         INVALID = 'grant_invalid',
       }
 
-      const DEFAULT_ERROR_MESSAGE = 'Something went wrong. Please try reconnecting your wallet.'
+      type Intent = 'connect' | 'funds'
+
+      const DEFAULT_ERROR_MESSAGE = function (_version: string, intent: Intent) {
+        if(intent === 'funds') {
+          return 'Something went wrong. Please try adding funds again.'
+        }
+        return 'Something went wrong. Please try reconnecting your wallet.'
+      }
       const CLOSE_TAB_MESSAGE = 'You may safely close this tab.'
 
       /**
        * Includes versioning for future proof if needed.
        */
+      type ErrorCode = keyof typeof ERROR_MESSAGES
+
       const ERROR_MESSAGES = {
-        continuation_failed(_version: string): string {
+        continuation_failed(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return 'An error occured. Please try adding funds again.'
+          }
           return 'An error occurred. Please try reconnecting the wallet.'
         },
-        hash_failed(_version: string): string {
+        hash_failed(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return 'An error occured. Please try adding funds again.'
+          }
           return 'An error occurred. Please try reconnecting the wallet.'
         },
       }
-      type ErrorCode = keyof typeof ERROR_MESSAGES
+
+      const MESSAGES = {
+        grant_success(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return '[IN PROGRESS] You have successfully added more funds.'
+          }
+          return 'Your wallet is now successfully connected to the extension.'
+        },
+        grant_rejected(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return '[IN PROGRESS] Your request to add funds was successfully rejected.'
+          }
+          return 'Your request was successfully rejected.'
+        },
+        grant_invalid(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return '[IN PROGRESS] Something went wrong with your request. Please try adding funds again.'
+          }
+          return 'Something went wrong with your request. Please try reconnecting your wallet.'
+        }
+      }
 
       const searchParams = new URL(document.location.href).searchParams
       const heroContent = document.querySelector('.heroContent') as HTMLDivElement
@@ -407,6 +442,7 @@ changeLanguage('en')
       const result = searchParams.get('result') as SuccessParam
       const errorCode = searchParams.get('errorCode') as ErrorCode
       const version = searchParams.get('version') ?? 'default'
+      const intent = (searchParams.get('intent') ?? 'connect') as Intent
 
       function capitalize(str: string) {
         return str.charAt(0).toUpperCase() + str.slice(1)
@@ -422,27 +458,26 @@ changeLanguage('en')
         case SuccessParam.SUCCESS:
           updateImage('success')
           heroInfo.textContent = CLOSE_TAB_MESSAGE
-          heroHeading.textContent = 'Your wallet is now successfully connected to the extension.'
+          heroHeading.textContent = MESSAGES[SuccessParam.SUCCESS](version, intent)
           break
         case SuccessParam.REJECTED:
           updateImage('warning')
           heroInfo.textContent = CLOSE_TAB_MESSAGE
-          heroHeading.textContent = 'Your request was successfully rejected.'
-          break
-        case SuccessParam.ERROR:
-          updateImage('error')
-          heroInfo.textContent = CLOSE_TAB_MESSAGE
-          heroHeading.textContent = 'Something went wrong. Please try again.'
-          if (errorCode in ERROR_MESSAGES) {
-            heroHeading.textContent = ERROR_MESSAGES[errorCode](version)
-          } else {
-            heroHeading.textContent = DEFAULT_ERROR_MESSAGE
-          }
+          heroHeading.textContent = MESSAGES[SuccessParam.REJECTED](version, intent)
           break
         case SuccessParam.INVALID:
           updateImage('error')
           heroInfo.textContent = CLOSE_TAB_MESSAGE
-          heroHeading.textContent = 'Something went wrong with your request. Please try reconnecting your wallet.'
+          heroHeading.textContent = MESSAGES[SuccessParam.INVALID](version, intent)
+          break
+        case SuccessParam.ERROR:
+          updateImage('error')
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
+          if (errorCode in ERROR_MESSAGES) {
+            heroHeading.textContent = ERROR_MESSAGES[errorCode](version, intent)
+          } else {
+            heroHeading.textContent = DEFAULT_ERROR_MESSAGE(version, intent)
+          }
           break
         default:
           break
