@@ -76,10 +76,7 @@ changeLanguage('en')
           </li>
           <li class='nav-link__github'>
             <a href='https://github.com/WICG/webmonetization/'>
-              <img
-                src='/img/icon-github.svg'
-                alt='Link to Github repository'
-                />
+              <img src='/img/icon-github.svg' alt='Link to Github repository' />
             </a>
           </li>
         </ul>
@@ -89,6 +86,8 @@ changeLanguage('en')
       <section class='hero'>
         <div class='heroContent'>
           <img
+            width={160}
+            height={160}
             alt='Loading'
             class='heroLogo'
             src='/img/wm-logo--animated.svg'
@@ -277,6 +276,10 @@ changeLanguage('en')
         text-align: center;
       }
 
+      .heroContent img {
+        display: none;
+      }
+
       .heroLogo {
         max-width: 10em;
         margin-block-end: var(--space-s);
@@ -381,7 +384,7 @@ changeLanguage('en')
       }
 
       const DEFAULT_ERROR_MESSAGE = 'Something went wrong. Please try reconnecting your wallet.'
-      const CLOSE_TAB_MESSAGE = 'You can now close this tab.'
+      const CLOSE_TAB_MESSAGE = 'You may safely close this tab.'
 
       /**
        * Includes versioning for future proof if needed.
@@ -392,7 +395,7 @@ changeLanguage('en')
         },
         hash_failed(_version: string): string {
           return 'An error occurred. Please try reconnecting the wallet.'
-        }
+        },
       }
       type ErrorCode = keyof typeof ERROR_MESSAGES
 
@@ -405,19 +408,29 @@ changeLanguage('en')
       const errorCode = searchParams.get('errorCode') as ErrorCode
       const version = searchParams.get('version') ?? 'default'
 
+      function capitalize(str: string) {
+        return str.charAt(0).toUpperCase() + str.slice(1)
+      }
+
+      function updateImage(type: 'success' | 'error' | 'warning') {
+        heroLogo.src = `/img/${type}.svg`
+        heroLogo.style.display = 'inline-block'
+        heroLogo.alt = capitalize(type)
+      }
+
       switch (result) {
         case SuccessParam.SUCCESS:
-          heroLogo.src = '/img/success.svg'
+          updateImage('success')
           heroInfo.textContent = CLOSE_TAB_MESSAGE
-          heroHeading.textContent = 'Your wallet was successfully connected to the extension.'
+          heroHeading.textContent = 'Your wallet is now successfully connected to the extension.'
           break
         case SuccessParam.REJECTED:
-          heroLogo.src = '/img/warning.svg'
+          updateImage('warning')
           heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Your request was successfully rejected.'
           break
         case SuccessParam.ERROR:
-          heroLogo.src = '/img/error.svg'
+          updateImage('error')
           heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Something went wrong. Please try again.'
           if (errorCode in ERROR_MESSAGES) {
@@ -427,7 +440,7 @@ changeLanguage('en')
           }
           break
         case SuccessParam.INVALID:
-          heroLogo.src = '/img/error.svg'
+          updateImage('error')
           heroInfo.textContent = CLOSE_TAB_MESSAGE
           heroHeading.textContent = 'Something went wrong with your request. Please try reconnecting your wallet.'
           break
