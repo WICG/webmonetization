@@ -37,7 +37,7 @@ export function ShareInput({
           }}
         />
         <p className={styles.error}>
-          {!validatePointer(pointer) && 'Invalid payment pointer.'}
+          {!validatePointer(pointer) && 'Invalid wallet address or payment pointer.'}
         </p>
       </td>
 
