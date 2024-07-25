@@ -7,7 +7,7 @@ export function ShareInputContainer({ children }) {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Pointer</th>
+            <th>Wallet Address/Payment Pointer</th>
             <th>Weight</th>
             <th>Percent</th>
             <th></th>

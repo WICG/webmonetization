@@ -94,6 +94,22 @@ export default defineConfig({
                   collapsed: true,
                   items: [
                     {
+                      label: 'Show content to paying visitors',
+                      link: '/experiment/guides/show-content',
+                    },
+                    {
+                      label: 'Remove content for paying visitors',
+                      link: '/experiment/guides/remove-content',
+                    },
+                    {
+                      label: 'Show visitors how much they\'ve contributed',
+                      link: '/experiment/guides/contribution-counter',
+                    },
+                    {
+                      label: 'Set up probabilistic revenue sharing',
+                      link: '/experiment/guides/revenue-sharing',
+                    },
+                    {
                       label: 'Test Web Monetization',
                       link: '/experiment/guides/test-web-monetization',
                     },

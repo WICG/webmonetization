@@ -16,7 +16,7 @@ export function SharesLinkTag() {
   }
 
   if (!pointer) {
-    return <p>Enter shares with valid payment pointers and weights.</p>
+    return <p>Enter shares with valid wallet addresses and/or payment pointers and weights.</p>
   }
 
   return (
