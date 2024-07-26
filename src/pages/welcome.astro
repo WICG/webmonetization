@@ -422,13 +422,13 @@ changeLanguage('en')
         },
         grant_rejected(_version: string, intent: Intent): string {
           if(intent === 'funds') {
-            return '[IN PROGRESS] Your request to add funds was successfully rejected.'
+            return 'No funds were added.'
           }
           return 'Your request was successfully rejected.'
         },
         grant_invalid(_version: string, intent: Intent): string {
           if(intent === 'funds') {
-            return '[IN PROGRESS] Something went wrong with your request. Please try adding funds again.'
+            return 'Something went wrong with your request. Please try adding funds again.'
           }
           return 'Something went wrong with your request. Please try reconnecting your wallet.'
         }
