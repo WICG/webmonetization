@@ -164,10 +164,6 @@ export default defineConfig({
                   ],
                 },
                 {
-                  label: 'Testing',
-                  link: '/experiment/guides/test-web-monetization',
-                },
-                {
                   label: 'Libraries',
                   link: '/experiment/libraries',
                 },
