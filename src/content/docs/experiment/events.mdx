@@ -16,8 +16,6 @@ Calls are made to the <LinkOut href="https://openpayments.dev/apis/resource-serv
 
 Each time the Web Monetization agent receives a `201 outgoing payment created` response from the site visitor's wallet provider, the Web Monetization agent fires a `monetization` event on the browser window. 
 
-<p><mark>this happens for streaming and one time payments</mark></p>
-
 ### Specifications
 
 <Specification anchor='events' />
@@ -217,9 +215,9 @@ https://wallet.example.com/GK9D420BL42M
 
 #### Probabilistic revenue sharing
 
-For this use case, let's assume you are familiar with probabilistic revenue sharing. <mark>Probabilistic revenue sharing</mark> itself is an advanced use case. 
+For this use case, let's assume you are familiar with [probabilistic revenue sharing](/experiment/guides/revenue-sharing), which is iteself an advanced use case.
 
-When you use our Probabilistic Revshare Generator, you enter multiple payment pointers and/or wallet addresses and assign each one a weight. When finished, the generator creates a unique URL.
+When you use our <LinkOut href="https://webmonetization.org/prob-revshare/">Probabilistic Revshare Generator</LinkOut>, you enter multiple payment pointers and/or wallet addresses and assign each one a weight. When finished, the generator creates a unique URL.
 
 For example, after entering five wallet addresses and weights, the generator creates:
 

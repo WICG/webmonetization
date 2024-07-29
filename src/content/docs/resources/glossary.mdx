@@ -2,13 +2,7 @@
 title: Glossary
 ---
 
-## D
-
-<hr/>
-
-### Digital wallet, digital wallet provider
-
-TBD
+import { LinkOut } from "@interledger/docs-design-system";
 
 ## I
 
@@ -18,9 +12,9 @@ TBD
 
 TBD
 
-### Interledger protocol (ILP)
+### Interledger Protocol (ILP) stack
 
-TBD
+The Interledger Protocol stack is a collection of request/response protocols where the requests and responses are ILP packets.
 
 ## O
 
@@ -36,7 +30,11 @@ TBD
 
 ### Payment pointer
 
-TBD
+A payment pointer is a secure, unique identifier that's assigned to payment accounts that use Interledger's Simple Payment Setup Protocol (SPSP) to exchange payment information. The shorthand for a payment pointer starts with `$`. For example, `$wallet.example.com/alice`.
+
+As a supporter of web monetized content, you'll enter your payment pointer into your Web Monetization extension to link the extension to your account.
+
+To web monetize your own content, you must convert your payment pointer to its URL equivalent because the monetization `<link>` element does not support the `$` in the `href` value. Enter your payment pointer into the field provided on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut> to get your URL.
 
 ## T
 
@@ -54,13 +52,19 @@ TBD
 
 <hr/>
 
-### Wallet
+### Wallet provider
 
-TBD
+A digital wallet provider, such as Fynbos or GateHub, that can assign your payment account a payment pointer or a wallet address to enable you to send and/or receive payments using Web Monetization.
+
+Wallet providers are regulated entities within the countries they operate. 
 
 ### Wallet address
 
-TBD
+A wallet address is a secure, unique identifier that's assigned to payment accounts that use Open Payments to exchange payment information. All wallet addresses are URLs (e.g., `https://wallet.example.com/alice`); however, not all URLs are wallet addresses. 
+
+As a supporter of web monetized content, you'll enter your wallet address into your Web Monetization extension to link the extension to your account.
+
+To web monetize your own content, you'll add your wallet address as the `href` value within the monetization `<link>` element.
 
 ### Web Monetization agent
 

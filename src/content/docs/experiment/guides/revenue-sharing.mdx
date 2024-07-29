@@ -7,11 +7,13 @@ import Disclaimer from "/src/partials/glitch.mdx";
 
 Probabilistic revenue sharing is the sharing of revenue between multiple wallet addresses/payment pointers based on the probability of one of the addresses being chosen over the others on each page load.
 
-The monetization `<link>` element only supports one URL as the `href` value. Your page can contain multiple link elements; however, there's no guarantee that your visitor's Web Monetization extension can process payments to multiple addresses at one time.
+Probabilistic revenue sharing is a way for a page's total revenue to be split between multiple addresses. The monetization `<link>` element itself only supports one URL as the `href` value. Your page can contain multiple link elements; however, there's no guarantee that your visitor's Web Monetization extension can process payments to multiple addresses at one time.
 
-Probabilistic revenue sharing is a way for a page's total revenue to be split between multiple addresses without using multiple monetization links. It works by choosing from a list of predefined wallet addresses/payment pointers in URL format each time a web monetized visitor loads your page. Payments are sent to the chosen address until the visitor reloads or closes the page. 
+It works by choosing from a list of predefined wallet addresses/payment pointers in URL format each time a web monetized visitor loads your page. Payments are sent to the chosen address until the visitor reloads or closes the page. 
 
-The chance of and address being chosen is based on its assigned weight. For example, if Alice’s address has a weight of 50 (out of 100), then her  address has a 50% chance of being chosen. The laws of probability state that Alice’s share of the page’s total revenue will approach 50% as more web monetized visitors access the page.
+The chance of and address being chosen is based on its assigned weight. For example, if Alice’s address has a weight of 50 (out of 100), then her address has a 50% chance of being chosen. The laws of probability state that Alice’s share of the page’s total revenue will approach 50% as more web monetized visitors access the page.
+
+This guide presents two ways in which to set up probabilistic revenue sharing. The first is by adding a [script](#example-dev-scenario-use-a-script) to your page. If you'd prefer to not use a script, you can use our [generator](#example-dev-scenario-use-the-probabilistic-revshare-generator).
 
 ## User experience
 
