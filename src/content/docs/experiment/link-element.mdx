@@ -10,6 +10,8 @@ import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/link.json'
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 
+From a creator/developer perspective, the monetization `<link>` element is one of the two key pieces to adding web monetization to a page. The second piece is your wallet address/payment pointer.
+
 ## Prerequisites
 
 To web monetize an HTML document, such as a web page:
@@ -117,7 +119,7 @@ The purpose of the Web Monetization agent is to recognize when a page is web mon
 
 * Extending the HTML DOM API so that `monetization` is a valid link type
 * Processing the monetization link or links within an HTML page
-* Instrumenting payments by calling the <mark>Open Payments APIs</mark>
+* Instrumenting payments by calling the Open Payments APIs, which are APIs implemented by wallet providers
 * Firing [`monetization`](/experiment/events) events after an outgoing payment is created
 * Processing `monetization` events sent to the browser window via the [`onmonetization`](/experiment/onmonetization) event handler
 * Enabling the CSP [`monetization-src`](/experiment/csp) and Permissions Policy [`monetization`](/experiment/permissions-policy) directives

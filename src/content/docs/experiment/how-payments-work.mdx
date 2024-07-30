@@ -2,6 +2,9 @@
 title: How payments work
 ---
 
+import { LinkOut, CodeBlock } from "@interledger/docs-design-system";
+import { Badge, Tabs, TabItem } from '@astrojs/starlight/components';
+
 ## Digital wallets
 
 To receive (and send) payments, you must have an account with a compatible digital wallet. Not all digital wallets support receiving payments with Web Monetization.
@@ -38,4 +41,91 @@ When you include the `<link>` element on a page, you're telling your visitors' b
 
 Your visitors' Web Monetization extension acts like a messaging service. When they land on your page, their extension identifies the `<link>` element and parses your payment URL. 
 
-Then, a component within the extension--called the [Web Monetization agent](/experiment/link-element#web-monetization-agent)--issues a `GET` request to your payment URL. In return, it receives the information it needs to begin setting up a payment. The Web Monetization agent passes the information, along with the visitor's payment instructions, to the visitor's wallet provider. The visitor's wallet provider then sends the payment to your wallet provider who credits your account.
+Then, a component within the extension--called the [Web Monetization agent](/experiment/link-element#web-monetization-agent)--issues a <Badge text="GET" variant="success" size="small" /> request to your payment URL. In return, it receives the information it needs to begin setting up a payment. The Web Monetization agent passes the information, along with the visitor's payment instructions, to the visitor's wallet provider. The visitor's wallet provider then sends the payment to your wallet provider who credits your account.
+
+### A deeper dive into payments
+
+For a wallet to be compatible with Web Monetization, the provider must integrate with the <LinkOut href="https://openpayments.dev">Open Payments standard</LinkOut>. 
+
+The Web Monetization agent first issues a <Badge text="GET" variant="note" size="small" /> request to the URL in your monetization `<link>` tag. The response contains information the Web Monetization agent needs for its next request.
+
+<Tabs>
+    <TabItem label="Request">
+        ```http
+        GET /alice HTTP/1.1
+        Accept: application/json
+        Host: wallet.example
+        ```
+    </TabItem>
+        <TabItem label="Response">
+            ```http
+            HTTP/1.1 200 Success
+            Content-Type: application/json
+
+            {
+            "id":"https://wallet.example/alice",
+            "assetCode":"USD",
+            "assetScale":2,
+            "authServer":"https://wallet.example/auth",
+            "resourceServer":"https://wallet.example/resource"
+            }
+            ```
+    </TabItem>
+</Tabs>
+
+Next, the Web Monetization agent issues a <Badge text="POST" variant="success" size="small" /> request to the `authServer` URL it received in the prior response. The purpose of this request is to get permission, in the form of an access token, for an incoming payment resource to be created on your payment account.
+
+<Tabs>
+    <TabItem label="Request">
+        ```http
+        POST /auth/ HTTP/1.1
+        Accept: application/json
+        Content-Type: application/json
+        Host: wallet.example
+        Content-Length: 218
+
+        {
+        "access_token":{
+            "access":[
+            {
+                "type":"incoming-payment",
+                "actions":[
+                "create",
+                "read"
+                ],
+                "identifier":"https://wallet.example/alice"
+            }
+            ]
+        },
+        "interact":{
+            "finish":{
+            "method":"redirect"
+        }
+        },
+        "client":"https://anotherwallet.example/bob"
+        }
+        ```
+    </TabItem>
+        <TabItem label="Response">
+            ```http
+            {
+                "access_token":{
+                    "value":"OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
+                    "manage":"https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
+                    "access":[
+                    {
+                        "type":"incoming-payment",
+                        "actions":[
+                        "create",
+                        "read"
+                        ],
+                        "identifier":"https://wallet.example/alice"
+                    }
+                    ]
+                }
+            }
+            ```
+    </TabItem>
+</Tabs>
+
+Start at step 4: https://webmonetization.org/docs/intro/web-monetization-flow/#4---send-incoming-payment-request-to-wallet-address-receiving-account
