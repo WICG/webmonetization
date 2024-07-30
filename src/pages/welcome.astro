@@ -1,0 +1,488 @@
+---
+// TODO(@raducristianpopa): Right now the welcome page is using the new design
+// and everything is placed in this file to avoid merge conflicts. After the new
+// design is merged, update the page - remove duplicates and use
+// already existing components/layouts.
+
+import i18next, { t, changeLanguage } from 'i18next'
+import { HeadHrefLangs } from 'astro-i18next/components'
+import '/node_modules/@interledger/docs-design-system/src/styles/teal-theme.css'
+import '../styles/webm.css'
+
+interface Props {
+  title: string
+  description: string
+  image?: string
+}
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const {
+  title = t('site.title'),
+  description = t('site.description'),
+  image = '/img/wm-social.png',
+} = Astro.props
+changeLanguage('en')
+---
+
+<html lang={i18next.language} data-theme='light'>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width,initial-scale=1' />
+  <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+  <meta name='generator' content={Astro.generator} />
+
+  <link rel='canonical' href={canonicalURL} />
+
+  <title>{title}</title>
+  <meta name='title' content={title} />
+  <meta name='description' content={description} />
+
+  <meta property='og:type' content='website' />
+  <meta property='og:url' content={Astro.url} />
+  <meta property='og:title' content={title} />
+  <meta property='og:description' content={description} />
+  <meta property='og:image' content={new URL(image, Astro.url)} />
+
+  <meta property='twitter:card' content='summary_large_image' />
+  <meta property='twitter:url' content={Astro.url} />
+  <meta property='twitter:title' content={title} />
+  <meta property='twitter:description' content={description} />
+  <meta property='twitter:image' content={new URL(image, Astro.url)} />
+
+  <HeadHrefLangs />
+
+  <body>
+    <header>
+      <nav class='site-nav'>
+        <a href='/' class='site-title'>
+          <img src='/img/wm-logo.svg' alt='Web Monetization logo' />
+          <span>Web Monetization</span>
+        </a>
+        <button
+          id='menuToggle'
+          class='menu-toggle'
+          aria-controls='nav-menu'
+          aria-expanded='true'
+          aria-label='Toggle Menu'
+          title='Toggle Menu'
+        >
+          <div id='menuIcon' class='menu-icon'>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <ul id='navMenu' class='nav-menu collapsed'>
+          <li class='nav-link__docs'><a href='/docs/'>Documentation</a></li>
+          <li class='nav-link__docs'>
+            <a href='https://community.interledger.org/t/webmonetization'>
+              Community
+            </a>
+          </li>
+          <li class='nav-link__github'>
+            <a href='https://github.com/WICG/webmonetization/'>
+              <img src='/img/icon-github.svg' alt='Link to Github repository' />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class='hero'>
+        <div class='heroContent'>
+          <img
+            width={160}
+            height={160}
+            alt='Loading'
+            class='heroLogo'
+            src='/img/wm-logo--animated.svg'
+          />
+          <h2 class='heroHeading'>Please wait ...</h2>
+          <p>Do not close this tab.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <ul>
+        <li>
+          <a href='https://community.interledger.org/t/webmonetization'>
+            Community
+          </a>
+        </li>
+        <li><a href='https://wicg.io/'>Web Incubator Community Group</a></li>
+        <li><a href='https://github.com/WICG/webmonetization'>Github</a></li>
+      </ul>
+      <span>
+        Copyright © {new Date().getFullYear()} Interledger Foundation.
+      </span>
+    </footer>
+    <style>
+      header {
+        background-color: #fff;
+        color: #333;
+        box-shadow: 0 2px 6px -4px var(--wm-accent);
+        position: sticky;
+        top: 0;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        padding-inline: var(--space-s);
+        position: relative;
+        max-width: 95rem;
+        margin-inline: auto;
+      }
+
+      .site-title {
+        display: flex;
+        align-items: center;
+        gap: var(--space-xs);
+      }
+
+      .site-title img {
+        width: 2.5em;
+        flex: none;
+      }
+
+      .site-title span {
+        font-size: larger;
+        white-space: nowrap;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--sl-color-text);
+        padding-block: var(--space-s);
+      }
+
+      a:hover {
+        color: var(--wm-accent);
+      }
+
+      .menu-toggle {
+        border: 0;
+        background: initial;
+        padding: var(--space-xs) 0;
+        margin-inline-start: auto;
+      }
+
+      .menu-icon {
+        position: relative;
+        transform: rotate(0deg);
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+        height: 1em;
+        width: 1.5em;
+      }
+
+      .menu-icon span {
+        display: block;
+        position: absolute;
+        height: 4px;
+        width: 100%;
+        background: var(--sl-color-gray-4);
+        border-radius: 4px;
+        opacity: 1;
+        left: 0;
+        transform: rotate(0deg);
+        transition: 0.25s ease-in-out;
+      }
+
+      .menu-icon span:nth-child(1) {
+        top: 0;
+      }
+
+      .menu-icon span:nth-child(2),
+      .menu-icon span:nth-child(3) {
+        top: 50%;
+      }
+
+      .menu-icon span:nth-child(4) {
+        top: 100%;
+      }
+
+      .menu-icon.open span:nth-child(1),
+      .menu-icon.open span:nth-child(4) {
+        top: 50%;
+        width: 0%;
+        left: 50%;
+      }
+
+      .menu-icon.open span:nth-child(2) {
+        transform: rotate(45deg);
+      }
+
+      .menu-icon.open span:nth-child(3) {
+        transform: rotate(-45deg);
+      }
+
+      .nav-link__github img {
+        height: 1.5em;
+        width: 1.5em;
+      }
+
+      .collapsed {
+        display: none;
+      }
+
+      @media screen and (max-width: 539px) {
+        .nav-menu {
+          position: absolute;
+          top: 100%;
+          background-color: white;
+          width: 100%;
+          list-style: none;
+          padding: 0;
+          left: 0;
+          right: 0;
+          box-shadow: 0 2px 6px -4px var(--wm-accent);
+        }
+
+        .nav-menu a {
+          display: block;
+          padding-inline: var(--space-xs);
+        }
+      }
+
+      @media screen and (min-width: 540px) {
+        .nav-menu {
+          display: flex;
+          gap: var(--space-s);
+          align-items: center;
+          list-style-type: none;
+          flex: 1;
+          justify-content: end;
+        }
+
+        .menu-toggle {
+          display: none;
+        }
+
+        .collapsed {
+          display: block;
+        }
+      }
+
+      .hero {
+        background-image: url('/img/bg-lines--light.svg'),
+          url('/img/bg-tile.svg');
+        background-repeat: repeat-x, repeat;
+        background-size: 17em, 40%;
+        background-position: bottom, center;
+        min-height: 100%;
+        display: flex;
+        margin-block-end: var(--space-xl);
+        padding-block: var(--space-3xl);
+      }
+
+      .heroContent {
+        margin: auto;
+        text-align: center;
+      }
+
+      .heroContent img {
+        object-fit: contain;
+        text-transform: capitalize;
+      }
+
+      .heroLogo {
+        max-width: 8em;
+        margin-block-end: var(--space-s);
+      }
+
+      .heroHeading {
+        font-size: var(--step-4);
+        line-height: 1.2;
+        color: var(--wm-accent);
+        width: 25ch;
+      }
+
+      .heroContent p {
+        font-size: initial;
+        margin-block-start: var(--space-s);
+      }
+
+      p {
+        font-size: var(--step-1);
+      }
+
+      p:not(:last-of-type) {
+        margin-block-end: var(--space-s);
+      }
+
+      footer {
+        padding: var(--space-xs);
+        padding-top: calc(var(--space-xs) + 3px);
+        font-size: var(--step--1);
+        text-align: center;
+        color: #333;
+
+        background-image: url('/img/bg-lines.svg');
+        background-size: 100% 3px;
+        background-position: top;
+        background-repeat: no-repeat;
+      }
+
+      footer ul {
+        margin-block-end: var(--space-s);
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: var(--space-s);
+        margin-block-end: initial;
+      }
+
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      a:hover {
+        text-decoration: underline;
+        color: var(--wm-accent);
+      }
+    </style>
+
+    <script>
+      const toggle = document.getElementById('menuToggle')
+      const icon = document.getElementById('menuIcon')
+      const menu = document.getElementById('navMenu')
+      const isWide = window.matchMedia('(min-width: 540px)')
+
+      const handleClick = () => {
+        if (toggle?.getAttribute('aria-expanded') === 'false') {
+          toggle.setAttribute('aria-expanded', 'true')
+          menu?.classList.remove('collapsed')
+          icon?.classList.add('open')
+        } else {
+          toggle?.setAttribute('aria-expanded', 'false')
+          menu?.classList.add('collapsed')
+          icon?.classList.remove('open')
+        }
+      }
+
+      const handleResize = (evt: MediaQueryList | MediaQueryListEvent) => {
+        if (evt.matches) {
+          toggle?.setAttribute('aria-expanded', 'false')
+          menu?.classList.remove('collapsed')
+          icon?.classList.remove('open')
+        } else {
+          toggle?.setAttribute('aria-expanded', 'false')
+          menu?.classList.add('collapsed')
+          icon?.classList.remove('open')
+        }
+      }
+
+      toggle?.addEventListener('click', handleClick, false)
+      isWide.addEventListener('change', (evt) => handleResize(evt))
+      handleResize(isWide)
+
+      const enum SuccessParam {
+        SUCCESS = 'grant_success',
+        ERROR = 'grant_error',
+        REJECTED = 'grant_rejected',
+        INVALID = 'grant_invalid',
+      }
+
+      type Intent = 'connect' | 'funds'
+
+      const DEFAULT_ERROR_MESSAGE = function (_version: string, intent: Intent) {
+        if(intent === 'funds') {
+          return 'Something went wrong. Please try adding funds again.'
+        }
+        return 'Something went wrong. Please try reconnecting your wallet.'
+      }
+      const CLOSE_TAB_MESSAGE = 'You may safely close this tab.'
+
+      /**
+       * Includes versioning for future proof if needed.
+       */
+      type ErrorCode = keyof typeof ERROR_MESSAGES
+
+      const ERROR_MESSAGES = {
+        continuation_failed(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return 'An error occured. Please try adding funds again.'
+          }
+          return 'An error occurred. Please try reconnecting the wallet.'
+        },
+        hash_failed(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return 'An error occured. Please try adding funds again.'
+          }
+          return 'An error occurred. Please try reconnecting the wallet.'
+        },
+      }
+
+      const MESSAGES = {
+        grant_success(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return 'You have successfully added more funds.'
+          }
+          return 'Your wallet is now successfully connected to the extension.'
+        },
+        grant_rejected(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return 'No funds were added.'
+          }
+          return 'Your request was successfully rejected.'
+        },
+        grant_invalid(_version: string, intent: Intent): string {
+          if(intent === 'funds') {
+            return 'Something went wrong with your request. Please try adding funds again.'
+          }
+          return 'Something went wrong with your request. Please try reconnecting your wallet.'
+        }
+      }
+
+      const searchParams = new URL(document.location.href).searchParams
+      const heroContent = document.querySelector('.heroContent') as HTMLDivElement
+      const heroInfo = heroContent.querySelector('p') as HTMLParagraphElement
+      const heroLogo = document.querySelector('.heroLogo') as HTMLImageElement
+      const heroHeading = document.querySelector('.heroHeading') as HTMLHeadingElement
+      const result = searchParams.get('result') as SuccessParam
+      const errorCode = searchParams.get('errorCode') as ErrorCode
+      const version = searchParams.get('version') ?? 'default'
+      const intent = (searchParams.get('intent') ?? 'connect') as Intent
+
+      function updateImage(type: 'success' | 'error' | 'warning') {
+        heroLogo.src = `/img/${type}.svg`
+        heroLogo.alt = type
+      }
+
+      switch (result) {
+        case SuccessParam.SUCCESS:
+          updateImage('success')
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
+          heroHeading.textContent = MESSAGES[SuccessParam.SUCCESS](version, intent)
+          break
+        case SuccessParam.REJECTED:
+          updateImage('warning')
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
+          heroHeading.textContent = MESSAGES[SuccessParam.REJECTED](version, intent)
+          break
+        case SuccessParam.INVALID:
+          updateImage('error')
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
+          heroHeading.textContent = MESSAGES[SuccessParam.INVALID](version, intent)
+          break
+        case SuccessParam.ERROR:
+          updateImage('error')
+          heroInfo.textContent = CLOSE_TAB_MESSAGE
+          if (errorCode in ERROR_MESSAGES) {
+            heroHeading.textContent = ERROR_MESSAGES[errorCode](version, intent)
+          } else {
+            heroHeading.textContent = DEFAULT_ERROR_MESSAGE(version, intent)
+          }
+          break
+        default:
+          break
+      }
+    </script>
+  </body>
+</html>
