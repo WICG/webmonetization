@@ -10,7 +10,7 @@ import amountSent from '/src/data/browser-compat-data/amountSent.json'
 import incomingPayment from '/src/data/browser-compat-data/incomingPayment.json'
 import paymentPointer from '/src/data/browser-compat-data/paymentPointer.json'
 
-One responsibility of the [Web Monetization agent](/resources/glossary/#web-monetization-agent) is to instrument payments. The agent does this by calling the <mark>Open Payments APIs</mark>. 
+One responsibility of the [Web Monetization agent](/resources/glossary/#web-monetization-agent) is to instrument payments. The agent does this by calling the Open Payments APIs, which are APIs implemented by wallet providers. 
 
 Calls are made to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/">`/incoming-payments`</LinkOut> endpoint at your wallet provider and to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/">`/outgoing-payments`</LinkOut> endpoint at your site visitor's wallet provider.
 
