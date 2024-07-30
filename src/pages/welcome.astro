@@ -282,11 +282,12 @@ changeLanguage('en')
       }
 
       .heroContent img {
-        display: none;
+        object-fit: contain;
+        text-transform: capitalize;
       }
 
       .heroLogo {
-        max-width: 10em;
+        max-width: 8em;
         margin-block-end: var(--space-s);
       }
 
@@ -449,14 +450,9 @@ changeLanguage('en')
       const version = searchParams.get('version') ?? 'default'
       const intent = (searchParams.get('intent') ?? 'connect') as Intent
 
-      function capitalize(str: string) {
-        return str.charAt(0).toUpperCase() + str.slice(1)
-      }
-
       function updateImage(type: 'success' | 'error' | 'warning') {
         heroLogo.src = `/img/${type}.svg`
-        heroLogo.style.display = 'inline-block'
-        heroLogo.alt = capitalize(type)
+        heroLogo.alt = type
       }
 
       switch (result) {
