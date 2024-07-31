@@ -12,9 +12,9 @@ import paymentPointer from '/src/data/browser-compat-data/paymentPointer.json'
 
 One responsibility of the [Web Monetization agent](/resources/glossary/#web-monetization-agent) is to instrument payments. The agent does this by calling the Open Payments APIs, which are APIs implemented by wallet providers. 
 
-Calls are made to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/">`/incoming-payments`</LinkOut> endpoint at your wallet provider and to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/">`/outgoing-payments`</LinkOut> endpoint at your site visitor's wallet provider.
+The agent makes calls to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/">`/incoming-payments`</LinkOut> endpoint at your wallet provider and to the <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/">`/outgoing-payments`</LinkOut> endpoint at your site visitor's wallet provider.
 
-Each time the Web Monetization agent receives a `201 outgoing payment created` response from the site visitor's wallet provider, the Web Monetization agent fires a `monetization` event on the browser window. 
+Each time the agent receives a `201 outgoing payment created` response from the site visitor's wallet provider, the agent fires a `monetization` event on the browser window. 
 
 ### Specifications
 
@@ -22,7 +22,7 @@ Each time the Web Monetization agent receives a `201 outgoing payment created` r
 
 ## Event listeners
 
-The firing of a `monetization` event does not guarantee that payments will follow or, if they do, how often or how large the payments will be. 
+When a `monetization` event fires, there's no guarantee that payments will follow or, if they do, how often or how large the payments will be. 
 
 A `monetization` event indicates that the site visitor's wallet provider has created the resources needed for it to send a payment. 
 
@@ -37,7 +37,7 @@ By adding an event listener to the relevant monetization `<link>` element (or on
 <Steps>
 1. You add an event listener to a monetization `<link>`.
 2. The site visitor accesses your page.
-3. The site visitor's Web Monetization agent calls the Open Payments APIs to begin setting up the payment. 
+3. The site visitor's Web Monetization agent calls the Open Payments APIs to begin setting up the payment. More information about these API calls is provided in the [How payments work](/experiment/how-payments-work#a-deeper-dive-into-payments) page.
 4. The Web Monetization agent receives a `201 (outgoing payment created)` response from the site visitor's wallet provider.
 5. The Web Monetization agent fires a `monetization` event.
 6. Your event listener calls its defined function.
