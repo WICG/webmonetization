@@ -1,0 +1,771 @@
+---
+import i18next, { t, changeLanguage } from 'i18next'
+import { HeadHrefLangs } from 'astro-i18next/components'
+
+const title = 'ttest'
+const description = 'tte'
+const image = '/img/wm-social.png'
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+
+changeLanguage('en')
+---
+
+<html lang={i18next.language} data-theme='light'>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='generator' content={Astro.generator} />
+
+    <link rel='canonical' href={canonicalURL} />
+
+    <title>{title}</title>
+    <meta name='title' content={title} />
+    <meta name='description' content={description} />
+
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={Astro.url} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={new URL(image, Astro.url)} />
+
+    <meta property='twitter:card' content='summary_large_image' />
+    <meta property='twitter:url' content={Astro.url} />
+    <meta property='twitter:title' content={title} />
+    <meta property='twitter:description' content={description} />
+    <meta property='twitter:image' content={new URL(image, Astro.url)} />
+
+    <HeadHrefLangs />
+  </head>
+  <body>
+    <main>
+      <div class='header'>
+        <img src='/img/wm-logo--animated.svg' />
+        <h1>Web Monetization Playground</h1>
+      </div>
+      <div class='form-wrapper'>
+        <form id='walletAddressForm'>
+          <div class='form-field'>
+            <label for='walletAddressUrl'>Wallet address/Payment pointer</label>
+            <input
+              type='text'
+              id='walletAddressUrl'
+              name='walletAddressUrl'
+              required
+            />
+          </div>
+          <button full-width type='submit'>Add monetization link</button>
+        </form>
+      </div>
+      <div id='link-events'></div>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    --space-3xs: clamp(0.25rem, 0.25rem + 0vi, 0.25rem);
+    --space-2xs: clamp(0.5rem, 0.5rem + 0vi, 0.5rem);
+    --space-xs: clamp(0.75rem, 0.75rem + 0vi, 0.75rem);
+    --space-s: clamp(1rem, 1rem + 0vi, 1rem);
+    --space-m: clamp(1.5rem, 1.5rem + 0vi, 1.5rem);
+    --space-l: clamp(2rem, 2rem + 0vi, 2rem);
+    --space-xl: clamp(3rem, 3rem + 0vi, 3rem);
+    --space-2xl: clamp(4rem, 4rem + 0vi, 4rem);
+    --space-3xl: clamp(6rem, 6rem + 0vi, 6rem);
+
+    --white: #fff;
+    --black: #222;
+    --green: #02bb3e;
+    --light-green: #eefee5;
+    --dark-green: #0e7b31;
+  }
+
+  [data-theme='light'] {
+    --background: var(--white);
+    --text: var(--black);
+    --accent: var(--green);
+
+    --button-background: var(--dark-green);
+    --button-text: var(--white);
+  }
+
+  @font-face {
+    font-family: DejaVu Sans Mono;
+    src: url(/fonts/DejaVuSansMono.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: DejaVu Sans Mono;
+    src: url(/fonts/DejaVuSansMono-Bold.ttf) format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: DejaVu Sans Mono;
+    src: url(/fonts/DejaVuSansMono-Oblique.ttf) format('truetype');
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  *,
+  *::after,
+  *::before {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'DejaVu Sans Mono', monospace;
+    background-color: var(--background);
+    color: var(--text);
+  }
+
+  main {
+    padding: 3rem;
+    min-width: 0;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  input,
+  button {
+    font: inherit;
+  }
+
+  input {
+    border: 1px solid var(--accent);
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    transition:
+      box-shadow ease-in-out 0.2s,
+      border-color ease-in-out 0.2s;
+    color: var(--text);
+  }
+
+  button {
+    display: inline-block;
+    border: 2px solid transparent;
+    background-color: var(--button-background);
+    color: var(--button-text);
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 2px;
+    transition: text-decoration-color 0.2s ease-in-out;
+    border: 1px solid transparent;
+    font-weight: 600;
+
+    &[full-width] {
+      width: 100%;
+    }
+
+    &:hover {
+      text-decoration-color: currentcolor;
+    }
+
+    &:disabled {
+      filter: grayscale(1);
+      cursor: not-allowed;
+
+      &:hover,
+      &:focus {
+        text-decoration-color: transparent;
+      }
+    }
+
+    &.outline {
+      background-color: var(--white);
+      color: var(--button-background);
+      border-color: var(--button-background);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    main {
+      padding: 1rem;
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+
+    img {
+      max-width: 100px;
+    }
+  }
+
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block-start: 2rem;
+    margin-inline: auto;
+    max-width: 756px;
+
+    form {
+      min-width: 378px;
+    }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    margin-block-end: 1rem;
+
+    label {
+      white-space: nowrap;
+      margin-block-end: 0.25rem;
+    }
+
+    .form-field-error {
+      margin-block-start: 0.5rem;
+      color: red;
+    }
+  }
+
+  #link-events {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+    margin-block-start: 2rem;
+
+    div[data-wallet-address] {
+      border-radius: 0.5rem;
+      border: 2px solid var(--black);
+      padding: 0.5rem;
+
+      & .log-header {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: row;
+        color: var(--dark-green);
+
+        & h4 {
+          overflow-x: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+
+      & .actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      & .amount {
+        margin-block-end: 0.5rem;
+      }
+
+      & ul.events {
+        height: 16rem;
+        margin-block: 0.5rem;
+        padding-block-start: 0.5rem;
+        padding-inline-start: 0.5rem;
+        list-style: none;
+        overflow-y: auto;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    main {
+      padding: 2rem;
+    }
+
+    #link-events {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    #link-events {
+      display: flex;
+      flex-direction: column;
+
+      div[data-wallet-address] {
+        & .log-header {
+          align-items: flex-start;
+          flex-direction: column;
+
+          & h4 {
+            text-align: center;
+            font-size: smaller;
+            width: 100%;
+          }
+
+          & .actions {
+            width: 100%;
+            justify-content: center;
+            gap: 1rem;
+
+            & button {
+              font-size: smaller;
+            }
+          }
+        }
+
+        & ul.events {
+          font-size: 14px;
+          letter-spacing: -1px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 425px) {
+    .header {
+      img {
+        max-width: 50px;
+      }
+
+      & h1 {
+        font-size: smaller;
+      }
+    }
+
+    form {
+      min-width: 100% !important;
+    }
+
+    #link-events {
+      & div[data-wallet-address] {
+        & .log-header {
+          & h4 {
+            font-size: 12px;
+          }
+
+          & .actions {
+            & button {
+              font-size: smaller;
+            }
+          }
+        }
+
+        & ul.events {
+          font-size: smaller;
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  interface WalletAddress {
+    id: string
+    assetScale: number
+    assetCode: string
+    authServer: string
+    resourceServer: string
+  }
+
+  const form = document.querySelector('#walletAddressForm') as HTMLFormElement
+  const input = form.querySelector('input') as HTMLInputElement
+  const submitButton = form.querySelector('button') as HTMLButtonElement
+  const linkEvents = document.querySelector('#link-events') as HTMLDivElement
+
+  const SUBMIT_BUTTON_TEXT = {
+    default: 'Add monetization link',
+    processing: 'Processing...',
+  }
+
+  async function createLinkTag(href: string) {
+    const link = document.createElement('link')
+
+    link.rel = 'monetization'
+    link.href = href
+    link.addEventListener('monetization', onMonetizationListener)
+    link.addEventListener('load', onLoadListener)
+    link.addEventListener('error', onErrorListener)
+    link.dataset.walletAddress = href
+
+    document.head.append(link)
+  }
+
+  async function createLinkEventLog(href: string) {
+    const header = document.createElement('div')
+    header.classList.add('log-header')
+
+    const title = document.createElement('h4')
+    title.textContent = href
+
+    const actions = document.createElement('div')
+    actions.classList.add('actions')
+
+    const disableButton = document.createElement('button')
+    disableButton.textContent = 'Disable'
+    disableButton.classList.add('outline')
+    disableButton.addEventListener('click', () => {
+      const link = document.querySelector(
+        `link[rel='monetization'][href='${href}']`
+      ) as HTMLLinkElement
+      link.disabled = !link.disabled
+      disableButton.textContent = link.disabled ? 'Enable' : 'Disable'
+    })
+
+    const removeButton = document.createElement('button')
+    removeButton.textContent = 'Remove'
+    removeButton.classList.add('outline')
+    removeButton.addEventListener('click', () => {
+      const link = document.querySelector(
+        `link[rel='monetization'][href='${href}']`
+      ) as HTMLLinkElement
+      link.remove()
+      const eventLog = document.querySelector(
+        `#link-events div[data-wallet-address='${href}']`
+      ) as HTMLDivElement
+      eventLog.remove()
+    })
+
+    const clearButton = document.createElement('button')
+    clearButton.textContent = 'Clear events'
+    clearButton.classList.add('outline')
+    clearButton.addEventListener('click', () => {
+      const ul = document.querySelector(
+        `#link-events div[data-wallet-address='${href}'] ul.events`
+      ) as HTMLDivElement
+      ul.innerHTML = ''
+    })
+
+    actions.append(disableButton)
+    actions.append(clearButton)
+    actions.append(removeButton)
+
+    header.append(title)
+    header.append(actions)
+
+    const eventLog = document.createElement('div')
+    eventLog.dataset.walletAddress = href
+
+    const events = document.createElement('ul')
+    events.classList.add('events')
+
+    eventLog.append(header)
+    eventLog.append(events)
+
+    linkEvents.append(eventLog)
+  }
+
+  function getLinkEventLog(event: Event): HTMLDivElement | null {
+    if (!(event.target instanceof HTMLLinkElement)) return null
+    if (!event.target.isConnected) return null
+
+    return document.querySelector(
+      `#link-events div[data-wallet-address='${event.target.dataset.walletAddress}'] ul.events`
+    ) as HTMLDivElement
+  }
+
+  function capitalize(str: string) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  }
+
+  function createLog(
+    div: HTMLDivElement,
+    type: string,
+    event?: MonetizationEvent
+  ) {
+    const log = document.createElement('li')
+    const time = new Date().toLocaleTimeString()
+    let slot = `${capitalize(type)} Event`
+
+    if (event) {
+      slot += ` - ${event.amountSent.value} ${event.amountSent.currency}`
+      log.innerHTML = `<wm-tooltip time="${time}" slot="${slot}" content='${JSON.stringify(JSON.stringify(event))}'></wm-tooltip>`
+    } else {
+      log.textContent = `[${time}] ${slot}`
+    }
+
+    div.prepend(log)
+  }
+
+  function onMonetizationListener(event: MonetizationEvent) {
+    const linkEventLog = getLinkEventLog(event)
+    if (!linkEventLog) return
+
+    if (linkEventLog.dataset.incomingPayment !== event.incomingPayment) {
+      linkEventLog.dataset.incomingPayment = event.incomingPayment
+    }
+
+    createLog(linkEventLog, event.type, event)
+  }
+
+  function onLoadListener(event: Event) {
+    const linkEventLog = getLinkEventLog(event)
+    if (!linkEventLog) return
+
+    createLog(linkEventLog, event.type)
+  }
+
+  function onErrorListener(event: Event) {
+    const linkEventLog = getLinkEventLog(event)
+    if (!linkEventLog) return
+
+    createLog(linkEventLog, event.type)
+  }
+
+  input.addEventListener('input', function () {
+    this.setCustomValidity('')
+  })
+
+  function toWalletAddressUrl(s: string): string {
+    return s.startsWith('$') ? s.replace('$', 'https://') : s
+  }
+
+  async function validateWalletAddressUrl(url: string): Promise<void> {
+    const walletAddressUrl = new URL(toWalletAddressUrl(url)).href
+    const response = await fetch(walletAddressUrl, {
+      method: 'GET',
+      credentials: 'omit',
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+    const walletAddress = await response.json()
+    const isValid = isWalletAddress(walletAddress)
+
+    if (!isValid) {
+      input.setCustomValidity(
+        `${walletAddressUrl} is not a valid wallet address.`
+      )
+      input.reportValidity()
+      throw new Error('Invalid wallet address.')
+    }
+  }
+
+  function isWalletAddress(o: any): o is WalletAddress {
+    return (
+      o.id &&
+      typeof o.id === 'string' &&
+      o.assetScale &&
+      typeof o.assetScale === 'number' &&
+      o.assetCode &&
+      typeof o.assetCode === 'string' &&
+      o.authServer &&
+      typeof o.authServer === 'string' &&
+      o.resourceServer &&
+      typeof o.resourceServer === 'string'
+    )
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault()
+    submitButton.disabled = true
+    submitButton.textContent = SUBMIT_BUTTON_TEXT.processing
+
+    const formData = new FormData(form)
+    const walletAddress = formData.get('walletAddressUrl')?.valueOf()
+
+    if (!walletAddress || typeof walletAddress !== 'string') {
+      submitButton.disabled = false
+      submitButton.textContent = SUBMIT_BUTTON_TEXT.default
+      input.setCustomValidity('Please fill the wallet address URL field.')
+      return false
+    }
+
+    const walletAddressUrl = toWalletAddressUrl(walletAddress)
+
+    const walletAddressElement = document.querySelector(
+      `[data-wallet-address='${walletAddress}']`
+    )
+    if (walletAddressElement) {
+      submitButton.disabled = false
+      submitButton.textContent = SUBMIT_BUTTON_TEXT.default
+      input.setCustomValidity(`${walletAddress} already exists in the page.`)
+      input.reportValidity()
+      return false
+    }
+
+    try {
+      await validateWalletAddressUrl(walletAddressUrl)
+    } catch (e) {
+      input.setCustomValidity(
+        `${walletAddress} is not a valid wallet address/payment pointer.`
+      )
+      input.reportValidity()
+      submitButton.disabled = false
+      submitButton.textContent = SUBMIT_BUTTON_TEXT.default
+      return
+    }
+
+    await createLinkEventLog(walletAddressUrl)
+    await createLinkTag(walletAddressUrl)
+
+    form.reset()
+    submitButton.disabled = false
+    submitButton.textContent = SUBMIT_BUTTON_TEXT.default
+  })
+
+  class Tooltip extends HTMLElement {
+    private tooltip: HTMLSpanElement = document.createElement('span')
+    private questionMark: HTMLButtonElement = document.createElement('button')
+    private shadow = this.attachShadow({ mode: 'open' })
+    constructor() {
+      super()
+    }
+
+    connectedCallback() {
+      const stylesheet = this.createStylesheet()
+
+      const content = this.getAttribute('content')
+      const slot = this.getAttribute('slot')
+      const time = this.getAttribute('time')
+
+      if (!content || !slot || !time) {
+        throw new Error(
+          'Make sure `content` and `slot` attributes are passed to the component.'
+        )
+      }
+
+      this.createTooltip(content, slot, time)
+
+      this.shadow.append(this.tooltip)
+      this.shadow.adoptedStyleSheets = [stylesheet]
+      this.registerEventListeners()
+    }
+
+    private registerEventListeners() {
+      this.tooltip.addEventListener('mouseenter', () => {
+        const button = this.tooltip.querySelector('button') as HTMLButtonElement
+        button.setAttribute('aria-expanded', 'true')
+        const bubble = this.tooltip.querySelector('.bubble') as HTMLSpanElement
+        this.positionTooltip(bubble)
+      })
+
+      this.tooltip.addEventListener('mouseleave', () => {
+        const button = this.tooltip.querySelector('button') as HTMLButtonElement
+        button.setAttribute('aria-expanded', 'false')
+        const bubble = this.tooltip.querySelector('.bubble') as HTMLSpanElement
+        bubble.style.left = 'initial'
+        bubble.style.top = 'initial'
+      })
+    }
+
+    private positionTooltip(elem: HTMLSpanElement) {
+      const isDesktop = window.innerWidth > 768
+      const elemRect = elem.getBoundingClientRect()
+      const parent = elem.parentElement as HTMLElement
+      const parentRect = parent.getBoundingClientRect()
+
+      const ul = this.shadow.host.parentElement
+        ?.parentElement as HTMLUListElement
+      const isVisible =
+        elemRect.top >= 0 &&
+        elemRect.left >= 0 &&
+        elemRect.bottom - ul.scrollHeight <= window.innerHeight &&
+        elemRect.right <= window.innerWidth
+
+      let left = parentRect.left
+      let top = parentRect.top
+      if (isDesktop && isVisible) {
+        left += parentRect.width + 10
+      } else {
+        top -= elemRect.height + parentRect.height
+      }
+
+      elem.style.left = left + 'px'
+      elem.style.top = top + 'px'
+    }
+
+    private createTooltip(content: string, slot: string, time: string) {
+      const uuid = crypto.randomUUID()
+
+      this.tooltip.dataset.tooltipWrapper = ''
+      this.tooltip.classList.add('tooltip-wrapper')
+
+      this.questionMark.textContent = '?'
+      this.questionMark.type = 'button'
+      this.questionMark.ariaExpanded = 'false'
+      this.questionMark.ariaLabel = 'Definition'
+      this.questionMark.dataset.tooltipButton = ''
+      this.questionMark.setAttribute('aria-labelledby', uuid)
+
+      const bubble = document.createElement('span')
+      bubble.id = uuid
+      bubble.role = 'tooltip'
+      bubble.dataset.tooltipBubble = ''
+      bubble.classList.add('bubble')
+      bubble.innerHTML = `<pre>${JSON.stringify(JSON.parse(JSON.parse(content)), null, 2)}</pre>`
+
+      const textSlot = document.createElement('span')
+      textSlot.textContent = slot
+      textSlot.classList.add('slot')
+
+      this.tooltip.append(textSlot)
+      this.tooltip.append(this.questionMark)
+      this.tooltip.append(bubble)
+      this.tooltip.prepend(`[${time}] `)
+    }
+
+    private createStylesheet() {
+      const stylesheet = new CSSStyleSheet()
+      stylesheet.replaceSync(`
+      .tooltip-wrapper {
+        position: relative;
+        display: inline-block;
+        margin-right: 8px;
+      }
+
+      .tooltip-wrapper button {
+        background-color: transparent;
+        border: 0;
+        color: var(--dark-green);
+        padding: 0 var(--space-3xs);
+        font-size: 12px;
+        font-weight: bold;
+        position: absolute;
+        bottom: 10px;
+        right: -12px;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .tooltip-wrapper .bubble {
+        position: fixed;
+        background-color: var(--light-green);
+        border: 1px solid var(--black);
+        padding: var(--space-2xs);
+        border-radius: 6px;
+        line-height: 1.25;
+        width: 18em;
+        z-index: 9999;
+      }
+
+      .tooltip-wrapper .slot {
+        text-decoration: underline dotted;
+        text-underline-offset: 2px;
+        cursor: pointer;
+      }
+
+      .tooltip-wrapper .bubble pre {
+        overflow-x: scroll;
+      }
+
+      .tooltip-wrapper button[aria-expanded="false"] + .bubble {
+        visibility: hidden;
+      }
+
+      .tooltip-wrapper button[aria-expanded="true"] + .bubble {
+        visibility: visible;
+      }
+    `)
+      return stylesheet
+    }
+  }
+
+  customElements.define('wm-tooltip', Tooltip)
+</script>
