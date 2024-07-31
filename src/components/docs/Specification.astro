@@ -2,7 +2,7 @@
 const { anchor } = Astro.props;
 ---
 <div>
-  <table>
+  <table class="specification">
     <thead>
       <tr>
         <th>Specification</th>
@@ -26,24 +26,22 @@ const { anchor } = Astro.props;
 </div>
 
 <style>
-table {
+.specification {
   border-collapse: collapse;
   margin-block-start: var(--space-m);
+}
+
+.specification.specification th,
+.specification.specification td {
+  padding-inline: var(--space-xs);
 }
 
 tr:nth-child(even) td {
   background-color: var(--sl-color-gray-7);
 }
 
-th,
-td {
-  vertical-align: middle;
-}
-
 th {
   background-color: var(--sl-color-gray-7);
-  font-weight: bold;
   line-height: 1.5;
-  text-align: left;
 }
 </style>
