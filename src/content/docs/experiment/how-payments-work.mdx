@@ -3,7 +3,7 @@ title: How payments work
 ---
 
 import { LinkOut, CodeBlock } from "@interledger/docs-design-system";
-import { Badge, Tabs, TabItem } from '@astrojs/starlight/components';
+import { Badge, Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 
 ## Digital wallets
 
@@ -39,93 +39,146 @@ When you include the `<link>` element on a page, you're telling your visitors' b
 
 ## Payments
 
-Your visitors' Web Monetization extension acts like a messaging service. When they land on your page, their extension identifies the `<link>` element and parses your payment URL. 
-
-Then, a component within the extension--called the [Web Monetization agent](/experiment/link-element#web-monetization-agent)--issues a <Badge text="GET" variant="success" size="small" /> request to your payment URL. In return, it receives the information it needs to begin setting up a payment. The Web Monetization agent passes the information, along with the visitor's payment instructions, to the visitor's wallet provider. The visitor's wallet provider then sends the payment to your wallet provider who credits your account.
+Your visitors' Web Monetization extension acts like a messaging service. When they land on your page, their extension identifies your `<link>` element and sends a message to your payment URL. This begins a number of API requests and responses between the extension and your wallet provider, and the extension and your visitor's wallet provider to facilitate a payment.
 
 ### A deeper dive into payments
 
-For a wallet to be compatible with Web Monetization, the provider must integrate with the <LinkOut href="https://openpayments.dev">Open Payments standard</LinkOut>. 
+**Open Payments**
 
-The Web Monetization agent first issues a <Badge text="GET" variant="note" size="small" /> request to the URL in your monetization `<link>` tag. The response contains information the Web Monetization agent needs for its next request.
+For a wallet to be compatible with Web Monetization, the provider must implement the <LinkOut href="https://openpayments.dev">Open Payments standard</LinkOut>. When implemented, a set of APIs become available for third-party applications, such as your visitor's [Web Monetization extension](/support/use-extension), to communicate with the wallet provider. 
 
-<Tabs>
-    <TabItem label="Request">
-        ```http
-        GET /alice HTTP/1.1
-        Accept: application/json
-        Host: wallet.example
-        ```
-    </TabItem>
-        <TabItem label="Response">
-            ```http
-            HTTP/1.1 200 Success
-            Content-Type: application/json
+**Web Monetization extension**
 
-            {
-            "id":"https://wallet.example/alice",
-            "assetCode":"USD",
-            "assetScale":2,
-            "authServer":"https://wallet.example/auth",
-            "resourceServer":"https://wallet.example/resource"
-            }
-            ```
-    </TabItem>
-</Tabs>
+A component within the extension--called the [Web Monetization agent](/experiment/link-element#web-monetization-agent)--is responsible for communicating with a wallet provider via the Open Payments APIs. The next section describes the series of API calls required to initiate a payment.
 
-Next, the Web Monetization agent issues a <Badge text="POST" variant="success" size="small" /> request to the `authServer` URL it received in the prior response. The purpose of this request is to get permission, in the form of an access token, for an incoming payment resource to be created on your payment account.
+**Web Monetization payment sequence**
 
-<Tabs>
-    <TabItem label="Request">
-        ```http
-        POST /auth/ HTTP/1.1
-        Accept: application/json
-        Content-Type: application/json
-        Host: wallet.example
-        Content-Length: 218
+:::note
+The examples below are simplified representations of the Open Payments API calls and may not show every required parameter. 
+:::
 
-        {
+<Steps>
+1. The Web Monetization agent locates your [monetization link](/experiment/link-element) and extracts your payment URL (the `href` value).
+    ```html
+    <link rel="monetization" href="https://wallet.example/alice">
+2. The agent issues a <LinkOut href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address/"><Badge text="GET" variant="note" size="small" /></LinkOut> request to the URL.
+    ```http
+    GET /alice HTTP/1.1
+    Accept: application/json
+    Host: wallet.example
+    ```
+3. The response to the agent contains information such as the currency your account is denominated in and the URLs for your wallet provider's authorization and resource servers.
+    ```http
+    HTTP/1.1 200 Success
+    Content-Type: application/json
+
+    {
+        "assetCode":"USD",
+        "assetScale":2,
+        "authServer":"https://wallet.example/auth",
+        "resourceServer":"https://wallet.example/resource"
+    }
+    ```
+4. The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to the `authServer` URL received in the previous response. The request contains the access permissions the agent is requesting. 
+    ```http
+    POST /auth/ HTTP/1.1
+    Accept: application/json
+    Content-Type: application/json
+    Host: wallet.example
+
+    {
         "access_token":{
             "access":[
-            {
-                "type":"incoming-payment",
-                "actions":[
-                "create",
-                "read"
-                ],
-                "identifier":"https://wallet.example/alice"
-            }
+                {
+                    "type":"incoming-payment",
+                    "actions":["create", "read"],
+                    "identifier":"https://wallet.example/alice"
+                }
             ]
         },
-        "interact":{
-            "finish":{
-            "method":"redirect"
-        }
-        },
-        "client":"https://anotherwallet.example/bob"
-        }
-        ```
-    </TabItem>
-        <TabItem label="Response">
-            ```http
+        "client":"https://cloudninewallet.example/visitor"
+    }
+    ```
+    :::note
+    The `client` in the response above is your visitor's wallet address/payment pointer. This URL is only used by the agent and is not available to you.
+    :::
+5. The response to the agent contains an auth token that the agent needs to make its next request.
+    ```http
+    {
+        "access_token":{
+        "value":"OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
+        "manage":"https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
+        "access":[
             {
-                "access_token":{
-                    "value":"OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
-                    "manage":"https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
-                    "access":[
-                    {
-                        "type":"incoming-payment",
-                        "actions":[
-                        "create",
-                        "read"
-                        ],
-                        "identifier":"https://wallet.example/alice"
-                    }
-                    ]
-                }
+                "type":"incoming-payment",
+                "actions":["create", "read"],
+                "identifier":"https://wallet.example/alice"
             }
-            ```
-    </TabItem>
-</Tabs>
+        ]
+        }
+    }
+    ```
+6. The agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to the `resourceServer` URL received in Step 3 above. The purpose of this call is to request the information needed by your visitor's wallet provider so their provider correctly addresses the payment to you.
+    ```http
+    POST /alice/incoming-payments HTTP/1.1
+    Accept: application/json
+    Content-Type: application/json
+    Authorization: OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0
+    Host: wallet.example
+    ```
+7. The response to the agent contains unique payment details that will be used to address the payment to your payment account.
+    ```http
+    {
+        "id":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+        "walletAddress":"https://wallet.example/alice",
+            "receivedAmount":{
+            "value":"0",
+            "assetCode":"USD",
+            "assetScale":2
+            },
+        "completed":false,
+        "createdAt":"2022-03-12T23:20:50.52Z",
+    }
+    ```
+8. At this point, the agent has finished communicating with your wallet provider. Now, it issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your visitor's wallet provider. The purpose of this call is to give the provider what it needs to send the payment.
+    ```http
+    POST /visitor/outgoing-payment HTTP/1.1
+    Accept: application/json
+    Content-Type: application/json
+    Authorization: {{ GNAP outgoingPaymentGrant.accessToken.value }}
+    Host: cloudninewallet.example
 
-Start at step 4: https://webmonetization.org/docs/intro/web-monetization-flow/#4---send-incoming-payment-request-to-wallet-address-receiving-account
+    {
+        "walletAddress": "https://wallet.example/alice",
+        "quoteId": "https://wallet.example/quotes/ab03296b-0c8b-4776-b94e-7ee27d868d4d",
+    }
+    ```
+9. The response to the agent indicates whether the visitor's wallet provider is able to send the payment. A payment could fail if the visitor has insufficient funds, for example. Assuming everything's good, the visitor's wallet provider responds to the agent with payment details.
+    ```http
+    {
+    "id":"https://cloudninewallet.example/visitor/outgoing-payments/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf",
+    "walletAddress":"https://cloudninewallet.example/visitor/",
+    "receiver":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+    "receiveAmount":{
+        "value":"2",
+        "assetCode":"USD",
+        "assetScale":2
+        },
+    "sendAmount":{
+        "value":"2",
+        "assetCode":"USD",
+        "assetScale":2
+        },
+    "sentAmount":{
+        "value":"0",
+        "assetCode":"USD",
+        "assetScale":2
+        },
+    "createdAt":"2022-03-12T23:20:55.52Z",
+    "updatedAt":"2022-03-12T23:20:55.52Z"
+    }
+    ```
+    :::note
+    Notice that the `sentAmount value` is `0`. All the API calls up to this point have been to set up the payment. This amount will go up over time, depending on the pay rate your visitor has set in their extension.
+    :::
+</Steps>
