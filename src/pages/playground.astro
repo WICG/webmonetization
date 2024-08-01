@@ -2,8 +2,8 @@
 import i18next, { t, changeLanguage } from 'i18next'
 import { HeadHrefLangs } from 'astro-i18next/components'
 
-const title = 'ttest'
-const description = 'tte'
+const title = `Playground | ${t("site.title")}`;
+const description = t("site.description");
 const image = '/img/wm-social.png'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
@@ -64,16 +64,6 @@ changeLanguage('en')
 
 <style>
   :root {
-    --space-3xs: clamp(0.25rem, 0.25rem + 0vi, 0.25rem);
-    --space-2xs: clamp(0.5rem, 0.5rem + 0vi, 0.5rem);
-    --space-xs: clamp(0.75rem, 0.75rem + 0vi, 0.75rem);
-    --space-s: clamp(1rem, 1rem + 0vi, 1rem);
-    --space-m: clamp(1.5rem, 1.5rem + 0vi, 1.5rem);
-    --space-l: clamp(2rem, 2rem + 0vi, 2rem);
-    --space-xl: clamp(3rem, 3rem + 0vi, 3rem);
-    --space-2xl: clamp(4rem, 4rem + 0vi, 4rem);
-    --space-3xl: clamp(6rem, 6rem + 0vi, 6rem);
-
     --white: #fff;
     --black: #222;
     --green: #02bb3e;
@@ -518,10 +508,6 @@ changeLanguage('en')
     createLog(linkEventLog, event.type)
   }
 
-  input.addEventListener('input', function () {
-    this.setCustomValidity('')
-  })
-
   function toWalletAddressUrl(s: string): string {
     return s.startsWith('$') ? s.replace('$', 'https://') : s
   }
@@ -561,6 +547,10 @@ changeLanguage('en')
       typeof o.resourceServer === 'string'
     )
   }
+
+  input.addEventListener('input', function() {
+    this.setCustomValidity('')
+  })
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
