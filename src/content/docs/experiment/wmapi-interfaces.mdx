@@ -3,9 +3,12 @@ title: Monetization interfaces
 ---
 
 import { LinkOut, Hidden } from "@interledger/docs-design-system";
+import { Badge } from '@astrojs/starlight/components';
 import Specification from '/src/components/docs/Specification.astro'
 import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/monetizationevent.json'
+
+<Badge text="Web Monetization API" variant="tip" style="position: relative; top:-30px;" />
 
 The Web Monetization API consists of two interfaces: `MonetizationEvent` and `MonetizationCurrencyAmount`.
 

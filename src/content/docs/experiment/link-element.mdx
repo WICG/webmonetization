@@ -8,9 +8,11 @@ import { LinkOut, Hidden } from "@interledger/docs-design-system";
 import Specification from '/src/components/docs/Specification.astro'
 import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/link.json'
-import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Badge } from '@astrojs/starlight/components';
 
-From a creator/developer perspective, the monetization `<link>` element is one of the two key pieces to adding web monetization to a page. The second piece is your wallet address/payment pointer.
+<Badge text="HTML DOM API" style="position: relative; top:-30px;" />
+
+From a creator/developer perspective, the monetization `<link>` element is one of the two key pieces to web monetizing a page. The second piece is a wallet address/payment pointer.
 
 ## Prerequisites
 

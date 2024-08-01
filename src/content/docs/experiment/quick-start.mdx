@@ -12,22 +12,23 @@ import Wallet from "/src/partials/wallet-prereq.mdx";
 
 ## Step 1 - Get your payment URL 
 
+### Payment pointer
+
+If you have a payment pointer that starts with `$`, visit <LinkOut href='https://paymentpointers.org/'>paymentpointers.org</LinkOut>. Enter your payment pointer into the _Payment Pointer_ field. Take note of the URL that automatically generates in the adjacent field. This is your payment URL. You'll need it in the next step.
+
+```http
+$wallet.example.com/alice
+```
+
 ### Wallet address
 
-If your wallet provided you with a wallet address in the format below, proceed to [Step 2](#step-2---web-monetize-your-page). 
+If you have a wallet address that starts with `https://`, then you have your payment URL. Proceed to the next step. 
 
 ```http
 https://wallet.example.com/alice
 ```
 
-### Payment pointer
 
-If your wallet provided you with a payment pointer in the format below, visit <LinkOut href='https://paymentpointers.org/'>paymentpointers.org</LinkOut>.
-
-```http
-$wallet.example.com/alice
-```
-Enter your payment pointer into the _Payment Pointer_ field. Take note of the URL that automatically generates in the adjacent field. You'll need it in Step 2. 
 
 ## Step 2 - Web monetize your page
 
