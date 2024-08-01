@@ -3,9 +3,12 @@ title: onmonetization event handler
 ---
 
 import { LinkOut, Hidden } from "@interledger/docs-design-system";
+import { Badge } from '@astrojs/starlight/components';
 import Specification from '/src/components/docs/Specification.astro'
 import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/onmonetization.json'
+
+<Badge text="HTML DOM API" style="position: relative; top:-30px;" />
 
 By creating an `onmonetization` event handler, your web page can programmatically respond to `monetization` events.
 

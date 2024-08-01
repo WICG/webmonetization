@@ -2,7 +2,7 @@
 title: How payments work
 ---
 
-import { LinkOut, CodeBlock } from "@interledger/docs-design-system";
+import { LinkOut, CodeBlock, Disclosure } from "@interledger/docs-design-system";
 import { Badge, Tabs, TabItem, Steps } from '@astrojs/starlight/components';
 
 ## Digital wallets
@@ -59,15 +59,21 @@ The examples below are simplified representations of the Open Payments API calls
 
 <Steps>
 1. The Web Monetization agent locates your [monetization link](/experiment/link-element) and extracts your payment URL (the `href` value).
+    <Disclosure toggleText="Example monetization link" client:load>
     ```html
     <link rel="monetization" href="https://wallet.example/alice">
+    ```
+    </Disclosure>
 2. The agent issues a <LinkOut href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address/"><Badge text="GET" variant="note" size="small" /></LinkOut> request to the URL.
+    <Disclosure toggleText="Example request" client:load>
     ```http
     GET /alice HTTP/1.1
     Accept: application/json
     Host: wallet.example
     ```
+    </Disclosure>
 3. The response to the agent contains information such as the currency your account is denominated in and the URLs for your wallet provider's authorization and resource servers.
+    <Disclosure toggleText="Example response" client:load>
     ```http
     HTTP/1.1 200 Success
     Content-Type: application/json
@@ -79,7 +85,9 @@ The examples below are simplified representations of the Open Payments API calls
         "resourceServer":"https://wallet.example/resource"
     }
     ```
-4. The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to the `authServer` URL received in the previous response. The request contains the access permissions the agent is requesting. 
+    </Disclosure>
+4. The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `authServer` URL. The request contains the access permissions the agent is requesting. 
+    <Disclosure toggleText="Example request" client:load>
     ```http
     POST /auth/ HTTP/1.1
     Accept: application/json
@@ -102,7 +110,9 @@ The examples below are simplified representations of the Open Payments API calls
     :::note
     The `client` in the response above is your visitor's wallet address/payment pointer. This URL is only used by the agent and is not available to you.
     :::
+    </Disclosure>
 5. The response to the agent contains an auth token that the agent needs to make its next request.
+    <Disclosure toggleText="Example response" client:load>
     ```http
     {
         "access_token":{
@@ -118,7 +128,9 @@ The examples below are simplified representations of the Open Payments API calls
         }
     }
     ```
-6. The agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to the `resourceServer` URL received in Step 3 above. The purpose of this call is to request the information needed by your visitor's wallet provider so their provider correctly addresses the payment to you.
+    </Disclosure>
+6. The agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `resourceServer` URL. The purpose of this call is to request the information needed by your visitor's wallet provider so their provider correctly addresses the payment to you.
+    <Disclosure toggleText="Example request" client:load>
     ```http
     POST /alice/incoming-payments HTTP/1.1
     Accept: application/json
@@ -126,7 +138,9 @@ The examples below are simplified representations of the Open Payments API calls
     Authorization: OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0
     Host: wallet.example
     ```
+    </Disclosure>
 7. The response to the agent contains unique payment details that will be used to address the payment to your payment account.
+    <Disclosure toggleText="Example response" client:load>
     ```http
     {
         "id":"https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
@@ -140,7 +154,9 @@ The examples below are simplified representations of the Open Payments API calls
         "createdAt":"2022-03-12T23:20:50.52Z",
     }
     ```
+    </Disclosure>
 8. At this point, the agent has finished communicating with your wallet provider. Now, it issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your visitor's wallet provider. The purpose of this call is to give the provider what it needs to send the payment.
+    <Disclosure toggleText="Example request" client:load>
     ```http
     POST /visitor/outgoing-payment HTTP/1.1
     Accept: application/json
@@ -153,7 +169,9 @@ The examples below are simplified representations of the Open Payments API calls
         "quoteId": "https://wallet.example/quotes/ab03296b-0c8b-4776-b94e-7ee27d868d4d",
     }
     ```
+    </Disclosure>
 9. The response to the agent indicates whether the visitor's wallet provider is able to send the payment. A payment could fail if the visitor has insufficient funds, for example. Assuming everything's good, the visitor's wallet provider responds to the agent with payment details.
+    <Disclosure toggleText="Example response" client:load>
     ```http
     {
     "id":"https://cloudninewallet.example/visitor/outgoing-payments/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf",
@@ -181,4 +199,5 @@ The examples below are simplified representations of the Open Payments API calls
     :::note
     Notice that the `sentAmount value` is `0`. All the API calls up to this point have been to set up the payment. This amount will go up over time, depending on the pay rate your visitor has set in their extension.
     :::
+    </Disclosure>
 </Steps>

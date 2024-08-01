@@ -4,11 +4,13 @@ title: Monetization events
 
 import { LinkOut, Hidden, Tooltip } from "@interledger/docs-design-system";
 import Specification from '/src/components/docs/Specification.astro'
-import { Tabs, TabItem, Steps } from '@astrojs/starlight/components';
+import { Tabs, TabItem, Steps, Badge } from '@astrojs/starlight/components';
 import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import amountSent from '/src/data/browser-compat-data/amountSent.json'
 import incomingPayment from '/src/data/browser-compat-data/incomingPayment.json'
 import paymentPointer from '/src/data/browser-compat-data/paymentPointer.json'
+
+<Badge text="Web Monetization API" variant="tip" style="position: relative; top:-30px;" />
 
 One responsibility of the [Web Monetization agent](/resources/glossary/#web-monetization-agent) is to instrument payments. The agent does this by calling the Open Payments APIs, which are APIs implemented by wallet providers. 
 
