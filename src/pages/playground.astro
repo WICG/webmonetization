@@ -40,8 +40,8 @@ changeLanguage('en')
   <body>
     <main>
       <div class='header'>
-        <img src='/img/wm-logo--animated.svg' />
-        <h1>Web Monetization Playground</h1>
+        <img src='/img/wm-logo--full-animated.svg' />
+        <h1>Playground</h1>
       </div>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
@@ -66,39 +66,23 @@ changeLanguage('en')
   :root {
     --white: #fff;
     --black: #222;
-    --green: #02bb3e;
-    --light-green: #eefee5;
-    --dark-green: #0e7b31;
+    --light-teal: #def4ef;
+    --bright-teal: #A4EAE8;
+    --teal: #007777;
+    --sl-font-system: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
   }
 
   [data-theme='light'] {
     --background: var(--white);
     --text: var(--black);
-    --accent: var(--green);
+    --accent: var(--teal);
 
-    --button-background: var(--dark-green);
+    --button-background: var(--teal);
     --button-text: var(--white);
-  }
-
-  @font-face {
-    font-family: DejaVu Sans Mono;
-    src: url(/fonts/DejaVuSansMono.ttf) format('truetype');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: DejaVu Sans Mono;
-    src: url(/fonts/DejaVuSansMono-Bold.ttf) format('truetype');
-    font-weight: 700;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: DejaVu Sans Mono;
-    src: url(/fonts/DejaVuSansMono-Oblique.ttf) format('truetype');
-    font-weight: 400;
-    font-style: italic;
   }
 
   *,
@@ -109,9 +93,13 @@ changeLanguage('en')
   }
 
   body {
-    font-family: 'DejaVu Sans Mono', monospace;
-    background-color: var(--background);
     color: var(--text);
+    background-image: url('/img/bg-tile.svg');
+    background-repeat: repeat;
+    background-size: 30em;
+    background-position: center;
+    min-height: 100%;
+    font-family: var( --sl-font-system);
   }
 
   main {
@@ -124,6 +112,10 @@ changeLanguage('en')
     text-align: center;
   }
 
+  img {
+    max-width: 100%;
+  }
+
   input,
   button {
     font: inherit;
@@ -133,7 +125,7 @@ changeLanguage('en')
     border: 1px solid var(--accent);
     border-radius: 0.375rem;
     padding: 0.5rem;
-    background-color: transparent;
+    background-color: var(--background);
     transition:
       box-shadow ease-in-out 0.2s,
       border-color ease-in-out 0.2s;
@@ -188,12 +180,12 @@ changeLanguage('en')
 
   .header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    justify-content: center;
+    gap: 0.5em;
 
     img {
-      max-width: 100px;
+      max-width: 25em;
     }
   }
 
@@ -234,8 +226,8 @@ changeLanguage('en')
 
     div[data-wallet-address] {
       border-radius: 0.5rem;
-      border: 2px solid var(--black);
       padding: 0.5rem;
+      background-color: var(--light-teal);
 
       & .log-header {
         display: flex;
@@ -262,6 +254,7 @@ changeLanguage('en')
       }
 
       & ul.events {
+        font-family: var(--sl-font-system-mono);
         height: 16rem;
         margin-block: 0.5rem;
         padding-block-start: 0.5rem;
@@ -713,7 +706,7 @@ changeLanguage('en')
       .tooltip-wrapper button {
         background-color: transparent;
         border: 0;
-        color: var(--dark-green);
+        color: var(--button-background);
         padding: 0 var(--space-3xs);
         font-size: 12px;
         font-weight: bold;
@@ -726,8 +719,8 @@ changeLanguage('en')
 
       .tooltip-wrapper .bubble {
         position: fixed;
-        background-color: var(--light-green);
-        border: 1px solid var(--black);
+        background-color: var(--light-teal);
+        border: 1px solid var(--accent);
         padding: var(--space-2xs);
         border-radius: 6px;
         line-height: 1.25;
