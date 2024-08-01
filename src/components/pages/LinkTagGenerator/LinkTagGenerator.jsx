@@ -61,7 +61,7 @@ export default function LinkTagGenerator() {
         </div>
         {invalidUrl ? (
           <span className={styles.error}>
-            Please check the format of your payment pointer
+            Please check the format of your wallet address or payment pointer
           </span>
         ) : (
           ''
