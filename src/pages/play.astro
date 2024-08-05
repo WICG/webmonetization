@@ -72,7 +72,7 @@ changeLanguage('en')
     --sl-font-system: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    --sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   }
 
@@ -349,14 +349,6 @@ changeLanguage('en')
 </style>
 
 <script>
-  interface WalletAddress {
-    id: string
-    assetScale: number
-    assetCode: string
-    authServer: string
-    resourceServer: string
-  }
-
   const form = document.querySelector('#walletAddressForm') as HTMLFormElement
   const input = form.querySelector('input') as HTMLInputElement
   const submitButton = form.querySelector('button') as HTMLButtonElement
@@ -462,6 +454,7 @@ changeLanguage('en')
     type: string,
     event?: MonetizationEvent
   ) {
+    console.warn(type)
     const log = document.createElement('li')
     const time = new Date().toLocaleTimeString()
     let slot = `${capitalize(type)} Event`
@@ -470,8 +463,12 @@ changeLanguage('en')
       slot += ` - ${event.amountSent.value} ${event.amountSent.currency}`
       log.innerHTML = `<wm-tooltip time="${time}" slot="${slot}" content='${JSON.stringify(JSON.stringify(event))}'></wm-tooltip>`
     } else {
+      if(type === 'error') {
+        slot += ` (Check browser console)`
+      }
       log.textContent = `[${time}] ${slot}`
     }
+
 
     div.prepend(log)
   }
@@ -505,57 +502,17 @@ changeLanguage('en')
     return s.startsWith('$') ? s.replace('$', 'https://') : s
   }
 
-  async function validateWalletAddressUrl(url: string): Promise<void> {
-    const walletAddressUrl = new URL(toWalletAddressUrl(url)).href
-    const response = await fetch(walletAddressUrl, {
-      method: 'GET',
-      credentials: 'omit',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-    const walletAddress = await response.json()
-    const isValid = isWalletAddress(walletAddress)
-
-    if (!isValid) {
-      input.setCustomValidity(
-        `${walletAddressUrl} is not a valid wallet address.`
-      )
-      input.reportValidity()
-      throw new Error('Invalid wallet address.')
-    }
-  }
-
-  function isWalletAddress(o: any): o is WalletAddress {
-    return (
-      o.id &&
-      typeof o.id === 'string' &&
-      o.assetScale &&
-      typeof o.assetScale === 'number' &&
-      o.assetCode &&
-      typeof o.assetCode === 'string' &&
-      o.authServer &&
-      typeof o.authServer === 'string' &&
-      o.resourceServer &&
-      typeof o.resourceServer === 'string'
-    )
-  }
-
   input.addEventListener('input', function() {
     this.setCustomValidity('')
   })
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault()
-    submitButton.disabled = true
-    submitButton.textContent = SUBMIT_BUTTON_TEXT.processing
 
     const formData = new FormData(form)
     const walletAddress = formData.get('walletAddressUrl')?.valueOf()
 
     if (!walletAddress || typeof walletAddress !== 'string') {
-      submitButton.disabled = false
-      submitButton.textContent = SUBMIT_BUTTON_TEXT.default
       input.setCustomValidity('Please fill the wallet address URL field.')
       return false
     }
@@ -566,31 +523,15 @@ changeLanguage('en')
       `[data-wallet-address='${walletAddress}']`
     )
     if (walletAddressElement) {
-      submitButton.disabled = false
-      submitButton.textContent = SUBMIT_BUTTON_TEXT.default
       input.setCustomValidity(`${walletAddress} already exists in the page.`)
       input.reportValidity()
       return false
-    }
-
-    try {
-      await validateWalletAddressUrl(walletAddressUrl)
-    } catch (e) {
-      input.setCustomValidity(
-        `${walletAddress} is not a valid wallet address/payment pointer.`
-      )
-      input.reportValidity()
-      submitButton.disabled = false
-      submitButton.textContent = SUBMIT_BUTTON_TEXT.default
-      return
     }
 
     await createLinkEventLog(walletAddressUrl)
     await createLinkTag(walletAddressUrl)
 
     form.reset()
-    submitButton.disabled = false
-    submitButton.textContent = SUBMIT_BUTTON_TEXT.default
   })
 
   class Tooltip extends HTMLElement {
@@ -719,9 +660,9 @@ changeLanguage('en')
 
       .tooltip-wrapper .bubble {
         position: fixed;
-        background-color: var(--light-teal);
-        border: 1px solid var(--accent);
-        padding: var(--space-2xs);
+        background-color: var(--white);
+        border: 1px solid var(--bright-teal);
+        padding-inline: 0.5rem;
         border-radius: 6px;
         line-height: 1.25;
         width: 18em;
@@ -735,7 +676,7 @@ changeLanguage('en')
       }
 
       .tooltip-wrapper .bubble pre {
-        overflow-x: scroll;
+        text-wrap: wrap;
       }
 
       .tooltip-wrapper button[aria-expanded="false"] + .bubble {
