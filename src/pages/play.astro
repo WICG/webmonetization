@@ -55,6 +55,7 @@ changeLanguage('en')
             />
           </div>
           <button class="full-width" type='submit'>Add monetization link</button>
+          <p>Your browser does not support Web Monetization.</p>
         </form>
       </div>
       <div id='link-events'></div>
@@ -69,6 +70,7 @@ changeLanguage('en')
     --light-teal: #def4ef;
     --bright-teal: #A4EAE8;
     --teal: #007777;
+    --red: #EF4444;
     --sl-font-system: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -200,6 +202,13 @@ changeLanguage('en')
 
     form {
       min-width: 378px;
+    }
+
+    p {
+      display: none;
+      margin-block-start: 1rem;
+      text-align: center;
+      color: var(--red);
     }
   }
 
@@ -351,14 +360,17 @@ changeLanguage('en')
 
 <script>
   const form = document.querySelector('#walletAddressForm') as HTMLFormElement
+  const notice = document.querySelector('p') as HTMLParagraphElement
   const input = form.querySelector('input') as HTMLInputElement
   const submitButton = form.querySelector('button') as HTMLButtonElement
   const linkEvents = document.querySelector('#link-events') as HTMLDivElement
 
-  const SUBMIT_BUTTON_TEXT = {
-    default: 'Add monetization link',
-    processing: 'Processing...',
-  }
+  setTimeout(() => {
+    if(!window.MonetizationEvent) {
+      notice.style.display = 'block'
+      submitButton.disabled = true
+    }
+  }, 150)
 
   async function createLinkTag(href: string) {
     const link = document.createElement('link')
