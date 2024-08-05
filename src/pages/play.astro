@@ -454,7 +454,6 @@ changeLanguage('en')
     type: string,
     event?: MonetizationEvent
   ) {
-    console.warn(type)
     const log = document.createElement('li')
     const time = new Date().toLocaleTimeString()
     let slot = `${capitalize(type)} Event`
@@ -468,7 +467,6 @@ changeLanguage('en')
       }
       log.textContent = `[${time}] ${slot}`
     }
-
 
     div.prepend(log)
   }
