@@ -2,8 +2,8 @@
 import i18next, { t, changeLanguage } from 'i18next'
 import { HeadHrefLangs } from 'astro-i18next/components'
 
-const title = `Playground | ${t("site.title")}`;
-const description = t("site.description");
+const title = `Playground | ${t('site.title')}`
+const description = t('site.description')
 const image = '/img/wm-social.png'
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
@@ -40,7 +40,7 @@ changeLanguage('en')
   <body>
     <main>
       <div class='header'>
-        <img src='/img/wm-logo--full-animated.svg' width="400" height="52" />
+        <img src='/img/wm-logo--full-animated.svg' width='400' height='52' />
         <h1>Playground</h1>
       </div>
       <div class='form-wrapper'>
@@ -54,7 +54,9 @@ changeLanguage('en')
               required
             />
           </div>
-          <button class="full-width" type='submit' disabled>Add monetization link</button>
+          <button class='full-width' type='submit' disabled>
+            Add monetization link
+          </button>
           <p>Checking if your browser supports Web Monetization...</p>
         </form>
       </div>
@@ -68,14 +70,15 @@ changeLanguage('en')
     --white: #fff;
     --black: #222;
     --light-teal: #def4ef;
-    --bright-teal: #A4EAE8;
+    --bright-teal: #a4eae8;
     --teal: #007777;
-    --red: #EF4444;
-    --sl-font-system: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --red: #ef4444;
+    --sl-font-system: ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
     --sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+      'Liberation Mono', 'Courier New', monospace;
   }
 
   [data-theme='light'] {
@@ -101,7 +104,7 @@ changeLanguage('en')
     background-size: 30em;
     background-position: center;
     min-height: 100%;
-    font-family: var( --sl-font-system);
+    font-family: var(--sl-font-system);
   }
 
   main {
@@ -268,13 +271,27 @@ changeLanguage('en')
 
       & ul.events {
         font-family: var(--sl-font-system-mono);
-        height: 16rem;
+        height: 20rem;
         margin-block: 0.5rem;
         padding-block-start: 0.5rem;
         padding-inline-start: 0.5rem;
         list-style: none;
         overflow-y: auto;
         white-space: nowrap;
+
+        & details {
+          & summary {
+            & span {
+              text-decoration: underline dotted;
+              text-underline-offset: 2px;
+              cursor: pointer;
+            }
+          }
+
+          pre {
+            margin-inline-start: 1rem;
+          }
+        }
       }
     }
   }
@@ -355,6 +372,12 @@ changeLanguage('en')
 
         & ul.events {
           font-size: smaller;
+
+          details {
+            & pre {
+              margin-inline-start: 0.5rem;
+            }
+          }
         }
       }
     }
@@ -369,22 +392,21 @@ changeLanguage('en')
   const linkEvents = document.querySelector('#link-events') as HTMLDivElement
 
   if (window.MonetizationEvent) {
-    submitButton.disabled = false;
-    notice.style.display = "none"
+    submitButton.disabled = false
+    notice.style.display = 'none'
   } else {
     setTimeout(() => {
       if (!window.MonetizationEvent) {
-        notice.textContent = "Your browser does not support Web Monetization."
+        notice.textContent = 'Your browser does not support Web Monetization.'
         notice.style.display = 'block'
         notice.classList.add('error')
         submitButton.disabled = true
       } else {
         submitButton.disabled = false
-        notice.style.display = "none"
+        notice.style.display = 'none'
       }
     }, 500)
   }
-
 
   async function createLinkTag(href: string) {
     const link = document.createElement('link')
@@ -482,17 +504,35 @@ changeLanguage('en')
     event?: MonetizationEvent
   ) {
     const log = document.createElement('li')
+
     const time = new Date().toLocaleTimeString()
     let slot = `${capitalize(type)} Event`
 
     if (event) {
-      slot += ` - ${event.amountSent.value} ${event.amountSent.currency}`
-      log.innerHTML = `<wm-tooltip time="${time}" slot="${slot}" content='${JSON.stringify(JSON.stringify(event))}'></wm-tooltip>`
+      const details = document.createElement('details')
+      const summary = document.createElement('summary')
+      const span = document.createElement('span')
+      span.textContent = `${slot} - ${event.amountSent.value} ${event.amountSent.currency}`
+      summary.append(`[${time}] `)
+      summary.append(span)
+      details.append(summary)
+
+      const pre = document.createElement('pre')
+      pre.textContent = JSON.stringify(event, null, 2)
+      details.append(pre)
+
+      log.append(details)
     } else {
-      if(type === 'error') {
+      if (type === 'error') {
         slot += ` (Check browser console)`
       }
-      log.textContent = `[${time}] ${slot}`
+
+      const spacer = document.createElement('span')
+      spacer.style.width = '0.25rem'
+      spacer.style.display = 'inline-block'
+
+      log.append(spacer)
+      log.append(` [${time}] ${slot}`)
     }
 
     div.prepend(log)
@@ -527,7 +567,7 @@ changeLanguage('en')
     return s.startsWith('$') ? s.replace('$', 'https://') : s
   }
 
-  input.addEventListener('input', function() {
+  input.addEventListener('input', function () {
     this.setCustomValidity('')
   })
 
@@ -558,163 +598,4 @@ changeLanguage('en')
 
     form.reset()
   })
-
-  class Tooltip extends HTMLElement {
-    private tooltip: HTMLSpanElement = document.createElement('span')
-    private questionMark: HTMLButtonElement = document.createElement('button')
-    private shadow = this.attachShadow({ mode: 'open' })
-    constructor() {
-      super()
-    }
-
-    connectedCallback() {
-      const stylesheet = this.createStylesheet()
-
-      const content = this.getAttribute('content')
-      const slot = this.getAttribute('slot')
-      const time = this.getAttribute('time')
-
-      if (!content || !slot || !time) {
-        throw new Error(
-          'Make sure `content` and `slot` attributes are passed to the component.'
-        )
-      }
-
-      this.createTooltip(content, slot, time)
-
-      this.shadow.append(this.tooltip)
-      this.shadow.adoptedStyleSheets = [stylesheet]
-      this.registerEventListeners()
-    }
-
-    private registerEventListeners() {
-      this.tooltip.addEventListener('mouseenter', () => {
-        const button = this.tooltip.querySelector('button') as HTMLButtonElement
-        button.setAttribute('aria-expanded', 'true')
-        const bubble = this.tooltip.querySelector('.bubble') as HTMLSpanElement
-        this.positionTooltip(bubble)
-      })
-
-      this.tooltip.addEventListener('mouseleave', () => {
-        const button = this.tooltip.querySelector('button') as HTMLButtonElement
-        button.setAttribute('aria-expanded', 'false')
-        const bubble = this.tooltip.querySelector('.bubble') as HTMLSpanElement
-        bubble.style.left = 'initial'
-        bubble.style.top = 'initial'
-      })
-    }
-
-    private positionTooltip(elem: HTMLSpanElement) {
-      const isDesktop = window.innerWidth > 768
-      const elemRect = elem.getBoundingClientRect()
-      const parent = elem.parentElement as HTMLElement
-      const parentRect = parent.getBoundingClientRect()
-
-      const ul = this.shadow.host.parentElement
-        ?.parentElement as HTMLUListElement
-      const isVisible =
-        elemRect.top >= 0 &&
-        elemRect.left >= 0 &&
-        elemRect.bottom - ul.scrollHeight <= window.innerHeight &&
-        elemRect.right <= window.innerWidth
-
-      let left = parentRect.left
-      let top = parentRect.top
-      if (isDesktop && isVisible) {
-        left += parentRect.width + 10
-      } else {
-        top -= elemRect.height + parentRect.height
-      }
-
-      elem.style.left = left + 'px'
-      elem.style.top = top + 'px'
-    }
-
-    private createTooltip(content: string, slot: string, time: string) {
-      const uuid = crypto.randomUUID()
-
-      this.tooltip.dataset.tooltipWrapper = ''
-      this.tooltip.classList.add('tooltip-wrapper')
-
-      this.questionMark.textContent = '?'
-      this.questionMark.type = 'button'
-      this.questionMark.ariaExpanded = 'false'
-      this.questionMark.ariaLabel = 'Definition'
-      this.questionMark.dataset.tooltipButton = ''
-      this.questionMark.setAttribute('aria-labelledby', uuid)
-
-      const bubble = document.createElement('span')
-      bubble.id = uuid
-      bubble.role = 'tooltip'
-      bubble.dataset.tooltipBubble = ''
-      bubble.classList.add('bubble')
-      bubble.innerHTML = `<pre>${JSON.stringify(JSON.parse(JSON.parse(content)), null, 2)}</pre>`
-
-      const textSlot = document.createElement('span')
-      textSlot.textContent = slot
-      textSlot.classList.add('slot')
-
-      this.tooltip.append(textSlot)
-      this.tooltip.append(this.questionMark)
-      this.tooltip.append(bubble)
-      this.tooltip.prepend(`[${time}] `)
-    }
-
-    private createStylesheet() {
-      const stylesheet = new CSSStyleSheet()
-      stylesheet.replaceSync(`
-      .tooltip-wrapper {
-        position: relative;
-        display: inline-block;
-        margin-right: 8px;
-      }
-
-      .tooltip-wrapper button {
-        background-color: transparent;
-        border: 0;
-        color: var(--button-background);
-        padding: 0 var(--space-3xs);
-        font-size: 12px;
-        font-weight: bold;
-        position: absolute;
-        bottom: 10px;
-        right: -12px;
-        cursor: pointer;
-        user-select: none;
-      }
-
-      .tooltip-wrapper .bubble {
-        position: fixed;
-        background-color: var(--white);
-        border: 1px solid var(--bright-teal);
-        padding-inline: 0.5rem;
-        border-radius: 6px;
-        line-height: 1.25;
-        width: 18em;
-        z-index: 9999;
-      }
-
-      .tooltip-wrapper .slot {
-        text-decoration: underline dotted;
-        text-underline-offset: 2px;
-        cursor: pointer;
-      }
-
-      .tooltip-wrapper .bubble pre {
-        text-wrap: wrap;
-      }
-
-      .tooltip-wrapper button[aria-expanded="false"] + .bubble {
-        visibility: hidden;
-      }
-
-      .tooltip-wrapper button[aria-expanded="true"] + .bubble {
-        visibility: visible;
-      }
-    `)
-      return stylesheet
-    }
-  }
-
-  customElements.define('wm-tooltip', Tooltip)
 </script>
