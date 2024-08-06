@@ -54,8 +54,8 @@ changeLanguage('en')
               required
             />
           </div>
-          <button class="full-width" type='submit'>Add monetization link</button>
-          <p>Your browser does not support Web Monetization.</p>
+          <button class="full-width" type='submit' disabled>Add monetization link</button>
+          <p>Checking if your browser supports Web Monetization...</p>
         </form>
       </div>
       <div id='link-events'></div>
@@ -201,14 +201,17 @@ changeLanguage('en')
     max-width: 756px;
 
     form {
-      min-width: 378px;
+      width: 100%;
+      max-width: 400px;
     }
 
     p {
-      display: none;
       margin-block-start: 1rem;
       text-align: center;
-      color: var(--red);
+
+      &.error {
+        color: var(--red);
+      }
     }
   }
 
@@ -365,12 +368,23 @@ changeLanguage('en')
   const submitButton = form.querySelector('button') as HTMLButtonElement
   const linkEvents = document.querySelector('#link-events') as HTMLDivElement
 
-  setTimeout(() => {
-    if(!window.MonetizationEvent) {
-      notice.style.display = 'block'
-      submitButton.disabled = true
-    }
-  }, 150)
+  if (window.MonetizationEvent) {
+    submitButton.disabled = false;
+    notice.style.display = "none"
+  } else {
+    setTimeout(() => {
+      if (!window.MonetizationEvent) {
+        notice.textContent = "Your browser does not support Web Monetization."
+        notice.style.display = 'block'
+        notice.classList.add('error')
+        submitButton.disabled = true
+      } else {
+        submitButton.disabled = false
+        notice.style.display = "none"
+      }
+    }, 500)
+  }
+
 
   async function createLinkTag(href: string) {
     const link = document.createElement('link')
