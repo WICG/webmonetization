@@ -1,0 +1,28 @@
+h2 {
+  margin-block: 1rem;
+}
+
+h2 + p {
+  margin-block-start: 0.4rem;
+}
+
+h3 {
+  margin-block: 1.5rem 0.6rem;
+}
+
+h4 {
+  margin-block: 1.3rem 0rem;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-block-start: 0.6rem;
+}
+
+hr {
+  padding-block-start: 1rem;
+  margin: 0 0 1rem 0;
+  border: 0;
+  border-bottom: 1px solid;
+}
