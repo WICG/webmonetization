@@ -191,7 +191,7 @@ export default defineConfig({
               link: '/docs/resources/libraries',
             },
             {
-              label: 'Open Payments-enabled wallets',
+              label: 'Web Monetization-enabled wallets',
               link: '/docs/resources/op-wallets',
             },
             {
