@@ -1,21 +1,20 @@
 ---
-title: Open Payments-enabled wallets
+title: Web Monetization-enabled wallets
 next: false
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
 import { LinkOut } from '@interledger/docs-design-system'
 
-An Open Payments-enabled wallet is a required component of Web Monetization. Your OP-enabled wallet provides you with a wallet address, which is an entry point into the <LinkOut href="https://openpayments.guide/">Open Payments APIs</LinkOut>.
+A Web Monetization-enabled wallet is required to send and/or receive payments. The wallet providers on this page are set up to support Web Monetization.
 
-To [enable Web Monetization](/docs/guides/monetize-page), add your wallet address as the `href` value in your monetization `<link>` element.
+Be sure to select a provider that is available in your **region** and supports your preferred **currency**.
 
-## Open Payments-enabled wallet providers
+Your provider will assign you a payment address, called either a wallet address or a payment pointer.
 
-### Fynbos
+## Wallet providers
 
-Coming soon!
-
-### GateHub
-
-Coming soon!
+| Provider | Payment Address Label |
+| --------------- | --------------- |
+| <LinkOut href="https://wallet.fynbos.app">Fynbos</LinkOut> | Wallet address |
+| <LinkOut href="https://gatehub.net">GateHub</LinkOut> | Payment pointer |
