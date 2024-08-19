@@ -48,7 +48,7 @@ export default function LinkTagGenerator() {
             }}
           />
           <button
-            className={styles.btn}
+            className='btn'
             type='submit'
             onClick={(evt) => {
               evt.preventDefault()
@@ -60,9 +60,9 @@ export default function LinkTagGenerator() {
           </button>
         </div>
         {invalidUrl ? (
-          <span className={styles.error}>
+          <p className='error'>
             Please check the format of your payment pointer
-          </span>
+          </p>
         ) : (
           ''
         )}

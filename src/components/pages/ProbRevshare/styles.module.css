@@ -55,22 +55,6 @@
   margin-block-end: var(--space-m);
 }
 
-.btn {
-  border: 0;
-  background-color: var(--sl-color-accent);
-  color: var(--sl-color-white);
-  border-radius: var(--border-radius);
-  padding: var(--space-2xs) var(--space-xs);
-  transition: background-color 150ms ease-in;
-  font-size: var(--step--1);
-  font-weight: bold;
-}
-
-.btn:hover,
-.btn:focus {
-  background-color: var(--sl-color-accent-high);
-}
-
 .importControls {
   margin-block-start: var(--space-xs);
 }
@@ -85,9 +69,6 @@
 
 .importWrapper textarea {
   width: 100%;
-  border: 1px solid var(--color-accent-mid);
-  padding: var(--space-2xs);
-  border-radius: var(--border-radius);
 }
 
 .error {

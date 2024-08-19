@@ -36,7 +36,7 @@ export function ShareInput({
             onChangePointer(ev.target.value)
           }}
         />
-        <p className={styles.error}>
+        <p className='error'>
           {!validatePointer(pointer) && 'Invalid payment pointer.'}
         </p>
       </td>

@@ -18,24 +18,3 @@
   border: 1px solid var(--sl-color-gray-2);
   padding: var(--space-2xs);
 }
-
-.error {
-  font-size: var(--step--1);
-  color: var(--sl-color-red-high);
-}
-
-.btn {
-  background-color: var(--sl-color-accent);
-  border: 0;
-  color: var(--sl-color-white);
-  padding: var(--space-xs);
-  border-radius: var(--border-radius);
-  transition: background-color 150ms ease-in;
-  font-size: var(--step--1);
-  font-weight: bold;
-}
-
-.btn:hover,
-.btn:focus {
-  background-color: var(--sl-color-accent-high);
-}

@@ -1,48 +1,18 @@
 ---
 import i18next, { t, changeLanguage } from 'i18next'
-import { HeadHrefLangs } from 'astro-i18next/components'
+import Base from "../layouts/Base.astro";
 
-const title = `Playground | ${t('site.title')}`
-const description = t('site.description')
-const image = '/img/wm-social.png'
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+changeLanguage("en");
 
-changeLanguage('en')
+const title = `Playground | ${t("site.title")}`;
+const description = t("site.description");
 ---
 
-<html lang={i18next.language} data-theme='light'>
-  <head>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width,initial-scale=1' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='generator' content={Astro.generator} />
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="contentWrapperMd">
+      <h1 class="heading2">Web Monetization Playground</h1>
 
-    <link rel='canonical' href={canonicalURL} />
-
-    <title>{title}</title>
-    <meta name='title' content={title} />
-    <meta name='description' content={description} />
-
-    <meta property='og:type' content='website' />
-    <meta property='og:url' content={Astro.url} />
-    <meta property='og:title' content={title} />
-    <meta property='og:description' content={description} />
-    <meta property='og:image' content={new URL(image, Astro.url)} />
-
-    <meta property='twitter:card' content='summary_large_image' />
-    <meta property='twitter:url' content={Astro.url} />
-    <meta property='twitter:title' content={title} />
-    <meta property='twitter:description' content={description} />
-    <meta property='twitter:image' content={new URL(image, Astro.url)} />
-
-    <HeadHrefLangs />
-  </head>
-  <body>
-    <main>
-      <div class='header'>
-        <img src='/img/wm-logo--full-animated.svg' width='400' height='52' />
-        <h1>Playground</h1>
-      </div>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
@@ -54,111 +24,40 @@ changeLanguage('en')
               required
             />
           </div>
-          <button class='full-width' type='submit' disabled>
+          <button class='btn full-width' type='submit' disabled>
             Add monetization link
           </button>
           <p>Checking if your browser supports Web Monetization...</p>
         </form>
       </div>
-      <div id='link-events'></div>
-    </main>
-  </body>
-</html>
 
-<style is:inline>
+      <div id='link-events'></div>
+    </div>
+  </section>
+
+  
+</Base>
+
+<style>
   :root {
     --white: #fff;
-    --black: #222;
     --light-teal: #def4ef;
     --bright-teal: #a4eae8;
     --teal: #007777;
-    --red: #ef4444;
-    --sl-font-system: ui-sans-serif, system-ui, -apple-system,
-      BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-      'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol', 'Noto Color Emoji';
-    --sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      'Liberation Mono', 'Courier New', monospace;
-  }
-
-  [data-theme='light'] {
-    --background: var(--white);
-    --text: var(--black);
-    --accent: var(--teal);
-
-    --button-background: var(--teal);
-    --button-text: var(--white);
-  }
-
-  *,
-  *::after,
-  *::before {
-    margin: 0;
-    box-sizing: border-box;
   }
 
   body {
-    color: var(--text);
     background-image: url('/img/bg-tile.svg');
-    background-repeat: repeat;
-    background-size: 30em;
-    background-position: center;
-    min-height: 100%;
-    font-family: var(--sl-font-system);
-  }
-
-  main {
-    padding: 3rem;
-    min-width: 0;
+    background-size: 25em;
   }
 
   h1 {
-    text-transform: uppercase;
     text-align: center;
   }
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
-  input,
   button {
-    font: inherit;
-  }
-
-  input {
-    border: 1px solid var(--accent);
-    border-radius: 0.375rem;
-    padding: 0.5rem;
-    background-color: var(--background);
-    transition:
-      box-shadow ease-in-out 0.2s,
-      border-color ease-in-out 0.2s;
-    color: var(--text);
-  }
-
-  button {
-    display: inline-block;
-    border: 2px solid transparent;
-    background-color: var(--button-background);
-    color: var(--button-text);
-    padding: 0.75rem;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-underline-offset: 2px;
-    transition: text-decoration-color 0.2s ease-in-out;
-    border: 1px solid transparent;
-    font-weight: 600;
-
     &.full-width {
       width: 100%;
-    }
-
-    &:hover {
-      text-decoration-color: currentcolor;
     }
 
     &:disabled {
@@ -170,62 +69,33 @@ changeLanguage('en')
         text-decoration-color: transparent;
       }
     }
-
-    &.outline {
-      background-color: var(--white);
-      color: var(--accent);
-      border-color: var(--bright-teal);
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    main {
-      padding: 1rem;
-    }
-  }
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5em;
-
-    img {
-      max-width: 25em;
-    }
   }
 
   .form-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-block-start: 2rem;
     margin-inline: auto;
-    max-width: 756px;
 
     form {
       width: 100%;
-      max-width: 400px;
+      max-width: 25em;
     }
 
     p {
-      margin-block-start: 1rem;
+      margin-block-start: var(--space-3xs);
       text-align: center;
-
-      &.error {
-        color: var(--red);
-      }
     }
   }
 
   .form-field {
     display: flex;
     flex-direction: column;
-    margin-block-end: 1rem;
+    margin-block-end: var(--space-m);
 
     label {
       white-space: nowrap;
-      margin-block-end: 0.25rem;
+      margin-block-end: var(--space-3xs);
     }
 
     .form-field-error {
@@ -236,22 +106,22 @@ changeLanguage('en')
 
   #link-events {
     display: grid;
-    gap: 2rem;
+    gap: var(--space-l);
     grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
-    margin-block-start: 2rem;
+    margin-block-start: var(--space-l);
 
     div[data-wallet-address] {
-      border-radius: 0.5rem;
-      padding: 0.5rem;
+      border-radius: var(--border-radius);
+      padding: var(--space-xs);
       background-color: var(--light-teal);
 
       & .log-header {
         display: flex;
-        gap: 1rem;
+        gap: var(--space-xs);
         align-items: center;
         justify-content: space-between;
         flex-direction: row;
-        color: var(--accent);
+        color: var(--teal);
 
         & h4 {
           overflow-x: hidden;
@@ -262,19 +132,19 @@ changeLanguage('en')
 
       & .actions {
         display: flex;
-        gap: 1rem;
+        gap: var(--space-xs);
       }
 
       & .amount {
-        margin-block-end: 0.5rem;
+        margin-block-end: var(--space-2xs);
       }
 
       & ul.events {
         font-family: var(--sl-font-system-mono);
         height: 20rem;
-        margin-block: 0.5rem;
-        padding-block-start: 0.5rem;
-        padding-inline-start: 0.5rem;
+        margin-block: var(--space-2xs);
+        padding-block-start: var(--space-2xs);
+        padding-inline-start: var(--space-2xs);
         list-style: none;
         overflow-y: auto;
         white-space: nowrap;
@@ -289,20 +159,10 @@ changeLanguage('en')
           }
 
           pre {
-            margin-inline-start: 1rem;
+            margin-inline-start: var(--space-xs);
           }
         }
       }
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    main {
-      padding: 2rem;
-    }
-
-    #link-events {
-      padding-inline: 2rem;
     }
   }
 
@@ -318,7 +178,6 @@ changeLanguage('en')
 
           & h4 {
             text-align: center;
-            font-size: smaller;
             width: 100%;
           }
 
@@ -334,7 +193,7 @@ changeLanguage('en')
         }
 
         & ul.events {
-          font-size: 14px;
+          font-size: var(--step--1);
           letter-spacing: -1px;
         }
       }
@@ -342,27 +201,9 @@ changeLanguage('en')
   }
 
   @media screen and (max-width: 425px) {
-    .header {
-      img {
-        max-width: 80%;
-      }
-
-      & h1 {
-        font-size: smaller;
-      }
-    }
-
-    form {
-      min-width: 100% !important;
-    }
-
     #link-events {
       & div[data-wallet-address] {
         & .log-header {
-          & h4 {
-            font-size: 12px;
-          }
-
           & .actions {
             & button {
               font-size: smaller;
@@ -375,7 +216,7 @@ changeLanguage('en')
 
           details {
             & pre {
-              margin-inline-start: 0.5rem;
+              margin-inline-start: var(--space-2xs);
             }
           }
         }
@@ -433,7 +274,7 @@ changeLanguage('en')
 
     const disableButton = document.createElement('button')
     disableButton.textContent = 'Disable'
-    disableButton.classList.add('outline')
+    disableButton.classList.add('btn', 'outline')
     disableButton.addEventListener('click', () => {
       const link = document.querySelector(
         `link[rel='monetization'][href='${href}']`
@@ -444,7 +285,7 @@ changeLanguage('en')
 
     const removeButton = document.createElement('button')
     removeButton.textContent = 'Remove'
-    removeButton.classList.add('outline')
+    removeButton.classList.add('btn', 'outline')
     removeButton.addEventListener('click', () => {
       const link = document.querySelector(
         `link[rel='monetization'][href='${href}']`
@@ -458,7 +299,7 @@ changeLanguage('en')
 
     const clearButton = document.createElement('button')
     clearButton.textContent = 'Clear events'
-    clearButton.classList.add('outline')
+    clearButton.classList.add('btn', 'outline')
     clearButton.addEventListener('click', () => {
       const ul = document.querySelector(
         `#link-events div[data-wallet-address='${href}'] ul.events`

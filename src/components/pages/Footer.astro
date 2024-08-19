@@ -9,16 +9,20 @@
   <span>
     Copyright © {new Date().getFullYear()} Interledger Foundation.
   </span>
+  <ul class="legal">
+    <li><a href="https://www.iubenda.com/privacy-policy/95080147">Privacy policy</a></li>
+    <li><a href="https://www.iubenda.com/privacy-policy/95080147/cookie-policy">Cookie policy</a></li>
+    <li><a href="https://www.iubenda.com/terms-and-conditions/95080147">Terms & Conditions</a></li>
+  </ul>
 </footer>
 
 <style>
   footer {
     padding: var(--space-xs);
-    padding-top: calc(var(--space-xs) + 3px);
-    font-size: var(--step--1);
+    padding-top: calc(var(--space-s) + 3px);
     text-align: center;
     color: #333;
-
+    background-color: #fff;
     background-image: url("/img/bg-lines.svg");
     background-size: 100% 3px;
     background-position: top;
@@ -31,16 +35,24 @@
     display: flex;
     justify-content: center;
     gap: var(--space-s);
-    margin-block-end: var(--space-xs);
+    margin-block-end: var(--space-s);
   }
 
   a {
-    text-decoration: none;
     color: #333;
   }
 
   a:hover {
     text-decoration: underline;
     color: var(--wm-accent);
+  }
+
+  .legal {
+    font-size: var(--step--1);
+    margin-block: var(--space-xs) 0;
+  }
+
+  .legal a {
+    text-decoration: dotted;
   }
 </style>

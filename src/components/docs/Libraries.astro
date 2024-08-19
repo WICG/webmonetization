@@ -1,5 +1,5 @@
 ---
-const { tools } = Astro.props;
+const { plugins } = Astro.props;
 
 const findStartWith = (array: any[], arg: string) => {
   return (
@@ -9,7 +9,7 @@ const findStartWith = (array: any[], arg: string) => {
   )
 }
 ---
-<table>
+<table class="plugins">
   <thead>
     <tr>
       <th class="cellLeft">Name</th>
@@ -19,24 +19,25 @@ const findStartWith = (array: any[], arg: string) => {
     </tr>
   </thead>
   <tbody>
-    {tools.map((tool: {name: string, desc: string, version: String[], link: string}) => (
+    {plugins.map((plugin: {name: string, desc: string, version: String[], link: string}) => (
       <tr>
         <td>
-          <strong>{tool.name}</strong>
+          <strong>{plugin.name}</strong>
           <br />
-          {tool.desc}
+          {plugin.desc}
         </td>
         <td class="cellCenter">
-          {findStartWith(tool.version, '2.') ? '✅' : '❌'}
+          {findStartWith(plugin.version, '2.') ? '✅' : '❌'}
         </td>
         <td class="cellCenter">
-          {findStartWith(tool.version, '1.') ? '✅' : '❌'}
+          {findStartWith(plugin.version, '1.') ? '✅' : '❌'}
         </td>
         <td class="cellCenter">
-          <a href={tool.link}>
+          <a href={plugin.link}>
             <img
-              alt={`Link to ${tool.name}'s GitHub repo`}
-              src='/img/docs/octocat.svg'
+              alt={`Link to ${plugin.name}'s GitHub repo`}
+              src='/img/icon-github.svg'
+              class="icon--github"
             />
           </a>
         </td>
@@ -46,11 +47,19 @@ const findStartWith = (array: any[], arg: string) => {
 </table>
 
 <style>
+  .plugins td {
+    vertical-align: top;
+  }
 .cellLeft {
   text-align: left;
 }
 
 .cellCenter {
   text-align: center;
+}
+
+.icon--github {
+  width: 2em;
+  margin-inline: auto;
 }
 </style>

@@ -1,0 +1,109 @@
+---
+const { cards } = Astro.props;
+---
+{cards.map((card: {name: string, desc: string, link: string, image: string}) => (
+  (card.desc ? (
+    <a
+      key={card.name}
+      href={card.link}
+      target="_blank"
+      rel="noreferrer noopener"
+      class="card cardWide"
+    >
+      <img
+        class="cardLogo"
+        src={`/img/${card.image}`}
+        alt={card.name}
+        width="96"
+        height="96"
+      />
+      <div class="cardContent">
+        <h3 class="bodyText">{card.name}</h3>
+        <p>{card.desc}</p>
+      </div>
+    </a>
+  ) :
+  (
+    <a
+      href={card.link}
+      target="_blank"
+      rel="noreferrer noopener"
+      key={card.name}
+      class="card cardBasic"
+    >
+      <img src={`/img/${card.image}`} alt={card.name} width="267" height="78" />
+    </a>
+  ))
+))}
+
+<style>
+.card {
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    text-decoration-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  overflow: initial;
+  box-shadow: var(--sl-shadow-sm);
+  border-radius: 6px;
+  padding: var(--space-s);
+}
+
+.card::after {
+  content: '';
+  border-radius: 6px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.card img {
+  width: 100%;
+}
+
+.cardBasic {
+  max-width: 16em;
+  justify-content: center;
+  width: 100%;
+}
+
+.cardWide {
+  flex: 0 1 100%;
+  max-width: 25em;
+  gap: var(--space-s);
+}
+
+.cardWide.cardWide {
+  color: var(--sl-color-gray-5);
+}
+
+@media screen and (min-width: 900px) {
+  .cardWide {
+    flex: 0 1 calc(50% - 1em);
+  }
+}
+
+.cardLogo {
+  max-width: 5em;
+  height: auto;
+}
+
+.cardContent h3 {
+  margin-block-end: var(--space-3xs);
+}
+
+.cardContent p {
+  font-size: var(--step-0);
+  margin-block-end: 0;
+}
+</style>

@@ -138,12 +138,14 @@ main code {
 }
 
 label {
-  font-size: var(--sl-text-body-sm);
+  font-size: var(--step--1);
+  font-weight: bold;
 }
 
-input:not([type='submit']):not([type='file']) {
+input:not([type='submit']):not([type='file']),
+textarea {
   border: 1px solid var(--sl-color-accent-high);
-  padding: var(--space-3xs) var(--space-2xs);
+  padding: var(--space-2xs);
   border-radius: var(--border-radius);
 }
 
@@ -154,6 +156,33 @@ input:not([type='submit']):not([type='file']):focus {
 ::placeholder {
   color: var(--color-accent-mid);
   opacity: 0.6;
+}
+
+.error {
+  color: var(--sl-color-red-high);
+}
+
+/* Button styles */
+.btn {
+  border: 0;
+  background-color: var(--sl-color-accent);
+  color: var(--sl-color-white);
+  border-radius: var(--border-radius);
+  padding: var(--space-2xs) var(--space-xs);
+  transition: background-color 150ms ease-in;
+  font-size: var(--step--1);
+  font-weight: bold;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: var(--sl-color-accent-high);
+}
+
+.btn.outline {
+  background-color: var(--sl-color-white);
+  color: var(--sl-color-accent);
+  border: 1px solid var(--sl-color-accent);
 }
 
 /* Table styles */
@@ -170,11 +199,11 @@ thead + tbody tr:nth-child(2n) {
 }
 
 thead + tbody tr:nth-child(2n + 1) {
-  background-color: initial;
+  background-color: var(--sl-color-white);
 }
 
 tr:nth-child(2n) {
-  background-color: initial;
+  background-color: var(--sl-color-white);
 }
 
 tr:nth-child(2n + 1) {
@@ -236,7 +265,7 @@ tbody tr:last-of-type td:last-child {
 
 .heading4 {
   font-size: var(--step-1);
-  margin-block-end: var(--space-s);
+  margin-block-end: var(--space-2xs);
 }
 
 .bodyText {
@@ -280,15 +309,9 @@ tbody tr:last-of-type td:last-child {
 
 /* Grid layout styles */
 .twoColGrid,
-.fourColGrid {
+.threeColGrid {
   display: grid;
   gap: var(--space-l);
-}
-
-@media screen and (min-width: 600px) {
-  .fourColGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media screen and (min-width: 900px) {
@@ -296,7 +319,7 @@ tbody tr:last-of-type td:last-child {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .fourColGrid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .threeColGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
