@@ -33,7 +33,7 @@ export function ActiveView() {
           If you make any changes to the table, your monetization{' '}
           <code>link</code> will change. Be sure to replace your old{' '}
           <code>link</code> element with the updated version. Check out{' '}
-          <a href='/docs/resources/monetize-page' target='_blank'>
+          <a href='/docs/guides/monetize-page' target='_blank'>
             Add Web Monetization to a page
           </a>{' '}
           if you need help.

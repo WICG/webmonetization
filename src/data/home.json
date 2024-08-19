@@ -1,7 +1,13 @@
 {
   "browsers": [],
   "providers": [],
-  "search": [],
+  "search": [
+    {
+      "name": "Mojeek",
+      "image": "logo-search-mojeek.svg",
+      "link": "https://www.mojeek.com"
+    }
+  ],
   "plugins": [
     {
       "name": "Astro Monetization",
@@ -99,7 +105,7 @@
     {
       "name": "Fynbos",
       "image": "logo-wallet-fynbos.svg",
-      "link": "https://fynbos.app/"
+      "link": "https://wallet.fynbos.app/wallet"
     },
     {
       "name": "Gatehub",

@@ -8,11 +8,10 @@ const title = `Playground | ${t("site.title")}`;
 const description = t("site.description");
 ---
 
-<Base title={title} description={description}>
+<Base title={title} description={description} hasFooter={false}>
   <section class="section">
     <div class="contentWrapperMd">
       <h1 class="heading2">Web Monetization Playground</h1>
-
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
@@ -30,9 +29,8 @@ const description = t("site.description");
           <p>Checking if your browser supports Web Monetization...</p>
         </form>
       </div>
-
-      <div id='link-events'></div>
     </div>
+    <div id='link-events' class="link-events"></div>
   </section>
 
   
@@ -97,42 +95,39 @@ const description = t("site.description");
       white-space: nowrap;
       margin-block-end: var(--space-3xs);
     }
-
-    .form-field-error {
-      margin-block-start: 0.5rem;
-      color: red;
-    }
   }
 
-  #link-events {
-    display: grid;
-    gap: var(--space-l);
-    grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+  .link-events {
+    padding-inline: var(--space-s);
+  }
+
+  .link-events {
+    padding-inline: var(--space-s);
     margin-block-start: var(--space-l);
 
     div[data-wallet-address] {
       border-radius: var(--border-radius);
       padding: var(--space-xs);
       background-color: var(--light-teal);
+      margin-block-end: var(--space-s);
 
       & .log-header {
-        display: flex;
-        gap: var(--space-xs);
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: row;
         color: var(--teal);
 
         & h4 {
           overflow-x: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          text-align: center;
+          margin-block-end: var(--space-2xs);
         }
       }
 
       & .actions {
         display: flex;
         gap: var(--space-xs);
+        justify-content: center;
+        font-size: var(--step--1);
       }
 
       & .amount {
@@ -141,83 +136,62 @@ const description = t("site.description");
 
       & ul.events {
         font-family: var(--sl-font-system-mono);
-        height: 20rem;
+        min-height: 20rem;
         margin-block: var(--space-2xs);
         padding-block-start: var(--space-2xs);
         padding-inline-start: var(--space-2xs);
         list-style: none;
         overflow-y: auto;
         white-space: nowrap;
+        font-size: var(--step--1);
+
+        & li {
+          margin-block-end: var(--space-3xs);
+        }
 
         & details {
           & summary {
+            cursor: pointer;
             & span {
               text-decoration: underline dotted;
               text-underline-offset: 2px;
-              cursor: pointer;
             }
           }
 
           pre {
-            margin-inline-start: var(--space-xs);
+            padding: var(--space-2xs);
+            margin-inline-start: var(--space-s);
           }
-        }
-      }
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    #link-events {
-      display: flex;
-      flex-direction: column;
-
-      div[data-wallet-address] {
-        & .log-header {
-          align-items: flex-start;
-          flex-direction: column;
-
-          & h4 {
-            text-align: center;
-            width: 100%;
-          }
-
-          & .actions {
-            width: 100%;
-            justify-content: center;
-            gap: 1rem;
-
-            & button {
-              font-size: smaller;
-            }
-          }
-        }
-
-        & ul.events {
-          font-size: var(--step--1);
-          letter-spacing: -1px;
         }
       }
     }
   }
 
   @media screen and (max-width: 425px) {
-    #link-events {
-      & div[data-wallet-address] {
+    .link-events {
+      div[data-wallet-address] {
         & .log-header {
-          & .actions {
-            & button {
-              font-size: smaller;
-            }
+          & h4 {
+            text-align: center;
+            font-size: smaller;
+            margin-block-end: var(--space-2xs);
           }
         }
+      }
+    }
+  }
 
-        & ul.events {
-          font-size: smaller;
+  @media screen and (min-width: 768px) {
+    .link-events {
+      div[data-wallet-address] {
+        & .log-header {
+          display: flex;
+          gap: var(--space-xs);
+          align-items: center;
+          justify-content: space-between;
 
-          details {
-            & pre {
-              margin-inline-start: var(--space-2xs);
-            }
+          & h4 {
+            margin-block-end: 0;
           }
         }
       }
@@ -369,11 +343,8 @@ const description = t("site.description");
       }
 
       const spacer = document.createElement('span')
-      spacer.style.width = '0.25rem'
-      spacer.style.display = 'inline-block'
-
+      spacer.append(` [${time}] ${slot}`)
       log.append(spacer)
-      log.append(` [${time}] ${slot}`)
     }
 
     div.prepend(log)
