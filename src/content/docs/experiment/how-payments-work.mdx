@@ -41,6 +41,18 @@ When you include the `<link>` element on a page, you're telling your visitors' b
 
 Your visitors' Web Monetization extension acts like a messaging service. When they land on your page, their extension identifies your `<link>` element and sends a message to your payment URL. This begins a number of API requests and responses between the extension and your wallet provider, and the extension and your visitor's wallet provider to facilitate a payment.
 
+### Micropayments
+
+If you're already somewhat familiar with Web Monetization, you may have heard about how it supports micropayments.
+
+In general, a micropayment is a very small payment. Each wallet provider is responsible for a few things:
+* Deciding whether to support sending and/or receiving micropayments
+* Defining what a micropayment is in the context of their business
+
+Let's say your wallet provider allows you to receive micropayments and defines a micropayment as any payment under $0.05 USD. This means that you could receive a single payment of, for example, one US cent. Web Monetization is designed to facilitate payments of even a fraction of a cent; however, you can only receive micropayments if your wallet provider supports them. Your wallet provider may also have business rules set up to allow you to accumulate micropayments, but not deposit the payments into your wallet account until you reach a certain amount. 
+
+On the other side of a transaction, your site visitor can only send micropayments if allowed to do so by their own wallet provider. 
+
 ### A deeper dive into payments
 
 **Open Payments**

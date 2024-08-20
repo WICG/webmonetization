@@ -41,3 +41,13 @@ Need the extension doc before I can tighten up the rest of this section. Pieces 
 ## Payments
 
 Your Web Monetization extension acts like a messaging service. It requests information from the recipient's wallet provider, then passes the information, along with your payment instructions, to your wallet provider. It's now up to your wallet provider to deduct the payment from your account and send it to the recipient. 
+
+### Micropayments
+
+If you're already somewhat familiar with Web Monetization, you may have heard about how it supports micropayments.
+
+In general, a micropayment is a very small payment. Each wallet provider is responsible for a few things:
+* Deciding whether to support sending and/or receiving micropayments
+* Defining what a micropayment is in the context of their business
+
+Let's say your wallet provider allows you to send micropayments and defines a micropayment as any payment under $0.05 USD. This means that you could send a single payment of, for example, one US cent. Web Monetization is designed to facilitate payments of even a fraction of a cent; however, you can only send that amount if your wallet provider allows it.
