@@ -21,16 +21,13 @@ export function ImportView() {
           setError('')
         }}
       />
-      <p className={styles.error}>{error}</p>
+      <p className='error'>{error}</p>
       <div className={styles.importControls}>
-        <button
-          className={styles.btn}
-          onClick={() => setView(ViewStates.Shares)}
-        >
+        <button className='btn' onClick={() => setView(ViewStates.Shares)}>
           Cancel
         </button>
         <button
-          className={`${styles.importSharesButton} ${styles.btn}`}
+          className={`${styles.importSharesButton} btn`}
           onClick={() => {
             try {
               const shares = tagOrPointerToShares(tag)

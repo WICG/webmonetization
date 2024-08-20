@@ -10,10 +10,11 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+  hasFooter?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title = t("site.title"), description = t("site.description"), image = '/img/wm-social.png' } = Astro.props;
+const { title = t("site.title"), description = t("site.description"), image = '/img/wm-social.png', hasFooter = true } = Astro.props;
 changeLanguage("en");
 ---
 <html lang={i18next.language} data-theme="light">
@@ -49,7 +50,7 @@ changeLanguage("en");
       <slot /> 
     </main>
   
-    <Footer />
+    {hasFooter ? <Footer /> : ''}
   </body>
   
 </html>

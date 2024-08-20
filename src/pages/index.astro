@@ -10,6 +10,9 @@ changeLanguage("en");
 
 const title = t("site.title");
 const description = t("site.description");
+const pluginsList = data.plugins.filter(function(plugin){
+  return plugin.version.includes("2.0");         
+})
 ---
 <Base title={title} description={description}>
   <section class="section hero">
@@ -31,7 +34,7 @@ const description = t("site.description");
       <div class="contentWrapperSm">
         <p>
           Web Monetization is being proposed as a W3C standard at <a
-            href="https://github.com/WICG/webmonetization"
+            href="https://wicg.io/"
             rel="noreferrer noopener"
             target="_blank"
           >
@@ -62,7 +65,7 @@ const description = t("site.description");
     </div>
   </section>
   <section class="section">
-    <div class="contentWrapperLg twoColGrid">
+    <div class="contentWrapperLg">
       {data.wallets.length > 0 && (
         <div class="gridItem">
           <div class="sectionHeader">
@@ -127,62 +130,40 @@ const description = t("site.description");
       </div>
     </section>
   )}
-  {data.tools.length > 0 && (
+  {data.plugins.length > 0 && (
     <section class="section">
       <div class="contentWrapperLg">
         <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Tools</h2>
-          <p>These tools enable Web Monetization features:</p>
+          <h2 class="heading3">Web Monetization Libraries/Plugins</h2>
+          <p>There have been a number of libraries and plugins developed over the years to enable Web Monetization features on your website, but a lot of them need updating to conform to the latest specification. If you would like to help out this effort, please check out the <a href="/docs/resources/libraries">full list</a>. These plugins have already been updated:</p>
         </div>
         <div class="cards">
-          <CardList cards={data.tools} />
+          <CardList cards={pluginsList} />
         </div>
-        <PrCta label="tool" />
+        <PrCta label="plugin" />
       </div>
     </section>
   )}
-  <section class="section resources">
+  <section class="section">
     <div class="contentWrapperLg">
-      <h2 class="heading3">Resources</h2>
-      <div class="fourColGrid">
-        <div class="gridItem">
-          <h3 class="heading4">Documentation</h3>
-          <p>Resource on how to add Web Monetization to your site.</p>
-          <a href="/docs/">Read docs ›</a>
-        </div>
-        <div class="gridItem">
-          <h3 class="heading4">Specification</h3>
-          <p>The formal specification.</p>
-          <a href="/specification">Read specs ›</a>
-        </div>
-        <div class="gridItem">
-          <h3 class="heading4">
-            <img
-              src={`/img/awesome-badge.svg`}
-              alt=""
-              width="86"
-              height="20"
-            />
-          </h3>
-          <p>
-            An{" "}
-            <a
-              href="https://github.com/sindresorhus/awesome#readme"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              awesome
-            </a>{" "}
-            list of additional Web Monetization resources.
-          </p>
-          <a
-            href="https://github.com/thomasbnt/awesome-web-monetization"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            View list ›
-          </a>
-        </div>
+      <div class="sectionHeader">
+        <h2 class="heading3">Tools</h2>
+      </div>
+      <div class="threeColGrid toolsList">
+        <a class="gridItem" href="/play">
+          <h3 class="heading4">Web Monetization Playground</h3>
+          <p>Explore how Web Monetization works</p>
+        </a>
+
+        <a class="gridItem" href="/link-tag">
+          <h3 class="heading4">Link Tag Generator</h3>
+          <p>Generate a Web Monetization link tag for your site</p>
+        </a>
+
+        <a class="gridItem" href="/prob-revshare">
+          <h3 class="heading4">Probabilistic RevShare Generator</h3>
+          <p>Split Web Monetization revenue between payment pointers</p>
+        </a>
       </div>
     </div>
   </section>
@@ -208,62 +189,23 @@ const description = t("site.description");
 </Base>
 
 <style>
-  .section {
-    border-block-end: 1px solid var(--sl-color-gray-2);
-  }
 /* Hero section styles */
 .hero {
-  color: var(--sl-color-white);
-  background-color: var(--sl-color-gray-6);
-  background-image: url("/img/wm-logo--grey.svg");
-  background-repeat: no-repeat;
-  background-position: 100% 60%;
-  background-size: 60vw;
+  background-image: url("/img/bg-lines--light.svg"), url("/img/bg-tile.svg");
+  background-repeat: repeat-x, repeat;
+  background-size: 17em, 20em;
+  background-position: bottom, center;
+  margin-block-end: var(--space-xl);
   text-align: center;
-  padding-block-end: 0;
 }
-
-@media screen and (min-aspect-ratio: 3 / 4) {
-  .hero {
-    background-size: 40vmin;
-    background-position: 85%;
-  }
-}
-
-.hero > div {
-  padding-block-end: var(--space-l);
-}
-
-.hero h1 {
-  font-weight: normal;
-}
-
-.hero p {
-  font-weight: normal;
-}
-
-.hero.hero a {
-  color: var(--sl-color-white);
-}
-
-.heroTagline {
-  color: var(--sl-color-gray-2);
-}
-
 .heroIcon {
   width: 120px;
   margin-block-end: var(--space-s);
   margin-inline: auto;
 }
 
-.heroFooter {
-  background-color: var(--sl-color-black);
-  padding: var(--space-m);
-}
-
-.heroFooter a {
-  color: var(--sl-color-white);
-  text-decoration: underline;
+.hero h1 {
+  color: var(--wm-accent);
 }
 
 /* Card wrapper styles */
@@ -275,11 +217,15 @@ const description = t("site.description");
   justify-content: center;
 }
 
-/* Resources section styles */
-.resources p {
-  margin-block-end: var(--space-s);
+/* Tools list styles */
+.toolsList {
+  justify-content: center;
 }
 
+.toolsList a {
+  text-align: center;
+  cursor: pointer;
+}
 /* Contributor section styles */
 .contributors {
   list-style: none;
