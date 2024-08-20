@@ -1,13 +1,7 @@
 {
   "browsers": [],
   "providers": [],
-  "search": [
-    {
-      "name": "Mojeek",
-      "image": "logo-search-mojeek.svg",
-      "link": "https://www.mojeek.com"
-    }
-  ],
+  "search": [],
   "plugins": [
     {
       "name": "Astro Monetization",
