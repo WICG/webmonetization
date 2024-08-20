@@ -3,7 +3,11 @@ import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/PageSidebar.astro';
 
 const removeOverview = [
- 'docs/resources/glossary',
+ 'resources/glossary',
+ 'resources/community/get-involved',
+ 'experiment/quick-start',
+ 'experiment/how-payments-work',
+ 'support/how-payments-work',
 ]
 const noOverview = removeOverview.includes(Astro.props.slug);
 const toc = noOverview
