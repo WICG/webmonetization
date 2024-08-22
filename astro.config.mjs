@@ -41,6 +41,10 @@ export default defineConfig({
           label: 'Français',
           lang: 'fr',
         },
+        'pt-br': {
+          label: 'Português (Brasil)',
+          lang: 'pt-br',
+        },
       },
       components: {
         Header: './src/components/docs/Header.astro',
