@@ -15,6 +15,7 @@ export default defineConfig({
       customCss: [
         './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
         './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',
+        './src/styles/custom.css',
       ],
       plugins: [
         starlightLinksValidator({
@@ -74,7 +75,25 @@ export default defineConfig({
           ],
         },
         {
-          label: 'References',
+          label: 'Web Monetization extension',
+          collapsed: true,
+          items: [
+            {
+              label: 'Overview',
+              link: '/docs/support/overview'
+            },
+            {
+              label: 'Quick start guide',
+              link: '/docs/support/quick-start'
+            },
+            {
+              label: 'Use the extension',
+              link: '/docs/support/use-extension'
+            },
+          ],
+        },
+        {
+          label: 'Developer references',
           collapsed: true,
           items: [
             {
@@ -153,7 +172,7 @@ export default defineConfig({
           ],
         },
         {
-          label: 'Guides',
+          label: 'Developer guides',
           collapsed: true,
           items: [
             {
