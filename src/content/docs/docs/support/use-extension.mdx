@@ -26,7 +26,7 @@ import { LinkOut } from "@interledger/docs-design-system";
 2. Enter the amount to make available to the extension. 
 3. If you want the amount to renew each month, select the **Renew monthly** toggle.
 4. Click **Connect**.
-5. Click **Agree** to allow the extension to automatically connect with your wallet provider and add a security key to your wallet account.<br /><img src="/img/docs/extension/connection-wallet.png" alt="Consent screen to allow the extension to connect with the wallet provider with agree and decline buttons" style="max-width:300px" class="img-outline"/><br />If your wallet provider's website opened in your browser, proceed to the next step. If you received an error because the extension could not automatically connect to your provider, review the instructions for [obtaining your key](#obtain-your-public-key).
+5. Click **Agree** to allow the extension to automatically connect with your wallet provider and add a security key to your wallet account.<br /><img src="/img/docs/extension/connection-wallet.png" alt="Consent screen to allow the extension to connect with the wallet provider with agree and decline buttons" style="max-width:300px" class="img-outline"/><br />If your wallet provider's website opened in your browser, proceed to the next step. If you received a connection error, review the instructions for [resolving the error](#resolve-a-wallet-connection-error).
 6. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. The look of the confirmation screen will be different for each wallet provider. Below is an example screen.<br /><img src="/img/docs/extension/example-grant.png" alt="Example budget confirmation screen with accept and decline buttons" style="max-width:400px" class="img-outline" />When the connection is successful, your browser will show a success screen.<br /><img src="/img/docs/extension/connection-success.png" alt="Web page displaying a connection successful screen" style="max-width:400px" class="img-outline"/>
 </Steps> 
 
@@ -84,24 +84,59 @@ You can make a one-time payment (OTP) to a page instead of, or in addition to, c
     />
 </Steps>
 
-## Obtain your public key
+## Resolve a wallet connection error
 
-When you first [link the extension to your wallet](#connect-the-extension-to-your-wallet-and-set-a-budget), the extension attempts to automatically connect with your wallet provider and add a key to your account. If the extension is unable to connect automatically, then you must manually add the key to your wallet account.
+* [Resolve for Fynbos](#fynbos)
+* [Resolve for GateHub](#gatehub)
 
-Use the instructions below to copy your key. Then, add your key to your wallet account. The steps for adding your key will depend on who your wallet provider is. Contact your wallet provider if you need help.
+#### Overview
 
-<Steps>
-1. Click cog in the upper-right of the extension.
-    <br /><img src="/img/docs/extension/extension-cog.png" alt="Extension showing the cog icon in the upper-right" style="max-width:300px" class="img-outline"/>
-2. Select the arrow to expand the **Advanced** section.
-    <br /><img
-    src="/img/docs/extension/wallet-tab-public-key.png"
-    alt="Extension's wallet tab showing the advanced section expanded with the public key available"
+When you first try to [link the extension to your wallet](#connect-the-extension-to-your-wallet-and-set-a-budget), the extension attempts to automatically connect with your wallet provider and add a key to your account.
+
+If the extension is unable to connect automatically, you will receive an error.
+
+<img
+    src="/img/docs/extension/connection-failed.png"
+    alt="Generic error on set up screen stating the extension was unable to connect to the wallet"
     style="max-width:300px"
     class="img-outline"
-    />
-3. Copy your public key.
+/>
+
+In some cases, the extension will provide you with a reason.
+
+<img
+    src="/img/docs/extension/connection-failed-reason.png"
+    alt="Error on setup screen stating that automatic key addition is not implemented for the selected wallet provider"
+    style="max-width:300px"
+    class="img-outline"
+/>
+
+In any case, you must copy the key that appears on the screen and manually add it to your wallet account. The steps for adding the key to your account depend on who your wallet provider is. 
+
+#### Fynbos
+<Steps>
+1. Sign in to your Fynbos wallet.
+2. Select **Settings** from the left menu.
+3. Select **Keys**.
+4. Click **Add a public key**.
+5. Enter a nickname for the key, then paste the key into the appropriate field.
+6. Click **Save**.
+7. Go back to your extension and try connecting again.
 </Steps>
+
+Contact Fynbos at support@fynbos.app if you need additional help.
+
+#### GateHub
+<Steps>
+1. Sign in to GateHub and select your Web Monetization wallet.
+2. Select your payment pointer, within the *Interledger Settings* section, to drill down into details.
+3. Click **Upload key**.
+4. Enter a name for the key, then paste the key into the appropriate field.
+5. Click **Upload**. 
+6. Go back to your extension and try connecting again.
+</Steps>
+
+<LinkOut href="https://support.gatehub.net/hc/en-us/requests/new">Submit a request</LinkOut> with GateHub if you need additional help.
 
 ## Disconnect the extension from your wallet
 
@@ -152,10 +187,16 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 
 <details>
 <summary>I get an error from my wallet provider when linking the extension to my wallet. Why?</summary>
-It's hard to say without a specific error message. However, it's likely that you didn't accept the connection in time. It's not uncommon for a wallet provider to only give a short window to accept the connection to keep your account safe. Click **Connect** to try linking again.
+It's hard to say without a specific error message. Two likely scenarios are:
+* You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe. 
+* You accepted the connection too quickly--within seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen.
+
+Click **Connect** and try linking your extension again.
 </details>
 
 <details>
 <summary>I know the page I'm visiting is web monetized, but the extension says its not. Why?</summary>
-The most likely reason is that your wallet provider and the content owner's/publisher's wallet provider are not yet able to transact with one another. Visit the [Web Monetization-enabled wallets](/docs/resources/op-wallets) page for information about each supported wallet provider's constraints.
+The most likely reason is that your wallet provider and the content owner's/publisher's wallet provider are not yet able to transact with one another. Your extension will display an exclamation mark within an orange circle. Open the extension to read the messaging.
+
+Visit the [Web Monetization-enabled wallets](/docs/resources/op-wallets) page for information about each supported wallet provider's constraints.
 </details>
