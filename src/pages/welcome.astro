@@ -64,7 +64,7 @@ const description = t("site.description");
     KEY_ERROR = 'key_add_error',
   }
 
-  type Intent = 'connect' | 'reconnect' | 'funds'
+  type Intent = 'connect' | 'reconnect' | 'funds' | 'update_budget'
 
   const DEFAULT_ERROR_MESSAGE = function (_version: string, intent: Intent) {
     if(intent === 'funds') {
