@@ -60,9 +60,11 @@ const description = t("site.description");
     ERROR = 'grant_error',
     REJECTED = 'grant_rejected',
     INVALID = 'grant_invalid',
+    KEY_SUCCESS = 'key_add_success',
+    KEY_ERROR = 'key_add_error',
   }
 
-  type Intent = 'connect' | 'funds'
+  type Intent = 'connect' | 'reconnect' | 'funds'
 
   const DEFAULT_ERROR_MESSAGE = function (_version: string, intent: Intent) {
     if(intent === 'funds') {
@@ -80,13 +82,13 @@ const description = t("site.description");
   const ERROR_MESSAGES = {
     continuation_failed(_version: string, intent: Intent): string {
       if(intent === 'funds') {
-        return 'An error occured. Please try adding funds again.'
+        return 'An error occurred. Please try adding funds again.'
       }
       return 'An error occurred. Please try reconnecting the wallet.'
     },
     hash_failed(_version: string, intent: Intent): string {
       if(intent === 'funds') {
-        return 'An error occured. Please try adding funds again.'
+        return 'An error occurred. Please try adding funds again.'
       }
       return 'An error occurred. Please try reconnecting the wallet.'
     },
@@ -99,11 +101,17 @@ const description = t("site.description");
       }
       return 'Your wallet is now successfully connected to the extension.'
     },
+    key_add_success(_version: string): string {
+      return 'Your wallet is now successfully reconnected to the extension.'
+    },
     grant_rejected(_version: string, intent: Intent): string {
       if(intent === 'funds') {
         return 'No funds were added.'
       }
       return 'Your request was successfully rejected.'
+    },
+    key_add_error(_version: string): string {
+      return 'Something went wrong with your request. Please try reconnecting your wallet.'
     },
     grant_invalid(_version: string, intent: Intent): string {
       if(intent === 'funds') {
@@ -134,10 +142,20 @@ const description = t("site.description");
       heroInfo.textContent = CLOSE_TAB_MESSAGE
       heroHeading.textContent = MESSAGES[SuccessParam.SUCCESS](version, intent)
       break
+    case SuccessParam.KEY_SUCCESS:
+      updateImage('success')
+      heroInfo.textContent = CLOSE_TAB_MESSAGE
+      heroHeading.textContent = MESSAGES[SuccessParam.KEY_SUCCESS](version)
+      break
     case SuccessParam.REJECTED:
       updateImage('warning')
       heroInfo.textContent = CLOSE_TAB_MESSAGE
       heroHeading.textContent = MESSAGES[SuccessParam.REJECTED](version, intent)
+      break
+    case SuccessParam.KEY_ERROR:
+      updateImage('error')
+      heroInfo.textContent = CLOSE_TAB_MESSAGE
+      heroHeading.textContent = MESSAGES[SuccessParam.KEY_ERROR](version)
       break
     case SuccessParam.INVALID:
       updateImage('error')
