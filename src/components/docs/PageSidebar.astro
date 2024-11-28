@@ -6,7 +6,7 @@ const removeOverview = [
  'docs/resources/glossary',
 ]
 const noOverview = removeOverview.includes(Astro.props.slug);
-const toc = noOverview
+const toc = noOverview && Astro.props.toc !== undefined
 	? {
 			...Astro.props.toc,
 			items: Astro.props.toc?.items.slice(1),
