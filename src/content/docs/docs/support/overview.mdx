@@ -1,0 +1,52 @@
+---
+title: Supporting web monetized content
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+import { Steps, Icon } from '@astrojs/starlight/components';
+
+The Interledger Foundation's Web Monetization extension allows you to support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
+
+## Prerequisites
+
+There are a handful of prerequisites that both you and the site you visit must meet before Web Monetization can be used. 
+
+<Steps>
+1. First, the site you visit must implement Web Monetization. The majority of our documentation is dedicated to helping content owners and publishers web monetize their sites. If you're interested in the technical details, the [Receiving payments](/docs/intro/receiving-payments) page may be a good place to start.<br />
+    :::note[How do I know if a site is web monetized?]
+    Since Web Monetization is fairly new, we encourage content owners and publishers to tell their visitors  they're web monetized via a banner or some other method.
+    :::
+2. Next, [install](/docs/support/use-extension#before-you-begin) the Web Monetization extension into your browser.
+3. Then, sign up with a compatible [digital wallet provider](/docs/resources/op-wallets).
+4. Lastly, [link](/docs/support/use-extension#connect-the-extension-to-your-wallet-and-set-a-budget) the extension to your wallet and set a budget.
+</Steps>
+
+## Benefits
+
+### Control who, when, and how much to pay.
+
+All payments to web monetized sites must be explicitly authorized or pre-authorized by you. Sites cannot pull payments from your payment account under any circumstance.
+
+### Your payments are private.
+
+Web Monetization does not provide the recipient with personally identifiable information such as your name, email address, or IP address. 
+
+### Your payment details are stored with your wallet.
+
+Part of setting up the Web Monetization extension involves linking the extension to your wallet. This link allows the extension to communicate with your wallet without storing sensitive payment details in the extension or your browser.
+
+### There's no separate Web Monetization account(s).
+
+The only account you need is the one you create with your wallet provider. There's no site-by-site account creation/subscription required for each individual site you want to support.
+
+## Constraints
+
+### Web Monetization is not an ad blocker.
+
+Sending a payment to a web monetized site does not guarantee an ad-free experience. The decision to show or hide ads in response to a Web Monetization payment is entirely up to each content owner or publisher.
+
+### The network of compatible wallet providers is still small.
+
+Wallet providers are regulated entities within the countries they operate. Obtaining the proper licensing and registration to become a wallet provider can be an expensive, complex, and time consuming process. Similarly, there's additional work involved to 1) allow different wallet providers to transact with one another and 2) perform the technical integrations required to support Web Monetization.
+
+The Interledger Foundation is actively working with a handful of wallet providers to help them work through such complexities.
