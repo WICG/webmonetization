@@ -77,7 +77,7 @@ export function pointerToShares(pointer) {
 
     if (!encodedList) {
       throw new Error(
-        'No share data found. Make sure you copy the whole "content" field from your meta tag.',
+        'No share data found. Make sure you copy the whole "content" field from your link tag.',
       )
     }
 
@@ -85,16 +85,16 @@ export function pointerToShares(pointer) {
 
     if (!validatePointerList(pointerList)) {
       throw new Error(
-        'Share data is invalid. Make sure you copy the whole "content" from your meta tag.',
+        'Share data is invalid. Make sure you copy the whole "content" from your link tag.',
       )
     }
     return sharesFromPointerList(pointerList)
   } catch (err) {
     if (err.name === 'TypeError') {
-      throw new Error('Meta tag or payment pointer is malformed')
+      throw new Error('Link tag, wallet address, or payment pointer is malformed')
     } else if (err.name === 'SyntaxError') {
       throw new Error(
-        'Payment pointer has malformed share data. Make sure to copy the entire pointer.',
+        'Wallet address or payment pointer has malformed share data. Make sure to copy the entire address.',
       )
     } else {
       throw err
