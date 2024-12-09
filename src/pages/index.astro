@@ -37,6 +37,7 @@ const pluginsList = data.plugins.filter(function(plugin){
             href="https://wicg.io/"
             rel="noreferrer noopener"
             target="_blank"
+            data-umami-event="Landing page - Spec"
           >
             the Web Platform Incubator Community Group</a>.
         </p>
@@ -59,7 +60,7 @@ const pluginsList = data.plugins.filter(function(plugin){
       <div class="gridItem">
         <h2 class="heading3">Why Now?</h2>
         <p>
-          Until recently, there hasn't been an open, neutral and cost-efficient protocol for transferring money. <a href="https://interledger.org" rel="noreferrer noopener" target="_blank">Interledger</a> provides a simple, interoperable, and currency-agnostic method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes more Web Monetization use cases possible for the first time.
+          Until recently, there hasn't been an open, neutral and cost-efficient protocol for transferring money. <a href="https://interledger.org" rel="noreferrer noopener" target="_blank" data-umami-event="Landing page - ILP docs">Interledger</a> provides a simple, interoperable, and currency-agnostic method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes more Web Monetization use cases possible for the first time.
         </p>
       </div>
     </div>
@@ -135,7 +136,7 @@ const pluginsList = data.plugins.filter(function(plugin){
       <div class="contentWrapperLg">
         <div class="sectionHeader">
           <h2 class="heading3">Web Monetization Libraries/Plugins</h2>
-          <p>There have been a number of libraries and plugins developed over the years to enable Web Monetization features on your website, but a lot of them need updating to conform to the latest specification. If you would like to help out this effort, please check out the <a href="/docs/resources/libraries">full list</a>. These plugins have already been updated:</p>
+          <p>There have been a number of libraries and plugins developed over the years to enable Web Monetization features on your website, but a lot of them need updating to conform to the latest specification. If you would like to help out this effort, please check out the <a href="/docs/resources/libraries" data-umami-event="Landing page - WebMo libraries">full list</a>. These plugins have already been updated:</p>
         </div>
         <div class="cards">
           <CardList cards={pluginsList} />
@@ -150,17 +151,17 @@ const pluginsList = data.plugins.filter(function(plugin){
         <h2 class="heading3">Tools</h2>
       </div>
       <div class="threeColGrid toolsList">
-        <a class="gridItem" href="/play">
+        <a class="gridItem" href="/play" data-umami-event="Landing page - Playground">
           <h3 class="heading4">Web Monetization Playground</h3>
           <p>Explore how Web Monetization works</p>
         </a>
 
-        <a class="gridItem" href="/link-tag">
+        <a class="gridItem" href="/link-tag" data-umami-event="Landing page - Link tag">
           <h3 class="heading4">Link Tag Generator</h3>
           <p>Generate a Web Monetization link tag for your site</p>
         </a>
 
-        <a class="gridItem" href="/prob-revshare">
+        <a class="gridItem" href="/prob-revshare" data-umami-event="Landing page - Prob rev share">
           <h3 class="heading4">Probabilistic RevShare Generator</h3>
           <p>Split Web Monetization revenue between payment pointers</p>
         </a>
