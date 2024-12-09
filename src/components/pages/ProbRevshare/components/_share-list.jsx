@@ -69,12 +69,14 @@ export function ShareList() {
         <button
           className='btn'
           onClick={() => setShares([...shares, newShare()])}
+          data-umami-event='Revshare - Add share'
         >
           Add Share
         </button>
         <button
           className={`${styles.importSharesButton} btn`}
           onClick={() => setView(ViewStates.Import)}
+          data-umami-event='Revshare - Import share'
         >
           Import Existing Revshare
         </button>

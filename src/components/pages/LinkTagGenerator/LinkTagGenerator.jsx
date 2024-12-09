@@ -50,6 +50,7 @@ export default function LinkTagGenerator() {
           <button
             className='btn'
             type='submit'
+            data-umami-event='Link tag page - Generator'
             onClick={(evt) => {
               evt.preventDefault()
               setInvalidUrl(false)
