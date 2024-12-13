@@ -12,6 +12,17 @@ export default defineConfig({
       title: 'Web Monetization',
       description:
         "Web Monetization allows websites to automatically receive payments from users, facilitated by the user agent and a user's preferred monetization provider.",
+      head: [
+        {
+          tag: 'script',
+          attrs: {
+            defer: true,
+            'data-website-id': '3b8cb97a-2a94-43c2-85e7-277c92c9cf48',
+            src: 'https://ilf-site-analytics.netlify.app/script.js',
+            'data-domains': 'webmonetization.org'
+          }
+        }
+      ],
       customCss: [
         './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
         './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',

@@ -9,6 +9,7 @@ const { cards } = Astro.props;
       target="_blank"
       rel="noreferrer noopener"
       class="card cardWide"
+      data-umami-event={`CardList - ${card.name}`}
     >
       <img
         class="cardLogo"
@@ -30,6 +31,7 @@ const { cards } = Astro.props;
       rel="noreferrer noopener"
       key={card.name}
       class="card cardBasic"
+      data-umami-event={`CardList - ${card.name}`}
     >
       <img src={`/img/${card.image}`} alt={card.name} width="267" height="78" />
     </a>
