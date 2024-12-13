@@ -1,6 +1,5 @@
 ---
 import i18next, { t, changeLanguage } from "i18next";
-import { HeadHrefLangs } from "astro-i18next/components";
 import TopNav from "../components/pages/TopNav.astro";
 import Footer from "../components/pages/Footer.astro";
 import '/node_modules/@interledger/docs-design-system/src/styles/teal-theme.css';
@@ -40,8 +39,6 @@ changeLanguage("en");
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={new URL(image, Astro.url)} />
-
-  <HeadHrefLangs />
 
   <body>
     <TopNav />
