@@ -82,6 +82,10 @@ export default defineConfig({
               label: 'Web Monetization flow',
               link: '/docs/intro/web-monetization-flow',
             },
+            {
+              label: 'Web Monetization extension',
+              link: '/docs/intro/web-monetization-extension',
+            },
           ],
         },
         {
