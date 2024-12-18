@@ -96,7 +96,7 @@ export default defineConfig({
               items: [
                 {
                   label: 'HTML <link> rel=monetization',
-                  link: '/docs/references/html-link-rel-monetization',
+                  link: '/docs/references/html',
                 },
                 {
                   label: 'Monetization events',
@@ -246,6 +246,9 @@ export default defineConfig({
     react(),
     astroI18next(),
   ],
+  redirects: {
+    "/docs/references/html-link-rel-monetization": "/docs/references/html"
+  },
   server: {
     port: 1100,
   },
