@@ -1,7 +1,7 @@
 ---
-const { class: className, href } = Astro.props;
+const { class: className, href, event } = Astro.props;
 ---
-<a href={href} class:list={className}>
+<a href={href} class:list={className} data-umami-event={event}>
   <slot />
 </a>
 

@@ -23,7 +23,7 @@ const description = t("site.description");
               required
             />
           </div>
-          <button class='btn full-width' type='submit' disabled>
+          <button class='btn full-width' type='submit' data-umami-event='Play page - Add WebMo link' disabled>
             Add monetization link
           </button>
           <p>Checking if your browser supports Web Monetization...</p>
@@ -32,8 +32,6 @@ const description = t("site.description");
     </div>
     <div id='link-events' class="link-events"></div>
   </section>
-
-  
 </Base>
 
 <style>
@@ -134,6 +132,7 @@ const description = t("site.description");
       & ul.events {
         font-family: var(--sl-font-system-mono);
         min-height: 20rem;
+        max-height: 20rem;
         margin-block: var(--space-2xs);
         padding-block-start: var(--space-2xs);
         padding-inline-start: var(--space-2xs);

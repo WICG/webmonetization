@@ -1,6 +1,5 @@
 ---
 import i18next, { t, changeLanguage } from "i18next";
-import { HeadHrefLangs } from "astro-i18next/components";
 import TopNav from "../components/pages/TopNav.astro";
 import Footer from "../components/pages/Footer.astro";
 import '/node_modules/@interledger/docs-design-system/src/styles/teal-theme.css';
@@ -29,6 +28,8 @@ changeLanguage("en");
   <meta name="title" content={title} />
   <meta name="description" content={description} />
 
+  <script defer src="https://ilf-site-analytics.netlify.app/script.js" data-website-id="3b8cb97a-2a94-43c2-85e7-277c92c9cf48" data-domains: "webmonetization.org"></script>
+
   <meta property="og:type" content="website" />
   <meta property="og:url" content={Astro.url} />
   <meta property="og:title" content={title} />
@@ -40,8 +41,6 @@ changeLanguage("en");
   <meta property="twitter:title" content={title} />
   <meta property="twitter:description" content={description} />
   <meta property="twitter:image" content={new URL(image, Astro.url)} />
-
-  <HeadHrefLangs />
 
   <body>
     <TopNav />
