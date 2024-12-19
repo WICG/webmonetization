@@ -64,5 +64,5 @@ Web Monetization communicates with the sending and receiving accounts to obtain 
 A new version of the Web Monetization specification was published in June 2023. Users of the previous version should be aware of the following:
 
 - The previous version only used Interledger's Simple Payment Setup Protocol (SPSP). The new version uses <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut>.
-- The `<meta>` element is deprecated in favor of the [`<link>`](/docs/references/html-link-rel-monetization/) element.
+- The `<meta>` element is deprecated in favor of the [`<link>`](/docs/references/html/) element.
 - The `<link>` element does not support the shorthand form of a payment pointer (e.g., `$wallet.example/alice`). You must use the endpoint URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`). If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. In most cases, you can simply replace the `$` with `https://`.
