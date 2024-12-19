@@ -4,7 +4,7 @@ title: 'Activity Streams JSON-LD'
 
 Social web community servers and apps can expose the wallet address of a user’s profile or post to a Web Monetization client, such as the Web Monetization browser extension or embedded SDK.
 
-Web Monetization links are represented in [Activity Streams 2.0](https://www.w3.org/TR/activitystreams-core/) [Object Types](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object) using the `monetization` property from the Open Payments namespace (`https://interledger.org/ns/openpayments`).
+Web Monetization links are represented in [Activity Streams 2.0](https://www.w3.org/TR/activitystreams-core/) [Object Types](https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object) using the `monetization` property from the Web Monetization namespace (`https://webmonetization.org/ns.jsonld`).
 
 ### User `Profile` example
 
@@ -15,7 +15,7 @@ Web Monetization links are represented in [Activity Streams 2.0](https://www.w3.
 		"https://w3id.org/security/v1",
 
 		// Add the Open Payments namespace
-		"https://interledger.org/ns/openpayments",
+		"https://webmonetization.org/ns.jsonld",
 
 		{
 			"Hashtag": "as:Hashtag"
@@ -55,7 +55,7 @@ Web Monetization links are represented in [Activity Streams 2.0](https://www.w3.
 		"https://www.w3.org/ns/activitystreams",
 
 		// Add the Open Payments namespace
-		"https://interledger.org/ns/openpayments",
+		"https://webmonetization.org/ns.jsonld",
 
 		{
 			"ostatus": "http://ostatus.org#",

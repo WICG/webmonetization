@@ -19,7 +19,7 @@ To make Web Monetization payments, you only need a digital wallet from a Web Mon
 
 A web monetized site cannot initiate payments from your digital wallet. When you link the browser extension to your digital wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#change-your-continuous-payment-settings).
 
-The sites you pay are not provided with any of your personally identifiable information, such as your name, email address, or IP address. 
+The sites you pay are not provided with any of your personally identifiable information, such as your name, email address, or IP address.
 
 :::note
 Sending a payment to a web monetized site does not guarantee an ad-free experience. The decision to show or hide ads in response to a Web Monetization payment is entirely up to each content owner or publisher.
@@ -29,21 +29,21 @@ Sending a payment to a web monetized site does not guarantee an ad-free experien
 
 ### 1. Download and install the extension
 
-The extension is currently supported in the following browsers. We plan to support more browsers in the future. 
+The extension is currently supported in the following browsers. We plan to support more browsers in the future.
 
 * <LinkOut href="https://chromewebstore.google.com/detail/web-monetization-extensio/oiabcfomehhigdepbbclppomkhlknpii">Google Chrome and Chromium-based browsers</LinkOut>
 * <LinkOut href="https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/">Mozilla Firefox</LinkOut>
 * <LinkOut href="https://microsoftedge.microsoft.com/addons/detail/web-monetization-extensio/imjgemgmeoioefpmfefmffbboogighjl">Microsoft Edge</LinkOut>
 
 :::note[Permissions]
-The extension will ask for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for the Web Monetization [`<link>`](/docs/references/html-link-rel-monetization) element.
+The extension will ask for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for the Web Monetization [`<link>`](/docs/references/html) element.
 :::
 
 ### 2. Sign up with a compatible digital wallet
 
 Sign up with a Web Monetization-compatible [wallet provider](/docs/resources/op-wallets).
 
-After you've created your digital wallet, you'll be provided with a type of URL called a *wallet address*. You need this address in the next step. 
+After you've created your digital wallet, you'll be provided with a type of URL called a *wallet address*. You need this address in the next step.
 
 ```html title="Example wallet address"
 https://wallet.example.com/alice
@@ -54,18 +54,18 @@ https://wallet.example.com/alice
 <Steps>
 1. Open the extension and enter your wallet address in the given field.
     <img src="/img/docs/extension/connection-setup.png" alt="Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button" style="max-width:300px" class="img-outline"/>
-2. Enter the amount to make available to spend. 
+2. Enter the amount to make available to spend.
 3. Optionally select the **Renew monthly** toggle. If you choose to not renew monthly, you'll need to manually [add more funds](#adjust-your-budget) when your remaining balance is zero.
 4. Click **Connect**.
 5. Click **Agree** to allow the extension to connect to your wallet and add a key to your account.<br /><img src="/img/docs/extension/connection-wallet.png" alt="Consent screen to allow the extension to connect to your wallet provider with agree and decline buttons" style="max-width:300px" class="img-outline"/><br />If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
 6. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. Below is an example confirmation screen.<br /><img src="/img/docs/extension/example-grant.png" alt="Example budget confirmation screen with accept and decline buttons" style="max-width:400px" class="img-outline" />A success screen appears when the connection is successful.<br /><img src="/img/docs/extension/connection-success.png" alt="Web page displaying a connection successful screen" style="max-width:400px" class="img-outline"/>
-</Steps> 
+</Steps>
 
 ## Change your continuous payment settings
 
 A continuous payment is a payment that recurs at your set rate for as long as you are active on a web monetized page. When you leave the page, the payments stop.
 
-Continuous payments are enabled by default and sent at a rate of $0.60 USD per hour. Use the instructions below to change the rate or disable continuous payments. 
+Continuous payments are enabled by default and sent at a rate of $0.60 USD per hour. Use the instructions below to change the rate or disable continuous payments.
 
 <Steps>
 1. Click the **Settings** icon in the upper-right of the extension.
@@ -81,12 +81,12 @@ Continuous payments are enabled by default and sent at a rate of $0.60 USD per h
 4. Select the **Continuous payment** toggle to enable/disable continuous payments. This is a global setting that applies to all web monetized pages you visit.
 </Steps>
 
-## Make a one-time payment 
+## Make a one-time payment
 
-You can make a one-time payment to a page instead of -- or in addition to -- continuous payments. The amount of the one-time payment is deducted from your budget. 
+You can make a one-time payment to a page instead of -- or in addition to -- continuous payments. The amount of the one-time payment is deducted from your budget.
 
 <Steps>
-1. Ensure the URL shown above the amount field is the page you intend to pay. 
+1. Ensure the URL shown above the amount field is the page you intend to pay.
     <br /><img
     src="/img/docs/extension/otp-send-now.png"
     alt="Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active"
@@ -102,7 +102,7 @@ You can make a one-time payment to a page instead of -- or in addition to -- con
     />
 </Steps>
 
-## Adjust your budget 
+## Adjust your budget
 
 <Steps>
 1. Click the **Settings** icon in the upper-right of the extension.
@@ -111,7 +111,7 @@ You can make a one-time payment to a page instead of -- or in addition to -- con
     <br /><img src="/img/docs/extension/budget-tab-full-budget.png" alt="Budget tab showing your remaining balance and options to change budget amount and renewal" style="max-width:300px" class="img-outline"/>
 3. Enter the new amount in the **Budget amount** field.
 4. Select the **Monthly** toggle to enable/disable monthly renewals of your budget.
-5. Click **Submit changes**. A new tab opens to your wallet provider. 
+5. Click **Submit changes**. A new tab opens to your wallet provider.
 6. Sign in to your wallet account if you haven't already, then confirm the new budget.
 </Steps>
 
@@ -120,10 +120,10 @@ You can make a one-time payment to a page instead of -- or in addition to -- con
 When you disconnect the extension from your wallet, the extension can no longer make payments. You can always reconnect your wallet later.
 
 :::tip[Remaining balance]
-You won't lose your remaining balance if you disconnect the extension from your wallet. Your remaining balance will remain in your wallet account. 
+You won't lose your remaining balance if you disconnect the extension from your wallet. Your remaining balance will remain in your wallet account.
 :::
 
-The extension only supports one wallet connection at a time. If, for example, you have two wallet accounts from which you want to make payments, you must disconnect from the first wallet before you can connect the extension to your second wallet. 
+The extension only supports one wallet connection at a time. If, for example, you have two wallet accounts from which you want to make payments, you must disconnect from the first wallet before you can connect the extension to your second wallet.
 
 <Steps>
 1. Click the **Settings** icon in the upper-right of the extension.
@@ -146,9 +146,9 @@ The extension only supports one wallet connection at a time. If, for example, yo
 
 ## Resolve a key addition failure <a id="manually-add-key"></a>
 
-When you try to connect the extension to your digital wallet, the extension attempts to automatically connect with your wallet provider to add a key to your wallet account. 
+When you try to connect the extension to your digital wallet, the extension attempts to automatically connect with your wallet provider to add a key to your wallet account.
 
-You'll receive an error if the extension is unable to add the key. 
+You'll receive an error if the extension is unable to add the key.
 
 <img
     src="/img/docs/extension/connection-failed.png"
@@ -161,7 +161,7 @@ When this happens, you must copy the key that appears in the extension and manua
 
 <StylishHeader>Interledger Wallet</StylishHeader>
 
-Follow these steps if your wallet provider is [Interledger wallet](https://interledger.app). 
+Follow these steps if your wallet provider is [Interledger wallet](https://interledger.app).
 
 <Steps>
 1. Sign in to your Interledger Wallet.
@@ -200,7 +200,7 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 <details>
 <summary>I get an error from my wallet provider when linking the extension to my wallet. Why?</summary>
 It's hard to say without a specific error message. Two likely scenarios are:
-* You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe. 
+* You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe.
 * You accepted the connection too quickly--within seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen. Interledger Wallet, for example, enforces a minimum five second wait.
 
 Click **Connect** and try linking your extension again.
