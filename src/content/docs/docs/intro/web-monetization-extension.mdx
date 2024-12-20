@@ -15,9 +15,9 @@ If you're interested in web monetizing your own content, the [Add Web Monetizati
 
 <StylishHeader>Web Monetization payments</StylishHeader>
 
-To make Web Monetization payments, you only need an account with a [Web Monetization-compatible wallet provider](/docs/resources/op-wallets). There's no site-by-site account or subscription required for each individual site you want to support.
+To make Web Monetization payments, you only need a digital wallet from a Web Monetization-compatible [wallet provider](/docs/resources/op-wallets). There's no site-by-site account or subscription required for each individual site you want to support.
 
-A web monetized site cannot initiate payments from your digital wallet. When you link the browser extension to your wallet account, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#change-your-continuous-payment-settings).
+A web monetized site cannot initiate payments from your digital wallet. When you link the browser extension to your digital wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#change-your-continuous-payment-settings).
 
 The sites you pay are not provided with any of your personally identifiable information, such as your name, email address, or IP address. 
 
@@ -43,7 +43,7 @@ The extension will ask for permission to access your browser tabs and your data 
 
 Sign up with a Web Monetization-compatible [wallet provider](/docs/resources/op-wallets).
 
-After you've created your account, you'll be provided with a type of URL called a *wallet address*. You need this address in the next step. 
+After you've created your digital wallet, you'll be provided with a type of URL called a *wallet address*. You need this address in the next step. 
 
 ```html title="Example wallet address"
 https://wallet.example.com/alice
@@ -60,19 +60,6 @@ https://wallet.example.com/alice
 5. Click **Agree** to allow the extension to connect to your wallet and add a key to your account.<br /><img src="/img/docs/extension/connection-wallet.png" alt="Consent screen to allow the extension to connect to your wallet provider with agree and decline buttons" style="max-width:300px" class="img-outline"/><br />If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
 6. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. Below is an example confirmation screen.<br /><img src="/img/docs/extension/example-grant.png" alt="Example budget confirmation screen with accept and decline buttons" style="max-width:400px" class="img-outline" />A success screen appears when the connection is successful.<br /><img src="/img/docs/extension/connection-success.png" alt="Web page displaying a connection successful screen" style="max-width:400px" class="img-outline"/>
 </Steps> 
-
-## Adjust your budget 
-
-<Steps>
-1. Click the **Settings** icon in the upper-right of the extension.
-    <br /><img src="/img/docs/extension/settings-icon.png" alt="Extension showing a cog icon in the upper-right" style="max-width:300px" class="img-outline"/>
-2. Select the *Budget* tab.
-    <br /><img src="/img/docs/extension/budget-tab-full-budget.png" alt="Budget tab showing your remaining balance and options to change budget amount and renewal" style="max-width:300px" class="img-outline"/>
-3. Enter the new amount in the **Budget amount** field.
-4. Select the **Monthly** toggle to enable/disable monthly renewals of your budget.
-5. Click **Submit changes**. A new tab opens to your wallet provider. 
-6. Sign in to your wallet account if you haven't already, then confirm the new budget.
-</Steps>
 
 ## Change your continuous payment settings
 
@@ -113,6 +100,19 @@ You can make a one-time payment to a page instead of -- or in addition to -- con
     style="max-width:300px"
     class="img-outline"
     />
+</Steps>
+
+## Adjust your budget 
+
+<Steps>
+1. Click the **Settings** icon in the upper-right of the extension.
+    <br /><img src="/img/docs/extension/settings-icon.png" alt="Extension showing a cog icon in the upper-right" style="max-width:300px" class="img-outline"/>
+2. Select the *Budget* tab.
+    <br /><img src="/img/docs/extension/budget-tab-full-budget.png" alt="Budget tab showing your remaining balance and options to change budget amount and renewal" style="max-width:300px" class="img-outline"/>
+3. Enter the new amount in the **Budget amount** field.
+4. Select the **Monthly** toggle to enable/disable monthly renewals of your budget.
+5. Click **Submit changes**. A new tab opens to your wallet provider. 
+6. Sign in to your wallet account if you haven't already, then confirm the new budget.
 </Steps>
 
 ## Disconnect the extension from your wallet
@@ -161,7 +161,7 @@ When this happens, you must copy the key that appears in the extension and manua
 
 <StylishHeader>Interledger Wallet</StylishHeader>
 
-Follow these steps if your wallet provider is Interledger wallet. 
+Follow these steps if your wallet provider is [Interledger wallet](https://interledger.app). 
 
 <Steps>
 1. Sign in to your Interledger Wallet.
@@ -174,17 +174,6 @@ Follow these steps if your wallet provider is Interledger wallet.
 </Steps>
 
 Contact Interledger Wallet at support@interledger.app if you need additional help.
-
-
-
-
-
-
-
-
-
-
-
 
 ## Extension states
 
@@ -212,7 +201,7 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 <summary>I get an error from my wallet provider when linking the extension to my wallet. Why?</summary>
 It's hard to say without a specific error message. Two likely scenarios are:
 * You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe. 
-* You accepted the connection too quickly--within seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen.
+* You accepted the connection too quickly--within seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen. Interledger Wallet, for example, enforces a minimum five second wait.
 
 Click **Connect** and try linking your extension again.
 </details>
