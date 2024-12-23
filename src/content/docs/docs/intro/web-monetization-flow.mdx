@@ -11,9 +11,9 @@ import {
   Tooltip,
 } from '@interledger/docs-design-system'
 
-Web Monetization (WM) relies on <LinkOut href="https://openpayments.guide">Open Payments</LinkOut> (OP) and OP-enabled accounts to coordinate payments.
+Web Monetization relies on <LinkOut href="https://openpayments.guide">Open Payments</LinkOut> (OP) and OP-enabled accounts to coordinate payments.
 
-The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="/docs/resources/glossary#web-monetization-agent">WM agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="/docs/resources/glossary#wallet-address">wallet address</a></Tooltip>, then to the sending account's wallet address, to obtain the necessary authorization and instructions for sending a payment.
+The <Tooltip content='Code in a web browser, such as an extension, that discovers web monetized pages, exposes the Web Monetization API, and communicates with the Open Payments APIs' client:load><a href="/docs/resources/glossary#web-monetization-agent">Web Monetization agent</a></Tooltip> first issues a series of API calls to the receiving account's <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="/docs/resources/glossary#wallet-address">wallet address</a></Tooltip>, then to the sending account's wallet address, to obtain the necessary authorization and instructions for sending a payment.
 
 ## Sequence diagram
 
@@ -60,17 +60,17 @@ There's a few points to keep in mind as you review the example.
 
 ### Scenario
 
-Alice adds the monetization `<link>` element to her website. Included within the `<link>` is her wallet address, `https://wallet.example/alice`, assigned to her by her <Tooltip content='An entity that provides an Open Payments-enabled account into which payments can be received' client:load><a href="/docs/resources/glossary#web-monetization-receiver">WM receiver</a></Tooltip>.
+Alice adds the monetization `<link>` element to her website. Included within the `<link>` is her wallet address, `https://wallet.example/alice`, assigned to her by her <Tooltip content='An entity that provides an Open Payments-enabled account into which payments can be received' client:load><a href="/docs/resources/glossary#web-monetization-receiver">Web Monetization receiver</a></Tooltip>.
 
-Bob signs up with a <Tooltip content='An entity that provides a funded Open Payments-enabled account from which payments can be sent' client:load><a href="/docs/resources/glossary#web-monetization-provider">WM provider</a></Tooltip> who supplies him with a funded sending account. The sending account's wallet address is `https://anotherwallet.example/bob`. After installing a WM agent in his browser and linking the WM agent to his WM provider, his WM agent now has permission to request payments be sent from his account.
+Bob signs up with a <Tooltip content='An entity that provides a funded Open Payments-enabled account from which payments can be sent' client:load><a href="/docs/resources/glossary#web-monetization-provider">Web Monetization provider</a></Tooltip> who supplies him with a funded sending account. The sending account's wallet address is `https://anotherwallet.example/bob`. After installing a Web Monetization agent in his browser and linking the Web Monetization agent to his Web Monetization provider, his Web Monetization agent now has permission to request payments be sent from his account.
 
 :::note
-This example assumes the WM provider and WM receiver have already peered with each other and share a common payment rail over which transactions can be processed and settled.
+This example assumes the Web Monetization provider and Web Monetization receiver have already peered with each other and share a common payment rail over which transactions can be processed and settled.
 :::
 
 ### 1 - Check for Web Monetization
 
-As Bob browses Alice's site, his WM agent detects a monetization `<link>` element.
+As Bob browses Alice's site, his Web Monetization agent detects a monetization `<link>` element.
 
 ```html
 <link rel="monetization" href="https://wallet.example/alice" />
@@ -80,7 +80,7 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
 
 <Tabs>
 	<TabItem label="Request">
-    The WM agent issues a request to Alice's wallet address to discover the Open Payments service endpoint.
+    The Web Monetization agent issues a request to Alice's wallet address to discover the Open Payments service endpoint.
     
     <CodeBlock title="Request">
     ```http
@@ -91,7 +91,7 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
     </CodeBlock>
   </TabItem>
   <TabItem label="Response">
-    The response includes, among other details, the URL for her WM receiver's grant request endpoint (authorization server).
+    The response includes, among other details, the URL for her Web Monetization receiver's grant request endpoint (authorization server).
 
     <CodeBlock title="Response">
     ```http
@@ -110,13 +110,13 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
   </TabItem>
 </Tabs>
 
-### 3 - Send grant request to WM receiver's auth server
+### 3 - Send grant request to Web Monetization receiver's auth server
 
 <Tabs>
 	<TabItem label="Request">
-    The WM agent issues a request to the WM receiver's grant request endpoint (authorization server) to get an access token.
+    The Web Monetization agent issues a request to the Web Monetization receiver's grant request endpoint (authorization server) to get an access token.
     
-    In this example, the WM agent requests access to create and read incoming payments (i.e., payments coming in to Alice's WM receiver).
+    In this example, the Web Monetization agent requests access to create and read incoming payments (i.e., payments coming in to Alice's Web Monetization receiver).
     
     <CodeBlock title="Request">
     ```http
@@ -150,7 +150,7 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
     </CodeBlock>
   </TabItem>
   <TabItem label="Response">
-    The grant request is non-interactive, so the WM receiver grants the request and issues an access token.
+    The grant request is non-interactive, so the Web Monetization receiver grants the request and issues an access token.
     
     <CodeBlock title="Response">
     ```http
@@ -179,10 +179,10 @@ As Bob browses Alice's site, his WM agent detects a monetization `<link>` elemen
 
 <Tabs>
   <TabItem label="Request">
-    The WM agent creates an incoming payment for the session (e.g., the open browser tab) by issuing an incoming payment request to Alice's wallet address. The request uses details obtained from the previous API calls.
+    The Web Monetization agent creates an incoming payment for the session (e.g., the open browser tab) by issuing an incoming payment request to Alice's wallet address. The request uses details obtained from the previous API calls.
 
 :::note
-The request is for an _incoming_ payment because the WM agent is requesting that Alice's account accept an incoming payment. The payment itself has not been sent yet.
+The request is for an _incoming_ payment because the Web Monetization agent is requesting that Alice's account accept an incoming payment. The payment itself has not been sent yet.
 :::
 
     <CodeBlock title="Request">
@@ -197,7 +197,7 @@ The request is for an _incoming_ payment because the WM agent is requesting that
 
   </TabItem>
   <TabItem label="Response">
-    Alice's WM receiver (who hosts her account and wallet address) approves the request by supplying unique payment details for the WM agent to use to address the payment to Alice's account.
+    Alice's Web Monetization receiver (who hosts her account and wallet address) approves the request by supplying unique payment details for the Web Monetization agent to use to address the payment to Alice's account.
     
     <CodeBlock title="Response">
     ```http
@@ -222,7 +222,7 @@ The request is for an _incoming_ payment because the WM agent is requesting that
 
 <Tabs>
   <TabItem label="Request">
-    The WM agent uses the details obtained thus far to create an outgoing payment request against Bob's account (via his wallet address). Note that this is just a request to send a payment. The payment itself has not been sent and the request is in a pending state. 
+    The Web Monetization agent uses the details obtained thus far to create an outgoing payment request against Bob's account (via his wallet address). Note that this is just a request to send a payment. The payment itself has not been sent and the request is in a pending state. 
     
     <CodeBlock title="Request">
     ```http
@@ -264,7 +264,7 @@ The request is for an _incoming_ payment because the WM agent is requesting that
     ```
     </CodeBlock>
 
-    The Web Monetization flow is complete. It's now up to the WM provider to process the payment and settle with the WM receiver.
+    The Web Monetization flow is complete. It's now up to the Web Monetization provider to process the payment and settle with the Web Monetization receiver.
 
   </TabItem>
 </Tabs>

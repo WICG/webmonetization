@@ -21,9 +21,9 @@ It can take a bit of work to implement payments on a website. If your site alrea
 
 ## Introducing Web Monetization
 
-Web Monetization (WM) aims to simplify the payment experience for you and your website visitors. It’s an open technology that allows websites to automatically receive payments from visitors, facilitated by the visitor’s browser and their preferred WM provider.
+Web Monetization aims to simplify the payment experience for you and your website visitors. It’s an open technology that allows websites to automatically receive payments from visitors.
 
-It’s a proposed standard that allows your visitors to pay an amount of their choosing with little to no user interaction. It enables a website to automatically signal to web browsers that it can accept payments and enables web browsers to facilitate a payment by:
+It’s a proposed standard that allows your visitors to pay an amount of their choosing with little to no user interaction. It enables a website to automatically signal to web browsers that it can accept payments. With this signal, web browsers facilitate a payment from the visitor to the site by:
 
 - Obtaining authorization to initiate the payment.
 - Gathering details and issuing instructions to start the money movement process.
@@ -49,13 +49,13 @@ The following image shows the Web Monetization flow at a high level. Some steps 
 
 Web Monetization doesn’t allow a website to specify a payment amount or currency. It only allows the site to tell the browser it can accept payments.
 
-With the help of a <Tooltip content='The entity sending a payment' client:load><a href="./resources/glossary#web-monetization-provider">WM provider</a></Tooltip>, your visitor decides whether to make a payment, how much and how often to pay, and in which currency. Your <Tooltip content='The entity receiving a payment' client:load><a href="./resources/glossary#web-monetization-receiver">WM receiver</a></Tooltip> can then exchange the currency of incoming payments based on what you want to receive. This flexibility allows you and your visitors to choose the monetization methods that best suit your needs.
+With the help of a <Tooltip content='The entity sending a payment' client:load><a href="./resources/glossary#web-monetization-provider">Web Monetization provider</a></Tooltip>, your visitor decides whether to make a payment, how much and how often to pay, and in which currency. Your <Tooltip content='The entity receiving a payment' client:load><a href="./resources/glossary#web-monetization-receiver">Web Monetization receiver</a></Tooltip> can then exchange the currency of incoming payments based on what you want to receive. This flexibility allows you and your visitors to choose the monetization methods that best suit you both.
 
 ### Processing and settling payments
 
 Web Monetization’s role is to help coordinate payments. It does not process or settle payments.
 
-At each end of Web Monetization is an account that supports <LinkOut href="https://openpayments.guide">Open Payments</LinkOut>. The WM provider supplies your visitor with a funded sending account. In some cases, the visitor could even act as their own WM provider. The WM receiver supplies you with a receiving account.
+At each end of Web Monetization is an account that supports <LinkOut href="https://openpayments.guide">Open Payments</LinkOut>. The Web Monetization provider supplies your visitor with a funded sending account. In some cases, the visitor could even act as their own Web Monetization provider. The Web Monetization receiver supplies you with a receiving account.
 
 Web Monetization communicates with the sending and receiving accounts to obtain the necessary authorizations and instructions for a payment to be sent and received. Payment processing and settlement then occurs between the sending and receiving accounts, outside of the Web Monetization flow.
 

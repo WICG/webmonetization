@@ -11,9 +11,9 @@ import { LinkOut, Hidden } from '@interledger/docs-design-system'
 `incomingPayment` is an <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</LinkOut>.
 :::
 
-The `monetization` event's `incomingPayment` attribute can be used to verify the receipt of a payment. Today, the `monetization` event fires when the WM agent successfully creates an outgoing payment request at the WM provider. Since it's only a request to send an outgoing payment, there's no guarantee at this point that a payment has been received.
+The `monetization` event's `incomingPayment` attribute can be used to verify the receipt of a payment. Today, the `monetization` event fires when the Web Monetization agent successfully creates an outgoing payment request at the Web Monetization provider. Since it's only a request to send an outgoing payment, there's no guarantee at this point that a payment has been received.
 
-The `incomingPayment` attribute returns the URL that represents the incoming payment at the WM receiver. The returned value is the value it was initialized with. By <LinkOut href="https://openpayments.guide/apis/resource-server/operations/get-incoming-payment/">querying the URL</LinkOut>, you can get the `receivedAmount`.
+The `incomingPayment` attribute returns the URL that represents the incoming payment at the Web Monetization receiver. The returned value is the value it was initialized with. By <LinkOut href="https://openpayments.guide/apis/resource-server/operations/get-incoming-payment/">querying the URL</LinkOut>, you can get the `receivedAmount`.
 
 ## Example
 
