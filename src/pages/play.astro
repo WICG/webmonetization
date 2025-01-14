@@ -210,6 +210,7 @@ const description = t("site.description");
   if (window.MonetizationEvent) {
     submitButton.disabled = false
     notice.style.display = 'none'
+    addTagsFromURL()
   } else {
     setTimeout(() => {
       if (!window.MonetizationEvent) {
@@ -220,6 +221,7 @@ const description = t("site.description");
       } else {
         submitButton.disabled = false
         notice.style.display = 'none'
+        addTagsFromURL()
       }
     }, 500)
   }
@@ -397,10 +399,7 @@ const description = t("site.description");
 
     const walletAddressUrl = toWalletAddressUrl(walletAddress)
 
-    const walletAddressElement = document.querySelector(
-      `[data-wallet-address='${walletAddress}']`
-    )
-    if (walletAddressElement) {
+    if (addressAlreadyAdded(walletAddressUrl)) {
       input.setCustomValidity(`${walletAddress} already exists in the page.`)
       input.reportValidity()
       return false
@@ -411,4 +410,30 @@ const description = t("site.description");
 
     form.reset()
   })
+
+  async function addTagsFromURL() {
+    const walletAddressUrls = new URLSearchParams(location.search).getAll('wa')
+    for (const url of walletAddressUrls) {
+      if (isWalletAddressUrl(url) && !addressAlreadyAdded(url)) {
+        await createLinkEventLog(url)
+        await createLinkTag(url)
+      }
+    }
+  }
+
+  function isWalletAddressUrl(s: string): boolean {
+    try {
+      return !!new URL(s)
+    } catch {
+      return false
+    }
+  }
+
+  function addressAlreadyAdded(walletAddressUrl: string) {
+    // current implementation of playground doesn't support adding same link tag twice
+    // BUG: it should be allowed
+    return !!document.querySelector(
+      `[data-wallet-address='${walletAddressUrl}']`
+    )
+  }
 </script>
