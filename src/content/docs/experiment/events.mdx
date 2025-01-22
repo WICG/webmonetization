@@ -63,18 +63,32 @@ The `amountSent` property returns the `value` and `currency` of the sent payment
 The `amountSent` is not necessarily the amount received. For example, if your payment account is set up to receive GBP, but your site visitor's account sends in USD, then exchange rates and currency conversion fees could affect the amount you receive.
 :::
 
-#### Example using `amountSent`
+#### Examples using `amountSent`
+
+In this example, you have a single monetization link element and are listening for `monetization` events on the element.
 
 ```js
 <link rel="monetization" href="https://wallet.example.com/alice">
 <script>
-  const link = document.querySelector('link[rel="monetization"]')
-  link.addEventListener('monetization', (event) => {
-    const {
-      amountSent: { value, currency },
-    } = event
+  const linkElem = document.querySelector('link[rel="monetization"]');
+  linkElem.addEventListener('monetization', event => {
+    const { value, currency } = event.amountSent;
     console.log(`Browser sent ${currency} ${value}.`)
-  })
+  });
+</script>
+```
+
+In this example, you have multiple link elements (not shown). You're listening for `monetization` events on the `window`, which provides events for all monetization link elements on the page. The `event.target` will correspond to the relevant link element.
+
+```js
+<script>
+  window.addEventListener('monetization', event => {
+    const { value, currency } = event.amountSent;
+    console.log(`Browser sent ${currency} ${value}.`)
+
+    const linkElem = event.target;
+    console.log('for link element:', linkElem, linkElem.href);
+  });
 </script>
 ```
 

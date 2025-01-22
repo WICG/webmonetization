@@ -27,7 +27,7 @@ The `MonetizationEvent` interface describes the [`monetization`](/experiment/eve
   </tr>
   <tr>
     <th>Event handler property</th>
-    <td>[onmonetization](/experiment/onmonetization)</td>
+    <td>`onmonetization`</td>
   </tr>
 </table>
 
@@ -56,7 +56,7 @@ Visit the [Monetization Events](/experiment/events) page for more information.
 The `MonetizationCurrencyAmount` interface is used to populate the `value` and `currency` variables contained within the `MonetizationEvent amountSent` property.
 
 * Value - The amount. A valid decimal monetary value containing the amount that was sent.
-* Currency - The currency code. A well-formed 3-letter ISO4217 code that represents the currency that was sent, such as USD or GBP.
+* Currency - The currency code. An ISO 4217-compliant currency code, when possible, that represents the currency that was sent, such as USD or GBP.
 
 The `MonetizationCurrencyAmount` interface is modeled on the Payment Request API’s <LinkOut href="https://www.w3.org/TR/payment-request/#paymentcurrencyamount-dictionary">`PaymentCurrencyAmount`</LinkOut> dictionary.
 

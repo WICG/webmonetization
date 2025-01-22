@@ -16,7 +16,7 @@ From a creator/developer perspective, the monetization `<link>` element is one o
 
 ## Prerequisites
 
-To web monetize an HTML document, such as a web page:
+To web monetize an HTML page, such as a web page:
 * You must have an account with a [compatible wallet provider](/resources/wallets)
 * You must have the wallet address, or payment pointer in <LinkOut href="https://paymentpointers.org">URL format</LinkOut>, from your wallet provider
 * Your document must be served over HTTPS
@@ -46,11 +46,10 @@ A monetization `<link>` is `body-ok`, meaning it's allowed in your page's `<head
 
 ### Multiple monetization links
 
-An HTML page can contain multiple monetization `<link>` elements; however, there are a few factors that determine if and how a multiple link scenario is monetized. 
-
-First, most browsers enforce a maximum limit of six parallel HTTP connections to the same server. When the maximum is reached, the browser will wait until one of the existing HTTP connections is closed before it initiates the next connection.
-
-Second, your site visitor’s [Web Monetization agent](#web-monetization-agent) could be coded to handle multiple links in a particular way. For example, one visitor’s Web Monetization agent may split payments evenly between all links while another Web Monetization agent only sends payments to the first monetization link it finds.
+An HTML page can contain multiple monetization `<link>` elements; however, your site visitor’s [Web Monetization agent](#web-monetization-agent) could be designed to handle multiple links in a particular way. For example, an agent might:
+* Split payments evenly between all links
+* Split payments between the first few links it finds
+* Send the amount only to the first link it finds and ignore all others
 
 :::tip[Recommendation]
 The Web Monetization agent built into the <LinkOut href="https://github.com/interledger/web-monetization-extension">Interledger Foundation's extension</LinkOut> splits payments evenly between all links. We recommend other extension developers follow this approach.
@@ -97,13 +96,9 @@ The following HTML elements can be web monetized by adding the `<link>` element 
 
 ## How it works
 
-### HTML DOM API
+### HTMLLinkElement
 
-Due to the efforts of the <LinkOut href="https://www.w3.org/">W3C</LinkOut>, there are a number of APIs that all major browser vendors build into their browsers. One such API is the <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API">HTML DOM API</LinkOut>, which defines the functionality of HTML elements.
-
-#### HTMLLinkElement
-
-The HTML DOM API's `HTMLLinkElement` interface defines how the `<link>` element functions. The `<link>` element is what allows you to link your HTML page to a resource. 
+The <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API">HTML DOM API's</LinkOut> `HTMLLinkElement` interface defines how the `<link>` element functions. The `<link>` element is what allows you to link your HTML page to a resource. 
 
 The two most recognizable `HTMLLinkElement` properties are `href` and `rel`. The `href` property defines the URL to the resource. The `rel` property indicates the type of link, or relationship, the resource has to the current page.
 
@@ -111,7 +106,7 @@ The two most recognizable `HTMLLinkElement` properties are `href` and `rel`. The
 
 Browsers already know how to interpret certain `rel` values because of web standards. One such standard is `stylesheet`. When a browser loads a page that contains `<link href="styles.css" rel="stylesheet">`, the browser automatically knows to import a style sheet from the given URL.
 
-The `monetization` link type, however, is not a standard. Major web browsers don't automatically know what to do when encountering this link type in a page. Until `monetization` becomes a standard, browsers must rely on a Web Monetization agent.
+The `monetization` link type, however, is not yet a standard. Major web browsers don't automatically know what to do when encountering this link type in a page. Until `monetization` becomes a standard, browsers must rely on a Web Monetization agent.
 
 ### Web Monetization agent
 
@@ -123,7 +118,7 @@ The purpose of the Web Monetization agent is to recognize when a page is web mon
 * Processing the monetization link or links within an HTML page
 * Instrumenting payments by calling the [Open Payments APIs](/experiment/how-payments-work#a-deeper-dive-into-payments), which are APIs implemented by wallet providers 
 * Firing [`monetization`](/experiment/events) events after an outgoing payment is created
-* Processing `monetization` events sent to the browser window via the [`onmonetization`](/experiment/onmonetization) event handler
+* Processing `monetization` events sent to the browser window via the `onmonetization` event handler
 * Enabling the CSP [`monetization-src`](/experiment/csp) and Permissions Policy [`monetization`](/experiment/permissions-policy) directives
 
 Until Web Monetization agents are natively built in to web browsers, an agent must be added to browsers in some other way. That's why the agent is included as part of the Interledger Foundation's extension.

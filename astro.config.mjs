@@ -138,10 +138,6 @@ export default defineConfig({
                           label: 'Monetization <link> element',
                           link: '/experiment/link-element',
                         },
-                        {
-                          label: 'onmonetization event handler',
-                          link: '/experiment/onmonetization',
-                        },
                       ],
                     },
                     {
@@ -188,30 +184,20 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Compatible digital wallets',
+          link: '/resources/wallets',
+        },
+        {
           label: 'Resources',
           collapsed: true,
           items: [
-            {
-              label: 'Compatible digital wallets',
-              link: '/resources/wallets',
-            },
             {
               label: 'Glossary',
               link: '/resources/glossary',
             },
             {
-              label: 'Community',
-              collapsed: true,
-              items: [
-                {
-                  label: 'Get involved',
-                  link: '/resources/community/get-involved',
-                },
-                {
-                  label: 'Recommended web monetized sites',
-                  link: '/resources/recommended-sites',
-                },
-              ],
+              label: 'Get involved',
+              link: '/resources/get-involved',
             },
           ],
         },

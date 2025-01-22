@@ -19,13 +19,13 @@ You must have an account with a [compatible digital wallet](/resources/wallets) 
 
 * Is available in your region
 * Supports your preferred currency
-* <mark>Allows you to withdraw your funds if you choose to transact in fiat</mark>
+* Allows you to withdraw your funds if you choose to transact in fiat
 
-Your wallet provider will assign your account a unique ID called either a *payment pointer* or a *wallet address*. This ID is kind of like an account name. It’s a publicly shareable ID that you will need when web monetizing your content.
+Your wallet provider will assign your account a unique identifier called either a *payment pointer* or a *wallet address*. This identifier is kind of like an account name. It is publicly shareable and you will need it when web monetizing your content. 
 
-The format of the ID depends on whether your wallet provider assigned you a payment pointer or a wallet address. 
+The format of the identifier depends on whether your wallet provider assigned you a payment pointer or a wallet address. 
 
-| ID name | Example format |
+| Identifier name | Example format |
 | ------- | -------------- |
 | Payment pointer | `$wallet.example.com/alice` |
 | Wallet address | `https://wallet.example.com/alice` |
@@ -55,15 +55,15 @@ On the other side of a transaction, your site visitor can only send micropayment
 
 ### A deeper dive into payments
 
-**Open Payments**
+#### Open Payments
 
 For a wallet to be compatible with Web Monetization, the provider must implement the <LinkOut href="https://openpayments.dev">Open Payments standard</LinkOut>. When implemented, a set of APIs become available for third-party applications, such as your visitor's [Web Monetization extension](/support/use-extension), to communicate with the wallet provider. 
 
-**Web Monetization extension**
+#### Web Monetization extension
 
 A component within the extension--called the [Web Monetization agent](/experiment/link-element#web-monetization-agent)--is responsible for communicating with a wallet provider via the Open Payments APIs. The next section describes the series of API calls required to initiate a payment.
 
-**Web Monetization payment sequence**
+#### Web Monetization payment sequence
 
 :::note
 The examples below are simplified representations of the Open Payments API calls and may not show every required parameter. 
@@ -125,7 +125,7 @@ The examples below are simplified representations of the Open Payments API calls
     </Disclosure>
 5. The response to the agent contains an access token that the agent needs to make its next request.
     <Disclosure toggleText="Example response" client:load>
-    ```http
+    ```http wrap
     {
         "access_token": {
             "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
@@ -153,7 +153,7 @@ The examples below are simplified representations of the Open Payments API calls
     </Disclosure>
 7. The response to the agent contains unique payment details that will be used to address the payment to your payment account.
     <Disclosure toggleText="Example response" client:load>
-    ```http
+    ```http wrap
     {
         "id": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
         "walletAddress": "https://wallet.example/alice",
@@ -167,9 +167,9 @@ The examples below are simplified representations of the Open Payments API calls
     }
     ```
     </Disclosure>
-8. At this point, the agent has finished communicating with your wallet provider. Now, it issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your visitor's wallet provider. The purpose of this call is to give the provider what it needs to send the payment.
+8. At this point, the agent has finished communicating with your wallet provider. Now, the agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your visitor's wallet provider. The purpose of this call is to give your visitor's wallet provider what it needs to send the payment.
     <Disclosure toggleText="Example request" client:load>
-    ```http
+    ```http wrap
     POST /visitor/outgoing-payment HTTP/1.1
     Accept: application/json
     Content-Type: application/json
@@ -182,9 +182,10 @@ The examples below are simplified representations of the Open Payments API calls
     }
     ```
     </Disclosure>
-9. The response to the agent indicates whether the visitor's wallet provider is able to send the payment. A payment could fail if the visitor has insufficient funds, for example. Assuming everything's good, the visitor's wallet provider responds to the agent with payment details.
+9. The <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/#responses">response</LinkOut> from your visitor's wallet provider indicates whether the outgoing payment was created on their side. A payment could fail if the visitor has insufficient funds, for example. The following example indicates the outgoing payment was successfully created.
+
     <Disclosure toggleText="Example response" client:load>
-    ```http
+    ```http wrap
     {
         "id": "https://cloudninewallet.example/visitor/outgoing-payments/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf",
         "walletAddress": "https://cloudninewallet.example/visitor/",
@@ -208,8 +209,5 @@ The examples below are simplified representations of the Open Payments API calls
         "updatedAt": "2022-03-12T23:20:55.52Z"
     }
     ```
-    :::note
-    Notice that the `sentAmount value` is `0`. All the API calls up to this point have been to set up the payment. This amount will go up over time, depending on the pay rate your visitor has set in their extension.
-    :::
     </Disclosure>
 </Steps>
