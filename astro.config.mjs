@@ -77,10 +77,6 @@ export default defineConfig({
               label: 'How payments work',
               link: '/support/how-payments-work',
             },
-            {
-              label: 'Web Monetization extension',
-              link: '/docs/intro/web-monetization-extension',
-            },
           ],
         },
         {
