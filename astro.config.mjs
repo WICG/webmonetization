@@ -48,7 +48,6 @@ export default defineConfig({
       components: {
         Header: './src/components/docs/Header.astro',
         PageSidebar: './src/components/docs/PageSidebar.astro',
-        PageTitle: './src/components/docs/PageTitle.astro',
       },
       social: {
         github: 'https://github.com/WICG/webmonetization',
@@ -77,6 +76,10 @@ export default defineConfig({
             {
               label: 'How payments work',
               link: '/support/how-payments-work',
+            },
+            {
+              label: 'Web Monetization extension',
+              link: '/docs/intro/web-monetization-extension',
             },
           ],
         },

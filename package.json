@@ -8,12 +8,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.1.0",
-    "@astrojs/starlight": "^0.29.3",
-    "@interledger/docs-design-system": "^0.5.4",
-    "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.2",
-    "astro": "4.16.16",
+    "@astrojs/react": "^4.1.5",
+    "@astrojs/starlight": "^0.31.1",
+    "@interledger/docs-design-system": "^0.6.1",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "astro": "5.1.7",
     "astro-i18next": "^1.0.0-beta.21",
     "prettier": "^3.4.2",
     "prism-react-renderer": "^2.4.1",
@@ -21,8 +21,8 @@
     "react-dom": "^19.0.0",
     "react-minimal-pie-chart": "^9.1.0",
     "remark-mermaidjs": "^7.0.0",
-    "respec": "^35.2.0",
+    "respec": "^35.2.2",
     "sharp": "^0.33.5",
-    "starlight-links-validator": "^0.13.4"
+    "starlight-links-validator": "^0.14.1"
   }
 }
