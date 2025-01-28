@@ -1,0 +1,60 @@
+---
+title: Overview
+tableOfContents:
+    maxHeadingLevel: 2
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+
+Web Monetization is a light-weight and non-intrusive way for you to monetize your content while preserving the privacy of your supporters. You can use Web Monetization to replace or complement your existing revenue models. All it takes is a [wallet address or payment pointer](/wallets) and a [single line of code](/developers/link-element).
+
+## Benefits
+
+### You choose your wallet provider.
+
+Other solutions may require both you and your supporters to use the same application, platform, or service provider. Web Monetization doesn't have this limitation. As long as both you and your supporters' chosen wallet providers are compatible with Web Monetization, they can send you a payment.
+
+### Complement existing revenue models.
+
+* **Reach a wider paying audience.** Some offerings, such as subscriptions, can result in missed revenue opportunities due to concerns about price, renewal frequencies, accepted currencies, and fees. Plus, some supporters simply don't want to create and keep track of another account. Web Monetization can supplement your current offerings by allowing your supporters to pay how, when, and what they want without creating site-by-site accounts.
+* **Regain lost ad revenue.** If your site is even partially sustained by ad revenue, then every impression counts. Many ad networks pay per thousand impressions, pay different amounts based on the country your supporter is in, and may require you to earn a minimum amount before you can access your revenue. While ad blockers can improve user experience, they also make earning ad revenue more difficult. Web Monetization can help make up the difference.
+
+### Use in place of other revenue models.
+
+Certain recurring revenue models, like subscriptions, can have overhead costs beyond the time, effort, and money required for set up. For example, you may be required to provide customer support, manage chargebacks, and administer records through various Content Management System (CMS) tools. With Web Monetization, payments are anonymous. There are no customer records to maintain. You aren't liable for chargebacks or refunds because your supporters are in control of if, when, and how much they pay.
+
+### Receive payments to your wallet in real time.
+
+Some services require you to wait until a given day of the month or until you reach a minimum balance before paying out. Should a platform temporarily or permanently ban you, the platform could choose to keep your balance permanently. Web Monetization removes this issue. When a supporter sends you a payment, the payment is sent directly from their wallet to your wallet. Note that your wallet provider may require you reach a specific balance before you can transfer out your funds. Be sure to check with your wallet provider.
+
+### Receive payments in your preferred currency.
+
+Some solutions require both you and your supporters to use the same currency. Web Monetization allows you to receive payments in a currency of your choosing, while your supporters can send payments in their preferred currency.
+
+### The exclusivity of your content is in your hands.
+
+Web Monetization allows a supporter to send a payment to a web monetized page. How you want your page to respond is up to you. By listening for the `monetization` event, you can verify the amount and currency of a payment, then programmatically show or hide content or have your page respond in some other way.
+
+## Constraints
+
+### The network of Web Monetization-enabled wallet providers is nascent, but growing.
+
+Sending and receiving payments via Web Monetization requires the sender and the recipient to have an account with a Web Monetization-enabled wallet provider.
+
+In general, wallet providers are regulated entities within the countries they operate. Obtaining the proper licensing and registration to become a wallet provider can be an expensive, complex, and time consuming process. Also, there are technical integrations required to support Web Monetization. All of this means a compatible wallet provider may not yet be available in your area.
+
+### Web Monetization does not track or collect personally identifiable information.
+
+Web Monetization is designed to preserve the privacy of your supporters. While you can use `monetization` events to determine sent and received amounts, Web Monetization does not track your supporters' names, wallet addresses/payment pointers, IP addresses, or other information that could enable you to correlate a payment with a specific individual or determine their browsing behavior.
+
+### Web Monetization does not allow you to pull payments from your supporters' accounts.
+
+One key differentiator of Web Monetization is that your supporters are in control of if, when, and how much they pay. Web Monetization does not allow you to pull a payment on behalf of your supporters. When you web monetize a page, you are embedding your wallet address/payment pointer so that your supporters' extension knows you're able to accept Web Monetization payments. It's up to your supporters to decide whether to pay.
+
+### Coding your page to respond after receiving a specific amount will take some work.
+
+Web Monetization is designed to allow supporters to control when to pay, how much to pay, and how often to pay. If you want to, for example, unlock exclusive content after receiving a specific amount, you'll need to add your own code to make that happen.
+
+### There might be fees.
+
+Web Monetization does not charge or collect fees; however, your digital wallet provider might. For example, you may be charged a currency conversion fee if you are sent a payment in USD, but receive your payments in GBP. Be sure to consider supported currencies and fees when choosing a wallet provider that's best for you.

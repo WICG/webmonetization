@@ -1,28 +1,28 @@
 ---
-title: Web Monetization extension
+title: Get started
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
 import { LinkOut, StylishHeader } from "@interledger/docs-design-system";
 
 The Interledger Foundation's Web Monetization [browser extension](#1-download-and-install-the-extension) allows you to support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
 
 <StylishHeader>Web monetized sites</StylishHeader>
 
-To use the extension to make Web Monetization payments, the site you visit must be web monetized. Since Web Monetization is fairly new, we encourage content owners and publishers tell their audience they're web monetized via a banner or some other method.
+You can only use the extension to send payments to web monetized sites. Since Web Monetization is a newer technology, the ILF encourages content owners and publishers tell their audience they're web monetized via a banner or some other method.
 
-If you're interested in web monetizing your own content, the [Add Web Monetization to a page](/docs/guides/monetize-page) guide is a good place to start.
+If you're interested in web monetizing your own content, the [get started](/developers/get-started) page for developers is a good place to start.
 
 <StylishHeader>Web Monetization payments</StylishHeader>
 
-To make Web Monetization payments, you only need a digital wallet from a Web Monetization-compatible [wallet provider](/docs/resources/op-wallets). There's no site-by-site account or subscription required for each individual site you want to support.
+To make Web Monetization payments, you only need a digital wallet from a Web Monetization-compatible [wallet provider](/wallets). There's no site-by-site account or subscription required for each individual site you want to support.
 
-A web monetized site cannot initiate payments from your digital wallet. When you link the browser extension to your digital wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#change-your-continuous-payment-settings).
+A web monetized site cannot pull payments from your digital wallet. When you link the browser extension to your digital wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#change-your-continuous-payment-settings).
 
 The sites you pay are not provided with any of your personally identifiable information, such as your name, email address, or IP address. 
 
 :::note
-Sending a payment to a web monetized site does not guarantee an ad-free experience. The decision to show or hide ads in response to a Web Monetization payment is entirely up to each content owner or publisher.
+Sending a payment to a web monetized site doesn't guarantee an ad-free experience. The decision to show or hide ads in response to a Web Monetization payment is entirely up to each content owner or publisher.
 :::
 
 ## Set up the extension
@@ -36,18 +36,27 @@ The extension is currently supported in the following browsers. We plan to suppo
 * <LinkOut href="https://microsoftedge.microsoft.com/addons/detail/web-monetization-extensio/imjgemgmeoioefpmfefmffbboogighjl">Microsoft Edge</LinkOut>
 
 :::note[Permissions]
-The extension will ask for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for the Web Monetization [`<link>`](/docs/references/html-link-rel-monetization) element.
+The extension will ask for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for the Web Monetization [`<link>`](/developers/link-element) element.
 :::
 
 ### 2. Sign up with a compatible digital wallet
 
-Sign up with a Web Monetization-compatible [wallet provider](/docs/resources/op-wallets).
+Sign up with a Web Monetization-compatible [wallet provider](/wallets).
 
-After you've created your digital wallet, you'll be provided with a type of URL called a *wallet address*. You need this address in the next step. 
+After you've created your digital wallet, you'll be provided with a type of URL called a *wallet address* or *payment pointer*. You need this address in the next step. 
 
-```html title="Example wallet address"
-https://wallet.example.com/alice
-```
+<Tabs>
+    <TabItem label="Example wallet address">
+    ```    
+    https://wallet.example.com/alice
+    ```
+    </TabItem>
+    <TabItem label="Example payment pointer">
+    ```
+    $wallet.example.com/alice
+    ```
+    </TabItem>
+</Tabs>
 
 ### 3. Configure the extension
 
@@ -161,7 +170,7 @@ When this happens, you must copy the key that appears in the extension and manua
 
 <StylishHeader>Interledger Wallet</StylishHeader>
 
-Follow these steps if your wallet provider is [Interledger wallet](https://interledger.app). 
+Follow these steps if your wallet provider is <LinkOut href="https://interledger.app">Interledger wallet</LinkOut>. 
 
 <Steps>
 1. Sign in to your Interledger Wallet.
@@ -210,5 +219,8 @@ Click **Connect** and try linking your extension again.
 <summary>I know the page I'm visiting is web monetized, but the extension says its not. Why?</summary>
 The most likely reason is that your wallet provider and the content owner or publisher's wallet provider are not yet able to transact with one another. Your extension will display an exclamation mark within an orange circle. Open the extension to read the messaging.
 
-Visit the [Web Monetization-enabled wallets](/docs/resources/op-wallets) page for a list of compatible wallet providers.
+Visit the [Web Monetization-enabled wallets](/wallets) page for a list of compatible wallet providers.
 </details>
+
+
+
