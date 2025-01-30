@@ -19,9 +19,9 @@ export default defineConfig({
             defer: true,
             'data-website-id': '3b8cb97a-2a94-43c2-85e7-277c92c9cf48',
             src: 'https://ilf-site-analytics.netlify.app/script.js',
-            'data-domains': 'webmonetization.org'
-          }
-        }
+            'data-domains': 'webmonetization.org',
+          },
+        },
       ],
       customCss: [
         './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
@@ -77,21 +77,27 @@ export default defineConfig({
           ],
         },
         {
+          label: 'For content owners',
+          collapsed: false,
+          items: [
+              {
+                label: 'Overview',
+                link: '/developers/overview',
+              },
+              {
+                label: 'Get started',
+                link: '/developers/get-started',
+              },
+              {
+                label: 'Learn about receiving payments',
+                link: '/developers/about-receiving',
+              },
+          ],
+        },
+        {
           label: 'For developers',
           collapsed: false,
           items: [
-            {
-              label: 'Overview',
-              link: '/developers/overview',
-            },
-            {
-              label: 'Get started',
-              link: '/developers/get-started',
-            },
-            {
-              label: 'Learn about receiving payments',
-              link: '/developers/about-receiving',
-            },
             {
               label: 'Tutorials',
               collapsed: true,
@@ -105,7 +111,7 @@ export default defineConfig({
                   link: '/tutorials/remove-content',
                 },
                 {
-                  label: 'Show visitors how much they\'ve contributed',
+                  label: "Show visitors how much they've contributed",
                   link: '/tutorials/contribution-counter',
                 },
                 {
@@ -126,50 +132,58 @@ export default defineConfig({
               label: 'API docs',
               collapsed: true,
               items: [
+                {
+                  label: 'HTML DOM API',
+                  collapsed: false,
+                  items: [
                     {
-                      label: 'HTML DOM API',
-                      collapsed: false,
-                      items: [
-                        {
-                          label: 'Monetization <link> element',
-                          link: '/developers/link-element',
-                        },
-                      ],
+                      label: 'Monetization <link> element',
+                      link: '/developers/link-element',
+                    },
+                  ],
+                },
+                {
+                  label: 'Web Monetization API',
+                  collapsed: false,
+                  items: [
+                    {
+                      label: 'Monetization interfaces',
+                      link: '/developers/interfaces',
                     },
                     {
-                      label: 'Web Monetization API',
-                      collapsed: false,
-                      items: [
-                        {
-                          label: 'Monetization interfaces',
-                          link: '/developers/interfaces',
-                        },
-                        {
-                          label: 'Monetization events',
-                          link: '/developers/events',
-                        },
-                      ],
+                      label: 'Monetization events',
+                      link: '/developers/events',
+                    },
+                  ],
+                },
+                {
+                  label: 'HTTP Headers',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'Content Security Policy (CSP)',
+                      link: '/developers/csp',
                     },
                     {
-                      label: 'HTTP Headers',
-                      collapsed: true,
-                      items: [
-                        {
-                          label: 'Content Security Policy (CSP)',
-                          link: '/developers/csp',
-                        },
-                        {
-                          label: 'Permissions Policy',
-                          link: '/developers/permissions-policy',
-                        },
-                      ],
+                      label: 'Permissions Policy',
+                      link: '/developers/permissions-policy',
                     },
-                    {
-                      label: 'Web Monetization Specification',
-                      link: 'https://webmonetization.org/specification/',
-                      attrs: { target: '_blank', },
-                    },
+                  ],
+                },
               ],
+            },
+            {
+              label: 'Feed (RSS, Atom, JSON Feed)',
+              link: '/developers/rss-atom-jsonfeed',
+            },
+            {
+              label: 'Social (Activity Streams)',
+              link: '/developers/activity-streams',
+            },
+            {
+              label: 'Web Monetization Specification',
+              link: 'https://webmonetization.org/specification/',
+              attrs: { target: '_blank' },
             },
           ],
         },

@@ -1,0 +1,117 @@
+---
+title: Activity Streams JSON-LD
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+
+Social web community servers and apps can expose the wallet address or payment pointer of a user’s profile or post to a Web Monetization client, such as the ILF's [Web Monetization browser extension](/supporters/get-started#1-download-and-install-the-extension) or embedded SDK.
+
+Web Monetization links are represented in <LinkOut href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0</LinkOut> <LinkOut href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object">Object Types</LinkOut> using the `monetization` property from the Web Monetization namespace (`https://webmonetization.org/ns.jsonld`).
+
+### User `Profile` example
+
+```jsonc wrap
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://w3id.org/security/v1",
+
+    // Add the Web Monetization namespace
+    "https://webmonetization.org/ns.jsonld",
+
+    {
+      "Hashtag": "as:Hashtag",
+    },
+  ],
+  "id": "https://alpaca.gold/users/Jeremiah",
+  "type": "Person",
+  "following": "https://alpaca.gold/users/Jeremiah/following",
+  "followers": "https://alpaca.gold/users/Jeremiah/followers",
+  "inbox": "https://alpaca.gold/users/Jeremiah/inbox",
+  "outbox": "https://alpaca.gold/users/Jeremiah/outbox",
+  "preferredUsername": "Jeremiah",
+  "name": "Jeremiah Lee",
+  "summary": "<p>I want you to get paid when you go viral. <a href=\"https://alpaca.gold/tags/WebMonetizationRocks\" class=\"mention hashtag\" rel=\"tag\">#<span>WebMonetizationRocks</span></a></p>",
+  "url": "https://alpaca.gold/@Jeremiah",
+  "published": "2023-01-06T00:00:00Z",
+  "publicKey": {},
+  "endpoints": {
+    "sharedInbox": "https://alpaca.gold/inbox",
+  },
+  "tag": [
+    {
+      "type": "Hashtag",
+      "href": "https://alpaca.gold/tags/WebMonetizationRocks",
+      "name": "#WebMonetizationRocks",
+    },
+  ],
+
+  // Wallet address when viewing this user’s profile
+  "monetization": "https://fynbos.me/jeremiah",
+}
+```
+
+### User post (`Note`) example
+
+```jsonc wrap
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+
+    // Add the Web Monetization namespace
+    "https://webmonetization.org/ns.jsonld",
+
+    {
+      "ostatus": "http://ostatus.org#",
+      "atomUri": "ostatus:atomUri",
+      "inReplyToAtomUri": "ostatus:inReplyToAtomUri",
+      "conversation": "ostatus:conversation",
+      "sensitive": "as:sensitive",
+      "Hashtag": "as:Hashtag",
+    },
+  ],
+  "id": "https://alpaca.gold/users/Jeremiah/statuses/113677237228956618",
+  "type": "Note",
+  "published": "2024-12-19T02:56:24Z",
+  "url": "https://alpaca.gold/@Jeremiah/113677237228956618",
+  "attributedTo": "https://alpaca.gold/users/Jeremiah",
+  "to": ["https://www.w3.org/ns/activitystreams#Public"],
+  "cc": ["https://alpaca.gold/users/Jeremiah/followers"],
+  "sensitive": false,
+  "atomUri": "https://alpaca.gold/users/Jeremiah/statuses/113677237228956618",
+  "inReplyToAtomUri": null,
+  "conversation": "tag:alpaca.gold,2024-12-19:objectId=3727991:objectType=Conversation",
+  "content": "<p>When you go viral, you should get paid. <a href=\"https://alpaca.gold/tags/WebMonetizationRocks\" class=\"mention hashtag\" rel=\"tag\">#<span>WebMonetizationRocks</span></a></p>",
+  "attachment": [],
+  "tag": [
+    {
+      "type": "Hashtag",
+      "href": "https://alpaca.gold/tags/webmonetizationrocks",
+      "name": "#webmonetizationrocks",
+    },
+  ],
+  "replies": {
+    "id": "https://alpaca.gold/users/Jeremiah/statuses/113677237228956618/replies",
+    "type": "Collection",
+    "first": {
+      "type": "CollectionPage",
+      "next": "https://alpaca.gold/users/Jeremiah/statuses/113677237228956618/replies?only_other_accounts=true&page=true",
+      "partOf": "https://alpaca.gold/users/Jeremiah/statuses/113677237228956618/replies",
+      "items": [],
+    },
+  },
+  "likes": {
+    "id": "https://alpaca.gold/users/Jeremiah/statuses/113677237228956618/likes",
+    "type": "Collection",
+    "totalItems": 42,
+  },
+  "shares": {
+    "id": "https://alpaca.gold/users/Jeremiah/statuses/113677237228956618/shares",
+    "type": "Collection",
+    "totalItems": 9,
+  },
+
+  // Wallet address when viewing this Note
+  "monetization": "https://fynbos.me/jeremiah",
+}
+```

@@ -3,9 +3,9 @@ title: About sending payments
 next: Developer overview
 ---
 
-import { CodeBlock,Tooltip,LinkOut } from "@interledger/docs-design-system";
+import { CodeBlock, Tooltip, LinkOut } from '@interledger/docs-design-system'
 
-Sending Web Monetization payments requires you to have an account with a compatible digital wallet provider. Not all wallet providers support sending Web Monetization payments. 
+Sending Web Monetization payments requires you to have an account with a compatible digital wallet provider. Not all wallet providers support sending Web Monetization payments.
 
 Your digital wallet provider will supply you with the financial account you'll use to send payments. Funding your wallet typically requires you to link a card or bank account to your wallet or make a deposit into your wallet.
 
@@ -16,19 +16,19 @@ Since wallet providers are financial entities, they are regulated within the cou
 Be sure to sign up with a compatible [digital wallet provider](/wallets) that's available in your region and supports your preferred currency.
 
 :::tip[Tech tip]
-For a wallet to be compatible with Web Monetization, the provider must implement the <LinkOut href="https://openpayments.dev">Open Payments</LinkOut> standard. 
+For a wallet to be compatible with Web Monetization, the provider must implement the <LinkOut href="https://openpayments.dev">Open Payments</LinkOut> standard.
 :::
 
-Your wallet provider will assign your wallet a unique identifier called a *wallet address* or a *payment pointer*. You'll need this identifier to link the Web Monetization extension to your wallet. 
+Your wallet provider will assign your wallet a unique identifier called a _wallet address_ or a _payment pointer_. You'll need this identifier to link the Web Monetization extension to your wallet.
 
-| Identifier | Example format |
-| ------- | -------------- |
-| Payment pointer | `$wallet.example.com/alice` |
-| Wallet address | `https://wallet.example.com/alice` |
+| Identifier      | Example format                     |
+| --------------- | ---------------------------------- |
+| Payment pointer | `$wallet.example.com/alice`        |
+| Wallet address  | `https://wallet.example.com/alice` |
 
 ## Web Monetization extension
 
-The [Web Monetization extension](/supporters/get-started#1-download-and-install-the-extension) allows you to send payments. It links to your digital wallet account so that it can send payments from your wallet on your behalf. 
+The [Web Monetization extension](/supporters/get-started#1-download-and-install-the-extension) allows you to send payments. It links to your digital wallet account so that it can send payments from your wallet on your behalf.
 
 When you set up the extension, you set your budget. Your budget is the max amount that the extension has access to. You can also set the amount that the extension will send per hour. The default is $0.60.
 
@@ -38,20 +38,21 @@ You can also choose to send a web monetized page a one-time payment. The amount 
 
 ## Payments
 
-Your Web Monetization extension acts like a messaging service. It requests information from the recipient's wallet provider, then passes the information, along with your payment instructions, to your wallet provider. It's then up to your wallet provider to deduct the payment from your account and [send it to the recipient](/developers/about-receiving). 
+Your Web Monetization extension acts like a messaging service. It requests information from the recipient's wallet provider, then passes the information, along with your payment instructions, to your wallet provider. It's then up to your wallet provider to deduct the payment from your account and [send it to the recipient](/developers/about-receiving).
 
 ### Micropayments
 
 If you're already familiar with Web Monetization, you may have heard about how it supports micropayments.
 
 In general, a micropayment is a very small payment. Each wallet provider is responsible for:
-* Deciding whether to support sending and/or receiving micropayments
-* Defining what a micropayment is in the context of their business
-* Determining the minimum amount for a micropayment
+
+- Deciding whether to support sending and/or receiving micropayments
+- Defining what a micropayment is in the context of their business
+- Determining the minimum amount for a micropayment
 
 #### Example 1
 
-Your wallet provider allows you to send micropayments. They've decided that a micropayment is any payment under $0.05 USD; however, the minimum amount they support is $0.01. This means you could, for example, send a payment as low as one US cent. 
+Your wallet provider allows you to send micropayments. They've decided that a micropayment is any payment under $0.05 USD; however, the minimum amount they support is $0.01. This means you could, for example, send a payment as low as one US cent.
 
 #### Example 2
 

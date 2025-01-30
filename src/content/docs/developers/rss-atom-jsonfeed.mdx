@@ -1,0 +1,193 @@
+---
+title: RSS, Atom, and JSON Feed
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+
+Web Monetization links can be used with content syndication formats [RSS 2.0](#rss-20), [Atom XML](#atom), and [JSON Feed](#json-feed). Feed readers and podcasting apps can expose a piece of content’s wallet address or payment pointer to a Web Monetization client, such as the ILF's [Web Monetization browser extension](/supporters/get-started#1-download-and-install-the-extension) or embedded SDK.
+
+## RSS 2.0
+
+Web Monetization wallet addresses are represented in <LinkOut href="https://www.rssboard.org/rss-specification">RSS 2.0</LinkOut> using the `<atom:link>` element. The `rel` attribute value must be `monetization`. The `href` attribute must be a URL of an Open Payments-enabled wallet address or payment pointer.
+
+RSS must be <LinkOut href="https://www.rssboard.org/rss-profile#namespace-elements-atom">extended with the Atom Syndication Format</LinkOut> by adding the Atom namespace to the `rss` element:
+
+```
+<rss xmlns:atom="http://www.w3.org/2005/Atom">
+```
+
+Monetization `<atom:link>` elements may be children of `<channel>` and `<item>` elements.
+
+Monetization `<atom:link>` elements added as children of the `<channel>` element apply to the channel itself and its items.
+
+An `<item>` element inherits the channel’s monetization links unless the `<item>` element has monetization `<atom:link>` child elements of its own.
+
+### Podcast example
+
+```xml wrap
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+	xmlns:podcast="https://podcastindex.org/namespace/1.0"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+	<channel>
+		<atom:link rel="self" href="https://podcast.example/feed.xml" type="application/rss+xml"/>
+		<title>Fintech News Podcast</title>
+		<podcast:guid>0000a0a0-0000-0000-0000-0a000aa0a0a0</podcast:guid>
+		<link>https://podcast.example/fintech-news</link>
+		<podcast:medium>podcast</podcast:medium>
+		<itunes:type>episodic</itunes:type>
+		<category>Technology</category>
+		<itunes:category text="Technology"/>
+		<itunes:author>Fintech News</itunes:author>
+
+		<!-- Web Monetization wallet address/payment pointer for feed and items -->
+		<atom:link rel="monetization" href="https://wallet.example/fintech-news"/>
+
+		<!-- Optionally include wallet address/payment pointer as a podcast:funding element -->
+		<podcast:funding url="https://wallet.example/fintech-news">Support the show!</podcast:funding>
+
+		<item>
+			<!-- This item inherits the channel’s monetization links -->
+			<title>Big Fun Conference announcements</title>
+			<enclosure url="https://example.com/bfc-2024/audio.mp3" length="123" type="audio/mpeg"/>
+			<guid>https://example.com/bfc-2024/</guid>
+			<pubDate>Thu, 05 Dec 2024 15:56:55 GMT</pubDate>
+			<description>Episode description…</description>
+			<itunes:duration>123</itunes:duration>
+			<link>https://example.com/bfc-2024/</link>
+			<itunes:image href="https://example.com/bfc-2024/image.jpg"/>
+			<itunes:episode>1</itunes:episode>
+			<itunes:season>1</itunes:season>
+			<itunes:episodeType>full</itunes:episodeType>
+			<podcast:season>1</podcast:season>
+			<podcast:episode>1</podcast:episode>
+		</item>
+
+		<item>
+			<!-- This item has its own monetization links -->
+			<title>Canada is calling</title>
+			<enclosure url="https://example.com/2024-canada/audio.mp3" length="321" type="audio/mpeg"/>
+			<guid>https://example.com/2024-canada/</guid>
+			<pubDate>Thu, 05 Dec 2024 16:06:17 GMT</pubDate>
+			<description>Episode description…</description>
+			<itunes:duration>321</itunes:duration>
+			<link>https://example.com/2024-canada/</link>
+			<itunes:image href="https://example.com/2024-canada/image.jpg"/>
+			<itunes:episode>2</itunes:episode>
+			<itunes:season>1</itunes:season>
+			<itunes:episodeType>full</itunes:episodeType>
+			<podcast:season>1</podcast:season>
+			<podcast:episode>2</podcast:episode>
+
+			<atom:link rel="monetization" href="https://wallet.example/fintech-news"/>
+			<atom:link rel="monetization" href="https://wallet.example/erica"/>
+		</item>
+	</channel>
+</rss>
+```
+
+## Atom
+
+Web Monetization wallet addresses and payment pointers are represented in <LinkOut href="https://www.rfc-editor.org/rfc/rfc4287">Atom Syndication Format</LinkOut> using the `<link>` element with the `rel="monetization"` attribute. The `rel` value must be `monetization`. The `href` value must be a URL of an Open Payments-enabled wallet address or payment pointer.
+
+Monetization `<link>` elements may be added as children of `<feed>` and `<entry>` elements.
+
+Monetization `<link>` elements added as children of the `<feed>` element apply to the feed itself and its entries.
+
+An `<entry>` element inherits the feeds’s monetization links unless the `<entry>` element has monetization `<link>` child elements of its own.
+
+### Example
+
+```xml wrap
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Fintech News</title>
+	<link rel="self" type="application/atom+xml" href="https://example.com/atom.xml"/>
+	<link rel="alternate" type="text/html" href="https://example.com/"/>
+	<id>https://example.com/atom.xml</id>
+	<updated>2024-12-18T19:54:03Z</updated>
+
+	<!-- Web Monetization wallet address/payment pointer for feed and entries -->
+	<link rel="monetization" href="https://wallet.example/fintech-news"/>
+
+	<entry>
+		<!-- This entry inherits the channel’s monetization links -->
+		<title>Big Fun Conference announcements</title>
+		<link href="https://example.com/bfc-2024/"/>
+		<updated>2024-12-05T16:56:55+01:00</updated>
+		<id>https://example.com/bfc-2024/</id>
+		<content type="html">Article content here…</content>
+	</entry>
+
+	<entry>
+		<!-- This entry has its own monetization links -->
+		<title>Canada is calling</title>
+		<link href="https://example.com/2024-canada/"/>
+		<link rel="monetization" href="https://wallet.example/fintech-news"/>
+		<link rel="monetization" href="https://wallet.example/erica"/>
+		<updated>2024-12-05T17:06:17+01:00</updated>
+		<id>https://example.com/2024-canada/</id>
+		<content type="html">Article content here…</content>
+	</entry>
+</feed>
+```
+
+## JSON Feed
+
+Web Monetization wallet addresses are represented in <LinkOut href="https://www.jsonfeed.org/version/1.1/">JSON Feed 1.1</LinkOut> using the `_monetization` <LinkOut href="https://www.jsonfeed.org/version/1.1/#extensions">extension object</LinkOut>.
+
+Per the JSON Feed 1.1 specification, extensions must have a property name that begins with an underscore and be assigned an object.
+
+### `_monetization` extension object
+
+| Property | Required | Data type        | Description                                                                                                                   |
+| -------- | -------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `about`  | No       | string           | A link to the page explaining the extension object's purpose. It should appear in the first use of the extension object only. |
+| `links`  | Yes      | Array of strings | Specifies one or more Open Payments-enabled wallet addresses or payment pointers.                                             |
+
+The `_monetization` extension may be added to the top-level document and to individual items in the `items` array.
+
+An item in the `items` array inherits the top-level `_monetization` values unless the item contains a `_monetization` extension object of its own.
+
+### Example
+
+```jsonc wrap
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Fintech News",
+  "home_page_url": "https://example.com/",
+  "feed_url": "https://example.com/jsonfeed.json",
+
+  // Web Monetization wallet address/payment pointer for feed and items
+  "_monetization": {
+    "about": "https://webmonetization.org/docs/references/rss-atom-jsonfeed/",
+    "links": ["https://wallet.example/fintech-news"],
+  },
+
+  "items": [
+    {
+      // This item will inherit the feed’s _monetization
+      "title": "Big Fun Conference announcements",
+      "date_published": "2024-12-05T16:56:55+01:00",
+      "id": "https://example.com/bfc-2024/",
+      "url": "https://example.com/bfc-2024/",
+      "content_html": "Article content here…",
+    },
+    {
+      // This item specifies its own monetization links
+      "title": "Canada is calling",
+      "date_published": "2024-12-05T17:06:17+01:00",
+      "id": "https://example.com/2024-canada/",
+      "url": "https://example.com/2024-canada/",
+      "_monetization": {
+        "links": [
+          "https://wallet.example/fintech-news",
+          "https://wallet.example/erica",
+        ],
+      },
+      "content_html": "Article content here…",
+    },
+  ],
+}
+```

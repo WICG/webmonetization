@@ -1,16 +1,16 @@
 ---
 title: Permissions Policy
 next:
-    link: /wallets/
-    label: Compatible digital wallets
+  link: /wallets/
+  label: Compatible digital wallets
 ---
 
-import { LinkOut, Hidden } from "@interledger/docs-design-system";
+import { LinkOut, Hidden } from '@interledger/docs-design-system'
 import Specification from '/src/components/docs/Specification.astro'
 import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import data from '/src/data/browser-compat-data/permissionpolicy.json'
 
-A <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy">Permissions Policy</LinkOut> provides a mechanism for you to explicitly declare what functionality can and cannot be used on your website. 
+A <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy">Permissions Policy</LinkOut> provides a mechanism for you to explicitly declare what functionality can and cannot be used on your website.
 
 The `monetization` policy directive allows you to enable and disable the Web Monetization API within a document and within any of the document's nested browsing contexts (iframes).
 
@@ -20,7 +20,7 @@ The `monetization` policy directive allows you to enable and disable the Web Mon
 Permissions-Policy: monetization=(allowlist)
 ```
 
-Where `(allowlist)` is a list of <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy#allowlist">origins</LinkOut> permitted to use the Web Monetization API. 
+Where `(allowlist)` is a list of <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy#allowlist">origins</LinkOut> permitted to use the Web Monetization API.
 
 The default allowlist is `self`.
 
@@ -32,11 +32,11 @@ Permissions-Policy: monetization=(self)
 The `allow` attribute determines the container policy that will be used when the permissions policy for a `Document` in the iframe's content navigable is initialized. Adding or removing the `monetization` attribute has no effect on an already-loaded `Document`.
 :::
 
-## Example 
+## Example
 
 You want to allow Web Monetization on your website and in all nested browsing contexts (iframes) in the same origin.
 
-You configure your web server to return the `Permissions-Policy` HTTP header on each of your pages. 
+You configure your web server to return the `Permissions-Policy` HTTP header on each of your pages.
 
 ```http
 Permissions-Policy: monetization=(self)
