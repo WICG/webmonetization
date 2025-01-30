@@ -1,0 +1,9 @@
+{
+	"@context": {
+		"wm": "https://webmonetization.org/ns#",
+		"monetization": {
+			"@id": "wm:monetization",
+			"@type": "@id"
+		}
+	}
+}

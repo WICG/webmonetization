@@ -92,53 +92,45 @@ export default defineConfig({
           collapsed: true,
           items: [
             {
-              label: 'Web Monetization API',
+              label: 'Wallet linking',
               items: [
                 {
-                  label: 'HTML <link> rel=monetization',
-                  link: '/docs/references/html-link-rel-monetization',
+                  label: 'Webpage (HTML)',
+                  link: '/docs/references/html',
                 },
                 {
-                  label: 'Monetization events',
-                  collapsed: true,
-                  items: [
-                    {
-                      label: 'MonetizationEvent',
-                      link: '/docs/references/monetizationevent',
-                    },
-                    {
-                      label: 'amountSent',
-                      link: '/docs/references/attributes/amountsent',
-                    },
-                    {
-                      label: 'incomingPayment',
-                      link: '/docs/references/attributes/incomingpayment',
-                    },
-                    {
-                      label: 'paymentPointer',
-                      link: '/docs/references/attributes/paymentpointer',
-                    },
-                    {
-                      label: 'amount',
-                      link: '/docs/references/attributes/amount',
-                      badge: { text: 'deprecated', variant: 'danger' },
-                    },
-                    {
-                      label: 'assetCode',
-                      link: '/docs/references/attributes/assetcode',
-                      badge: { text: 'deprecated', variant: 'danger' },
-                    },
-                    {
-                      label: 'assetScale',
-                      link: '/docs/references/attributes/assetscale',
-                      badge: { text: 'deprecated', variant: 'danger' },
-                    },
-                    {
-                      label: 'receipt',
-                      link: '/docs/references/attributes/receipt',
-                      badge: { text: 'deprecated', variant: 'danger' },
-                    },
-                  ],
+                  label: 'Feed (RSS, Atom, JSON Feed)',
+                  link: '/docs/references/rss-atom-jsonfeed',
+                },
+                {
+                  label: 'Social (Activity Streams)',
+                  link: '/docs/references/activitystreams',
+                }
+              ],
+            },
+            {
+              label: 'Browser events',
+              collapsed: true,
+              items: [
+                {
+                  label: 'GlobalEventHandlers: onmonetization',
+                  link: '/docs/references/onmonetization',
+                },
+                {
+                  label: 'MonetizationEvent',
+                  link: '/docs/references/monetizationevent',
+                },
+                {
+                  label: 'amountSent',
+                  link: '/docs/references/attributes/amountsent',
+                },
+                {
+                  label: 'incomingPayment',
+                  link: '/docs/references/attributes/incomingpayment',
+                },
+                {
+                  label: 'paymentPointer',
+                  link: '/docs/references/attributes/paymentpointer',
                 },
               ],
             },
@@ -156,14 +148,9 @@ export default defineConfig({
               ],
             },
             {
-              label: 'Events',
-              items: [
-                {
-                  label: 'GlobalEventHandlers: onmonetization',
-                  link: '/docs/references/onmonetization',
-                },
-              ],
-            },
+              label: 'Deprecations',
+              link: '/docs/references/deprecations',
+            }
           ],
         },
         {
@@ -246,6 +233,9 @@ export default defineConfig({
     react(),
     astroI18next(),
   ],
+  redirects: {
+    "/docs/references/html-link-rel-monetization": "/docs/references/html"
+  },
   server: {
     port: 1100,
   },
