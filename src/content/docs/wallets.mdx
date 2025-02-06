@@ -26,7 +26,20 @@ The [Test Web Monetization](/tutorials/test-web-monetization) page gives step-by
 
 <Tabs>
     <TabItem label="Interledger Wallet">
+    In Interledger Wallet, your payment address is called a _wallet address_. It appears on the _Home_ screen after signing in. Although `https://` isn't shown in the field, it is added to your address when you click the copy button.
+    <img src="/img/docs/interledger/interledger-wallet-dashboard.png" alt="User's wallet address highlighted on the Interledger Wallet home screen" class="img-outline" style="max-width:600px"/>
     </TabItem>
     <TabItem label="GateHub">
+    In GateHub, your payment address is called a _payment pointer_. 
+    <Steps>
+    1. Select your wallet, then click **Advanced**.<br /><img src="/img/docs/gatehub/advanced-wallet-settings.png" alt="" class="img-outline" style="max-width:600px" />
+    2. Scroll down to **Interledger Settings**.
+    3. Click the **Payment pointer** button.<br /><img src="/img/docs/gatehub/advanced-interledger-settings.png" alt="" class="img-outline" style="max-width:450px" />
+    4. Copy your payment pointer.<br /><img src="/img/docs/gatehub/payment-pointer.png" alt="" class="img-outline" style="max-width:600px" />
+        :::note
+        If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
+        :::
+    </Steps>
+
     </TabItem>
 </Tabs>
