@@ -7,14 +7,14 @@ import { LinkOut } from '@interledger/docs-design-system'
 
 The following providers offer Web Monetization-compatible digital wallets. You must have a wallet address or payment pointer from a compatible wallet to send and receive payments.
 
-Be sure to select a wallet that's available in your **region** and supports your preferred **currency**.
+Be sure to select a wallet that's available in your **region** and supports your preferred **currency**. See the [Limitations](#limitations) section for additional details.
 
 ## Wallet providers
 
-| Provider                                                              | Payment Address Label | Available In                  |
-| --------------------------------------------------------------------- | --------------------- | ----------------------------- |
-| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | Wallet address        | USA, EU, Canada, South Africa |
-| <LinkOut href="https://gatehub.net">GateHub</LinkOut>                 | Payment pointer       | <mark>x</mark>                |
+| Provider | Payment address label | Available in | Supported fiat currencies |
+| -------- | --------------------- | ------------ | -------------------- |
+| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | Wallet address | USA, EU, Canada, South Africa | USD, EUR, CAD, ZAR |
+| <LinkOut href="https://gatehub.net">GateHub</LinkOut> | Payment pointer | EU | EUR |
 
 ## Interledger test wallet
 
@@ -43,3 +43,13 @@ The [Test Web Monetization](/tutorials/test-web-monetization) page gives step-by
         :::
     </Steps>
 </details>
+
+## Limitations
+
+### Interledger Wallet
+
+Users of the Interledger Wallet can only send and receive from other Interledger Wallet users who are in the same region and using the same currency.
+
+### GateHub 
+
+Users of the GateHub wallet can only send and receive from other GateHub wallet users. 

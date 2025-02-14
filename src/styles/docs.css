@@ -1,0 +1,12 @@
+/* Custom styles for Starlight pages */
+
+/* Allows icon component to appear on the same line as text */
+.sl-markdown-content .inline-icon {
+    display: inline;
+    margin-bottom: 0 !important;
+  }
+
+/* Tightens up space between card top border and content */
+article.card {
+  padding-top: -0px;
+}

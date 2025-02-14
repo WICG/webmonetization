@@ -2,14 +2,14 @@
 title: Get started
 ---
 
-import { Steps, Tabs, TabItem } from '@astrojs/starlight/components'
+import { Steps, Tabs, TabItem, LinkButton, Icon } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 
 The Interledger Foundation's Web Monetization [browser extension](#1-download-and-install-the-extension) allows you to support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
 
 <StylishHeader>Web monetized sites</StylishHeader>
 
-You can only use the extension to send payments to web monetized sites. Since Web Monetization is a newer technology, the ILF encourages content owners and publishers tell their audience they're web monetized via a banner or some other method.
+You can only use the extension to send payments to web monetized sites. Since Web Monetization is a newer technology, the Interledger Foundation encourages content owners and publishers tell their audience they're web monetized via a banner or some other method.
 
 If you're interested in web monetizing your own content, the [get started](/developers/get-started) page for developers is a good place to start.
 
@@ -17,23 +17,39 @@ If you're interested in web monetizing your own content, the [get started](/deve
 
 To make Web Monetization payments, you only need a digital wallet from a Web Monetization-compatible [wallet provider](/wallets). There's no site-by-site account or subscription required for each individual site you want to support.
 
-A web monetized site cannot pull payments from your digital wallet. When you link the browser extension to your digital wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#change-your-continuous-payment-settings).
+A web monetized site cannot pull payments from your digital wallet. When you link the browser extension to your digital wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#set-up-continuous-payments).
 
 The sites you pay are not provided with any of your personally identifiable information, such as your name, email address, or IP address.
-
-:::note
-Sending a payment to a web monetized site doesn't guarantee an ad-free experience. The decision to show or hide ads in response to a Web Monetization payment is entirely up to each content owner or publisher.
-:::
 
 ## Set up the extension
 
 ### 1. Download and install the extension
+<br />
 
-The extension is currently supported in the following browsers. We plan to support more browsers in the future.
-
-- <LinkOut href='https://chromewebstore.google.com/detail/web-monetization-extensio/oiabcfomehhigdepbbclppomkhlknpii'>Google Chrome and Chromium-based browsers</LinkOut>
-- <LinkOut href='https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/'>Mozilla Firefox</LinkOut>
-- <LinkOut href='https://microsoftedge.microsoft.com/addons/detail/web-monetization-extensio/imjgemgmeoioefpmfefmffbboogighjl'>Microsoft Edge</LinkOut>
+<LinkButton 
+  href="https://chromewebstore.google.com/detail/web-monetization-extensio/oiabcfomehhigdepbbclppomkhlknpii"
+  variant="primary"
+  icon="external"
+  iconPlacement="start"
+>
+  Google Chrome
+</LinkButton>
+<LinkButton 
+  href="https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/"
+  variant="primary"
+  icon="external"
+  iconPlacement="start"
+>
+  Mozilla Firefox
+</LinkButton>
+<LinkButton 
+  href="https://microsoftedge.microsoft.com/addons/detail/web-monetization-extensio/imjgemgmeoioefpmfefmffbboogighjl"
+  variant="primary"
+  icon="external"
+  iconPlacement="start"
+>
+  Microsoft Edge
+</LinkButton>
 
 :::note[Permissions]
 The extension will ask for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for the Web Monetization [`<link>`](/developers/link-element) element.
@@ -63,25 +79,37 @@ After you've created your digital wallet, you'll be provided with a type of URL 
 <Steps>
   1. Open the extension and enter your wallet address in the given field.<img
     src='/img/docs/extension/connection-setup.png' alt='Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button' style='max-width:300px' class='img-outline'/>
-  2. Enter the amount to make available to spend. 
+  2. Enter the amount to make available to spend.
   3. Optionally select the **Renew monthly** toggle. If you choose to not renew monthly, you'll need to manually [add more funds](#adjust-your-budget) when your remaining balance is zero.
+      :::caution  
+      Your budget amount and renewal frequency is tied to this extension on your current browser. If you install the extension on a different browser and connect to the same wallet account, that extension will have a separate budget. Sending payments from one budget will not affect the balance of the other budget.
+      :::
   4. Click **Connect**.
   5. Click **Agree** to allow the extension to connect to your wallet and add a key to your account.<br /><img src='/img/docs/extension/connection-wallet.png' alt='Consent screen to allow the extension to connect to your wallet provider with agree and decline buttons' style='max-width:300px' class='img-outline'/><br />If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
-  6. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. Below is an example confirmation screen.<br /><img src='/img/docs/extension/example-grant.png' alt='Example budget confirmation screen with accept and decline buttons' style='max-width:400px' class='img-outline'/>A success screen appears when the connection is successful.<br /><img src='/img/docs/extension/connection-success.png' alt='Web page displaying a connection successful screen' style='max-width:400px' class='img-outline'/>
+  6. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. Below is an example confirmation screen.<br /><img src='/img/docs/extension/example-grant.png' alt='Example budget confirmation screen with accept and decline buttons' style='max-width:400px' class='img-outline'/>A success screen appears when the connection is successful.<br /><img src='/img/docs/extension/connection-success.png' alt='Web page displaying a connection successful screen' style='max-width:400px' class='img-outline'/>You're now ready to set up continuous payments.
 </Steps>
 
-## Change your continuous payment settings
+## Set up continuous payments
 
-A continuous payment is a payment that recurs at your set rate for as long as you are active on a web monetized page. When you leave the page, the payments stop.
+### About continuous payments
 
-Continuous payments are enabled by default and sent at a rate of $0.60 USD per hour. Use the instructions below to change the rate or disable continuous payments.
+By default, the extension is set to send continuous payments at a rate of $0.60 USD an hour ($0.01 a minute). If you transact in a currency other than USD, then the extension will default to your currency's equivalent based on the exchange rate. For example, imagine you transact in Mexican pesos. If $0.60 is equivalent to $12.24 MXN, then the extension will default to $12.24 MXN an hour.
+
+Payments continue for as long as the page is active and in view. Continuous payments stop if you:
+* Disable continuous payments within the extension
+* Minimize your browser
+* Close the page/tab/browser
+* Navigate away from the page
+* Switch to a different tab
+* Spend all of your budget 
+
+### Change your continuous payment settings
 
 <Steps>
   1. Click the **Settings** icon in the upper-right of the extension.<br /><img src='/img/docs/extension/settings-icon.png' alt='Extension showing a cog icon in the upper-right' style='max-width:300px'
     class='img-outline'/>
   2. Select the *Rate* tab.<br /><img src='/img/docs/extension/rate-tab.png' alt='Rate tab with rate of pay per hour field and continuous payment toggle' style='max-width:300px' class='img-outline'/>
-  3. Enter the amount the extension will send, per hour, to web monetized sites.
-  4. Select the **Continuous payment** toggle to enable/disable continuous payments. This is a global setting that applies to all web monetized pages you visit.
+  3. Enter the amount the extension will send, per hour, to web monetized sites. Alternatively, select the **Continuous payment** toggle to enable/disable continuous payments for all web monetized pages.
 </Steps>
 
 ## Make a one-time payment

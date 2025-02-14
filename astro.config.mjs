@@ -26,6 +26,7 @@ export default defineConfig({
       customCss: [
         './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
         './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',
+        './src/styles/docs.css',
       ],
       plugins: [
         starlightLinksValidator({
@@ -60,7 +61,7 @@ export default defineConfig({
         },
         {
           label: 'For content consumers',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               label: 'Overview',
@@ -78,7 +79,7 @@ export default defineConfig({
         },
         {
           label: 'For content owners',
-          collapsed: false,
+          collapsed: true,
           items: [
               {
                 label: 'Overview',
@@ -193,7 +194,7 @@ export default defineConfig({
         },
         {
           label: 'Resources',
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               label: 'Glossary',
