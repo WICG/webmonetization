@@ -20,6 +20,6 @@ If your Web Monetization provider has not provided you a wallet address, try con
 
 Web Monetization now uses the [Open Payments API specification](https://openpayments.dev/) instead of the [STREAM Interledger Transport protocol](https://interledger.org/developers/rfcs/stream-protocol/).
 
-`MonetizationEvent` now represents the amount sent instead of the amount received. The new `incomingPayment` attribute may be used to determine the amount received. Therefore, `amount`, `assetCode`, `assetScale` are no longer attributes on the event. Consider using [`amountSent`](/docs/references/attributes/amountsent) instead.
+`MonetizationEvent` now represents the amount sent instead of the amount received. The new `incomingPayment` attribute may be used to determine the amount received. Therefore, `amount`, `assetCode`, `assetScale` are no longer attributes on the event. Consider using `amountSent` instead.
 
 STREAM receipts are no longer relevant to the `MonetizationEvent` and have been removed.
