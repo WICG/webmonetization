@@ -25,7 +25,7 @@ standard for implementation by wallet providers. When implemented, third-party
 applications, like the Web Monetization extension, can set up payments to and
 from users' wallet accounts.
 
-Wallet providers who support Open Payments will issue each of their customers' accounts with a unique ID that's either called a wallet address or a payment pointer.
+Wallet providers who support Open Payments issues each of their customers' accounts with a unique ID that's either called a wallet address or a payment pointer.
 
 ## P
 
@@ -33,11 +33,11 @@ Wallet providers who support Open Payments will issue each of their customers' a
 
 ### Payment pointer
 
-A payment pointer is a secure, unique identifier that's assigned to payment accounts that use Interledger's Simple Payment Setup Protocol (SPSP) to exchange payment information. The shorthand for a payment pointer starts with `$`. For example, `$wallet.example.com/alice`.
+A payment pointer is a secure, unique identifier that's assigned to payment accounts that use the Interledger Simple Payment Setup Protocol (SPSP) to exchange payment information. The shorthand for a payment pointer starts with `$`. For example, `$wallet.example.com/alice`.
 
 As a consumer of web monetized content, you'll enter your payment pointer into your Web Monetization extension to link the extension to your wallet.
 
-To web monetize your own content, you must convert your payment pointer to its URL equivalent as the monetization `<link>` element does not support the `$` in the `href` value. Enter your payment pointer into the field provided on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut> to get your URL.
+To web monetize your own content, you must convert your payment pointer to its URL equivalent as the monetization `<link>` element doesn't support the `$` in the `href` value. Enter your payment pointer into the field provided on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut> to get your URL.
 
 ## T
 
@@ -47,7 +47,7 @@ To web monetize your own content, you must convert your payment pointer to its U
 
 The test wallet is a wallet application provided by the ILF that lets you experiment with Web Monetization without using real money. You'll go through a typical Know Your Customer (KYC) sign-up flow, fund an account with play money, and get a payment pointer.
 
-Review the [Test Web Monetization](/tutorials/test-web-monetization) tutorial to learn more about sending and receiving payments through the test wallet. Go to <LinkOut href="https://wallet.interledger-test.dev">wallet.interledger-test.dev</LinkOut> to sign up for an account.
+[Sign up for a wallet account](/tutorials/test-wallet-sign-up), then test [sending](/tutorials/send-test-payments) and [receiving](/tutorials/receive-test-payments) payments using fake money.
 
 ## W
 
@@ -55,7 +55,7 @@ Review the [Test Web Monetization](/tutorials/test-web-monetization) tutorial to
 
 ### Wallet address
 
-A wallet address is a secure, unique identifier that's assigned to payment accounts that use Open Payments to exchange payment information. All wallet addresses are URLs (e.g., `https://wallet.example.com/alice`); however, not all URLs are wallet addresses.
+A wallet address is a secure, unique identifier that's assigned to payment accounts that use Open Payments to exchange payment information. All wallet addresses are URLs (for example, `https://wallet.example.com/alice`), but not all URLs are wallet addresses.
 
 As a consumer of web monetized content, you'll enter your wallet address into your Web Monetization extension to link the extension to your account.
 
@@ -85,7 +85,7 @@ A Web Monetization agent is a non-user facing component of a Web Monetization ex
 
 A Web Monetization service provider is an entity that has:
 
-- Full control over the financial account from which payments will be made
+- Full control over the financial account from which payments are made
 - Ownership of the financial account's associated payment pointer or wallet address
 - The ability to grant authorization for payments to be sent from the account
 
