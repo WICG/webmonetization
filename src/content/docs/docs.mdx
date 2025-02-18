@@ -1,37 +1,23 @@
 ---
 title: Web Monetization
-hero:
-  title: 'Title'
-  tagline: Tagline
-  image:
-    file: ./wm-logo--full-animated.svg
-  actions:
-    - text: Tell me more
-      link: /supporters/get-started
+tableOfContents: false
 next: Content consumer overview
 ---
 
-<p><mark>Ignore all this</mark></p>
-![](/img/bg-lines.svg)
-![](/img/bg-lines--light.svg)
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
-Web Monetization provides a fast and secure way to send small amounts of money to a website, while you browse, using automatic pay-as-you-browse, or as a once-off payment. 
+<div style="position:relative;top:-100px; border: 2px solid #DEF4EF"><img src="/img/wm.png"/></div>
 
-You can consider Web Monetization if you are a:
-* Content consumer: You browse the Internet, and would consider paying any amount for content that you spend time with. 
-* Content owner: You own, create, publish, or contribute to content shared on the Web, and would consider receiving support or donations for your work.
-* Developer: You build or deploy websites where owners or contributors want to be able to earn revenue for content.
+<img src="/img/bg-lines--light.svg"/>
 
-For content consumers
+<CardGrid>
+  
+  <LinkCard title="For consumers of content" href="/supporters/overview" description="Pay as much or as little as you want, as often as you want, as you spend time on web monetized sites." />
+  
+  <LinkCard title="For content owners and publishers" href="/developers/overview" description="Get paid directly for the work you own, create, publish, or contribute to on the web." />
+  
+  <LinkCard title="For developers" href="/developers/link-element"  description="Get started by adding Web Monetization to an HTML page. Web Monetization can also be added to RSS, ATOM, and JSON feeds, as well as Activity Streams." />
+  
+  <LinkCard title="Browser extension" href="https://webmonetization.org/install/" target="_blank" description="Download the Interledger Foundation's browser extension. Currently available for Chrome, Firefox, and Edge." />
 
-When browsing the Internet, some content may resonate with you, while you may be only mildly curious about other content. You might want to support and pay for the work of some content owners, while others may not be your cup of tea. 
-
-With Web Monetization, you can control when and how often to send small payments automatically to owners and creators for content you want to support. You are in control and have the option to pay as you browse, to send a once-off payment, or to disable Web Monetization.
-
-For content owners
-
-Diversifying your sources of revenue, and retaining all revenue that you earn can be a major advantage in, for example, the creative economy. Web Monetization empowers you, as a content owner, to gain control of your earnings online. 
-
-As an owner, creator or contributor to content that gets attention online, Web Monetization enables you to get paid directly so that:
-* You keep all of your revenue, without platform fees.
-* Offer people a way to support your work at their own discretion, similar to a tip or donation.
+</CardGrid>

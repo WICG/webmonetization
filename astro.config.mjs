@@ -26,7 +26,6 @@ export default defineConfig({
       customCss: [
         './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
         './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',
-        './src/styles/docs.css',
       ],
       plugins: [
         starlightLinksValidator({
@@ -97,8 +96,26 @@ export default defineConfig({
         },
         {
           label: 'For developers',
-          collapsed: false,
+          collapsed: true,
           items: [
+            {
+              label: 'Wallet linking',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Webpage (HTML)',
+                  link: '/developers/link-element'
+                },
+                {
+                  label: 'Feed (RSS, Atom, JSON Feed)',
+                  link: '/developers/rss-atom-jsonfeed',
+                },
+                {
+                  label: 'Social (Activity Streams)',
+                  link: '/developers/activity-streams',
+                },
+              ],
+            },
             {
               label: 'Tutorials',
               collapsed: true,
@@ -121,13 +138,23 @@ export default defineConfig({
                 },
                 {
                   label: 'Test Web Monetization',
-                  link: '/tutorials/test-web-monetization',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'Sign up for a test wallet account',
+                      link: '/tutorials/test-wallet-sign-up',
+                    },
+                    {
+                      label: 'Send test payments',
+                      link: '/tutorials/send-test-payments',
+                    },
+                    {
+                      label: 'Receive test payments',
+                      link: '/tutorials/receive-test-payments',
+                    },
+                  ],
                 },
               ],
-            },
-            {
-              label: 'Libraries',
-              link: '/developers/libraries',
             },
             {
               label: 'API docs',
@@ -174,12 +201,8 @@ export default defineConfig({
               ],
             },
             {
-              label: 'Feed (RSS, Atom, JSON Feed)',
-              link: '/developers/rss-atom-jsonfeed',
-            },
-            {
-              label: 'Social (Activity Streams)',
-              link: '/developers/activity-streams',
+              label: 'Libraries',
+              link: '/developers/libraries',
             },
             {
               label: 'Web Monetization Specification',
@@ -199,6 +222,11 @@ export default defineConfig({
             {
               label: 'Glossary',
               link: '/resources/glossary',
+            },
+            {
+              label: 'ILF\'s extensions and tools',
+              link: 'https://webmonetization.org/install/',
+              attrs: { target: '_blank' },
             },
             {
               label: 'Get involved',
