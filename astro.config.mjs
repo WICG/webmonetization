@@ -239,6 +239,9 @@ export default defineConfig({
     react(),
     astroI18next(),
   ],
+  redirects: {
+    "/docs/references/html-link-rel-monetization": "/docs/references/html"
+  },
   server: {
     port: 1100,
   },
