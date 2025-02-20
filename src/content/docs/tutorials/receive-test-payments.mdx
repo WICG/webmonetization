@@ -2,16 +2,46 @@
 title: Receive test payments
 ---
 
-import { Steps, Icon } from '@astrojs/starlight/components'
+import { Steps, Icon, Card } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 
+Use the Interledger's Web Monetization browser extension and Playground to receive payments without using real money.
+
+This tutorial takes you through using one funded test wallet to send and receive payments. In other words, the wallet you'll send payments from is the same wallet that will receive payments.
+
 :::tip[Before you begin]
-You must have an [account](/tutorials/test-wallet-sign-up) on the Interledger Foundation's test network.
+You must have at least one [funded test wallet account](/tutorials/test-wallet-sign-up) on the Interledger Foundation's test network and [install and configure](/tutorials/send-test-payments) the Web Monetization browser extension.
 :::
 
+## Web Monetization Playground
 
+The <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut> lets you monetize the page by entering a wallet address or payment pointer.
 
-https://webmonetization.org/play/
+Your browser extension will send payments to the address you enter if your wallet provider and the address's wallet provider can transact with one another.
 
+If your browser extension is connected to a wallet that uses real money and you enter an address that your wallet provider can transact with, you will be making real payments. For the tutorials on this page, we are using fake money.
 
-Your browser does not support Web Monetization.
+## Receive continuous payments
+
+<Steps>
+    1. Enable continuous payments within the extension if they aren't already. Check your settings by selecting the cog icon, then the **Rate** tab.
+    2. Go to the <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut>.
+    3. Enter your wallet account's payment pointer into the field and select **Add monetization link**.
+        :::note[Forgot your payment pointer?]
+        Open the extension and select the cog icon. Then, select the **Wallet** tab and copy your payment pointer from the **Connected wallet address** field.
+        :::
+    4. Remain on the Playground page, with the window active, long enough for a few events to appear on the page. The amount of time it takes for events to appear depends on the rate you have set up in the extension.<Card title="Example">If your rate is €0.60 EUR an hour, then it will take 5-6 minutes for three events to appear.</Card>
+    5. Select **Disable** to stop the payments.
+    6. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">Interledger test wallet</LinkOut> and select **Transactions** from the left menu. A completed outgoing payment appears for each event, as well as a single pending incoming payment with a zero amount.<Card title="Outgoing payment amounts">To mimic how a real wallet provider could act, the Interledger test network deducts a 0.01 fee from each outgoing payment. If your rate is €0.60 EUR an hour, each Playground event will show 0.01 EUR while each outgoing payment in your transaction list will show -€0.02.</Card>
+    7. Wait 10 minutes, then refresh the page. The pending incoming transaction will show as completed and reflect the amount deposited into your wallet.<Card title="Example">If your rate is €0.60 EUR an hour and you waited for three Playground events, your incoming payment will be €0.03.</Card>
+</Steps>
+
+## Receive a one-time payment
+
+    1. Go to the <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut>.
+    2. Enter your wallet account's payment pointer into the field and select **Add monetization link**.
+        :::note[Forgot your payment pointer?]
+        Open the extension and select the cog icon. Then, select the **Wallet** tab and copy your payment pointer from the **Connected wallet address** field.
+        :::
+    3. Open the extension, enter a one-time payment amount, then click **Send now**. A new event will appear in the Playground almost immediately.
+    4. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">Interledger test wallet</LinkOut> and select **Transactions** from the left menu. A completed outgoing and incoming payment will appear.<Card title="Incoming payment amount">To mimic how a real wallet provider could act, the Interledger test network deducts a 0.01 fee from each outgoing payment. If you made a one-time payment of €1.00 EUR, the completed incoming payment will be for €0.99.</Card>
