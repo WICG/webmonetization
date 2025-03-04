@@ -1,6 +1,6 @@
 ---
 title: Web Monetization-compatible wallets
-lastUpdated: 2025-02-18
+lastUpdated: 2025-03-03
 ---
 
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components'
@@ -12,28 +12,30 @@ Be sure to select a wallet that's available in your **region** and supports your
 
 ## Wallet providers
 
-| Provider | Payment address label | Available in | Supported fiat currencies |
-| -------- | --------------------- | ------------ | -------------------- |
-| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | Wallet address | USA, EU, Canada, South Africa | USD, EUR, CAD, ZAR |
-| <LinkOut href="https://gatehub.net">GateHub</LinkOut> | Payment pointer | EU | EUR |
+| Provider  | Available in | Supported fiat currencies |
+| -------- | ------------ | -------------------- |
+| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, EU, Canada, South Africa | USD, EUR, CAD, ZAR |
+| <LinkOut href="https://gatehub.net">GateHub</LinkOut> | EU | EUR |
+
+This table will be updated as more wallet providers become available.
 
 ## Interledger test wallet
 
 The Interledger test wallet provides a great way to test Web Monetization without using real money. The test wallet is an open-source application developed and maintained by the [Interledger Foundation](https://interledger.org).
 
-Check out [this page](/tutorials/test-wallet-sign-up) for the steps to create an account on the Interledger test network.
+[Create an account on the Interledger test network](/tutorials/test-wallet-sign-up) to test Web Monetization without real money.
 
-## Where is my payment address?
+## Where is my wallet address/payment pointer?
 
 <details>
 <summary>Interledger Wallet</summary>
-    In Interledger Wallet, your payment address is called a _wallet address_. It appears on the _Home_ screen after signing in. Although `https://` isn't shown in the field, it is added to your address when you click the copy button.
+    Users of the Interledger Wallet will have a _wallet address_. It appears on the _Home_ screen after signing in. Although `https://` isn't shown in the field, it is added to your address when you click the copy button.
     <img src="/img/docs/interledger/interledger-wallet-dashboard.png" alt="User's wallet address highlighted on the Interledger Wallet home screen" class="img-outline" style="max-width:600px"/>
 </details>
 
 <details>
 <summary>GateHub</summary>
-    In GateHub, your payment address is called a _payment pointer_. 
+    Users of GateHub will have a _payment pointer_. To locate your payment pointer:
     <Steps>
     1. Select your wallet, then click **Advanced**.<br /><img src="/img/docs/gatehub/advanced-wallet-settings.png" alt="" class="img-outline" style="max-width:600px" />
     2. Scroll down to **Interledger Settings**.
