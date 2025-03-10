@@ -117,6 +117,24 @@ export default defineConfig({
               ],
             },
             {
+              label: 'Guides',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Sign up for a test wallet account',
+                  link: '/guides/test-wallet-sign-up',
+                },
+                {
+                  label: 'Send test payments',
+                  link: '/guides/send-test-payments',
+                },
+                {
+                  label: 'Receive test payments',
+                  link: '/guides/receive-test-payments',
+                },
+              ],
+            },
+            {
               label: 'Tutorials',
               collapsed: true,
               items: [
@@ -135,24 +153,6 @@ export default defineConfig({
                 {
                   label: 'Set up probabilistic revenue sharing',
                   link: '/tutorials/revenue-sharing',
-                },
-                {
-                  label: 'Test Web Monetization',
-                  collapsed: true,
-                  items: [
-                    {
-                      label: 'Sign up for a test wallet account',
-                      link: '/tutorials/test-wallet-sign-up',
-                    },
-                    {
-                      label: 'Send test payments',
-                      link: '/tutorials/send-test-payments',
-                    },
-                    {
-                      label: 'Receive test payments',
-                      link: '/tutorials/receive-test-payments',
-                    },
-                  ],
                 },
               ],
             },
@@ -205,6 +205,10 @@ export default defineConfig({
               link: '/developers/libraries',
             },
             {
+              label: 'Publisher tools',
+              link: '/developers/tools',
+            },
+            {
               label: 'Web Monetization Specification',
               link: 'https://webmonetization.org/specification/',
               attrs: { target: '_blank' },
@@ -224,8 +228,13 @@ export default defineConfig({
               link: '/resources/glossary',
             },
             {
-              label: 'ILF\'s extensions and tools',
+              label: 'Web Monetization extensions',
               link: 'https://webmonetization.org/install/',
+              attrs: { target: '_blank' },
+            },
+            {
+              label: 'Publisher tools',
+              link: 'https://webmonetization.org/tools/',
               attrs: { target: '_blank' },
             },
             {

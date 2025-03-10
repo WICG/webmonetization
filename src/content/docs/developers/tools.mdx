@@ -1,0 +1,25 @@
+---
+title: Publisher tools
+banner:
+    content: |
+        Coming soon: widget and button tools
+---
+
+Use any of the following tools to tell your visitors about Web Monetization.
+
+## Banner
+
+https://webmonetization.org/create/banner
+
+Customize a banner and generate a script to place the banner on your site. It appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner includes a link for your visitor to download the extension from their browser's store.
+
+The script automatically web monetizes your site. If your page contains [multiple](/developers/link-element#multiple-monetization-links) monetization links, payments from the extension are only split between unique addresses. 
+
+```js wrap title="Example"
+<script id="wmt-init-script" 
+    type="module" 
+    src="https://webmonetization.org/tools/init.js?wa=example.com/alice&types=banner">
+</script>
+```
+
+When you generate your script, your customizations are saved automatically. To change your banner, click **Import** and enter your wallet address. Your existing banner configuration will load.
