@@ -2,18 +2,17 @@
 title: Publisher tools
 banner:
     content: |
-        Coming soon: widget and button tools
+        Widget and Button tools coming soon!
 ---
 
-Use any of the following tools to tell your visitors about Web Monetization.
+import { LinkButton } from '@astrojs/starlight/components';
+import { LinkOut } from "@interledger/docs-design-system";
+
+The [Publisher Tools](https://webmonetization.org/tools) page provides a collection of easy-to-customize components that you can use to tell your visitors about Web Monetization.
 
 ## Banner
 
-https://webmonetization.org/create/banner
-
-Customize a banner and generate a script to place the banner on your site. It appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner includes a link for your visitor to download the extension from their browser's store.
-
-The script automatically web monetizes your site. If your page contains [multiple](/developers/link-element#multiple-monetization-links) monetization links, payments from the extension are only split between unique addresses. 
+Create a banner that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner automatically includes a link for your visitor to download the extension from their browser's store. Customize the settings, then generate a script to place on your site. 
 
 ```js wrap title="Example"
 <script id="wmt-init-script" 
@@ -22,4 +21,8 @@ The script automatically web monetizes your site. If your page contains [multipl
 </script>
 ```
 
-When you generate your script, your customizations are saved automatically. To change your banner, click **Import** and enter your wallet address. Your existing banner configuration will load.
+The script automatically web monetizes your site. If your page contains [multiple](/developers/link-element#multiple-monetization-links) monetization links, payments from the extension are only split between unique addresses. 
+
+Generating your script saves your configuration. To change your banner, click **Import** and enter your wallet address. Your existing banner configuration will load.
+
+<LinkButton href="https://webmonetization.org/create/banner" icon="external" iconPlacement="start" variant="secondary">Create a banner</LinkButton>

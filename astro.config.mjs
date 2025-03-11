@@ -228,7 +228,7 @@ export default defineConfig({
               link: '/resources/glossary',
             },
             {
-              label: 'Web Monetization extensions',
+              label: 'Web Monetization extension',
               link: 'https://webmonetization.org/install/',
               attrs: { target: '_blank' },
             },
