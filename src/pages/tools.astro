@@ -1,0 +1,39 @@
+---
+import i18next, { t, changeLanguage } from "i18next";
+import Base from "../layouts/Base.astro";
+
+changeLanguage("en");
+
+const title = `Publisher tools | ${t("site.title")}`;
+const description = t("site.description");
+---
+<Base title={title} description={description}>
+  <section class="section section_adjusted">
+    <iframe
+      class="iframe_content"
+      src="https://wmtools.interledger-test.dev?contentOnly"
+      title="Publisher tools"
+      loading="eager"
+    />
+  </section>
+</Base>
+
+<style>
+  body {
+    background-image: url('/img/bg-tile.svg');
+    background-size: 25em;
+  }
+
+  .iframe_content {
+    width: 100%;
+    height: calc(100vh - 190px);
+    border: none;
+  }
+
+  .section_adjusted,
+  .section_adjusted:first-of-type {
+    padding-block-start: 0;
+    padding-block-end: 0;
+  }
+
+</style>
