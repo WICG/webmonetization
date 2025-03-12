@@ -211,7 +211,11 @@ export default defineConfig({
             {
               label: 'Web Monetization Specification',
               link: 'https://webmonetization.org/specification/',
-              attrs: { target: '_blank' },
+              attrs: { 
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                'data-icon': 'external',
+              },
             },
           ],
         },
@@ -230,12 +234,20 @@ export default defineConfig({
             {
               label: 'Web Monetization extension',
               link: 'https://webmonetization.org/install/',
-              attrs: { target: '_blank' },
+              attrs: { 
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                'data-icon': 'external',
+              },
             },
             {
               label: 'Publisher tools',
               link: 'https://webmonetization.org/tools/',
-              attrs: { target: '_blank' },
+              attrs: { 
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                'data-icon': 'external',
+              },
             },
             {
               label: 'Get involved',
