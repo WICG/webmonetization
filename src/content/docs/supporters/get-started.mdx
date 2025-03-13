@@ -1,11 +1,11 @@
 ---
-title: Get started
+title: Get started with the extension
 ---
 
 import { Steps, Tabs, TabItem, LinkButton, Icon } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 
-The Interledger Foundation's Web Monetization [browser extension](#1-download-and-install-the-extension) allows you to support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
+The Interledger Foundation's Web Monetization browser extension lets you support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
 
 <details>
 <summary>About web monetized sites</summary>
@@ -23,10 +23,7 @@ A web monetized site cannot pull payments from your digital wallet. When you lin
 The sites you pay are not provided with any of your personally identifiable information, such as your name, email address, or IP address.
 </details>
 
-## Set up the extension
-
-### 1. Download and install the extension
-<br />
+## Install the extension
 
 <LinkButton 
   href="https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii"
@@ -57,41 +54,42 @@ The sites you pay are not provided with any of your personally identifiable info
 </LinkButton>
 
 :::note[Permissions]
-The extension will ask for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for the Web Monetization [`<link>`](/developers/link-element) element.
+The extension asks for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for Web Monetization.
 :::
 
-### 2. Sign up with a compatible digital wallet
+## Configure the extension
 
-Sign up with a Web Monetization-compatible [wallet provider](/wallets).
-
-After you've created your digital wallet, you'll be provided with a type of URL called a _wallet address_ or _payment pointer_. You need this address in the next step.
-
-<Tabs>
-  <TabItem label='Example wallet address'>
-    ``` 
-    https://wallet.example.com/alice
-    ```
-  </TabItem>
-  <TabItem label='Example payment pointer'>
-    ```
-    $wallet.example.com/alice
-    ```
-  </TabItem>
-</Tabs>
-
-### 3. Configure the extension
+After you install the extension, a page appears to guide you though the configuration steps.
 
 <Steps>
-  1. Open the extension and enter your wallet address in the given field.<img
-    src='/img/docs/extension/connection-setup.png' alt='Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button' style='max-width:300px' class='img-outline'/>
-  2. Enter the amount to make available to spend.
-  3. Optionally select the **Renew monthly** toggle. If you choose to not renew monthly, you'll need to manually [add more funds](#adjust-your-budget) when your remaining balance is zero.
-      :::caution  
-      Your budget amount and renewal frequency is tied to this extension on your current browser. If you install the extension on a different browser and connect to the same wallet account, that extension will have a separate budget. Sending payments from one budget will not affect the balance of the other budget.
+  1. Get a Web Monetization-compatible [wallet](/wallets).<br/><img src='/img/docs/extension/onboarding-1.png' alt='An image of the onboarding screen showing the four steps to configure the extension' style='max-width:300px' class='img-outline'/>
+      :::note
+      You may experience a delay before you can fund your wallet while your provider performs any necessary regulatory checks.
       :::
-  4. Click **Connect**.
-  5. Click **Agree** to allow the extension to connect to your wallet and add a key to your account.<br /><img src='/img/docs/extension/connection-wallet.png' alt='Consent screen to allow the extension to connect to your wallet provider with agree and decline buttons' style='max-width:300px' class='img-outline'/><br />If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
-  6. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. Below is an example confirmation screen.<br /><img src='/img/docs/extension/example-grant.png' alt='Example budget confirmation screen with accept and decline buttons' style='max-width:400px' class='img-outline'/>A success screen appears when the connection is successful.<br /><img src='/img/docs/extension/connection-success.png' alt='Web page displaying a connection successful screen' style='max-width:400px' class='img-outline'/>You're now ready to set up continuous payments.
+  2. Find and copy your wallet address or payment pointer. You'll need it for Step 4. Your wallet provider will assign one to you during sign up. The exact naming depends on what your provider has chosen to use.<br/><img src='/img/docs/extension/onboarding-2.png' alt='The Interledger Wallet dashboard displaying a wallet address' style='max-width:400px' class='img-outline'/>
+      <Tabs>
+      <TabItem label='Example wallet address'>
+        ``` 
+        https://wallet.example.com/alice
+        ```
+      </TabItem>
+      <TabItem label='Example payment pointer'>
+        ```
+        $wallet.example.com/alice
+        ```
+      </TabItem>
+      </Tabs>
+  3. Pin the extension to your toolbar (optional).<br/><img src='/img/docs/extension/onboarding-3.png' alt='An example of where to find the pin to toolbar option for the extension' style='max-width:300px' class='img-outline'/>
+  4. Enter the wallet address or payment pointer you found in Step 2.<br/><img src='/img/docs/extension/onboarding-4a.png' alt='Set up screen with fields for wallet address/payment pointer and amount and a renew monthly toggle (default is off).' style='max-width:300px' class='img-outline'/>
+  5. Enter the amount to make available for sending Web Monetization payments. If you choose not to renew monthly, you'll need to manually [add more funds](#adjust-your-budget) when your balance is zero.
+      :::note
+      The amount and renewal frequency is specific to the extension you're currently setting up. If you install the extension on a different browser and connect to the same wallet, that extension will have a separate budget. Payments made from one budget do not affect the balance of the other.
+      :::
+  6. Click **Connect**, then click **Agree** to allow the extension to connect to your wallet and add a key to your account.<br/><img src='/img/docs/extension/onboarding-4b.png' alt='Consent screen for allowing the extension to connect to your wallet with agree and decline buttons' style='max-width:300px' class='img-outline'/>
+      :::note
+      If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
+      :::
+  7. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. For example:<br /><img src='/img/docs/extension/example-grant.png' alt='Example budget confirmation screen with accept and decline buttons' style='max-width:400px' class='img-outline'/>A success screen appears when the connection is successful.<br /><img src='/img/docs/extension/connection-success.png' alt='Web page displaying a connection successful screen' style='max-width:400px' class='img-outline'/>You're now ready to set up continuous payments.
 </Steps>
 
 ## Set up continuous payments
@@ -100,12 +98,11 @@ After you've created your digital wallet, you'll be provided with a type of URL 
 
 By default, the extension is set to send continuous payments at a rate of $0.60 USD an hour ($0.01 a minute). If you transact in a currency other than USD, then the extension will default to your currency's equivalent based on the exchange rate. For example, imagine you transact in Mexican pesos. If $0.60 is equivalent to $12.24 MXN, then the extension will default to $12.24 MXN an hour.
 
-Payments continue for as long as the page is active and in view. Continuous payments stop if you:
+Payments continue for as long as a web monetized page is active and in view. Continuous payments stop if you:
 * Disable continuous payments within the extension
 * Minimize your browser
-* Close the page/tab/browser
-* Navigate away from the page
-* Switch to a different tab
+* Navigate away from or close the page/tab
+* Close the browser
 * Spend all of your budget 
 
 ### Change your continuous payment settings
@@ -144,10 +141,10 @@ You can make a one-time payment to a page instead of -- or in addition to -- con
 When you disconnect the extension from your wallet, the extension can no longer make payments. You can always reconnect your wallet later.
 
 :::tip[Remaining balance]
-You won't lose your remaining balance if you disconnect the extension from your wallet. Your remaining balance will remain in your wallet account.
+When you disconnect the extension, your remaining balance, if any, remains in your wallet.
 :::
 
-The extension only supports one wallet connection at a time. If, for example, you have two wallet accounts from which you want to make payments, you must disconnect from the first wallet before you can connect the extension to your second wallet.
+The extension only supports one wallet connection at a time. If, for example, you have two wallets from which you want to make payments, you must disconnect from the first wallet before you can connect the extension to your second wallet.
 
 <Steps>
   1. Click the **Settings** icon in the upper-right of the extension.<br /><img src='/img/docs/extension/settings-icon.png' alt='Extension showing a cog icon in the upper-right' style='max-width:300px'
@@ -157,10 +154,9 @@ The extension only supports one wallet connection at a time. If, for example, yo
 
 ## Resolve a key addition failure <a id="manually-add-key"></a>
 
-When you try to connect the extension to your digital wallet, the extension attempts to automatically connect with your wallet provider to add a key to your wallet account.
+When you try to connect the extension to your wallet, the extension attempts to automatically connect with your wallet provider to add a key to your wallet account.
 
-You'll receive an error if the extension is unable to add the key.
-
+You'll receive an error if the extension is unable to add the key. For example:
 <img
   src='/img/docs/extension/connection-failed.png'
   alt='Extension showing an automatic connection error, the key you must copy, and a copy button for the key'
@@ -172,7 +168,7 @@ When this happens, you must copy the key that appears in the extension and manua
 
 <StylishHeader>Interledger Wallet</StylishHeader>
 
-Follow these steps if your wallet provider is <LinkOut href="https://interledger.app">Interledger wallet</LinkOut>.
+Follow these steps if your wallet provider is <LinkOut href="https://interledger.app">Interledger Wallet</LinkOut>.
 
 <Steps>
   1. Sign in to your Interledger Wallet.
