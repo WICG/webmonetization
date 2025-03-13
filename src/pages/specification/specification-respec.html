@@ -8,17 +8,12 @@
     </title>
     <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"
     defer></script>
-    <meta charset="utf-8">
-    <title>
-      Web Monetization
-    </title>
-    <script src="https://www.w3.org/Tools/respec/respec-w3c" class="remove"
-    defer></script>
     <script class="remove">
       'use strict'
       // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
       var respecConfig = {
         edDraftURI: 'https://webmonetization.org/specification',
+        latestVersion: 'https://webmonetization.org/specification',
         // publishDate: "2021-01-02",
         github: {
           repoURL: 'wicg/webmonetization',
@@ -77,9 +72,9 @@
             title: 'STREAM Receipt',
             href: 'https://interledger.org/developers/rfcs/stream-receipts/',
           },
-          'Open Payments': {
+          'open-payments': {
             title: 'Open Payments',
-            href: 'https://openpayments.guide/',
+            href: 'https://openpayments.dev/',
           },
         },
       }
@@ -229,7 +224,7 @@
         <dd>
           The party making payments on behalf of the user. A monetization
           provider leverages the [[[Interledger]]] suite of protocols and
-          technologies (e.g., [[Open Payments]] based on [[STREAM]]) to provide
+          technologies (e.g., [[open-payments]] based on [[STREAM]]) to provide
           a high-level way to pay a [=monetization receiver=].
         </dd>
         <dt>
@@ -243,7 +238,7 @@
           <dfn>Payment Pointer</dfn>:
         </dt>
         <dd>
-          A [=URL=] to an <a data-cite="Open Payments#specification">Open
+          A [=URL=] to an <a data-cite="open-payments/introduction/wallet-addresses#">Open
           Payments API entry-point</a> (i.e., a JSON resource containing
           details that facilitate payment to an account).
         </dd>
@@ -631,7 +626,7 @@
         </p>
         <p>
           All [=monetization receivers=] should be migrating from generating a
-          [[[Receipt]]] to supporting incoming payments via [[Open Payments]]
+          [[[Receipt]]] to supporting incoming payments via [[open-payments]]
           and will no longer be returning receipts to the browser.
         </p>
         <p>
@@ -853,8 +848,7 @@
         service. To mitigate such an attack, it is RECOMMENDED that developers:
       </p>
       <ul>
-        <li>host a [=payment pointer=] on their own servers and proxy [[Open
-        Payments]] requests on the server as needed.
+        <li>host a [=payment pointer=] on their own servers and proxy [[open-payments]] requests on the server as needed.
         </li>
         <li>Set the `monetization-src` CSP directive to restrict requests to
         origins they control and trust to host [=payment pointers=].
