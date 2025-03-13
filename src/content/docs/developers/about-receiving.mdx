@@ -1,0 +1,207 @@
+---
+title: About receiving payments
+---
+
+import { LinkOut, CodeBlock, Disclosure } from '@interledger/docs-design-system'
+import { Badge, Tabs, TabItem, Steps } from '@astrojs/starlight/components'
+
+Receiving Web Monetization payments requires you to have an account with a compatible digital wallet provider. Not all wallet providers support receiving Web Monetization payments.
+
+Your digital wallet provider will supply you with the financial account you’ll use to receive payments. Withdrawing your funds typically requires you to link a card or bank account to your wallet.
+
+Since wallet providers are financial entities, they are regulated within the countries they operate. One regulation, known as KYC (Know Your Customer), requires financial entities to collect your personal information and verify your identity before allowing you to open an account.
+
+## Web Monetization-compatible digital wallets
+
+You must have an account with a compatible [digital wallet provider](/wallets) to receive payments. Be sure to select a provider that:
+
+- Is available in your region
+- Supports your preferred currency
+- Allows you to withdraw your funds if you choose to transact in fiat
+
+Your wallet provider will assign your wallet a unique identifier called a _wallet address_ or a _payment pointer_. You’ll need this identifier to web monetize your content.
+
+| Identifier      | Example format                     |
+| --------------- | ---------------------------------- |
+| Payment pointer | `$wallet.example.com/alice`        |
+| Wallet address  | `https://wallet.example.com/alice` |
+
+## Web monetized content
+
+Once you have your payment pointer or wallet address, you're ready to add the Web Monetization `<link>` element to each page of your site you want to monetize. Visit the [get started](/developers/get-started) page for more information.
+
+When you include the `<link>` element on a page, you're telling your website visitors' browsers that you can accept Web Monetization payments. Visitors using the [Web Monetization extension](/supporters/get-started) in their browsers can then choose to send you payments in the amount and frequency of their choosing.
+
+## Payments
+
+Your visitors' Web Monetization extension acts like a messaging service. When they land on your page, their extension identifies your `<link>` element and uses it to request information from your wallet provider. This begins a number of API requests and responses between the extension and your wallet provider, and the extension and your visitor's wallet provider to facilitate a payment.
+
+### Micropayments
+
+If you're already familiar with Web Monetization, you may have heard about how it supports micropayments.
+
+In general, a micropayment is a very small payment. Each wallet provider is responsible for a few things:
+
+- Deciding whether to support receiving and/or sending micropayments
+- Defining what a micropayment is in the context of their business
+- Determining the minimum amount for a micropayment
+
+Let's say your wallet provider allows you to receive micropayments. Your provider defines a micropayment as any payment under $0.05 USD. This means you could, for example, receive a payment of one US cent--as long as the sender's wallet provider allows them to send that amount.
+
+Your wallet provider may also have business rules set up such that micropayments accumulate on your account but aren't deposited until you reach a minimum (e.g., $1.00 USD).
+
+Web Monetization can even support payments of a fraction of a cent (e.g., $0.00001); however, sending and receiving fractional amounts must be supported by the respective wallet providers.
+
+### A deeper dive into payments
+
+#### Open Payments
+
+For a wallet to be compatible with Web Monetization, the provider must implement the <LinkOut href="https://openpayments.dev">Open Payments standard</LinkOut>. When implemented, a set of APIs becomes available for third-party applications, such as your visitor's Web Monetization extension, to communicate with the wallet providers.
+
+#### Web Monetization extension
+
+A component within the extension--called the [Web Monetization agent](/developers/link-element#web-monetization-agent)--is responsible for communicating with a wallet provider via the Open Payments APIs. The next section describes the series of API calls required to initiate a payment.
+
+#### Web Monetization payment sequence
+
+:::note
+The examples below are simplified representations of the Open Payments API calls.
+:::
+
+<Steps>
+1. The Web Monetization agent locates your [monetization link](/developers/link-element) and extracts your payment URL (the `href` value).
+    <Disclosure toggleText="Example monetization link" client:load>
+    ```html
+    <link rel="monetization" href="https://wallet.example/alice">
+    ```
+    </Disclosure>
+2. The agent issues a <LinkOut href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address/"><Badge text="GET" variant="note" size="small" /></LinkOut> request to the URL.
+    <Disclosure toggleText="Example request" client:load>
+    ```http
+    GET /alice HTTP/1.1
+    Accept: application/json
+    Host: wallet.example
+    ```
+    </Disclosure>
+3. The response from your wallet provider to the agent contains information such as the currency your account is denominated in and the URLs of your wallet provider's authorization and resource servers.
+    <Disclosure toggleText="Example response" client:load>
+    ```http
+    HTTP/1.1 200 Success
+    Content-Type: application/json
+
+    {
+        "assetCode": "USD",
+        "assetScale": 2,
+        "authServer": "https://wallet.example/auth",
+        "resourceServer": "https://wallet.example/resource"
+    }
+    ```
+    </Disclosure>
+4. The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `authServer` URL. The request contains the access permissions the agent is requesting.
+    <Disclosure toggleText="Example request" client:load>
+    ```http
+    POST /auth/ HTTP/1.1
+    Accept: application/json
+    Content-Type: application/json
+    Host: wallet.example 
+    {
+        "access_token": {
+            "access": [
+                {
+                    "type": "incoming-payment",
+                    "actions": ["create", "read"],
+                    "identifier": "https://wallet.example/alice"
+                }
+            ]
+        },
+        "client": "https://cloudninewallet.example/visitor"
+    }
+    ```
+    :::note
+    The `client` in the response above is your visitor's wallet address/payment pointer. This URL is only used by the agent and is not available to you.
+    :::
+    </Disclosure>
+5. The response to the agent contains an access token that the agent needs to make its next request.
+    <Disclosure toggleText="Example response" client:load>
+    ```http wrap
+    {
+        "access_token": {
+        "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
+        "manage": "https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
+        "access": [
+            {
+                "type": "incoming-payment",
+                "actions": ["create", "read"],
+                "identifier": "https://wallet.example/alice"
+            }
+        ]
+        }
+    }
+    ```
+    </Disclosure>
+6. The agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `resourceServer` URL. The purpose of this call is to request the information needed by your visitor's wallet provider so their provider correctly addresses the payment to you.
+    <Disclosure toggleText='Example request' client:load>
+    ```http wrap
+    POST /alice/incoming-payments HTTP/1.1 Accept: application/json
+    Content-Type: application/json Authorization: OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0 Host: wallet.example
+    ```
+    </Disclosure>
+7. The response to the agent contains unique payment details that will be used to address the payment to your payment account.
+    <Disclosure toggleText="Example response" client:load>
+    ```http wrap
+    {
+        "id": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+        "walletAddress": "https://wallet.example/alice",
+        "receivedAmount": {
+            "value": "0",
+            "assetCode": "USD",
+            "assetScale": 2
+        },
+        "completed": false,
+        "createdAt": "2022-03-12T23:20:50.52Z"
+    }
+    ```
+    </Disclosure>
+8. At this point, the agent has finished communicating with your wallet provider. Now, the agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your visitor's wallet provider. The purpose of this call is to give your visitor's wallet provider what it needs to send the payment.
+    <Disclosure toggleText="Example request" client:load>
+    ```http wrap
+    POST /visitor/outgoing-payment HTTP/1.1
+    Accept: application/json
+    Content-Type: application/json
+    Authorization: {{ GNAP outgoingPaymentGrant.accessToken.value }}
+    Host: cloudninewallet.example
+    {
+    "walletAddress": "https://wallet.example/alice",
+    "quoteId": "https://wallet.example/quotes/ab03296b-0c8b-4776-b94e-7ee27d868d4d",
+    }
+    ```
+    </Disclosure>
+9.  The <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/#responses">response</LinkOut> from your visitor's wallet provider indicates whether the outgoing payment was created on their side. A payment could fail if the visitor has insufficient funds, for example. The following example indicates the outgoing payment was successfully created.
+
+        <Disclosure toggleText="Example response" client:load>
+        ```http wrap
+        {
+            "id": "https://cloudninewallet.example/visitor/outgoing-payments/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf",
+            "walletAddress": "https://cloudninewallet.example/visitor/",
+            "receiver": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+            "receiveAmount": {
+                "value": "2",
+                "assetCode": "USD",
+                "assetScale": 2
+            },
+            "debitAmount": {
+                "value": "2",
+                "assetCode": "USD",
+                "assetScale": 2
+            },
+            "sentAmount": {
+                "value": "0",
+                "assetCode": "USD",
+                "assetScale": 2
+            },
+            "createdAt": "2022-03-12T23:20:55.52Z",
+            "updatedAt": "2022-03-12T23:20:55.52Z"
+        }
+        ```
+        </Disclosure>
+</Steps>

@@ -1,0 +1,206 @@
+---
+title: Show content to paying visitors
+---
+
+import Wallet from '/src/partials/wallet-prereq.mdx'
+import Disclaimer from '/src/partials/glitch.mdx'
+
+This guide describes one way you can show otherwise hidden content to paying visitors after the `monetization` event fires. The event only fires after an outgoing payment request is successfully created. If the event doesn't fire, then the content remains hidden on your page.
+
+### Before you begin
+
+<Wallet />
+
+## User experience
+
+For visitors without Web Monetization, your content is always hidden.
+
+For visitors with Web Monetization, your content appears; however, there's a three-second grace period. This gives Web Monetization a chance to initialize.
+
+**If Web Monetization:**
+
+- Initializes within the grace period, the content remains visible
+- Fails to initialize within the grace period, the content is hidden
+- Initializes any time after the grace period, the hidden content becomes visible
+
+## Example use case: Show exclusive content
+
+In this example, you'll give your paying visitors access to exclusive content.
+
+### The code
+
+```html wrap
+<head>
+  <!-- Set the href to your own wallet address or payment pointer in URL format -->
+  <link rel="monetization" href="https://wallet.example.com/alice" />
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <script>
+    const link = document.querySelector('link[rel="monetization"]')
+    if (link.relList.supports('monetization')) {
+      link.addEventListener('monetization', (ev) => {
+        document.getElementById('exclusive').classList.remove('hidden')
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <p>Content will appear below here for web monetized visitors.</p>
+  <hr />
+  <div id="exclusive" class="hidden">Here's some exclusive content!</div>
+</body>
+```
+
+### How it works
+
+First, we'll check whether Web Monetization is supported. We do this by calling `supports()` on a link element’s `relList` and passing `"monetization"` as a parameter. If this check doesn’t exist, we can’t listen for the `monetization` event to tell us when Web Monetization initializes.
+
+```javascript
+const link = document.querySelector('link[rel="monetization"]')
+if (link.relList.supports('monetization')) {
+```
+
+Next, we'll add an event listener to the `link` element. The `monetization` event emits when Web Monetization initializes.
+
+```javascript
+link.addEventListener('monetization', (ev) => {
+```
+
+Finally, we'll select the exclusive content element we want to make available to web monetized visitors. Since we defined a CSS class to hide the content, removing the class will make the content appear.
+
+```javascript
+document.getElementById('exclusive').classList.remove('hidden')
+```
+
+### Interactive example
+
+This example simulates showing and hiding exclusive content based on a visitor’s Web Monetization state.
+
+<Disclaimer />
+
+<iframe
+  src='https://glitch.com/embed/#!/embed/wm2-exclusive-content-simple'
+  title='wm2-exclusive-content-simple on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>
+
+## Example use case: Show an indicator and exclusive content
+
+In this example, you'll not only give your paying visitors access to exclusive content, but also:
+
+- Show web monetized visitors an indicator while they wait for Web Monetization to initialize
+- Tell non-web monetized visitors that there’s exclusive content they’re missing out on
+
+### The code
+
+This example contains three states:
+
+- A call-to-action for non-web monetized visitors
+- A loading message for web monetized visitors
+- Exclusive content for web monetized visitors
+
+```html wrap
+<head>
+  <!-- Set the href to your own wallet address or payment pointer in URL format -->
+  <link rel="monetization" href="https://wallet.example/alice" />
+
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <script>
+    function showExclusiveContent() {
+      document.getElementById('loading').classList.add('hidden')
+      document.getElementById('cta').classList.add('hidden')
+      document.getElementById('exclusive').classList.remove('hidden')
+    }
+
+    function showCTA() {
+      document.getElementById('loading').classList.add('hidden')
+      document.getElementById('cta').classList.remove('hidden')
+    }
+
+    function showLoading() {
+      document.getElementById('loading').classList.remove('hidden')
+    }
+
+    if (window.MonetizationEvent) {
+      const link = document.querySelector('link[rel="monetization"]')
+      link.addEventListener('monetization', (ev) => {
+        showExclusiveContent()
+      })
+    }
+
+    window.addEventListener('load', () => {
+      if (!window.MonetizationEvent) {
+        showCTA()
+      } else {
+        showLoading()
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div id="loading" class="hidden">Loading exclusive content...</div>
+  <div id="exclusive" class="hidden">Here's some exclusive content!</div>
+  <div id="cta" class="hidden">
+    Install a Web Monetization extension to support me!
+  </div>
+  <p>This is content that everyone can see.</p>
+</body>
+```
+
+### How it works
+
+There are three functions to activate the three states:
+
+- `showLoading` displays the loading message
+- `showCTA` displays the call-to-action for non-web monetized users
+- `showExclusiveContent` displays exclusive content to web monetized users
+
+When the page loads, we’ll check whether the visitor is web monetized.
+
+```javascript
+window.addEventListener('load', () => {
+  if (!window.MonetizationEvent) {
+```
+
+The loading message will appear to web monetized visitors and the CTA will appear to everyone else.
+
+```javascript
+if (!window.MonetizationEvent) {
+  showCTA()
+} else {
+  showLoading()
+}
+```
+
+If the visitor is web monetized, we’ll listen for the `monetization` event that occurs when an outgoing payment request is successfully created. If the event fires, the exclusive content will appear (`<div id="exclusive"...>`) and the other divs will be hidden (`<div id="loading"...>` and `<div id="cta"...>`)
+
+```javascript
+if (window.MonetizationEvent) {
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', (ev) => {
+    showExclusiveContent()
+```
+
+### Interactive example
+
+This example simulates hiding and showing exclusive content based on a visitor’s Web Monetization state. Web monetized visitors will see exclusive content while non-web monetized users will not. Conversely, non-web monetized users will see the message, “Please install a Web Monetization extension to support me!“.
+
+<Disclaimer />
+
+<iframe
+  src='https://glitch.com/embed/#!/embed/wm2-exclusive-content-complex?path=README.md&previewSize=100'
+  title='wm2-exclusive-content-complex on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>

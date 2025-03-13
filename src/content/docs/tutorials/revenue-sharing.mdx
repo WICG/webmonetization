@@ -1,0 +1,89 @@
+---
+title: Set up probabilistic revenue sharing
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+import Wallet from '/src/partials/wallet-prereq.mdx'
+import Disclaimer from '/src/partials/glitch.mdx'
+
+Probabilistic revenue sharing is a way for a monetized page's total revenue to be split between multiple wallet addresses/payment pointers based on the probability of one address being chosen over the others on each page load.
+
+Why take this approach? First, the monetization `<link>` element itself only supports one URL as the `href` value. Second, although your page can contain multiple monetization links, there are a [few reasons](/developers/link-element#multiple-monetization-links) why some of the links might not be monetized.
+
+Probabilistic revenue sharing works by choosing from a list of predefined wallet addresses/payment pointers in URL format each time a web monetized visitor loads your page. Payments are sent to the chosen address until the visitor reloads or closes the page.
+
+The chance of and address being chosen is based on its assigned weight. For example, if Alice’s address has a weight of 50 (out of 100), then her address has a 50% chance of being chosen. The laws of probability state that Alice’s share of the page’s total revenue will approach 50% as more web monetized visitors access the page.
+
+This guide presents two ways in which to set up probabilistic revenue sharing. The first is by adding a [script](#example-dev-scenario-use-a-script) to your page. If you'd prefer to not use a script, you can use our [generator](#example-dev-scenario-use-the-probabilistic-revshare-generator).
+
+### Before you begin
+
+<Wallet />
+
+## User experience
+
+Probabilistic revenue sharing does not affect the user experience for your web monetized visitors.
+
+## Example dev scenario: Use a script
+
+In this scenario, you'll set up probabilistic revenue sharing via a script. For simplicity, the total amount of the assigned weights equal 100.
+
+### The code
+
+```html wrap
+<head>
+  <script>
+    // Define your revenue share here.
+    // If the weights add up to 100, then they represent the percent each address gets.
+    const pointers = {
+      'https://wallet.example.com/alice': 50,
+      'https://wallet.example.com/bob': 40,
+      'https://wallet.example.com/connie': 9.5,
+      'https://wallet.example.com/dave': 0.5,
+    }
+
+    function pickPointer() {
+      const sum = Object.values(pointers).reduce(
+        (sum, weight) => sum + weight,
+        0,
+      )
+      let choice = Math.random() * sum
+
+      for (const pointer in pointers) {
+        const weight = pointers[pointer]
+        if ((choice -= weight) <= 0) {
+          return pointer
+        }
+      }
+    }
+
+    window.addEventListener('load', () => {
+      const monetizationTag = document.createElement('link')
+      monetizationTag.rel = 'monetization'
+      monetizationTag.href = pickPointer()
+
+      document.head.appendChild(monetizationTag)
+    })
+  </script>
+</head>
+```
+
+### Interactive example
+
+This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a pointer and it will show you the results.
+
+The example doesn’t require you to have Web Monetization enabled in your browser and no real payments are occurring.
+
+If source files appear instead of the example, click **View App** in the bottom-right corner.
+
+<iframe
+  src='https://glitch.com/embed/#!/embed/wm2-probablistic-revenue-share'
+  title='wm2-exclusive-content-simple on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>
+
+## Example dev scenario: Use the Probabilistic Revshare Generator
+
+As an alternative to including a script in your page, you can use our <LinkOut href="https://webmonetization.org/prob-revshare/">Probabilistic Revshare Generator</LinkOut>.
+
+Follow the instructions on the page to generate a monetization `<link>` element that contains a unique URL hosted on `webmonetization.org`. Then, include monetization link on each page you want to web monetize.

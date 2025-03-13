@@ -1,0 +1,96 @@
+---
+title: Glossary
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+
+## I
+
+<hr />
+
+### Interledger Foundation (ILF)
+
+The <LinkOut href="https://interledger.org">Interledger Foundation</LinkOut> (ILF) is a global nonprofit foundation and steward of the Interledger Protocol, the Open Payments standard, and Web Monetization.
+
+The ILF offers an open source [Web Monetization browser extension](/supporters/get-started) that showcases a pay-as-you-browse model, allowing you to define how often and how much to pay to web monetized websites.
+
+## O
+
+<hr />
+
+### Open Payments
+
+<LinkOut href='https://openpayments.dev'>Open Payments</LinkOut> is an open
+standard for implementation by wallet providers. When implemented, third-party
+applications, like the Web Monetization extension, can set up payments to and
+from users' wallet accounts.
+
+Wallet providers who support Open Payments issues each of their customers' accounts with a unique ID that's either called a wallet address or a payment pointer.
+
+## P
+
+<hr />
+
+### Payment pointer
+
+A payment pointer is a secure, unique identifier that's assigned to payment accounts that use the Interledger Simple Payment Setup Protocol (SPSP) to exchange payment information. The shorthand for a payment pointer starts with `$`. For example, `$wallet.example.com/alice`.
+
+As a consumer of web monetized content, you'll enter your payment pointer into your Web Monetization extension to link the extension to your wallet.
+
+To web monetize your own content, you must convert your payment pointer to its URL equivalent as the monetization `<link>` element doesn't support the `$` in the `href` value. Enter your payment pointer into the field provided on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut> to get your URL.
+
+## T
+
+<hr />
+
+### Test wallet
+
+The test wallet is a wallet application provided by the ILF that lets you experiment with Web Monetization without using real money. You'll go through a typical Know Your Customer (KYC) sign-up flow, fund an account with play money, and get a payment pointer.
+
+[Sign up for a wallet account](/guides/test-wallet-sign-up), then test [sending](/guides/send-test-payments) and [receiving](/guides/receive-test-payments) payments using fake money.
+
+## W
+
+<hr />
+
+### Wallet address
+
+A wallet address is a secure, unique identifier that's assigned to payment accounts that use Open Payments to exchange payment information. All wallet addresses are URLs (for example, `https://wallet.example.com/alice`), but not all URLs are wallet addresses.
+
+As a consumer of web monetized content, you'll enter your wallet address into your Web Monetization extension to link the extension to your account.
+
+To web monetize your own content, you'll add your wallet address as the `href` value within the monetization `<link>` element.
+
+### Wallet provider
+
+A digital wallet provider is an entity that supplies you with the financial account you'll use to send or receive payments.
+
+Not all wallet providers support Web Monetization payments. A provider must implement the Open Payments standard and be able to assign your account a payment pointer or wallet address for you to use the account for Web Monetization.
+
+Wallet providers are regulated within the countries they operate and are often required by law to collect certain personal information and verify your identity before allowing you to open an account.
+
+### Web Monetization agent
+
+A Web Monetization agent is a non-user facing component of a Web Monetization extension or web browser. The purpose of the Web Monetization agent is to:
+
+- Recognize when an HTML page contains one or more monetization `<link>` elements
+- Parse the payment pointer or wallet address in a monetization `<link>`
+- Extend the HTML DOM API so that `monetization` is a valid link type
+- Instrument payments by calling the Open Payments APIs
+- Fire `monetization` events after an outgoing payment request is created
+- Process `monetization` events sent to the browser window via the `onmonetization` event handler
+- Enable CSP `monetization-src` and Permissions Policy `monetization` directives
+
+### Web Monetization service provider
+
+A Web Monetization service provider is an entity that has:
+
+- Full control over the financial account from which payments are made
+- Ownership of the financial account's associated payment pointer or wallet address
+- The ability to grant authorization for payments to be sent from the account
+
+If you, as an individual, meet the criteria above, then you are acting as your own Web Monetization service provider.
+
+In some jurisdictions, it may be impossible to get an account with a Web Monetization-compatible wallet provider. If you're unable to get a wallet account for this or any other reason, you may be able to sign up with a third-party Web Monetization service provider.
+
+A third-party Web Monetization service provider is an entity that meets the criteria above and with whom you enter into a service agreement. In return, the service provider authorizes you to send payments from their account. The service provider retains full control over the account and can grant/revoke your authorization to send from the account at any time.

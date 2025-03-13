@@ -1,0 +1,128 @@
+---
+title: Show visitors how much they've contributed
+---
+
+import Wallet from '/src/partials/wallet-prereq.mdx'
+import Disclaimer from '/src/partials/glitch.mdx'
+
+This guide describes how to display a counter on your page to show your visitors how much they've contributed while on the page during their current browsing session. The counter updates in real time and reflects both time-based payments (e.g., X amount per minute) and one-time payments.
+
+### Before you begin
+
+<Wallet />
+
+## User experience
+
+For visitors without Web Monetization, the counter will show 0.00.
+
+For visitors with Web Monetization, the counter will update based on the amount sent during the current browsing session. The counter resets to 0.00 when your visitor:
+
+- Closes the tab, browser window, or browser.
+- Clicks a link or performs some other action that redirects the visitor to another page. This includes navigating backward or forward.
+- Refreshes the page.
+
+## Example
+
+This example illustrates how to use the `monetization` event to show a web monetized visitor how much they've sent in USD.
+
+### The code
+
+```html wrap
+<head>
+  <!-- Set the href to your own wallet address or payment pointer in URL format -->
+  <link rel="monetization" href="https://wallet.example.com/alice" />
+
+  <script>
+    let total = 0
+
+    if (window.MonetizationEvent) {
+      const link = document.querySelector('link[rel="monetization"]')
+
+      link.addEventListener('monetization', (event) => {
+        const {
+          amountSent: { value, currency },
+        } = event
+        console.log(`Browser sent ${currency} ${value}.`)
+
+        if (total === 0) {
+          document.getElementById('currency').innerText = currency
+        }
+
+        total += Number(value)
+
+        document.getElementById('total').innerText = total.toFixed(9)
+      })
+    }
+  </script>
+</head>
+
+<body>
+  <p>
+    Thanks for contributing
+    <span id="total">0.00 USD</span>
+    <span id="currency"></span>
+  </p>
+</body>
+```
+
+### How it works
+
+We’ll bind the `monetization` event if the visitor is web monetized (`window.MonetizationEvent` is defined).
+
+The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and `currency` code of the sent payment. A currency code is a three-letter code, like USD, EUR, or GBP.
+
+```javascript {1,6}
+  if (window.MonetizationEvent) {
+    const link = document.querySelector('link[rel="monetization"]');
+
+    link.addEventListener("monetization", (event) => {
+      const {
+      amountSent: { value, currency },
+    } = event;
+    console.log(`Browser sent ${currency} ${value}.`);
+```
+
+The `currency` code is set on the visitor's first payment and doesn’t change. The code represents the sender's currency which may be different from the currency you receive (depending on the currency you chose when setting up your wallet account).
+
+```javascript
+// initialize currency on first progress event
+if (total === 0) {
+  document.getElementById('currency').innerText = currency
+}
+```
+
+The amount in `value` is an integer, which we add to the total.
+
+```javascript
+total += Number(value)
+```
+
+Lastly, we tell the text on your page to update with the new total. The total should be in a human-readable format, so we need to convert the number to a string and round it to a specified number of decimals. This example uses `9`.
+
+```javascript
+document.getElementById('total').innerText = total.toFixed(9)
+```
+
+The formatted version of the amount gets written to the `total` span on the page.
+
+```html {4}
+<body>
+  <p>
+    Thanks for contributing
+    <span id="total">0.00 USD</span>
+    <span id="currency"></span>
+  </p>
+</body>
+```
+
+### Interactive example
+
+This example simulates showing a visitor how much they've sent you based off how long they remain on your web monetized page.
+
+<Disclaimer />
+
+<iframe
+  src='https://glitch.com/embed/#!/embed/wm2-count-revenue'
+  title='wm2-exclusive-content-simple on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>

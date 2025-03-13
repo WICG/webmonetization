@@ -1,0 +1,71 @@
+---
+title: Monetization interfaces
+---
+
+import { LinkOut, Hidden } from '@interledger/docs-design-system'
+import { Badge } from '@astrojs/starlight/components'
+import Specification from '/src/components/docs/Specification.astro'
+import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
+import data from '/src/data/browser-compat-data/monetizationevent.json'
+
+<Badge
+  text='Web Monetization API'
+  variant='tip'
+  style='position: relative; top:-30px;'
+/>
+
+The Web Monetization API consists of two interfaces: `MonetizationEvent` and `MonetizationCurrencyAmount`.
+
+## `MonetizationEvent`
+
+The `MonetizationEvent` interface describes the [`monetization`](/developers/events) event that fires when an outgoing payment is successfully created.
+
+<table>
+  <tr>
+    <th>Bubbles</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Cancelable</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Event handler property</th>
+    <td>`onmonetization`</td>
+  </tr>
+</table>
+
+By listening for `monetization` events, you can use the information returned in the following properties to verify payments.
+
+| Property | Description |
+| - | - |
+| [amountSent](/developers/events#amountsent) | The currency amount and code of the sent payment. Contains two variables, `value` and `currency`, constructed by the [`MonetizationCurrencyAmount`](#monetizationcurrencyamount) interface. |
+| [incomingPayment](/developers/events#incomingpayment) | A URL you can use to determine if a payment was received and, if so, the amount received. |
+| [paymentPointer](/developers/events#paymentpointer) | The URL of the payment pointer or wallet address that the incoming payment request was sent to. |
+
+Visit the [Monetization Events](/developers/events) page for more information.
+
+<Hidden>
+
+// ## Browser compatibility
+
+<BrowserCompat json={data} />
+
+</Hidden>
+
+### Specifications
+
+<Specification anchor='monetizationevent-interface' />
+
+## `MonetizationCurrencyAmount`
+
+The `MonetizationCurrencyAmount` interface is used to populate the `value` and `currency` variables contained within the `MonetizationEvent amountSent` property.
+
+- Value - The amount. A valid decimal monetary value containing the amount that was sent.
+- Currency - The currency code. An ISO 4217-compliant currency code, when possible, that represents the currency that was sent, such as USD or GBP.
+
+The `MonetizationCurrencyAmount` interface is modeled on the Payment Request API’s <LinkOut href="https://www.w3.org/TR/payment-request/#paymentcurrencyamount-dictionary">`PaymentCurrencyAmount`</LinkOut> dictionary.
+
+### Specifications
+
+<Specification anchor='monetizationcurrencyamount-interface' />

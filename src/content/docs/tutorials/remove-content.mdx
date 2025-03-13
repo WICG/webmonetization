@@ -1,0 +1,134 @@
+---
+title: Remove content for paying visitors
+---
+
+import Wallet from '/src/partials/wallet-prereq.mdx'
+import Disclaimer from '/src/partials/glitch.mdx'
+
+This guide describes one way you can remove content for paying visitors after the `monetization` event fires. The event only fires after an outgoing payment request is successfully created. If the event doesn't fire, then the content remains visible on your page.
+
+### Before you begin
+
+<Wallet />
+
+## User experience
+
+For visitors without Web Monetization, your content appears as soon as your page loads.
+
+For visitors with Web Monetization, there's a three-second grace period before your content appears. This gives Web Monetization a chance to initialize and prevents the content from briefly appearing to paying visitors.
+
+**If Web Monetization:**
+
+- Initializes within the grace period, the content is hidden
+- Fails to initialize within the grace period, the content is shown
+- Initializes any time after the grace period, the content is hidden
+
+## Example use case: Remove ads
+
+In this example, you'll give your paying visitors an ad-free experience by preventing the ad from loading on the page once Web Monetization initializes.
+
+Assuming Web Monetization initializes within the grace period, neither the ad nor any related images and/or trackers (which aren't part of this example) are loaded onto the page at all.
+
+### The code
+
+```html wrap
+<head>
+  <!-- Set the href to your own wallet address or payment pointer in URL format -->
+  <link rel="monetization" href="https://wallet.example.com/alice" />
+
+  <script>
+    const adCode =
+      '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'
+    function showAds() {
+      document.getElementById('ad').innerHTML = adCode
+    }
+
+    function removeAds() {
+      document.getElementById('ad').remove()
+    }
+
+    let hasPaid = false
+    if (window.MonetizationEvent) {
+      const link = document.querySelector('link[rel="monetization"]')
+      link.addEventListener('monetization', () => {
+        hasPaid = true
+        removeAds()
+      })
+    }
+
+    window.addEventListener('load', () => {
+      if (!window.MonetizationEvent) {
+        showAds()
+      } else {
+        setTimeout(() => {
+          if (!hasPaid) {
+            showAds()
+          }
+        }, 3000)
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div id="ad"></div>
+  Here's where your site's content will go!
+</body>
+```
+
+### How it works
+
+Let’s start with the code for showing your ad.
+
+```javascript wrap
+const adCode =
+  '<div style="border:1px solid #f00;color:red;margin:20px">Ad! Buy product A! Ad!</div>'
+function showAds() {
+  document.getElementById('ad').innerHTML = adCode
+}
+```
+
+We'll bind the `monetization` event to its respective event handler if the visitor is web monetized. This prevents the ad from loading on the page once Web Monetization initializes. Assuming it initializes within the grace period, the ad isn’t added to the page at all. This means any related images and trackers aren’t loaded either.
+
+The `hasPaid` variable in the timer is for when/if Web Monetization starts after the grace period.
+
+```javascript {1}
+let hasPaid = false
+if (window.MonetizationEvent) {
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', () => {
+    hasPaid = true
+    removeAds()
+  })
+}
+```
+
+As soon as the page loads, the ad will immediately appear to any visitor who isn’t web monetized. This is handled via `!window.MonetizationEvent`, shown below.
+
+```javascript {2}
+window.addEventListener('load', () => {
+  if (!window.MonetizationEvent) {
+    showAds()
+  } else {
+    setTimeout(() => {
+      if (!hasPaid) {
+        showAds()
+      }
+    }, 3000)
+  }
+})
+```
+
+If the visitor has Web Monetization in their browser, then the `monetization` event must fire within 3 seconds (3000ms) to indicate that Web Monetization has initialized. If it doesn’t initialize by the timeout, the ad is shown to the visitor.
+
+### Interactive example
+
+This example simulates showing and hiding an ad based on a visitor’s Web Monetization state.
+
+<Disclaimer />
+
+<iframe
+  src='https://glitch.com/embed/#!/embed/wm2-ad-free-experience?path=README.md&previewSize=100'
+  title='wm2-ad-free-experience on Glitch'
+  style='height:100%;width:100%;border:0;min-height:420px'
+></iframe>
