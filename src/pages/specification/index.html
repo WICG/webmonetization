@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="generator" content="ReSpec 34.4.0">
+    <meta name="generator" content="ReSpec 35.2.2">
     <meta name="viewport" content=
     "width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
@@ -10,9 +10,7 @@
     :is(aside,div).example,div.illegal-example{padding:.5em;margin:1em 0;position:relative;clear:both}
     div.illegal-example{color:red}
     div.illegal-example p{color:#000}
-    :is(aside,div).example{border-left-width:.5em;border-left-style:solid;border-color:#e0cb52;background:#fcfaee}
     aside.example div.example{border-left-width:.1em;border-color:#999;background:#fff}
-    .example pre{background-color:rgba(0,0,0,.03)}
     </style>
     <style>
     .issue-label{text-transform:initial}
@@ -21,7 +19,7 @@
     span.warning{padding:.1em .5em .15em}
     .issue.closed span.issue-number{text-decoration:line-through}
     .issue.closed span.issue-number::after{content:" (Closed)";font-size:smaller}
-    .warning{border-color:#f11;border-width:.2em;border-style:solid;background:#fbe9e9}
+    .warning{border-color:#f11;border-color:var(--warning-border,#f11);border-width:.2em;border-style:solid;background:#fbe9e9;background:var(--warning-bg,#fbe9e9);color:#000;color:var(--text,#000)}
     .warning-title:before{content:"⚠";font-size:1.3em;float:left;padding-right:.3em;margin-top:-.3em}
     li.task-list-item{list-style:none}
     input.task-list-item-checkbox{margin:0 .35em .25em -1.6em;vertical-align:middle}
@@ -29,12 +27,12 @@
     </style>
     <style>
     pre.idl{padding:1em;position:relative}
-    pre.idl>code{color:#000}
+    pre.idl>code{color:#000;color:var(--text,#000)}
     @media print{
     pre.idl{white-space:pre-wrap}
     }
-    .idlHeader{display:block;width:150px;background:#8ccbf2;color:#fff;font-family:sans-serif;font-weight:700;margin:-1em 0 1em -1em;height:28px;line-height:28px}
-    .idlHeader a.self-link{margin-left:.3cm;text-decoration:none;border-bottom:none}
+    .idlHeader{display:block;width:150px;background:#8ccbf2;background:var(--def-border,#8ccbf2);color:#fff;color:var(--defrow-border,#fff);font-family:sans-serif;font-weight:700;margin:-1em 0 1em -1em;height:28px;line-height:28px}
+    .idlHeader a.self-link{margin-left:.3cm;text-decoration:none;border-bottom:none;color:inherit}
     .idlID{font-weight:700;color:#005a9c}
     .idlType{color:#005a9c}
     .idlName{color:#ff4500}
@@ -57,13 +55,13 @@
     </style>
     <style>
     dfn{cursor:pointer}
-    .dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;color:#000;box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);border-radius:2px}
+    .dfn-panel{position:absolute;z-index:35;min-width:300px;max-width:500px;padding:.5em .75em;margin-top:.6em;font-family:"Helvetica Neue",sans-serif;font-size:small;background:#fff;background:var(--indextable-hover-bg,#fff);color:#000;color:var(--text,#000);box-shadow:0 1em 3em -.4em rgba(0,0,0,.3),0 0 1px 1px rgba(0,0,0,.05);box-shadow:0 1em 3em -.4em var(--tocsidebar-shadow,rgba(0,0,0,.3)),0 0 1px 1px var(--tocsidebar-shadow,rgba(0,0,0,.05));border-radius:2px}
     .dfn-panel:not(.docked)>.caret{position:absolute;top:-9px}
-    .dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;top:0}
-    .dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1}
+    .dfn-panel:not(.docked)>.caret::after,.dfn-panel:not(.docked)>.caret::before{content:"";position:absolute;border:10px solid transparent;border-top:0;border-bottom:10px solid #fff;border-bottom-color:var(--indextable-hover-bg,#fff);top:0}
+    .dfn-panel:not(.docked)>.caret::before{border-bottom:9px solid #a2a9b1;border-bottom-color:var(--indextable-hover-bg,#a2a9b1)}
     .dfn-panel *{margin:0}
-    .dfn-panel b{display:block;color:#000;margin-top:.25em}
-    .dfn-panel ul a[href]{color:#333}
+    .dfn-panel b{display:block;color:#000;color:var(--text,#000);margin-top:.25em}
+    .dfn-panel ul a[href]{color:#333;color:var(--text,#333)}
     .dfn-panel>div{display:flex}
     .dfn-panel a.self-link{font-weight:700;margin-right:auto}
     .dfn-panel .marker{padding:.1em;margin-left:.5em;border-radius:.2em;text-align:center;white-space:nowrap;font-size:90%;color:#040b1c}
@@ -84,8 +82,6 @@
     25%{transform:scale(1.25,1.25);opacity:.75}
     100%{transform:scale(1,1)}
     }
-    :is(h1,h2,h3,h4,h5,h6,a) abbr{border:none}
-    dfn{font-weight:700}
     a.internalDFN{color:inherit;border-bottom:1px solid #99c;text-decoration:none}
     a.externalDFN{color:inherit;border-bottom:1px dotted #ccc;text-decoration:none}
     a.bibref{text-decoration:none}
@@ -99,20 +95,8 @@
     cite .bibref{font-style:normal}
     a[href].orcid{padding-left:4px;padding-right:4px}
     a[href].orcid>svg{margin-bottom:-2px}
-    .toc a,.tof a{text-decoration:none}
-    a .figno,a .secno{color:#000}
     ol.tof,ul.tof{list-style:none outside none}
     .caption{margin-top:.5em;font-style:italic}
-    table.simple{border-spacing:0;border-collapse:collapse;border-bottom:3px solid #005a9c}
-    .simple th{background:#005a9c;color:#fff;padding:3px 5px;text-align:left}
-    .simple th a{color:#fff;padding:3px 5px;text-align:left}
-    .simple th[scope=row]{background:inherit;color:inherit;border-top:1px solid #ddd}
-    .simple td{padding:3px 10px;border-top:1px solid #ddd}
-    .simple tr:nth-child(even){background:#f0f6ff}
-    .section dd>p:first-child{margin-top:0}
-    .section dd>p:last-child{margin-bottom:0}
-    .section dd{margin-bottom:1em}
-    .section dl.attrs dd,.section dl.eldef dd{margin-bottom:0}
     #issue-summary>ul{column-count:2}
     #issue-summary li{list-style:none;display:inline-block}
     details.respec-tests-details{margin-left:1em;display:inline-block;vertical-align:top}
@@ -136,19 +120,24 @@
     .removeOnSave{display:none}
     }
     </style>
+    <meta name="color-scheme" content="light">
     <meta name="description" content=
     "Web Monetization allows websites to automatically receive payments from users, facilitated by the user agent and a user's preferred monetization provider.">
 
     <style>
-    .hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}
-    .hljs-comment,.hljs-quote{color:#717277;font-style:italic}
-    .hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}
-    .hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;font-weight:700}
-    .hljs-literal{color:#0b76c5}
-    .hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c}
-    .hljs-built_in,.hljs-class .hljs-title{color:#9a6a01}
-    .hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}
-    .hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3}
+    .hljs{--base:#fafafa;--mono-1:#383a42;--mono-2:#686b77;--mono-3:#717277;--hue-1:#0b76c5;--hue-2:#336ae3;--hue-3:#a626a4;--hue-4:#42803c;--hue-5:#ca4706;--hue-5-2:#c91243;--hue-6:#986801;--hue-6-2:#9a6a01}
+    @media (prefers-color-scheme:dark){
+    .hljs{--base:#282c34;--mono-1:#abb2bf;--mono-2:#818896;--mono-3:#5c6370;--hue-1:#56b6c2;--hue-2:#61aeee;--hue-3:#c678dd;--hue-4:#98c379;--hue-5:#e06c75;--hue-5-2:#be5046;--hue-6:#d19a66;--hue-6-2:#e6c07b}
+    }
+    .hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;color:var(--mono-1,#383a42);background:#fafafa;background:var(--base,#fafafa)}
+    .hljs-comment,.hljs-quote{color:#717277;color:var(--mono-3,#717277);font-style:italic}
+    .hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4;color:var(--hue-3,#a626a4)}
+    .hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#ca4706;color:var(--hue-5,#ca4706);font-weight:700}
+    .hljs-literal{color:#0b76c5;color:var(--hue-1,#0b76c5)}
+    .hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#42803c;color:var(--hue-4,#42803c)}
+    .hljs-built_in,.hljs-class .hljs-title{color:#9a6a01;color:var(--hue-6-2,#9a6a01)}
+    .hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801;color:var(--hue-6,#986801)}
+    .hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#336ae3;color:var(--hue-2,#336ae3)}
     .hljs-emphasis{font-style:italic}
     .hljs-strong{font-weight:700}
     .hljs-link{text-decoration:underline}
@@ -156,13 +145,14 @@
     <style>
     var{position:relative;cursor:pointer}
     var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
-    var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#000}
-    var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#000;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
+    var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
+    var[data-type]::after{content:attr(data-type);transform:translateX(-50%) translateY(-100%);background:#222;text-align:center;font-family:"Dank Mono","Fira Code",monospace;font-style:normal;padding:6px;border-radius:3px;color:#daca88;text-indent:0;font-weight:400}
     var[data-type]:hover::after,var[data-type]:hover::before{opacity:1}
     </style>
     <script id="initialUserConfig" type="application/json">
     {
     "edDraftURI": "https://webmonetization.org/specification",
+    "latestVersion": "https://webmonetization.org/specification",
     "github": {
     "repoURL": "wicg/webmonetization",
     "branch": "main"
@@ -223,14 +213,14 @@
       "href": "https://interledger.org/developers/rfcs/stream-receipts/",
       "id": "receipt"
     },
-    "Open Payments": {
+    "open-payments": {
       "title": "Open Payments",
-      "href": "https://openpayments.guide/",
-      "id": "open payments"
+      "href": "https://openpayments.dev/",
+      "id": "open-payments"
     }
     },
-    "publishISODate": "2024-02-15T00:00:00.000Z",
-    "generatedSubtitle": "Draft Community Group Report 15 February 2024"
+    "publishISODate": "2025-03-13T00:00:00.000Z",
+    "generatedSubtitle": "Draft Community Group Report 13 March 2025"
     }
     </script>
     <link rel="stylesheet" href=
@@ -243,8 +233,8 @@
       </h1>
       <p id="w3c-state">
         <a href="https://www.w3.org/standards/types#reports">Draft Community
-        Group Report</a> <time class="dt-published" datetime="2024-02-15">15
-        February 2024</time>
+        Group Report</a> <time class="dt-published" datetime="2025-03-13">13
+        March 2025</time>
       </p>
       <dl>
         <dt>
@@ -252,7 +242,7 @@
         </dt>
         <dd>
           <a href=
-          "https://www.w3.org/web-monetization/">https://www.w3.org/web-monetization/</a>
+          "https://webmonetization.org/specification">https://webmonetization.org/specification</a>
         </dd>
         <dt>
           Latest editor's draft:
@@ -306,7 +296,7 @@
         </dd>
       </dl>
       <p class="copyright">
-        <a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2024
+        <a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025
         the Contributors to the Web Monetization Specification, published by
         the <a href="https://www.w3.org/groups/cg/wicg">Web Platform Incubator
         Community Group</a> under the <a href=
@@ -612,13 +602,11 @@
           "Permalink for Section 1.1"></a>
         </div>
         <p>
-          Call <a data-link-type="idl" data-lt="supports()" data-type="method"
-          href=
+          Call <a data-link-type="method" data-lt="supports()" href=
           "https://dom.spec.whatwg.org/#dom-domtokenlist-supports"><code>supports</code></a><code>()</code>
-          on a <code><a data-link-type="element" data-type="element" href=
+          on a <code><a data-link-type="element" href=
           "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">
-          link</a></code> element’s <a data-link-type="idl" data-type=
-          "attribute" href=
+          link</a></code> element’s <a data-link-type="attribute" href=
           "https://html.spec.whatwg.org/multipage/semantics.html#dom-link-rellist">
           <code>relList</code></a> passing the <code>"monetization"</code>
           keyword to check if Web Monetization is supported by the user agent.
@@ -634,14 +622,18 @@
           "hljs-attr">href</span>=<span class=
           "hljs-string">"https://example.com/pay"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class=
-"hljs-name">script</span>&gt;</span><span class="javascript">
+"hljs-name">script</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">const</span> link = <span class=
-"hljs-built_in">document</span>.createElement(<span class=
+"hljs-variable language_">document</span>.<span class=
+"hljs-title function_">createElement</span>(<span class=
 "hljs-string">"link"</span>);
 
-  <span class="hljs-keyword">if</span> (link.relList.supports(<span class=
+  <span class="hljs-keyword">if</span> (link.<span class=
+"hljs-property">relList</span>.<span class=
+"hljs-title function_">supports</span>(<span class=
 "hljs-string">"monetization"</span>)) {
-    <span class="hljs-built_in">console</span>.log(<span class=
+    <span class="hljs-variable language_">console</span>.<span class=
+"hljs-title function_">log</span>(<span class=
 "hljs-string">"Web Monetization is supported."</span>);
   }
 </span><span class="hljs-tag">&lt;/<span class=
@@ -661,7 +653,7 @@
           </div>
           <pre aria-busy="false"><code class="hljs html"><span class=
           "hljs-meta">&lt;!doctype <span class=
-          "hljs-meta-keyword">html</span>&gt;</span>
+          "hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class=
 "hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -679,11 +671,10 @@
 "hljs-string">"sayThanks(this)"</span>
    &gt;</span>
     <span class="hljs-tag">&lt;<span class=
-"hljs-name">script</span>&gt;</span><span class="javascript">
-      <span class="hljs-function"><span class=
-"hljs-keyword">function</span> <span class=
-"hljs-title">sayThanks</span>(<span class=
-"hljs-params">monetizedLink</span>) </span>{
+"hljs-name">script</span>&gt;</span><span class="language-javascript">
+      <span class="hljs-keyword">function</span> <span class=
+"hljs-title function_">sayThanks</span>(<span class=
+"hljs-params">monetizedLink</span>) {
         <span class="hljs-comment">// Do something here</span>
       }
     </span><span class="hljs-tag">&lt;/<span class=
@@ -714,7 +705,7 @@
           "ref-for-dfn-monetization-receiver-1">monetization receiver</a> which
           can be used to verify the receipt of payment. As in the previous
           example above, these events are dispatched to
-          <code><a data-link-type="element" data-type="element" href=
+          <code><a data-link-type="element" href=
           "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">
           link</a></code> elements and bubble up the DOM tree.
         </p>
@@ -722,10 +713,10 @@
           To listen for <a data-link-type="idl" data-lt="MonetizationEvent"
           href="#dom-monetizationevent" class="internalDFN" id=
           "ref-for-dom-monetizationevent-2"><code>MonetizationEvent</code></a>
-          events, an <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+          events, an <a data-link-type="dfn" href=
           "https://dom.spec.whatwg.org/#concept-event-listener">event
           listener</a> needs to be added to the relevant
-          <code><a data-link-type="element" data-type="element" href=
+          <code><a data-link-type="element" href=
           "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">
           link</a></code> element (or to one of its ancestors) via JavaScript:
         </p>
@@ -740,11 +731,12 @@
           "hljs-attr">href</span>=<span class=
           "hljs-string">"https://example.com/pay"</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class=
-"hljs-name">script</span>&gt;</span><span class="javascript">
+"hljs-name">script</span>&gt;</span><span class="language-javascript">
   <span class="hljs-keyword">const</span> link = <span class=
-"hljs-built_in">document</span>.querySelector(<span class=
+"hljs-variable language_">document</span>.<span class=
+"hljs-title function_">querySelector</span>(<span class=
 "hljs-string">'link[rel="monetization"]'</span>)
-  link.addEventListener(<span class=
+  link.<span class="hljs-title function_">addEventListener</span>(<span class=
 "hljs-string">'monetization'</span>, <span class="hljs-function">(<span class=
 "hljs-params">event</span>) =&gt;</span> {
     <span class=
@@ -752,14 +744,15 @@
     <span class="hljs-keyword">const</span> {
       <span class="hljs-attr">amountSent</span>: { value, currency },
     } = event
-    <span class="hljs-built_in">console</span>.log(<span class=
+    <span class="hljs-variable language_">console</span>.<span class=
+"hljs-title function_">log</span>(<span class=
 "hljs-string">`Browser sent <span class=
 "hljs-subst">${currency}</span> <span class=
 "hljs-subst">${value}</span>.`</span>)
 
     <span class=
 "hljs-comment">// Use the incoming payment URL to verify the payment at the receiver.</span>
-    verifyPayment(event)
+    <span class="hljs-title function_">verifyPayment</span>(event)
   })
 </span><span class="hljs-tag">&lt;/<span class=
 "hljs-name">script</span>&gt;</span></code></pre>
@@ -816,24 +809,29 @@
             <a class="self-link" href="#example-4">Example <bdi>4</bdi></a>
           </div>
           <pre class="JS" aria-busy="false"><code class="hljs js"><span class=
-          "hljs-comment">/** <span class="hljs-doctag">@type <span class=
-          "hljs-type">{MonetizationEvent}</span> </span>event */</span>
+          "hljs-comment">/** <span class=
+          "hljs-doctag">@type</span> {<span class=
+          "hljs-type">MonetizationEvent</span>} event */</span>
 <span class="hljs-keyword">async</span> <span class=
-"hljs-function"><span class="hljs-keyword">function</span> <span class=
-"hljs-title">verifyPayment</span>(<span class=
-"hljs-params">event</span>) </span>{
+"hljs-keyword">function</span> <span class=
+"hljs-title function_">verifyPayment</span>(<span class=
+"hljs-params">event</span>) {
   <span class=
 "hljs-comment">// Legacy receivers don't support returning incoming payment URLs</span>
-  <span class="hljs-keyword">if</span> (!event.incomingPayment) {
+  <span class="hljs-keyword">if</span> (!event.<span class=
+"hljs-property">incomingPayment</span>) {
     <span class="hljs-keyword">throw</span> <span class=
-"hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class=
+"hljs-keyword">new</span> <span class=
+"hljs-title class_">Error</span>(<span class=
 "hljs-string">'No incoming payment URL'</span>)
   }
 
   <span class=
 "hljs-comment">// Poll the incoming payment to check the amount received</span>
   <span class="hljs-keyword">const</span> response = <span class=
-"hljs-keyword">await</span> fetch(event.incomingPayment, {
+"hljs-keyword">await</span> <span class=
+"hljs-title function_">fetch</span>(event.<span class=
+"hljs-property">incomingPayment</span>, {
     <span class="hljs-attr">credentials</span>: <span class=
 "hljs-string">'same-origin'</span>,
     <span class="hljs-attr">mode</span>: <span class=
@@ -846,15 +844,17 @@
     },
   })
 
-  <span class="hljs-keyword">if</span> (response.ok) {
+  <span class="hljs-keyword">if</span> (response.<span class=
+"hljs-property">ok</span>) {
     <span class=
 "hljs-comment">// The incoming payment was fetched successfully</span>
     <span class="hljs-keyword">const</span> { receivedAmount } = <span class=
-"hljs-built_in">JSON</span>.parse(<span class=
-"hljs-keyword">await</span> response.json())
+"hljs-keyword">await</span> response.<span class=
+"hljs-title function_">json</span>()
     <span class=
 "hljs-keyword">const</span> { amount, assetCode, assetScale } = receivedAmount
-    <span class="hljs-built_in">console</span>.log(<span class=
+    <span class="hljs-variable language_">console</span>.<span class=
+"hljs-title function_">log</span>(<span class=
 "hljs-string">`Received <span class=
 "hljs-subst">${assetCode}</span><span class="hljs-subst">${amount / <span class="hljs-number">10</span> ** assetScale}</span>.`</span>)
     <span class="hljs-keyword">return</span> receivedAmount
@@ -945,13 +945,12 @@
           href=
           "https://interledger.org/developers/rfcs/interledger-protocol/">Interledger
           Protocol</a></cite> suite of protocols and technologies (e.g.,
-          [<cite><a class="bibref" data-link-type="biblio" href=
-          "#bib-open%20payments" title="Open Payments">Open
-          Payments</a></cite>] based on [<cite><a class="bibref"
-          data-link-type="biblio" href="#bib-stream" title=
-          "STREAM">STREAM</a></cite>]) to provide a high-level way to pay a
-          <a data-link-type="dfn|abstract-op" href="#dfn-monetization-receiver"
-          class="internalDFN" id=
+          <cite><a data-matched-text="[[[open-payments]]]" href=
+          "https://openpayments.dev/">Open Payments</a></cite> based on
+          [<cite><a class="bibref" data-link-type="biblio" href="#bib-stream"
+          title="STREAM">STREAM</a></cite>]) to provide a high-level way to pay
+          a <a data-link-type="dfn|abstract-op" href=
+          "#dfn-monetization-receiver" class="internalDFN" id=
           "ref-for-dfn-monetization-receiver-4">monetization receiver</a>.
         </dd>
         <dt>
@@ -971,11 +970,11 @@
           Pointer</dfn>:
         </dt>
         <dd>
-          A <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+          A <a data-link-type="dfn" href=
           "https://url.spec.whatwg.org/#concept-url">URL</a> to an <a href=
-          "https://openpayments.guide/#specification">Open Payments API
-          entry-point</a> (i.e., a JSON resource containing details that
-          facilitate payment to an account).
+          "https://openpayments.dev/introduction/wallet-addresses#">Open
+          Payments API entry-point</a> (i.e., a JSON resource containing
+          details that facilitate payment to an account).
         </dd>
         <dt>
           <dfn data-plurals="payment sessions" id="dfn-payment-session"
@@ -989,10 +988,10 @@
           <a data-link-type="dfn|abstract-op" href="#dfn-monetization-receiver"
           class="internalDFN" id=
           "ref-for-dfn-monetization-receiver-5">monetization receiver</a>
-          initiated by the <a data-link-type="dfn|abstract-op" data-type="dfn"
-          href="https://infra.spec.whatwg.org/#user-agent">user agent</a> at
-          the <a data-link-type="dfn|abstract-op" href=
-          "#dfn-monetization-receiver" class="internalDFN" id=
+          initiated by the <a data-link-type="dfn" href=
+          "https://infra.spec.whatwg.org/#user-agent">user agent</a> at the
+          <a data-link-type="dfn|abstract-op" href="#dfn-monetization-receiver"
+          class="internalDFN" id=
           "ref-for-dfn-monetization-receiver-6">monetization receiver</a>. One
           or more payments can be initiated by the <a data-link-type=
           "dfn|abstract-op" href="#dfn-provider" class="internalDFN" id=
@@ -1060,7 +1059,7 @@
         <aside class="">
           <p>
             Although a single HTML document can have multiple
-            <code><a data-link-type="element" data-type="element" href=
+            <code><a data-link-type="element" href=
             "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">
             link</a></code> elements with the "monetization" link type, the
             user agent might restrict the number of concurrent
@@ -1177,7 +1176,7 @@
           <li>
             <p>
               If <var>element</var>'s <span>node document</span> is not
-              <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+              <a data-link-type="dfn" href=
               "https://html.spec.whatwg.org/multipage/iframe-embed-object.html#allowed-to-use">
               allowed to use</a> the "monetization" feature, return false.
             </p>
@@ -1246,12 +1245,10 @@
               false.
             </p>
           </li>
-          <li>Let <var>json</var> be the result of <a data-link-type=
-          "dfn|abstract-op" data-type="dfn" href=
-          "https://infra.spec.whatwg.org/#parse-json-bytes-to-an-infra-value">
+          <li>Let <var>json</var> be the result of <a data-link-type="dfn"
+            href="https://infra.spec.whatwg.org/#parse-json-bytes-to-an-infra-value">
             parse JSON bytes to an Infra value</a> passing
-            <var>response</var>'s <a data-link-type="dfn|abstract-op"
-            data-type="dfn" href=
+            <var>response</var>'s <a data-link-type="dfn" href=
             "https://fetch.spec.whatwg.org/#concept-response-body">body</a>.
           </li>
           <li>If <var>json</var> is an exception, then set <var>success</var>
@@ -1270,22 +1267,20 @@
           "ref-for-dfn-payment-session-3">payment session</a>.
           </li>
           <li>
-            <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+            <a data-link-type="dfn" href=
             "https://html.spec.whatwg.org/multipage/webappapis.html#queue-an-element-task">
-            Queue an element task</a> on the <a data-link-type=
-            "dfn|abstract-op" data-type="dfn" href=
+            Queue an element task</a> on the <a data-link-type="dfn" href=
             "https://html.spec.whatwg.org/multipage/webappapis.html#networking-task-source">
             networking task source</a> given <var>element</var> and the
             following steps:
             <ol>
-              <li>If <var>success</var> is true, <a data-link-type=
-              "dfn|abstract-op" data-type="dfn" href=
-              "https://dom.spec.whatwg.org/#concept-event-fire">fire an
-              event</a> named <code>"load"</code> at <var>element</var>.
+              <li>If <var>success</var> is true, <a data-link-type="dfn"
+                href="https://dom.spec.whatwg.org/#concept-event-fire">fire an
+                event</a> named <code>"load"</code> at <var>element</var>.
               </li>
-              <li>Otherwise, <a data-link-type="dfn|abstract-op" data-type=
-              "dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">fire
-              an event</a> named <code>"error"</code> at <var>element</var>.
+              <li>Otherwise, <a data-link-type="dfn" href=
+              "https://dom.spec.whatwg.org/#concept-event-fire">fire an
+              event</a> named <code>"error"</code> at <var>element</var>.
               </li>
             </ol>
           </li>
@@ -1308,13 +1303,13 @@
       </div>
       <p>
         The <code>onmonetization</code> event handler is an <a data-link-type=
-        "dfn|abstract-op" data-type="dfn" href=
+        "dfn" href=
         "https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-content-attributes">
         event handler content attribute</a> that can be applied to any
-        <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+        <a data-link-type="dfn" href=
         "https://dom.spec.whatwg.org/#concept-element">element</a>. The user
         agent uses it to notify that some <code><a data-link-type="element"
-        data-type="element" href=
+        href=
         "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">
         link</a></code> has been <a data-link-type="dfn|abstract-op" href=
         "#dfn-monetized" class="internalDFN" id=
@@ -1336,9 +1331,8 @@
       </p>
       <ol class="algorithm">
         <li>Let <var data-type="HTMLLinkElement">target</var> be the
-        <a data-link-type="idl" data-lt="HTMLLinkElement" data-type="interface"
-          href=
-          "https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement">
+        <a data-link-type="interface" data-lt="HTMLLinkElement" href=
+        "https://html.spec.whatwg.org/multipage/semantics.html#htmllinkelement">
           <code>HTMLLinkElement</code></a> associated with the
           <a data-link-type="dfn|abstract-op" href="#dfn-payment-session"
           class="internalDFN" id="ref-for-dfn-payment-session-6">payment
@@ -1362,7 +1356,7 @@
         "MonetizationEventInit">eventInitDict</var>.
         </li>
         <li>
-          <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+          <a data-link-type="dfn" href=
           "https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">
           Queue a task</a> on the <a data-link-type="dfn|abstract-op" href=
           "#dfn-monetization-task-source" class="internalDFN" id=
@@ -1373,11 +1367,11 @@
             connected, return.
             </li>
             <li>
-              <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+              <a data-link-type="dfn" href=
               "https://dom.spec.whatwg.org/#concept-event-fire">Fire an
               event</a> named <code>"monetization"</code> at <var data-type=
-              "HTMLLinkElement">target</var>, with <a data-link-type="idl"
-              data-type="attribute" href=
+              "HTMLLinkElement">target</var>, with <a data-link-type=
+              "attribute" href=
               "https://dom.spec.whatwg.org/#dom-event-bubbles"><code>bubbles</code></a>
               initialized to true.
             </li>
@@ -1393,7 +1387,7 @@
         "Permalink for Section 7."></a>
       </div>
       <p>
-        The following <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+        The following <a data-link-type="dfn" href=
         "https://html.spec.whatwg.org/multipage/webappapis.html#task-source">task
         source</a> is defined by this specifications.
       </p>
@@ -1422,10 +1416,9 @@
       </div>
       <p>
         The <code>MonetizationCurrencyAmount</code> interface maps directly to
-        the <a data-link-type="idl" data-lt="PaymentCurrencyAmount" data-type=
-        "dictionary" href=
-        "https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount"><code>
-        PaymentCurrencyAmount</code></a> dictionary as defined in
+        the <a data-link-type="dictionary" data-lt="PaymentCurrencyAmount"
+        href="https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">
+        <code>PaymentCurrencyAmount</code></a> dictionary as defined in
         [<cite><a class="bibref" data-link-type="biblio" href=
         "#bib-payment-request" title=
         "Payment Request API">payment-request</a></cite>].
@@ -1434,9 +1427,9 @@
       "idlHeader"><a class="self-link" href=
       "#webidl-385319265">WebIDL</a></span><code><span data-idl="" class=
       "idlInterface" id="idl-def-monetizationcurrencyamount" data-title=
-      "MonetizationCurrencyAmount">[<span class="extAttr"><a data-type=
+      "MonetizationCurrencyAmount">[<span class="extAttr"><a data-link-type=
       "extended-attribute" href=
-      "https://webidl.spec.whatwg.org/#SecureContext">SecureContext</a></span>, <span class="extAttr"><a data-type="extended-attribute"
+      "https://webidl.spec.whatwg.org/#SecureContext">SecureContext</a></span>, <span class="extAttr"><a data-link-type="extended-attribute"
 href="https://webidl.spec.whatwg.org/#Exposed">Exposed</a>=Window</span>]
 interface <dfn data-export="" data-dfn-type="interface" id=
 "dom-monetizationcurrencyamount" data-idl="interface" data-title=
@@ -1445,16 +1438,14 @@ aria-haspopup=
 "dialog"><code>MonetizationCurrencyAmount</code></dfn> {<span data-idl=""
 class="idlAttribute" id="idl-def-monetizationcurrencyamount-currency"
 data-title="currency" data-dfn-for="MonetizationCurrencyAmount">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a></span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationcurrencyamount-currency" id=
 "ref-for-dom-monetizationcurrencyamount-currency-1"><code>currency</code></a>;</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationcurrencyamount-value" data-title=
 "value" data-dfn-for="MonetizationCurrencyAmount">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a></span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationcurrencyamount-value" id=
@@ -1475,8 +1466,8 @@ class="idlAttribute" id="idl-def-monetizationcurrencyamount-value" data-title=
         </div>
         <p>
           The currency of the MonetizationCurrencyAmount. See the definition of
-          the <code>currency</code> member of <a data-link-type="idl" data-lt=
-          "PaymentCurrencyAmount" data-type="dictionary" href=
+          the <code>currency</code> member of <a data-link-type="dictionary"
+          data-lt="PaymentCurrencyAmount" href=
           "https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount"><code>
           PaymentCurrencyAmount</code></a> in [<cite><a class="bibref"
           data-link-type="biblio" href="#bib-payment-request" title=
@@ -1497,8 +1488,8 @@ class="idlAttribute" id="idl-def-monetizationcurrencyamount-value" data-title=
         </div>
         <p>
           The amount of the MonetizationAmount. See the definition of the
-          <code>value</code> member in of <a data-link-type="idl" data-lt=
-          "PaymentCurrencyAmount" data-type="dictionary" href=
+          <code>value</code> member in of <a data-link-type="dictionary"
+          data-lt="PaymentCurrencyAmount" href=
           "https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount"><code>
           PaymentCurrencyAmount</code></a> in [<cite><a class="bibref"
           data-link-type="biblio" href="#bib-payment-request" title=
@@ -1517,15 +1508,15 @@ class="idlAttribute" id="idl-def-monetizationcurrencyamount-value" data-title=
       "idlHeader"><a class="self-link" href=
       "#webidl-106886564">WebIDL</a></span><code><span data-idl="" class=
       "idlInterface" id="idl-def-monetizationevent" data-title=
-      "MonetizationEvent">[<span class="extAttr"><a data-type=
+      "MonetizationEvent">[<span class="extAttr"><a data-link-type=
       "extended-attribute" href=
-      "https://webidl.spec.whatwg.org/#SecureContext">SecureContext</a></span>, <span class="extAttr"><a data-type="extended-attribute"
+      "https://webidl.spec.whatwg.org/#SecureContext">SecureContext</a></span>, <span class="extAttr"><a data-link-type="extended-attribute"
 href="https://webidl.spec.whatwg.org/#Exposed">Exposed</a>=Window</span>]
 interface <dfn data-export="" data-dfn-type="interface" id=
 "dom-monetizationevent" data-idl="interface" data-title="MonetizationEvent"
 data-dfn-for="" class="idlID" tabindex="0" aria-haspopup=
 "dialog"><code>MonetizationEvent</code></dfn> : <span class=
-"idlSuperclass"><a data-link-type="idl" data-type="interface" href=
+"idlSuperclass"><a data-link-type="interface" href=
 "https://dom.spec.whatwg.org/#event">Event</a></span> {<span data-idl="" class=
 "idlConstructor" id="idl-def-monetizationevent-constructor-type-eventinitdict"
 data-title="constructor" data-dfn-for="MonetizationEvent">
@@ -1535,38 +1526,34 @@ data-title="constructor" data-dfn-for="MonetizationEvent">
 "constructor()|constructor(type, eventInitDict)" data-local-lt=
 "MonetizationEvent.constructor|MonetizationEvent.constructor()|constructor"
 tabindex="0" aria-haspopup="dialog"><code>constructor</code></dfn>(<span class=
-"idlType"><a data-link-type="idl" data-type="interface" href=
+"idlType"><a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a></span> <span class="idlParamName">type</span>,<span class="idlType"> <a data-link-type="idl"
 href="#dom-monetizationeventinit" class="internalDFN" id=
 "ref-for-dom-monetizationeventinit-2"><code>MonetizationEventInit</code></a></span> <span class="idlParamName">eventInitDict</span>);</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationevent-amount" data-title="amount"
 data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-amount" id=
 "ref-for-dom-monetizationevent-amount-1"><code>amount</code></a>;</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationevent-assetcode" data-title=
 "assetCode" data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-assetcode" id=
 "ref-for-dom-monetizationevent-assetcode-1"><code>assetCode</code></a>;</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationevent-assetscale" data-title=
 "assetScale" data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-octet">octet</a>?</span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-assetscale" id=
 "ref-for-dom-monetizationevent-assetscale-1"><code>assetScale</code></a>;</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationevent-receipt" data-title=
 "receipt" data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-receipt" id=
@@ -1580,16 +1567,14 @@ data-link-type="attribute" href="#dom-monetizationevent-amountsent" id=
 "ref-for-dom-monetizationevent-amountsent-1"><code>amountSent</code></a>;</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationevent-paymentpointer" data-title=
 "paymentPointer" data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-USVString">USVString</a></span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-paymentpointer" id=
 "ref-for-dom-monetizationevent-paymentpointer-1"><code>paymentPointer</code></a>;</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationevent-incomingpayment" data-title=
 "incomingPayment" data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" data-type=
-"interface" href=
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-USVString">USVString</a>?</span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-incomingpayment" id=
@@ -1601,12 +1586,11 @@ dictionary <dfn data-export="" data-dfn-type="dictionary" id=
 "dom-monetizationeventinit" data-idl="dictionary" data-title=
 "MonetizationEventInit" data-dfn-for="" class="idlID" tabindex="0"
 aria-haspopup="dialog"><code>MonetizationEventInit</code></dfn> : <span class=
-"idlSuperclass"><a data-link-type="idl" data-type="dictionary" href=
+"idlSuperclass"><a data-link-type="dictionary" href=
 "https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a></span> {<span data-idl=""
 class="idlMember" id="idl-def-monetizationeventinit-amount" data-title="amount"
 data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="idl" data-type="interface"
-href=
+  required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-amount" data-idl=
 "field" data-title="amount" data-dfn-for="MonetizationEventInit" data-type=
@@ -1614,8 +1598,7 @@ data-dfn-type="dict-member" id="dom-monetizationeventinit-amount" data-idl=
 "dialog"><code>amount</code></dfn>;</span><span data-idl="" class="idlMember"
 id="idl-def-monetizationeventinit-assetcode" data-title="assetCode"
 data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="idl" data-type="interface"
-href=
+  required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-assetcode" data-idl=
 "field" data-title="assetCode" data-dfn-for="MonetizationEventInit" data-type=
@@ -1623,8 +1606,7 @@ data-dfn-type="dict-member" id="dom-monetizationeventinit-assetcode" data-idl=
 "dialog"><code>assetCode</code></dfn>;</span><span data-idl="" class=
 "idlMember" id="idl-def-monetizationeventinit-assetscale" data-title=
 "assetScale" data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="idl" data-type="interface"
-href=
+  required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-octet">octet</a>?</span> <dfn data-export=
 "" data-dfn-type="dict-member" id="dom-monetizationeventinit-assetscale"
 data-idl="field" data-title="assetScale" data-dfn-for="MonetizationEventInit"
@@ -1632,8 +1614,7 @@ data-type="octet" class="idlName" tabindex="0" aria-haspopup=
 "dialog"><code>assetScale</code></dfn>;</span><span data-idl="" class=
 "idlMember" id="idl-def-monetizationeventinit-receipt" data-title="receipt"
 data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="idl" data-type="interface"
-href=
+  required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-receipt" data-idl=
 "field" data-title="receipt" data-dfn-for="MonetizationEventInit" data-type=
@@ -1641,8 +1622,7 @@ data-dfn-type="dict-member" id="dom-monetizationeventinit-receipt" data-idl=
 "dialog"><code>receipt</code></dfn>;</span><span data-idl="" class="idlMember"
 id="idl-def-monetizationeventinit-amountsent" data-title="amountSent"
 data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="idl" data-type="dictionary"
-href=
+  required<span class="idlType"> <a data-link-type="dictionary" href=
 "https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">PaymentCurrencyAmount</a></span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-amountsent" data-idl=
 "field" data-title="amountSent" data-dfn-for="MonetizationEventInit" data-type=
@@ -1650,8 +1630,7 @@ data-dfn-type="dict-member" id="dom-monetizationeventinit-amountsent" data-idl=
 "dialog"><code>amountSent</code></dfn>;</span><span data-idl="" class=
 "idlMember" id="idl-def-monetizationeventinit-paymentpointer" data-title=
 "paymentPointer" data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="idl" data-type="interface"
-href=
+  required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-USVString">USVString</a></span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-paymentpointer"
 data-idl="field" data-title="paymentPointer" data-dfn-for=
@@ -1659,8 +1638,7 @@ data-idl="field" data-title="paymentPointer" data-dfn-for=
 aria-haspopup="dialog"><code>paymentPointer</code></dfn>;</span><span data-idl=
 "" class="idlMember" id="idl-def-monetizationeventinit-incomingpayment"
 data-title="incomingPayment" data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="idl" data-type="interface"
-href=
+  required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-USVString">USVString</a>?</span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-incomingpayment"
 data-idl="field" data-title="incomingPayment" data-dfn-for=
@@ -1687,9 +1665,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
             "https://interledger.org/developers/rfcs/stream-receipts/">STREAM
             Receipt</a></cite> to supporting incoming payments via
             [<cite><a class="bibref" data-link-type="biblio" href=
-            "#bib-open%20payments" title="Open Payments">Open
-            Payments</a></cite>] and will no longer be returning receipts to
-            the browser.
+            "#bib-open-payments" title=
+            "Open Payments">open-payments</a></cite>] and will no longer be
+            returning receipts to the browser.
           </p>
           <p>
             As such the <a data-link-type="idl" data-lt="MonetizationEvent"
@@ -1769,12 +1747,11 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <div class="">
           The members of the <code>MonetizationCurrencyAmount</code> interface
           map directly to the <code>value</code> and <code>currency</code>
-          attributes of a <a data-link-type="idl" data-lt=
-          "PaymentCurrencyAmount" data-type="dictionary" href=
+          attributes of a <a data-link-type="dictionary" data-lt=
+          "PaymentCurrencyAmount" href=
           "https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount"><code>
           PaymentCurrencyAmount</code></a> dictionary. See the documentation of
-          <a data-link-type="idl" data-lt="PaymentCurrencyAmount" data-type=
-          "dictionary" href=
+          <a data-link-type="dictionary" data-lt="PaymentCurrencyAmount" href=
           "https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount"><code>
           PaymentCurrencyAmount</code></a> for guidance on processing and
           display of these attributes.
@@ -1794,10 +1771,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         </div>
         <p>
           The amount <em>sent</em>. This should be processed in the same way as
-          a <a data-link-type="idl" data-lt="PaymentCurrencyAmount" data-type=
-          "dictionary" href=
-          "https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount"><code>
-          PaymentCurrencyAmount</code></a> dictionary as defined in
+          a <a data-link-type="dictionary" data-lt="PaymentCurrencyAmount"
+          href="https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">
+          <code>PaymentCurrencyAmount</code></a> dictionary as defined in
           [<cite><a class="bibref" data-link-type="biblio" href=
           "#bib-payment-request" title=
           "Payment Request API">payment-request</a></cite>]. When getting,
@@ -1844,7 +1820,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           aria-label="Permalink for Section 9.6"></a>
         </div>
         <p>
-          A <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+          A <a data-link-type="dfn" href=
           "https://url.spec.whatwg.org/#concept-url">URL</a> representing the
           <a data-link-type="dfn|abstract-op" href="#dfn-payment-pointer"
           class="internalDFN" id="ref-for-dfn-payment-pointer-4">payment
@@ -1865,7 +1841,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           aria-label="Permalink for Section 9.7"></a>
         </div>
         <p>
-          A <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+          A <a data-link-type="dfn" href=
           "https://url.spec.whatwg.org/#concept-url">URL</a> representing an
           incoming payment at the <a data-link-type="dfn|abstract-op" href=
           "#dfn-monetization-receiver" class="internalDFN" id=
@@ -1882,14 +1858,13 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         "Permalink for Section 10."></a>
       </div>
       <p>
-        This specification defines a <a data-link-type="dfn|abstract-op"
-        data-type="dfn" href=
+        This specification defines a <a data-link-type="dfn" href=
         "https://www.w3.org/TR/permissions-policy-1/#policy-controlled-feature">
         policy-controlled feature</a> identified by the string <dfn class=
         "permission export" data-dfn-type="permission" data-export="" id=
         "dfn-monetization" tabindex="0" aria-haspopup=
-        "dialog">"monetization"</dfn>. Its default <a data-type="dfn" href=
-        "https://www.w3.org/TR/permissions-policy-1/#allowlist">allowlist</a>
+        "dialog">"monetization"</dfn>. Its default <a data-link-type="dfn"
+        href="https://www.w3.org/TR/permissions-policy-1/#allowlist">allowlist</a>
         is <code>'self'</code>.
       </p>
       <div class="note" role="note" id="issue-container-generatedID-3">
@@ -1899,16 +1874,16 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         </div>
         <aside class="">
           <p>
-            A <a data-type="dfn" href=
+            A <a data-link-type="dfn" href=
             "https://dom.spec.whatwg.org/#concept-document">document</a>'s
-            <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+            <a data-link-type="dfn" href=
             "https://html.spec.whatwg.org/multipage/dom.html#concept-document-permissions-policy">
             permissions policy</a> determines whether <code><a data-link-type=
-            "element" data-type="element" href=
+            "element" href=
             "https://html.spec.whatwg.org/multipage/semantics.html#the-link-element">
             link</a></code> elements are monetized - particularly in
             third-party content, such as an <code><a data-link-type="element"
-            data-type="element" href=
+            href=
             "https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element">
             iframe</a></code>. When disabled, monetization is disabled and
             related events won't be dispatched.
@@ -1968,10 +1943,11 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           is described by the following ABNF:
         </p>
         <pre aria-busy="false"><code class="hljs abnf"><span class=
-        "hljs-attribute">directive-name</span>  = <span class=
+        "hljs-attribute">directive-name</span>  <span class=
+        "hljs-operator">=</span> <span class=
         "hljs-string">"monetization-src"</span>
-<span class=
-"hljs-attribute">directive-value</span> = serialized-source-list</code></pre>
+<span class="hljs-attribute">directive-value</span> <span class=
+"hljs-operator">=</span> serialized-source-list</code></pre>
         <aside class="example" id="example-6">
           <div class="marker">
             <a class="self-link" href="#example-6">Example <bdi>6</bdi></a>
@@ -1979,8 +1955,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           <p>
             Given a page with the following Content Security Policy:
           </p>
-          <pre class="http" aria-busy="false"><code class=
-          "hljs">Content-Security-Policy: monetization-src https://example.com/</code></pre>
+          <pre aria-busy="false"><code class="hljs http"><span class=
+          "hljs-attribute">Content-Security-Policy</span><span class=
+          "hljs-punctuation">: </span>monetization-src https://example.com/</code></pre>
           <p>
             Fetches for the following code will return a network errors, as the
             URL provided do not match monetization-src's source list:
@@ -2005,10 +1982,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
             This directive's pre-request check is as follows:
           </p>
           <p>
-            Given a <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+            Given a <a data-link-type="dfn" href=
             "https://fetch.spec.whatwg.org/#concept-request">request</a>
-            (<var>request</var>) and a <a data-link-type="dfn|abstract-op"
-            data-type="dfn" href=
+            (<var>request</var>) and a <a data-link-type="dfn" href=
             "https://www.w3.org/TR/CSP3/#violation-policy">policy</a>
             (<var>policy</var>):
           </p>
@@ -2041,10 +2017,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
             This directive's post-request check is as follows:
           </p>
           <p>
-            Given a <a data-link-type="dfn|abstract-op" data-type="dfn" href=
+            Given a <a data-link-type="dfn" href=
             "https://fetch.spec.whatwg.org/#concept-request">request</a>
-            (<var>request</var>) and a <a data-link-type="dfn|abstract-op"
-            data-type="dfn" href=
+            (<var>request</var>) and a <a data-link-type="dfn" href=
             "https://www.w3.org/TR/CSP3/#violation-policy">policy</a>
             (<var>policy</var>):
           </p>
@@ -2101,8 +2076,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         "#dfn-payment-pointer" class="internalDFN" id=
         "ref-for-dfn-payment-pointer-8">payment pointer</a> on their own
         servers and proxy [<cite><a class="bibref" data-link-type="biblio"
-          href="#bib-open%20payments" title="Open Payments">Open
-          Payments</a></cite>] requests on the server as needed.
+          href="#bib-open-payments" title=
+          "Open Payments">open-payments</a></cite>] requests on the server as
+          needed.
         </li>
         <li>Set the <code>monetization-src</code> CSP directive to restrict
         requests to origins they control and trust to host <a data-link-type=
@@ -2210,8 +2186,8 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           </dt>
           <dd>
             <a href="https://www.w3.org/TR/CSP3/"><cite>Content Security Policy
-            Level 3</cite></a>. Mike West; Antonio Sartori. W3C. 23 January
-            2024. W3C Working Draft. URL: <a href=
+            Level 3</cite></a>. Mike West; Antonio Sartori. W3C. 12 March 2025.
+            W3C Working Draft. URL: <a href=
             "https://www.w3.org/TR/CSP3/">https://www.w3.org/TR/CSP3/</a>
           </dd>
           <dt id="bib-dom">
@@ -2237,9 +2213,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           </dt>
           <dd>
             <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML
-            Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Ian
-            Hickson; Philip Jägenstedt; Simon Pieters. WHATWG. Living Standard.
-            URL: <a href=
+            Standard</cite></a>. Anne van Kesteren; Domenic Denicola; Dominic
+            Farolino; Ian Hickson; Philip Jägenstedt; Simon Pieters. WHATWG.
+            Living Standard. URL: <a href=
             "https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
           </dd>
           <dt id="bib-infra">
@@ -2260,13 +2236,13 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
             Interledger Protocol</cite></a>. URL: <a href=
             "https://interledger.org/developers/rfcs/interledger-protocol/">https://interledger.org/developers/rfcs/interledger-protocol/</a>
           </dd>
-          <dt id="bib-open payments">
-            [Open Payments]
+          <dt id="bib-open-payments">
+            [open-payments]
           </dt>
           <dd>
-            <a href="https://openpayments.guide/"><cite>Open
-            Payments</cite></a>. URL: <a href=
-            "https://openpayments.guide/">https://openpayments.guide/</a>
+            <a href="https://openpayments.dev/"><cite>Open Payments</cite></a>.
+            URL: <a href=
+            "https://openpayments.dev/">https://openpayments.dev/</a>
           </dd>
           <dt id="bib-payment-request">
             [payment-request]
@@ -2274,7 +2250,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           <dd>
             <a href="https://www.w3.org/TR/payment-request/"><cite>Payment
             Request API</cite></a>. Marcos Caceres; Rouslan Solomakhin; Ian
-            Jacobs. W3C. 8 September 2022. W3C Recommendation. URL: <a href=
+            Jacobs. W3C. 9 September 2024. CRD. URL: <a href=
             "https://www.w3.org/TR/payment-request/">https://www.w3.org/TR/payment-request/</a>
           </dd>
           <dt id="bib-permissions-policy">
@@ -2283,7 +2259,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           <dd>
             <a href=
             "https://www.w3.org/TR/permissions-policy-1/"><cite>Permissions
-            Policy</cite></a>. Ian Clelland. W3C. 18 December 2023. W3C Working
+            Policy</cite></a>. Ian Clelland. W3C. 10 February 2025. W3C Working
             Draft. URL: <a href=
             "https://www.w3.org/TR/permissions-policy-1/">https://www.w3.org/TR/permissions-policy-1/</a>
           </dd>
