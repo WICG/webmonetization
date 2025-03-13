@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -238,9 +237,10 @@
           <dfn>Payment Pointer</dfn>:
         </dt>
         <dd>
-          A [=URL=] to an <a data-cite="open-payments/introduction/wallet-addresses#">Open
-          Payments API entry-point</a> (i.e., a JSON resource containing
-          details that facilitate payment to an account).
+          A [=URL=] to an <a data-cite=
+          "open-payments/introduction/wallet-addresses#">Open Payments API
+          entry-point</a> (i.e., a JSON resource containing details that
+          facilitate payment to an account).
         </dd>
         <dt>
           <dfn>Payment session</dfn>
@@ -848,7 +848,8 @@
         service. To mitigate such an attack, it is RECOMMENDED that developers:
       </p>
       <ul>
-        <li>host a [=payment pointer=] on their own servers and proxy [[open-payments]] requests on the server as needed.
+        <li>host a [=payment pointer=] on their own servers and proxy
+        [[open-payments]] requests on the server as needed.
         </li>
         <li>Set the `monetization-src` CSP directive to restrict requests to
         origins they control and trust to host [=payment pointers=].
