@@ -9,7 +9,7 @@ The Interledger Foundation's Web Monetization browser extension lets you support
 
 <details>
 <summary>About web monetized sites</summary>
-You can only use the extension to send payments to web monetized sites. Since Web Monetization is a newer technology, the Interledger Foundation encourages content owners and publishers tell their audience they're web monetized via a banner or some other method.
+You can only use the extension to send payments to web monetized sites. Since Web Monetization is a newer technology, the Interledger Foundation encourages content owners and publishers to tell their audience they're web monetized via a banner or some other method.
 
 If you're interested in web monetizing your own content, the [get started](/developers/get-started) page for developers is a good place to start.
 </details>
@@ -81,7 +81,7 @@ After you install the extension, a page appears to guide you though the configur
       </Tabs>
   3. Pin the extension to your toolbar (optional).<br/><img src='/img/docs/extension/onboarding-3.png' alt='An example of where to find the pin to toolbar option for the extension' style='max-width:300px' class='img-outline'/>
   4. Enter the wallet address or payment pointer you found in Step 2.<br/><img src='/img/docs/extension/onboarding-4a.png' alt='Set up screen with fields for wallet address/payment pointer and amount and a renew monthly toggle (default is off).' style='max-width:300px' class='img-outline'/>
-  5. Enter the amount to make available for sending Web Monetization payments. If you choose not to renew monthly, you'll need to manually [add more funds](#adjust-your-budget) when your balance is zero.
+  5. Enter the amount the extension will have permission to send and select whether the amount should renew monthly. You can always [change these settings](#adjust-your-budget) later.
       :::note
       The amount and renewal frequency is specific to the extension you're currently setting up. If you install the extension on a different browser and connect to the same wallet, that extension will have a separate budget. Payments made from one budget do not affect the balance of the other.
       :::
@@ -89,7 +89,8 @@ After you install the extension, a page appears to guide you though the configur
       :::note
       If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
       :::
-  7. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. For example:<br /><img src='/img/docs/extension/example-grant.png' alt='Example budget confirmation screen with accept and decline buttons' style='max-width:400px' class='img-outline'/>A success screen appears when the connection is successful.<br /><img src='/img/docs/extension/connection-success.png' alt='Web page displaying a connection successful screen' style='max-width:400px' class='img-outline'/>You're now ready to set up continuous payments.
+  7. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. For example:<br /><img src='/img/docs/extension/example-grant.png' alt='Example budget confirmation screen with accept and decline buttons' style='max-width:400px' class='img-outline'/>
+  8. A success screen appears when the connection is successful. You can close the tab.<br /><img src='/img/docs/extension/connection-success.png' alt='Web page displaying a connection successful screen' style='max-width:400px' class='img-outline'/>You're now ready to set up continuous payments.
 </Steps>
 
 ## Set up continuous payments
@@ -99,10 +100,11 @@ After you install the extension, a page appears to guide you though the configur
 By default, the extension is set to send continuous payments at a rate of $0.60 USD an hour ($0.01 a minute). If you transact in a currency other than USD, then the extension will default to your currency's equivalent based on the exchange rate. For example, imagine you transact in Mexican pesos. If $0.60 is equivalent to $12.24 MXN, then the extension will default to $12.24 MXN an hour.
 
 Payments continue for as long as a web monetized page is active and in view. Continuous payments stop if you:
-* Disable continuous payments within the extension
+* Disable the extension
+* Disable continuous payments within the extension's settings
 * Minimize your browser
-* Navigate away from or close the page/tab
-* Close the browser
+* Switch to a different tab
+* Close the tab or browser
 * Spend all of your budget 
 
 ### Change your continuous payment settings
@@ -124,6 +126,14 @@ You can make a one-time payment to a page instead of -- or in addition to -- con
 </Steps>
 
 ## Adjust your budget
+
+### About your budget
+
+Your budget is the amount you've given the extension permission to spend from your wallet. If you spend your budgeted amount, the extension will display an orange circle in the toolbar and show an "out of funds" message. You can manually add more funds using the steps below. 
+
+If your budget is set to renew monthly and you are out of funds, you can either wait for your budget to renew (your renewal date is shown in the extension) or manually add funds. If you choose to add more funds, the amount you enter will become your new renewal amount and your renewal date will change.
+
+### Change your budget settings
 
 <Steps>
   1. Click the **Settings** icon in the upper-right of the extension.<br /><img src='/img/docs/extension/settings-icon.png' alt='Extension showing a cog icon in the upper-right' style='max-width:300px'
@@ -219,5 +229,21 @@ Click **Connect** and try linking your extension again.
 The most likely reason is that your wallet provider and the content owner or publisher's wallet provider are not yet able to transact with one another. Your extension will display an exclamation mark within an orange circle. Open the extension to read the messaging.
 
 Visit the [Web Monetization-enabled wallets](/wallets) page for a list of compatible wallet providers.
+
+</details>
+
+<details>
+<summary>Why is the balance in the extension not immediately updating on payments?</summary>
+After the extension shows a message that a payment succeeded, the extension's balance may not immediately update to show the new, lower balance. This is a known issue that we're working on. You can track its progress in <LinkOut href="https://github.com/interledger/web-monetization-extension/issues/737">GitHub issue #737</LinkOut>.
+
+</details>
+
+<details>
+<summary>How is the balance shown in my wallet related to the balance shown in my extension?</summary>
+
+* Wallet balance - Your available balance; the amount you have to spend on Web Monetization or anything else you can use your wallet balance on.
+* Extension balance - The amount you've given the extension permission to spend.
+
+It's possible for your extension to show a higher balance than your wallet. In this case, any Web Monetization payment that exceeds your wallet's balance will fail due to insufficient funds. 
 
 </details>
