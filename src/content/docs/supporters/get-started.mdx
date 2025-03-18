@@ -1,8 +1,11 @@
 ---
 title: Get started with the extension
+head:
+  - tag: style
+    content: .chrome {background-color:#327374;background-image:url('/img/chrome-webstore.png');background-size:50px;background-repeat:no-repeat;background-position:50%;border:none;cursor:pointer;border-radius:10px;text-decoration:none;color:white !important;width:70px;height:70px;margin:15px 15px 15px 0} .firefox {background-color:#327374;background-image:url('/img/Fx-Browser-icon.png');background-size:50px;background-repeat:no-repeat;background-position:50%;border:none;cursor:pointer;border-radius:10px;text-decoration:none;color:white !important;width:70px;height:70px;margin:15px 15px 15px 0} .edge {background-color:#327374;background-image:url('/img/microsoft-edge.png');background-size:50px;background-repeat:no-repeat;background-position:50%;border:none;cursor:pointer;border-radius:10px;text-decoration:none;color:white !important;width:70px;height:70px;margin:15px 15px 15px 0}
 ---
 
-import { Steps, Tabs, TabItem, LinkButton, Icon } from '@astrojs/starlight/components'
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 
 The Interledger Foundation's Web Monetization browser extension lets you support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
@@ -25,33 +28,11 @@ The sites you pay are not provided with any of your personally identifiable info
 
 ## Install the extension
 
-<LinkButton 
-  href="https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii"
-  target="_blank"
-  variant="primary"
-  icon="external"
-  iconPlacement="start"
->
-  Google Chrome
-</LinkButton>
-<LinkButton 
-  href="https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/"
-  target="_blank"
-  variant="primary"
-  icon="external"
-  iconPlacement="start"
->
-  Mozilla Firefox
-</LinkButton>
-<LinkButton 
-  href="https://microsoftedge.microsoft.com/addons/detail/web-monetization/imjgemgmeoioefpmfefmffbboogighjl"
-  target="_blank"
-  variant="primary"
-  icon="external"
-  iconPlacement="start"
->
-  Microsoft Edge
-</LinkButton>
+<a href="https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii"><button class="chrome"></button></a>
+
+<a href="https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/"><button class="firefox"></button></a>
+
+<a href="https://microsoftedge.microsoft.com/addons/detail/web-monetization/imjgemgmeoioefpmfefmffbboogighjl"><button class="edge"></button></a>
 
 :::note[Permissions]
 The extension asks for permission to access your browser tabs and your data for all websites. The extension requires these permissions to check each page you visit for Web Monetization.

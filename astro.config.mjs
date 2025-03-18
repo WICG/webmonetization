@@ -11,7 +11,7 @@ export default defineConfig({
     starlight({
       title: 'Web Monetization',
       description:
-        "Web Monetization allows websites to automatically receive payments from users, facilitated by the user agent and a user's preferred monetization provider.",
+        "Web Monetization introduces a new way for content owners and publishers to earn while allowing their audience to engage on their own terms.",
       head: [
         {
           tag: 'script',
@@ -230,15 +230,6 @@ export default defineConfig({
             {
               label: 'Glossary',
               link: '/resources/glossary',
-            },
-            {
-              label: 'Web Monetization extension',
-              link: 'https://webmonetization.org/install/',
-              attrs: { 
-                target: '_blank',
-                rel: 'noopener noreferrer',
-                'data-icon': 'external',
-              },
             },
             {
               label: 'Publisher tools',
