@@ -15,7 +15,7 @@ export function ActiveView() {
         <OnlyClient>
           <RevshareChart />
           <ShareList />
-          <h2 className='heading3'>Link Element</h2>
+          <h2 className='heading3'>Link Tag</h2>
           <SharesLinkTag />
         </OnlyClient>
       </>
@@ -25,7 +25,7 @@ export function ActiveView() {
       <>
         <h2 className='heading3'>Import existing revshare configuration</h2>
         <p className={styles.text}>
-          Enter your current monetization <code>link</code> element into the
+          Enter your current monetization <code>link</code> tag into the
           field and click <b>Import</b>. The table will populate with your
           existing revshare's configuration.
         </p>
