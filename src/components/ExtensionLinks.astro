@@ -1,0 +1,107 @@
+---
+interface Props {
+  utm?: Partial<
+    Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
+  >
+  includeGitHub?: boolean
+  variant?: 'transparent' | 'accent'
+}
+
+const { utm, includeGitHub = false, variant = 'transparent' } = Astro.props
+
+const URLS = {
+  chrome: `https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii`,
+  firefox: `https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/`,
+  edge: `https://microsoftedge.microsoft.com/addons/detail/web-monetization/imjgemgmeoioefpmfefmffbboogighjl`,
+  github: `https://github.com/interledger/web-monetization-extension/releases/latest`,
+}
+
+const toURL = (url: string) => {
+  const result = new URL(url)
+  if (utm && !utm.utm_source) {
+    result.searchParams.set('utm_source', Astro.site!.hostname)
+  }
+  for (const [k, v] of Object.entries(utm || {})) {
+    result.searchParams.set(k, v)
+  }
+  return result.href
+}
+---
+
+<ul class:list={[variant === 'accent' && 'accented']}>
+  <li>
+    <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
+      <img
+        alt='Chrome Web Store'
+        src='/img/chrome-webstore.png'
+        width='200'
+        height='200'
+      />
+    </a>
+  </li>
+  <li>
+    <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
+      <img
+        alt='Firefox Add-ons'
+        src='/img/Fx-Browser-icon.png'
+        width='200'
+        height='200'
+      />
+    </a>
+  </li>
+  <li>
+    <a href={toURL(URLS.edge)} title='Edge Add-ons'>
+      <img
+        alt='Edge Add-ons'
+        src='/img/microsoft-edge.png'
+        width='200'
+        height='200'
+      />
+    </a>
+  </li>
+  {
+    includeGitHub && (
+      <li>
+        <a href={toURL(URLS.github)} title='Latest release on GitHub'>
+          <img
+            alt='Latest release on GitHub'
+            src='/img/icon-github.svg'
+            width='98'
+            height='98'
+          />
+        </a>
+      </li>
+    )
+  }
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-m);
+    padding: var(--space-xs) var(--space-s);
+  }
+
+  ul.accented {
+    --bg: var(--sl-color-accent);
+  }
+
+  li {
+    padding: 0.5rem;
+    background-color: var(--bg);
+    border-radius: 0.5rem;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  img:hover {
+    transform: scale(1.1);
+  }
+</style>
