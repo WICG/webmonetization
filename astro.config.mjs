@@ -234,6 +234,8 @@ export default defineConfig({
     astroI18next(),
   ],
   redirects: {
+    "/link-tag": "/tools/link-tag",
+    "/prob-revshare": "/tools/prob-revshare",
     "/docs/references/html-link-rel-monetization": "/docs/references/html"
   },
   server: {
