@@ -252,6 +252,8 @@ export default defineConfig({
     astroI18next(),
   ],
   redirects: {
+    "/link-tag": "/tools/link-tag",
+    "/prob-revshare": "/tools/prob-revshare",
     "/docs/api": "/developers/interfaces",
     "/docs/explainer": "/docs",
     "/docs/intro/sending-payments": "/supporters/about-sending",
