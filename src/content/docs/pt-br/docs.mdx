@@ -1,0 +1,68 @@
+---
+title: Introdução a Monetização Web
+---
+
+import { LargeImg, LinkOut, Tooltip } from '@interledger/docs-design-system'
+
+Como um usuário de um web site, é comum encontrar um título que chame sua atenção, e só depois disso descobrir que o artigo precisa de pagamento para ler. Com qual frequência você paga uma inscrição para ler um simples artigo? E se você pudesse pagar uma fração do preço de uma inscrição para acessar apenas o artigo ao invés de uma inscrição completa?
+
+Como um dono de um web site, você perde alguns visitantes por conta do conteúdo pago. Ainda que você ofereça uma inscrição com pagamento semanal, o preço ainda pode ser maior que o visitante esta dispost a pagar. Mas se ao invés de inscrição você pudesse ganhar por um pedaço de conteúdo, ou cobrar um preço baseado o tempo que o visitante gasta no seu conteúdo?
+
+Há 2 formas em que a Monetização Web pode fazer os pagamentos mais fáceis. Com a Web Monetização, visitantes do site podem fazer pagamentos diretamente para o site utilizando uma extensão do navegador ou um navegador que implemente nativamente a especificação de Monetização Web.
+
+## Estrutura de pagamento atual
+
+Para implementar pagamentos em um web site atualmente demanda um bom trabalho. Se o seu site já aceita pagamentos no seu site, você deve estar familiarizado com o processo de aceitar múltiplos pagamentos e moedas. O processo normalmente parece com algo assim:
+
+1. Você registra um ou mais gateways de pagamento (provider de pagamento), dependendo do método de pagamento e moedas que você quer aceitar.
+2. Você integra os serviços contratados no seu site. Por exemplo, você precisa desenvolver e hospedar o formulário de pagamento que se conecta com o serviço de pagamento, ou utilizar um formulário fornecido pelo gateway de pagamento.
+3. Dependendo do método de pagamento que seu visitante quer utilizar, ele precisa criar uma nova conta no seu site ou até mesmo no gateway de pagamento.
+4. Seu visitante preenche o formulário de pagamento. Idealmente, ele permanece no site até completar a transação, mas pode ser que seja necessário redireciona-lo para o site do gateway de pagamento.
+
+## Introdução a Web Monetization
+
+A Monetização Web (ou só WM de _Web Monetization_) foca em simplificar a experiência de pagamento para você e o visitante do seu site. WM é uma tecnologia aberta que permite web sites receberem pagamento automaticamente de seus visitantes, facilitado/intermediado pelo navegador do visitante e seu provedor de WM.
+
+Isto é uma proposta de padrão que permite seus visitantes pagarem um preço de suas escolhas com uma simples ou quase nada de intereção com o usuário. Isso permite o web site sinalizer os navegadores automaticamente que ele pode aceitar pagamentos e que os navegadores implementem um pagamento sem a necessidade de interação do usuário através de:
+
+- Obtendo a autorização para iniciar um pagamento.
+- Recuperando detalhes e lidando com as instruções para iniciar o processo de transação.
+- Criando uma seção de pagamento.
+- Comunicando os eventos de pagamento para o site, que pode responder opcionalmente. Por exemplo, o site pode [remover propaganda](/docs/guides/remove-ads) ou prover [acesso a um conteúdo exclusivo](/docs/guides/provide-exclusive-content) para o publico pagante.
+
+### Fluxo de alto nível
+
+As seguintes imagens descrevem o fluxo de alto nível da Monetização Web. Alguns passos podem ser combinados ou excluídos. Uma explicação mais profunda é fornecida na página [Web Monetization flow](/docs/intro/web-monetization-flow).
+
+<LargeImg
+  src='/img/docs/diagram-wm-overview.png'
+  alt='Fluxo de alto nível da Monetização Web'
+/>
+
+1. Bob visita uma [página _web monetizada_](/docs/guides/monetize-page). O elemento monetization `<link>` é a forma que o web site notifica o navegador que aceita pagamentos.
+2. O navegador de Bob, de forma nativa ou usando uma extensão, faz a leitura do elemento `<link>` para saber o <Tooltip content='URL que identifica uma conta de Open Payments' client:load><a href="./resources/glossary#wallet-address">endereço da carteira</a></Tooltip> para Alice, a dono do site.
+3. O navegador ou extensão do Bob, envia uma requisição para o endereço da carteira da Alice para obter a autorização e as instruções para o envio do pagamento.
+4. Com a autorização fornecida e as instruções recebidas, o navegador ou extenção envia uma requisição para o endereço da carteira do Bob para iniciar a retirada do pagamento.
+5. O fluxo da Monetização Web acaba aqui. O pagamento é processado, conversão e liquidação de pagamento ocorrem entre as duas contas através de um caminho comum de pagamento.
+
+### Especificando montante e moedas para pagamentos
+
+A WM não permite que o web site especifique um montante ou moeda. Ela permite apenas que o site notifica o navegador ou extensão que aceita pagamentos.
+
+Com a ajuda de um <Tooltip content='Entidade que envia o pagamento' client:load><a href="./resources/glossary#web-monetization-provider">WM provider</a></Tooltip>, seus visitantes decidem como querem fazer o pagamento, qual o montente, qual a frequência de pagamento e em qual moeda irá pagar. Seu <Tooltip content='Entidade que recebe o pagamento' client:load><a href="./resources/glossary#web-monetization-receiver">WM receiver</a></Tooltip> poderá fazer a conversão da moeda dos pagamentos baseado na moeda que você deseja receber. Esta flexibilidade permite você e seu visitante escolher o método de monetização que melhor sirva para ele.
+
+### Processamento e liquidação de pagamentos
+
+A função da Monetização Web é ajudar a coordenar pagamentos. Ela não processa nem liquida pagamentos.
+
+Em cada extremidade da Monetização Web há uma conta que suporta <LinkOut href="https://openpayments.guide">Open Payments</LinkOut>. O WM provider fornece ao seu visitante uma conta de envio financiada. Em alguns casos, o visitante pode atuar como seu próprio WM provider. O WM receiver fornece uma conta de recebimento para você.
+
+A Web Monetization comunica com as contas de envio e recebimento para obter as autorizações e instruções necessárias para o envio e recebimento de um pagamento. O processamento e liquidação de pagamentos ocorrem entre as contas de envio e recebimento, fora do fluxo da Monetização Web.
+
+## Versão anterior da especificação
+
+Uma nova versão da especificação da Web Monetization foi publicada em junho de 2023. Os usuários da versão anterior devem estar cientes das seguintes informações:
+
+- A versão anterior apenas usava o Protocolo de Configuração de Pagamento Simples (SPSP) do Interledger. A nova versão usa <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut>.
+- O elemento `<meta>` está obsoleto em favor do elemento [`<link>`](/docs/references/html-link-rel-monetization/).
+- O elemento `<link>` não suporta a forma abreviada de um ponteiro de pagamento (por exemplo, `$wallet.example/alice`). Você deve usar a URL do endpoint ao qual o ponteiro de pagamento se refere (por exemplo, `https://wallet.example/alice`). Se precisar de ajuda para converter um ponteiro de pagamento da forma abreviada para sua URL equivalente, insira o seu ponteiro de pagamento no campo de entrada no <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. Na maioria dos casos, você pode simplesmente substituir o `$` por `https://`.
