@@ -235,7 +235,7 @@ export default defineConfig({
   ],
   redirects: {
     "/link-tag": "/tools/link-tag",
-    "/revshare": "/tools/prob-revshare",
+    "/prob-revshare": "/tools/prob-revshare",
     "/docs/references/html-link-rel-monetization": "/docs/references/html"
   },
   server: {
