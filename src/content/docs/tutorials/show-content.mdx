@@ -5,7 +5,7 @@ title: Show content to paying visitors
 import Wallet from '/src/partials/wallet-prereq.mdx'
 import Disclaimer from '/src/partials/glitch.mdx'
 
-This guide describes one way you can show otherwise hidden content to paying visitors after the `monetization` event fires. The event only fires after an outgoing payment request is successfully created. If the event doesn't fire, then the content remains hidden on your page.
+In this tutorial, you'll create a script that shows hidden content to web monetized visitors after the `monetization` event fires. The event only fires after an outgoing payment request is successfully created. If the event doesn't fire, then the content remains hidden on your page.
 
 ### Before you begin
 
@@ -23,9 +23,9 @@ For visitors with Web Monetization, your content appears; however, there's a thr
 - Fails to initialize within the grace period, the content is hidden
 - Initializes any time after the grace period, the hidden content becomes visible
 
-## Example use case: Show exclusive content
+## Create your script: show exclusive content
 
-In this example, you'll give your paying visitors access to exclusive content.
+Give your web monetized visitors access to exclusive content.
 
 ### The code
 
@@ -90,12 +90,11 @@ This example simulates showing and hiding exclusive content based on a visitor�
   style='height:100%;width:100%;border:0;min-height:420px'
 ></iframe>
 
-## Example use case: Show an indicator and exclusive content
+## Create your script: show an indicator and exclusive content
 
-In this example, you'll not only give your paying visitors access to exclusive content, but also:
+Show web monetized visitors an indicator while they wait for Web Monetization to initialize, then show exclusive content. 
 
-- Show web monetized visitors an indicator while they wait for Web Monetization to initialize
-- Tell non-web monetized visitors that there’s exclusive content they’re missing out on
+Non-web monetized visitors will be shown a message stating there's exclusive content they’re missing out on.
 
 ### The code
 

@@ -13,7 +13,7 @@ export function ImportView() {
   return (
     <div className={styles.importWrapper}>
       <textarea
-        placeholder='Enter your link element here'
+        placeholder='Enter your link tag here'
         rows={4}
         value={tag}
         onChange={(evt) => {

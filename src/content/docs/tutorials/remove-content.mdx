@@ -5,7 +5,7 @@ title: Remove content for paying visitors
 import Wallet from '/src/partials/wallet-prereq.mdx'
 import Disclaimer from '/src/partials/glitch.mdx'
 
-This guide describes one way you can remove content for paying visitors after the `monetization` event fires. The event only fires after an outgoing payment request is successfully created. If the event doesn't fire, then the content remains visible on your page.
+In this tutorial, you'll create a script that removes content for paying visitors after the `monetization` event fires. The event only fires after an outgoing payment request is successfully created. If the event doesn't fire, then the content remains visible on your page.
 
 ### Before you begin
 
@@ -23,9 +23,9 @@ For visitors with Web Monetization, there's a three-second grace period before y
 - Fails to initialize within the grace period, the content is shown
 - Initializes any time after the grace period, the content is hidden
 
-## Example use case: Remove ads
+## Create your script
 
-In this example, you'll give your paying visitors an ad-free experience by preventing the ad from loading on the page once Web Monetization initializes.
+As an example, you'll give your paying visitors an ad-free experience by preventing an ad from loading on your page once Web Monetization initializes.
 
 Assuming Web Monetization initializes within the grace period, neither the ad nor any related images and/or trackers (which aren't part of this example) are loaded onto the page at all.
 

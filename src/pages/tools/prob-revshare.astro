@@ -19,12 +19,11 @@ const description = t("site.description");
         <p>For example, if three recipients each have a weight of 1, then each recipient will eventually receive 33% of the revenue. If three recipients have a weight of 1, 2, and 3, the percentages will be 17% (weight 1), 33% (weight 2), and 50% (weight 3).</p>
         <p>Additional information can be found in the overview of the <a href="/tutorials/revenue-sharing" target="_blank" data-umami-event="Revshare page - Revshare guide">Set up probabilistic revenue sharing</a> tutorial.</p>
       </details><br />
-      <h2 class="heading3">Step 1 - Define a revshare</h2>
-      <p>Enter each payment pointer and wallet address that will receive a split of the revenue into the table. Names are optional. Click <b>Add Share</b> to add more rows.</p>
-      <p>Assign a weight to each recipient. If you'd rather assign sharing by percentage, enter at least two recipients into the table. The Percent field will open for edits.</p>
-      <p>When you're finished, add the generated monetization <code>link</code> tag to your site. The link contains a unique URL hosted on <code>https://webmonetization.org/api/revshare/pay/</code>. Don't copy the tag until you're finished. Changes to the table will result in changes to the link. Then, <a href="/developers/link-element" target="_blank" data-umami-event='Revshare page - Monetization guide'>Add the link</a> to your site.</p>
+      <h2 class="heading3">Define a revshare</h2>
+      <p>Enter each payment pointer and wallet address that will receive a split of the revenue into the table. Names are optional. Click <b>Add Share</b> to add more rows. Assign a weight to each recipient. If you'd rather assign sharing by percentage, enter at least two recipients into the table. The Percent field will open for edits.
+      <p>When you're finished, add the generated monetization <code>link</code> tag to your site. The link contains a unique URL hosted on <code>https://webmonetization.org/api/revshare/pay/</code>.
       <ProbRevshareGenerator client:load />
-      <p>If you'd prefer to not use a hosted URL, you can set up revshare by <a href="/tutorials/revenue-sharing" target="_blank" data-umami-event="Revshare page - Revshare guide">adding a script to your site</a>.</p>
+      <p>Don't copy the tag until you're finished setting up your shares. Changes to the table will result in changes to the link.</p>
     </div>
   </section>
 </Base>

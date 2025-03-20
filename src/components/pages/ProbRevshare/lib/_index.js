@@ -111,7 +111,7 @@ export function tagToShares(tag) {
   if (!meta && !link) {
     console.log(node, node.head)
     throw new Error(
-      'Please enter the exact link element you generated from this revshare tool. It seems to be malformed.',
+      'Please enter the exact link tag you generated from this revshare tool. It seems to be malformed.',
     )
   }
 
