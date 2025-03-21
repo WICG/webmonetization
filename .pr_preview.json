@@ -1,4 +1,4 @@
 {
-  "src_file": "static/specification-respec.html",
+  "src_file": "src/pages/specification/specification-respec.html",
   "type": "respec"
 }
