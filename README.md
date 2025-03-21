@@ -56,12 +56,6 @@ Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. 
 
 ⭐ We recommend using the `.mdx` extension whenever possible.
 
-### Double `docs` sub-folder
-
-Our documentation uses a sub-folder URL style of https://webmonetization.org/docs for the doc section. This means we have a double `docs` folder situation due to how Starlight deals with content and generated URLs (`src/content/docs/docs`).
-
-The `docs.mdx` file in the root of the `content/docs` folder is essentially the landing page for our documentation and is what users see when they land on https://webmonetization.org/docs.
-
 ### Editing content
 
 - [Static image assets](#static-image-assets)
@@ -99,9 +93,9 @@ import { CodeBlock, LinkOut } from '@interledger/docs-design-system'
 
 #### Edit existing doc
 
-Navigate to `/src/content/docs/docs` and locate the page you want to edit. For example:
+Navigate to `/src/content/docs` and locate the page you want to edit. For example:
 
-`/src/content/docs/docs/RELEVANT_FOLDER/doc-to-be-edited.mdx`
+`/src/content/docs/RELEVANT_FOLDER/doc-to-be-edited.mdx`
 
 ```markdown
 ---
@@ -115,7 +109,7 @@ Refer to the Starlight documentation on [authoring content](https://starlight.as
 
 #### Add a new doc
 
-Create your Markdown file in in `/src/content/docs/docs/RELEVANT_FOLDER`. For example, within `/src/content/docs/docs/RELEVANT_FOLDER/newly-created-doc.mdx`.
+Create your Markdown file in in `/src/content/docs/RELEVANT_FOLDER`. For example, within `/src/content/docs/RELEVANT_FOLDER/newly-created-doc.mdx`.
 
 ⭐ We recommend using the `.mdx` extension whenever possible.
 
@@ -149,7 +143,7 @@ Starlight supports [Internationalization (i18n)](https://starlight.astro.build/g
 
 If you want to contribute documentation in a language that has not been configured, you must edit `astro.config.mjs` to add the language to the `locales` option. As of January 2024, Web Monetization is configured for English (en) and Español (es).
 
-Translated content should be in its respective language folder within `/src/content/docs/`. English content is located within `/src/content/docs/docs`. Content in Español is located within `src/content/docs/es`. Create the language folder if it doesn't exist.
+Translated content should be in its respective language folder within `/src/content/docs/`. English content is located within `/src/content/docs`. Content in Español is located within `src/content/docs/es`. Create the language folder if it doesn't exist.
 
 The file path should follow its corresponding source English path exactly. Once a new language is "activated", translated content should be accessible via the language select drop-down in the documentation site's header.
 

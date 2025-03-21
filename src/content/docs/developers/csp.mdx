@@ -1,0 +1,74 @@
+---
+title: Content Security Policy (CSP)
+---
+
+import { LinkOut, Hidden } from '@interledger/docs-design-system'
+import Specification from '/src/components/docs/Specification.astro'
+import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
+import data from '/src/data/browser-compat-data/csp-monetization-src.json'
+
+A <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content Security Policy (CSP)</LinkOut> is an extra layer of security that allows you to control the resources a user agent, such as a web browser, is allowed to load for a given page. CSPs use directives to describe the policies for a certain resource type.
+
+The `monetization-src` fetch directive allows you to define the payment pointer and wallet address URLs that a browser can load. If an attempt is made to load an undefined URL, a network error will occur and the URL will not load.
+
+<table>
+  <tr>
+    <th>CSP Version</th>
+    <td>3</td>
+  </tr>
+  <tr>
+    <th>Directive</th>
+    <td>`monetization-src`</td>
+  </tr>
+  <tr>
+    <th>Directive type</th>
+    <td>
+      <LinkOut href='https://developer.mozilla.org/en-US/docs/Glossary/Fetch_directive'>
+        Fetch directive
+      </LinkOut>
+    </td>
+  </tr>
+</table>
+
+## Syntax
+
+```http
+Content-Security-Policy: monetization-src <value>;
+Content-Security-Policy: monetization-src <value>, <value>;
+```
+
+Where `<value>` is a payment pointer or wallet address URL that's allowed to load.
+
+```http
+Content-Security-Policy: monetization-src https://example.com;
+```
+
+## Example
+
+Your wallet address is `https://wallet.example.com/alice`. You want to ensure that no other URLs can be loaded.
+
+You configure your web server to return the following `Content-Security-Policy` HTTP header on each applicable page of your website.
+
+```http
+Content-Security-Policy: monetization-src https://wallet.example.com/alice;
+```
+
+A bad actor injects their wallet address into your site.
+
+```html
+<link rel="monetization" href="https://example.org/damien" />
+```
+
+However, fetches for the injected URL will return a network error and not load because the URL doesn't match what you've defined in your CSP.
+
+<Hidden>
+
+// ## Browser compatibility
+
+<BrowserCompat json={data} />
+
+</Hidden>
+
+## Specifications
+
+<Specification anchor='content-security-policy' />

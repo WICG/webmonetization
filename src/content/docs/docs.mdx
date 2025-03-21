@@ -1,68 +1,20 @@
 ---
-title: Intro to Web Monetization
+title: Web Monetization
+tableOfContents: false
+next: Content consumer overview
 ---
 
-import { LargeImg, LinkOut, Tooltip } from '@interledger/docs-design-system'
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
-As a website user, it’s common to encounter a headline that captures your attention, only to find the article locked behind a paywall. How often do you pay for a subscription to read a single article? What if you could pay a fraction of the subscription price to access the article and avoid the subscription altogether?
+Web Monetization is a technology that enables websites to receive payments from visitors as they interact with the content. 
 
-As a website owner, you anticipate losing a few visitors due to paywalled content. Even if you offer weekly subscriptions, the price may be more than a visitor is willing to pay. But instead of subscriptions, what if you could generate revenue per piece of content, or even based on the amount of time a visitor spends on the content?
+Website owners, content owners, and publishers can use Web Monetization to replace or complement existing revenue models. 
 
-These are just two ways in which Web Monetization can make payments easier. With Web Monetization, website visitors can send payments directly to websites using a browser extension or any browser that natively implements the Web Monetization specification.
+Site visitors can make a one-time contribution or send small continuous payments as they spend time on web monetized content. The amount and frequency of payments is chosen by the visitor, not the website. 
 
-## Current payments infrastructure
-
-It can take a bit of work to implement payments on a website. If your site already accepts payments, you may be familiar with what it takes to accept multiple payment methods and currencies. The process typically looks something like this:
-
-1. You sign up with one or more payment providers, depending on the payment methods and currencies you want to accept.
-2. You integrate their service(s) into your site. For example, you may create and host your own payment form that is connected to the service, or you use a form supplied by the payment provider.
-3. Depending on the payment method your visitor wants to use, they may need to create an account with you or the payment provider.
-4. Your visitor fills out the payment form. Ideally, they remain on your site to complete the transaction but may be required to access the provider’s site instead.
-
-## Introducing Web Monetization
-
-Web Monetization aims to simplify the payment experience for you and your website visitors. It’s an open technology that allows websites to automatically receive payments from visitors.
-
-It’s a proposed standard that allows your visitors to pay an amount of their choosing with little to no user interaction. It enables a website to automatically signal to web browsers that it can accept payments. With this signal, web browsers facilitate a payment from the visitor to the site by:
-
-- Obtaining authorization to initiate the payment.
-- Gathering details and issuing instructions to start the money movement process.
-- Creating a payment session.
-- Communicating payment events to the site so the site can optionally respond. For example, the site could [remove ads](/docs/guides/remove-ads) or provide [access to exclusive content](/docs/guides/provide-exclusive-content) for paying visitors.
-
-### High-level flow
-
-The following image shows the Web Monetization flow at a high level. Some steps have been combined or excluded. A more in-depth explanation is provided in the [Web Monetization flow](/docs/intro/web-monetization-flow) page.
-
-<LargeImg
-  src='/img/docs/diagram-wm-overview.png'
-  alt='High-level overview of Web Monetization flow'
-/>
-
-1. Bob visits a [web monetized page](/docs/guides/monetize-page). The monetization `<link>` element is how the website signals its acceptance of payments to the browser.
-2. Bob’s browser, either natively or via a browser extension, parses the `<link>` element to get the <Tooltip content='A URL that identifies an Open Payments account' client:load><a href="./resources/glossary#wallet-address">wallet address</a></Tooltip> for Alice, the site owner.
-3. Bob’s browser/extension sends requests to Alice’s wallet address to obtain authorization and instructions for sending a payment.
-4. With authorization granted and payment instructions received, the browser/extension sends requests to Bob’s wallet address to initiate the outgoing payment.
-5. The Web Monetization flow ends. Payment processing, currency exchange, and settlement occurs between the two accounts via a common payment rail.
-
-### Specifying payment amounts and currencies
-
-Web Monetization doesn’t allow a website to specify a payment amount or currency. It only allows the site to tell the browser it can accept payments.
-
-With the help of a <Tooltip content='The entity sending a payment' client:load><a href="./resources/glossary#web-monetization-provider">Web Monetization provider</a></Tooltip>, your visitor decides whether to make a payment, how much and how often to pay, and in which currency. Your <Tooltip content='The entity receiving a payment' client:load><a href="./resources/glossary#web-monetization-receiver">Web Monetization receiver</a></Tooltip> can then exchange the currency of incoming payments based on what you want to receive. This flexibility allows you and your visitors to choose the monetization methods that best suit you both.
-
-### Processing and settling payments
-
-Web Monetization’s role is to help coordinate payments. It does not process or settle payments.
-
-At each end of Web Monetization is an account that supports <LinkOut href="https://openpayments.guide">Open Payments</LinkOut>. The Web Monetization provider supplies your visitor with a funded sending account. In some cases, the visitor could even act as their own Web Monetization provider. The Web Monetization receiver supplies you with a receiving account.
-
-Web Monetization communicates with the sending and receiving accounts to obtain the necessary authorizations and instructions for a payment to be sent and received. Payment processing and settlement then occurs between the sending and receiving accounts, outside of the Web Monetization flow.
-
-## Prior specification version
-
-A new version of the Web Monetization specification was published in June 2023. Users of the previous version should be aware of the following:
-
-- The previous version only used Interledger's Simple Payment Setup Protocol (SPSP). The new version uses <LinkOut href="https://openpayments.guide/">Open Payments</LinkOut>.
-- The `<meta>` element is deprecated in favor of the [`<link>`](/docs/references/html/) element.
-- The `<link>` element does not support the shorthand form of a payment pointer (e.g., `$wallet.example/alice`). You must use the endpoint URL that the payment pointer resolves to (e.g., `https://wallet.example/alice`). If you need help converting a payment pointer from shorthand to its equivalent URL, enter your payment pointer into the input field on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut>. In most cases, you can simply replace the `$` with `https://`.
+  <CardGrid>
+    <LinkCard title="For visitors to web monetized content" href="/supporters/overview" description="As a content consumer, you pay as much or as little as you want, as often as you want, as you spend time on web monetized sites." />
+    <LinkCard title="For website owners, content owners, and publishers" href="/developers/overview" description="Get paid directly for the work you own, create, publish, or contribute to on the web." />
+    <LinkCard title="For developers" href="/developers/link-element"  description="Get started by adding Web Monetization to an HTML page. Web Monetization can also be added to RSS, ATOM, and JSON feeds, as well as Activity Streams." />
+    <LinkCard title="Get the browser extension" href="/supporters/get-started#install-the-extension" description="Download the Interledger Foundation's browser extension. Currently available for Chrome, Firefox, and Edge." />
+  </CardGrid>
