@@ -1,0 +1,112 @@
+---
+interface Props {
+  utm?: Partial<
+    Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
+  >
+  includeGitHub?: boolean
+}
+
+const { utm, includeGitHub = false } = Astro.props
+
+const URLS = {
+  chrome: `https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii`,
+  firefox: `https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/`,
+  edge: `https://microsoftedge.microsoft.com/addons/detail/web-monetization/imjgemgmeoioefpmfefmffbboogighjl`,
+  github: `https://github.com/interledger/web-monetization-extension/releases/latest`,
+}
+
+const toURL = (url: string) => {
+  const result = new URL(url)
+  if (utm && !utm.utm_source) {
+    result.searchParams.set('utm_source', Astro.site!.hostname)
+  }
+  for (const [k, v] of Object.entries(utm || {})) {
+    result.searchParams.set(k, v)
+  }
+  return result.href
+}
+---
+
+<ul>
+  <li>
+    <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
+      <img
+        alt='Chrome Web Store'
+        src='/img/chrome-webstore.png'
+        width='200'
+        height='200'
+      />
+    </a>
+  </li>
+  <li>
+    <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
+      <img
+        alt='Firefox Add-ons'
+        src='/img/Fx-Browser-icon.png'
+        width='200'
+        height='200'
+      />
+    </a>
+  </li>
+  <li>
+    <a href={toURL(URLS.edge)} title='Edge Add-ons'>
+      <img
+        alt='Edge Add-ons'
+        src='/img/microsoft-edge.png'
+        width='200'
+        height='200'
+      />
+    </a>
+  </li>
+  {
+    includeGitHub && (
+      <li>
+        <a href={toURL(URLS.github)} title='Latest release on GitHub'>
+          <img
+            alt='Latest release on GitHub'
+            src='/img/icon-github.svg'
+            width='24'
+            height='24'
+          />
+        </a>
+      </li>
+    )
+  }
+</ul>
+
+<style>
+  ul {
+    list-style: none;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    padding: 0;
+  }
+
+  a {
+    padding: 0.5rem;
+    display: flex;
+    border-radius: 0.5rem;
+    --shadow-color: rgba(191, 191, 191, 1);
+    --shadow-x: 2px;
+    box-shadow:
+      var(--shadow-x) 2px 8px var(--shadow-color),
+      var(--shadow-x) 2px 2px 1px var(--shadow-color);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  img {
+    width: 3rem;
+    height: 3rem;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  a:hover {
+    --shadow-x: 3px;
+  }
+  a:hover img {
+    transform: scale(1.05);
+  }
+</style>
