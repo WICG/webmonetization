@@ -9,9 +9,12 @@ const description = t("site.description");
 ---
 <Base title={title} description={description}>
   <section class="section section_adjusted">
-    <div class="maintenance-message">
-      Down for maintenance
-    </div>
+    <iframe
+      class="iframe_content"
+      src="https://wmtools.interledger-test.dev?contentOnly"
+      title="Publisher tools"
+      loading="eager"
+    />
   </section>
 </Base>
 
@@ -21,21 +24,16 @@ const description = t("site.description");
     background-size: 25em;
   }
 
+  .iframe_content {
+    width: 100%;
+    height: calc(100vh - 190px);
+    border: none;
+  }
+
   .section_adjusted,
   .section_adjusted:first-of-type {
     padding-block-start: 0;
     padding-block-end: 0;
-    min-height: calc(100vh - 190px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  .maintenance-message {
-    font-size: var(--step-3);
-    color: var(--wm-accent);
-    font-family: var(--font-display);
-    text-align: center;
-    padding: var(--space-l);
-  }
 </style>
