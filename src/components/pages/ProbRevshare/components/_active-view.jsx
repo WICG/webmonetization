@@ -15,7 +15,7 @@ export function ActiveView() {
         <OnlyClient>
           <RevshareChart />
           <ShareList />
-          <h2 className='heading3'>Link Element</h2>
+          <h2 className='heading3'>Link Tag</h2>
           <SharesLinkTag />
         </OnlyClient>
       </>
@@ -25,7 +25,7 @@ export function ActiveView() {
       <>
         <h2 className='heading3'>Import existing revshare configuration</h2>
         <p className={styles.text}>
-          Enter your current monetization <code>link</code> element into the
+          Enter your current monetization <code>link</code> tag into the
           field and click <b>Import</b>. The table will populate with your
           existing revshare's configuration.
         </p>
@@ -33,8 +33,8 @@ export function ActiveView() {
           If you make any changes to the table, your monetization{' '}
           <code>link</code> will change. Be sure to replace your old{' '}
           <code>link</code> element with the updated version. Check out{' '}
-          <a href='/docs/guides/monetize-page' target='_blank'>
-            Add Web Monetization to a page
+          <a href='/developers/get-started' target='_blank'>
+            this page
           </a>{' '}
           if you need help.
         </p>

@@ -10,7 +10,7 @@ export function SharesLinkTag() {
   if (!validateShares(shares)) {
     return (
       <p>
-        Unable to generate link element. Please check your entries for errors.
+        Unable to generate link tag. Please check your entries for errors.
       </p>
     )
   }

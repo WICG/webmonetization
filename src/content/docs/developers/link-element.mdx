@@ -1,0 +1,138 @@
+---
+title: Monetization <link> element
+tableOfContents:
+  maxHeadingLevel: 4
+---
+
+import { LinkOut, Hidden } from '@interledger/docs-design-system'
+import Specification from '/src/components/docs/Specification.astro'
+import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
+import data from '/src/data/browser-compat-data/link.json'
+import { Steps, Tabs, TabItem, Badge } from '@astrojs/starlight/components'
+
+<Badge text='HTML DOM API' style='position: relative; top:-30px;' />
+
+From a creator/developer perspective, the monetization `<link>` element is one of the two key pieces to web monetizing a page. The second piece is a wallet address/payment pointer.
+
+## Prerequisites
+
+To web monetize an HTML page:
+
+- You must have an account with a [compatible wallet provider](/wallets)
+- You must have the wallet address, or payment pointer in <LinkOut href="https://paymentpointers.org">URL format</LinkOut>, from your wallet provider
+- Your document must be served over HTTPS
+
+## Monetization `<link>` element
+
+The monetization `<link>` element is what indicates your HTML page supports Web Monetization.
+
+### Syntax
+
+```html
+<link rel="monetization" href="https://(paymentUrl)" />
+```
+
+- The `rel` attribute is always `monetization`
+- The `href` attribute equals your wallet address or your payment pointer in URL format
+
+For example:
+
+```html
+<link rel="monetization" href="https://wallet.example.com/alice" />
+```
+
+### Placement
+
+A monetization `<link>` is `body-ok`, meaning it's allowed in your page's `<head>` and/or `<body>`.
+
+### Multiple monetization links
+
+An HTML page can contain multiple monetization `<link>` elements; however, your site visitor’s [Web Monetization agent](#web-monetization-agent) could be designed to handle multiple links in a particular way. For example, an agent might:
+
+- Split payments evenly between all links
+- Split payments between the first few links it finds
+- Send the amount only to the first link it finds and ignore all others
+
+:::tip[Recommendation]
+The Web Monetization agent built into the <LinkOut href="https://github.com/interledger/web-monetization-extension">Interledger Foundation's extension</LinkOut> splits payments evenly between all links. We recommend other extension developers follow this approach.
+:::
+
+### Iframes
+
+Nested browsing contexts (iframes) can contain monetization `<link>` elements; however, your site visitor's [Web Monetization agent](#web-monetization-agent) determines how iframes are monetized. A few examples of how a Web Monetization agent can monetize iframes include:
+
+- Splitting payments evenly between all monetization links within both the parent and the iframe
+- Splitting payments evenly between all monetization links in the parent and the first monetization link it finds in the iframe's `<head>`, while ignoring any other monetization links in the iframe
+  :::note
+  This is the approach used in the <LinkOut href="https://github.com/interledger/web-monetization-extension">Interledger Foundation's extension</LinkOut>.
+  :::
+- Sending payments to the first monetization link it finds in the parent browsing context and ignoring all other monetization links in the parent and the iframe
+
+### Audio, video, and picture elements
+
+The following HTML elements can be web monetized by adding the `<link>` element between the open and close tags.
+
+<Tabs>
+    <TabItem label="<audio>" icon="seti:audio">
+        ```html
+        <audio src="music.mp3">
+            <link rel="monetization" href="https://wallet.example.com/bob">
+        </audio>
+        ```
+    </TabItem>
+    <TabItem label="<video>" icon="seti:video">
+        ```html
+        <video src="myvideo">
+            <link rel="monetization" href="https://wallet.example.com/bob">
+        </video>
+        ```
+    </TabItem>
+    <TabItem label="<picture>" icon="seti:image">
+        ```html
+        <picture srcset="cat.jpeg">
+            <link rel="monetization" href="https://wallet.example.com/bob">
+        </picture>
+        ```
+    </TabItem>
+</Tabs>
+
+## How it works
+
+### HTMLLinkElement
+
+The <LinkOut href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API">HTML DOM API's</LinkOut> `HTMLLinkElement` interface defines how the `<link>` element functions. The `<link>` element is what allows you to link your HTML page to a resource.
+
+The two most recognizable `HTMLLinkElement` properties are `href` and `rel`. The `href` property defines the URL to the resource. The `rel` property indicates the type of link, or relationship, the resource has to the current page.
+
+### rel="monetization" link type
+
+Browsers already know how to interpret certain `rel` values because of web standards. One such standard is `stylesheet`. When a browser loads a page that contains `<link href="styles.css" rel="stylesheet">`, the browser automatically knows to import a style sheet from the given URL.
+
+The `monetization` link type, however, is not yet a standard. Major web browsers don't automatically know what to do when encountering this link type in a page. Until `monetization` becomes a standard, browsers must rely on a Web Monetization agent.
+
+### Web Monetization agent
+
+A Web Monetization agent is a non-user facing component of the <LinkOut href="https://github.com/interledger/web-monetization-extension">Interledger Foundation's extension</LinkOut>.
+
+The purpose of the Web Monetization agent is to recognize when a page is web monetized and automatically carry out certain tasks. These tasks include:
+
+- Extending the HTML DOM API so that `monetization` is a valid link type
+- Processing the monetization link or links within an HTML page
+- Instrumenting payments by calling the [Open Payments APIs](/developers/about-receiving#a-deeper-dive-into-payments), which are APIs implemented by wallet providers
+- Firing [`monetization`](/developers/events) events after an outgoing payment is created
+- Processing `monetization` events sent to the browser window via the `onmonetization` event handler
+- Enabling the CSP [`monetization-src`](/developers/csp) and Permissions Policy [`monetization`](/developers/permissions-policy) directives
+
+Until Web Monetization agents are natively built in to web browsers, an agent must be added to browsers in some other way. That's why the agent is included as part of the Interledger Foundation's extension.
+
+<Hidden>
+
+// ## Browser compatibility
+
+<BrowserCompat json={data} />
+
+</Hidden>
+
+## Specifications
+
+<Specification anchor='link-type-monetization' />

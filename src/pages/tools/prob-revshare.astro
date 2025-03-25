@@ -1,0 +1,35 @@
+---
+import i18next, { t, changeLanguage } from "i18next";
+import Base from "../../layouts/Base.astro";
+import ProbRevshareGenerator from "../../components/pages/ProbRevshare";
+
+changeLanguage("en");
+
+const title = `Probabilistic Revshare Generator | ${t("site.title")}`;
+const description = t("site.description");
+---
+<Base title={title} description={description}>
+  <section class="section">
+    <div class="contentWrapperMd">
+      <h1 class="heading2">Probabilistic Revshare Generator</h1>
+      <p>Probabilistic revenue sharing is a way to share a portion of a web monetized page's earnings between multiple wallet addresses and payment pointers. Each time a web monetized user visits the page, a recipient will be chosen at random. Payments will go to the chosen recipient until the page is closed or reloaded.</p>
+      <details>
+        <summary>Learn more</summary>
+        <p>Each recipient has a different chance of being chosen, depending on their assigned weight. The weight is translated to a percentage which represents the percent of revenue each recipient will receive over time. The higher the weight, the larger the percentage.</p>
+        <p>For example, if three recipients each have a weight of 1, then each recipient will eventually receive 33% of the revenue. If three recipients have a weight of 1, 2, and 3, the percentages will be 17% (weight 1), 33% (weight 2), and 50% (weight 3).</p>
+        <p>Additional information can be found in the overview of the <a href="/tutorials/revenue-sharing" target="_blank" data-umami-event="Revshare page - Revshare guide">Set up probabilistic revenue sharing</a> tutorial.</p>
+      </details><br />
+      <h2 class="heading3">Define a revshare</h2>
+      <p>Enter each payment pointer and wallet address that will receive a split of the revenue into the table. Names are optional. Click <b>Add Share</b> to add more rows. Assign a weight to each recipient. If you'd rather assign sharing by percentage, enter at least two recipients into the table. The Percent field will open for edits.
+      <p>When you're finished, add the generated monetization <code>link</code> tag to your site. The link contains a unique URL hosted on <code>https://webmonetization.org/api/revshare/pay/</code>.
+      <ProbRevshareGenerator client:load />
+      <p>Don't copy the tag until you're finished setting up your shares. Changes to the table will result in changes to the link.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  p {
+    margin-block-end: var(--space-s);
+  }
+</style>
