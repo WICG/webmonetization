@@ -4,10 +4,9 @@ interface Props {
     Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
   >
   includeGitHub?: boolean
-  variant?: 'transparent' | 'accent'
 }
 
-const { utm, includeGitHub = false, variant = 'transparent' } = Astro.props
+const { utm, includeGitHub = false } = Astro.props
 
 const URLS = {
   chrome: `https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii`,
@@ -28,7 +27,7 @@ const toURL = (url: string) => {
 }
 ---
 
-<ul class:list={[variant === 'accent' && 'accented']}>
+<ul>
   <li>
     <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
       <img
@@ -85,14 +84,18 @@ const toURL = (url: string) => {
     padding: var(--space-xs) var(--space-s);
   }
 
-  ul.accented {
-    --bg: var(--sl-color-accent);
-  }
-
-  li {
+  a {
     padding: 0.5rem;
-    background-color: var(--bg);
+    height: 100%;
+    width: 100%;
+    display: block;
     border-radius: 0.5rem;
+    --shadow-color: rgba(191, 191, 191, 1);
+    --shadow-x: 2px;
+    box-shadow:
+      var(--shadow-x) 2px 8px var(--shadow-color),
+      var(--shadow-x) 2px 2px 1px var(--shadow-color);
+    transition: box-shadow 0.2s ease-in-out;
   }
 
   img {
@@ -101,7 +104,10 @@ const toURL = (url: string) => {
     transition: transform 0.2s ease-in-out;
   }
 
-  img:hover {
-    transform: scale(1.1);
+  a:hover {
+    --shadow-x: 3px;
+  }
+  a:hover img {
+    transform: scale(1.05);
   }
 </style>
