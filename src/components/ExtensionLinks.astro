@@ -77,18 +77,17 @@ const toURL = (url: string) => {
 <style>
   ul {
     list-style: none;
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
+    align-items: baseline;
     justify-content: center;
+    flex-wrap: wrap;
     gap: var(--space-m);
-    padding: var(--space-xs) var(--space-s);
+    padding: 0;
   }
 
   a {
     padding: 0.5rem;
-    height: 100%;
-    width: 100%;
-    display: block;
+    display: flex;
     border-radius: 0.5rem;
     --shadow-color: rgba(191, 191, 191, 1);
     --shadow-x: 2px;
