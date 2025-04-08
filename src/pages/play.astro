@@ -12,6 +12,7 @@ const description = t("site.description");
   <section class="section">
     <div class="contentWrapperMd">
       <h1 class="heading2">Web Monetization Playground</h1>
+      <p class="description">Add custom wallet addresses to test and debug Web Monetization. Once added you will see logs for all monetization events.</p>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
@@ -26,7 +27,7 @@ const description = t("site.description");
           <button class='btn full-width' type='submit' data-umami-event='Play page - Add WebMo link' disabled>
             Add monetization link
           </button>
-          <p>Checking if your browser supports Web Monetization...</p>
+          <p id="notice">Checking if your browser supports Web Monetization...</p>
         </form>
       </div>
     </div>
@@ -65,6 +66,13 @@ const description = t("site.description");
         text-decoration-color: transparent;
       }
     }
+  }
+
+  .description {
+    max-width: 25em;
+    text-align: justify;
+    margin-inline: auto;
+    margin-block-end: var(--space-s);
   }
 
   .form-wrapper {
@@ -202,7 +210,7 @@ const description = t("site.description");
 
 <script>
   const form = document.querySelector('#walletAddressForm') as HTMLFormElement
-  const notice = document.querySelector('p') as HTMLParagraphElement
+  const notice = document.querySelector('#notice') as HTMLParagraphElement
   const input = form.querySelector('input') as HTMLInputElement
   const submitButton = form.querySelector('button') as HTMLButtonElement
   const linkEvents = document.querySelector('#link-events') as HTMLDivElement
