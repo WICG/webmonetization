@@ -1,0 +1,11 @@
+import { LinkOut } from '@interledger/docs-design-system'
+
+An HTML page can contain multiple monetization `<link>` elements; however, your site visitor’s Web Monetization agent could be designed to handle multiple links in a particular way. For example, an agent might:
+
+* Split payments evenly between all links
+* Split payments between the first few links it finds
+* Send the amount only to the first link it finds and ignore all others
+
+:::tip[Recommendation]
+The Web Monetization agent built into the <LinkOut href="https://github.com/interledger/web-monetization-extension">Interledger Foundation’s extension</LinkOut> splits payments evenly between all links. We recommend other extension developers follow this approach.
+:::
