@@ -1,0 +1,27 @@
+import { Tabs, TabItem } from '@astrojs/starlight/components'
+
+The following HTML elements can be web monetized by adding the `<link>` element between the open and close tags.
+
+<Tabs>
+    <TabItem label="<audio>" icon="seti:audio">
+        ```html wrap
+        <audio src="music.mp3">
+            <link rel="monetization" href="https://wallet.example.com/bob">
+        </audio>
+        ```
+    </TabItem>
+    <TabItem label="<video>" icon="seti:video">
+        ```html wrap
+        <video src="myvideo">
+            <link rel="monetization" href="https://wallet.example.com/bob">
+        </video>
+        ```
+    </TabItem>
+    <TabItem label="<picture>" icon="seti:image">
+        ```html wrap
+        <picture srcset="cat.jpeg">
+            <link rel="monetization" href="https://wallet.example.com/bob">
+        </picture>
+        ```
+    </TabItem>
+</Tabs>

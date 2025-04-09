@@ -107,7 +107,7 @@ export default defineConfig({
               items: [
                 {
                   label: 'Webpage (HTML)',
-                  link: '/developers/link-element',
+                  link: '/developers/link-element-webpage',
                 },
                 {
                   label: 'Feed (RSS, Atom, JSON Feed)',
