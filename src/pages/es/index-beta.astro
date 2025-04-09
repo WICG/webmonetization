@@ -1,8 +1,8 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Base from "../layouts/Base.astro";
-import Note from "../components/pages/Note.astro";
-import LinkCard from "../components/pages/LinkCard.astro";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import Base from "../../layouts/Base.astro";
+import Note from "../../components/pages/Note.astro";
+import LinkCard from "../../components/pages/LinkCard.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

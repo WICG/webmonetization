@@ -1,8 +1,12 @@
 ---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 <header>
   <nav class="site-nav">
-    <a href="/" class="site-title">
+    <a href={`/${lang}/`} class="site-title">
       <img src="/img/wm-logo.svg" alt="Web Monetization logo">
       <span>Web Monetization</span>
     </a>
@@ -15,8 +19,8 @@
       </div>
     </button>
     <ul id="navMenu" class="nav-menu collapsed">
-       <li class="nav-link__docs"><a href="/docs" data-umami-event="Landing page - WebMo docs">Documentation</a></li>
-       <li class="nav-link__docs"><a href="/specification" data-umami-event="Landing page - WebMo specs">Specification</a></li>
+       <li class="nav-link__docs"><a href="/docs" data-umami-event="Landing page - WebMo docs">{t('nav.documentation')}</a></li>
+       <li class="nav-link__docs"><a href="/specification" data-umami-event="Landing page - WebMo specs">{t('nav.specification')}</a></li>
        <li class="nav-link__github"><a href="https://github.com/WICG/webmonetization/"><img src="/img/icon-github.svg" alt="Link to GitHub repository"></a></li>
     </ul>
  </nav>
