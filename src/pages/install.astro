@@ -1,10 +1,10 @@
 ---
-import i18next, { t, changeLanguage } from "i18next"
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro"
 import ExtensionLinks from "../components/ExtensionLinks.astro"
 
-changeLanguage("en")
-
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const title = `Install | ${t("site.title")}`
 const description = t("site.description")
 ---

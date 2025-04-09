@@ -1,9 +1,9 @@
 ---
-import i18next, { t, changeLanguage } from "i18next";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Base from "../../layouts/Base.astro";
 
-changeLanguage("en");
-
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const title = `Publisher tools | ${t("site.title")}`;
 const description = t("site.description");
 ---
