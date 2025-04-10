@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="generator" content="ReSpec 35.2.2">
+    <meta name="generator" content="ReSpec 35.3.0">
     <meta name="viewport" content=
     "width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
@@ -143,6 +143,23 @@
     .hljs-link{text-decoration:underline}
     </style>
     <style>
+    var:hover{text-decoration:underline;cursor:pointer}
+    var.respec-hl{color:var(--color,#000);background-color:var(--bg-color);box-shadow:0 0 0 2px var(--bg-color)}
+    @media (prefers-color-scheme:dark){
+    var.respec-hl{filter:saturate(.9) brightness(.9)}
+    }
+    var.respec-hl-c1{--bg-color:#f4d200}
+    var.respec-hl-c2{--bg-color:#ff87a2}
+    var.respec-hl-c3{--bg-color:#96e885}
+    var.respec-hl-c4{--bg-color:#3eeed2}
+    var.respec-hl-c5{--bg-color:#eacfb6}
+    var.respec-hl-c6{--bg-color:#82ddff}
+    var.respec-hl-c7{--bg-color:#ffbcf2}
+    @media print{
+    var.respec-hl{background:0 0;color:#000;box-shadow:unset}
+    }
+    </style>
+    <style>
     var{position:relative;cursor:pointer}
     var[data-type]::after,var[data-type]::before{position:absolute;left:50%;top:-6px;opacity:0;transition:opacity .4s;pointer-events:none}
     var[data-type]::before{content:"";transform:translateX(-50%);border-width:4px 6px 0 6px;border-style:solid;border-color:transparent;border-top-color:#222}
@@ -219,8 +236,8 @@
       "id": "open-payments"
     }
     },
-    "publishISODate": "2025-03-13T00:00:00.000Z",
-    "generatedSubtitle": "Draft Community Group Report 13 March 2025"
+    "publishISODate": "2025-04-10T00:00:00.000Z",
+    "generatedSubtitle": "Draft Community Group Report 10 April 2025"
     }
     </script>
     <link rel="stylesheet" href=
@@ -233,8 +250,8 @@
       </h1>
       <p id="w3c-state">
         <a href="https://www.w3.org/standards/types#reports">Draft Community
-        Group Report</a> <time class="dt-published" datetime="2025-03-13">13
-        March 2025</time>
+        Group Report</a> <time class="dt-published" datetime="2025-04-10">10
+        April 2025</time>
       </p>
       <dl>
         <dt>
@@ -340,7 +357,8 @@
           <p>
             This specification is a work in progress within the community on
             the best shape it should take. Please see the <a href=
-            "https://webmonetization.org/docs/">explainer</a> for more info.
+            "https://webmonetization.org/docs/">documentation</a> for more
+            info.
           </p>
           <p>
             The specification reflects the desired end-state of the Web
@@ -353,8 +371,8 @@
           <p>
             For the most accurate reflection of the APIs that have been
             implemented by providers see the <a href=
-            "https://webmonetization.org/docs/references/html/">
-            API documentation</a>.
+            "https://webmonetization.org/developers/link-element/">API
+            documentation</a>.
           </p>
         </div>
       </div>
@@ -502,13 +520,14 @@
               (deprecated)</a>
             </li>
             <li class="tocline">
-              <a class="tocxref" href="#paymentpointer-attribute"><bdi class=
+              <a class="tocxref" href=
+              "#paymentpointer-attribute-deprecated"><bdi class=
               "secno">9.6</bdi> <span data-export="" data-dfn-type="attribute"
               data-idl="attribute" data-title="paymentPointer" data-dfn-for=
               "MonetizationEvent" data-type="USVString" data-lt=
               "paymentPointer" data-local-lt=
               "MonetizationEvent.paymentPointer"><code>paymentPointer</code></span>
-              attribute</a>
+              attribute (deprecated)</a>
             </li>
             <li class="tocline">
               <a class="tocxref" href="#incomingpayment-attribute"><bdi class=
@@ -517,6 +536,15 @@
               "MonetizationEvent" data-type="USVString" data-lt=
               "incomingPayment" data-local-lt=
               "MonetizationEvent.incomingPayment"><code>incomingPayment</code></span>
+              attribute</a>
+            </li>
+            <li class="tocline">
+              <a class="tocxref" href="#walletaddress-attribute"><bdi class=
+              "secno">9.8</bdi> <span data-export="" data-dfn-type="attribute"
+              data-idl="attribute" data-title="walletAddress" data-dfn-for=
+              "MonetizationEvent" data-type="USVString" data-lt="walletAddress"
+              data-local-lt=
+              "MonetizationEvent.walletAddress"><code>walletAddress</code></span>
               attribute</a>
             </li>
           </ol>
@@ -872,8 +900,8 @@
         <p>
           The following example shows how to monetize various types of media
           using different <a data-link-type="dfn|abstract-op" href=
-          "#dfn-payment-pointer" class="internalDFN" id=
-          "ref-for-dfn-payment-pointer-1">payment pointers</a>.
+          "#dfn-wallet-address" class="internalDFN" id=
+          "ref-for-dfn-wallet-address-1">wallet addresses</a>.
         </p>
         <aside class="example" id="example-5">
           <div class="marker">
@@ -961,13 +989,13 @@
         <dd>
           The party receiving payments on behalf of the website, whose details
           are provided by a <a data-link-type="dfn|abstract-op" href=
-          "#dfn-payment-pointer" class="internalDFN" id=
-          "ref-for-dfn-payment-pointer-2">payment pointer</a>.
+          "#dfn-wallet-address" class="internalDFN" id=
+          "ref-for-dfn-wallet-address-2">wallet address</a>.
         </dd>
         <dt>
-          <dfn data-plurals="payment pointers" id="dfn-payment-pointer"
-          tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Payment
-          Pointer</dfn>:
+          <dfn data-plurals="wallet addresses" id="dfn-wallet-address"
+          tabindex="0" aria-haspopup="dialog" data-dfn-type="dfn">Wallet
+          address</dfn>:
         </dt>
         <dd>
           A <a data-link-type="dfn" href=
@@ -1071,9 +1099,9 @@
       </div>
       <p>
         The monetization keyword indicates a <a data-link-type=
-        "dfn|abstract-op" href="#dfn-payment-pointer" class="internalDFN" id=
-        "ref-for-dfn-payment-pointer-3">payment pointer</a> used to monetize
-        the document.
+        "dfn|abstract-op" href="#dfn-wallet-address" class="internalDFN" id=
+        "ref-for-dfn-wallet-address-3">wallet address</a> used to monetize the
+        document.
       </p>
       <p>
         The <code data-x="rel-monetization">monetization</code> keyword may be
@@ -1504,9 +1532,9 @@ class="idlAttribute" id="idl-def-monetizationcurrencyamount-value" data-title=
         </h2><a class="self-link" href="#monetizationevent-interface"
         aria-label="Permalink for Section 9."></a>
       </div>
-      <pre class="idl def" id="webidl-106886564"><span class=
+      <pre class="idl def" id="webidl-603577181"><span class=
       "idlHeader"><a class="self-link" href=
-      "#webidl-106886564">WebIDL</a></span><code><span data-idl="" class=
+      "#webidl-603577181">WebIDL</a></span><code><span data-idl="" class=
       "idlInterface" id="idl-def-monetizationevent" data-title=
       "MonetizationEvent">[<span class="extAttr"><a data-link-type=
       "extended-attribute" href=
@@ -1530,9 +1558,33 @@ tabindex="0" aria-haspopup="dialog"><code>constructor</code></dfn>(<span class=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a></span> <span class="idlParamName">type</span>,<span class="idlType"> <a data-link-type="idl"
 href="#dom-monetizationeventinit" class="internalDFN" id=
 "ref-for-dom-monetizationeventinit-2"><code>MonetizationEventInit</code></a></span> <span class="idlParamName">eventInitDict</span>);</span><span data-idl=""
-class="idlAttribute" id="idl-def-monetizationevent-amount" data-title="amount"
-data-dfn-for="MonetizationEvent">
+class="idlAttribute" id="idl-def-monetizationevent-amountsent" data-title=
+"amountSent" data-dfn-for="MonetizationEvent">
+  readonly attribute<span class="idlType"> <a data-link-type="idl" href=
+"#dom-monetizationcurrencyamount" class="internalDFN" id=
+"ref-for-dom-monetizationcurrencyamount-1"><code>MonetizationCurrencyAmount</code></a></span> <a class="internalDFN idlName"
+data-link-type="attribute" href="#dom-monetizationevent-amountsent" id=
+"ref-for-dom-monetizationevent-amountsent-1"><code>amountSent</code></a>;</span><span data-idl=""
+class="idlAttribute" id="idl-def-monetizationevent-incomingpayment" data-title=
+"incomingPayment" data-dfn-for="MonetizationEvent">
   readonly attribute<span class="idlType"> <a data-link-type="interface" href=
+"https://webidl.spec.whatwg.org/#idl-USVString">USVString</a>?</span> <a class=
+"internalDFN idlName" data-link-type="attribute" href=
+"#dom-monetizationevent-incomingpayment" id=
+"ref-for-dom-monetizationevent-incomingpayment-4"><code>incomingPayment</code></a>;</span><span data-idl=""
+class="idlAttribute" id="idl-def-monetizationevent-walletaddress" data-title=
+"walletAddress" data-dfn-for="MonetizationEvent">
+  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
+"https://webidl.spec.whatwg.org/#idl-USVString">USVString</a></span> <a class=
+"internalDFN idlName" data-link-type="attribute" href=
+"#dom-monetizationevent-walletaddress" id=
+"ref-for-dom-monetizationevent-walletaddress-1"><code>walletAddress</code></a>;</span><span data-idl=""
+class="idlAttribute" id="idl-def-monetizationevent-amount" data-title="amount"
+data-dfn-for="MonetizationEvent"><span class="idlSectionComment">
+
+  // Following are deprecated
+  </span>readonly attribute<span class="idlType"> <a data-link-type="interface"
+href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-amount" id=
@@ -1558,27 +1610,13 @@ class="idlAttribute" id="idl-def-monetizationevent-receipt" data-title=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-receipt" id=
 "ref-for-dom-monetizationevent-receipt-1"><code>receipt</code></a>;</span><span data-idl=""
-class="idlAttribute" id="idl-def-monetizationevent-amountsent" data-title=
-"amountSent" data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="idl" href=
-"#dom-monetizationcurrencyamount" class="internalDFN" id=
-"ref-for-dom-monetizationcurrencyamount-1"><code>MonetizationCurrencyAmount</code></a></span> <a class="internalDFN idlName"
-data-link-type="attribute" href="#dom-monetizationevent-amountsent" id=
-"ref-for-dom-monetizationevent-amountsent-1"><code>amountSent</code></a>;</span><span data-idl=""
 class="idlAttribute" id="idl-def-monetizationevent-paymentpointer" data-title=
 "paymentPointer" data-dfn-for="MonetizationEvent">
   readonly attribute<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-USVString">USVString</a></span> <a class=
 "internalDFN idlName" data-link-type="attribute" href=
 "#dom-monetizationevent-paymentpointer" id=
-"ref-for-dom-monetizationevent-paymentpointer-1"><code>paymentPointer</code></a>;</span><span data-idl=""
-class="idlAttribute" id="idl-def-monetizationevent-incomingpayment" data-title=
-"incomingPayment" data-dfn-for="MonetizationEvent">
-  readonly attribute<span class="idlType"> <a data-link-type="interface" href=
-"https://webidl.spec.whatwg.org/#idl-USVString">USVString</a>?</span> <a class=
-"internalDFN idlName" data-link-type="attribute" href=
-"#dom-monetizationevent-incomingpayment" id=
-"ref-for-dom-monetizationevent-incomingpayment-4"><code>incomingPayment</code></a>;</span>
+"ref-for-dom-monetizationevent-paymentpointer-1"><code>paymentPointer</code></a>;</span>
 };</span><span data-idl="" class="idlDictionary" id=
 "idl-def-monetizationeventinit" data-title="MonetizationEventInit">
 
@@ -1588,9 +1626,36 @@ dictionary <dfn data-export="" data-dfn-type="dictionary" id=
 aria-haspopup="dialog"><code>MonetizationEventInit</code></dfn> : <span class=
 "idlSuperclass"><a data-link-type="dictionary" href=
 "https://dom.spec.whatwg.org/#dictdef-eventinit">EventInit</a></span> {<span data-idl=""
-class="idlMember" id="idl-def-monetizationeventinit-amount" data-title="amount"
-data-dfn-for="MonetizationEventInit">
+class="idlMember" id="idl-def-monetizationeventinit-amountsent" data-title=
+"amountSent" data-dfn-for="MonetizationEventInit">
+  required<span class="idlType"> <a data-link-type="dictionary" href=
+"https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">PaymentCurrencyAmount</a></span> <dfn data-export=""
+data-dfn-type="dict-member" id="dom-monetizationeventinit-amountsent" data-idl=
+"field" data-title="amountSent" data-dfn-for="MonetizationEventInit" data-type=
+"PaymentCurrencyAmount" class="idlName" tabindex="0" aria-haspopup=
+"dialog"><code>amountSent</code></dfn>;</span><span data-idl="" class=
+"idlMember" id="idl-def-monetizationeventinit-incomingpayment" data-title=
+"incomingPayment" data-dfn-for="MonetizationEventInit">
   required<span class="idlType"> <a data-link-type="interface" href=
+"https://webidl.spec.whatwg.org/#idl-USVString">USVString</a>?</span> <dfn data-export=""
+data-dfn-type="dict-member" id="dom-monetizationeventinit-incomingpayment"
+data-idl="field" data-title="incomingPayment" data-dfn-for=
+"MonetizationEventInit" data-type="USVString" class="idlName" tabindex="0"
+aria-haspopup=
+"dialog"><code>incomingPayment</code></dfn>;</span><span data-idl="" class=
+"idlMember" id="idl-def-monetizationeventinit-walletaddress" data-title=
+"walletAddress" data-dfn-for="MonetizationEventInit">
+  required<span class="idlType"> <a data-link-type="interface" href=
+"https://webidl.spec.whatwg.org/#idl-USVString">USVString</a></span> <dfn data-export=""
+data-dfn-type="dict-member" id="dom-monetizationeventinit-walletaddress"
+data-idl="field" data-title="walletAddress" data-dfn-for=
+"MonetizationEventInit" data-type="USVString" class="idlName" tabindex="0"
+aria-haspopup="dialog"><code>walletAddress</code></dfn>;</span><span data-idl=
+"" class="idlMember" id="idl-def-monetizationeventinit-amount" data-title=
+"amount" data-dfn-for="MonetizationEventInit"><span class="idlSectionComment">
+
+  // Following are deprecated
+  </span>required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-DOMString">DOMString</a>?</span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-amount" data-idl=
 "field" data-title="amount" data-dfn-for="MonetizationEventInit" data-type=
@@ -1620,30 +1685,14 @@ data-dfn-type="dict-member" id="dom-monetizationeventinit-receipt" data-idl=
 "field" data-title="receipt" data-dfn-for="MonetizationEventInit" data-type=
 "DOMString" class="idlName" tabindex="0" aria-haspopup=
 "dialog"><code>receipt</code></dfn>;</span><span data-idl="" class="idlMember"
-id="idl-def-monetizationeventinit-amountsent" data-title="amountSent"
+id="idl-def-monetizationeventinit-paymentpointer" data-title="paymentPointer"
 data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="dictionary" href=
-"https://www.w3.org/TR/payment-request/#dom-paymentcurrencyamount">PaymentCurrencyAmount</a></span> <dfn data-export=""
-data-dfn-type="dict-member" id="dom-monetizationeventinit-amountsent" data-idl=
-"field" data-title="amountSent" data-dfn-for="MonetizationEventInit" data-type=
-"PaymentCurrencyAmount" class="idlName" tabindex="0" aria-haspopup=
-"dialog"><code>amountSent</code></dfn>;</span><span data-idl="" class=
-"idlMember" id="idl-def-monetizationeventinit-paymentpointer" data-title=
-"paymentPointer" data-dfn-for="MonetizationEventInit">
   required<span class="idlType"> <a data-link-type="interface" href=
 "https://webidl.spec.whatwg.org/#idl-USVString">USVString</a></span> <dfn data-export=""
 data-dfn-type="dict-member" id="dom-monetizationeventinit-paymentpointer"
 data-idl="field" data-title="paymentPointer" data-dfn-for=
 "MonetizationEventInit" data-type="USVString" class="idlName" tabindex="0"
-aria-haspopup="dialog"><code>paymentPointer</code></dfn>;</span><span data-idl=
-"" class="idlMember" id="idl-def-monetizationeventinit-incomingpayment"
-data-title="incomingPayment" data-dfn-for="MonetizationEventInit">
-  required<span class="idlType"> <a data-link-type="interface" href=
-"https://webidl.spec.whatwg.org/#idl-USVString">USVString</a>?</span> <dfn data-export=""
-data-dfn-type="dict-member" id="dom-monetizationeventinit-incomingpayment"
-data-idl="field" data-title="incomingPayment" data-dfn-for=
-"MonetizationEventInit" data-type="USVString" class="idlName" tabindex="0"
-aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
+aria-haspopup="dialog"><code>paymentPointer</code></dfn>;</span>
 };</span></code></pre>
       <div class="warning" id="issue-container-generatedID-1">
         <div role="heading" class="warning-title marker" id="h-warning-0"
@@ -1652,9 +1701,22 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         </div>
         <div class="">
           <p>
-            The <code>amount</code>, <code>assetCode</code>,
-            <code>assetScale</code> and <code>receipt</code> attributes are
-            deprecated.
+            The <a data-link-type="idl" href="#dom-monetizationevent-amount"
+            class="internalDFN" id=
+            "ref-for-dom-monetizationevent-amount-2"><code>amount</code></a>,
+            <a data-link-type="idl" href="#dom-monetizationevent-assetcode"
+            class="internalDFN" id=
+            "ref-for-dom-monetizationevent-assetcode-2"><code>assetCode</code></a>,
+            <a data-link-type="idl" href="#dom-monetizationevent-assetscale"
+            class="internalDFN" id=
+            "ref-for-dom-monetizationevent-assetscale-2"><code>assetScale</code></a>,
+            <a data-link-type="idl" href=
+            "#dom-monetizationevent-paymentpointer" class="internalDFN" id=
+            "ref-for-dom-monetizationevent-paymentpointer-2"><code>paymentPointer</code></a>
+            and <a data-link-type="idl" href="#dom-monetizationevent-receipt"
+            class="internalDFN" id=
+            "ref-for-dom-monetizationevent-receipt-2"><code>receipt</code></a>
+            attributes are deprecated.
           </p>
           <p>
             All <a data-link-type="dfn|abstract-op" href=
@@ -1807,25 +1869,26 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           returns the value it was initialized with.
         </p>
       </section>
-      <section id="paymentpointer-attribute">
+      <section id="paymentpointer-attribute-deprecated">
         <div class="header-wrapper">
-          <h3 id="x9-6-paymentpointer-attribute">
+          <h3 id="x9-6-paymentpointer-attribute-deprecated">
             <bdi class="secno">9.6</bdi> <dfn data-export="" data-dfn-type=
             "attribute" id="dom-monetizationevent-paymentpointer" data-idl=
             "attribute" data-title="paymentPointer" data-dfn-for=
             "MonetizationEvent" data-type="USVString" data-lt="paymentPointer"
             data-local-lt="MonetizationEvent.paymentPointer" tabindex="0"
             aria-haspopup="dialog"><code>paymentPointer</code></dfn> attribute
-          </h3><a class="self-link" href="#paymentpointer-attribute"
+            (deprecated)
+          </h3><a class="self-link" href="#paymentpointer-attribute-deprecated"
           aria-label="Permalink for Section 9.6"></a>
         </div>
         <p>
           A <a data-link-type="dfn" href=
           "https://url.spec.whatwg.org/#concept-url">URL</a> representing the
-          <a data-link-type="dfn|abstract-op" href="#dfn-payment-pointer"
-          class="internalDFN" id="ref-for-dfn-payment-pointer-4">payment
-          pointer</a> that has been monetized. When getting, returns the value
-          it was initialized with.
+          <a data-link-type="dfn|abstract-op" href="#dfn-wallet-address" class=
+          "internalDFN" id="ref-for-dfn-wallet-address-4">wallet address</a>
+          that has been monetized. When getting, returns the value it was
+          initialized with.
         </p>
       </section>
       <section id="incomingpayment-attribute">
@@ -1847,6 +1910,27 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           "#dfn-monetization-receiver" class="internalDFN" id=
           "ref-for-dfn-monetization-receiver-10">monetization receiver</a>.
           When getting, returns the value it was initialized with.
+        </p>
+      </section>
+      <section id="walletaddress-attribute">
+        <div class="header-wrapper">
+          <h3 id="x9-8-walletaddress-attribute">
+            <bdi class="secno">9.8</bdi> <dfn data-export="" data-dfn-type=
+            "attribute" id="dom-monetizationevent-walletaddress" data-idl=
+            "attribute" data-title="walletAddress" data-dfn-for=
+            "MonetizationEvent" data-type="USVString" data-lt="walletAddress"
+            data-local-lt="MonetizationEvent.walletAddress" tabindex="0"
+            aria-haspopup="dialog"><code>walletAddress</code></dfn> attribute
+          </h3><a class="self-link" href="#walletaddress-attribute" aria-label=
+          "Permalink for Section 9.8"></a>
+        </div>
+        <p>
+          A <a data-link-type="dfn" href=
+          "https://url.spec.whatwg.org/#concept-url">URL</a> representing the
+          <a data-link-type="dfn|abstract-op" href="#dfn-wallet-address" class=
+          "internalDFN" id="ref-for-dfn-wallet-address-5">wallet address</a>
+          that has been monetized. When getting, returns the value it was
+          initialized with.
         </p>
       </section>
     </section>
@@ -1937,10 +2021,10 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         </div>
         <p>
           The monetization-src directive restricts the URLs from which a
-          <a data-link-type="dfn|abstract-op" href="#dfn-payment-pointer"
-          class="internalDFN" id="ref-for-dfn-payment-pointer-5">payment
-          pointer</a> is loaded. The syntax for the directive's name and value
-          is described by the following ABNF:
+          <a data-link-type="dfn|abstract-op" href="#dfn-wallet-address" class=
+          "internalDFN" id="ref-for-dfn-wallet-address-6">wallet address</a> is
+          loaded. The syntax for the directive's name and value is described by
+          the following ABNF:
         </p>
         <pre aria-busy="false"><code class="hljs abnf"><span class=
         "hljs-attribute">directive-name</span>  <span class=
@@ -1967,7 +2051,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           "hljs-attr">rel</span>=<span class=
           "hljs-string">"monetization"</span> <span class=
           "hljs-attr">href</span>=<span class=
-          "hljs-string">"https://example.org/payment-pointer"</span>&gt;</span></code></pre>
+          "hljs-string">"https://example.org/wallet-address"</span>&gt;</span></code></pre>
         </aside>
         <section data-cite="CSP" id="monetization-src-pre-request-check">
           <div class="header-wrapper">
@@ -2061,29 +2145,28 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         monetization of a particular site if they wish to do so).
       </p>
       <p>
-        As <a data-link-type="dfn|abstract-op" href="#dfn-payment-pointer"
-        class="internalDFN" id="ref-for-dfn-payment-pointer-6">payment
-        pointers</a> are generally provided as a service (e.g., Uphold), a
+        As <a data-link-type="dfn|abstract-op" href="#dfn-wallet-address"
+        class="internalDFN" id="ref-for-dfn-wallet-address-7">wallet
+        addresses</a> are generally provided as a service (e.g., Uphold), a
         <abbr title="Cross Site Scripting">XSS</abbr> attack could inject
         malicious <a data-link-type="dfn|abstract-op" href=
-        "#dfn-payment-pointer" class="internalDFN" id=
-        "ref-for-dfn-payment-pointer-7">payment pointers</a> into a page that
+        "#dfn-wallet-address" class="internalDFN" id=
+        "ref-for-dfn-wallet-address-8">wallet addresses</a> into a page that
         uses the same service. To mitigate such an attack, it is <em class=
         "rfc2119">RECOMMENDED</em> that developers:
       </p>
       <ul>
         <li>host a <a data-link-type="dfn|abstract-op" href=
-        "#dfn-payment-pointer" class="internalDFN" id=
-        "ref-for-dfn-payment-pointer-8">payment pointer</a> on their own
-        servers and proxy [<cite><a class="bibref" data-link-type="biblio"
-          href="#bib-open-payments" title=
-          "Open Payments">open-payments</a></cite>] requests on the server as
-          needed.
+        "#dfn-wallet-address" class="internalDFN" id=
+        "ref-for-dfn-wallet-address-9">wallet address</a> on their own servers
+        and proxy [<cite><a class="bibref" data-link-type="biblio" href=
+        "#bib-open-payments" title="Open Payments">open-payments</a></cite>]
+        requests on the server as needed.
         </li>
         <li>Set the <code>monetization-src</code> CSP directive to restrict
         requests to origins they control and trust to host <a data-link-type=
-        "dfn|abstract-op" href="#dfn-payment-pointer" class="internalDFN" id=
-        "ref-for-dfn-payment-pointer-9">payment pointers</a>.
+        "dfn|abstract-op" href="#dfn-wallet-address" class="internalDFN" id=
+        "ref-for-dfn-wallet-address-10">wallet addresses</a>.
         </li>
       </ul>
     </section>
@@ -2106,16 +2189,16 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
       </p>
       <p>
         Further, the user agent gets the payment information from the
-        <a data-link-type="dfn|abstract-op" href="#dfn-payment-pointer" class=
-        "internalDFN" id="ref-for-dfn-payment-pointer-10">payment pointer</a>
-        to establish the <a data-link-type="dfn|abstract-op" href=
+        <a data-link-type="dfn|abstract-op" href="#dfn-wallet-address" class=
+        "internalDFN" id="ref-for-dfn-wallet-address-11">wallet address</a> to
+        establish the <a data-link-type="dfn|abstract-op" href=
         "#dfn-payment-session" class="internalDFN" id=
         "ref-for-dfn-payment-session-8">payment session</a>. This also ensures
         the <a data-link-type="dfn|abstract-op" href="#dfn-provider" class=
         "internalDFN" id="ref-for-dfn-provider-7">monetization provider</a>
         doesn't have access to a user's browsing history or to the
-        <a data-link-type="dfn|abstract-op" href="#dfn-payment-pointer" class=
-        "internalDFN" id="ref-for-dfn-payment-pointer-11">payment pointer</a>.
+        <a data-link-type="dfn|abstract-op" href="#dfn-wallet-address" class=
+        "internalDFN" id="ref-for-dfn-wallet-address-12">wallet address</a>.
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
@@ -2156,9 +2239,8 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         The key words <em class="rfc2119">MUST</em>, <em class="rfc2119">MUST
         NOT</em>, and <em class="rfc2119">RECOMMENDED</em> in this document are
         to be interpreted as described in <a href=
-        "https://datatracker.ietf.org/doc/html/bcp14">BCP 14</a>
-        [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc2119"
-        title=
+        "https://www.rfc-editor.org/info/bcp14">BCP 14</a> [<cite><a class=
+        "bibref" data-link-type="biblio" href="#bib-rfc2119" title=
         "Key words for use in RFCs to Indicate Requirement Levels">RFC2119</a></cite>]
         [<cite><a class="bibref" data-link-type="biblio" href="#bib-rfc8174"
         title=
@@ -2186,7 +2268,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           </dt>
           <dd>
             <a href="https://www.w3.org/TR/CSP3/"><cite>Content Security Policy
-            Level 3</cite></a>. Mike West; Antonio Sartori. W3C. 12 March 2025.
+            Level 3</cite></a>. Mike West; Antonio Sartori. W3C. 24 March 2025.
             W3C Working Draft. URL: <a href=
             "https://www.w3.org/TR/CSP3/">https://www.w3.org/TR/CSP3/</a>
           </dd>
@@ -2449,12 +2531,12 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
       </ul>
     </div>
     <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
-    "dfn-panel-for-dfn-payment-pointer" aria-label=
-    "Links in this document to definition: Payment Pointer">
+    "dfn-panel-for-dfn-wallet-address" aria-label=
+    "Links in this document to definition: Wallet address">
       <span class="caret"></span>
       <div>
-        <a class="self-link" href="#dfn-payment-pointer" aria-label=
-        "Permalink for definition: Payment Pointer. Activate to close this dialog.">
+        <a class="self-link" href="#dfn-wallet-address" aria-label=
+        "Permalink for definition: Wallet address. Activate to close this dialog.">
         Permalink</a>
       </div>
       <p>
@@ -2462,38 +2544,43 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
       </p>
       <ul>
         <li>
-          <a href="#ref-for-dfn-payment-pointer-1" title=
+          <a href="#ref-for-dfn-wallet-address-1" title=
           "§ 1.5 Monetizing media">§ 1.5 Monetizing media</a>
         </li>
         <li>
-          <a href="#ref-for-dfn-payment-pointer-2" title="§ 2. Model">§ 2.
+          <a href="#ref-for-dfn-wallet-address-2" title="§ 2. Model">§ 2.
           Model</a>
         </li>
         <li>
-          <a href="#ref-for-dfn-payment-pointer-3" title=
+          <a href="#ref-for-dfn-wallet-address-3" title=
           "§ 4. Link type &quot;monetization&quot;">§ 4. Link type
           "monetization"</a>
         </li>
         <li>
-          <a href="#ref-for-dfn-payment-pointer-4" title=
-          "§ 9.6 paymentPointer attribute">§ 9.6 paymentPointer attribute</a>
+          <a href="#ref-for-dfn-wallet-address-4" title=
+          "§ 9.6 paymentPointer attribute (deprecated)">§ 9.6 paymentPointer
+          attribute (deprecated)</a>
         </li>
         <li>
-          <a href="#ref-for-dfn-payment-pointer-5" title=
+          <a href="#ref-for-dfn-wallet-address-5" title=
+          "§ 9.8 walletAddress attribute">§ 9.8 walletAddress attribute</a>
+        </li>
+        <li>
+          <a href="#ref-for-dfn-wallet-address-6" title=
           "§ 11.1 monetization-src directive">§ 11.1 monetization-src
           directive</a>
         </li>
         <li>
-          <a href="#ref-for-dfn-payment-pointer-6" title=
+          <a href="#ref-for-dfn-wallet-address-7" title=
           "§ 12. Security considerations">§ 12. Security considerations</a>
-          <a href="#ref-for-dfn-payment-pointer-7" title="Reference 2">(2)</a>
-          <a href="#ref-for-dfn-payment-pointer-8" title="Reference 3">(3)</a>
-          <a href="#ref-for-dfn-payment-pointer-9" title="Reference 4">(4)</a>
+          <a href="#ref-for-dfn-wallet-address-8" title="Reference 2">(2)</a>
+          <a href="#ref-for-dfn-wallet-address-9" title="Reference 3">(3)</a>
+          <a href="#ref-for-dfn-wallet-address-10" title="Reference 4">(4)</a>
         </li>
         <li>
-          <a href="#ref-for-dfn-payment-pointer-10" title=
+          <a href="#ref-for-dfn-wallet-address-11" title=
           "§ 13. Privacy considerations">§ 13. Privacy considerations</a>
-          <a href="#ref-for-dfn-payment-pointer-11" title="Reference 2">(2)</a>
+          <a href="#ref-for-dfn-wallet-address-12" title="Reference 2">(2)</a>
         </li>
       </ul>
     </div>
@@ -2710,6 +2797,63 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
       </ul>
     </div>
     <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
+    "dfn-panel-for-dom-monetizationeventinit-amountsent" aria-label=
+    "Links in this document to definition: amountSent">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-monetizationeventinit-amountsent"
+        aria-label=
+        "Permalink for definition: amountSent. Activate to close this dialog.">Permalink</a>
+        <span class="marker dfn-exported" title=
+        "Definition can be referenced by other specifications">exported</span>
+      </div>
+      <p>
+        <b>Referenced in:</b>
+      </p>
+      <ul>
+        <li>Not referenced in this document.
+        </li>
+      </ul>
+    </div>
+    <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
+    "dfn-panel-for-dom-monetizationeventinit-incomingpayment" aria-label=
+    "Links in this document to definition: incomingPayment">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-monetizationeventinit-incomingpayment"
+        aria-label=
+        "Permalink for definition: incomingPayment. Activate to close this dialog.">
+        Permalink</a> <span class="marker dfn-exported" title=
+        "Definition can be referenced by other specifications">exported</span>
+      </div>
+      <p>
+        <b>Referenced in:</b>
+      </p>
+      <ul>
+        <li>Not referenced in this document.
+        </li>
+      </ul>
+    </div>
+    <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
+    "dfn-panel-for-dom-monetizationeventinit-walletaddress" aria-label=
+    "Links in this document to definition: walletAddress">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-monetizationeventinit-walletaddress"
+        aria-label=
+        "Permalink for definition: walletAddress. Activate to close this dialog.">
+        Permalink</a> <span class="marker dfn-exported" title=
+        "Definition can be referenced by other specifications">exported</span>
+      </div>
+      <p>
+        <b>Referenced in:</b>
+      </p>
+      <ul>
+        <li>Not referenced in this document.
+        </li>
+      </ul>
+    </div>
+    <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
     "dfn-panel-for-dom-monetizationeventinit-amount" aria-label=
     "Links in this document to definition: amount">
       <span class="caret"></span>
@@ -2786,25 +2930,6 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
       </ul>
     </div>
     <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
-    "dfn-panel-for-dom-monetizationeventinit-amountsent" aria-label=
-    "Links in this document to definition: amountSent">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="#dom-monetizationeventinit-amountsent"
-        aria-label=
-        "Permalink for definition: amountSent. Activate to close this dialog.">Permalink</a>
-        <span class="marker dfn-exported" title=
-        "Definition can be referenced by other specifications">exported</span>
-      </div>
-      <p>
-        <b>Referenced in:</b>
-      </p>
-      <ul>
-        <li>Not referenced in this document.
-        </li>
-      </ul>
-    </div>
-    <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
     "dfn-panel-for-dom-monetizationeventinit-paymentpointer" aria-label=
     "Links in this document to definition: paymentPointer">
       <span class="caret"></span>
@@ -2812,25 +2937,6 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <a class="self-link" href="#dom-monetizationeventinit-paymentpointer"
         aria-label=
         "Permalink for definition: paymentPointer. Activate to close this dialog.">
-        Permalink</a> <span class="marker dfn-exported" title=
-        "Definition can be referenced by other specifications">exported</span>
-      </div>
-      <p>
-        <b>Referenced in:</b>
-      </p>
-      <ul>
-        <li>Not referenced in this document.
-        </li>
-      </ul>
-    </div>
-    <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
-    "dfn-panel-for-dom-monetizationeventinit-incomingpayment" aria-label=
-    "Links in this document to definition: incomingPayment">
-      <span class="caret"></span>
-      <div>
-        <a class="self-link" href="#dom-monetizationeventinit-incomingpayment"
-        aria-label=
-        "Permalink for definition: incomingPayment. Activate to close this dialog.">
         Permalink</a> <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
       </div>
@@ -2852,7 +2958,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
         <a class="marker idl-block" title="Jump to IDL declaration" href=
-        "#webidl-106886564">IDL</a>
+        "#webidl-603577181">IDL</a>
       </div>
       <p>
         <b>Referenced in:</b>
@@ -2861,7 +2967,8 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <li>
           <a href="#ref-for-dom-monetizationevent-amount-1" title=
           "§ 9. MonetizationEvent interface">§ 9. MonetizationEvent
-          interface</a>
+          interface</a> <a href="#ref-for-dom-monetizationevent-amount-2"
+          title="Reference 2">(2)</a>
         </li>
       </ul>
     </div>
@@ -2875,7 +2982,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         Permalink</a> <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
         <a class="marker idl-block" title="Jump to IDL declaration" href=
-        "#webidl-106886564">IDL</a>
+        "#webidl-603577181">IDL</a>
       </div>
       <p>
         <b>Referenced in:</b>
@@ -2884,7 +2991,8 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <li>
           <a href="#ref-for-dom-monetizationevent-assetcode-1" title=
           "§ 9. MonetizationEvent interface">§ 9. MonetizationEvent
-          interface</a>
+          interface</a> <a href="#ref-for-dom-monetizationevent-assetcode-2"
+          title="Reference 2">(2)</a>
         </li>
       </ul>
     </div>
@@ -2899,7 +3007,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
         <a class="marker idl-block" title="Jump to IDL declaration" href=
-        "#webidl-106886564">IDL</a>
+        "#webidl-603577181">IDL</a>
       </div>
       <p>
         <b>Referenced in:</b>
@@ -2908,7 +3016,8 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <li>
           <a href="#ref-for-dom-monetizationevent-assetscale-1" title=
           "§ 9. MonetizationEvent interface">§ 9. MonetizationEvent
-          interface</a>
+          interface</a> <a href="#ref-for-dom-monetizationevent-assetscale-2"
+          title="Reference 2">(2)</a>
         </li>
       </ul>
     </div>
@@ -2923,7 +3032,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
         <a class="marker idl-block" title="Jump to IDL declaration" href=
-        "#webidl-106886564">IDL</a>
+        "#webidl-603577181">IDL</a>
       </div>
       <p>
         <b>Referenced in:</b>
@@ -2946,7 +3055,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
         <a class="marker idl-block" title="Jump to IDL declaration" href=
-        "#webidl-106886564">IDL</a>
+        "#webidl-603577181">IDL</a>
       </div>
       <p>
         <b>Referenced in:</b>
@@ -2955,7 +3064,8 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <li>
           <a href="#ref-for-dom-monetizationevent-receipt-1" title=
           "§ 9. MonetizationEvent interface">§ 9. MonetizationEvent
-          interface</a>
+          interface</a> <a href="#ref-for-dom-monetizationevent-receipt-2"
+          title="Reference 2">(2)</a>
         </li>
       </ul>
     </div>
@@ -2970,7 +3080,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         Permalink</a> <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
         <a class="marker idl-block" title="Jump to IDL declaration" href=
-        "#webidl-106886564">IDL</a>
+        "#webidl-603577181">IDL</a>
       </div>
       <p>
         <b>Referenced in:</b>
@@ -2979,7 +3089,9 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         <li>
           <a href="#ref-for-dom-monetizationevent-paymentpointer-1" title=
           "§ 9. MonetizationEvent interface">§ 9. MonetizationEvent
-          interface</a>
+          interface</a> <a href=
+          "#ref-for-dom-monetizationevent-paymentpointer-2" title=
+          "Reference 2">(2)</a>
         </li>
       </ul>
     </div>
@@ -2994,7 +3106,7 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         Permalink</a> <span class="marker dfn-exported" title=
         "Definition can be referenced by other specifications">exported</span>
         <a class="marker idl-block" title="Jump to IDL declaration" href=
-        "#webidl-106886564">IDL</a>
+        "#webidl-603577181">IDL</a>
       </div>
       <p>
         <b>Referenced in:</b>
@@ -3014,6 +3126,30 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
           interface</a> <a href=
           "#ref-for-dom-monetizationevent-incomingpayment-5" title=
           "Reference 2">(2)</a>
+        </li>
+      </ul>
+    </div>
+    <div class="dfn-panel" hidden="" role="dialog" aria-modal="true" id=
+    "dfn-panel-for-dom-monetizationevent-walletaddress" aria-label=
+    "Links in this document to definition: walletAddress">
+      <span class="caret"></span>
+      <div>
+        <a class="self-link" href="#dom-monetizationevent-walletaddress"
+        aria-label=
+        "Permalink for definition: walletAddress. Activate to close this dialog.">
+        Permalink</a> <span class="marker dfn-exported" title=
+        "Definition can be referenced by other specifications">exported</span>
+        <a class="marker idl-block" title="Jump to IDL declaration" href=
+        "#webidl-603577181">IDL</a>
+      </div>
+      <p>
+        <b>Referenced in:</b>
+      </p>
+      <ul>
+        <li>
+          <a href="#ref-for-dom-monetizationevent-walletaddress-1" title=
+          "§ 9. MonetizationEvent interface">§ 9. MonetizationEvent
+          interface</a>
         </li>
       </ul>
     </div>
@@ -3053,6 +3189,106 @@ aria-haspopup="dialog"><code>incomingPayment</code></dfn>;</span>
         </li>
       </ul>
     </div>
+    <script id="respec-highlight-vars">
+    (() => {
+    // @ts-check
+
+    if (document.respec) {
+    document.respec.ready.then(setupVarHighlighter);
+    } else {
+    setupVarHighlighter();
+    }
+
+    function setupVarHighlighter() {
+    document
+    .querySelectorAll("var")
+    .forEach(varElem => varElem.addEventListener("click", highlightListener));
+    }
+
+    function highlightListener(ev) {
+    ev.stopPropagation();
+    const { target: varElem } = ev;
+    const hightligtedElems = highlightVars(varElem);
+    const resetListener = () => {
+    const hlColor = getHighlightColor(varElem);
+    hightligtedElems.forEach(el => removeHighlight(el, hlColor));
+    [...HL_COLORS.keys()].forEach(key => HL_COLORS.set(key, true));
+    };
+    if (hightligtedElems.length) {
+    document.body.addEventListener("click", resetListener, { once: true });
+    }
+    }
+
+    // availability of highlight colors. colors from var.css
+    const HL_COLORS = new Map([
+    ["respec-hl-c1", true],
+    ["respec-hl-c2", true],
+    ["respec-hl-c3", true],
+    ["respec-hl-c4", true],
+    ["respec-hl-c5", true],
+    ["respec-hl-c6", true],
+    ["respec-hl-c7", true],
+    ]);
+
+    function getHighlightColor(target) {
+    // return current colors if applicable
+    const { value } = target.classList;
+    const re = /respec-hl-\w+/;
+    const activeClass = re.test(value) && value.match(re);
+    if (activeClass) return activeClass[0];
+
+    // first color preference
+    if (HL_COLORS.get("respec-hl-c1") === true) return "respec-hl-c1";
+
+    // otherwise get some other available color
+    return [...HL_COLORS.keys()].find(c => HL_COLORS.get(c)) || "respec-hl-c1";
+    }
+
+    function highlightVars(varElem) {
+    const textContent = norm(varElem.textContent);
+    const parent = varElem.closest(".algorithm, section");
+    const highlightColor = getHighlightColor(varElem);
+
+    const varsToHighlight = [...parent.querySelectorAll("var")].filter(
+    el =>
+      norm(el.textContent) === textContent &&
+      el.closest(".algorithm, section") === parent
+    );
+
+    // update availability of highlight color
+    const colorStatus = varsToHighlight[0].classList.contains("respec-hl");
+    HL_COLORS.set(highlightColor, colorStatus);
+
+    // highlight vars
+    if (colorStatus) {
+    varsToHighlight.forEach(el => removeHighlight(el, highlightColor));
+    return [];
+    } else {
+    varsToHighlight.forEach(el => addHighlight(el, highlightColor));
+    }
+    return varsToHighlight;
+    }
+
+    function removeHighlight(el, highlightColor) {
+    el.classList.remove("respec-hl", highlightColor);
+    // clean up empty class attributes so they don't come in export
+    if (!el.classList.length) el.removeAttribute("class");
+    }
+
+    function addHighlight(elem, highlightColor) {
+    elem.classList.add("respec-hl", highlightColor);
+    }
+
+    /**
+    * Same as `norm` from src/core/utils, but our build process doesn't allow
+    * imports in runtime scripts, so duplicated here.
+    * @param {string} str
+    */
+    function norm(str) {
+    return str.trim().replace(/\s+/g, " ");
+    }
+    })()
+    </script>
     <script id="respec-dfn-panel">
     (() => {
     // @ts-check
