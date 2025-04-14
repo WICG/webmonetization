@@ -8,6 +8,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.2.3",
     "@astrojs/starlight": "^0.33.0",
     "@interledger/docs-design-system": "^0.6.2",
@@ -22,6 +23,7 @@
     "remark-mermaidjs": "^7.0.0",
     "respec": "^35.3.0",
     "sharp": "^0.34.1",
-    "starlight-links-validator": "^0.15.0"
+    "starlight-links-validator": "^0.15.0",
+    "typescript": "^5.8.3"
   }
 }
