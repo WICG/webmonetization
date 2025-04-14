@@ -124,23 +124,23 @@ export default defineConfig({
               collapsed: true,
               items: [
                 {
-                  label: 'Sign up for a test wallet account',
-                  link: '/guides/test-wallet-sign-up',
+                  label: 'Test Web Monetization',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'Sign up for a test wallet account',
+                      link: '/guides/test-wallet-sign-up',
+                    },
+                    {
+                      label: 'Send test payments',
+                      link: '/guides/send-test-payments',
+                    },
+                    {
+                      label: 'Receive test payments',
+                      link: '/guides/receive-test-payments',
+                    },
+                  ],
                 },
-                {
-                  label: 'Send test payments',
-                  link: '/guides/send-test-payments',
-                },
-                {
-                  label: 'Receive test payments',
-                  link: '/guides/receive-test-payments',
-                },
-              ],
-            },
-            {
-              label: 'Tutorials',
-              collapsed: true,
-              items: [
                 {
                   label: 'Show content to paying visitors',
                   link: '/tutorials/show-content',
