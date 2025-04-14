@@ -64,70 +64,21 @@ const pluginsList = data.plugins.filter(function(plugin){
   </section>
   <section class="section">
     <div class="contentWrapperLg">
-      {data.wallets.length > 0 && (
+      <div class="sectionHeader">
+        <h2 class="heading3">Get Started</h2>
+      </div>
+      <div class="twoColGrid toolsList">
         <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">Web Monetization Wallets</h2>
-            <p>
-              These providers offer ILP-enabled wallets that you can use to
-              become Web Monetized:
-            </p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.wallets} />
-          </div>
-          <PrCta label="wallet" />
+          <h3 class="heading4"><a href="/supporters/overview/" data-umami-event="Landing page - Consumer">Pay the Web forward</a></h3>
+          <p>Learn how Web Monetization helps you support websites, content owners, and publishers</p>
         </div>
-      )}
-      {data.search.length > 0 && (
         <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">
-              Web Monetization Enabled Search Engines
-            </h2>
-            <p>These search engines implement Web Monetization features:</p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.search} />
-          </div>
-          <PrCta label="search engine" />
+          <h3 class="heading4"><a href="/play" data-umami-event="Landing page - Creator">Monetize your work</a></h3>
+          <p>Learn how to add a non-intrusive way to monetize your content while preserving the privacy of your supporters</p>
         </div>
-      )}
+      </div>
     </div>
   </section>
-  {data.providers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Providers</h2>
-          <p>These providers offer Web Monetization services:</p>
-        </div>
-        <div class="cards">
-          <CardList cards={data.providers} />
-        </div>
-        <PrCta label="provider" />
-      </div>
-    </section>
-  )}
-  {data.browsers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">
-            Web Monetization Supported Browsers
-          </h2>
-          <p>
-            These browsers implement Web Monetization natively or via an
-            extension:
-          </p>
-        </div>
-        <div class="cards">
-          <CardList cards={data.browsers} />
-        </div>
-        <PrCta label="browser" />
-      </div>
-    </section>
-  )}
   {data.plugins.length > 0 && (
     <section class="section">
       <div class="contentWrapperLg">
