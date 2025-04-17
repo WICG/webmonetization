@@ -1,17 +1,17 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/PageSidebar.astro';
 
 const removeOverview = [
-	'docs/resources/glossary',
+ 'resources/glossary'
 ]
-const noOverview = removeOverview.includes(Astro.props.slug);
-const toc = noOverview && Astro.props.toc !== undefined
-	? {
-			...Astro.props.toc,
-			items: Astro.props.toc?.items.slice(1),
-	  } 
-	: Astro.props.toc;
+const { id, toc } = Astro.locals.starlightRoute;
+const noOverview = removeOverview.includes(id);
+console.log(id)
+if (noOverview && toc) {
+	Astro.locals.starlightRoute.toc = {
+		...toc,
+		items: toc.items.slice(1),
+	};
+}
 ---
-
-<Default {...Astro.props} {toc}><slot /></Default>
+<Default />
