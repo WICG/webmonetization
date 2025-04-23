@@ -3,10 +3,11 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
 ---
 <header>
   <nav class="site-nav">
-    <a href={`/${lang}/`} class="site-title">
+    <a href={homePageUrl} class="site-title">
       <img src="/img/wm-logo.svg" alt="Web Monetization logo">
       <span>Web Monetization</span>
     </a>
