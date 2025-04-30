@@ -10,11 +10,11 @@ import Wallet from '/src/partials/wallet-prereq.mdx'
 
 <Wallet />
 
-## Step 1 - Get your payment URL
+## Step 1 - Get your payment address
 
 ### Payment pointer
 
-If you have a payment pointer that starts with `$`, visit <LinkOut href='https://paymentpointers.org/'>paymentpointers.org</LinkOut>. Enter your payment pointer into the _Payment Pointer_ field. Take note of the URL that automatically generates in the adjacent field. This is your payment URL. You'll need it in the next step.
+If you have what's called a *payment pointer*, which starts with `$` instead of `https://`, visit <LinkOut href='https://paymentpointers.org/'>paymentpointers.org</LinkOut>. Enter your payment pointer into the _Payment Pointer_ field. Take note of the address that automatically generates in the adjacent field. This is your payment address. You'll need it in the next step.
 
 ```http title="Example"
 $wallet.example.com/alice
@@ -22,7 +22,7 @@ $wallet.example.com/alice
 
 ### Wallet address
 
-If you have a wallet address that starts with `https://`, then you have your payment URL. Proceed to the next step.
+If you have a wallet address that starts with `https://`, then you have your payment address. Proceed to the next step.
 
 ```http title="Example"
 https://wallet.example.com/alice
@@ -32,7 +32,7 @@ https://wallet.example.com/alice
 
 <Steps>
 
-1. Create your Web Monetization link tag using the format below. Add your payment URL as the `href` value.
+1. Create your Web Monetization link tag using the format below. Add your payment address as the `href` value.
 
    ```http
    <link rel="monetization" href="your_url">

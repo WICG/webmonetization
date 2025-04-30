@@ -33,11 +33,13 @@ Wallet providers who support Open Payments issues each of their customers' accou
 
 ### Payment pointer
 
-A payment pointer is a secure, unique identifier that's assigned to payment accounts that use the Interledger Simple Payment Setup Protocol (SPSP) to exchange payment information. The shorthand for a payment pointer starts with `$`. For example, `$wallet.example.com/alice`.
+A payment pointer is similar to a wallet address. Where a wallet address begins with `https://`, a payment pointer begins with `$`. For example, `$wallet.example.com/alice`. Most payment pointers can be converted to wallet addresses by simply replacing the `$` with `https://`. For example, `https://wallet.example.com/alice`.
 
-As a consumer of web monetized content, you'll enter your payment pointer into your Web Monetization extension to link the extension to your wallet.
+Whether a wallet provider chooses to call their payment addresses *wallet addresses* or *payment pointers* is up to the provider, so you should become familiar with both terms.
 
-To web monetize your own content, you must convert your payment pointer to its URL equivalent as the monetization `<link>` element doesn't support the `$` in the `href` value. Enter your payment pointer into the field provided on <LinkOut href="https://paymentpointers.org">paymentpointers.org</LinkOut> to get your URL.
+If you're setting up the ILF's Web Monetization extension, you can enter either a wallet address (`https://`)or a payment pointer (`$`). 
+
+If you have a payment pointer and are monetizing your own content, the monetization `<link>` element doesn't support the `$` in the `href` value. You must change the `$` to `https://`.
 
 ## T
 
@@ -79,7 +81,7 @@ A Web Monetization agent is a non-user facing component of a Web Monetization ex
 - Instrument payments by calling the Open Payments APIs
 - Fire `monetization` events after an outgoing payment request is created
 - Process `monetization` events sent to the browser window via the `onmonetization` event handler
-- Enable CSP `monetization-src` and Permissions Policy `monetization` directives
+- Enable Content Security Policy (CSP) `monetization-src` and Permissions Policy `monetization` directives
 
 ### Web Monetization service provider
 

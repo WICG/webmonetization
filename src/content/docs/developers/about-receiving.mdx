@@ -9,7 +9,7 @@ Receiving Web Monetization payments requires you to have an account with a compa
 
 Your digital wallet provider will supply you with the financial account you’ll use to receive payments. Withdrawing your funds typically requires you to link a card or bank account to your wallet.
 
-Since wallet providers are financial entities, they are regulated within the countries they operate. One regulation, known as KYC (Know Your Customer), requires financial entities to collect your personal information and verify your identity before allowing you to open an account.
+Since wallet providers are financial entities, they're regulated within the countries they operate. One regulation, known as Know Your Customer (KYC)), requires financial entities to collect your personal information and verify your identity before allowing you to open an account.
 
 ## Web Monetization-compatible digital wallets
 
@@ -17,7 +17,7 @@ You must have an account with a compatible [digital wallet provider](/wallets) t
 
 - Is available in your region
 - Supports your preferred currency
-- Allows you to withdraw your funds if you choose to transact in fiat
+- Allows you to withdraw your funds if you so choose
 
 Your wallet provider will assign your wallet a unique identifier called a _wallet address_ or a _payment pointer_. You’ll need this identifier to web monetize your content.
 
@@ -28,7 +28,7 @@ Your wallet provider will assign your wallet a unique identifier called a _walle
 
 ## Web monetized content
 
-Once you have your payment pointer or wallet address, you're ready to add the Web Monetization `<link>` element to each page of your site you want to monetize. Visit the [get started](/developers/get-started) page for more information.
+Once you have your wallet address, you're ready to add the Web Monetization `<link>` element to each page of your site you want to monetize. Visit the [get started](/developers/get-started) page for more information.
 
 When you include the `<link>` element on a page, you're telling your website visitors' browsers that you can accept Web Monetization payments. Visitors using the [Web Monetization extension](/supporters/get-started) in their browsers can then choose to send you payments in the amount and frequency of their choosing.
 
@@ -42,15 +42,15 @@ If you're already familiar with Web Monetization, you may have heard about how i
 
 In general, a micropayment is a very small payment. Each wallet provider is responsible for a few things:
 
-- Deciding whether to support receiving and/or sending micropayments
+- Deciding whether to support receiving and sending micropayments
 - Defining what a micropayment is in the context of their business
 - Determining the minimum amount for a micropayment
 
 Let's say your wallet provider allows you to receive micropayments. Your provider defines a micropayment as any payment under $0.05 USD. This means you could, for example, receive a payment of one US cent--as long as the sender's wallet provider allows them to send that amount.
 
-Your wallet provider may also have business rules set up such that micropayments accumulate on your account but aren't deposited until you reach a minimum (e.g., $1.00 USD).
+Your wallet provider may also have business rules set up such that micropayments accumulate on your account but aren't deposited until you reach a minimum received amount.
 
-Web Monetization can even support payments of a fraction of a cent (e.g., $0.00001); however, sending and receiving fractional amounts must be supported by the respective wallet providers.
+Web Monetization can even support payments of a fraction of a cent, but sending and receiving fractional amounts must be supported by the respective wallet providers.
 
 ### A deeper dive into payments
 
@@ -69,7 +69,7 @@ The examples below are simplified representations of the Open Payments API calls
 :::
 
 <Steps>
-1. The Web Monetization agent locates your [monetization link](/developers/link-element) and extracts your payment URL (the `href` value).
+1. The Web Monetization agent locates your [monetization link](/developers/link-element) and extracts your wallet address (the `href` value).
     <Disclosure toggleText="Example monetization link" client:load>
     ```html
     <link rel="monetization" href="https://wallet.example/alice">
@@ -118,7 +118,7 @@ The examples below are simplified representations of the Open Payments API calls
     }
     ```
     :::note
-    The `client` in the request above is your visitor's wallet address/payment pointer. This URL is only used by the agent and the wallets, and is not available to the website.
+    The `client` in the request above is your visitor's wallet address. This URL is only used by the agent and the wallets, and isn't available to the website.
     :::
     </Disclosure>
 5. The response to the agent contains an access token that the agent needs to make its next request.
