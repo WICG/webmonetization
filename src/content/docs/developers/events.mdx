@@ -56,7 +56,7 @@ By adding an event listener to the relevant monetization `<link>` element (or on
 The `amountSent` property returns the `value` and `currency` of the sent payment.
 
 - `value` - The amount. A <LinkOut href="https://www.w3.org/TR/payment-request/#dfn-valid-decimal-monetary-value">valid decimal monetary value</LinkOut> containing the amount that was sent.
-- `currency` - The currency code. A well-formed 3-letter <LinkOut href="https://www.iban.com/currency-codes">ISO4217</LinkOut> code that represents the currency that was sent, such as <abbr>USD</abbr> (for US dollar) or <abbr>GBP</abbr> (for Great Britain Pound).
+- `currency` - The currency code. A well-formed 3-letter <LinkOut href="https://www.iban.com/currency-codes">ISO4217</LinkOut> code that represents the currency that was sent, such as USD (for US dollar) or GBP (for Great Britain Pound).
 
 ```js title="Example"
 "value": "1.23"
@@ -64,7 +64,7 @@ The `amountSent` property returns the `value` and `currency` of the sent payment
 ```
 
 :::note[Received amount]
-The `amountSent` isn't necessarily the amount received. For example, if your payment account is set up to receive <abbr>GBP</abbr> (Great Britain Pound), but your site visitor's account sends in <abbr>USD</abbr> (US dollar), then exchange rates and currency conversion fees could affect the amount you receive.
+The `amountSent` isn't necessarily the amount received. For example, if your payment account is set up to receive GBP (Great Britain Pound), but your site visitor's account sends in USD (US dollar), then exchange rates and currency conversion fees could affect the amount you receive.
 :::
 
 #### Examples using `amountSent`
