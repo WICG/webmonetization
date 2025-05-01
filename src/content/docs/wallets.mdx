@@ -1,6 +1,6 @@
 ---
 title: Web Monetization-compatible wallets
-lastUpdated: 2025-03-18
+lastUpdated: 2025-05-01
 banner:
     content: |
         More wallet providers coming soon!
@@ -9,18 +9,51 @@ banner:
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 import { LinkOut } from '@interledger/docs-design-system'
 
-The following providers offer Web Monetization-compatible digital wallets. You must have a wallet address or payment pointer from a compatible wallet to send and receive payments.
+You must have an account with a compatible wallet provider to send or receive Web Monetization payments. It can take up to 24 hours for a wallet provider to confirm your identity when setting up a new account.
 
 Be sure to select a wallet that's available in your **region** and supports your preferred **currency**. See the [Limitations](#limitations) section for additional details.
 
 ## Wallet providers
 
-| Provider  | Available in | Supported fiat currencies |
+| Provider  | Available in | Supported currencies |
 | -------- | ------------ | -------------------- |
-| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, EU, Canada, South Africa | USD, EUR, CAD, ZAR |
-| <LinkOut href="https://gatehub.net">GateHub</LinkOut> | EU | EUR |
+| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, Canada, EU, South Africa | $ <abbr title="US dollars">USD</abbr>, $ <abbr title="Canadian dollars">CAD</abbr>, € <abbr title="euros">EUR</abbr>, R <abbr title="South African rand">ZAR</abbr> |
+| <LinkOut href="https://gatehub.net">GateHub*</LinkOut> | USA, EU | $ <abbr title="US dollars">USD</abbr>, € <abbr title="euros">EUR</abbr> |
 
-This table will be updated as more wallet providers become available.
+<sup>* Select *Hosted* wallet during setup</sup>
+
+Some wallet providers will allow you to select your own wallet address. A wallet address will look like this: `https://interledger.app/<your_username>`.
+
+### Supported currencies
+
+When choosing a wallet provider for Web Monetization, be sure to select one that supports your preferred currency. Wallet providers may support different currencies, including cryptocurrencies.
+
+### Wallet addresses and payment pointers
+
+Some wallet providers will use the term *wallet address* while others use the term *payment pointer*. Wallet addresses contain `https://` while payment pointers contain `$`. 
+
+<Tabs>
+    <TabItem label='Example wallet address'>
+    ``` 
+    https://wallet.example.com/alice
+    ```
+    </TabItem>
+    <TabItem label='Example payment pointer'>
+    ```
+    $wallet.example.com/alice
+    ```
+    </TabItem>
+</Tabs>
+
+## Limitations
+
+### Interledger Wallet
+
+For now, users of the Interledger Wallet can only send and receive from other Interledger Wallet users who are in the same region and using the same currency.
+
+### GateHub 
+
+For now, users of the GateHub wallet can only send and receive from other GateHub wallet users.
 
 ## Interledger test wallet
 
@@ -38,7 +71,7 @@ The Interledger test wallet provides a great way to test Web Monetization withou
 
 <details>
 <summary>GateHub</summary>
-    Users of GateHub will have a _payment pointer_. To locate your payment pointer:
+    Users of GateHub will have a _payment pointer_. Note that in GateHub your payment pointer is not the same thing as your wallet name. To locate your payment pointer:
     <Steps>
     1. Select your wallet, then click **Advanced**.<br /><img src="/img/docs/gatehub/advanced-wallet-settings.png" alt="" class="img-outline" style="max-width:600px" />
     2. Scroll down to **Interledger Settings**.
@@ -49,13 +82,3 @@ The Interledger test wallet provides a great way to test Web Monetization withou
         :::
     </Steps>
 </details>
-
-## Limitations
-
-### Interledger Wallet
-
-Users of the Interledger Wallet can only send and receive from other Interledger Wallet users who are in the same region and using the same currency.
-
-### GateHub 
-
-Users of the GateHub wallet can only send and receive from other GateHub wallet users. 
