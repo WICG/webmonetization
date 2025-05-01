@@ -6,18 +6,18 @@ import { Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 import ExtensionLinks from "/src/components/ExtensionLinks.astro"
 
-The Interledger Foundation's Web Monetization browser extension lets you support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
+Interledger Foundation's Web Monetization browser extension lets you support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
 
 <details>
 <summary>About web monetized sites</summary>
-You can only use the extension to send payments to web monetized sites. The Interledger Foundation encourages content owners and publishers to tell their audience they're web monetized via a banner or some other method.
+You can only use the extension to send payments to web monetized sites. Interledger Foundation encourages content owners and publishers to tell their audience they're web monetized via a banner or some other method.
 
 If you're interested in web monetizing your own content, the [get started](/developers/get-started) page for developers is a good place to start.
 </details>
 
 <details>
 <summary>About Web Monetization payments</summary>
-To make Web Monetization payments, you only need a digital wallet accountfrom a Web Monetization-compatible [wallet provider](/wallets). There's no site-by-site account or subscription required.
+To make Web Monetization payments, you only need a digital wallet account from a Web Monetization-compatible [wallet provider](/wallets). There's no site-by-site account or subscription required.
 
 A web monetized site can't pull payments from your wallet. When you link the browser extension to your wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#set-up-continuous-payments).
 
@@ -41,7 +41,7 @@ After you install the extension, a page appears to guide you though the configur
       :::note
       You may experience a delay before you can fund your wallet while your provider performs necessary regulatory checks.
       :::
-  2. Find and copy your wallet address (Interledger) or payment pointer (GateHub). You'll need it for Step 4.<br/><img src='/img/docs/extension/onboarding-2.png' alt='The Interledger Wallet dashboard displaying a wallet address' style='max-width:400px' class='img-outline'/>
+  2. Find and copy your wallet address (Interledger) or payment pointer (GateHub). You'll need it for Step 4.<br/><img src='/img/docs/extension/onboarding-2.png' alt='Interledger Wallet dashboard displaying a wallet address' style='max-width:400px' class='img-outline'/>
       <Tabs>
       <TabItem label='Example wallet address'>
         ``` 
@@ -72,7 +72,7 @@ After you install the extension, a page appears to guide you though the configur
 
 ### About continuous payments
 
-By default, the extension is set to send continuous payments at a rate of $0.60 USD an hour ($0.01 a minute). If you transact in a currency other than USD, then the extension will default to your currency's equivalent based on the exchange rate. For example, if you transact in Mexican pesos, $0.60 USD is equivalent to around MX $11.70. The extension will default to MX $11.70 an hour.
+By default, the extension is set to send continuous payments at a rate of $0.60 <abbr>USD</abbr> an hour ($0.01 a minute). If you transact in a currency other than <abbr>USD</abbr>, then the extension will default to your currency's equivalent based on the exchange rate. For example, if you transact in Mexican pesos, $0.60 <abbr>USD</abbr> is equivalent to around <abbr>MX</abbr> $11.70. The extension will default to <abbr>MX</abbr> $11.70 an hour.
 
 Payments continue for as long as a web monetized page is active and in view. Continuous payments stop if you:
 * Disable the extension

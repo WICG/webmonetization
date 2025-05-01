@@ -23,7 +23,7 @@ For visitors with Web Monetization, the counter will update based on the amount 
 
 ## Create your script
 
-Use the `monetization` event to show a web monetized visitor how much they've sent in $ USD.
+Use the `monetization` event to show a web monetized visitor how much they've sent in $ <abbr>USD</abbr>.
 
 ### The code
 
@@ -69,7 +69,7 @@ Use the `monetization` event to show a web monetized visitor how much they've se
 
 We’ll bind the `monetization` event if the visitor is web monetized (`window.MonetizationEvent` is defined).
 
-The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and `currency` code of the sent payment. A currency code is a three-letter code, like USD for US dollar, EUR for the euro, or GBP for Great Britain Pound.
+The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and `currency` code of the sent payment. A currency code is a three-letter code, like <abbr>USD</abbr> for US dollar, <abbr>EUR</abbr> for the euro, or <abbr>GBP</abbr> for Great Britain Pound.
 
 ```javascript {1,6}
   if (window.MonetizationEvent) {

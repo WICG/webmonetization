@@ -1,6 +1,6 @@
 ---
 title: Web Monetization-compatible wallets
-lastUpdated: 2025-04-30
+lastUpdated: 2025-05-01
 banner:
     content: |
         More wallet providers coming soon!
@@ -17,32 +17,43 @@ Be sure to select a wallet that's available in your **region** and supports your
 
 | Provider  | Available in | Supported currencies |
 | -------- | ------------ | -------------------- |
-| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, Canada, EU, South Africa | $ USD, $ CAD, € EUR, R ZAR |
-| <LinkOut href="https://gatehub.net">GateHub*</LinkOut> | USA, EU | $ USD, € EUR |
+| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, Canada, EU, South Africa | $ <abbr>USD</abbr>, $ <abbr>CAD</abbr>, € <abbr>EUR</abbr>, R <abbr>ZAR</abbr> |
+| <LinkOut href="https://gatehub.net">GateHub*</LinkOut> | USA, EU | $ <abbr>USD</abbr>, € <abbr>EUR</abbr> |
 
 <sup>* Select *Hosted* wallet during setup</sup>
 
-Some wallet providers will allow you to select your own wallet address. A wallet address is similar to an email address. For example, `https://interledger.app/<your_username>`.
+Some wallet providers will allow you to select your own wallet address. A wallet address will look like this: `https://interledger.app/<your_username>`.
 
 ### Supported currencies
 
-Web Monetization compatibility is one feature of many that a wallet provider could offer. For example, a wallet provider can choose to support foreign reserve and local currencies in Web Monetization payments while supporting cryptocurrency transactions as a separate product offering, independent of Web Monetization.
-
-When choosing a wallet provider for Web Monetization, be sure to select one that supports your preferred currency.
+When choosing a wallet provider for Web Monetization, be sure to select one that supports your preferred currency. Wallet providers may support different currencies, including cryptocurrencies.
 
 ### Wallet addresses and payment pointers
 
-Some wallet providers will use the term *wallet address* while others use the term *payment pointer*. Wallet addresses contain `https://` while payment pointers contain `$`. For example, `$ilp.gatehub.net/12345/usd`. Both formats work when [setting up the extension](/supporters/get-started). If you're web monetizing your own content, change the `$` to `https://` in the [monetization link tag](/developers/get-started). 
+Some wallet providers will use the term *wallet address* while others use the term *payment pointer*. Wallet addresses contain `https://` while payment pointers contain `$`. 
+
+<Tabs>
+    <TabItem label='Example wallet address'>
+    ``` 
+    https://wallet.example.com/alice
+    ```
+    </TabItem>
+    <TabItem label='Example payment pointer'>
+    ```
+    $wallet.example.com/alice
+    ```
+    </TabItem>
+</Tabs>
 
 ## Limitations
 
 ### Interledger Wallet
 
-Users of the Interledger Wallet can only send and receive from other Interledger Wallet users who are in the same region and using the same currency.
+For now, users of the Interledger Wallet can only send and receive from other Interledger Wallet users who are in the same region and using the same currency.
 
 ### GateHub 
 
-Users of the GateHub wallet can only send and receive from other GateHub wallet users.
+For now, users of the GateHub wallet can only send and receive from other GateHub wallet users.
 
 ## Interledger test wallet
 
