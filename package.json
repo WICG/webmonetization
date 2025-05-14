@@ -8,20 +8,21 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.4",
-    "@astrojs/starlight": "^0.34.0",
-    "@interledger/docs-design-system": "^0.6.2",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "astro": "5.7.2",
+    "@astrojs/react": "^4.2.7",
+    "@astrojs/starlight": "^0.34.3",
+    "@interledger/docs-design-system": "^0.7.1",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "astro": "5.7.13",
     "prettier": "^3.5.3",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-minimal-pie-chart": "^9.1.0",
     "remark-mermaidjs": "^7.0.0",
-    "respec": "^35.3.0",
+    "respec": "^35.4.0",
     "sharp": "^0.34.1",
+    "starlight-fullview-mode": "^0.2.3",
     "starlight-links-validator": "^0.16.0"
   }
 }

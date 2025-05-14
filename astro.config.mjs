@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
 import react from '@astrojs/react'
 import starlightLinksValidator from 'starlight-links-validator'
+import starlightFullViewMode from 'starlight-fullview-mode'
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,6 +32,7 @@ export default defineConfig({
           errorOnFallbackPages: false,
           exclude: ['/prob-revshare'],
         }),
+        starlightFullViewMode(),
       ],
       expressiveCode: {
         styleOverrides: {
