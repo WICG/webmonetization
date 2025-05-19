@@ -25,7 +25,9 @@ standard for implementation by wallet providers. When implemented, third-party
 applications, like the Web Monetization extension, can set up payments to and
 from users' wallet accounts.
 
-Wallet providers who support Open Payments issues each of their customers' accounts with a unique ID that's either called a wallet address or a payment pointer.
+:::tip
+Wallet providers who support Open Payments issues each of their customers' accounts with an HTTPS address called a [wallet address](#wallet-address). Note that some wallet providers refer to their wallet addresses as payment pointers.
+:::
 
 ## P
 
@@ -33,9 +35,13 @@ Wallet providers who support Open Payments issues each of their customers' accou
 
 ### Payment pointer
 
-A payment pointer is similar to a wallet address. Where a wallet address begins with `https://`, a payment pointer begins with `$`. For example, `$wallet.example.com/alice`. Most payment pointers can be converted to wallet addresses by simply replacing the `$` with `https://`. For example, `https://wallet.example.com/alice`.
+A payment pointer is similar to a [wallet address](#wallet-address). Where a wallet address begins with `https://`, a payment pointer begins with `$`. For example, `$wallet.example.com/alice`. 
 
-Whether a wallet provider chooses to call their payment addresses *wallet addresses* or *payment pointers* is up to the provider, so you should become familiar with both terms.
+Most payment pointers can be converted to wallet addresses by simply replacing the `$` with `https://`. For example, `https://wallet.example.com/alice`.
+
+:::tip
+Whether a wallet provider chooses to call their payment addresses _payment pointers_ or _wallet addresses_ is up to the provider. In places where the documentation only refers to wallet address, it's likely that the same information applies to payment pointers.
+:::
 
 If you're setting up Interledger Foundation's Web Monetization extension, you can enter either a wallet address (`https://`) or a payment pointer (`$`). 
 
@@ -67,7 +73,7 @@ To web monetize your own content, you'll add your wallet address as the `href` v
 
 A digital wallet provider is an entity that supplies you with the financial account you'll use to send or receive payments.
 
-Not all wallet providers support Web Monetization payments. A provider must implement the Open Payments standard and be able to assign your account a payment pointer or wallet address for you to use the account for Web Monetization.
+Not all wallet providers support Web Monetization payments. A provider must implement the Open Payments standard and be able to assign your account a wallet address or payment pointer for you to use the account for Web Monetization.
 
 Wallet providers are regulated within the countries they operate and are often required by law to collect certain personal information and verify your identity before allowing you to open an account.
 
@@ -76,7 +82,7 @@ Wallet providers are regulated within the countries they operate and are often r
 A Web Monetization agent is a non-user facing component of a Web Monetization extension or web browser. The purpose of the Web Monetization agent is to:
 
 - Recognize when an HTML page contains one or more monetization `<link>` elements
-- Parse the payment pointer or wallet address in a monetization `<link>`
+- Parse the wallet address or payment pointer in a monetization `<link>`
 - Extend the HTML DOM API so that `monetization` is a valid link type
 - Instrument payments by calling the Open Payments APIs
 - Fire `monetization` events after an outgoing payment request is created
@@ -88,7 +94,7 @@ A Web Monetization agent is a non-user facing component of a Web Monetization ex
 A Web Monetization service provider is an entity that has:
 
 - Full control over the financial account from which payments are made
-- Ownership of the financial account's associated payment pointer or wallet address
+- Ownership of the financial account's associated wallet address or payment pointer
 - The ability to grant authorization for payments to be sent from the account
 
 If you, as an individual, meet the criteria above, then you are acting as your own Web Monetization service provider.
