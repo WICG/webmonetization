@@ -22,7 +22,7 @@ The agent makes calls to the <LinkOut href="https://openpayments.dev/apis/resour
 
 Each time the agent receives a `201 outgoing payment created` response from the site visitor's wallet provider, the agent fires a `monetization` event on the browser window.
 
-### Specifications
+### Specification
 
 <Specification anchor='events' />
 
@@ -36,7 +36,7 @@ By adding an event listener to the relevant monetization `<link>` element (or on
 
 - Information about the [amount and currency](#amountsent) of a sent (not received) payment
 - A URL representing an [incoming payment](#incomingpayment) that can be used to determine the amount received, similar to a receipt
-- The URL representing the [payment pointer or wallet address](#paymentpointer) that an incoming payment request was sent to
+- The URL representing the [wallet address or payment pointer](#paymentpointer) that an incoming payment request was sent to
 
 ### High-level flow
 
@@ -104,7 +104,7 @@ In this example, you have multiple link elements (not shown). You're listening f
 
 </Hidden>
 
-#### Specifications
+#### Specification
 
 <Specification anchor='amountsent-attribute' />
 
@@ -160,13 +160,13 @@ async function verifyPayment(event) {
 
 </Hidden>
 
-#### Specifications
+#### Specification
 
 <Specification anchor='incomingpayment-attribute' />
 
 ### paymentPointer
 
-The `paymentPointer` property returns the URL that represents the payment pointer or wallet address that the payment was sent to. In most cases, the value will be the same as the `href` URL in the monetization `<link>`.
+The `paymentPointer` property returns the URL that represents the wallet address or payment pointer that the payment was sent to. In most cases, the value will be the same as the `href` URL in the monetization `<link>`.
 
 :::note[Property name]
 Earlier versions of the Web Monetization specification only used Interledger's Simple Payment Setup Protocol (SPSP), which calls for payment pointers. This is why the property was named `paymentPointer`.
@@ -193,7 +193,7 @@ As of v3, both payment pointers and Open Payments wallet addresses are returned 
 
 </Hidden>
 
-#### Specifications
+#### Specification
 
 <Specification anchor='paymentpointer-attribute' />
 
@@ -215,7 +215,7 @@ This section describes two use cases: one for vanity payment addresses and one f
 
 #### Vanity payment address
 
-Let's say your payment pointer or wallet address is:
+Let's say your wallet address is:
 
 ```
 https://wallet.example.com/GK9D420BL42M
@@ -237,7 +237,7 @@ https://wallet.example.com/GK9D420BL42M
 
 For this use case, let's assume you are familiar with [probabilistic revenue sharing](/tutorials/revenue-sharing), which is iteself an advanced use case.
 
-When you use our <LinkOut href="https://webmonetization.org/prob-revshare/">Probabilistic Revshare Generator</LinkOut>, you enter multiple payment pointers and/or wallet addresses and assign each one a weight. When finished, the generator creates a unique URL.
+When you use our <LinkOut href="https://webmonetization.org/prob-revshare/">Probabilistic Revshare Generator</LinkOut>, you enter multiple wallet addresses and assign each one a weight. When finished, the generator creates a unique URL.
 
 For example, after entering five wallet addresses and weights, the generator creates:
 
