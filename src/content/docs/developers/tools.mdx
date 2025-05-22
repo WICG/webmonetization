@@ -15,7 +15,7 @@ The <LinkOut href="https://webmonetization.org/tools">publisher tools</LinkOut> 
 
 ## Banner
 
-Create a banner that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner automatically includes a link for your visitor to download the extension from their browser's store. Customize the settings, then generate a script to place on your site. 
+Create a banner that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner automatically includes a link for your visitor to download the extension from their browser's store. Customize the settings, then generate a script to place on your site. The script will automatically web monetize your site. 
 
 ```js wrap title="Example"
 <script id="wmt-init-script" 
@@ -24,9 +24,7 @@ Create a banner that appears when your visitors don't have the Web Monetization 
 </script>
 ```
 
-The script automatically web monetizes your site. If your page contains [multiple](/developers/link-element#multiple-monetization-links) monetization links, payments from the extension are only split between unique wallet addresses. 
-
-Generating your script saves your configuration. To change your banner, click **Import** and enter your wallet address. Your existing banner configuration will load.
+Generating the script saves your configuration to our server. Load your existing banner configuration by clicking **Import** and entering your wallet address. Any changes you make are saved and will appear on your site.
 
 <LinkButton href="https://webmonetization.org/tools" target="_blank" icon="external">Banner tool</LinkButton>
 
@@ -40,12 +38,12 @@ The generator will check for syntax, but not whether you've entered your informa
 
 ## Probabilistic revshare generator
 
-Probabilistic revenue sharing (revshare) is a way to share a portion of a web monetized page's earnings between multiple recipients. Each time the page is loaded, a recipient is chosen at random from a list of predefined wallet addresses. The probability of one recipient being chosen over the others is based on a weight you assign to each recipient. 
+Probabilistic revenue sharing (revshare) is a way to share a portion of a web monetized page's earnings between multiple recipients. Each time the page loads, a recipient is chosen at random from a list of predefined wallet addresses. The probability of one recipient being chosen over the others is based on a weight you assign to each recipient. 
 
 The revshare generator allows you to enter each recipient's wallet address and assign it a weight. The percentage of a page's total revenue a recipient should receive, over time, calculates automatically. When you're finished, copy the link tag to your HTML page.
 
 :::note
-The link tag is hosted on webmonetization.org. If you'd rather host your own script, check out the [revshare tutorial](/tutorials/revenue-sharing).
+We host your link tag on webmonetization.org. If you'd rather host your own script, check out the [revshare tutorial](/tutorials/revenue-sharing).
 :::
 
 <LinkButton href="https://webmonetization.org/tools/prob-revshare" target="_blank" icon="external">Revshare generator</LinkButton>
