@@ -15,7 +15,7 @@ You must have at least one [funded test wallet account](/guides/test-wallet-sign
 
 ## Web Monetization Playground
 
-The <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut> lets you monetize the page by entering a wallet address or payment pointer.
+The <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut> lets you monetize the playground page by entering a wallet address or payment pointer.
 
 Your browser extension will send payments to the address you enter if your wallet provider and the address's wallet provider can transact with one another.
 
@@ -38,10 +38,12 @@ If your browser extension is connected to a wallet that uses real money and you 
 
 ## Receive a one-time payment
 
+<Steps>
     1. Go to the <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut>.
     2. Enter your wallet account's payment pointer into the field and select **Add monetization link**.
         :::note[Forgot your payment pointer?]
         Open the extension and select the cog icon. Then, select the **Wallet** tab and copy your payment pointer from the **Connected wallet address** field.
         :::
     3. Open the extension, enter a one-time payment amount, then click **Send now**. A new event will appear in the Playground almost immediately.
-    4. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">Interledger test wallet</LinkOut> and select **Transactions** from the left menu. A completed outgoing and incoming payment will appear.<Card title="Incoming payment amount">To mimic how a real wallet provider could act, the Interledger test network deducts a 0.01 fee from each outgoing payment. If you made a one-time payment of €1.00 <abbr title="euros">EUR</abbr>, the completed incoming payment will be for €0.99.</Card>
+    4. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">Interledger test wallet</LinkOut> and select **Transactions** from the left menu. A completed outgoing and incoming payment will appear.<Card title="Incoming payment amount">To mimic how a real wallet provider could act, the Interledger test network might show a 0.01 fee deducted from each outgoing payment. If you made a one-time payment of €1.00 <abbr title="euros">EUR</abbr>, for example, the completed incoming payment might be for €0.99.</Card>
+</Steps>
