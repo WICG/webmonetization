@@ -10,7 +10,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const pluginsList = data.plugins.filter(function(plugin){
   return plugin.version.includes("2.0");
-})
+});
 ---
 <Base title={t('site.title')} description={t('site.description')}>
   <section class="section hero">
@@ -33,7 +33,6 @@ const pluginsList = data.plugins.filter(function(plugin){
         <p>
           Web Monetization is being proposed as a standard in <a
             href="https://wicg.io/"
-            rel="noreferrer noopener"
             data-umami-event="Landing page - Spec"
           >
             the W3C Web Incubator Community Group</a>.
@@ -69,14 +68,13 @@ const pluginsList = data.plugins.filter(function(plugin){
           <div class="sectionHeader">
             <h2 class="heading3">Web Monetization Wallets</h2>
             <p>
-              These providers offer ILP-enabled wallets that you can use to
-              become Web Monetized:
+              These providers offer Open Payments-enabled <a href="/wallets/">wallets</a> that you can use to become Web Monetized:
             </p>
           </div>
           <div class="cards">
             <CardList cards={data.wallets} />
           </div>
-          <PrCta label="wallet" />
+          <p class="sectionHeader">Support in <em>Interledger Wallet</em> and <em>Chimoney App</em> is coming soon.</p>
         </div>
       )}
       {data.search.length > 0 && (
