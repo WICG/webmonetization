@@ -8,6 +8,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.4",
     "@astrojs/react": "^4.2.7",
     "@astrojs/starlight": "^0.34.3",
     "@interledger/docs-design-system": "^0.7.1",
@@ -23,6 +24,7 @@
     "respec": "^35.4.0",
     "sharp": "^0.34.1",
     "starlight-fullview-mode": "^0.2.3",
-    "starlight-links-validator": "^0.16.0"
+    "starlight-links-validator": "^0.16.0",
+    "typescript": "^5.8.3"
   }
 }

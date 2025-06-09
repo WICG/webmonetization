@@ -97,14 +97,19 @@
   ],
   "wallets": [
     {
-      "name": "Fynbos",
-      "image": "logo-wallet-fynbos.svg",
-      "link": "https://wallet.fynbos.app/wallet"
+      "name": "Interledger Wallet",
+      "image": "logo-wallet-interledger-wallet.svg",
+      "link": null
+    },
+    {
+      "name": "Chimoney",
+      "image": "logo-wallet-chimoney.svg",
+      "link": "https://chimoney.app/?ref=webmonetization.org"
     },
     {
       "name": "Gatehub",
       "image": "logo-wallet-gatehub.svg",
-      "link": "https://gatehub.net"
+      "link": "https://gatehub.net/?ref=webmonetization.org"
     }
   ]
 }
