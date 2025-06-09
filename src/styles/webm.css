@@ -2,6 +2,119 @@
 /* @link https://utopia.fyi/type/calculator?c=320,16,1.25,1440,19,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
 :root {
+  --sharp-corners: 0rem;
+  --slight-rounding: 0.25rem;
+  --moderate-rounding: 0.5rem;
+  --pill-rounding: 0.75rem;
+  --fully-rounded: 1rem;
+
+  --padding-3xs: 0.125rem;
+  --padding-2xs: 0.25rem;
+  --padding-xs: 0.5rem;
+  --padding-sm: 0.75rem;
+  --padding-md: 1rem;
+  --padding-lg: 1.5rem;
+  --padding-2xl: 2rem;
+
+  --spacing-3xs: 0.125rem;
+  --spacing-2xs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-2xl: 2rem;
+  --spacing-3xl: 3rem;
+  --spacing-4xl: 3.75rem;
+  --spacing-5xl: 7.5rem;
+
+  --font-caption-size: 0.75rem;
+  --font-small-size:0.875rem;
+  --font-body-size: 1rem;
+  --font-h6-size: 1.125rem;
+  --font-h5-size: 1.25rem;
+  --font-h4-size: 1.5rem;
+  --font-h3-size: 1.875rem;
+  --font-h2-size: 2.25rem;
+  --font-h1-size: 3rem;
+  --font-display-2-size: 3.75rem;
+  --font-display-1-size: 4.5rem;
+
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  --font-caption-height: 0.75rem;
+  --font-small-height:0.875rem;
+  --font-body-height: 1rem;
+  --font-h6-height: 1.125rem;
+  --font-h5-height: 1.25rem;
+  --font-h4-height: 1.5rem;
+  --font-h3-height: 1.875rem;
+  --font-h2-height: 2.25rem;
+  --font-h1-height: 3rem;
+  --font-display-2-height: 3.75rem;
+  --font-display-1-height: 4.5rem;
+
+  --color-green-50: #F3FAFA;
+  --color-green-100: #ABE4DF;
+  --color-green-300: #56B7B5;
+  --color-green-600: #27797A;
+  --color-green-800: #204D4F;
+
+  --color-mint-50: #F2FBF9;
+  --color-mint-100: #D4F3EB;
+  --color-mint-300: #98E1D0;
+  --color-mint-600: #4AB7A5;
+  --color-mint-800: #247D71;
+
+  --color-blue-50: #FBFDFE;
+  --color-blue-100: #D0DDED;
+  --color-blue-300: #A3BEDC;
+  --color-blue-600: #5A77B6;
+  --color-blue-800: #455588;
+
+  --color-orange-50: #FFF6ED;
+  --color-orange-100: #FFD3A8;
+  --color-orange-300: #FF9852;
+  --color-orange-600: #EF4C07;
+  --color-orange-800: #9D2D0F;
+
+  --color-pink-50: #FEF1F5;
+  --color-pink-100: #FEE5EE;
+  --color-pink-300: #FFC8DC;
+  --color-pink-600: #FF6698;
+  --color-pink-800: #EB174A;
+
+  --color-red-50: #FFF1F2;
+  --color-red-100: #FFC7C9;
+  --color-red-300: #FF7A7F;
+  --color-red-600: #E51D25;
+  --color-red-800: #A01419;
+
+  --color-purple-50: #F3F4FA;
+  --color-purple-100: #A7A6D3;
+  --color-purple-300: #8075B3;
+  --color-purple-600: #5B5380;
+  --color-purple-800: #2D2A3C;
+
+  --color-silver-50: #F7F7F7;
+  --color-silver-100: #EFEFEF;
+  --color-silver-200: #DFDFDF;
+  --color-silver-300: #C9C9C9;
+  --color-silver-400: #ADADAD;
+  --color-silver-500: #999999;
+  --color-silver-600: #C9C9C9;
+  --color-silver-700: #7B7B7B;
+  --color-silver-800: #676767;
+  --color-silver-900: #545454;
+  --color-silver-950: #363636;
+
+  --color-black-900: #000;
+  --color-white-950: #fff;
+
+  --background-color: #F6F8FA;
+
+/* OLD */
+
   --step--2: clamp(0.64rem, 0.6057rem + 0.1714vi, 0.76rem);
   --step--1: clamp(0.8rem, 0.7571rem + 0.2143vi, 0.95rem);
   --step-0: clamp(1rem, 0.9464rem + 0.2679vi, 1.1875rem);
@@ -78,18 +191,24 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-body {
+body {  /* used */
   height: 100%;
   display: flex;
   flex-direction: column;
-  min-width: 360px;
+  min-width: 320px;
   color: var(--sl-color-gray-5);
   font-family: var(--__sl-font);
 }
 
-main {
+main { /* used */
   flex: 1;
   font-size: var(--step-0);
+  background-color: var(--background-color);
+}
+
+h1 {
+  font-size: var(--font-h1-size);
+  line-height: var(--font-h1-height);
 }
 
 a {
@@ -272,8 +391,8 @@ tbody tr:last-of-type td:last-child {
 }
 
 /* Shared section styles */
-.contentWrapperSm {
-  max-width: 600px;
+.contentWrapperSm { /*Style in use */
+  max-width: 1280px;
   margin-inline: auto;
   padding-inline: var(--space-s);
 }
