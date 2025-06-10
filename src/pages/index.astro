@@ -176,16 +176,16 @@ const pluginsList = data.plugins.filter(function(plugin){
 
 <style>
 /* Hero section styles */
-.hero {
+section.hero {
   background-image: url("/img/hero-gradient-background.svg");
   background-color: var(--background-color);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  margin-block-end: var(--space-xl);
   text-align: center;
-  height: 100vh;
+  height: calc(100vh - 2.75rem - 2 * var(--spacing-xs) );
+  padding-block-start: 10rem;
 }
 
 .hero .contentWrapperSm {
@@ -194,20 +194,16 @@ const pluginsList = data.plugins.filter(function(plugin){
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  padding: var(--spacing-lg) 0;
+  align-items: center;
 }
 
 .heroImg {
   max-height: 50vh;
+  max-width: 80vw;
   width: auto;
   flex-shrink: 1;     /* allow shrinking if needed */
   object-fit: contain;
-}
-
-@media screen and (min-width: 768px) {
-  .hero .button {
-    /* expand */
-  }
+  margin-bottom: var(--spacing-lg);
 }
 
 .heading-wrapper {
@@ -224,8 +220,8 @@ const pluginsList = data.plugins.filter(function(plugin){
 .heroTagline {
   font-size: var(--font-body-size);
   line-height: 2rem; /* line hight can't match font-size */
-  margin-bottom: var(--spacing-lg);
   font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-lg);
 }
 
 .heading-wrapper img {
@@ -275,5 +271,14 @@ const pluginsList = data.plugins.filter(function(plugin){
 
 .contributor img {
   border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  section.hero {
+    height: calc(100svh - 2.75rem - 2 * var(--spacing-xs) );
+  }
+  .hero .button {
+    /* expand */
+  }
 }
 </style>

@@ -414,7 +414,7 @@ tbody tr:last-of-type td:last-child {
 }
 
 .section:first-of-type {
-  padding-block-start: var(--space-xl);
+  padding-block-start: 6.25rem;
 }
 
 .sectionHeader {
