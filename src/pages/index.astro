@@ -184,14 +184,16 @@ section.hero {
   background-position: center;
   background-attachment: fixed;
   text-align: center;
-  height: calc(100vh - 2.75rem - 2 * var(--spacing-xs) );
+  min-height: calc(100vh - 2.75rem - 2 * var(--spacing-xs));
   padding-block-start: 10rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero .contentWrapperSm {
   height: 100%;
   display: flex;
-  flex: 1;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -275,7 +277,7 @@ section.hero {
 
 @media screen and (max-width: 768px) {
   section.hero {
-    height: calc(100svh - 2.75rem - 2 * var(--spacing-xs) );
+    min-height: calc(100svh - 2.75rem - 2 * var(--spacing-xs) );
   }
   .hero .button {
     /* expand */
