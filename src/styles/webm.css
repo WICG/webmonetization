@@ -54,6 +54,8 @@
   --font-display-2-height: 3.75rem;
   --font-display-1-height: 4.5rem;
 
+  --font-h5: 400 1.25rem/1.75rem sans-serif;
+
   --color-green-50: #F3FAFA;
   --color-green-100: #ABE4DF;
   --color-green-300: #56B7B5;
@@ -196,7 +198,7 @@ body {  /* used */
   display: flex;
   flex-direction: column;
   min-width: 320px;
-  color: var(--sl-color-gray-5);
+  color: var(--color-silver-950);
   font-family: var(--__sl-font);
 }
 

@@ -25,14 +25,16 @@ const pluginsList = data.plugins.filter(function(plugin){
           src="/img/wm-heading-vector.svg"
         />
       </div>
-      <img
-        alt="Web Monetization ..."
-        class="heroImg"
-        src="/img/hero-animation.svg"
-      />
-      <p class="heroTagline">
-        We seek to empower content owners and users alike by enabling seamless micropayments, fostering a fair and sustainable digital economy, and working on top of traditional advertising and subscription-based revenue models.
-      </p>
+      <div class="heroContent">
+        <img
+          alt="Web Monetization ..."
+          class="heroImg"
+          src="/img/hero-animation.svg"
+        />
+        <p class="heroTagline">
+          We seek to empower content owners and users alike by enabling seamless micropayments, fostering a fair and sustainable digital economy, and working on top of traditional advertising and subscription-based revenue models.
+        </p>
+      </div>
     </div>
   </section>
   <section class="section">
@@ -219,10 +221,14 @@ section.hero {
   margin: 0;
 }
 
+.heading-wrapper .heroUnderline {
+  max-width: 20rem;
+}
+
 .heroTagline {
-  font-size: var(--font-body-size);
+  font: var(--font-h5);
   line-height: 2rem; /* line hight can't match font-size */
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-normal);
   margin-bottom: var(--spacing-lg);
 }
 
@@ -231,6 +237,14 @@ section.hero {
   max-width: 500px;     /* optional: cap the max width */
   margin-top: 0.5rem;   /* space between text and underline */
   height: auto;         /* preserve aspect ratio */
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 0.5;
 }
 
 .heroIcon {
@@ -277,10 +291,15 @@ section.hero {
 
 @media screen and (max-width: 768px) {
   section.hero {
-    min-height: calc(100svh - 2.75rem - 2 * var(--spacing-xs) );
+    min-height: unset;
   }
-  .hero .button {
-    /* expand */
-  }
+
+  .heading-wrapper .heroUnderline {
+  max-width: 18rem;
+}
+
+.heroContent {
+  flex-direction: column-reverse;
+}
 }
 </style>
