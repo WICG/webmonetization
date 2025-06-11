@@ -413,6 +413,7 @@ tbody tr:last-of-type td:last-child {
 
 .section {
   padding-block-end: var(--space-xl);
+  margin-bottom: var(--spacing-5xl);
 }
 
 .section:first-of-type {
