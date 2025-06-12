@@ -4,15 +4,15 @@ title: Activity Streams JSON-LD
 
 import { LinkOut } from '@interledger/docs-design-system'
 
-Social web community servers and apps can expose the wallet address or payment pointer of a user or post to a Web Monetization client, such as the Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension) or embedded SDK.
+Social web community servers and apps can expose the wallet address of a user or post to a Web Monetization client, such as Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension) or embedded SDK.
 
 The `monetization` property from the Web Monetization namespace (`https://webmonetization.org/ns.jsonld`) applies to an <LinkOut href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0</LinkOut> <LinkOut href="https://www.w3.org/TR/activitystreams-vocabulary/#dfn-object">`Object`</LinkOut>. 
 
-A Web Monetization wallet address or payment pointer can be applied to either an <LinkOut href="https://www.w3.org/TR/activitystreams-vocabulary/#actor-types">`Actor`</LinkOut> performing an action of creation or an <LinkOut href="https://www.w3.org/TR/activitystreams-vocabulary/#object-types">Object Type</LinkOut> created by the `Actor`.
+A Web Monetization wallet address can be applied to either an <LinkOut href="https://www.w3.org/TR/activitystreams-vocabulary/#actor-types">`Actor`</LinkOut> performing an action of creation or an <LinkOut href="https://www.w3.org/TR/activitystreams-vocabulary/#object-types">Object Type</LinkOut> created by the `Actor`.
 
 A `monetization` property must only be applied to an Object Type when its desired monetization attribution is distinct from the `Actor` who created it.
 
-### User `Profile` example
+## User `Profile` example
 
 ```jsonc wrap
 {
@@ -53,7 +53,7 @@ A `monetization` property must only be applied to an Object Type when its desire
 }
 ```
 
-### User post (`Note`) example
+## User post (`Note`) example
 
 ```jsonc wrap
 {
@@ -97,7 +97,7 @@ A `monetization` property must only be applied to an Object Type when its desire
 }
 ```
 
-### Post with multiple wallet addresses example
+## Post with multiple wallet addresses example
 
 ```jsonc wrap
 {

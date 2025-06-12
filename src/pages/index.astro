@@ -1,20 +1,18 @@
 ---
-import i18next, { t, changeLanguage } from "i18next";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import contributors from "../data/contributors.json";
 import CardList from "../components/pages/CardList.astro";
 import PrCta from "../components/pages/PrCta.astro";
 
-changeLanguage("en");
-
-const title = t("site.title");
-const description = t("site.description");
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const pluginsList = data.plugins.filter(function(plugin){
-  return plugin.version.includes("2.0");         
-})
+  return plugin.version.includes("2.0");
+});
 ---
-<Base title={title} description={description}>
+<Base title={t('site.title')} description={t('site.description')}>
   <section class="section hero">
     <div class="contentWrapperSm">
       <img
@@ -33,13 +31,11 @@ const pluginsList = data.plugins.filter(function(plugin){
     <footer class="heroFooter">
       <div class="contentWrapperSm">
         <p>
-          Web Monetization is being proposed as a W3C standard at <a
+          Web Monetization is being proposed as a standard in <a
             href="https://wicg.io/"
-            rel="noreferrer noopener"
-            target="_blank"
             data-umami-event="Landing page - Spec"
           >
-            the Web Platform Incubator Community Group</a>.
+            the W3C Web Incubator Community Group</a>.
         </p>
       </div>
     </footer>
@@ -60,7 +56,7 @@ const pluginsList = data.plugins.filter(function(plugin){
       <div class="gridItem">
         <h2 class="heading3">Why Now?</h2>
         <p>
-          Until recently, there hasn't been an open, neutral and cost-efficient protocol for transferring money. <a href="https://interledger.org" rel="noreferrer noopener" target="_blank" data-umami-event="Landing page - ILP docs">Interledger</a> provides a simple, interoperable, and currency-agnostic method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes more Web Monetization use cases possible for the first time.
+          Until recently, there hasn't been an open, neutral, and cost-efficient protocol for transferring money. <a href="https://interledger.org/" data-umami-event="Landing page - ILP docs">Interledger</a> <a href="https://openpayments.dev/" data-umami-event="Landing page - Open Payments docs">Open Payments</a> provides a simple, interoperable, and currency-independent method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes the Web Monetization use case possible for the first time.
         </p>
       </div>
     </div>
@@ -72,14 +68,13 @@ const pluginsList = data.plugins.filter(function(plugin){
           <div class="sectionHeader">
             <h2 class="heading3">Web Monetization Wallets</h2>
             <p>
-              These providers offer ILP-enabled wallets that you can use to
-              become Web Monetized:
+              These providers offer Open Payments-enabled <a href="/wallets/">wallets</a> that you can use to become Web Monetized:
             </p>
           </div>
           <div class="cards">
             <CardList cards={data.wallets} />
           </div>
-          <PrCta label="wallet" />
+          <p class="sectionHeader">Support in <em>Interledger Wallet</em> and <em>Chimoney App</em> is coming soon.</p>
         </div>
       )}
       {data.search.length > 0 && (
@@ -163,7 +158,7 @@ const pluginsList = data.plugins.filter(function(plugin){
 
         <a class="gridItem" href="/tools/prob-revshare" data-umami-event="Landing page - Prob rev share">
           <h3 class="heading4">Probabilistic RevShare Generator</h3>
-          <p>Split Web Monetization revenue between payment pointers</p>
+          <p>Split Web Monetization revenue between wallet addresses</p>
         </a>
       </div>
     </div>

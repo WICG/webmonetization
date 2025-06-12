@@ -1,0 +1,10 @@
+import { LinkOut } from '@interledger/docs-design-system'
+
+Nested browsing contexts (iframes) can contain monetization `<link>` elements, but your site visitor’s Web Monetization agent determines how iframes are monetized. A few examples of how a Web Monetization agent can monetize iframes include:
+
+* Splitting payments evenly between all monetization links within both the parent and the iframe
+* Splitting payments evenly between all monetization links in the parent and the first monetization link it finds in the iframe’s `<head>`, while ignoring any other monetization links in the iframe
+    :::note
+    This is the approach used in the <LinkOut href="https://github.com/interledger/web-monetization-extension">Interledger Foundation’s extension</LinkOut>.
+    :::
+* Sending payments to the first monetization link it finds in the parent browsing context and ignoring all other monetization links in the parent and the iframe

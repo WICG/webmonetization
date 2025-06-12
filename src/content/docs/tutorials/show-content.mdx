@@ -15,7 +15,7 @@ In this tutorial, you'll create a script that shows hidden content to web moneti
 
 For visitors without Web Monetization, your content is always hidden.
 
-For visitors with Web Monetization, your content appears; however, there's a three-second grace period. This gives Web Monetization a chance to initialize.
+For visitors with Web Monetization, your content will appear, but there's a three-second grace period. This gives Web Monetization a chance to initialize.
 
 **If Web Monetization:**
 
@@ -31,7 +31,7 @@ Give your web monetized visitors access to exclusive content.
 
 ```html wrap
 <head>
-  <!-- Set the href to your own wallet address or payment pointer in URL format -->
+  <!-- Set the href to your own wallet address -->
   <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <style>
@@ -100,13 +100,13 @@ Non-web monetized visitors will be shown a message stating there's exclusive con
 
 This example contains three states:
 
-- A call-to-action for non-web monetized visitors
+- A call-to-action (CTA) for non-web monetized visitors
 - A loading message for web monetized visitors
 - Exclusive content for web monetized visitors
 
 ```html wrap
 <head>
-  <!-- Set the href to your own wallet address or payment pointer in URL format -->
+  <!-- Set the href to your own wallet address -->
   <link rel="monetization" href="https://wallet.example/alice" />
 
   <style>
@@ -194,7 +194,7 @@ if (window.MonetizationEvent) {
 
 ### Interactive example
 
-This example simulates hiding and showing exclusive content based on a visitor’s Web Monetization state. Web monetized visitors will see exclusive content while non-web monetized users will not. Conversely, non-web monetized users will see the message, “Please install a Web Monetization extension to support me!“.
+This example simulates hiding and showing exclusive content based on a visitor’s Web Monetization state. Web monetized visitors will see exclusive content while non-web monetized users won't. Conversely, non-web monetized users will see the message, “Please install a Web Monetization extension to support me!“.
 
 <Disclaimer />
 

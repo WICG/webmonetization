@@ -6,8 +6,6 @@ const { cards } = Astro.props;
     <a
       key={card.name}
       href={card.link}
-      target="_blank"
-      rel="noreferrer noopener"
       class="card cardWide"
       data-umami-event={`CardList - ${card.name}`}
     >
@@ -27,8 +25,6 @@ const { cards } = Astro.props;
   (
     <a
       href={card.link}
-      target="_blank"
-      rel="noreferrer noopener"
       key={card.name}
       class="card cardBasic"
       data-umami-event={`CardList - ${card.name}`}

@@ -1,15 +1,13 @@
 ---
-import i18next, { t, changeLanguage } from "i18next";
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import Note from "../components/pages/Note.astro";
 import LinkCard from "../components/pages/LinkCard.astro";
 
-changeLanguage("en");
-
-const title = t("site.title");
-const description = t("site.description");
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
-<Base title={title} description={description}>
+<Base title={t('site.title')} description={t('site.description')}>
   <section class="hero">
     <div class="heroContent">
       <img

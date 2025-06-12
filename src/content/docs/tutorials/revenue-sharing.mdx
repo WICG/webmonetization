@@ -6,7 +6,7 @@ import { LinkOut } from '@interledger/docs-design-system'
 import Wallet from '/src/partials/wallet-prereq.mdx'
 import Disclaimer from '/src/partials/glitch.mdx'
 
-Probabilistic revenue sharing is a way to share a portion of a web monetized page’s earnings between multiple recipients. In Web Monetization, this works by having a random payment pointer or wallet address inserted into your page each time a web monetized visitor loads the page. You have several possible recipients, with their chance of being chosen based on their assigned weight. The visitor pays to the chosen recipient until the page is reloaded or closed.
+Probabilistic revenue sharing is a way to share a portion of a web monetized page’s earnings between multiple recipients. In Web Monetization, this works by having a random wallet address inserted into your page each time a web monetized visitor loads the page. You have several possible recipients, with their chance of being chosen based on their assigned weight. The visitor pays to the chosen recipient until the page is reloaded or closed.
 
 In this tutorial, you'll define a list of recipients and their weights and create a script that  chooses a recipient to pay, based on their weight, each time a web monetized visitor loads your page.
 
@@ -16,9 +16,9 @@ In this tutorial, you'll define a list of recipients and their weights and creat
 
 ### Assigning weights
 
-The chance of a recipient's wallet address or payment pointer being chosen is equal to their expected share of the revenue.
+The chance of a recipient's wallet address being chosen is equal to their expected share of the revenue.
 
-The simplest way weight is by assigning values that add up to 100. For example, if Alice has a weight of 75 and Bob has a weight of 25, then Alice has a 75% chance of being chosen. This means ~75% of web monetized visitors will be paying to Alice (and 25% to Bob). Because the random choice is not correlated to other variables like the length of time the visitor spends on the page, the laws of probability say that Alice’s share will approach 75% of the page’s total revenue as more users visit the site.
+The simplest way weight is by assigning values that add up to 100. For example, if Alice has a weight of 75 and Bob has a weight of 25, then Alice has a 75% chance of being chosen. This means ~75% of web monetized visitors will be paying to Alice (and 25% to Bob). Because the random choice isn't correlated to other variables like the length of time the visitor spends on the page, the laws of probability say that Alice’s share will approach 75% of the page’s total revenue as more users visit the site.
 
 Another way is to use weighting factors. The higher a recipient's weight, the heavier/more important it is. This translates into a higher share of revenue. For example, if three recipients each have a weight of 1, then they all equally important. Each recipient will eventually receive ~33% of the revenue (100 divided by 3 recipients). If Alice has a weight of 1, Bob a weight of 2, and Carol a weight of 3, then their percentages will be ~17, 33, and 50, respectively.
 
@@ -28,7 +28,7 @@ If you'd prefer not to use a script, you can use our <LinkOut href="https://webm
 
 ## User experience
 
-Probabilistic revenue sharing does not affect the user experience for your web monetized visitors.
+Probabilistic revenue sharing doesn't affect the user experience for your web monetized visitors.
 
 ## Create your script
 
@@ -76,7 +76,7 @@ For simplicity, the total amount of the assigned weights equal 100.
 
 ### Interactive example
 
-This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a payment pointer or wallet address and it will show you the results.
+This example shows how the random choices will approach the correct percentages over enough tries. You can customize the number of times to randomly choose a wallet address and it will show you the results.
 
 The example doesn’t require you to have Web Monetization enabled in your browser and no real payments are occurring.
 

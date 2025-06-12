@@ -3,16 +3,19 @@ title: Publisher tools
 banner:
     content: |
         More tools coming soon!
+next:
+  link: /wallets
+  label: Compatible digital wallets
 ---
 
 import { LinkButton } from '@astrojs/starlight/components';
 import { LinkOut } from "@interledger/docs-design-system";
 
-The <LinkOut href="https://webmonetization.org/tools">Publisher Tools</LinkOut> page provides a collection of easy-to-customize components that you can use to promote Web Monetization and encourage your visitors to support you.
+The <LinkOut href="https://webmonetization.org/tools">publisher tools</LinkOut> page provides a collection of easy-to-customize components that you can use to promote Web Monetization and encourage your visitors to support you.
 
 ## Banner
 
-Create a banner that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner automatically includes a link for your visitor to download the extension from their browser's store. Customize the settings, then generate a script to place on your site. 
+Create a banner that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner automatically includes a link for your visitor to download the extension from their browser's store. Customize the settings, then generate a script to place on your site. The script will automatically web monetize your site. 
 
 ```js wrap title="Example"
 <script id="wmt-init-script" 
@@ -21,28 +24,26 @@ Create a banner that appears when your visitors don't have the Web Monetization 
 </script>
 ```
 
-The script automatically web monetizes your site. If your page contains [multiple](/developers/link-element#multiple-monetization-links) monetization links, payments from the extension are only split between unique payment pointers/wallet addresses. 
-
-Generating your script saves your configuration. To change your banner, click **Import** and enter your wallet address. Your existing banner configuration will load.
+Generating the script saves your configuration to our server. Load your existing banner configuration by clicking **Import** and entering your wallet address. Any changes you make are saved and will appear on your site.
 
 <LinkButton href="https://webmonetization.org/tools" target="_blank" icon="external">Banner tool</LinkButton>
 
 ## Link tag generator
 
-Use our link tag generator to create your Web Monetization link tag. Enter your payment pointer or wallet address into the provided field and click **Generate**. Then, copy the tag and add it to your HTML pages.
+Use our link tag generator to create your Web Monetization link tag. Enter your wallet address into the provided field and click **Generate**. Then, copy the tag and add it to your HTML pages.
 
-The generator will check that your payment pointer or wallet address follows the correct syntax, but not whether you've entered your information correctly. Be sure to check for typos!
+The generator will check for syntax, but not whether you've entered your information correctly.
 
 <LinkButton href="https://webmonetization.org/tools/link-tag" target="_blank" icon="external">Link tag generator</LinkButton>
 
 ## Probabilistic revshare generator
 
-Probabilistic revenue sharing (revshare) is a way to share a portion of a web monetized page's earnings between multiple recipients. Each time the page is loaded, a recipient is chosen at random from a list of predefined payment pointers and wallet addresses. The probability of one recipient being chosen over the others is based on a weight you assign to each recipient. 
+Probabilistic revenue sharing (revshare) is a way to share a portion of a web monetized page's earnings between multiple recipients. Each time the page loads, a recipient is chosen at random from a list of predefined wallet addresses. The probability of one recipient being chosen over the others is based on a weight you assign to each recipient. 
 
-The revshare generator allows you to enter each recipient's payment pointer or wallet address and assign it a weight. The percentage of a page's total revenue a recipient should receive, over time, calculates automatically. When you're finished, copy the link tag to your HTML page.
+The revshare generator allows you to enter each recipient's wallet address and assign it a weight. The percentage of a page's total revenue a recipient should receive, over time, calculates automatically. When you're finished, copy the link tag to your HTML page.
 
 :::note
-The link tag is hosted on webmonetization.org. If you'd rather host your own script, check out the [revshare tutorial](/tutorials/revenue-sharing).
+We host your link tag on webmonetization.org. If you'd rather host your own script, check out the [revshare tutorial](/tutorials/revenue-sharing).
 :::
 
 <LinkButton href="https://webmonetization.org/tools/prob-revshare" target="_blank" icon="external">Revshare generator</LinkButton>

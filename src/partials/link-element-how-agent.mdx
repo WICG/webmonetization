@@ -1,0 +1,24 @@
+import { LinkOut, Hidden } from '@interledger/docs-design-system'
+import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
+import data from '/src/data/browser-compat-data/link.json'
+
+A Web Monetization agent is a non-user facing component of the <LinkOut href="https://github.com/interledger/web-monetization-extension">Interledger Foundation's extension</LinkOut>.
+
+The purpose of the Web Monetization agent is to recognize when a page is web monetized and automatically carry out certain tasks. These tasks include:
+
+- Extending the HTML DOM API so that `monetization` is a valid link type
+- Processing the monetization link or links within an HTML page
+- Instrumenting payments by calling the [Open Payments APIs](/developers/about-receiving#a-deeper-dive-into-payments), which are APIs implemented by wallet providers
+- Firing [`monetization`](/developers/events) events after an outgoing payment is created
+- Processing `monetization` events sent to the browser window via the `onmonetization` event handler
+- Enabling the Content Security Policy (CSP) [`monetization-src`](/developers/csp) and Permissions Policy [`monetization`](/developers/permissions-policy) directives
+
+Until Web Monetization agents are natively built into web browsers, an agent must be added to browsers in some other way. That's why the agent is included as part of Interledger Foundation's extension.
+
+<Hidden>
+
+// ## Browser compatibility
+
+<BrowserCompat json={data} />
+
+</Hidden>

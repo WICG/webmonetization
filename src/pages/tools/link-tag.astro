@@ -1,10 +1,10 @@
 ---
-import i18next, { t, changeLanguage } from "i18next";
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import Base from "../../layouts/Base.astro";
 import LinkTagGenerator from "../../components/pages/LinkTagGenerator";
 
-changeLanguage("en");
-
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const title = `Link Tag Generator | ${t("site.title")}`;
 const description = t("site.description");
 ---
@@ -13,7 +13,7 @@ const description = t("site.description");
     <div class="contentWrapperMd">
       <h1 class="heading2">Link Tag Generator</h1>
       <p>
-        Use the Link Tag Generator to generate a monetization <code>&lt;link&gt;</code> element for your HTML documents. Just enter your <a href='https://paymentpointers.org/' rel='noreferrer noopener' target='_blank' data-umami-event='Link tag page - Payment pointers'>payment pointer</a> or wallet address into the field and click Generate.
+        Use the Link Tag Generator to generate a monetization <code>&lt;link&gt;</code> element for your HTML documents. Just enter your wallet address into the field and click Generate.
       </p>
       <LinkTagGenerator client:load />
     </div>

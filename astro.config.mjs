@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
-import astroI18next from 'astro-i18next'
 import react from '@astrojs/react'
 import starlightLinksValidator from 'starlight-links-validator'
+import starlightFullViewMode from 'starlight-fullview-mode'
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +11,7 @@ export default defineConfig({
     starlight({
       title: 'Web Monetization',
       description:
-        "Web Monetization introduces a new way for content owners and publishers to earn while allowing their audience to engage on their own terms.",
+        'Web Monetization introduces a new way for content owners and publishers to earn while allowing their audience to engage on their own terms.',
       head: [
         {
           tag: 'script',
@@ -32,6 +32,7 @@ export default defineConfig({
           errorOnFallbackPages: false,
           exclude: ['/prob-revshare'],
         }),
+        starlightFullViewMode(),
       ],
       expressiveCode: {
         styleOverrides: {
@@ -50,9 +51,13 @@ export default defineConfig({
         Header: './src/components/docs/Header.astro',
         PageSidebar: './src/components/docs/PageSidebar.astro',
       },
-      social: {
-        github: 'https://github.com/WICG/webmonetization',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/WICG/webmonetization',
+        },
+      ],
       sidebar: [
         {
           label: 'Overview',
@@ -80,18 +85,18 @@ export default defineConfig({
           label: 'For content owners',
           collapsed: true,
           items: [
-              {
-                label: 'Overview',
-                link: '/developers/overview',
-              },
-              {
-                label: 'Get started',
-                link: '/developers/get-started',
-              },
-              {
-                label: 'Learn about receiving payments',
-                link: '/developers/about-receiving',
-              },
+            {
+              label: 'Overview',
+              link: '/developers/overview',
+            },
+            {
+              label: 'Get started',
+              link: '/developers/get-started',
+            },
+            {
+              label: 'Learn about receiving payments',
+              link: '/developers/about-receiving',
+            },
           ],
         },
         {
@@ -104,7 +109,7 @@ export default defineConfig({
               items: [
                 {
                   label: 'Webpage (HTML)',
-                  link: '/developers/link-element'
+                  link: '/developers/link-element-webpage',
                 },
                 {
                   label: 'Feed (RSS, Atom, JSON Feed)',
@@ -121,23 +126,23 @@ export default defineConfig({
               collapsed: true,
               items: [
                 {
-                  label: 'Sign up for a test wallet account',
-                  link: '/guides/test-wallet-sign-up',
+                  label: 'Test Web Monetization',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'Sign up for a test wallet account',
+                      link: '/guides/test-wallet-sign-up',
+                    },
+                    {
+                      label: 'Send test payments',
+                      link: '/guides/send-test-payments',
+                    },
+                    {
+                      label: 'Receive test payments',
+                      link: '/guides/receive-test-payments',
+                    },
+                  ],
                 },
-                {
-                  label: 'Send test payments',
-                  link: '/guides/send-test-payments',
-                },
-                {
-                  label: 'Receive test payments',
-                  link: '/guides/receive-test-payments',
-                },
-              ],
-            },
-            {
-              label: 'Tutorials',
-              collapsed: true,
-              items: [
                 {
                   label: 'Show content to paying visitors',
                   link: '/tutorials/show-content',
@@ -211,7 +216,7 @@ export default defineConfig({
             {
               label: 'Web Monetization Specification',
               link: 'https://webmonetization.org/specification/',
-              attrs: { 
+              attrs: {
                 target: '_blank',
                 rel: 'noopener noreferrer',
                 'data-icon': 'external',
@@ -234,7 +239,7 @@ export default defineConfig({
             {
               label: 'Publisher tools',
               link: 'https://webmonetization.org/tools/',
-              attrs: { 
+              attrs: {
                 target: '_blank',
                 rel: 'noopener noreferrer',
                 'data-icon': 'external',
@@ -249,38 +254,42 @@ export default defineConfig({
       ],
     }),
     react(),
-    astroI18next(),
   ],
   redirects: {
-    "/link-tag": "/tools/link-tag",
-    "/prob-revshare": "/tools/prob-revshare",
-    "/docs/api": "/developers/interfaces",
-    "/docs/explainer": "/docs",
-    "/docs/intro/sending-payments": "/supporters/about-sending",
-    "/docs/intro/receiving-payments": "/developers/about-receiving",
-    "/docs/intro/web-monetization-flow": "/docs",
-    "/docs/intro/web-monetization-extension": "/supporters/get-started",
-    "/docs/references/html": "/developers/link-element",
-    "/docs/references/html-link-rel-monetization": "/developers/link-element",
-    "/docs/references/rss-atom-jsonfeed": "/developers/rss-atom-jsonfeed",
-    "/docs/references/activitystreams": "/developers/activity-streams",
-    "/docs/references/onmonetization": "/developers/interfaces",
-    "/docs/references/monetizationevent": "/developers/interfaces",
-    "/docs/references/attributes/amountsent": "/developers/events#amountsent",
-    "/docs/references/attributes/incomingpayment": "/developers/events#incomingpayment",
-    "/docs/references/attributes/paymentpointer": "/developers/events#paymentpointer",
-    "/docs/references/csp-monetization-src": "/developers/csp",
-    "/docs/references/permissions-policy-monetization": "/developers/permissions-policy",
-    "/docs/references/deprecations": "/docs",
-    "/docs/guides/monetize-page": "/developers/get-started",
-    "/docs/guides/remove-ads": "/tutorials/remove-content",
-    "/docs/guides/provide-exclusive-content": "/tutorials/show-content",
-    "/docs/guides/set-up-probabilistic-revenue-sharing": "/tutorials/revenue-sharing",
-    "/docs/guides/add-a-streaming-payments-counter": "/tutorials/contribution-counter",
-    "/docs/resources/glossary": "/resources/glossary",
-    "/docs/resources/libraries": "/developers/libraries",
-    "/docs/resources/op-wallets": "/wallets",
-    "/docs/resources/get-involved": "/resources/get-involved",
+    '/link-tag': '/tools/link-tag',
+    '/prob-revshare': '/tools/prob-revshare',
+    '/docs/api': '/developers/interfaces',
+    '/docs/explainer': '/docs',
+    '/docs/intro/sending-payments': '/supporters/about-sending',
+    '/docs/intro/receiving-payments': '/developers/about-receiving',
+    '/docs/intro/web-monetization-flow': '/docs',
+    '/docs/intro/web-monetization-extension': '/supporters/get-started',
+    '/docs/references/html': '/developers/link-element',
+    '/docs/references/html-link-rel-monetization': '/developers/link-element',
+    '/docs/references/rss-atom-jsonfeed': '/developers/rss-atom-jsonfeed',
+    '/docs/references/activitystreams': '/developers/activity-streams',
+    '/docs/references/onmonetization': '/developers/interfaces',
+    '/docs/references/monetizationevent': '/developers/interfaces',
+    '/docs/references/attributes/amountsent': '/developers/events#amountsent',
+    '/docs/references/attributes/incomingpayment':
+      '/developers/events#incomingpayment',
+    '/docs/references/attributes/paymentpointer':
+      '/developers/events#paymentpointer',
+    '/docs/references/csp-monetization-src': '/developers/csp',
+    '/docs/references/permissions-policy-monetization':
+      '/developers/permissions-policy',
+    '/docs/references/deprecations': '/docs',
+    '/docs/guides/monetize-page': '/developers/get-started',
+    '/docs/guides/remove-ads': '/tutorials/remove-content',
+    '/docs/guides/provide-exclusive-content': '/tutorials/show-content',
+    '/docs/guides/set-up-probabilistic-revenue-sharing':
+      '/tutorials/revenue-sharing',
+    '/docs/guides/add-a-streaming-payments-counter':
+      '/tutorials/contribution-counter',
+    '/docs/resources/glossary': '/resources/glossary',
+    '/docs/resources/libraries': '/developers/libraries',
+    '/docs/resources/op-wallets': '/wallets',
+    '/docs/resources/get-involved': '/resources/get-involved',
   },
   server: {
     port: 1100,

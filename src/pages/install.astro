@@ -1,9 +1,10 @@
 ---
-import i18next, { t, changeLanguage } from "i18next"
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro"
+import ExtensionLinks from "../components/ExtensionLinks.astro"
 
-changeLanguage("en")
-
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const title = `Install | ${t("site.title")}`
 const description = t("site.description")
 ---
@@ -28,58 +29,7 @@ const description = t("site.description")
         <div class="card">
           <div class="cardContent">
             <h2 class="heading3">Support content with the web extension</h2>
-            <ul class="icons">
-              <li class="icon">
-                <a
-                  href="https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii"
-                >
-                  <img
-                    alt="Chrome Web Store logo"
-                    src="/img/chrome-webstore.png"
-                    width="200px"
-                    height="200px"
-                  />
-                </a>
-              </li>
-              <li class="icon">
-                <a
-                  href="https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension"
-                >
-                  <img
-                    alt="Firefox Browser Add-ons"
-                    src="/img/Fx-Browser-icon.png"
-                    width="200px"
-                    height="200px"
-                  />
-                </a>
-              </li>
-              <li class="icon">
-                <a
-                  href="https://microsoftedge.microsoft.com/addons/detail/web-monetization/imjgemgmeoioefpmfefmffbboogighjl"
-                >
-                  <img 
-                    alt="Edge Add-ons"
-                    src="/img/microsoft-edge.png"
-                    width="200px"
-                    height="200px"
-                />
-                </a>
-              </li>
-            </ul>
-            <ul class="icons">
-              <li class="icon">
-                <a
-                  href="https://github.com/interledger/web-monetization-extension"
-                >
-                  <img
-                    alt="GitHub repository"
-                    src="/img/icon-github.svg"
-                    width="98px"
-                    height="96px"
-                  />
-                </a>
-              </li>
-            </ul>
+            <ExtensionLinks includeGitHub utm={{ utm_campaign: 'install_page' }} />
           </div>
         </div>
         <div class="card">
@@ -165,33 +115,5 @@ const description = t("site.description")
 
     .card:hover::after {
         opacity: 1;
-    }
-
-    /* Icon section styles */
-    .icons {
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--space-m);
-        padding: var(--space-xs) var(--space-s);
-    }
-
-    .icon {
-        flex: 0 0 3em;
-        max-width: 3em;
-    }
-
-    .icon img {
-        height: auto;
-    }
-
-    .icon a {
-        display: block;
-        transition: transform 0.2s ease-in-out;
-    }
-
-    .icon a:hover {
-        transform: scale(1.1);
     }
 </style>
