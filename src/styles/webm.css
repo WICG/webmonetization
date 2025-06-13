@@ -393,20 +393,8 @@ tbody tr:last-of-type td:last-child {
 }
 
 /* Shared section styles */
-.contentWrapperSm { /*Style in use */
+.contentWrapper { /*Style in use */
   max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: var(--space-s);
-}
-
-.contentWrapperMd {
-  max-width: 900px;
-  margin-inline: auto;
-  padding-inline: var(--space-s);
-}
-
-.contentWrapperLg {
-  max-width: 1200px;
   margin-inline: auto;
   padding-inline: var(--space-s);
 }
