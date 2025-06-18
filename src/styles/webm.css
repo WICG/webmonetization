@@ -2,61 +2,52 @@
 /* @link https://utopia.fyi/type/calculator?c=320,16,1.25,1440,19,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
 :root {
-  --sharp-corners: 0rem;
-  --slight-rounding: 0.25rem;
-  --moderate-rounding: 0.5rem;
-  --pill-rounding: 0.75rem;
-  --fully-rounded: 1rem;
+  --sharp-corners: 0rem; /* Radius/none */
+  --slight-rounding: 0.25rem; /* Radius/xs */
+  --moderate-rounding: 0.5rem; /* Radius/sm */
+  --pill-rounding: 1rem; /* Radius/md */
+  --fully-rounded: 100%; /* Radius/full */
 
-  --padding-3xs: 0.125rem;
-  --padding-2xs: 0.25rem;
-  --padding-xs: 0.5rem;
-  --padding-sm: 0.75rem;
-  --padding-md: 1rem;
-  --padding-lg: 1.5rem;
-  --padding-2xl: 2rem;
+  --padding-3xs: 0.125rem; /* padding/half */
+  --padding-2xs: 0.25rem; /* padding/1 */
+  --padding-xs: 0.5rem; /* padding/2 */
+  --padding-sm: 0.75rem; /* padding/3 */
+  --padding-md: 1rem; /* padding/4 */
+  --padding-lg: 1.5rem; /* padding/5 */
+  --padding-2xl: 2rem; /* padding/6 */
 
-  --spacing-3xs: 0.125rem;
-  --spacing-2xs: 0.25rem;
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.75rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-2xl: 2rem;
-  --spacing-3xl: 3rem;
-  --spacing-4xl: 3.75rem;
-  --spacing-5xl: 7.5rem;
+  --spacing-3xs: 0.125rem; /* spacing/half 2px */
+  --spacing-2xs: 0.25rem; /* spacing/1 4px */
+  --spacing-xs: 0.5rem; /* spacing/2 8px */
+  --spacing-sm: 0.75rem; /* spacing/3 12px */
+  --spacing-md: 1rem; /* spacing/4 16px */
+  --spacing-lg: 1.5rem; /* spacing/5 24px */
+  --spacing-2xl: 2rem; /* spacing/6 36px */
+  --spacing-3xl: 3rem; /* spacing/7 48px */
+  --spacing-4xl: 3.75rem; /* spacing/8 60px */
+  --spacing-5xl: 7.5rem; /* spacing/9 120px */
 
-  --font-caption-size: 0.75rem;
-  --font-small-size:0.875rem;
-  --font-body-size: 1rem;
-  --font-h6-size: 1.125rem;
-  --font-h5-size: 1.25rem;
-  --font-h4-size: 1.5rem;
-  --font-h3-size: 1.875rem;
-  --font-h2-size: 2.25rem;
-  --font-h1-size: 3rem;
-  --font-display-2-size: 3.75rem;
-  --font-display-1-size: 4.5rem;
+  --nav-bar-icon-size: 2.75rem;
 
   --font-weight-regular: 400;
+  --font-weight-medium: 500;
   --font-weight-bold: 700;
 
-  --font-caption-height: 0.75rem;
-  --font-small-height:0.875rem;
-  --font-body-height: 1rem;
-  --font-h6-height: 1.125rem;
-  --font-h5-height: 1.25rem;
-  --font-h4-height: 1.5rem;
-  --font-h3-height: 1.875rem;
-  --font-h2-height: 2.25rem;
-  --font-h1-height: 3rem;
-  --font-display-2-height: 3.75rem;
-  --font-display-1-height: 4.5rem;
+  --font-caption: var(--font-weight-regular) 0.75rem/1rem var(--font-base);
+  --font-small-regular: var(--font-weight-regular) 0.875rem/1.25rem var(--font-base);
+  --font-small-bold: var(--font-weight-bold) 0.875rem/1.25rem var(--font-base);
+  --font-standard-regular: var(--font-weight-regular) 1rem/1.5rem var(--font-base);
+  --font-standard-bold: var(--font-weight-bold) 1rem/1.5rem var(--font-base);
+  --font-h6: var(--font-weight-bold) 1.125rem/1.625rem var(--font-base);
+  --font-h5: var(--font-weight-regular) 1.125rem/1.75rem var(--font-base);
+  --font-h4: var(--font-weight-bold) 1.5rem/2rem var(--font-base);
+  --font-h3: var(--font-weight-medium) 1.875rem/2.375rem var(--font-base);
+  --font-h2: var(--font-weight-bold) 2.25rem/2.75rem var(--font-base);
+  --font-h1: var(--font-weight-bold) 3rem/3.5rem var(--font-base);
+  --font-display-2: var(--font-weight-medium) 3.75rem/4.375rem var(--font-base);
+  --font-display-1: var(--font-weight-bold) 4.5rem/5rem var(--font-base);
 
-  --font-h5: 400 1.25rem/1.75rem sans-serif;
-
-  --color-green-50: #F3FAFA;
+  --color-green-50: #DBE9E7;
   --color-green-100: #ABE4DF;
   --color-green-300: #56B7B5;
   --color-green-600: #27797A;
@@ -68,7 +59,7 @@
   --color-mint-600: #4AB7A5;
   --color-mint-800: #247D71;
 
-  --color-blue-50: #FBFDFE;
+  --color-blue-50: #F6F8FA;
   --color-blue-100: #D0DDED;
   --color-blue-300: #A3BEDC;
   --color-blue-600: #5A77B6;
@@ -87,7 +78,7 @@
   --color-pink-800: #EB174A;
 
   --color-red-50: #FFF1F2;
-  --color-red-100: #FFC7C9;
+  --color-red-100: #FEE5EE;
   --color-red-300: #FF7A7F;
   --color-red-600: #E51D25;
   --color-red-800: #A01419;
@@ -104,14 +95,26 @@
   --color-silver-300: #C9C9C9;
   --color-silver-400: #ADADAD;
   --color-silver-500: #999999;
-  --color-silver-600: #C9C9C9;
+  --color-silver-600: #888888;
   --color-silver-700: #7B7B7B;
   --color-silver-800: #676767;
   --color-silver-900: #545454;
   --color-silver-950: #363636;
 
-  --color-black-900: #000;
-  --color-white-950: #fff;
+  --color-black: #000;
+  --color-white: #fff;
+
+  --button-primary-color: var(--color-white);
+  --button-primary-bg: var(--color-black);
+  --button-primary-bg-focus: var(--color-silver-950);
+  --button-secondary-color: var(--color-silver-800);
+  --button-secondary-color-focus: var(--color-black);
+  --button-secondary-border: var(--color-silver-800);
+  --button-secondary-border-focus: var(--color-black);
+
+  --footer-bg-color: var(--color-mint-100);
+
+  --pill-border-color: var(--color-blue-300);
 
   --background-color: #F6F8FA;
 
@@ -159,6 +162,10 @@
     'Liberation Mono', 'Courier New', monospace;
   --__sl-font: var(--sl-font, ''), var(--sl-font-system);
   --__sl-font-mono: var(--sl-font-mono, ''), var(--sl-font-system-mono);
+
+  --font-base: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 /* CSS Resets */
@@ -199,18 +206,13 @@ body {  /* used */
   flex-direction: column;
   min-width: 320px;
   color: var(--color-silver-950);
-  font-family: var(--__sl-font);
+  font-family: var(--font-base);
 }
 
 main { /* used */
   flex: 1;
   font-size: var(--step-0);
   background-color: var(--background-color);
-}
-
-h1 {
-  font-size: var(--font-h1-size);
-  line-height: var(--font-h1-height);
 }
 
 a {
@@ -222,12 +224,52 @@ a:hover {
   text-decoration-color: inherit;
 }
 
-main a {
-  color: var(--sl-color-accent);
+p {
+  font: var(--font-standard-regular);
 }
 
-main p {
-  line-height: 1.39;
+p.caption {
+  font: var(--font-caption);
+}
+
+p.small {
+  font: var(--font-small-regular);
+}
+
+p.small-bold {
+  font: var(--font-small-bold);
+}
+
+p.bold {
+  font: var(--font-standard-bold);
+}
+
+h1, .font-h1 {
+  font: var(--font-h1);
+}
+
+h2, .font-h2 {
+  font: var(--font-h2);
+}
+
+h3, .font-h3 {
+  font: var(--font-h3);
+}
+
+h4, .font-h4 {
+  font: var(--font-h4);
+}
+
+h5, .font-h5 {
+  font: var(--font-h5);
+}
+
+h6, .font-h6 {
+  font: var(--font-h6);
+}
+
+main a {
+  color: var(--sl-color-accent);
 }
 
 main code {
@@ -285,6 +327,38 @@ input:not([type='submit']):not([type='file']):focus {
 
 /* Button styles */
 .btn {
+  font: var(--font-standard-bold);
+  padding: var(--spacing-sm);
+  text-decoration: none;
+  border-radius: var(--moderate-rounding);
+  display: inline-flex;
+  width: auto;
+  align-items: center;
+  gap: var(--spacing-xs);
+   width: auto;
+}
+
+.btn.primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-color);
+}
+
+.primary.btn:hover, .primary.btn:focus {
+  background-color: var(--button-primary-bg-focus);
+  color: var(--button-primary-color);
+}
+
+.btn.secondary {
+  color: var(--button-secondary-color);
+  border: 1px solid var(--button-secondary-border);
+}
+
+.secondary.btn:hover, .primary.btn:focus {
+  color: var(--button-secondary-color-focus);
+  border: 1px solid var(--button-secondary-border-focus);
+}
+
+/* .btn {
   border: 0;
   background-color: var(--sl-color-accent);
   color: var(--sl-color-white);
@@ -303,7 +377,7 @@ input:not([type='submit']):not([type='file']):focus {
   background-color: var(--sl-color-white);
   color: var(--sl-color-accent);
   border: 1px solid var(--sl-color-accent);
-}
+} */
 
 /* Table styles */
 table {
@@ -400,11 +474,7 @@ tbody tr:last-of-type td:last-child {
 }
 
 .section {
-  padding-block-end: var(--spacing-5xl);
-}
-
-.section:first-of-type {
-  padding-block-start: 6.25rem;
+  padding-block-start: var(--spacing-5xl);
 }
 
 .sectionHeader {
@@ -429,5 +499,11 @@ tbody tr:last-of-type td:last-child {
 
   .threeColGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section {
+    padding-block-start: var(--spacing-3xl);
   }
 }
