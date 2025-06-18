@@ -116,6 +116,8 @@
 
   --pill-border-color: var(--color-blue-300);
 
+  --border-color: var(--color-silver-200);
+
   --background-color: #F6F8FA;
 
 /* OLD */
@@ -335,7 +337,12 @@ input:not([type='submit']):not([type='file']):focus {
   width: auto;
   align-items: center;
   gap: var(--spacing-xs);
-   width: auto;
+  width: auto;
+}
+
+.btn.flexible {
+  flex: 1 1 auto;
+  justify-content: center;
 }
 
 .btn.primary {
