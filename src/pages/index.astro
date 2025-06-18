@@ -158,7 +158,8 @@ section.hero {
   padding: var(--spacing-md);
   background: var(--color-white);
   border-radius: var(--pill-rounding);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: var(--spacing-2xl);
 }
 
@@ -231,7 +232,7 @@ section.hero {
   }
 
   .wallet-info {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .wallet-info .wallet-content {
