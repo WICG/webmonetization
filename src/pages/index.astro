@@ -58,11 +58,13 @@ const t = useTranslations(lang);
       </div>
     </div>
   </section>
-  <section class="section">
+  <section class="section audienceSection">
     <div class="contentWrapper two-column-grid">
-      <div class="audienceSection left">
-        <h2 class="heading3">I am a publisher</h2>
-        <h3>And I want to be monetized</h3>
+      <div class="audience">
+        <div>
+          <h2 class="heading3">I am a publisher</h2>
+          <h3>And I want to be monetized</h3>
+        </div>
         <img
           width="460"
           height="461"
@@ -79,9 +81,11 @@ const t = useTranslations(lang);
           height="901"
         />
       </div>
-      <div class="audienceSection right">
-        <h2 class="heading3">I want to support</h2>
-        <h3>I have a publisher in mind that I would love to help</h3>
+      <div class="audience">
+        <div>
+          <h2 class="heading3">I want to support</h2>
+          <h3>I have a publisher in mind that I would love to help</h3>
+        </div>
         <img
           width="460"
           height="461"
@@ -93,16 +97,18 @@ const t = useTranslations(lang);
       </div>
     </div>
     <div class="contentWrapper">
-      <div class="audienceSection center">
-        <div class="horizontal-divider">
-          <img
-            src="/img/horizontal-accent-line.svg"
-            width="900"
-            height="5"
-          />
+      <div class="horizontal-divider">
+        <img
+          src="/img/horizontal-accent-line.svg"
+          width="900"
+          height="5"
+        />
+      </div>
+      <div class="audience">
+        <div>
+          <h2 class="heading3">I am a developer</h2>
+          <h3>And I want to contribute</h3>
         </div>
-        <h2 class="heading3">I am a developer</h2>
-        <h3>And I want to contribute</h3>
         <img
           width="460"
           height="464"
@@ -203,59 +209,73 @@ section.hero {
   flex: 1 1 20rem;
 }
 
+.audienceSection {
+  margin-inline: var(--spacing-md);
+}
+
 .two-column-grid {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  grid-template-rows: auto auto auto auto;
   align-items: start;
-  gap: var(--spacing-md);
 }
 
-.left h2 { grid-column: 1; grid-row: 1; }
-.left h3 { grid-column: 1; grid-row: 2; }
-.left img { grid-column: 1; grid-row: 3; }
-.left a { grid-column: 1; grid-row: 4; }
-
-.vertical-divider { grid-column: 2; grid-row: 1 / span 4; }
-
-.right h2 { grid-column: 3; grid-row: 1; }
-.right h3 { grid-column: 3; grid-row: 2; }
-.right img { grid-column: 3; grid-row: 3; }
-.right a { grid-column: 1; grid-row: 4; }
+.two-column-grid > div {
+  width: 100%;
+}
 
 .vertical-divider img {
   width: 0.25rem;
   height: 100%;
   display: block;
+  padding: var(--padding-2xl) 0;
 }
 
 .horizontal-divider img {
   width: 100%;
   height: 0.25rem;
   display: block;
+  padding: 0 var(--padding-2xl);
+}
+
+.audience {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+  border: 1px solid var(--color-white);
+  border-radius: var(--pill-rounding);
 }
 
 .sectionImg {
-  max-width: 25rem;
+  flex: 1 1 100%;
+  max-width:30rem;
   height:auto;
+  object-fit: contain;
 }
 
-.audienceSection {
+.audience {
   padding: 2rem;
+  color: var(--inactive-font-color);
+}
+
+.audience:hover, .audience:focus {
+  color: var(--default-font-color);
+}
+
+.audience h3 {
+  font: var(--font-h6);
+  margin-block-end: var(--spacing-lg);
 }
 
 .vertical-divider {
   height: 100%;
   width: 0.25rem;
+  margin: 0 var(--spacing-xs);
 }
 
 .horizontal-divider {
   width: 100%;
   height: 0.25rem;
-}
-.horizontal-divider img {
-  height: 0.25rem;
-  width: 100%;
+  margin: var(--spacing-xs) 0;
 }
 
 @media screen and (max-width: 768px) {

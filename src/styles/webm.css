@@ -104,6 +104,9 @@
   --color-black: #000;
   --color-white: #fff;
 
+  --default-font-color: var(--color-silver-950);
+  --inactive-font-color: var(--color-silver-800);
+
   --button-primary-color: var(--color-white);
   --button-primary-bg: var(--color-black);
   --button-primary-bg-focus: var(--color-silver-950);
@@ -207,7 +210,7 @@ body {  /* used */
   display: flex;
   flex-direction: column;
   min-width: 320px;
-  color: var(--color-silver-950);
+  color: var(--default-font-color);
   font-family: var(--font-base);
 }
 
