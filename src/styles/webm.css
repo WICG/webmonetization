@@ -6,7 +6,7 @@
   --slight-rounding: 0.25rem; /* Radius/xs */
   --moderate-rounding: 0.5rem; /* Radius/sm */
   --pill-rounding: 1rem; /* Radius/md */
-  --fully-rounded: 100%; /* Radius/full */
+  --fully-rounded: 999px; /* Radius/full */
 
   --padding-3xs: 0.125rem; /* padding/half */
   --padding-2xs: 0.25rem; /* padding/1 */

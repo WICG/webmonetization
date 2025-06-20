@@ -74,13 +74,7 @@ const t = useTranslations(lang);
         />
         <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">I am a publisher</a>
       </div>
-      <div class="vertical-divider">
-        <img
-          src="/img/vertical-accent-line.svg"
-          width="4"
-          height="901"
-        />
-      </div>
+      <div class="vertical-divider"></div>
       <div class="audience">
         <div>
           <h2 class="heading3">I want to support</h2>
@@ -97,13 +91,7 @@ const t = useTranslations(lang);
       </div>
     </div>
     <div class="contentWrapper">
-      <div class="horizontal-divider">
-        <img
-          src="/img/horizontal-accent-line.svg"
-          width="900"
-          height="5"
-        />
-      </div>
+      <div class="horizontal-divider"></div>
       <div class="audience">
         <div>
           <h2 class="heading3">I am a developer</h2>
@@ -215,7 +203,7 @@ section.hero {
 
 .two-column-grid {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 0.25rem 1fr;
   gap: var(--spacing-xs);
   align-items: start;
 }
@@ -255,37 +243,54 @@ section.hero {
 }
 
 .vertical-divider {
-  height: 100%;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  display: block;
+  position: relative;
+  width: 0.25rem;
   align-self: stretch;
-  padding: var(--padding-2xl) 0;
+  display: flex;
+  justify-content: center;
 }
 
-.vertical-divider img {
-  flex: 1 1 100%;
-  max-height: 50rem;
-  width: auto;
-  object-fit: cover;
-  height: 100%;
-  display: block;
+.vertical-divider::before {
+  content: "";
+  position: absolute;
+  top: var(--padding-2xl);
+  bottom: var(--padding-2xl);
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(
+    to bottom,
+    #7F76B2 12%,
+    #F69656 30%,
+    #F2797F 59%,
+    #9CD6CB 90%
+  );
+  border-radius: var(--fully-rounded);
 }
 
 .horizontal-divider {
-  width: 100%;
+  position: relative;
   height: 0.25rem;
-  margin: var(--spacing-xs) 0;
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
 }
 
-.horizontal-divider img {
-  width: 100%;
-  height: 0.25rem;
-  display: block;
-  padding: 0 var(--padding-2xl);
+.horizontal-divider::before {
+  content: "";
+  position: absolute;
+  left: var(--padding-2xl);
+  right: var(--padding-2xl);
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    to right,
+    #7F76B2 12%,
+    #F69656 30%,
+    #F2797F 59%,
+    #9CD6CB 90%
+  );
+  border-radius: var(--fully-rounded);
 }
 
 @media screen and (max-width: 768px) {
