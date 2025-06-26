@@ -12,14 +12,16 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
     </a>
     <button id="menuToggle" class="menu-toggle" aria-controls="nav-menu" aria-expanded="true" aria-label="Toggle Menu" title="Toggle Menu">
       <div id="menuIcon" class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <svg class="hamburger" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 18H20C20.55 18 21 17.55 21 17C21 16.45 20.55 16 20 16H4C3.45 16 3 16.45 3 17C3 17.55 3.45 18 4 18ZM4 13H20C20.55 13 21 12.55 21 12C21 11.45 20.55 11 20 11H4C3.45 11 3 11.45 3 12C3 12.55 3.45 13 4 13ZM3 7C3 7.55 3.45 8 4 8H20C20.55 8 21 7.55 21 7C21 6.45 20.55 6 20 6H4C3.45 6 3 6.45 3 7Z"/>
+        </svg>
+        <svg class="exit" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.0008 12.7269L8.40884 16.3189C8.30217 16.4256 8.18417 16.4756 8.05484 16.4689C7.9255 16.4622 7.8075 16.4059 7.70084 16.2999C7.59417 16.1939 7.54084 16.0726 7.54084 15.9359C7.54084 15.8006 7.59417 15.6796 7.70084 15.5729L11.2738 11.9999L7.68184 8.4329C7.57517 8.32623 7.52517 8.2049 7.53184 8.0689C7.5385 7.9329 7.59484 7.8119 7.70084 7.7059C7.80684 7.5999 7.92817 7.54657 8.06484 7.5459C8.20017 7.5459 8.32117 7.59923 8.42784 7.7059L12.0008 11.2979L15.5678 7.7059C15.6745 7.59923 15.7925 7.5459 15.9218 7.5459C16.0512 7.5459 16.1692 7.59923 16.2758 7.7059C16.3865 7.8159 16.4418 7.9379 16.4418 8.0719C16.4418 8.2059 16.3865 8.3259 16.2758 8.4319L12.7028 11.9999L16.2948 15.5919C16.4015 15.6986 16.4548 15.8166 16.4548 15.9459C16.4548 16.0752 16.4015 16.1932 16.2948 16.2999C16.1848 16.4106 16.0628 16.4659 15.9288 16.4659C15.7948 16.4659 15.6748 16.4106 15.5688 16.2999L12.0008 12.7269Z"/>
+        </svg>
       </div>
     </button>
     <ul id="navMenu" class="nav-menu collapsed">
-       <li class="nav-link__github">
+       <li class="nav-link__tools">
         <button>
           Tools
           <svg class="nav-tools-btn" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +30,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
         </button>
       </li>
        <li class="nav-link__docs"><a href="/docs" data-umami-event="Landing page - WebMo docs">{t('nav.documentation')}</a></li>
-       <li class="nav-link__docs"><a href="/specification" data-umami-event="Landing page - WebMo specs">{t('nav.specification')}</a></li>
+       <li class="nav-link__spec"><a href="/specification" data-umami-event="Landing page - WebMo specs">{t('nav.specification')}</a></li>
     </ul>
  </nav>
 </header>
@@ -37,7 +39,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
   header {
     background-color: var(--color-white);
     color: var(--nav-text-color);
-    box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
     position: sticky;
     top: 0;
   }
@@ -47,39 +48,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
     align-items: center;
     position: relative;
     padding: var(--padding-xs) var(--padding-2xl);
-  }
-
-  @media screen and (max-width: 768px) {
-    .nav-menu {
-      position: absolute;
-      top: 100%;
-      background-color: white;
-      width: 100%;
-      list-style: none;
-      padding: 0;
-      left: 0;
-      right: 0;
-      box-shadow: 0 2px 6px -4px var(--wm-accent);
-    }
-  }
-
-  @media screen and (min-width: 769px) {
-    .nav-menu {
-      display: flex;
-      gap: var(--spacing-md);
-      align-items: center;
-      list-style-type: none;
-      flex: 1;
-      justify-content: end;
-    }
-
-    .menu-toggle {
-      display: none;
-    }
-
-    .collapsed {
-      display: block;
-    }
   }
 
   .nav-menu button {
@@ -115,12 +83,11 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
   .site-title {
     display: flex;
     align-items: center;
-    gap: var(--space-xs);
   }
 
   .site-title img {
-    width: var(--nav-bar-icon-size);
-    height: var(--nav-bar-icon-size);
+    width: 2.75rem;
+    height: 2.75rem;
     flex: none;
   }
 
@@ -136,63 +103,85 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
     margin-inline-start: auto;
   }
 
+  button.menu-toggle {
+    padding: 0;
+  }
+
   .menu-icon {
     position: relative;
-    transform: rotate(0deg);
     transition: .5s ease-in-out;
     cursor: pointer;
-    height: 1em;
-    width: 1.5em;
+    height: 3em;
+    width: 3em;
   }
 
-  .menu-icon span {
+  .menu-icon svg {
+    height: 3em;
+    width: 3em;
     display: block;
     position: absolute;
-    height: 4px;
-    width: 100%;
     background: var(--sl-color-gray-4);
-    border-radius: 4px;
     opacity: 1;
     left: 0;
-    transform: rotate(0deg);
     transition: .25s ease-in-out;
-  }
-
-  .menu-icon span:nth-child(1) {
-    top: 0;
-  }
-
-  .menu-icon span:nth-child(2),
-  .menu-icon span:nth-child(3) {
-    top: 50%;
-  }
-
-  .menu-icon span:nth-child(4) {
-    top: 100%;
-  }
-
-  .menu-icon.open span:nth-child(1),
-  .menu-icon.open span:nth-child(4) {
-    top: 50%;
-    width: 0%;
-    left: 50%;
-  }
-
-  .menu-icon.open span:nth-child(2) {
-    transform: rotate(45deg);
-  }
-
-  .menu-icon.open span:nth-child(3) {
-    transform: rotate(-45deg);
-  }
-
-  .nav-link__github img {
-    height: 1.5em;
-    width: 1.5em;
+    fill: var(--nav-text-color);
+    background-color: transparent;
   }
 
   .collapsed {
     display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    header {
+      margin: 16px 16px 0 16px;
+    }
+
+    nav.site-nav {
+      box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
+      border-radius: var(--moderate-rounding);
+      padding: var(--padding-2xs) var(--padding-xs) var(--padding-2xs) var(--padding-md);
+    }
+    
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      background-color: var(--color-white);
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .site-title img {
+      width: 2rem;
+      height: 2rem;
+      flex: none;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    header {
+      box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: center;
+      list-style-type: none;
+      flex: 1;
+      justify-content: end;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .collapsed {
+      display: block;
+    }
   }
 </style>
 
@@ -200,7 +189,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
   const toggle = document.getElementById('menuToggle');
   const icon = document.getElementById('menuIcon');
   const menu = document.getElementById('navMenu');
-  const isWide = window.matchMedia('(min-width: 540px)');
+  const isWide = window.matchMedia('(min-width: 769px)');
 
   const handleClick = () => {
     if (toggle?.getAttribute('aria-expanded') === 'false') {
