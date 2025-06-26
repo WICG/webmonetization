@@ -114,6 +114,10 @@
   --button-secondary-color-focus: var(--color-black);
   --button-secondary-border: var(--color-silver-800);
   --button-secondary-border-focus: var(--color-black);
+  --button-hover-color: var(--color-purple-600);
+
+  --nav-text-color: var(--color-purple-300);
+  --surface-hover-color: var(--color-purple-50);
 
   --footer-bg-color: var(--color-mint-100);
 

@@ -6,7 +6,7 @@ const t = useTranslations(lang);
 const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
 ---
 <header>
-  <nav class="site-nav">
+  <nav class="site-nav contentWrapper">
     <a href={homePageUrl} class="site-title">
       <img src="/img/wm-logo.svg" alt="Web Monetization logo">
     </a>
@@ -19,7 +19,14 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
       </div>
     </button>
     <ul id="navMenu" class="nav-menu collapsed">
-       <li class="nav-link__github">Tools</li>
+       <li class="nav-link__github">
+        <button>
+          Tools
+          <svg class="nav-tools-btn" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 10.1247L13.1433 4.98008C13.2416 4.88185 13.3598 4.83341 13.498 4.83474C13.6358 4.83608 13.754 4.88585 13.8527 4.98408C13.9509 5.08274 14 5.20119 14 5.33941C14 5.47719 13.9509 5.59541 13.8527 5.69408L8.75733 10.7847C8.64978 10.8923 8.52978 10.971 8.39733 11.0207C8.26489 11.0705 8.13244 11.0952 8 11.0947C7.86756 11.0943 7.73511 11.0696 7.60267 11.0207C7.47022 10.9719 7.35022 10.8932 7.24267 10.7847L2.14667 5.69008C2.04844 5.59141 2 5.47363 2.00133 5.33674C2.00267 5.2003 2.05245 5.08297 2.15067 4.98474C2.24889 4.88652 2.36711 4.83741 2.50533 4.83741C2.64356 4.83741 2.76156 4.88652 2.85933 4.98474L8 10.1247Z"/>
+          </svg>
+        </button>
+      </li>
        <li class="nav-link__docs"><a href="/docs" data-umami-event="Landing page - WebMo docs">{t('nav.documentation')}</a></li>
        <li class="nav-link__docs"><a href="/specification" data-umami-event="Landing page - WebMo specs">{t('nav.specification')}</a></li>
     </ul>
@@ -28,20 +35,81 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
 
 <style>
   header {
-    background-color: #fff;
-    color: #333;
+    background-color: var(--color-white);
+    color: var(--nav-text-color);
     box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
     position: sticky;
     top: 0;
   }
 
-  .site-nav {
+  nav.site-nav {
     display: flex;
     align-items: center;
-    padding-inline: var(--space-s);
     position: relative;
-    max-width: 95rem;
-    margin-inline: auto;
+    padding: var(--padding-xs) var(--padding-2xl);
+  }
+
+  @media screen and (max-width: 768px) {
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      background-color: white;
+      width: 100%;
+      list-style: none;
+      padding: 0;
+      left: 0;
+      right: 0;
+      box-shadow: 0 2px 6px -4px var(--wm-accent);
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .nav-menu {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: center;
+      list-style-type: none;
+      flex: 1;
+      justify-content: end;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .collapsed {
+      display: block;
+    }
+  }
+
+  .nav-menu button {
+    color: var(--nav-text-color);
+  }
+
+  .nav-menu button, .nav-menu a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background: none;
+    border: none;
+    color: var(--nav-text-color);
+    cursor: pointer;
+    padding: var(--padding-sm) var(--padding-md);
+    text-decoration: none;
+    border-radius: var(--moderate-rounding);
+  }
+
+    .nav-menu button:hover, .nav-menu button:focus, .nav-menu a:hover, .nav-menu a:focus {
+    background: var(--surface-hover-color);
+    color: var(--button-hover-color);
+  }
+
+  .nav-tools-btn {
+    height: var(--spacing-md);
+    width: var(--spacing-md);
+    display: block;
+    fill: var(--nav-text-color);
+    margin: var(--spacing-3xs) 0;
   }
 
   .site-title {
@@ -59,16 +127,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
   .site-title span {
     font-size: larger;
     white-space: nowrap;
-  }
-
-  a {
-    text-decoration: none;
-    color: var(--sl-color-text);
-    padding-block: var(--spacing-xs);
-  }
-
-  a:hover {
-    color: var(--wm-accent);
   }
 
   .menu-toggle {
@@ -135,44 +193,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
 
   .collapsed {
     display: none;
-  }
-
-  @media screen and (max-width: 539px) {
-    .nav-menu {
-      position: absolute;
-      top: 100%;
-      background-color: white;
-      width: 100%;
-      list-style: none;
-      padding: 0;
-      left: 0;
-      right: 0;
-      box-shadow: 0 2px 6px -4px var(--wm-accent);
-    }
-
-    .nav-menu a {
-      display: block;
-      padding-inline: var(--space-xs);
-    }
-  }
-
-  @media screen and (min-width: 540px) {
-    .nav-menu {
-      display: flex;
-      gap: var(--space-s);
-      align-items: center;
-      list-style-type: none;
-      flex: 1;
-      justify-content: end;
-    }
-
-    .menu-toggle {
-      display: none;
-    }
-
-    .collapsed {
-      display: block;
-    }
   }
 </style>
 
