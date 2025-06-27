@@ -2,241 +2,330 @@
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
-import contributors from "../data/contributors.json";
 import CardList from "../components/pages/CardList.astro";
-import PrCta from "../components/pages/PrCta.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const pluginsList = data.plugins.filter(function(plugin){
-  return plugin.version.includes("2.0");
-});
 ---
 <Base title={t('site.title')} description={t('site.description')}>
   <section class="section hero">
-    <div class="contentWrapperSm">
+    <div class="contentWrapper">
+      <div class="heading-wrapper">
+        <h1>
+          Welcome to Web Monetization
+        </h1>
+        <img
+          alt=""
+          role="presentation"
+          src="/img/wm-heading-vector.svg"
+          width="442"
+          height="23"
+        />
+      </div>
       <img
-        alt="Web Monetization Icon"
-        class="heroIcon"
-        src="/img/wm-logo--animated.svg"
-        width="120"
-        height="86"
+        alt="Web Monetization ..."
+        class="heroImg"
+        src="/img/hero-animation.svg"
+        width="814"
+        height="599"
       />
-      <h1 class="heading2">Web Monetization</h1>
-      <p class="heroTagline heading4">
-        The Web Monetization API allows websites to automatically and
-        passively receive payments from Web Monetization-enabled visitors.
+      <p class="heroTagline">
+        We seek to empower content owners and users alike by enabling seamless micropayments, fostering a fair and sustainable digital economy, and working on top of traditional advertising and subscription-based revenue models.
       </p>
     </div>
-    <footer class="heroFooter">
-      <div class="contentWrapperSm">
-        <p>
-          Web Monetization is being proposed as a standard in <a
-            href="https://wicg.io/"
-            data-umami-event="Landing page - Spec"
-          >
-            the W3C Web Incubator Community Group</a>.
-        </p>
-      </div>
-    </footer>
   </section>
   <section class="section">
-    <div class="contentWrapperLg twoColGrid">
-      <div class="gridItem">
-        <h2 class="heading3">Motivation</h2>
-        <p>
-          The ability to transfer money has been a long-standing omission
-          from the web platform. As a result, the web suffers from a flood
-          of advertising and broken business models. Web Monetization
-          provides an open, native, efficient, and automatic way to
-          compensate creators, pay for content, and support crucial web
-          infrastructure.
-        </p>
-      </div>
-      <div class="gridItem">
-        <h2 class="heading3">Why Now?</h2>
-        <p>
-          Until recently, there hasn't been an open, neutral, and cost-efficient protocol for transferring money. <a href="https://interledger.org/" data-umami-event="Landing page - ILP docs">Interledger</a> <a href="https://openpayments.dev/" data-umami-event="Landing page - Open Payments docs">Open Payments</a> provides a simple, interoperable, and currency-independent method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes the Web Monetization use case possible for the first time.
-        </p>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="contentWrapperLg">
-      {data.wallets.length > 0 && (
-        <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">Web Monetization Wallets</h2>
-            <p>
-              These providers offer Open Payments-enabled <a href="/wallets/">wallets</a> that you can use to become Web Monetized:
-            </p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.wallets} />
-          </div>
-          <p class="sectionHeader">Support in <em>Interledger Wallet</em> and <em>Chimoney App</em> is coming soon.</p>
-        </div>
-      )}
-      {data.search.length > 0 && (
-        <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">
-              Web Monetization Enabled Search Engines
-            </h2>
-            <p>These search engines implement Web Monetization features:</p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.search} />
-          </div>
-          <PrCta label="search engine" />
-        </div>
-      )}
-    </div>
-  </section>
-  {data.providers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Providers</h2>
-          <p>These providers offer Web Monetization services:</p>
-        </div>
-        <div class="cards">
-          <CardList cards={data.providers} />
-        </div>
-        <PrCta label="provider" />
-      </div>
-    </section>
-  )}
-  {data.browsers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">
-            Web Monetization Supported Browsers
-          </h2>
+    <div class="contentWrapper">
+      <div class="wallet-info">
+        <div class="wallet-content">
+          <h2 class="font-h3">Wallets</h2>
           <p>
-            These browsers implement Web Monetization natively or via an
-            extension:
+            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
           </p>
+          <p class="bold">Do you know other wallets?</p>
+          <a href="https://github.com/WICG/webmonetization/pulls" target="_blank" rel="noreferrer noopener" data-umami-event="Home page link - GitHub PR" class="btn secondary">
+            Make a PR
+            <svg viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.25 2.09989C14.0781 1.98868 13.8815 1.92139 13.6775 1.90396C13.4735 1.88652 13.2683 1.91946 13.08 1.99989L6.91 4.42989C6.76407 4.48984 6.60776 4.52042 6.45 4.51989H2.5C2.16848 4.51989 1.85054 4.65159 1.61612 4.88601C1.3817 5.12043 1.25 5.43837 1.25 5.76989V5.86989H0V8.86989H1.25V8.99989C1.25783 9.32619 1.39298 9.63648 1.62656 9.86445C1.86013 10.0924 2.17361 10.22 2.5 10.2199L4 13.3999C4.10157 13.614 4.26148 13.7952 4.46136 13.9225C4.66124 14.0499 4.893 14.1183 5.13 14.1199H5.76C6.08979 14.1173 6.40516 13.9844 6.63743 13.7503C6.86969 13.5161 7.00001 13.1997 7 12.8699V10.3399L13.08 12.7699C13.2297 12.8287 13.3891 12.8592 13.55 12.8599C13.7996 12.8553 14.0426 12.7789 14.25 12.6399C14.4145 12.5288 14.5501 12.3802 14.6458 12.2063C14.7414 12.0324 14.7943 11.8383 14.8 11.6399V3.12989C14.7991 2.92641 14.7485 2.72623 14.6527 2.54673C14.5568 2.36723 14.4186 2.21384 14.25 2.09989ZM5.75 5.76989V8.99989H2.5V5.76989H5.75ZM5.75 12.8699H5.12L3.89 10.2199H5.75V12.8699ZM7.37 9.14989C7.25125 9.08926 7.12745 9.03908 7 8.99989V5.69989C7.1262 5.67366 7.24997 5.63686 7.37 5.58989L13.55 3.12989V11.6099L7.37 9.14989ZM14.83 6.11989V8.61989C15.1615 8.61989 15.4795 8.4882 15.7139 8.25378C15.9483 8.01936 16.08 7.70142 16.08 7.36989C16.08 7.03837 15.9483 6.72043 15.7139 6.48601C15.4795 6.25159 15.1615 6.11989 14.83 6.11989Z"/>
+            </svg>
+          </a>
         </div>
+        {data.wallets.length > 0 && (
         <div class="cards">
-          <CardList cards={data.browsers} />
+          <CardList cards={data.wallets} />
         </div>
-        <PrCta label="browser" />
-      </div>
-    </section>
-  )}
-  {data.plugins.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Libraries/Plugins</h2>
-          <p>There have been a number of libraries and plugins developed over the years to enable Web Monetization features on your website, but a lot of them need updating to conform to the latest specification. If you would like to help out this effort, please check out the <a href="/developers/libraries" data-umami-event="Landing page - WebMo libraries">full list</a>. These plugins have already been updated:</p>
-        </div>
-        <div class="cards">
-          <CardList cards={pluginsList} />
-        </div>
-        <PrCta label="plugin" />
-      </div>
-    </section>
-  )}
-  <section class="section">
-    <div class="contentWrapperLg">
-      <div class="sectionHeader">
-        <h2 class="heading3">Tools</h2>
-      </div>
-      <div class="threeColGrid toolsList">
-        <a class="gridItem" href="/play" data-umami-event="Landing page - Playground">
-          <h3 class="heading4">Web Monetization Playground</h3>
-          <p>Explore how Web Monetization works</p>
-        </a>
-
-        <a class="gridItem" href="/tools/link-tag" data-umami-event="Landing page - Link tag">
-          <h3 class="heading4">Link Tag Generator</h3>
-          <p>Generate a Web Monetization link tag for your site</p>
-        </a>
-
-        <a class="gridItem" href="/tools/prob-revshare" data-umami-event="Landing page - Prob rev share">
-          <h3 class="heading4">Probabilistic RevShare Generator</h3>
-          <p>Split Web Monetization revenue between wallet addresses</p>
-        </a>
+      )}
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="contentWrapperLg">
-      <div class="sectionHeader">
-        <h2 class="heading3">Contributors</h2>
-        <p>Thank you to all our contributors.</p>
+  <section class="section audienceSection">
+    <div class="contentWrapper two-column-grid">
+      <div class="audience">
+        <div>
+          <h2 class="heading3">I am a publisher</h2>
+          <h3>And I want to be monetized</h3>
+        </div>
+        <img
+          width="460"
+          height="461"
+          class="sectionImg"
+          alt="Web Monetization ..."
+          src="/img/publishers-hero.svg"
+        />
+        <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">I am a publisher</a>
       </div>
-      {contributors.length > 0 && (
-        <ul class="contributors">
-          {contributors.map((contributor) => (
-            <li class="contributor">
-              <a href={contributor.html_url}>
-                <img alt={contributor.login} src={contributor.avatar_url} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div class="vertical-divider"></div>
+      <div class="audience">
+        <div>
+          <h2 class="heading3">I want to support</h2>
+          <h3>I have a publisher in mind that I would love to help</h3>
+        </div>
+        <img
+          width="460"
+          height="461"
+          class="sectionImg"
+          alt="Web Monetization ..."
+          src="/img/supporters-hero.svg"
+        />
+        <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">I want to support</a>
+      </div>
+    </div>
+    <div class="contentWrapper">
+      <div class="horizontal-divider"></div>
+      <div class="audience">
+        <div>
+          <h2 class="heading3">I am a developer</h2>
+          <h3>And I want to contribute</h3>
+        </div>
+        <img
+          width="460"
+          height="464"
+          class="sectionImg"
+          alt="Web Monetization ..."
+          src="/img/dev-hero.svg"
+        />
+        <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
 /* Hero section styles */
-.hero {
-  background-image: url("/img/bg-lines--light.svg"), url("/img/bg-tile.svg");
-  background-repeat: repeat-x, repeat;
-  background-size: 17em, 20em;
-  background-position: bottom, center;
-  margin-block-end: var(--space-xl);
+section.hero {
   text-align: center;
-}
-.heroIcon {
-  width: 120px;
-  margin-block-end: var(--space-s);
-  margin-inline: auto;
+  min-height: calc(100vh - var(--nav-bar-icon-size) - 2 * var(--spacing-xs));
+  display: flex;
+  flex-direction: column;
 }
 
-.hero h1 {
-  color: var(--wm-accent);
+.hero .contentWrapper {
+  height: 100%;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-/* Card wrapper styles */
+.heading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.heading-wrapper h1 {
+  margin: 0;
+}
+
+.heading-wrapper img {
+  width: 75%;
+  max-width: 25rem;
+  margin-top: 0.5rem;
+  height: auto;
+}
+
+.heroImg {
+  flex: 1 1 100%;
+  max-height: 50vh;
+  max-width: 80vw;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroTagline {
+  font: var(--font-style-h5);
+  margin-bottom: var(--spacing-lg);
+}
+
+.wallet-info {
+  margin-inline: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-white);
+  border-radius: var(--pill-rounding);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--spacing-2xl);
+}
+
+.wallet-info .wallet-content {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 10 1 20rem;
+}
+
+.wallet-info a svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
 .cards {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-s);
-  margin-block-end: var(--space-s);
-  justify-content: center;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  align-items: flex-end;
+  flex: 1 1 20rem;
 }
 
-/* Tools list styles */
-.toolsList {
-  justify-content: center;
+.audienceSection {
+  margin-inline: var(--spacing-md);
 }
 
-.toolsList a {
-  text-align: center;
-  cursor: pointer;
+.two-column-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.25rem 1fr;
+  gap: var(--spacing-xs);
+  align-items: start;
 }
-/* Contributor section styles */
-.contributors {
-  list-style: none;
+
+.two-column-grid > div {
+  width: 100%;
+  height: 100%;
+}
+
+.audience {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+  border: 1px solid var(--color-white);
+  border-radius: var(--pill-rounding);
+}
+
+.sectionImg {
+  flex: 1 1 100%;
+  max-width: 30vw;
+  height:auto;
+  object-fit: contain;
+}
+
+.audience {
+  padding: 2rem;
+  color: var(--inactive-font-color);
+}
+
+.audience:hover, .audience:focus {
+  color: var(--default-font-color);
+}
+
+.audience h3 {
+  font: var(--font-h6);
+  margin-block-end: var(--spacing-lg);
+}
+
+.vertical-divider {
+  position: relative;
+  width: 0.25rem;
+  align-self: stretch;
+  display: flex;
   justify-content: center;
-  gap: var(--space-xs);
-  padding: 0;
 }
 
-.contributor {
-  flex: 0 0 3em;
+.vertical-divider::before {
+  content: "";
+  position: absolute;
+  top: var(--padding-2xl);
+  bottom: var(--padding-2xl);
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(
+    to bottom,
+    #7F76B2 12%,
+    #F69656 30%,
+    #F2797F 59%,
+    #9CD6CB 90%
+  );
+  border-radius: var(--fully-rounded);
 }
 
-.contributor img {
-  border-radius: 50%;
+.horizontal-divider {
+  position: relative;
+  height: 0.25rem;
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-divider::before {
+  content: "";
+  position: absolute;
+  left: var(--padding-2xl);
+  right: var(--padding-2xl);
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    to right,
+    #7F76B2 12%,
+    #F69656 30%,
+    #F2797F 59%,
+    #9CD6CB 90%
+  );
+  border-radius: var(--fully-rounded);
+}
+
+@media screen and (max-width: 768px) {
+  section.hero {
+    min-height: unset;
+  }
+
+  .heading-wrapper h1 {
+    font: var(--font-h3);
+  }
+
+  .heading-wrapper img {
+    max-width: 16rem;
+  }
+
+  .heroTagline {
+    margin-bottom: 0;
+  }
+
+  .wallet-info {
+    grid-template-columns: 1fr;
+  }
+
+  .wallet-info .wallet-content {
+    flex: 1 1 auto;
+  }
+
+  .cards {
+    flex: 1 1 auto;
+    align-items: stretch;
+  }
+
+  .two-column-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .vertical-divider, .horizontal-divider {
+    display: none;
+  }
+
 }
 </style>
