@@ -113,6 +113,7 @@
   --button-secondary-border: var(--color-silver-800);
   --button-secondary-border-focus: var(--color-black);
   --button-hover-color: var(--color-purple-600);
+  --button-ghost-color: var (--color-purple-300);
 
   --nav-text-color: var(--color-purple-300);
   --surface-hover-color: var(--color-purple-50);
@@ -342,7 +343,6 @@ input:not([type='submit']):not([type='file']):focus {
   width: auto;
   align-items: center;
   gap: var(--spacing-xs);
-  width: auto;
 }
 
 .btn.flexible {
@@ -368,6 +368,17 @@ input:not([type='submit']):not([type='file']):focus {
 .secondary.btn:hover, .primary.btn:focus {
   color: var(--button-secondary-color-focus);
   border: 1px solid var(--button-secondary-border-focus);
+}
+
+.btn.ghost {
+  color: var(--button-ghost-color);
+  border: none;
+  padding-inline: var(--padding-xs);
+}
+
+.ghost.btn:hover, .ghost.btn:focus {
+  color: var(--button-hover-color);
+  background-color: var(--surface-hover-color);
 }
 
 /* .btn {
