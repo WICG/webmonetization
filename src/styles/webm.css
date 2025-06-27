@@ -205,6 +205,7 @@ select {
 /* Base styles */
 html {
   height: 100%;
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -215,12 +216,16 @@ body {  /* used */
   min-width: 320px;
   color: var(--default-font-color);
   font-family: var(--font-base);
+  background-image: url("/img/hero-gradient-background.svg");
+  background-color: var(--background-color);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
 }
 
 main { /* used */
   flex: 1;
   font-size: var(--step-0);
-  background-color: var(--background-color);
 }
 
 a {
@@ -343,6 +348,7 @@ input:not([type='submit']):not([type='file']):focus {
   width: auto;
   align-items: center;
   gap: var(--spacing-xs);
+  transition: background-color 150ms ease-in;
 }
 
 .btn.flexible {
@@ -374,33 +380,13 @@ input:not([type='submit']):not([type='file']):focus {
   color: var(--button-ghost-color);
   border: none;
   padding-inline: var(--padding-xs);
+  background-color: transparent;
 }
 
 .ghost.btn:hover, .ghost.btn:focus {
   color: var(--button-hover-color);
   background-color: var(--surface-hover-color);
 }
-
-/* .btn {
-  border: 0;
-  background-color: var(--sl-color-accent);
-  color: var(--sl-color-white);
-  border-radius: var(--border-radius);
-  padding: var(--space-2xs) var(--space-xs);
-  transition: background-color 150ms ease-in;
-  font-weight: bold;
-}
-
-.btn:hover,
-.btn:focus {
-  background-color: var(--sl-color-accent-high);
-}
-
-.btn.outline {
-  background-color: var(--sl-color-white);
-  color: var(--sl-color-accent);
-  border: 1px solid var(--sl-color-accent);
-} */
 
 /* Table styles */
 table {

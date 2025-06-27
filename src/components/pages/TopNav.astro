@@ -72,7 +72,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 
 <style>
   header {
-    background-color: var(--color-white);
     color: var(--nav-text-color);
     font: var(--font-small-regular);
     position: sticky;
@@ -85,6 +84,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     position: relative;
     justify-content: space-between;
     padding: var(--padding-xs) var(--padding-2xl);
+    background-color: var(--color-white);
   }
 
   .nav-menu button {
@@ -212,6 +212,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   @media screen and (min-width: 769px) {
     header {
       box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
+      background-color: var(--color-white);
     }
 
     .nav-menu {
