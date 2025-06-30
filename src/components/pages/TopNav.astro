@@ -262,31 +262,52 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   const menu = document.getElementById('navMenu')
   const isWide = window.matchMedia('(min-width: 769px)')
 
+  const closeMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'false')
+    menu?.classList.add('collapsed')
+    toggle?.classList.add('closed')
+    toggle?.classList.remove('open')
+    document.removeEventListener('click', handleClickOutside)
+    document.removeEventListener('keydown', handleEsc)
+  }
+
+  const openMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'true')
+    menu?.classList.remove('collapsed')
+    toggle?.classList.add('open')
+    toggle?.classList.remove('closed')
+    // Delay so initial click doesn't trigger outside close
+    setTimeout(() => {
+      document.addEventListener('click', handleClickOutside)
+      document.addEventListener('keydown', handleEsc)
+    }, 0)
+  }
+
   const handleClick = () => {
-    if (toggle?.getAttribute('aria-expanded') === 'false') {
-      toggle.setAttribute('aria-expanded', 'true')
-      menu?.classList.remove('collapsed')
-      toggle?.classList.add('open')
-      toggle?.classList.remove('closed')
-    } else {
-      toggle?.setAttribute('aria-expanded', 'false')
-      menu?.classList.add('collapsed')
-      toggle?.classList.add('closed')
-      toggle?.classList.remove('open')
-    }
+    const isOpening = toggle?.getAttribute('aria-expanded') === 'false'
+    isOpening ? openMenu() : closeMenu()
   }
 
   const handleResize = (evt: MediaQueryList | MediaQueryListEvent) => {
+    closeMenu()
     if (evt.matches) {
-      toggle?.setAttribute('aria-expanded', 'false')
+      // Wide screen: keep nav visible
       menu?.classList.remove('collapsed')
-      toggle?.classList.add('closed')
-      toggle?.classList.remove('open')
-    } else {
-      toggle?.setAttribute('aria-expanded', 'false')
-      menu?.classList.add('collapsed')
-      toggle?.classList.add('closed')
-      toggle?.classList.remove('open')
+    }
+  }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      !menu?.contains(event.target as Node) &&
+      !toggle?.contains(event.target as Node)
+    ) {
+      closeMenu()
+    }
+  }
+
+  const handleEsc = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      closeMenu()
     }
   }
 
