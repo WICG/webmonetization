@@ -258,60 +258,93 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 <script>
   // TODO tools down arrow rotates on click
   // TODO click outside closes menu on mobile and closes tool section on full screen, one or the other, i.e. only one click outside
-  const toggle = document.getElementById('menuToggle')
+    const toggle = document.getElementById('menuToggle')
   const menu = document.getElementById('navMenu')
-  const isWide = window.matchMedia('(min-width: 769px)')
+  const toolsButton = document.querySelector('#tools-dropdown > button')
+  const toolsDropdown = document.querySelector('#tools-dropdown .tools-dropdown')
 
-  const closeMenu = () => {
-    toggle?.setAttribute('aria-expanded', 'false')
-    menu?.classList.add('collapsed')
-    toggle?.classList.add('closed')
-    toggle?.classList.remove('open')
-    document.removeEventListener('click', handleClickOutside)
-    document.removeEventListener('keydown', handleEsc)
-  }
+  let menuOpen = false
+  let submenuOpen = false
 
   const openMenu = () => {
     toggle?.setAttribute('aria-expanded', 'true')
     menu?.classList.remove('collapsed')
     toggle?.classList.add('open')
     toggle?.classList.remove('closed')
-    // Delay so initial click doesn't trigger outside close
-    setTimeout(() => {
-      document.addEventListener('click', handleClickOutside)
-      document.addEventListener('keydown', handleEsc)
-    }, 0)
+    menuOpen = true
+    bindGlobalEvents()
   }
 
-  const handleClick = () => {
-    const isOpening = toggle?.getAttribute('aria-expanded') === 'false'
-    isOpening ? openMenu() : closeMenu()
+  const closeMenu = () => {
+    toggle?.setAttribute('aria-expanded', 'false')
+    menu?.classList.add('collapsed')
+    toggle?.classList.add('closed')
+    toggle?.classList.remove('open')
+    menuOpen = false
+    closeSubmenu()
+    unbindGlobalEvents()
   }
 
-  const handleResize = (evt: MediaQueryList | MediaQueryListEvent) => {
+  const openSubmenu = () => {
+    toolsDropdown?.classList.add('open')
+    submenuOpen = true
+  }
+
+  const closeSubmenu = () => {
+    toolsDropdown?.classList.remove('open')
+    submenuOpen = false
+  }
+
+  const handleMainToggle = () => {
+    menuOpen ? closeMenu() : openMenu()
+  }
+
+  const handleSubmenuToggle = (e) => {
+    e.stopPropagation() // Prevent from bubbling up to outside click
+    submenuOpen ? closeSubmenu() : openSubmenu()
+  }
+
+  const handleClickOutside = (event) => {
+    const target = event.target
+    const isInMenu = menu?.contains(target)
+    const isInToggle = toggle?.contains(target)
+
+    if (!isInMenu && !isInToggle) {
+      closeMenu()
+    }
+  }
+
+  const handleEsc = (event) => {
+    if (event.key === 'Escape') {
+      if (submenuOpen) {
+        closeSubmenu()
+      } else if (menuOpen) {
+        closeMenu()
+      }
+    }
+  }
+
+  const bindGlobalEvents = () => {
+    document.addEventListener('click', handleClickOutside)
+    document.addEventListener('keydown', handleEsc)
+  }
+
+  const unbindGlobalEvents = () => {
+    document.removeEventListener('click', handleClickOutside)
+    document.removeEventListener('keydown', handleEsc)
+  }
+
+  const isWide = window.matchMedia('(min-width: 769px)')
+  const handleResize = (evt) => {
     closeMenu()
     if (evt.matches) {
-      // Wide screen: keep nav visible
+      // Wide screen: menu always shown
       menu?.classList.remove('collapsed')
     }
   }
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      !menu?.contains(event.target as Node) &&
-      !toggle?.contains(event.target as Node)
-    ) {
-      closeMenu()
-    }
-  }
-
-  const handleEsc = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      closeMenu()
-    }
-  }
-
-  toggle?.addEventListener('click', handleClick, false)
-  isWide.addEventListener('change', (evt) => handleResize(evt))
+  toggle?.addEventListener('click', handleMainToggle)
+  toolsButton?.addEventListener('click', handleSubmenuToggle)
+  isWide.addEventListener('change', handleResize)
   handleResize(isWide)
 </script>
