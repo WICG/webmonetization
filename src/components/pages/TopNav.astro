@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import NavToolsDropdown from './NavToolsDropdown.astro'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -41,7 +42,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       </svg>
     </button>
     <ul id='navMenu' class='nav-menu collapsed'>
-      <li class='nav-link__tools'>
+      <li class='nav-link__tools' id='tools-dropdown'>
         <button>
           Tools
           <svg
@@ -55,6 +56,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
             ></path>
           </svg>
         </button>
+        <NavToolsDropdown />
       </li>
       <li class='nav-link__docs'>
         <a href='/docs' data-umami-event='Landing page - WebMo docs'
@@ -106,9 +108,9 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   }
 
   .nav-menu button:hover,
-  .nav-menu button:focus,
+  .nav-menu button:focus-visible,
   .nav-menu a:hover,
-  .nav-menu a:focus {
+  .nav-menu a:focus-visible {
     background: var(--surface-hover-color);
     color: var(--button-hover-color);
   }
@@ -143,7 +145,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   }
 
   .menu-icon {
-    /* position: relative; */
     transition: 0.5s ease-in-out;
     cursor: pointer;
     height: 1.25rem;
@@ -153,6 +154,11 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     background-color: transparent;
     display: block;
     opacity: 1;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: var(--spacing-md);
   }
 
   .collapsed {
@@ -171,15 +177,28 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
         var(--padding-md);
     }
 
+    nav.site-nav:not(:has(.nav-menu.collapsed)) {
+      border-radius: var(--moderate-rounding) var(--moderate-rounding) 0 0;
+    }
+
+    .nav-menu:not(.collapsed) {
+      border-radius: 0 0 var(--moderate-rounding) var(--moderate-rounding);
+    }
+
     .nav-menu {
       position: absolute;
       top: 100%;
       background-color: var(--color-white);
       width: 100%;
       list-style: none;
-      padding: 0;
+      padding: var(--padding-md);
       left: 0;
       right: 0;
+      flex-direction: column;
+    }
+
+    #tools-dropdown button {
+      width: 100%;
     }
 
     .site-title img {
@@ -209,6 +228,10 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     }
   }
 
+  #tools-dropdown {
+    position: relative;
+  }
+
   @media screen and (min-width: 769px) {
     header {
       box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
@@ -216,8 +239,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     }
 
     .nav-menu {
-      display: flex;
-      gap: var(--spacing-md);
       align-items: center;
       list-style-type: none;
       flex: 1;
@@ -235,6 +256,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 </style>
 
 <script>
+  // TODO tools down arrow rotates on click
+  // TODO click outside closes menu on mobile and closes tool section on full screen, one or the other, i.e. only one click outside
   const toggle = document.getElementById('menuToggle')
   const menu = document.getElementById('navMenu')
   const isWide = window.matchMedia('(min-width: 769px)')

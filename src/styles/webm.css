@@ -309,7 +309,7 @@ main code {
 
 /* Input styles */
 :focus-visible {
-  outline-color: var(--sl-color-accent-high);
+  outline-color: var(--sl-color-accent-high); /*TODO correct this color choice*/
   border-radius: var(--border-radius);
 }
 
@@ -383,7 +383,7 @@ input:not([type='submit']):not([type='file']):focus {
   background-color: transparent;
 }
 
-.ghost.btn:hover, .ghost.btn:focus {
+.ghost.btn:hover, .ghost.btn:focus-visible {
   color: var(--button-hover-color);
   background-color: var(--surface-hover-color);
 }

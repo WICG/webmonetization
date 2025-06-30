@@ -1,0 +1,115 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<div class='tools-dropdown'>
+  <ul class='tools-list'>
+    <li>
+      <a href='/publishers' class='tool-link'
+        ><img
+          width="460"
+          height="461"
+          class="tool-icon"
+          alt=""
+          src="/img/publishers-hero.svg"
+          aria-hidden='true'
+        /><div class='tool-label'>{t('nav.pub-tools')}</div></a
+      >
+    </li><li>
+      <a href='/supporters' class='tool-link'
+        ><img
+          width="460"
+          height="461"
+          class="tool-icon"
+          alt=""
+          aria-hidden='true'
+          src="/img/supporters-hero.svg"
+        /><div class='tool-label'>{t('nav.supp-tools')}</div></a
+      >
+    </li><li>
+      <a href='/developers' class='tool-link'
+        ><img
+          width="460"
+          height="464"
+          class="tool-icon"
+          alt=''
+          aria-hidden='true'
+          src="/img/dev-hero.svg"
+        /><div class='tool-label'>{t('nav.dev-tools')}</div></a
+      >
+    </li>
+  </ul>
+</div>
+
+<style>
+  .tools-dropdown {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 0;
+    width: 299px;
+    height: 472px;
+    padding: 0.75rem; /* Tailwind p-sm */
+    background-color: var(--interface-bg-container, #fff);
+    border-radius: 0.5rem;
+    box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.08);
+    outline: 1px solid var(--interface-edge-container, #ccc);
+    outline-offset: -1px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem; /* Tailwind gap-xs */
+  }
+
+  .tools-list {
+    width: 100%;
+    flex-grow: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .tool-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    background-color: transparent;
+    transition: background-color 0.2s;
+    min-width: 0;
+  }
+
+  .tool-link:hover {
+    background-color: #f3f4f6; /* Tailwind gray-100 */
+  }
+
+  .tool-icon {
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  .tool-label {
+    color: var(--text-primary, #111827);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: sans-serif;
+    line-height: 1.5;
+    flex-grow: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
