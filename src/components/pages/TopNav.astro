@@ -16,12 +16,14 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       id='menuToggle'
       class='menu-toggle ghost btn'
       aria-controls='nav-menu'
-      aria-expanded='true'
+      aria-expanded='false'
       aria-label='Toggle Menu'
       title='Toggle Menu'
+      type='button'
     >
       <svg
         class='menu-icon icon--hamburger'
+        aria-hidden='true'
         viewBox='0 0 24 24'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -32,6 +34,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       </svg>
       <svg
         class='menu-icon icon--close'
+        aria-hidden='true'
         viewBox='0 0 24 24'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -42,11 +45,19 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       </svg>
     </button>
     <ul id='navMenu' class='nav-menu collapsed'>
-      <li class='nav-link__tools' id='tools-dropdown'>
-        <button>
+      <li class='nav-link__tools' id='tools-wrapper'>
+        <button
+          id='toolsToggle'
+          class='tools-toggle'
+          aria-expanded='false'
+          aria-label='Tools Menu'
+          title='Tools Menu'
+          type='button'
+        >
           Tools
           <svg
-            class='nav-tools-btn'
+            class='tools-arrow-icon'
+            aria-hidden='true'
             viewBox='0 0 16 16'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
@@ -115,18 +126,18 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     color: var(--button-hover-color);
   }
 
-  .nav-tools-btn {
+  .tools-arrow-icon {
     height: var(--spacing-md);
     width: var(--spacing-md);
-    display: block;
+    display: inline-block;
     fill: var(--nav-text-color);
     margin: var(--spacing-3xs) 0;
     transition: transform 0.2s ease;
   }
 
-    .nav-tools-btn:hover {
-      fill: var(--button-hover-color);
-    }
+  .tools-arrow-icon:hover {
+    fill: var(--button-hover-color);
+  }
 
   .rotate-180 {
     transform: rotate(180deg);
@@ -158,7 +169,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     cursor: pointer;
     height: 1.25rem;
     width: 1.25rem;
-    transition: 0.25s ease-in-out;
     fill: var(--nav-text-color);
     background-color: transparent;
     display: block;
@@ -206,7 +216,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       flex-direction: column;
     }
 
-    #tools-dropdown button {
+    #tools-wrapper button {
       width: 100%;
     }
 
@@ -237,7 +247,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     }
   }
 
-  #tools-dropdown {
+  #tools-wrapper {
     position: relative;
   }
 
@@ -265,33 +275,36 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 </style>
 
 <script>
-  const toggleButton = document.getElementById('menuToggle')
-  const menu = document.getElementById('navMenu')
-  const toolsButton = document.querySelector('#tools-dropdown > button')
-  const toolsDropdown = document.querySelector('#tools-dropdown .tools-dropdown')
+  const menuToggleButton = document.getElementById('menuToggle')
+  const navMenu = document.getElementById('navMenu')
+  const toolsButton = document.querySelector('#tools-wrapper > button')
+  const toolsDropdown = document.querySelector(
+    '#tools-wrapper .tools-dropdown'
+  )
   const isWide = window.matchMedia('(min-width: 769px)')
   console.log('Initial isWide: ', isWide.matches)
-  const arrow = toolsButton?.querySelector('.nav-tools-btn')
+  const arrow = toolsButton?.querySelector('.tools-arrow-icon')
 
-  let menuOpen = !isWide.matches && toggleButton?.classList.contains('open') ? true : false
+  let menuOpen =
+    !isWide.matches && menuToggleButton?.classList.contains('open') ? true : false
   console.log('Initial menuOpen: ', menuOpen)
   let submenuOpen = toolsDropdown?.classList.contains('open') ? true : false
 
   const openMenu = () => {
-    toggleButton?.setAttribute('aria-expanded', 'true')
-    menu?.classList.remove('collapsed')
-    toggleButton?.classList.add('open')
-    toggleButton?.classList.remove('closed')
+    menuToggleButton?.setAttribute('aria-expanded', 'true')
+    navMenu?.classList.remove('collapsed')
+    menuToggleButton?.classList.add('open')
+    menuToggleButton?.classList.remove('closed')
     menuOpen = true
   }
 
   const closeMenu = () => {
-    toggleButton?.setAttribute('aria-expanded', 'false')
+    menuToggleButton?.setAttribute('aria-expanded', 'false')
     if (!isWide.matches) {
-      menu?.classList.add('collapsed')
+      navMenu?.classList.add('collapsed')
     }
-    toggleButton?.classList.add('closed')
-    toggleButton?.classList.remove('open')
+    menuToggleButton?.classList.add('closed')
+    menuToggleButton?.classList.remove('open')
     menuOpen = false
     closeSubmenu()
   }
@@ -299,12 +312,14 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   const openSubmenu = () => {
     toolsDropdown?.classList.add('open')
     arrow?.classList.add('rotate-180')
+    toolsButton?.setAttribute('aria-expanded', 'true')
     submenuOpen = true
   }
 
   const closeSubmenu = () => {
     toolsDropdown?.classList.remove('open')
     arrow?.classList.remove('rotate-180')
+    toolsButton?.setAttribute('aria-expanded', 'false')
     submenuOpen = false
   }
 
@@ -312,22 +327,22 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     menuOpen ? closeMenu() : openMenu()
   }
 
-  const handleSubmenuToggle = (e) => {
-    e.stopPropagation()
+  const handleSubmenuToggle = (event: MouseEvent) => {
+    event.stopPropagation()
     submenuOpen ? closeSubmenu() : openSubmenu()
   }
 
-  const handleClickOutside = (event) => {
-    const target = event.target
-    const isInMenu = menu?.contains(target)
-    const isInToggle = toggleButton?.contains(target)
+  const handleClickOutside = (event: MouseEvent) => {
+    const target = event.target as Node
+    const isInMenu = navMenu?.contains(target)
+    const isInToggle = menuToggleButton?.contains(target)
 
     if (!isInMenu && !isInToggle) {
       closeMenu()
     }
   }
 
-  const handleEsc = (event) => {
+  const handleEsc = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       if (submenuOpen) {
         closeSubmenu()
@@ -339,15 +354,15 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     }
   }
 
-  const handleResize = (evt) => {
+  const handleResize = (event: MediaQueryListEvent | MediaQueryList) => {
     closeMenu()
-    if (evt.matches) {
-      // Wide screen: menu always shown
-      menu?.classList.remove('collapsed')
+    if (event.matches) {
+      // Wide screen: navMenu always shown
+      navMenu?.classList.remove('collapsed')
     }
   }
 
-  toggleButton?.addEventListener('click', handleMainToggle)
+  menuToggleButton?.addEventListener('click', handleMainToggle)
   toolsButton?.addEventListener('click', handleSubmenuToggle)
   document.addEventListener('click', handleClickOutside)
   document.addEventListener('keydown', handleEsc)

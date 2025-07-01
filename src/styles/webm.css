@@ -311,7 +311,7 @@ main code {
 
 /* Input styles */
 :focus-visible {
-  outline-color: var(--sl-color-accent-high); /*TODO correct this color choice*/
+  outline-color: var(--button-hover-color);
   border-radius: var(--border-radius);
 }
 
