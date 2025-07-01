@@ -121,6 +121,15 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     display: block;
     fill: var(--nav-text-color);
     margin: var(--spacing-3xs) 0;
+    transition: transform 0.2s ease;
+  }
+
+    .nav-tools-btn:hover {
+      fill: var(--button-hover-color);
+    }
+
+  .rotate-180 {
+    transform: rotate(180deg);
   }
 
   .site-title {
@@ -256,42 +265,46 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 </style>
 
 <script>
-  // TODO tools down arrow rotates on click
-  // TODO click outside closes menu on mobile and closes tool section on full screen, one or the other, i.e. only one click outside
-    const toggle = document.getElementById('menuToggle')
+  const toggleButton = document.getElementById('menuToggle')
   const menu = document.getElementById('navMenu')
   const toolsButton = document.querySelector('#tools-dropdown > button')
   const toolsDropdown = document.querySelector('#tools-dropdown .tools-dropdown')
+  const isWide = window.matchMedia('(min-width: 769px)')
+  console.log('Initial isWide: ', isWide.matches)
+  const arrow = toolsButton?.querySelector('.nav-tools-btn')
 
-  let menuOpen = false
-  let submenuOpen = false
+  let menuOpen = !isWide.matches && toggleButton?.classList.contains('open') ? true : false
+  console.log('Initial menuOpen: ', menuOpen)
+  let submenuOpen = toolsDropdown?.classList.contains('open') ? true : false
 
   const openMenu = () => {
-    toggle?.setAttribute('aria-expanded', 'true')
+    toggleButton?.setAttribute('aria-expanded', 'true')
     menu?.classList.remove('collapsed')
-    toggle?.classList.add('open')
-    toggle?.classList.remove('closed')
+    toggleButton?.classList.add('open')
+    toggleButton?.classList.remove('closed')
     menuOpen = true
-    bindGlobalEvents()
   }
 
   const closeMenu = () => {
-    toggle?.setAttribute('aria-expanded', 'false')
-    menu?.classList.add('collapsed')
-    toggle?.classList.add('closed')
-    toggle?.classList.remove('open')
+    toggleButton?.setAttribute('aria-expanded', 'false')
+    if (!isWide.matches) {
+      menu?.classList.add('collapsed')
+    }
+    toggleButton?.classList.add('closed')
+    toggleButton?.classList.remove('open')
     menuOpen = false
     closeSubmenu()
-    unbindGlobalEvents()
   }
 
   const openSubmenu = () => {
     toolsDropdown?.classList.add('open')
+    arrow?.classList.add('rotate-180')
     submenuOpen = true
   }
 
   const closeSubmenu = () => {
     toolsDropdown?.classList.remove('open')
+    arrow?.classList.remove('rotate-180')
     submenuOpen = false
   }
 
@@ -300,14 +313,14 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   }
 
   const handleSubmenuToggle = (e) => {
-    e.stopPropagation() // Prevent from bubbling up to outside click
+    e.stopPropagation()
     submenuOpen ? closeSubmenu() : openSubmenu()
   }
 
   const handleClickOutside = (event) => {
     const target = event.target
     const isInMenu = menu?.contains(target)
-    const isInToggle = toggle?.contains(target)
+    const isInToggle = toggleButton?.contains(target)
 
     if (!isInMenu && !isInToggle) {
       closeMenu()
@@ -318,23 +331,14 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     if (event.key === 'Escape') {
       if (submenuOpen) {
         closeSubmenu()
-      } else if (menuOpen) {
+      }
+
+      if (menuOpen) {
         closeMenu()
       }
     }
   }
 
-  const bindGlobalEvents = () => {
-    document.addEventListener('click', handleClickOutside)
-    document.addEventListener('keydown', handleEsc)
-  }
-
-  const unbindGlobalEvents = () => {
-    document.removeEventListener('click', handleClickOutside)
-    document.removeEventListener('keydown', handleEsc)
-  }
-
-  const isWide = window.matchMedia('(min-width: 769px)')
   const handleResize = (evt) => {
     closeMenu()
     if (evt.matches) {
@@ -343,8 +347,10 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     }
   }
 
-  toggle?.addEventListener('click', handleMainToggle)
+  toggleButton?.addEventListener('click', handleMainToggle)
   toolsButton?.addEventListener('click', handleSubmenuToggle)
+  document.addEventListener('click', handleClickOutside)
+  document.addEventListener('keydown', handleEsc)
   isWide.addEventListener('change', handleResize)
   handleResize(isWide)
 </script>
