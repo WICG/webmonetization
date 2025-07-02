@@ -327,6 +327,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     menuOpen = true
     navBar?.classList.add('expanded')
     navBar?.classList.remove('collapsed')
+    menuToggleButton?.blur()
   }
 
   const closeMenu = () => {
@@ -339,6 +340,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     menuOpen = false
     navBar?.classList.remove('expanded')
     navBar?.classList.add('collapsed')
+    menuToggleButton?.blur()
     closeSubmenu()
   }
 
