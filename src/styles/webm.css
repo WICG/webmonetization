@@ -2,30 +2,30 @@
 /* @link https://utopia.fyi/type/calculator?c=320,16,1.25,1440,19,1.25,6,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
 
 :root {
-  --sharp-corners: 0rem; /* Radius/none */
-  --slight-rounding: 0.25rem; /* Radius/xs */
-  --moderate-rounding: 0.5rem; /* Radius/sm */
-  --pill-rounding: 1rem; /* Radius/md */
-  --fully-rounded: 999px; /* Radius/full */
+  --sharp-corners: 0rem;
+  --slight-rounding: 0.25rem;
+  --moderate-rounding: 0.5rem;
+  --pill-rounding: 1rem;
+  --fully-rounded: 999px;
 
-  --padding-3xs: 0.125rem; /* padding/half */
-  --padding-2xs: 0.25rem; /* padding/1 */
-  --padding-xs: 0.5rem; /* padding/2 */
-  --padding-sm: 0.75rem; /* padding/3 */
-  --padding-md: 1rem; /* padding/4 */
-  --padding-lg: 1.5rem; /* padding/5 */
-  --padding-2xl: 2rem; /* padding/6 */
+  --padding-3xs: 0.125rem;
+  --padding-2xs: 0.25rem;
+  --padding-xs: 0.5rem;
+  --padding-sm: 0.75rem;
+  --padding-md: 1rem;
+  --padding-lg: 1.5rem;
+  --padding-2xl: 2rem;
 
-  --spacing-3xs: 0.125rem; /* spacing/half 2px */
-  --spacing-2xs: 0.25rem; /* spacing/1 4px */
-  --spacing-xs: 0.5rem; /* spacing/2 8px */
-  --spacing-sm: 0.75rem; /* spacing/3 12px */
-  --spacing-md: 1rem; /* spacing/4 16px */
-  --spacing-lg: 1.5rem; /* spacing/5 24px */
-  --spacing-2xl: 2rem; /* spacing/6 36px */
-  --spacing-3xl: 3rem; /* spacing/7 48px */
-  --spacing-4xl: 3.75rem; /* spacing/8 60px */
-  --spacing-5xl: 7.5rem; /* spacing/9 120px */
+  --spacing-3xs: 0.125rem;
+  --spacing-2xs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-2xl: 2rem;
+  --spacing-3xl: 3rem;
+  --spacing-4xl: 3.75rem;
+  --spacing-5xl: 7.5rem;
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -126,7 +126,7 @@
 
   --background-color: #F6F8FA;
 
-/* OLD */
+/* TODO clean up */
 
   --step--2: clamp(0.64rem, 0.6057rem + 0.1714vi, 0.76rem);
   --step--1: clamp(0.8rem, 0.7571rem + 0.2143vi, 0.95rem);
@@ -476,7 +476,7 @@ tbody tr:last-of-type td:last-child {
 }
 
 /* Shared section styles */
-.contentWrapper { /*Style in use */
+.contentWrapper {
   max-width: 1280px;
   margin-inline: auto;
   padding-inline: var(--space-s);
