@@ -490,6 +490,10 @@ tbody tr:last-of-type td:last-child {
   padding-block-start: 10rem;
 }
 
+.section:last-of-type {
+  padding-block-end: 3.75rem;
+}
+
 .sectionHeader {
   text-align: center;
 }
@@ -522,5 +526,9 @@ tbody tr:last-of-type td:last-child {
 
   .section:first-of-type {
     padding-block-start: 6.25rem;
+  }
+
+  .section:last-of-type {
+    padding-block-end: 2rem;
   }
 }
