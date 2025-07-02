@@ -186,7 +186,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     display: none;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     .site-nav.collapsed {
       box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
       border-radius: var(--moderate-rounding);
@@ -249,6 +249,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       top: 0;
       right: 0;
       z-index: 2;
+      margin: var(--spacing-sm);
     }
 
     button.menu-toggle {
@@ -276,7 +277,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     position: relative;
   }
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 768px) {
     header {
       background-color: var(--color-white);
       box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
@@ -305,7 +306,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   const navMenu = document.getElementById('navMenu')
   const toolsButton = document.querySelector('#tools-wrapper > button')
   const toolsDropdown = document.querySelector('#tools-wrapper .tools-dropdown')
-  const isWide = window.matchMedia('(min-width: 769px)')
+  const isWide = window.matchMedia('(min-width: 768px)')
   const arrow = toolsButton?.querySelector('.tools-arrow-icon')
 
   let menuOpen =

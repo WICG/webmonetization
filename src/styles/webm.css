@@ -513,7 +513,7 @@ tbody tr:last-of-type td:last-child {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .section {
     padding-block-start: var(--spacing-3xl);
   }
