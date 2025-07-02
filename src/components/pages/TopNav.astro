@@ -8,7 +8,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 ---
 
 <header>
-  <nav class='site-nav contentWrapper'>
+  <nav class='site-nav contentWrapper' id='siteNav'>
     <a href={homePageUrl} class='site-title'>
       <img src='/img/wm-logo.svg' alt='Web Monetization logo' />
     </a>
@@ -124,6 +124,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   .nav-menu a:focus-visible {
     background: var(--surface-hover-color);
     color: var(--button-hover-color);
+    fill: var(--button-hover-color);
   }
 
   .tools-arrow-icon {
@@ -135,7 +136,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     transition: transform 0.2s ease;
   }
 
-  .tools-arrow-icon:hover {
+  .nav-menu button:hover .tools-arrow-icon,
+  .nav-menu button:focus-visible .tools-arrow-icon {
     fill: var(--button-hover-color);
   }
 
@@ -185,45 +187,71 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   }
 
   @media screen and (max-width: 768px) {
-    header {
-      margin: 16px 16px 0 16px;
-    }
-
-    nav.site-nav {
+    .site-nav.collapsed {
       box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
       border-radius: var(--moderate-rounding);
       padding: var(--padding-2xs) var(--padding-xs) var(--padding-2xs)
         var(--padding-md);
+      margin: 16px 16px 0 16px;
     }
 
-    nav.site-nav:not(:has(.nav-menu.collapsed)) {
-      border-radius: var(--moderate-rounding) var(--moderate-rounding) 0 0;
-    }
-
-    .nav-menu:not(.collapsed) {
-      border-radius: 0 0 var(--moderate-rounding) var(--moderate-rounding);
-    }
-
-    .nav-menu {
-      position: absolute;
-      top: 100%;
+    .site-nav.expanded {
       background-color: var(--color-white);
-      width: 100%;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+    }
+
+    .site-nav.expanded .nav-menu {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--color-white);
       list-style: none;
-      padding: var(--padding-md);
-      left: 0;
-      right: 0;
+      display: flex;
       flex-direction: column;
+      align-items: stretch;
+      gap: var(--spacing-md);
+      padding: 0;
+      margin: 0;
+      width: auto;
+    }
+
+    .site-nav.expanded .nav-menu button,
+    .site-nav.expanded .nav-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%; /* <-- keep this */
+      padding: var(--padding-sm) var(--padding-md);
     }
 
     #tools-wrapper button {
       width: 100%;
     }
 
-    .site-title img {
+    .site-nav.collapsed .site-title img {
       width: 2rem;
       height: 2rem;
       flex: none;
+    }
+
+    .site-nav.expanded .site-title img {
+      display: none;
+    }
+
+    button.menu-toggle {
+      display: flex;
+    }
+
+    .site-nav.expanded button.menu-toggle {
+      position: fixed;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      z-index: 2;
+      background: none;
+      border: none;
     }
 
     button.menu-toggle {
@@ -253,8 +281,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 
   @media screen and (min-width: 769px) {
     header {
-      box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
       background-color: var(--color-white);
+      box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
     }
 
     .nav-menu {
@@ -275,19 +303,18 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 </style>
 
 <script>
+  const navBar = document.getElementById('siteNav')
   const menuToggleButton = document.getElementById('menuToggle')
   const navMenu = document.getElementById('navMenu')
   const toolsButton = document.querySelector('#tools-wrapper > button')
-  const toolsDropdown = document.querySelector(
-    '#tools-wrapper .tools-dropdown'
-  )
+  const toolsDropdown = document.querySelector('#tools-wrapper .tools-dropdown')
   const isWide = window.matchMedia('(min-width: 769px)')
-  console.log('Initial isWide: ', isWide.matches)
   const arrow = toolsButton?.querySelector('.tools-arrow-icon')
 
   let menuOpen =
-    !isWide.matches && menuToggleButton?.classList.contains('open') ? true : false
-  console.log('Initial menuOpen: ', menuOpen)
+    !isWide.matches && menuToggleButton?.classList.contains('open')
+      ? true
+      : false
   let submenuOpen = toolsDropdown?.classList.contains('open') ? true : false
 
   const openMenu = () => {
@@ -296,6 +323,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     menuToggleButton?.classList.add('open')
     menuToggleButton?.classList.remove('closed')
     menuOpen = true
+    navBar?.classList.add('expanded')
+    navBar?.classList.remove('collapsed')
   }
 
   const closeMenu = () => {
@@ -306,6 +335,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     menuToggleButton?.classList.add('closed')
     menuToggleButton?.classList.remove('open')
     menuOpen = false
+    navBar?.classList.remove('expanded')
+    navBar?.classList.add('collapsed')
     closeSubmenu()
   }
 
