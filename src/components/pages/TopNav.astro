@@ -327,7 +327,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     menuOpen = true
     navBar?.classList.add('expanded')
     navBar?.classList.remove('collapsed')
-    menuToggleButton?.blur()
   }
 
   const closeMenu = () => {
@@ -340,7 +339,6 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     menuOpen = false
     navBar?.classList.remove('expanded')
     navBar?.classList.add('collapsed')
-    menuToggleButton?.blur()
     closeSubmenu()
   }
 
@@ -368,6 +366,10 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   }
 
   const handleClickOutside = (event: MouseEvent) => {
+    if (!isWide.matches) {
+      return
+    }
+
     const target = event.target as Node
     const isInMenu = navMenu?.contains(target)
     const isInToggle = menuToggleButton?.contains(target)
