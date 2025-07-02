@@ -87,8 +87,11 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   header {
     color: var(--nav-text-color);
     font: var(--font-small-regular);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
   }
 
   nav.site-nav {
@@ -153,8 +156,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   }
 
   .site-title img {
-    width: 2.75rem;
-    height: 2.75rem;
+    width: var(--nav-bar-icon-size);
+    height: var(--nav-bar-icon-size);
     display: block;
   }
 
@@ -192,7 +195,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       border-radius: var(--moderate-rounding);
       padding: var(--padding-2xs) var(--padding-xs) var(--padding-2xs)
         var(--padding-md);
-      margin: 16px 16px 0 16px;
+      margin: var(--spacing-md) var(--spacing-md) 0 var(--spacing-md);
     }
 
     .site-nav.expanded {
@@ -228,11 +231,12 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 
     #tools-wrapper button {
       width: 100%;
+      justify-content: space-between;
     }
 
     .site-nav.collapsed .site-title img {
-      width: 2rem;
-      height: 2rem;
+      width: var(--spacing-2xl);
+      height: var(--spacing-2xl);
       flex: none;
     }
 

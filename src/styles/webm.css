@@ -211,7 +211,7 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-body {  /* used */
+body {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -225,7 +225,7 @@ body {  /* used */
   background-position: top;
 }
 
-main { /* used */
+main {
   flex: 1;
   font-size: var(--step-0);
 }
@@ -488,6 +488,10 @@ tbody tr:last-of-type td:last-child {
   padding-block-start: var(--spacing-5xl);
 }
 
+.section:first-of-type {
+  padding-block-start: 10rem;
+}
+
 .sectionHeader {
   text-align: center;
 }
@@ -516,5 +520,9 @@ tbody tr:last-of-type td:last-child {
 @media screen and (max-width: 767px) {
   .section {
     padding-block-start: var(--spacing-3xl);
+  }
+
+  .section:first-of-type {
+    padding-block-start: 6.25rem;
   }
 }
