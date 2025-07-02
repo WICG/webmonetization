@@ -348,7 +348,7 @@ input:not([type='submit']):not([type='file']):focus {
   width: auto;
   align-items: center;
   gap: var(--spacing-xs);
-  transition: background-color 150ms ease-in;
+  transition: background-color 0.2s ease-in;
 }
 
 .btn.flexible {
