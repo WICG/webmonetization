@@ -223,8 +223,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      width: 100%; /* <-- keep this */
-      padding: var(--padding-sm) var(--padding-md);
+      width: 100%;
     }
 
     #tools-wrapper button {
@@ -247,11 +246,9 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 
     .site-nav.expanded button.menu-toggle {
       position: fixed;
-      top: var(--spacing-sm);
-      right: var(--spacing-sm);
+      top: 0;
+      right: 0;
       z-index: 2;
-      background: none;
-      border: none;
     }
 
     button.menu-toggle {
