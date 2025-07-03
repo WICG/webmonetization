@@ -1,7 +1,10 @@
 ---
+interface Props {
+  cards: Array<{ name: string, link: string, image: string }>
+}
 const { cards } = Astro.props;
 ---
-{cards.map((card: {name: string, link: string, image: string}) => (
+{cards.map((card) => (
   <div class="card">
     <img
       class="cardLogo"
