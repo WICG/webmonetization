@@ -49,6 +49,8 @@ const t = useTranslations(lang)
     padding: var(--padding-sm);
     background-color: var(--color-white);
     display: none;
+    width: max-content;
+    max-width: 100%;
   }
 
   .tools-dropdown.open {
@@ -90,9 +92,11 @@ const t = useTranslations(lang)
   .tool-label {
     font: var(--font-standard-bold);
     color: var(--default-font-color);
-    width: 100%;
+    flex-grow: 1;
     min-width: 0;
-    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   @media screen and (max-width: 767px) {
@@ -109,17 +113,14 @@ const t = useTranslations(lang)
   @media screen and (min-width: 768px) {
     .tools-dropdown {
       position: absolute;
-      top: calc(100% + 16px);
+      top: calc(100% + 16px); /* TODO use var here instead of 16px */
       left: 0;
-      width: max-content;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 20rem;
       border-radius: var(--moderate-rounding);
       box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.08);
       outline: 1px solid var(--border-color);
       outline-offset: -1px;
+      max-width: 20rem;
+      width: max-content;
     }
   }
 </style>
