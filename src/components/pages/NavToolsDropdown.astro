@@ -1,0 +1,126 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<div class='tools-dropdown'>
+  <ul class='tools-list'>
+    <li>
+      <a href='/publishers' class='tool-link'
+        ><img
+          width="460"
+          height="461"
+          class="tool-icon"
+          alt=""
+          src="/img/publishers-icon.png"
+          aria-hidden='true'
+        /><div class='tool-label'>{t('nav.pub-tools')}</div></a
+      >
+    </li><li>
+      <a href='/supporters' class='tool-link'
+        ><img
+          width="460"
+          height="461"
+          class="tool-icon"
+          alt=""
+          aria-hidden='true'
+          src="/img/supporters-icon.png"
+        /><div class='tool-label'>{t('nav.supp-tools')}</div></a
+      >
+    </li><li>
+      <a href='/developers' class='tool-link'
+        ><img
+          width="460"
+          height="464"
+          class="tool-icon"
+          alt=''
+          aria-hidden='true'
+          src="/img/developer-icon.png"
+        /><div class='tool-label'>{t('nav.dev-tools')}</div></a
+      >
+    </li>
+  </ul>
+</div>
+
+<style>
+  .tools-dropdown {
+    padding: var(--padding-sm);
+    background-color: var(--color-white);
+    display: none;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .tools-dropdown.open {
+    display: flex;
+  }
+
+  .tools-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    width: 100%;
+  }
+
+  .tool-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--spacing-xs);
+    padding: var(--padding-sm);
+    border-radius: var(--moderate-rounding);
+    text-decoration: none;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tool-link:hover, .tool-link:focus-visible {
+    background-color: var(--surface-hover-color);
+  }
+
+  .tool-icon {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  .tool-label {
+    font: var(--font-standard-bold);
+    color: var(--default-font-color);
+    flex-grow: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media screen and (max-width: 767px) {
+    .tool-label {
+      font: var(--font-small-regular);
+    }
+
+    .tool-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .tools-dropdown {
+      position: absolute;
+      top: calc(100% + 16px); /* TODO use var here instead of 16px */
+      left: 0;
+      border-radius: var(--moderate-rounding);
+      box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.08);
+      outline: 1px solid var(--border-color);
+      outline-offset: -1px;
+      max-width: 20rem;
+      width: max-content;
+    }
+  }
+</style>
