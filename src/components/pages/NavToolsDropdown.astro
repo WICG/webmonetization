@@ -1,5 +1,8 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import publisherIcon from '../../../public/img/publishers-icon.png?inline';
+import supporterIcon from '../../../public/img/supporters-icon.png?inline';
+import devIcon from '../../../public/img/developer-icon.png?inline';
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -14,7 +17,7 @@ const t = useTranslations(lang)
           height="461"
           class="tool-icon"
           alt=""
-          src="/img/publishers-icon.png"
+          src={publisherIcon}
           aria-hidden='true'
         /><div class='tool-label'>{t('nav.pub-tools')}</div></a
       >
@@ -26,7 +29,7 @@ const t = useTranslations(lang)
           class="tool-icon"
           alt=""
           aria-hidden='true'
-          src="/img/supporters-icon.png"
+          src={supporterIcon}
         /><div class='tool-label'>{t('nav.supp-tools')}</div></a
       >
     </li><li>
@@ -37,7 +40,7 @@ const t = useTranslations(lang)
           class="tool-icon"
           alt=''
           aria-hidden='true'
-          src="/img/developer-icon.png"
+          src={devIcon}
         /><div class='tool-label'>{t('nav.dev-tools')}</div></a
       >
     </li>
