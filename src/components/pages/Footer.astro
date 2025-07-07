@@ -1,19 +1,31 @@
 ---
 ---
 <footer>
-  <ul>
-    <li><a href="https://community.interledger.org/">Community</a></li>
-    <li><a href="https://wicg.io/">Web Incubator Community Group</a></li>
-    <li><a href="https://github.com/WICG/webmonetization">GitHub</a></li>
-  </ul>
+  <div class="footer-menu">
+    <ul>
+      <li><a href="https://community.interledger.org/">Community</a></li>
+      <li><a href="https://wicg.io/">Web Incubator Community Group</a></li>
+      <li><a href="https://github.com/WICG/webmonetization">GitHub</a></li>
+    </ul>
+    <ul>
+      <li><a href="https://community.interledger.org/">Community</a></li>
+      <li><a href="https://wicg.io/">Web Incubator Community Group</a></li>
+      <li><a href="https://github.com/WICG/webmonetization">GitHub</a></li>
+    </ul>
+    <ul>
+      <li><a href="https://community.interledger.org/">Community</a></li>
+      <li><a href="https://wicg.io/">Web Incubator Community Group</a></li>
+      <li><a href="https://github.com/WICG/webmonetization">GitHub</a></li>
+    </ul>
+  </div>
+  <div>
+    <ul class="social-menu"></ul>
+    <hr class="line" />
+    <a class="home-link"></a>
+  </div>
   <span>
     Copyright © {new Date().getFullYear()} Interledger Foundation.
   </span>
-  <ul class="legal">
-    <li><a href="https://www.iubenda.com/privacy-policy/95080147">Privacy policy</a></li>
-    <li><a href="https://www.iubenda.com/privacy-policy/95080147/cookie-policy">Cookie policy</a></li>
-    <li><a href="https://www.iubenda.com/terms-and-conditions/95080147">Terms & Conditions</a></li>
-  </ul>
 </footer>
 
 <style>
@@ -42,9 +54,9 @@
     color: #333;
   }
 
-  a:hover {
+  a:hover, a:focus-visible {
     text-decoration: underline;
-    color: var(--wm-accent);
+    color: var(--button-hover-color);
   }
 
   .legal {
