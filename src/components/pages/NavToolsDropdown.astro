@@ -46,15 +46,18 @@ const t = useTranslations(lang)
 
 <style>
   .tools-dropdown {
-    padding: var(--padding-sm);
+    padding: 0px;
     background-color: var(--color-white);
-    display: none;
+    visibility: hidden;
+    height: 0;
     width: max-content;
     max-width: 100%;
   }
 
   .tools-dropdown.open {
-    display: flex;
+    visibility: visible;
+    padding: var(--padding-sm);
+    height: auto;
   }
 
   .tools-list {
