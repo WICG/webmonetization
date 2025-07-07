@@ -113,7 +113,7 @@ const t = useTranslations(lang)
   @media screen and (min-width: 768px) {
     .tools-dropdown {
       position: absolute;
-      top: calc(100% + 16px); /* TODO use var here instead of 16px */
+      top: calc(100% + var(--spacing-md));
       left: 0;
       border-radius: var(--moderate-rounding);
       box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.08);
@@ -121,6 +121,8 @@ const t = useTranslations(lang)
       outline-offset: -1px;
       max-width: 20rem;
       width: max-content;
+      max-height: calc(100vh - var(--icon-size-nav-home-md) - 2 * var(--padding-xs) - var(--spacing-md));
+      overflow: auto;
     }
   }
 </style>
