@@ -180,6 +180,10 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     opacity: 1;
   }
 
+  .menu-icon:hover, .menu-icon:focus-visible {
+    fill: var(--button-hover-color);
+  }
+
   .nav-menu {
     display: flex;
     gap: var(--spacing-md);

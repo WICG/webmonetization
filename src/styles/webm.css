@@ -351,6 +351,7 @@ input:not([type='submit']):not([type='file']):focus {
   align-items: center;
   gap: var(--spacing-xs);
   transition: background-color 0.2s ease-in;
+  cursor: pointer;
 }
 
 .btn.flexible {
