@@ -72,8 +72,15 @@ const t = useTranslations(lang);
         </div>
         <img
           width="460"
-          height="461"
-          class="sectionImg"
+          height="460"
+          class="inactive hero-img"
+          alt="Web Monetization ..."
+          src="/img/hero-publisher-inactive.svg"
+        />
+        <img
+          width="460"
+          height="460"
+          class="active hero-img"
           alt="Web Monetization ..."
           src="/img/hero-publisher.svg"
         />
@@ -86,9 +93,16 @@ const t = useTranslations(lang);
           <h3>I have a publisher in mind that I would love to help</h3>
         </div>
         <img
-          width="460"
-          height="461"
-          class="sectionImg"
+          width="497"
+          height="497"
+          class="inactive hero-img"
+          alt="Web Monetization ..."
+          src="/img/hero-supporter-inactive.svg"
+        />
+        <img
+          width="497"
+          height="497"
+          class="active hero-img"
           alt="Web Monetization ..."
           src="/img/hero-supporter.svg"
         />
@@ -103,9 +117,16 @@ const t = useTranslations(lang);
           <h3>And I want to contribute</h3>
         </div>
         <img
-          width="513"
-          height="513"
-          class="sectionImg"
+          width="399"
+          height="402"
+          class="inactive hero-img"
+          alt="Web Monetization ..."
+          src="/img/hero-dev-inactive.svg"
+        />
+        <img
+          width="460"
+          height="469"
+          class="active hero-img"
           alt="Web Monetization ..."
           src="/img/hero-dev.svg"
         />
@@ -220,11 +241,15 @@ section.hero {
   border-radius: var(--pill-rounding);
 }
 
-.sectionImg {
+.hero-img {
   flex: 1 1 100%;
   max-width: 30vw;
   height:auto;
   object-fit: contain;
+}
+
+.active.hero-img {
+  display: none;
 }
 
 .audience {
@@ -234,6 +259,14 @@ section.hero {
 
 .audience:hover, .audience:focus {
   color: var(--default-font-color);
+}
+
+.audience:hover .active.hero-img, .audience:focus .active.hero-img {
+  display: flex;
+}
+
+.audience:hover .inactive.hero-img, .audience:focus .inactive.hero-img {
+  display: none;
 }
 
 .audience h3 {
