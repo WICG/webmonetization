@@ -75,14 +75,14 @@ const t = useTranslations(lang);
           height="460"
           class="inactive hero-img"
           alt="Web Monetization ..."
-          src="/img/hero-publisher-inactive.svg"
+          src="/img/hero-publisher-inactive.png"
         />
         <img
           width="460"
           height="460"
           class="active hero-img"
           alt="Web Monetization ..."
-          src="/img/hero-publisher.svg"
+          src="/img/hero-publisher.png"
         />
         <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">I am a publisher</a>
       </div>
@@ -93,18 +93,18 @@ const t = useTranslations(lang);
           <h3>I have a publisher in mind that I would love to help</h3>
         </div>
         <img
-          width="497"
-          height="497"
+          width="460"
+          height="460"
           class="inactive hero-img"
           alt="Web Monetization ..."
-          src="/img/hero-supporter-inactive.svg"
+          src="/img/hero-supporter-inactive.png"
         />
         <img
-          width="497"
-          height="497"
+          width="460"
+          height="460"
           class="active hero-img"
           alt="Web Monetization ..."
-          src="/img/hero-supporter.svg"
+          src="/img/hero-supporter.png"
         />
         <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">I want to support</a>
       </div>
@@ -117,18 +117,18 @@ const t = useTranslations(lang);
           <h3>And I want to contribute</h3>
         </div>
         <img
-          width="399"
-          height="402"
+          width="460"
+          height="460"
           class="inactive hero-img"
           alt="Web Monetization ..."
-          src="/img/hero-dev-inactive.svg"
+          src="/img/Dev-hero-animation.svg"
         />
         <img
           width="460"
-          height="469"
+          height="460"
           class="active hero-img"
           alt="Web Monetization ..."
-          src="/img/hero-dev.svg"
+          src="/img/Dev-hero-animation-color.svg"
         />
         <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
       </div>
@@ -244,8 +244,9 @@ section.hero {
 .hero-img {
   flex: 1 1 100%;
   max-width: 30vw;
-  height:auto;
+  height:fit-content;
   object-fit: contain;
+  border: 1px solid black;
 }
 
 .active.hero-img {
