@@ -24,17 +24,8 @@ const { pills } = Astro.props;
         border-radius: var(--fully-rounded);
         margin-right: 12px;
         margin-bottom: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         color: var(--pill-text-color);
         font: var(--font-small-regular);
         padding: var(--padding-2xs) var(--padding-sm);
-    }
-
-    @media screen and (max-width: 767px) {
-        .pill-tag {
-            white-space: wrap;
-        }
     }
 </style>
