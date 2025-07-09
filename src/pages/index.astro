@@ -3,9 +3,18 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import CardList from "../components/pages/CardList.astro";
+import PillTag from "../components/pages/PillTag.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const publisherPillTags = [
+  { text: 'I own and publish digital content' },
+  { text: 'I want to be fairly supported' },
+  { text: 'I can share revenue with collaborators' },
+  { text: 'I can tell my audience about Web Monetization' },
+  { text: 'I want to expand my reach' }
+];
 ---
 <Base title={t('site.title')} description={t('site.description')}>
   <section class="section hero">
@@ -69,6 +78,7 @@ const t = useTranslations(lang);
         <div>
           <h2 class="heading3">I am a publisher</h2>
           <h3>And I want to be monetized</h3>
+          <PillTag pills={publisherPillTags} />
         </div>
         <img
           width="460"
@@ -226,6 +236,7 @@ section.hero {
   grid-template-columns: 1fr 0.25rem 1fr;
   gap: var(--spacing-xs);
   align-items: start;
+  margin-bottom: var(--spacing-xs);
 }
 
 .two-column-grid > div {
@@ -239,6 +250,15 @@ section.hero {
   gap: var(--spacing-3xl);
   border: 1px solid var(--color-white);
   border-radius: var(--pill-rounding);
+  max-width: 100%;
+}
+
+.audience > div {
+  width: 100%;
+}
+
+.audience .btn {
+  width: fit-content;
 }
 
 .hero-img {
@@ -246,7 +266,6 @@ section.hero {
   max-width: 30vw;
   height:fit-content;
   object-fit: contain;
-  border: 1px solid black;
 }
 
 .active.hero-img {
@@ -307,6 +326,7 @@ section.hero {
   align-self: stretch;
   display: flex;
   align-items: center;
+  margin-bottom: var(--spacing-xs);
 }
 
 .horizontal-divider::before {
@@ -358,10 +378,27 @@ section.hero {
 
   .two-column-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-3xl);
   }
 
   .vertical-divider, .horizontal-divider {
+    display: none;
+  }
+
+  .audience {
+    color: var(--default-font-color);
+  }
+
+  .audience .btn {
+    width: 100%;
+  }
+
+  .inactive.hero-img {
+    display: none;
+  }
+
+  .audience:hover .active.hero-img, .audience:focus .active.hero-img {
     display: none;
   }
 }
