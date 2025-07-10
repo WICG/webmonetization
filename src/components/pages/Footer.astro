@@ -72,7 +72,7 @@
 
 <style>
   footer {
-    padding: var(--padding-2xl) var(--padding-md);  
+    padding: 0 var(--padding-2xl) var(--padding-md) var(--padding-2xl);  
     font: var(--font-standard-regular);
   }
 
@@ -116,6 +116,8 @@
     flex-direction: column; 
     align-items: center;
     gap: var(--spacing-sm);
+    padding-right: var(--padding-lg); 
+    text-align: center; 
   }
 
   .footer-menu li:first-of-type::before {
@@ -131,7 +133,7 @@
     border-radius: var(--fully-rounded);
   }
 
-  .footer-brand{
+  .footer-brand {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
@@ -147,7 +149,7 @@
     max-width: 19.5rem;
   }
 
-  .line{
+  .line {
     width:100%;
     height: 1px;
     background-color: var(--color-purple-100);
@@ -156,7 +158,7 @@
 
   @media screen and (min-width: 768px) {
     footer {
-      padding: var(--padding-sm) var(--padding-md); 
+      padding-top: var(--padding-sm);
     }
 
     .footer-container.contentWrapper {
