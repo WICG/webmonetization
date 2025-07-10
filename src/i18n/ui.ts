@@ -13,6 +13,9 @@ export const ui = {
       'The Web Monetization API allows websites to automatically and passively receive payments from Web Monetization-enabled visitors.',
     'nav.documentation': 'Documentation',
     'nav.specification': 'Specification',
+    'nav.pub-tools': 'Publisher tools',
+    'nav.supp-tools': 'Supporter tools',
+    'nav.dev-tools': 'Developer tools',
   },
   es: {
     'site.title': 'Web Monetization',
