@@ -80,6 +80,7 @@ const t = useTranslations(lang);
             class="inactive audience-img"
             alt="Web Monetization ..."
             src="/img/hero-publisher-inactive.png"
+            loading="lazy"
           />
           <img
             width="460"
@@ -87,6 +88,7 @@ const t = useTranslations(lang);
             class="active audience-img"
             alt="Web Monetization ..."
             src="/img/hero-publisher.png"
+            loading="lazy"
           />
           <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">I am a publisher</a>
         </div>
@@ -105,6 +107,7 @@ const t = useTranslations(lang);
             class="inactive audience-img"
             alt="Web Monetization ..."
             src="/img/hero-supporter-inactive.png"
+            loading="lazy"
           />
           <img
             width="460"
@@ -112,6 +115,7 @@ const t = useTranslations(lang);
             class="active audience-img"
             alt="Web Monetization ..."
             src="/img/hero-supporter.png"
+            loading="lazy"
           />
           <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">I want to support</a>
         </div>
@@ -133,6 +137,7 @@ const t = useTranslations(lang);
             class="inactive audience-img"
             alt="Web Monetization ..."
             src="/img/hero-dev-inactive.png"
+            loading="lazy"
           />
           <img
             width="460"
@@ -140,6 +145,7 @@ const t = useTranslations(lang);
             class="active audience-img"
             alt="Web Monetization ..."
             src="/img/hero-dev.png"
+            loading="lazy"
           />
         </di>
       </div>
@@ -278,7 +284,7 @@ section.hero {
 
 .audience-img {
   max-width: 30vw;
-  height: fit-content;
+  height: auto;
   object-fit: contain;
   display: block;
 }
@@ -297,7 +303,7 @@ section.hero {
 }
 
 .audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
-  display: flex;
+  display: block;
 }
 
 .audience-card:hover .inactive.audience-img, .audience-card:focus .inactive.audience-img {
