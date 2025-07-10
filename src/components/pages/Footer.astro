@@ -1,7 +1,7 @@
 ---
 ---
 <footer>
-  <div class="footer-container">
+  <div class="footer-container contentWrapper">
     <div class="footer-menu">
       <ul>
         <li><a href="https://community.interledger.org/" data-umami-event="Footer - Community" rel="noopener noreferrer" target="_blank">Community</a></li>
@@ -73,7 +73,6 @@
 <style>
   footer {
     padding: var(--padding-2xl) var(--padding-md);  
-    color: var(--color-silver-950);
     font: var(--font-standard-regular);
   }
 
@@ -84,7 +83,7 @@
   
   a {
     text-decoration: none;
-    color: var(--color-silver-950);
+    color: var(--default-font-color);
   }
   
   a:hover, a:focus-visible {
@@ -99,7 +98,7 @@
     text-align: center;
   }
   
-  .footer-container {
+  .footer-container.contentWrapper {
     padding: var(--padding-md);
     background-color: var(--footer-bg-color);
     border-radius: var(--pill-rounding);
@@ -145,7 +144,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    max-width: 312px;
+    max-width: 19.5rem;
   }
 
   .line{
@@ -160,10 +159,7 @@
       padding: var(--padding-sm) var(--padding-md); 
     }
 
-    .footer-container {
-      width: 100%;
-      max-width: calc(1280px - 2 * var(--padding-md));
-      margin: auto;
+    .footer-container.contentWrapper {
       padding: var(--padding-2xl);
     }
 
@@ -178,7 +174,9 @@
     .footer-menu ul {
       flex: 1;
       align-items: start;
-      border-right: 2px solid var(--color-blue-300);
+      gap: var(--spacing-md);
+      text-align: left;
+      border-right: 1px solid var(--color-blue-300);
     }
     
     .footer-menu ul:last-of-type {
@@ -197,7 +195,7 @@
     }
 
     .footer-brand ul.social-menu {
-      max-width: 200px;
+      max-width: 12.5rem;
     }
   }
 </style>
