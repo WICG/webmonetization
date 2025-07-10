@@ -73,7 +73,7 @@ const t = useTranslations(lang);
           <h3>And I want to be monetized</h3>
           <PillTag pills={data.pillTags.publisher} />
         </div>
-        <div class="visual">
+        <div class="media-cta">
           <img
             width="460"
             height="460"
@@ -100,7 +100,7 @@ const t = useTranslations(lang);
           <h3>I have a publisher in mind that I would love to help</h3>
           <PillTag pills={data.pillTags.supporter} />
         </div>
-        <div class="visual">
+        <div class="media-cta">
           <img
             width="460"
             height="460"
@@ -266,7 +266,7 @@ section.hero {
   align-items: center;
 }
 
-.audience-card .btn, .audience-card .visual {
+.audience-card .btn, .audience-card .media-cta {
   margin-top: var(--spacing-3xl);
 }
 
@@ -425,6 +425,10 @@ section.hero {
 
   .audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
     display: none;
+  }
+
+  .audience-card .media-cta {
+    margin-top: 0;
   }
 }
 </style>
