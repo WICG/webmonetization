@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import CardList from "../components/pages/CardList.astro";
+import UpdateList from "../components/pages/UpdateList.astro"; 
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -61,6 +62,22 @@ const t = useTranslations(lang);
         </div>
       )}
       </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="contentWrapper">
+      {data.updates.length > 0 && (
+        <h2>Important Updates</h2>
+        <div class="updates-carousel">
+          <UpdateList updates={data.updates} />
+          {/* arrow left - arrow right */}
+        </div>
+        <div class="updates-dots">
+          <span> ⚫ </span>
+          <span> ⚫ </span>
+          <span> ⚫ </span>
+        </div>
+      )}
     </div>
   </section>
 </Base>

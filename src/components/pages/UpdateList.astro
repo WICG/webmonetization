@@ -1,0 +1,50 @@
+---
+interface Props {
+  updates: Array< {
+  image: string, 
+  title: string, 
+  author: string, 
+  tag: string, 
+  date: string, 
+  paragraphs: string[], 
+  link: string
+  }>
+}
+
+const { updates } = Astro.props;
+---
+{
+  updates.map( update => (
+    <div class="update">
+      <img
+      class="update-image"
+      src={`/img/${update.image}`}
+      alt={update.title}
+      width="800"
+      height="600"
+      />
+      <div class="update-content">
+        <h3 class="update-title">{update.title}</h3>
+        <p class="update-subtitles">
+          <span>{update.tag}</span>
+          <span>{update.date}</span>
+          <span>{update.author}</span>
+        </p>
+        <div class="update-paragraphs">
+          {update.paragraphs.map( p => 
+            <p>{p}</p>
+          )}
+        </div>
+            {/* Secondary Button  */}
+        <a
+          href={update.link}
+          class="btn secondary flexible"
+          data-umami-event={`UpdatesList - ${update.title}`}
+          target="_blank" rel="noreferrer noopener"
+        >
+          Read the full article
+        </a>
+      </div>
+    </div>
+  ))
+}
