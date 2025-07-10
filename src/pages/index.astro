@@ -8,13 +8,6 @@ import PillTag from "../components/pages/PillTag.astro";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const publisherPillTags = [
-  { text: 'I own and publish digital content' },
-  { text: 'I want to be fairly supported' },
-  { text: 'I can share revenue with collaborators' },
-  { text: 'I can tell my audience about Web Monetization' },
-  { text: 'I want to expand my reach' }
-];
 ---
 <Base title={t('site.title')} description={t('site.description')}>
   <section class="section hero">
@@ -74,11 +67,11 @@ const publisherPillTags = [
   </section>
   <section class="section audienceSection">
     <div class="contentWrapper two-column-grid">
-      <div class="audience">
+      <div class="audience publisher">
         <div>
           <h2 class="heading3">I am a publisher</h2>
           <h3>And I want to be monetized</h3>
-          <PillTag pills={publisherPillTags} />
+          <PillTag pills={data.pillTags.publisher} />
         </div>
         <img
           width="460"
@@ -97,10 +90,11 @@ const publisherPillTags = [
         <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">I am a publisher</a>
       </div>
       <div class="vertical-divider"></div>
-      <div class="audience">
+      <div class="audience supporter">
         <div>
           <h2 class="heading3">I want to support</h2>
           <h3>I have a publisher in mind that I would love to help</h3>
+          <PillTag pills={data.pillTags.supporter} />
         </div>
         <img
           width="460"
@@ -121,26 +115,29 @@ const publisherPillTags = [
     </div>
     <div class="contentWrapper">
       <div class="horizontal-divider"></div>
-      <div class="audience">
+      <div class="audience developer">
         <div>
           <h2 class="heading3">I am a developer</h2>
           <h3>And I want to contribute</h3>
+          <PillTag pills={data.pillTags.developer} />
+          <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
         </div>
-        <img
-          width="460"
-          height="460"
-          class="inactive hero-img"
-          alt="Web Monetization ..."
-          src="/img/Dev-hero-animation.svg"
-        />
-        <img
-          width="460"
-          height="460"
-          class="active hero-img"
-          alt="Web Monetization ..."
-          src="/img/Dev-hero-animation-color.svg"
-        />
-        <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
+        <di>
+          <img
+            width="460"
+            height="460"
+            class="inactive hero-img"
+            alt="Web Monetization ..."
+            src="/img/hero-dev-inactive.png"
+          />
+          <img
+            width="460"
+            height="460"
+            class="active hero-img"
+            alt="Web Monetization ..."
+            src="/img/hero-dev.png"
+          />
+        </di>
       </div>
     </div>
   </section>
@@ -253,6 +250,20 @@ section.hero {
   max-width: 100%;
 }
 
+.audience.developer {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.audience.audience.developer .btn {
+  margin-top: var(--spacing-3xl);
+}
+
+.audience.audience.developer div {
+  flex-basis: 50%;
+}
+
 .audience > div {
   width: 100%;
 }
@@ -266,6 +277,7 @@ section.hero {
   max-width: 30vw;
   height:fit-content;
   object-fit: contain;
+  display: flex;
 }
 
 .active.hero-img {
@@ -388,6 +400,10 @@ section.hero {
 
   .audience {
     color: var(--default-font-color);
+  }
+
+  .audience.audience.developer div {
+    flex-basis: 100%;
   }
 
   .audience .btn {
