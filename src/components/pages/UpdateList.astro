@@ -56,13 +56,12 @@ const { updates } = Astro.props;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 16px;
+    gap: var(--spacing-md);
   }
   
   .update-img {
     flex-basis: 50%;     
-    padding-block: 6.5px;
-    min-width: 270px;
+    min-width: 17rem;
   }
 
   .update-img img  {
@@ -76,7 +75,7 @@ const { updates } = Astro.props;
     display: flex;
     flex-direction: column; 
     align-items: start;
-    gap: 16px;
+    gap: var(--spacing-md);
   }
 
   .update-subtitles {
@@ -84,13 +83,13 @@ const { updates } = Astro.props;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    gap: 12px;
+    gap: var(--spacing-sm);
   }
 
   .update-subtitles .dot {
     display: inline-block;
-    width: 8px; 
-    height: 8px;
+    width: var(--spacing-xs); 
+    height: var(--spacing-xs);
     background-color: var(--default-font-color);
     border-radius: 50%;
   }
