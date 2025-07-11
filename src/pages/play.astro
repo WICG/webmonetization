@@ -225,7 +225,7 @@ const description = t("site.description");
     }, 500)
   }
 
-  async function createLinkTag(href: string) {
+  function createLinkTag(href: string) {
     const link = document.createElement('link')
 
     link.rel = 'monetization'
@@ -405,19 +405,18 @@ const description = t("site.description");
     }
 
     await createLinkEventLog(walletAddressUrl)
-    await createLinkTag(walletAddressUrl)
+    createLinkTag(walletAddressUrl)
 
     form.reset()
   })
 
   async function addTagsFromURL() {
     const walletAddressUrls = new URLSearchParams(location.search).getAll('wa')
-    for (const url of walletAddressUrls) {
-      if (isWalletAddressUrl(url) && !addressAlreadyAdded(url)) {
-        await createLinkEventLog(url)
-        await createLinkTag(url)
-      }
+    const urlsToAdd = new Set(walletAddressUrls.filter(isWalletAddressUrl))
+    for (const url of urlsToAdd) {
+      await createLinkEventLog(url)
     }
+    urlsToAdd.forEach(createLinkTag)
   }
 
   function isWalletAddressUrl(s: string): boolean {
