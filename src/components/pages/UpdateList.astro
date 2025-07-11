@@ -16,18 +16,21 @@ const { updates } = Astro.props;
 {
   updates.map( update => (
     <div class="update">
-      <img
-      class="update-image"
-      src={`/img/${update.image}`}
-      alt={update.title}
-      width="800"
-      height="600"
-      />
+      <div class="update-img">
+        <img
+        src={`/img/${update.image}`}
+        alt={`Illustration for the article: "${update.title}"`}
+        width="580"
+        height="315"
+        />
+      </div>
       <div class="update-content">
-        <h3 class="update-title">{update.title}</h3>
-        <p class="update-subtitles">
+        <h3 class="font-h4 update-title">{update.title}</h3>
+        <p class="bold update-subtitles">
           <span>{update.tag}</span>
+          <span class="dot"></span>
           <span>{update.date}</span>
+          <span class="dot"></span>
           <span>{update.author}</span>
         </p>
         <div class="update-paragraphs">
@@ -35,7 +38,6 @@ const { updates } = Astro.props;
             <p>{p}</p>
           )}
         </div>
-            {/* Secondary Button  */}
         <a
           href={update.link}
           class="btn secondary flexible"
@@ -48,3 +50,67 @@ const { updates } = Astro.props;
     </div>
   ))
 }
+
+<style>
+  .update {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .update-img {
+    flex-basis: 50%;     
+    padding-block: 6.5px;
+    min-width: 270px;
+  }
+
+  .update-img img  {
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 580/315;
+  }
+
+  .update-content {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column; 
+    align-items: start;
+    gap: 16px;
+  }
+
+  .update-subtitles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .update-subtitles .dot {
+    display: inline-block;
+    width: 8px; 
+    height: 8px;
+    background-color: var(--default-font-color);
+    border-radius: 50%;
+  }
+
+  @media screen and (max-width: 767px) {
+    .update-title {
+      font: var(--font-h5);
+    }    
+
+    .update {
+      flex-direction: column;
+    }
+
+    .update-content {
+      align-items: stretch;
+    }
+
+    .update-img {
+      padding-block: 0;
+      min-width: unset;
+    }
+  }
+</style>
