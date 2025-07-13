@@ -228,7 +228,7 @@ body {
 
 main {
   flex: 1;
-  font-size: var(--step-0);
+  font: var(--font-standard-regular);
 }
 
 a {

@@ -37,7 +37,7 @@ const t = useTranslations(lang);
         aria-hidden="true"
       ></video>
       <p class="heroTagline">
-        We seek to empower content owners and users alike by enabling seamless micropayments, fostering a fair and sustainable digital economy, and working on top of traditional advertising and subscription-based revenue models.
+        Web Monetization introduces a new way for content owners and publishers to earn while allowing users to engage on their own terms. By enabling streaming micropayments, Web Monetization complements ads, subscriptions, and memberships, giving publishers more revenue options and users more ways to access and support content.
       </p>
     </div>
   </section>
@@ -47,8 +47,9 @@ const t = useTranslations(lang);
         <div class="wallet-content">
           <h2 class="font-h3">Wallets</h2>
           <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+            To send or receive Web Monetization payments, you must have an account with a compatible wallet provider.  These providers offer Web Monetization-enabled wallets that you can use.
           </p>
+          <strong>More wallet providers coming soon!</strong>
           <p class="bold">Do you know other wallets?</p>
           <a href="https://github.com/WICG/webmonetization/pulls" target="_blank" rel="noreferrer noopener" data-umami-event="Home page link - GitHub PR" class="btn secondary">
             Make a PR
@@ -69,8 +70,8 @@ const t = useTranslations(lang);
     <div class="contentWrapper audience-grid">
       <div class="audience-card publisher">
         <div>
-          <h2 class="heading3">I am a publisher</h2>
-          <h3>And I want to be monetized</h3>
+          <h2>I am a publisher</h2>
+          <h3 class="font-h6">I want to earn from my content</h3>
           <PillTag pills={data.pillTags.publisher} />
         </div>
         <div class="media-cta">
@@ -78,7 +79,7 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="inactive audience-img"
-            alt="Web Monetization ..."
+            aria-hidden="true"
             src="/img/hero-publisher-inactive.png"
             loading="lazy"
           />
@@ -86,17 +87,17 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="active audience-img"
-            alt="Web Monetization ..."
+            aria-hidden="true"
             src="/img/hero-publisher.png"
           />
-          <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">I am a publisher</a>
+          <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">Get started as a publisher</a>
         </div>
       </div>
       <div class="divider--vertical"></div>
       <div class="audience-card supporter">
         <div>
-          <h2 class="heading3">I want to support</h2>
-          <h3>I have a publisher in mind that I would love to help</h3>
+          <h2>I want to give my support</h2>
+          <h3 class="font-h6">Because great content deserves something in return</h3>
           <PillTag pills={data.pillTags.supporter} />
         </div>
         <div class="media-cta">
@@ -104,7 +105,7 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="inactive audience-img"
-            alt="Web Monetization ..."
+            aria-hidden="true"
             src="/img/hero-supporter-inactive.png"
             loading="lazy"
           />
@@ -112,10 +113,10 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="active audience-img"
-            alt="Web Monetization ..."
+            aria-hidden="true"
             src="/img/hero-supporter.png"
           />
-          <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">I want to support</a>
+          <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">Support the content I love</a>
         </div>
       </div>
     </div>
@@ -123,8 +124,8 @@ const t = useTranslations(lang);
       <div class="divider--horizontal"></div>
       <div class="audience-card developer">
         <div>
-          <h2 class="heading3">I am a developer</h2>
-          <h3>And I want to contribute</h3>
+          <h2>I am a developer</h2>
+          <h3 class="font-h6">I want to help shape the future of the web</h3>
           <PillTag pills={data.pillTags.developer} />
           <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
         </div>
@@ -133,7 +134,7 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="inactive audience-img"
-            alt="Web Monetization ..."
+            aria-hidden="true"
             src="/img/hero-dev-inactive.png"
             loading="lazy"
           />
@@ -141,7 +142,7 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="active audience-img"
-            alt="Web Monetization ..."
+            aria-hidden="true"
             src="/img/hero-dev.png"
           />
         </di>
@@ -308,7 +309,6 @@ section.hero {
 }
 
 .audience-card h3 {
-  font: var(--font-h6);
   margin-block-end: var(--spacing-lg);
 }
 
@@ -328,7 +328,7 @@ section.hero {
   left: 0;
   right: 0;
   background-image: linear-gradient(
-    to bottom,
+    to top,
     #7F76B2 12%,
     #F69656 30%,
     #F2797F 59%,
@@ -350,12 +350,12 @@ section.hero {
 .divider--horizontal::before {
   content: "";
   position: absolute;
-  left: var(--padding-2xl);
-  right: var(--padding-2xl);
+  left: calc(12.5% + var(--padding-2xl));
+  right: calc(12.5% + var(--padding-2xl));
   top: 0;
   bottom: 0;
   background-image: linear-gradient(
-    to right,
+    to left,
     #7F76B2 12%,
     #F69656 30%,
     #F2797F 59%,
@@ -369,8 +369,8 @@ section.hero {
     min-height: unset;
   }
 
-  .heading-wrapper h1 {
-    font: var(--font-h3);
+  .audience-card h2 {
+    margin-bottom: var(--spacing-2xs);
   }
 
   .heading-wrapper img {
@@ -406,6 +406,11 @@ section.hero {
 
   .audience-card {
     color: var(--default-font-color);
+    padding: var(--padding-md);
+  }
+
+  .audience-card h2 {
+    font: var(--font-h3);
   }
 
   .audience-card.developer div {
