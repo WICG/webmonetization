@@ -3,9 +3,11 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import CardList from "../components/pages/CardList.astro";
+import PillTag from "../components/pages/PillTag.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
 ---
 <Base title={t('site.title')} description={t('site.description')}>
   <section class="section hero">
@@ -35,7 +37,7 @@ const t = useTranslations(lang);
         aria-hidden="true"
       ></video>
       <p class="heroTagline">
-        We seek to empower content owners and users alike by enabling seamless micropayments, fostering a fair and sustainable digital economy, and working on top of traditional advertising and subscription-based revenue models.
+        Web Monetization introduces a new way for content owners and publishers to earn while allowing users to engage on their own terms. By enabling streaming micropayments, Web Monetization complements ads, subscriptions, and memberships, giving publishers more revenue options and users more ways to access and support content.
       </p>
     </div>
   </section>
@@ -45,8 +47,9 @@ const t = useTranslations(lang);
         <div class="wallet-content">
           <h2 class="font-h3">Wallets</h2>
           <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+            To send or receive Web Monetization payments, you must have an account with a compatible wallet provider.  These providers offer Web Monetization-enabled wallets that you can use.
           </p>
+          <strong>More wallet providers coming soon!</strong>
           <p class="bold">Do you know other wallets?</p>
           <a href="https://github.com/WICG/webmonetization/pulls" target="_blank" rel="noreferrer noopener" data-umami-event="Home page link - GitHub PR" class="btn secondary">
             Make a PR
@@ -60,6 +63,89 @@ const t = useTranslations(lang);
           <CardList cards={data.wallets} />
         </div>
       )}
+      </div>
+    </div>
+  </section>
+  <section class="section audienceSection">
+    <div class="contentWrapper audience-grid">
+      <div class="audience-card publisher">
+        <div>
+          <h2>I am a publisher</h2>
+          <h3 class="font-h6">I want to earn from my content</h3>
+          <PillTag pills={data.pillTags.publisher} />
+        </div>
+        <div class="media-cta">
+          <img
+            width="460"
+            height="460"
+            class="inactive audience-img"
+            aria-hidden="true"
+            src="/img/hero-publisher-inactive.png"
+            loading="lazy"
+          />
+          <img
+            width="460"
+            height="460"
+            class="active audience-img"
+            aria-hidden="true"
+            src="/img/hero-publisher.png"
+          />
+          <a class="btn primary flexible" href="/publisher" data-umami-event="Home page link - Publishers">Get started as a publisher</a>
+        </div>
+      </div>
+      <div class="divider--vertical"></div>
+      <div class="audience-card supporter">
+        <div>
+          <h2>I want to give my support</h2>
+          <h3 class="font-h6">Because great content deserves something in return</h3>
+          <PillTag pills={data.pillTags.supporter} />
+        </div>
+        <div class="media-cta">
+          <img
+            width="460"
+            height="460"
+            class="inactive audience-img"
+            aria-hidden="true"
+            src="/img/hero-supporter-inactive.png"
+            loading="lazy"
+          />
+          <img
+            width="460"
+            height="460"
+            class="active audience-img"
+            aria-hidden="true"
+            src="/img/hero-supporter.png"
+          />
+          <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">Support the content I love</a>
+        </div>
+      </div>
+    </div>
+    <div class="contentWrapper">
+      <div class="divider--horizontal"></div>
+      <div class="audience-card developer">
+        <div>
+          <h2>I am a developer</h2>
+          <h3 class="font-h6">I want to help shape the future of the web</h3>
+          <PillTag pills={data.pillTags.developer} />
+          <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
+        </div>
+        <di>
+          <img
+            width="460"
+            height="460"
+            class="inactive audience-img"
+            aria-hidden="true"
+            src="/img/hero-dev-inactive.png"
+            loading="lazy"
+          />
+          <img
+            width="460"
+            height="460"
+            class="active audience-img"
+            aria-hidden="true"
+            src="/img/hero-dev.png"
+          />
+        </di>
       </div>
     </div>
   </section>
@@ -146,13 +232,145 @@ section.hero {
   flex: 1 1 20rem;
 }
 
+.audienceSection {
+  margin-inline: var(--spacing-md);
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.25rem 1fr;
+  gap: var(--spacing-xs);
+  align-items: start;
+  margin-bottom: var(--spacing-xs);
+}
+
+.audience-grid > div {
+  width: 100%;
+  height: 100%;
+}
+
+.audience-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-white);
+  border-radius: var(--pill-rounding);
+  max-width: 100%;
+  justify-content: space-between;
+}
+
+.audience-card.developer {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.audience-card .btn, .audience-card .media-cta {
+  margin-top: var(--spacing-3xl);
+}
+
+.audience-card.developer div {
+  flex-basis: 50%;
+}
+
+.audience-card > div {
+  width: 100%;
+}
+
+.audience-card .btn {
+  width: fit-content;
+}
+
+.audience-img {
+  max-width: 30vw;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.active.audience-img {
+  display: none;
+}
+
+.audience-card {
+  padding: 2rem;
+  color: var(--inactive-font-color);
+}
+
+.audience-card:hover, .audience-card:focus {
+  color: var(--default-font-color);
+}
+
+.audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
+  display: block;
+}
+
+.audience-card:hover .inactive.audience-img, .audience-card:focus .inactive.audience-img {
+  display: none;
+}
+
+.audience-card h3 {
+  margin-block-end: var(--spacing-lg);
+}
+
+.divider--vertical {
+  position: relative;
+  width: 0.25rem;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+}
+
+.divider--vertical::before {
+  content: "";
+  position: absolute;
+  top: var(--padding-2xl);
+  bottom: var(--padding-2xl);
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(
+    to top,
+    #7F76B2 12%,
+    #F69656 30%,
+    #F2797F 59%,
+    #9CD6CB 90%
+  );
+  border-radius: var(--fully-rounded);
+}
+
+.divider--horizontal {
+  position: relative;
+  height: 0.25rem;
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.divider--horizontal::before {
+  content: "";
+  position: absolute;
+  left: calc(12.5% + var(--padding-2xl));
+  right: calc(12.5% + var(--padding-2xl));
+  top: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+    to left,
+    #7F76B2 12%,
+    #F69656 30%,
+    #F2797F 59%,
+    #9CD6CB 90%
+  );
+  border-radius: var(--fully-rounded);
+}
+
 @media screen and (max-width: 767px) {
   section.hero {
     min-height: unset;
   }
 
-  .heading-wrapper h1 {
-    font: var(--font-h3);
+  .audience-card h2 {
+    margin-bottom: var(--spacing-2xs);
   }
 
   .heading-wrapper img {
@@ -174,6 +392,45 @@ section.hero {
   .cards {
     flex: 1 1 auto;
     align-items: stretch;
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .divider--vertical, .divider--horizontal {
+    display: none;
+  }
+
+  .audience-card {
+    color: var(--default-font-color);
+    padding: var(--padding-md);
+  }
+
+  .audience-card h2 {
+    font: var(--font-h3);
+  }
+
+  .audience-card.developer div {
+    flex-basis: 100%;
+  }
+
+  .audience-card .btn {
+    width: 100%;
+  }
+
+  .inactive.audience-img {
+    display: none;
+  }
+
+  .audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
+    display: none;
+  }
+
+  .audience-card .media-cta {
+    margin-top: 0;
   }
 }
 </style>

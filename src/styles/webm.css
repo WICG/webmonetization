@@ -123,6 +123,7 @@
   --footer-bg-color: var(--color-mint-100);
 
   --pill-border-color: var(--color-blue-300);
+  --pill-text-color: var(--color-silver-800);
 
   --border-color: var(--color-silver-200);
 
@@ -227,7 +228,7 @@ body {
 
 main {
   flex: 1;
-  font-size: var(--step-0);
+  font: var(--font-standard-regular);
 }
 
 a {
