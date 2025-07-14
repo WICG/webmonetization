@@ -256,44 +256,52 @@ section.hero {
 </style>
 
 <script>
-  const updatesContainer = document.querySelector("#updates-list");
-  const prevButton = document.querySelector("#prev-button"); 
-  const nextButton = document.querySelector("#next-button");
-  const carouselDots = document.querySelectorAll("#updates-dots button");
+  const updatesContainer = document.querySelector('#updates-list');
+  const prevButton = document.querySelector('#prev-button');
+  const nextButton = document.querySelector('#next-button');
+  const carouselDots = document.querySelectorAll('#updates-dots button');
+  const numberOfUpdates = carouselDots.length;
 
   if (updatesContainer instanceof HTMLElement) {
     let width = updatesContainer.offsetWidth;
 
     window.addEventListener('resize', () => {
-      width = updatesContainer.offsetWidth; 
+      width = updatesContainer.offsetWidth;
     });
 
-    prevButton?.addEventListener("click", ()=> scrollUpdates("left")); 
-    nextButton?.addEventListener("click", ()=> scrollUpdates("right"));
-     
-    function scrollUpdates (direction: "left" | "right"){
-      const amount = direction === "left" ? -width : width; 
-  
+    prevButton?.addEventListener('click', () => scrollUpdates('left'));
+    nextButton?.addEventListener('click', () => scrollUpdates('right'));
+
+    function scrollUpdates(direction: 'left' | 'right') {
+      const amount = direction === 'left' ? -width : width
+
       updatesContainer?.scrollBy({
         left: amount,
-        behavior: "smooth"
-      });
+        behavior: 'smooth',
+      })
 
-      const index = getCurrentSlideIndex(); 
-      const indexToGo = direction === "left" ? index - 1 : index + 1; 
-      carouselDots.forEach(dot => dot.classList.remove("active-dot"));
-      carouselDots[indexToGo].classList.add("active-dot");
+      const index = getCurrentSlideIndex()
+      const indexToGo =
+        direction === 'left'
+          ? index - 1 >= 0
+            ? index - 1
+            : 0
+          : index + 1 <= numberOfUpdates - 1
+            ? index + 1
+            : numberOfUpdates - 1
+      
+      carouselDots.forEach((dot) => dot.classList.remove('active-dot'));
+      carouselDots[indexToGo].classList.add('active-dot');
     }
 
     function getCurrentSlideIndex() {
-      if (!updatesContainer) return 0; 
-      
+      if (!updatesContainer) return 0;
+
       const scrollLeft = updatesContainer.scrollLeft;
       const currentIndex = Math.round(scrollLeft / width);
       return currentIndex;
     }
   }
 
-  carouselDots[0].classList.add("active-dot");
-
+  carouselDots[0].classList.add('active-dot');
 </script>
