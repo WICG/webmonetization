@@ -270,6 +270,7 @@ section.hero {
   const prevButton = document.querySelector('#prev-button');
   const nextButton = document.querySelector('#next-button');
   const carouselDots = document.querySelectorAll('#updates-dots span');
+  const carouselLinks = document.querySelectorAll<HTMLAnchorElement>('a.carousel-links');
   const numberOfUpdates = carouselDots.length;
 
   if (updatesContainer instanceof HTMLElement) {
@@ -283,27 +284,36 @@ section.hero {
     nextButton?.addEventListener('click', () => scrollUpdates('right'));
     
     carouselDots[0].classList.add('active-dot');
-    
+    updateTabIndices(0); 
+
     function scrollUpdates(direction: 'left' | 'right') {
       const amount = direction === 'left' ? -width : width
 
       updatesContainer?.scrollBy({
         left: amount,
         behavior: 'smooth',
-      })
+      });
 
-      updateUI(direction); 
+      updatesContainer?.addEventListener('scrollend', ()=> {
+        const currentIndex = getCurrentSlideIndex();
+        updateUI(direction, currentIndex); 
+        updateTabIndices(currentIndex); 
+      })
     }
 
-    function updateUI(direction: 'left' | 'right') {
-      const currentIndex = getCurrentSlideIndex()
+    function updateTabIndices(currentIndex : number){
+      carouselLinks.forEach( (link, i) => {
+      link.tabIndex = i === currentIndex ? 0 : -1;
+    })}
+
+    function updateUI(direction: 'left' | 'right', currentIndex : number) {
       const indexToGo =
         direction === 'left'
           ? currentIndex - 1 >= 0
-            ? currentIndex - 1
+            ? currentIndex
             : 0
           : currentIndex + 1 <= numberOfUpdates - 1
-            ? currentIndex + 1
+            ? currentIndex
             : numberOfUpdates - 1
       
       carouselDots.forEach((dot) => dot.classList.remove('active-dot'));
