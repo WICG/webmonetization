@@ -120,6 +120,9 @@
   --button-secondary-border-focus: var(--color-black);
   --button-hover-color: var(--color-purple-600);
   --button-ghost-color: var(--color-purple-300);
+  --button-carousel-color: var(--color-purple-300);
+  --button-carousel-inactive-color: var(--color-purple-100);
+  --button-carousel-hover-color: var(--color-purple-800);
 
   --nav-text-color: var(--color-purple-300);
   --surface-hover-color: var(--color-purple-50);
