@@ -262,7 +262,11 @@ section.hero {
   const carouselDots = document.querySelectorAll("#updates-dots button");
 
   if (updatesContainer instanceof HTMLElement) {
-    const width = updatesContainer.offsetWidth;
+    let width = updatesContainer.offsetWidth;
+
+    window.addEventListener('resize', () => {
+      width = updatesContainer.offsetWidth; 
+    });
 
     prevButton?.addEventListener("click", ()=> scrollUpdates("left")); 
     nextButton?.addEventListener("click", ()=> scrollUpdates("right"));

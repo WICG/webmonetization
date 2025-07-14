@@ -71,7 +71,7 @@ const { updates } = Astro.props;
     padding: 0;
   }
 
-  .update{
+  .update {
     flex: 0 0 100%;
     display: flex;
     flex-direction: row;
@@ -115,21 +115,26 @@ const { updates } = Astro.props;
   }
 
   @media screen and (max-width: 767px) {
-    .update-title {
-      font: var(--font-h5);
-    }    
-
     .update {
       flex-direction: column;
+    }
+
+    .update-img {
+      flex-basis: unset;  
+      padding-block: 0;
+      min-width: unset;
     }
 
     .update-content {
       align-items: stretch;
     }
 
-    .update-img {
-      padding-block: 0;
-      min-width: unset;
+    .update-title {
+      font: var(--font-h5);
+    }    
+
+    .update-content .btn.flexible{
+      flex: unset;
     }
   }
 </style>
