@@ -1,0 +1,35 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Base from "../layouts/Base.astro";
+import data from "../data/home.json";
+import AudienceHero from "../components/pages/AudienceHero.astro";
+const heroContent = {
+  heroTitle: "I am a publisher",
+  heroSubtitle: "I want to monetize my website",
+  heroImgSrc: "/img/hero-publisher.svg",
+  heroImgWidth: "",
+  heroImgHeight: "",
+  heroParagraph: "Web Monetization is a lightweight, privacy-preserving way to monetize your content. With its pay-as-you-browse model, you'll earn revenue based on the amount of time your visitors spend on your site. Web Monetization offers flexible, non-intrusive monetization without disrupting your existing revenue streams. It works seamlessly alongside ads, subscriptions, and memberships. All you need is a wallet address and a single line of code.",
+  pills: data.pillTags.publisher,
+  primaryCta: {
+    href:  "/developers/get-started/",
+    text: "Monetize my website",
+    event: "Publishers page link - Monetize"
+  },
+  secondaryCta: {
+    href:  "/tools/",
+    text: "Get the publisher tools",
+    event: "Publishers page link - Tools"
+  }
+};
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+---
+<Base title={t('site.title')} description={t('site.description')}>
+  <AudienceHero content={heroContent} />
+</Base>
+
+<style></style>

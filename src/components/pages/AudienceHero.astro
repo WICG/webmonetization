@@ -1,0 +1,113 @@
+---
+interface CTA {
+  text: string
+  href: string
+  event: string
+}
+
+interface HeroContent {
+  heroTitle: string
+  heroSubtitle: string
+  heroImgSrc: string
+  heroImgWidth: number
+  heroImgHeight: number
+  heroParagraph: string
+  pills: Array<{ text: string }>
+  primaryCta: CTA
+  secondaryCta?: CTA
+}
+
+const { content } = Astro.props
+
+import PillTag from './PillTag.astro'
+---
+
+<section class='section hero'>
+  <div class='contentWrapper'>
+    <div class='hero-content'>
+      <h1 class='hero-title'>{content.heroTitle}</h1>
+      <p class='hero-subtitle'>{content.heroSubtitle}</p>
+      <img
+        class='hero-image'
+        src={content.heroImgSrc}
+        aria-hidden='true'
+        width={content.heroImgWidth}
+        height={content.heroImgHeight}
+      />
+      <p class='hero-paragraph'>{content.heroParagraph}</p>
+      <div class='hero-tags'>
+        <PillTag pills={content.pills} />
+      </div>
+      <div class='hero-ctas'>
+        <a
+          href={content.primaryCta.href}
+          class='btn primary'
+          data-umami-event={content.primaryCta.event}>{content.primaryCta.text}</a
+        >
+        {
+          content.secondaryCta && (
+            <a href={content.secondaryCta.href} class='btn secondary' data-umami-event={content.secondaryCta.event}>
+              {content.secondaryCta.text}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 2rem;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--spacing-3xl);
+      align-items: start;
+    }
+
+    .hero-title {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .hero-subtitle {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .hero-tags {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .hero-ctas {
+      grid-column: 1;
+      grid-row: 4;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .hero-paragraph {
+      grid-column: 1;
+      grid-row: 5;
+    }
+
+    .hero-image {
+      grid-column: 2;
+      grid-row: 1 / span 5;
+      align-self: center;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+</style>
