@@ -1,12 +1,15 @@
 ---
+import { string } from 'astro:schema';
+
 interface Props {
   updates: Array<{
   image: string, 
   title: string, 
-  author: string, 
-  tag: string, 
-  date: string, 
+  author?: string, 
+  tag?: string, 
+  date?: string, 
   paragraphs: string[], 
+  ctaText: string,
   link: string
   }>
 }
@@ -28,11 +31,17 @@ const { updates } = Astro.props;
         <div class="update-content">
           <h3 class="font-h4 update-title">{update.title}</h3>
           <p class="bold update-subtitles">
-            <span>{update.tag}</span>
-            <span class="dot"></span>
-            <span>{update.date}</span>
-            <span class="dot"></span>
-            <span>{update.author}</span>
+            {update.tag && (
+              <span>{update.tag}</span>
+            )}
+            {update.date && (
+              <span class="dot"></span>
+              <span>{update.date}</span>
+            )}
+            {update.author && 
+              <span class="dot"></span>
+              <span>{update.author}</span>
+            }
           </p>
           <div class="update-paragraphs">
             {update.paragraphs.map( p => 
@@ -45,7 +54,7 @@ const { updates } = Astro.props;
             data-umami-event={`UpdatesList - ${update.title}`}
             target="_blank" rel="noreferrer noopener"
           >
-            Read the full article
+            {update.ctaText}
           </a>
         </div>
       </li>
