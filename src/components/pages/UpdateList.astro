@@ -1,6 +1,6 @@
 ---
 interface Props {
-  updates: Array< {
+  updates: Array<{
   image: string, 
   title: string, 
   author: string, 
@@ -13,46 +13,57 @@ interface Props {
 
 const { updates } = Astro.props;
 ---
-{
-  updates.map( update => (
-    <div class="update">
-      <div class="update-img">
-        <img
-        src={`/img/${update.image}`}
-        alt={`Illustration for the article: "${update.title}"`}
-        width="580"
-        height="315"
-        />
-      </div>
-      <div class="update-content">
-        <h3 class="font-h4 update-title">{update.title}</h3>
-        <p class="bold update-subtitles">
-          <span>{update.tag}</span>
-          <span class="dot"></span>
-          <span>{update.date}</span>
-          <span class="dot"></span>
-          <span>{update.author}</span>
-        </p>
-        <div class="update-paragraphs">
-          {update.paragraphs.map( p => 
-            <p>{p}</p>
-          )}
+<ul class="updates-list" id="updates-list"> 
+  {
+    updates.map( update => (
+      <li class="update">
+        <div class="update-img">
+          <img
+          src={`/img/${update.image}`}
+          alt={`Illustration for the article: "${update.title}"`}
+          width="580"
+          height="315"
+          />
         </div>
-        <a
-          href={update.link}
-          class="btn secondary flexible"
-          data-umami-event={`UpdatesList - ${update.title}`}
-          target="_blank" rel="noreferrer noopener"
-        >
-          Read the full article
-        </a>
-      </div>
-    </div>
-  ))
-}
+        <div class="update-content">
+          <h3 class="font-h4 update-title">{update.title}</h3>
+          <p class="bold update-subtitles">
+            <span>{update.tag}</span>
+            <span class="dot"></span>
+            <span>{update.date}</span>
+            <span class="dot"></span>
+            <span>{update.author}</span>
+          </p>
+          <div class="update-paragraphs">
+            {update.paragraphs.map( p => 
+              <p>{p}</p>
+            )}
+          </div>
+          <a
+            href={update.link}
+            class="btn secondary flexible"
+            data-umami-event={`UpdatesList - ${update.title}`}
+            target="_blank" rel="noreferrer noopener"
+          >
+            Read the full article
+          </a>
+        </div>
+      </li>
+    ))
+  }
+</ul>
 
 <style>
-  .update {
+  .updates-list{
+    width: 100% ;
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    padding: 0;
+  }
+
+  .update{
+    flex: 0 0 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
