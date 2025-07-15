@@ -25,8 +25,10 @@ import PillTag from './PillTag.astro'
 <section class='section hero'>
   <div class='contentWrapper'>
     <div class='hero-content'>
-      <h1 class='hero-title'>{content.heroTitle}</h1>
-      <p class='hero-subtitle'>{content.heroSubtitle}</p>
+        <div class="hero-header">
+            <h1 class='hero-title'>{content.heroTitle}</h1>
+            <p class='hero-subtitle'>{content.heroSubtitle}</p>
+        </div>
       <img
         class='hero-image'
         src={content.heroImgSrc}
@@ -57,54 +59,89 @@ import PillTag from './PillTag.astro'
 </section>
 
 <style>
-  .hero {
-    padding: 2rem;
-  }
 
   .hero-content {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-lg);
+    padding-left: var(--padding-md);
+    padding-right: var(--padding-md);
+    align-items: center;
+    text-align: center;
   }
 
-  @media (min-width: 768px) {
+  .hero-title {
+    margin-bottom: var(--spacing-2xs);
+    font: var(--font-h2);
+  }
+
+  .hero-subtitle {
+    font: var(--font-h6);
+  }
+
+  .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .hero-ctas {
+        width: 100%;
+    }
+
+    .hero-ctas a {
+        width: 100%;
+        justify-content: center;
+    }
+
+  @media (min-width: 1035px) { /* TODO change proposed */
     .hero-content {
       display: grid;
       grid-template-columns: 1fr 1fr;
       column-gap: var(--spacing-3xl);
+      row-gap: var(--spacing-2xl);
       align-items: start;
+      text-align: left;
     }
 
-    .hero-title {
+    .hero-header {
       grid-column: 1;
       grid-row: 1;
     }
 
+    .hero-title {
+        font: var(--font-display-1);
+    }
+
     .hero-subtitle {
-      grid-column: 1;
-      grid-row: 2;
+        font: var(--font-h5);
     }
 
     .hero-tags {
       grid-column: 1;
-      grid-row: 3;
+      grid-row: 2;
     }
 
     .hero-ctas {
       grid-column: 1;
-      grid-row: 4;
-      display: flex;
-      gap: 1rem;
+      grid-row: 3;
+      gap: var(--spacing-3xl);
+      text-align: left;
+    }
+
+    .hero-ctas a {
+      width: max-content;
+      justify-content: flex-start;
     }
 
     .hero-paragraph {
       grid-column: 1;
-      grid-row: 5;
+      grid-row: 4;
     }
 
     .hero-image {
       grid-column: 2;
-      grid-row: 1 / span 5;
+      grid-row: 1 / span 4;
       align-self: center;
       max-width: 100%;
       height: auto;
