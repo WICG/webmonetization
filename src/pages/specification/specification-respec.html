@@ -828,6 +828,31 @@
             </li>
           </ol>
         </section>
+        <section data-cite="CSP">
+          <h4>
+            Get fetch directive fallback list
+          </h4>
+          <p>
+            This spec patches the [[CSP]] specification's <a data-cite="CSP#directive-fallback-list">directive fallback list</a>
+          </p>
+          <p>
+            Given a string |directiveName|:
+          </p>
+          <ol>
+            <li>Switch on |directiveName|:
+              <dl>
+                ...
+                <ins>
+                <dt>`monetization-src`</dt>
+                <dd>
+                  `<< "monetization-src", "default-src" >>`
+                </dd>
+                </ins>
+              </dl>
+            </li>
+            <li>Return `<< >>`.</li>
+          </ol>
+        </section>
       </section>
     </section>
     <section>
