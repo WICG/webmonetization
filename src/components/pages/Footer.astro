@@ -80,8 +80,13 @@ import WmNamedLogo from "../../../public/img/wm-named-logo.svg"
     color: var(--default-font-color);
   }
   
-  a:hover, a:focus-visible {
+  a:hover {
     text-decoration: underline;
+  }
+
+   a:focus-visible {
+    text-decoration: none;
+    outline-offset: var(--padding-2xs);
   }
   
   small {
