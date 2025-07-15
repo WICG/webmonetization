@@ -543,6 +543,10 @@ tbody tr:last-of-type td:last-child {
     padding-block-start: var(--spacing-3xl);
   }
 
+  .section.hero {
+    min-height: unset;
+  }
+
   .section:first-of-type {
     padding-block-start: 6.25rem;
   }
