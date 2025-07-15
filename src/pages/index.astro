@@ -70,7 +70,7 @@ const t = useTranslations(lang);
       <article class="audience-card publisher">
         <div>
           <h2>I am a publisher</h2>
-          <h3 class="font-h6">I want to earn from my content</h3>
+          <p class="audience-desc font-h6">I want to earn from my content</p>
           <PillTag pills={data.pillTags.publisher} />
         </div>
         <div class="media-cta">
@@ -96,7 +96,7 @@ const t = useTranslations(lang);
       <article class="audience-card supporter">
         <div>
           <h2>I want to give my support</h2>
-          <h3 class="font-h6">Because great content deserves something in return</h3>
+          <p class="audience-desc font-h6">Because great content deserves something in return</p>
           <PillTag pills={data.pillTags.supporter} />
         </div>
         <div class="media-cta">
@@ -124,7 +124,7 @@ const t = useTranslations(lang);
       <article class="audience-card developer">
         <div>
           <h2>I am a developer</h2>
-          <h3 class="font-h6">I want to help shape the future of the web</h3>
+          <p class="audience-desc font-h6">I want to help shape the future of the web</p>
           <PillTag pills={data.pillTags.developer} />
           <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
         </div>
@@ -294,7 +294,7 @@ const t = useTranslations(lang);
   display: none;
 }
 
-.audience-card h3 {
+.audience-card .audience-desc {
   margin-block-end: var(--spacing-lg);
 }
 
