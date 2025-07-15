@@ -828,6 +828,64 @@
             </li>
           </ol>
         </section>
+        <section>
+          <h4>Fetch destination type</h4>
+          <p>This spec patches the [[FETCH]] specification's [=destination type=].</p>
+          <p>A destination type is one of:
+            the empty string,
+            "<code>audio</code>",
+            "<code>audioworklet</code>",
+            "<code>document</code>",
+            "<code>embed</code>",
+            "<code>font</code>",
+            "<code>frame</code>",
+            "<code>iframe</code>",
+            "<code>image</code>",
+            "<code>json</code>",
+            "<code>manifest</code>",
+            <ins>"<code>monetization</code>",</ins>
+            "<code>object</code>",
+            "<code>paintworklet</code>",
+            "<code>report</code>",
+            "<code>script</code>",
+            "<code>serviceworker</code>",
+            "<code>sharedworker</code>",
+            "<code>style</code>",
+            "<code>track</code>",
+            "<code>video</code>",
+            "<code>webidentity</code>",
+            "<code>worker</code>", or
+            "<code>xslt</code>".
+          </p>
+        </section>
+        <section data-cite="CSP">
+          <h4>
+            Get the effective directive for request
+          </h4>
+          <p>
+            This spec patches the [[CSP]] specification's <a data-cite="CSP#effective-directive-for-a-request">effective directive for request</a>
+          </p>
+          <p>
+            Given a request (|request|):
+          </p>
+          <ol>
+            <li>...</li>
+            <li>Switch on |request|'s destination:
+              <dl>
+                ...
+                <ins>
+                  <dt>`"monetization"`</dt>
+                  <dd>
+                    <ol>
+                      <li>Return `monetization-src`.</li>
+                    </ol>
+                  </dd>
+                </ins>
+              </dl>
+            </li>
+            <li>Return `connect-src`.</li>
+          </ol>
+        </section>
       </section>
     </section>
     <section>
