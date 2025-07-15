@@ -4,19 +4,22 @@ interface Props {
 }
 const { pills } = Astro.props;
 ---
-<div class="pills">
+<ul class="pills">
     {pills.map((pill) => (
-        <span class="pill-tag">
+        <li class="pill-tag">
             {pill.text}
-        </span>
+        </li>
     ))}
-</div>
+</ul>
 
 <style>
     .pills {
         display: flex;
         flex-wrap: wrap;
         max-width: 100%;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
     }
 
     .pill-tag{
