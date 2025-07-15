@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import CardList from "../components/pages/CardList.astro";
 import PillTag from "../components/pages/PillTag.astro";
+import Loudspeaker from '../../public/img/loudspeaker.svg'
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -53,9 +54,7 @@ const t = useTranslations(lang);
           <p class="bold">Do you know other wallets?</p>
           <a href="https://github.com/WICG/webmonetization/pulls" target="_blank" rel="noreferrer noopener" data-umami-event="Home page link - GitHub PR" class="btn secondary">
             Make a PR
-            <svg viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.25 2.09989C14.0781 1.98868 13.8815 1.92139 13.6775 1.90396C13.4735 1.88652 13.2683 1.91946 13.08 1.99989L6.91 4.42989C6.76407 4.48984 6.60776 4.52042 6.45 4.51989H2.5C2.16848 4.51989 1.85054 4.65159 1.61612 4.88601C1.3817 5.12043 1.25 5.43837 1.25 5.76989V5.86989H0V8.86989H1.25V8.99989C1.25783 9.32619 1.39298 9.63648 1.62656 9.86445C1.86013 10.0924 2.17361 10.22 2.5 10.2199L4 13.3999C4.10157 13.614 4.26148 13.7952 4.46136 13.9225C4.66124 14.0499 4.893 14.1183 5.13 14.1199H5.76C6.08979 14.1173 6.40516 13.9844 6.63743 13.7503C6.86969 13.5161 7.00001 13.1997 7 12.8699V10.3399L13.08 12.7699C13.2297 12.8287 13.3891 12.8592 13.55 12.8599C13.7996 12.8553 14.0426 12.7789 14.25 12.6399C14.4145 12.5288 14.5501 12.3802 14.6458 12.2063C14.7414 12.0324 14.7943 11.8383 14.8 11.6399V3.12989C14.7991 2.92641 14.7485 2.72623 14.6527 2.54673C14.5568 2.36723 14.4186 2.21384 14.25 2.09989ZM5.75 5.76989V8.99989H2.5V5.76989H5.75ZM5.75 12.8699H5.12L3.89 10.2199H5.75V12.8699ZM7.37 9.14989C7.25125 9.08926 7.12745 9.03908 7 8.99989V5.69989C7.1262 5.67366 7.24997 5.63686 7.37 5.58989L13.55 3.12989V11.6099L7.37 9.14989ZM14.83 6.11989V8.61989C15.1615 8.61989 15.4795 8.4882 15.7139 8.25378C15.9483 8.01936 16.08 7.70142 16.08 7.36989C16.08 7.03837 15.9483 6.72043 15.7139 6.48601C15.4795 6.25159 15.1615 6.11989 14.83 6.11989Z"/>
-            </svg>
+            <Loudspeaker />
           </a>
         </div>
         {data.wallets.length > 0 && (
