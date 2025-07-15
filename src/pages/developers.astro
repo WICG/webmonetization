@@ -1,0 +1,34 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import Base from "../layouts/Base.astro";
+import data from "../data/home.json";
+import AudienceHero from "../components/pages/AudienceHero.astro";
+const heroContent = {
+  heroTitle: "I am a developer",
+  heroSubtitle: "I want to help shape the future of the web",
+  heroImgSrc: "/img/hero-developer.svg",
+  heroImgWidth: 600,
+  heroImgHeight: 611,
+  heroParagraph: "Whether you're building plugins, extensions, or libraries,  your contributions can make open, sustainable monetization a reality.",
+  pills: data.pillTags.developer,
+  primaryCta: {
+    href:  "/developers/interfaces/",
+    text: "Read the technical documentation",
+    event: "Developers page link - WM API"
+  }
+};
+
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+---
+<Base title={t('site.title')} description={t('site.description')}>
+  <AudienceHero content={heroContent} />
+</Base>
+
+<style>
+    .hero-ctas a.secondary {
+        display: none;
+    }
+</style>
