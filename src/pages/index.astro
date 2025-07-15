@@ -67,7 +67,7 @@ const t = useTranslations(lang);
   </section>
   <section class="section audienceSection">
     <div class="contentWrapper audience-grid">
-      <div class="audience-card publisher">
+      <article class="audience-card publisher">
         <div>
           <h2>I am a publisher</h2>
           <h3 class="font-h6">I want to earn from my content</h3>
@@ -91,9 +91,9 @@ const t = useTranslations(lang);
           />
           <a class="btn primary flexible" href="/publishers" data-umami-event="Home page link - Publishers">Get started as a publisher</a>
         </div>
-      </div>
+      </article>
       <div class="divider--vertical"></div>
-      <div class="audience-card supporter">
+      <article class="audience-card supporter">
         <div>
           <h2>I want to give my support</h2>
           <h3 class="font-h6">Because great content deserves something in return</h3>
@@ -117,18 +117,18 @@ const t = useTranslations(lang);
           />
           <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">Support the content I love</a>
         </div>
-      </div>
+      </article>
     </div>
     <div class="contentWrapper">
       <div class="divider--horizontal"></div>
-      <div class="audience-card developer">
+      <article class="audience-card developer">
         <div>
           <h2>I am a developer</h2>
           <h3 class="font-h6">I want to help shape the future of the web</h3>
           <PillTag pills={data.pillTags.developer} />
           <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
         </div>
-        <di>
+        <div>
           <img
             width="460"
             height="460"
@@ -144,8 +144,8 @@ const t = useTranslations(lang);
             aria-hidden="true"
             src="/img/hero-dev.png"
           />
-        </di>
-      </div>
+        </div>
+      </article>
     </div>
   </section>
 </Base>
@@ -230,7 +230,7 @@ const t = useTranslations(lang);
   margin-bottom: var(--spacing-xs);
 }
 
-.audience-grid > div {
+.audience-grid > * {
   width: 100%;
   height: 100%;
 }
