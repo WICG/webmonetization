@@ -92,7 +92,7 @@ const t = useTranslations(lang);
           <a class="btn primary flexible" href="/publishers" data-umami-event="Home page link - Publishers">Get started as a publisher</a>
         </div>
       </article>
-      <div class="divider--vertical"></div>
+      <div class="divider vertical"></div>
       <article class="audience-card supporter">
         <div>
           <h2>I want to give my support</h2>
@@ -120,7 +120,7 @@ const t = useTranslations(lang);
       </article>
     </div>
     <div class="contentWrapper">
-      <div class="divider--horizontal"></div>
+      <div class="divider horizontal"></div>
       <article class="audience-card developer">
         <div>
           <h2>I am a developer</h2>
@@ -298,56 +298,51 @@ const t = useTranslations(lang);
   margin-block-end: var(--spacing-lg);
 }
 
-.divider--vertical {
+.divider {
   position: relative;
-  width: 0.25rem;
   align-self: stretch;
   display: flex;
+}
+
+.divider.vertical {
+  width: 0.25rem;
   justify-content: center;
 }
 
-.divider--vertical::before {
-  content: "";
-  position: absolute;
-  top: var(--padding-2xl);
-  bottom: var(--padding-2xl);
-  left: 0;
-  right: 0;
-  background-image: linear-gradient(
-    to top,
-    #7F76B2 12%,
-    #F69656 30%,
-    #F2797F 59%,
-    #9CD6CB 90%
-  );
-  border-radius: var(--fully-rounded);
-}
-
-.divider--horizontal {
-  position: relative;
+.divider.horizontal {
   height: 0.25rem;
   width: 100%;
-  align-self: stretch;
-  display: flex;
   align-items: center;
   margin-bottom: var(--spacing-xs);
 }
 
-.divider--horizontal::before {
+.divider::before {
   content: "";
   position: absolute;
-  left: calc(12.5% + var(--padding-2xl));
-  right: calc(12.5% + var(--padding-2xl));
-  top: 0;
-  bottom: 0;
+  border-radius: var(--fully-rounded);
   background-image: linear-gradient(
-    to left,
+    to var(--gradient-direction),
     #7F76B2 12%,
     #F69656 30%,
     #F2797F 59%,
     #9CD6CB 90%
   );
-  border-radius: var(--fully-rounded);
+}
+
+.divider.vertical::before {
+  top: var(--padding-2xl);
+  bottom: var(--padding-2xl);
+  left: 0;
+  right: 0;
+  --gradient-direction: top;
+}
+
+.divider.horizontal::before {
+  left: calc(12.5% + var(--padding-2xl));
+  right: calc(12.5% + var(--padding-2xl));
+  top: 0;
+  bottom: 0;
+  --gradient-direction: left;
 }
 
 @media screen and (max-width: 767px) {
@@ -386,7 +381,7 @@ const t = useTranslations(lang);
     margin-bottom: var(--spacing-3xl);
   }
 
-  .divider--vertical, .divider--horizontal {
+  .divider.vertical, .divider.horizontal {
     display: none;
   }
 
