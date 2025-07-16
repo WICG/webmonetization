@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import AudienceHero from "../components/pages/AudienceHero.astro";
+import HowItWorks from "../components/pages/HowItWorks.astro";
 const heroContent = {
   heroTitle: "I want to give my support",
   heroSubtitle: "Because great content deserves something in return",
@@ -29,6 +30,9 @@ const t = useTranslations(lang);
 ---
 <Base title={t('pages.supporters.title')} description={t('pages.supporters.description')}>
   <AudienceHero content={heroContent} />
+  <HowItWorks>
+    <p>To support Web Monetized sites, all you need is a compatible digital wallet and the Web Monetization browser extension. Once set up, you can make continuous payments in real time or one time payments to the websites you enjoy, directly from your browser, privately, effortlessly, and on your own terms.</p>
+  </HowItWorks>
 </Base>
 
 <style></style>

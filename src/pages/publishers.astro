@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import AudienceHero from "../components/pages/AudienceHero.astro";
+import HowItWorks from "../components/pages/HowItWorks.astro";
 const heroContent = {
   heroTitle: "I am a publisher",
   heroSubtitle: "I want to monetize my website",
@@ -29,6 +30,9 @@ const t = useTranslations(lang);
 ---
 <Base title={t('pages.publishers.title')} description={t('pages.publishers.description')}>
   <AudienceHero content={heroContent} />
+  <HowItWorks>
+    <p>To receive Web Monetization payments, you’ll need an account with a compatible digital wallet provider. Once you have your wallet address, use the link generator tool to create a Web Monetization <code>&lt;link&gt;</code> element and add it to each page you want to monetize. Visitors with the Web Monetization browser extension can then stream payments to you at a rate and frequency they choose.</p>
+  </HowItWorks>
 </Base>
 
 <style></style>
