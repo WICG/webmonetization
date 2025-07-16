@@ -25,18 +25,14 @@ const t = useTranslations(lang);
           height="23"
         />
       </div>
-      <video
-        class="hero-video"
-        src="/video/hero-animation.webm"
-        poster="/img/hero-img.svg"
-        autoplay
-        muted
-        loop
-        playsinline
-        width="1280"
-        height="941"
+      <div class="hero-img">
+        <img
+        src="/img/hero-img.svg"
+        width="814"
+        height="599"
         aria-hidden="true"
-      ></video>
+        />
+      </div>
       <p class="heroTagline">
         Web Monetization introduces a new way for content owners and publishers to earn while allowing users to engage on their own terms. By enabling streaming micropayments, Web Monetization complements ads, subscriptions, and memberships, giving publishers more revenue options and users more ways to access and support content.
       </p>
@@ -172,13 +168,19 @@ const t = useTranslations(lang);
   height: auto;
 }
 
-.hero-video {
+.hero-img {
+  width: 100%;
   max-height: 50vh;
   max-width: 80vw;
-  object-fit: contain;
-  aspect-ratio: 1280 / 941;
+  aspect-ratio: 814 / 599;
   margin-bottom: var(--spacing-lg);
-  flex: 1 1 100%;
+}
+
+.hero-img img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .heroTagline {

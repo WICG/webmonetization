@@ -25,17 +25,18 @@ import PillTag from './PillTag.astro'
 <section class='section hero'>
   <div class='contentWrapper'>
     <div class='hero-content'>
-        <div class="hero-header">
-            <h1 class='hero-title'>{content.heroTitle}</h1>
-            <p class='hero-subtitle'>{content.heroSubtitle}</p>
-        </div>
-      <img
-        class='hero-image'
-        src={content.heroImgSrc}
-        aria-hidden='true'
-        width={content.heroImgWidth}
-        height={content.heroImgHeight}
-      />
+      <div class="hero-header">
+          <h1 class='hero-title'>{content.heroTitle}</h1>
+          <p class='hero-subtitle'>{content.heroSubtitle}</p>
+      </div>
+      <div class='hero-image'>
+        <img
+          src={content.heroImgSrc}
+          aria-hidden='true'
+          width={content.heroImgWidth}
+          height={content.heroImgHeight}
+        />
+      </div>
       <p class='hero-paragraph'>{content.heroParagraph}</p>
       <div class='hero-tags'>
         <PillTag pills={content.pills} />
@@ -80,24 +81,32 @@ import PillTag from './PillTag.astro'
   }
 
   .hero-ctas {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-lg);
-    }
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
 
-    .hero-ctas {
-        width: 100%;
-    }
+  .hero-ctas {
+    width: 100%;
+  }
 
-    .hero-ctas a {
-        width: 100%;
-        justify-content: center;
-    }
+  .hero-ctas a {
+    width: 100%;
+    justify-content: center;
+  }
 
-    .hero-image {
-        aspect-ratio: 1/1;
-        flex: 1 1 100%;
-    }
+  .hero-image {
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  .hero-image img {
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
 
   @media (min-width: 1035px) { /* TODO change proposed */
     .hero-content {
@@ -115,11 +124,11 @@ import PillTag from './PillTag.astro'
     }
 
     .hero-title {
-        font: var(--font-display-1);
+      font: var(--font-display-1);
     }
 
     .hero-subtitle {
-        font: var(--font-h5);
+      font: var(--font-h5);
     }
 
     .hero-tags {
@@ -148,8 +157,6 @@ import PillTag from './PillTag.astro'
       grid-column: 2;
       grid-row: 1 / span 4;
       align-self: center;
-      width: 100%;
-      height: auto;
     }
   }
 </style>
