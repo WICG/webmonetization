@@ -1,38 +1,109 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Base from "../layouts/Base.astro";
-import data from "../data/home.json";
-import AudienceHero from "../components/pages/AudienceHero.astro";
-import HowItWorks from "../components/pages/HowItWorks.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import data from '../data/home.json'
+import AudienceHero from '../components/pages/AudienceHero.astro'
+import HowItWorks from '../components/pages/HowItWorks.astro'
+import SplitLayout from '../components/pages/SplitLayout.astro'
 const heroContent = {
-  heroTitle: "I am a publisher",
-  heroSubtitle: "I want to monetize my website",
-  heroImgSrc: "/img/hero-publisher.svg",
+  heroTitle: 'I am a publisher',
+  heroSubtitle: 'I want to monetize my website',
+  heroImgSrc: '/img/hero-publisher.svg',
   heroImgWidth: 460,
   heroImgHeight: 460,
-  heroParagraph: "Web Monetization is a lightweight, privacy-preserving way to monetize your content. With its pay-as-you-browse model, you'll earn revenue based on the amount of time your visitors spend on your site. Web Monetization offers flexible, non-intrusive monetization without disrupting your existing revenue streams. It works seamlessly alongside ads, subscriptions, and memberships. All you need is a wallet address and a single line of code.",
+  heroParagraph:
+    "Web Monetization is a lightweight, privacy-preserving way to monetize your content. With its pay-as-you-browse model, you'll earn revenue based on the amount of time your visitors spend on your site. Web Monetization offers flexible, non-intrusive monetization without disrupting your existing revenue streams. It works seamlessly alongside ads, subscriptions, and memberships. All you need is a wallet address and a single line of code.",
   pills: data.pillTags.publisher,
   primaryCta: {
-    href:  "/developers/get-started/",
-    text: "Monetize my website",
-    event: "Publishers page link - Monetize"
+    href: '/developers/get-started/',
+    text: 'Monetize my website',
+    event: 'Publishers page link - Monetize',
   },
   secondaryCta: {
-    href:  "/tools/",
-    text: "Get the publisher tools",
-    event: "Publishers page link - Tools"
-  }
-};
+    href: '/tools/',
+    text: 'Get the publisher tools',
+    event: 'Publishers page link - Tools',
+  },
+}
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const walletConnectionContent = {
+  image: {
+    src: '/img/link-tag-generator.svg',
+    width: 376,
+    height: 270,
+    position: 'right',
+  },
+  title: 'Web monetize your pages',
+  primaryCta: {
+    text: 'Use the link tag generator',
+    href: '/tools/link-tag/',
+    event: 'Publishers page - Link tag generator',
+  },
+  secondaryCta: {
+    text: 'Show me the documentation',
+    href: '/developers/overview/',
+    event: 'Publishers page - Developer docs',
+  },
+}
 
+const toolsContent = {
+  image: {
+    src: '/img/tools-overview.png',
+    width: 483,
+    height: 325,
+    position: 'left',
+  },
+  title: 'Tell your visitors you support Web Monetization',
+  primaryCta: {
+    text: 'Use our publisher tools',
+    href: '/tools/',
+    event: 'Publishers page - Tools page',
+  },
+  secondaryCta: {
+    text: 'Show me the documentation',
+    href: '/developers/tools/',
+    event: 'Publishers page - Developer tools docs',
+  },
+}
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
-<Base title={t('pages.publishers.title')} description={t('pages.publishers.description')}>
+
+<Base
+  title={t('pages.publishers.title')}
+  description={t('pages.publishers.description')}
+>
   <AudienceHero content={heroContent} />
   <HowItWorks>
-    <p>To receive Web Monetization payments, you’ll need an account with a compatible digital wallet provider. Once you have your wallet address, use the link generator tool to create a Web Monetization <code>&lt;link&gt;</code> element and add it to each page you want to monetize. Visitors with the Web Monetization browser extension can then stream payments to you at a rate and frequency they choose.</p>
+    <p>
+      To receive Web Monetization payments, you’ll need an account with a
+      compatible digital wallet provider. Once you have your wallet address, use
+      the link generator tool to create a Web Monetization <code
+        >&lt;link&gt;</code
+      > element and add it to each page you want to monetize. Visitors with the Web
+      Monetization browser extension can then stream payments to you at a rate and
+      frequency they choose.
+    </p>
   </HowItWorks>
+  <SplitLayout content={walletConnectionContent}>
+    <p>
+      Encourage your visitors to support you through Web Monetization. Add
+      visually appealing and user-friendly elements to your site to get the word
+      out. No coding skills needed.
+    </p>
+    <p>
+      Promote Web Monetization as a model for users to support your website!
+    </p>
+  </SplitLayout>
+  <SplitLayout content={toolsContent}>
+    <p>
+      Monetizing your website is simple and requires just one line of code. Use
+      your wallet address with the link tag generator to create a <code
+        >&lt;link&gt;</code
+      > element, then add it to the pages you want to monetize.
+    </p>
+  </SplitLayout>
 </Base>
 
 <style></style>
