@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import InterFont from "../components/pages/InterFont.astro"
 import TopNav from "../components/pages/TopNav.astro";
 import Footer from "../components/pages/Footer.astro";
 import '../styles/webm.css';
@@ -17,9 +18,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title = t("site.title"), description = t("site.description"), image = '/img/wm-social.png', hasFooter = true } = Astro.props;
 ---
 <html lang={lang} data-theme="light">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -31,6 +30,8 @@ const { title = t("site.title"), description = t("site.description"), image = '/
   <title>{title}</title>
   <meta name="title" content={title} />
   <meta name="description" content={description} />
+
+  <InterFont />
 
   <script defer src="https://ilf-site-analytics.netlify.app/script.js" data-website-id="3b8cb97a-2a94-43c2-85e7-277c92c9cf48" data-domains: "webmonetization.org"></script>
 
