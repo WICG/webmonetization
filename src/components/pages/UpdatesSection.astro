@@ -67,6 +67,13 @@ const { updates } = Astro.props;
 
     window.addEventListener('resize', () => {
       width = updatesContainer.offsetWidth;
+      const currentScroll = updatesContainer.scrollLeft; 
+      const currentIndex = Math.round(currentScroll / width);
+
+      updatesContainer.scrollTo({
+        left: currentIndex * width,
+        behavior: 'auto'
+      })
     });
 
     prevButton?.addEventListener('click', () => scrollUpdates('left'));
