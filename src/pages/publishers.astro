@@ -66,6 +66,26 @@ const toolsContent = {
   },
 }
 
+const WPPluginContent = {
+  image: {
+    src: '/img/wordpress.svg',
+    width: 54,
+    height: 36,
+    position: 'right',
+  },
+  title: 'Web monetize your WordPress site',
+  primaryCta: {
+    text: 'Use the WordPress plugin',
+    href: '',
+    event: 'Publishers page - WP plugin',
+  },
+  secondaryCta: {
+    text: 'Show me the documentation',
+    href: '/developers/overview/',
+    event: 'Publishers page - Developer docs',
+  },
+}
+
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
@@ -102,6 +122,14 @@ const t = useTranslations(lang)
       your wallet address with the link tag generator to create a <code
         >&lt;link&gt;</code
       > element, then add it to the pages you want to monetize.
+    </p>
+  </SplitLayout>
+  <SplitLayout content={WPPluginContent}>
+    <p>
+      Get started with Web Monetization on WordPress using our new WordPress
+      plugin, built to help you earn while keeping your content open and your
+      audience’s privacy intact. Add a wallet address, choose what to monetize,
+      and you’re ready in minutes. No coding needed, just one simple plugin!
     </p>
   </SplitLayout>
 </Base>
