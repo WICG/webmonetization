@@ -292,9 +292,10 @@ main code {
   background-color: var(--sl-color-gray-1);
   margin-block: -0.125rem;
   padding: 0.125rem 0.375rem;
-  border-radius: var(--border-radius);
   font-size: var(--step--1);
   font-family: var(--__sl-font-mono);
+  border: 1px solid var(--pill-border-color);
+  border-radius: var(--pill-rounding);
 }
 
 .visually-hidden {
