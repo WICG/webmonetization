@@ -1,0 +1,131 @@
+---
+import type { Blog } from '../../types/blog'; 
+
+interface Props {
+  blog: Blog, 
+  ctaButtonClass: string, 
+  h3Class: string
+}
+const { blog, ctaButtonClass, h3Class } = Astro.props;
+---
+
+<div class="blog-card">
+  <div class="blog-img">
+    <img
+    src={`/img/${blog.image}`}
+    aria-hidden="true"
+    width={blog.imageWidth}
+    height={blog.imageHeight}
+    loading="lazy"
+    />
+  </div>
+  <div class="blog-content">
+    {blog.titleLink ?  
+      <h3 class={`blog-title ${h3Class}`}><a href={blog.titleLink}>{blog.title}</a></h3> : 
+      <h3 class={`blog-title ${h3Class}`}>{blog.title}</h3>
+    }
+    {blog.subtitles && 
+      <p class="bold blog-subtitles">
+        {
+          Object.values(blog.subtitles).map( (subtitle, i, arr) => {
+            if( i + 1 < arr.length) {
+              return (
+                <span>{subtitle}</span>
+                <span class="dot"></span>
+              )
+            }
+            return (<span>{subtitle}</span>);
+          })
+        }
+      </p>
+    }
+    <div class="blog-paragraphs">
+      {blog.paragraphs.map( p => 
+        <p>{p}</p>
+      )}
+    </div>
+    <a
+      href={blog.link}
+      class=`btn ${ctaButtonClass} flexible carousel-links`
+      data-umami-event={`${blog.event} - ${blog.title}`}
+      target="_blank" rel="noreferrer noopener"
+    >
+      {blog.ctaText}
+    </a>
+  </div>
+</div>
+
+
+<style>
+.blog-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.blog-img {
+  flex-basis: 50%;     
+  min-width: 17rem;
+}
+
+.blog-img img  {
+  height: auto;
+  object-fit: cover;
+}
+
+.blog-content {
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column; 
+  align-items: start;
+  gap: var(--spacing-md);
+}
+
+h3.blog-title {
+  font: var(--font-h4);
+}
+.blog-subtitles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.blog-subtitles .dot {
+  display: inline-block;
+  width: var(--spacing-xs); 
+  height: var(--spacing-xs);
+  background-color: var(--default-font-color);
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1034px) {
+  .blog-card {
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .blog-img {
+    flex-basis: unset;  
+    padding-block: 0;
+    min-width: unset;
+  }
+
+  .blog-content {
+    align-items: stretch;
+  }
+
+  h3.update-title {
+    font: var(--font-h5);
+  }    
+
+  .blog-content .btn.flexible{
+    flex: unset;
+    align-self: center;
+    width: 100%;
+    max-width: 36rem; 
+  }
+}
+</style>

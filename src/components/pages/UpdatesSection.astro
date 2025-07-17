@@ -1,0 +1,138 @@
+---
+import UpdatesWrapper from "./UpdatesWrapper.astro"; 
+import type { Updates } from '../../types/blog'; 
+
+interface Props extends Updates {}; 
+const { updates } = Astro.props; 
+---
+
+<section class="section">
+  <div class="contentWrapper">
+    {updates.length > 0 && (
+      <h2 class="font-h2 updates-heading">Important Updates</h2>
+      <UpdatesWrapper updates={updates}/>  
+    )}
+    <div class="updates-dots" id="updates-dots">
+      {updates.map( update => <span></span>)}
+    </div>
+  </div>
+</section>
+
+<style>
+.updates-heading {
+  margin-bottom: var(--spacing-lg);
+}
+
+.updates-dots {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: var(--spacing-xs);
+}
+
+.updates-dots span {
+  display: inline-block;
+  width: var(--spacing-sm);
+  height: var(--spacing-sm); 
+  border-radius: 50%;
+  border: none;
+  background-color: #D9D9D9;
+}
+
+.updates-dots span.active-dot {
+  background: linear-gradient(to right, var(--gradient-3-start), var(--gradient-3-stop));
+}
+
+@media screen and (max-width: 1034px) {
+  .updates-heading {
+    font: var(--font-h4);
+    text-align: center;
+  }
+  .updates-dots {
+    margin-bottom: var(--spacing-lg);
+  }
+}
+</style>
+
+<script>
+import type { ButtonHTMLAttributes } from "react";
+
+  const updatesContainer = document.querySelector('#updates-list');
+  const prevButton = document.querySelector<HTMLButtonElement>('#prev-button');
+  const nextButton = document.querySelector<HTMLButtonElement>('#next-button');
+  const carouselDots = document.querySelectorAll('#updates-dots span');
+  const carouselLinks = document.querySelectorAll<HTMLAnchorElement>('a.carousel-links');
+  const numberOfUpdates = carouselDots.length;
+
+  if (updatesContainer instanceof HTMLElement) {
+    let width = updatesContainer.offsetWidth;
+
+    window.addEventListener('resize', () => {
+      width = updatesContainer.offsetWidth;
+    });
+
+    prevButton?.addEventListener('click', () => scrollUpdates('left'));
+    nextButton?.addEventListener('click', () => scrollUpdates('right'));
+    
+    carouselDots[0].classList.add('active-dot');
+    updateTabIndices(0); 
+
+    function scrollUpdates(direction: 'left' | 'right') {
+      const amount = direction === 'left' ? -width : width
+
+      updatesContainer?.scrollBy({
+        left: amount,
+        behavior: 'smooth',
+      });
+
+      updatesContainer?.addEventListener('scrollend', ()=> {
+        const currentIndex = getCurrentSlideIndex();
+        updateUI(direction, currentIndex); 
+        updateTabIndices(currentIndex); 
+      })
+    }
+
+    function updateTabIndices(currentIndex : number){
+      carouselLinks.forEach( (link, i) => {
+      link.tabIndex = i === currentIndex ? 0 : -1;
+      });
+      if(prevButton && nextButton){
+        prevButton.tabIndex = currentIndex === 0 ? -1 : 0; 
+        nextButton.tabIndex = currentIndex === (numberOfUpdates - 1) ? -1 : 0; 
+      }
+    }
+
+    function updateUI(direction: 'left' | 'right', currentIndex : number) {
+      const indexToGo =
+        direction === 'left'
+          ? currentIndex - 1 >= 0
+            ? currentIndex
+            : 0
+          : currentIndex + 1 <= numberOfUpdates - 1
+            ? currentIndex
+            : numberOfUpdates - 1
+      
+      carouselDots.forEach((dot) => dot.classList.remove('active-dot'));
+      carouselDots[indexToGo].classList.add('active-dot');
+
+      prevButton?.classList.remove('inactive-arrow');
+      nextButton?.classList.remove('inactive-arrow');
+
+      if(indexToGo === 0) {
+        prevButton?.classList.add('inactive-arrow');
+      }
+
+      if(indexToGo === (numberOfUpdates - 1)) {
+        nextButton?.classList.add('inactive-arrow');
+      }
+    }
+
+    function getCurrentSlideIndex() {
+      if (!updatesContainer) return 0;
+
+      const scrollLeft = updatesContainer.scrollLeft;
+      const currentIndex = Math.round(scrollLeft / width);
+      return currentIndex;
+    }
+  }
+</script>
