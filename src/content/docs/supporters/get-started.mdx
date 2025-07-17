@@ -4,7 +4,7 @@ title: Get started with the extension
 
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
-import ExtensionLinks from "/src/components/ExtensionLinks.astro"
+import ExtensionLinks from '/src/components/ExtensionLinks.astro'
 
 Interledger Foundation's Web Monetization browser extension lets you support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
 
@@ -13,6 +13,7 @@ Interledger Foundation's Web Monetization browser extension lets you support you
 You can only use the extension to send payments to web monetized sites. Interledger Foundation encourages content owners and publishers to tell their audience they're web monetized via a banner or some other method.
 
 If you're interested in web monetizing your own content, the [get started](/developers/get-started) page for developers is a good place to start.
+
 </details>
 
 <details>
@@ -22,6 +23,7 @@ To make Web Monetization payments, you only need a digital wallet account from a
 A web monetized site can't pull payments from your wallet. When you link the browser extension to your wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#set-up-continuous-payments).
 
 The sites you pay aren't provided with any of your personally identifiable information, such as your name, email address, or IP address.
+
 </details>
 
 ## Install the extension
@@ -37,35 +39,86 @@ The extension asks for permission to access your browser tabs and your data for 
 After you install the extension, a page appears to guide you through the configuration steps.
 
 <Steps>
-  1. Get a Web Monetization-compatible [wallet](/wallets).<br/><img src='/img/docs/extension/onboarding-1.png' alt='An image of the onboarding screen showing the four steps to configure the extension' style='max-width:300px' class='img-outline'/>
-      :::note
-      You may experience a delay before you can fund your wallet while your provider performs necessary regulatory checks.
-      :::
-  2. Find and copy your wallet address (Interledger) or payment pointer (GateHub). You'll need it for Step 4.<br/><img src='/img/docs/extension/onboarding-2.png' alt='Interledger Wallet dashboard displaying a wallet address' style='max-width:400px' class='img-outline'/>
-      <Tabs>
-      <TabItem label='Example wallet address'>
-        ``` 
-        https://wallet.example.com/alice
-        ```
-      </TabItem>
-      <TabItem label='Example payment pointer'>
-        ```
-        $wallet.example.com/alice
-        ```
-      </TabItem>
-      </Tabs>
-  3. Pin the extension to your toolbar (optional).<br/><img src='/img/docs/extension/onboarding-3.png' alt='An example of where to find the pin to toolbar option for the extension' style='max-width:300px' class='img-outline'/>
-  4. Enter the wallet address or payment pointer you found in Step 2.<br/><img src='/img/docs/extension/onboarding-4a.png' alt='Set up screen with fields for wallet address/payment pointer and amount and a renew monthly toggle (default is off).' style='max-width:300px' class='img-outline'/>
-  5. Enter the amount the extension will have permission to send and select whether the amount should renew monthly. You can always [change these settings](#adjust-your-budget) later.
-      :::note
-      The amount and renewal frequency is specific to the extension you're setting up. If you install the extension on a different browser and connect to the same wallet, that extension will have a separate budget. Payments made from one budget don't affect the balance of the other.
-      :::
-  6. Click **Connect**, then click **Agree** to allow the extension to connect to your wallet account.<br/><img src='/img/docs/extension/onboarding-4b.png' alt='Consent screen for allowing the extension to connect to your wallet with agree and decline buttons' style='max-width:300px' class='img-outline'/>
-      :::note
-      If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
-      :::
-  7. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. For example:<br /><img src='/img/docs/extension/example-grant.png' alt='Example budget confirmation screen with accept and decline buttons' style='max-width:400px' class='img-outline'/>
-  8. A success screen appears when the connection is successful. You can close the tab.<br /><img src='/img/docs/extension/connection-success.png' alt='Web page displaying a connection successful screen' style='max-width:400px' class='img-outline'/>You're now ready to set up continuous payments.
+  1. Get a Web Monetization-compatible [wallet](/wallets).
+  <br />
+  <img
+    src='/img/docs/extension/onboarding-1.png'
+    alt='An image of the onboarding screen showing the four steps to configure the extension'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  :::note You may experience a delay before you can fund your wallet while your
+  provider performs necessary regulatory checks. ::: 2. Find and copy your
+  wallet address (Interledger) or payment pointer (GateHub). You'll need it for
+  Step 4.
+  <br />
+  <img
+    src='/img/docs/extension/onboarding-2.png'
+    alt='Interledger Wallet dashboard displaying a wallet address'
+    style='max-width:400px'
+    class='img-outline'
+  />
+  <Tabs>
+    <TabItem label='Example wallet address'>
+      ``` https://wallet.example.com/alice ```
+    </TabItem>
+    <TabItem label='Example payment pointer'>
+      ``` $wallet.example.com/alice ```
+    </TabItem>
+  </Tabs>
+  3. Pin the extension to your toolbar (optional).
+  <br />
+  <img
+    src='/img/docs/extension/onboarding-3.png'
+    alt='An example of where to find the pin to toolbar option for the extension'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  4. Enter the wallet address or payment pointer you found in Step 2.
+  <br />
+  <img
+    src='/img/docs/extension/onboarding-4a.png'
+    alt='Set up screen with fields for wallet address/payment pointer and amount and a renew monthly toggle (default is off).'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  5. Enter the amount the extension will have permission to send and select
+  whether the amount should renew monthly. You can always [change these
+  settings](#adjust-your-budget) later. :::note The amount and renewal frequency
+  is specific to the extension you're setting up. If you install the extension
+  on a different browser and connect to the same wallet, that extension will
+  have a separate budget. Payments made from one budget don't affect the balance
+  of the other. ::: 6. Click **Connect**, then click **Agree** to allow the
+  extension to connect to your wallet account.
+  <br />
+  <img
+    src='/img/docs/extension/onboarding-4b.png'
+    alt='Consent screen for allowing the extension to connect to your wallet with agree and decline buttons'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  :::note If your wallet provider's website opens in your browser, proceed to
+  the next step. If you receive a connection error, review the instructions for
+  [resolving the error](#resolve-a-key-addition-failure). ::: 7. Sign in to your
+  wallet account if you haven't already, then confirm the connection and budget
+  amount. For example:
+  <br />
+  <img
+    src='/img/docs/extension/example-grant.png'
+    alt='Example budget confirmation screen with accept and decline buttons'
+    style='max-width:400px'
+    class='img-outline'
+  />
+  8. A success screen appears when the connection is successful. You can close
+  the tab.
+  <br />
+  <img
+    src='/img/docs/extension/connection-success.png'
+    alt='Web page displaying a connection successful screen'
+    style='max-width:400px'
+    class='img-outline'
+  />
+  You're now ready to set up continuous payments.
 </Steps>
 
 ## Set up continuous payments
@@ -75,20 +128,36 @@ After you install the extension, a page appears to guide you through the configu
 By default, the extension is set to send continuous payments at a rate of $0.60 <abbr title="US dollars">USD</abbr> an hour ($0.01 a minute). If you transact in a currency other than USD, then the extension will default to your currency's equivalent based on the exchange rate. For example, if you transact in Mexican pesos, $0.60 USD is equivalent to around <abbr title="Mexican pesos">MX</abbr> $11.70. The extension will default to MX $11.70 an hour.
 
 Payments continue for as long as a web monetized page is active and in view. Continuous payments stop if you:
-* Disable the extension
-* Disable continuous payments within the extension's settings
-* Minimize your browser
-* Change the focus away from the tab/switch to a different tab
-* Close the tab or browser
-* Spend all of your budget 
+
+- Disable the extension
+- Disable continuous payments within the extension's settings
+- Minimize your browser
+- Change the focus away from the tab/switch to a different tab
+- Close the tab or browser
+- Spend all of your budget
 
 ### Change your continuous payment settings
 
 <Steps>
-  1. Click the **Settings** icon in the upper-right of the extension.<br /><img src='/img/docs/extension/settings-icon.png' alt='Extension showing a cog icon in the upper-right' style='max-width:300px'
-    class='img-outline'/>
-  2. Select the *Rate* tab.<br /><img src='/img/docs/extension/rate-tab.png' alt='Rate tab with rate of pay per hour field and continuous payment toggle' style='max-width:300px' class='img-outline'/>
-  3. Enter the amount the extension will send, per hour, to web monetized sites. Alternatively, select the **Continuous payment** toggle to enable/disable continuous payments for all web monetized pages.
+  1. Click the **Settings** icon in the upper-right of the extension.
+  <br />
+  <img
+    src='/img/docs/extension/settings-icon.png'
+    alt='Extension showing a cog icon in the upper-right'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  2. Select the *Rate* tab.
+  <br />
+  <img
+    src='/img/docs/extension/rate-tab.png'
+    alt='Rate tab with rate of pay per hour field and continuous payment toggle'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  3. Enter the amount the extension will send, per hour, to web monetized sites.
+  Alternatively, select the **Continuous payment** toggle to enable/disable
+  continuous payments for all web monetized pages.
 </Steps>
 
 ## Make a one-time payment
@@ -96,34 +165,62 @@ Payments continue for as long as a web monetized page is active and in view. Con
 You can make a one-time payment to a page instead of -- or in addition to -- continuous payments. The amount of the one-time payment is deducted from your budget.
 
 <Steps>
-  1. Ensure the address shown above the amount field is the page you intend to pay.<br /><img src='/img/docs/extension/otp-send-now.png' alt='Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active' style='max-width:300px' class='img-outline'/>
-  2. Enter an amount. Be sure your balance can cover the amount, otherwise the payment will fail. Click **Send now**.<br /><img src='/img/docs/extension/otp-success.png' alt='Extension showing an available balance of four dollars, with a success message indicating one dollar was sent' style='max-width:300px' class='img-outline'/>
+  1. Ensure the address shown above the amount field is the page you intend to
+  pay.
+  <br />
+  <img
+    src='/img/docs/extension/otp-send-now.png'
+    alt='Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  2. Enter an amount. Be sure your balance can cover the amount, otherwise the
+  payment will fail. Click **Send now**.
+  <br />
+  <img
+    src='/img/docs/extension/otp-success.png'
+    alt='Extension showing an available balance of four dollars, with a success message indicating one dollar was sent'
+    style='max-width:300px'
+    class='img-outline'
+  />
 </Steps>
 
 ## Adjust your budget
 
 ### About your budget
 
-Your budget is the amount you've given the extension permission to spend from your wallet. If you spend your budgeted amount, the extension will display an orange circle in the toolbar and show an "out of funds" message. You can manually add more funds using the steps below. 
+Your budget is the amount you've given the extension permission to spend from your wallet. If you spend your budgeted amount, the extension will display an orange circle in the toolbar and show an "out of funds" message. You can manually add more funds using the steps below.
 
 If your budget is set to renew monthly and you are out of funds, you can:
 
-* Wait for your budget to renew (your renewal date is shown in the extension) or 
-* Manually add funds
+- Wait for your budget to renew (your renewal date is shown in the extension) or
+- Manually add funds
 
 If you choose to add more funds, the amount you enter will become your new renewal amount and your renewal date will change.
 
 ### Change your budget settings
 
 <Steps>
-  1. Click the **Settings** icon in the upper-right of the extension.<br /><img src='/img/docs/extension/settings-icon.png' alt='Extension showing a cog icon in the upper-right' style='max-width:300px'
-    class='img-outline'/>
-  2. Select the *Budget* tab.<br /><img src='/img/docs/extension/budget-tab-full-budget.png' alt='Budget tab showing your remaining balance and options to change budget amount and renewal'
-    style='max-width:300px' class='img-outline'/>
-  3. Enter the new amount in the **Budget amount** field.
-  4. Select the **Monthly** toggle to enable/disable monthly renewals of your budget.
-  5. Click **Submit changes**. A new tab opens to your wallet provider.
-  6. Sign in to your wallet account if needed, then confirm the new budget.
+  1. Click the **Settings** icon in the upper-right of the extension.
+  <br />
+  <img
+    src='/img/docs/extension/settings-icon.png'
+    alt='Extension showing a cog icon in the upper-right'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  2. Select the *Budget* tab.
+  <br />
+  <img
+    src='/img/docs/extension/budget-tab-full-budget.png'
+    alt='Budget tab showing your remaining balance and options to change budget amount and renewal'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  3. Enter the new amount in the **Budget amount** field. 4. Select the
+  **Monthly** toggle to enable/disable monthly renewals of your budget. 5. Click
+  **Submit changes**. A new tab opens to your wallet provider. 6. Sign in to
+  your wallet account if needed, then confirm the new budget.
 </Steps>
 
 ## Disconnect the extension from your wallet
@@ -137,9 +234,30 @@ When you disconnect the extension, your remaining balance, if any, remains in yo
 The extension only supports one wallet connection at a time. For example, if you have two wallet accounts from which to make payments, you must disconnect from the first wallet before you can connect the extension to your second wallet.
 
 <Steps>
-  1. Click the **Settings** icon in the upper-right of the extension.<br /><img src='/img/docs/extension/settings-icon.png' alt='Extension showing a cog icon in the upper-right' style='max-width:300px'
-    class='img-outline'/>
-  2. Click **Disconnect**.<br /><img src='/img/docs/extension/wallet-tab.png' alt="Extension's wallet tab showing the disconnect button" style='max-width:300px' class='img-outline'/>The extension's setup screen appears with your previously used wallet address and budget settings prefilled.<img src='/img/docs/extension/connection-setup-filled.png' alt="Extension's setup screen with previously used wallet address, budget amount, and recurrence setting saved" style='max-width:300px' class='img-outline'/>
+  1. Click the **Settings** icon in the upper-right of the extension.
+  <br />
+  <img
+    src='/img/docs/extension/settings-icon.png'
+    alt='Extension showing a cog icon in the upper-right'
+    style='max-width:300px'
+    class='img-outline'
+  />
+  2. Click **Disconnect**.
+  <br />
+  <img
+    src='/img/docs/extension/wallet-tab.png'
+    alt="Extension's wallet tab showing the disconnect button"
+    style='max-width:300px'
+    class='img-outline'
+  />
+  The extension's setup screen appears with your previously used wallet address
+  and budget settings prefilled.
+  <img
+    src='/img/docs/extension/connection-setup-filled.png'
+    alt="Extension's setup screen with previously used wallet address, budget amount, and recurrence setting saved"
+    style='max-width:300px'
+    class='img-outline'
+  />
 </Steps>
 
 ## Resolve a key addition failure <a id="manually-add-key"></a>
@@ -147,6 +265,7 @@ The extension only supports one wallet connection at a time. For example, if you
 When you try to connect the extension to your wallet, the extension attempts to automatically connect with your wallet provider to add a key to your wallet account.
 
 You'll receive an error if the extension is unable to add the key. For example:
+
 <img
   src='/img/docs/extension/connection-failed.png'
   alt='Extension showing an automatic connection error, the key you must copy, and a copy button for the key'
@@ -161,12 +280,9 @@ When this happens, you must copy the key that appears in the extension and manua
 Follow these steps if your wallet provider is <LinkOut href="https://interledger.app">Interledger Wallet</LinkOut>.
 
 <Steps>
-  1. Sign in to your Interledger Wallet.
-  2. Select **Settings** from the left menu.
-  3. Select **Keys**.
-  4. Click **Add a public key**.
-  5. Enter a nickname for the key, then paste the key into the public key field.
-  6. Click **Save**.
+  1. Sign in to your Interledger Wallet. 2. Select **Settings** from the left
+  menu. 3. Select **Keys**. 4. Click **Add a public key**. 5. Enter a nickname
+  for the key, then paste the key into the public key field. 6. Click **Save**.
   7. Go back to your extension and try connecting again.
 </Steps>
 
@@ -178,11 +294,11 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 
 #### Continuous payment toggled on
 
-| Icon | State |
-| :--: | ----- | 
-| <div style="padding-left: 5px;">![Continuous payments turned on in extension, extension is paying](/img/docs/extension/enabled-monetized.png 'Active icon state with green circle and checkmark')</div> | Page is web monetized and the extension is continuously paying                                   |
+|                                                                                                                     Icon                                                                                                                     | State                                                                                            |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------ |
+|                   <div style="padding-left: 5px;">![Continuous payments turned on in extension, extension is paying](/img/docs/extension/enabled-monetized.png 'Active icon state with green circle and checkmark')</div>                    | Page is web monetized and the extension is continuously paying                                   |
 | <div style="padding-left: 5px;">![Continuous payments turned on in extension, extension is not paying and needs user attention](/img/docs/extension/enabled-attention.png 'Active icon state with orange circle and exclamation mark')</div> | Page is web monetized, but the extension needs user attention and is **not** continuously paying |
-| <div style="padding-left: 5px;">![Continuous payments turned on in extension, page is not web monetized](/img/docs/extension/enabled-unmonetized.png 'Active icon state with red circle and x')</div> | Page is **not** web monetized, the extension is **not** continuously paying |
+|                    <div style="padding-left: 5px;">![Continuous payments turned on in extension, page is not web monetized](/img/docs/extension/enabled-unmonetized.png 'Active icon state with red circle and x')</div>                     | Page is **not** web monetized, the extension is **not** continuously paying                      |
 
 #### Continuous payment toggled off
 
@@ -190,7 +306,7 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------ |
 |                <div style="padding-left: 5px;">![Continuous payments turned off in extension](/img/docs/extension/disabled-monetized.png 'Inactive icon state with green circle and checkmark')</div>                | Page is web monetized, but the extension is **not** continuously paying                          |
 | <div style="padding-left: 5px;">![Continuous payments turned off in extension, needs user attention](/img/docs/extension/disabled-attention.png 'Inactive icon state with orange circle and exclamation mark')</div> | Page is web monetized, but the extension needs user attention and is **not** continuously paying |
-|      <div style="padding-left: 5px;">![Continuous payments turned off in extension, page isn't web monetized](/img/docs/extension/disabled-unmonetized.png 'Inactive icon state with red circle and x')</div>       | Page is **not** web monetized and the extension is **not** continuously paying                   |
+|       <div style="padding-left: 5px;">![Continuous payments turned off in extension, page isn't web monetized](/img/docs/extension/disabled-unmonetized.png 'Inactive icon state with red circle and x')</div>       | Page is **not** web monetized and the extension is **not** continuously paying                   |
 
 ## FAQ
 
@@ -221,9 +337,9 @@ After the extension shows a message that a payment succeeded, the extension's ba
 <details>
 <summary>How is the balance shown in my wallet related to the balance shown in my extension?</summary>
 
-* Wallet balance - Your available balance; the amount you have to spend on Web Monetization or anything else you can use your wallet balance on.
-* Extension balance - The amount you've given the extension permission to spend.
+- Wallet balance - Your available balance; the amount you have to spend on Web Monetization or anything else you can use your wallet balance on.
+- Extension balance - The amount you've given the extension permission to spend.
 
-It's possible for your extension to show a higher balance than your wallet. In this case, any Web Monetization payment that exceeds your wallet's balance will fail due to insufficient funds. 
+It's possible for your extension to show a higher balance than your wallet. In this case, any Web Monetization payment that exceeds your wallet's balance will fail due to insufficient funds.
 
 </details>
