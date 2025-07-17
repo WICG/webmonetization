@@ -3,10 +3,13 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
 import CardList from "../components/pages/CardList.astro";
+import PillTag from "../components/pages/PillTag.astro";
+import Loudspeaker from '../../public/img/loudspeaker.svg'
 import UpdatesSection from '../components/pages/UpdatesSection.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
 ---
 <Base title={t('site.title')} description={t('site.description')}>
   <section class="section hero">
@@ -23,20 +26,16 @@ const t = useTranslations(lang);
           height="23"
         />
       </div>
-      <video
-        class="hero-video"
-        src="/video/hero-animation.webm"
-        poster="/img/hero-img.svg"
-        autoplay
-        muted
-        loop
-        playsinline
-        width="1280"
-        height="941"
+      <div class="hero-img">
+        <img
+        src="/img/hero-img.svg"
+        width="814"
+        height="599"
         aria-hidden="true"
-      ></video>
+        />
+      </div>
       <p class="heroTagline">
-        We seek to empower content owners and users alike by enabling seamless micropayments, fostering a fair and sustainable digital economy, and working on top of traditional advertising and subscription-based revenue models.
+        Web Monetization introduces a new way for content owners and publishers to earn while allowing users to engage on their own terms. By enabling streaming micropayments, Web Monetization complements ads, subscriptions, and memberships, giving publishers more revenue options and users more ways to access and support content.
       </p>
     </div>
   </section>
@@ -46,14 +45,13 @@ const t = useTranslations(lang);
         <div class="wallet-content">
           <h2 class="font-h3">Wallets</h2>
           <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa
+            To send or receive Web Monetization payments, you must have an account with a compatible wallet provider.  These providers offer Web Monetization-enabled wallets that you can use.
           </p>
+          <strong>More wallet providers coming soon!</strong>
           <p class="bold">Do you know other wallets?</p>
           <a href="https://github.com/WICG/webmonetization/pulls" target="_blank" rel="noreferrer noopener" data-umami-event="Home page link - GitHub PR" class="btn secondary">
             Make a PR
-            <svg viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.25 2.09989C14.0781 1.98868 13.8815 1.92139 13.6775 1.90396C13.4735 1.88652 13.2683 1.91946 13.08 1.99989L6.91 4.42989C6.76407 4.48984 6.60776 4.52042 6.45 4.51989H2.5C2.16848 4.51989 1.85054 4.65159 1.61612 4.88601C1.3817 5.12043 1.25 5.43837 1.25 5.76989V5.86989H0V8.86989H1.25V8.99989C1.25783 9.32619 1.39298 9.63648 1.62656 9.86445C1.86013 10.0924 2.17361 10.22 2.5 10.2199L4 13.3999C4.10157 13.614 4.26148 13.7952 4.46136 13.9225C4.66124 14.0499 4.893 14.1183 5.13 14.1199H5.76C6.08979 14.1173 6.40516 13.9844 6.63743 13.7503C6.86969 13.5161 7.00001 13.1997 7 12.8699V10.3399L13.08 12.7699C13.2297 12.8287 13.3891 12.8592 13.55 12.8599C13.7996 12.8553 14.0426 12.7789 14.25 12.6399C14.4145 12.5288 14.5501 12.3802 14.6458 12.2063C14.7414 12.0324 14.7943 11.8383 14.8 11.6399V3.12989C14.7991 2.92641 14.7485 2.72623 14.6527 2.54673C14.5568 2.36723 14.4186 2.21384 14.25 2.09989ZM5.75 5.76989V8.99989H2.5V5.76989H5.75ZM5.75 12.8699H5.12L3.89 10.2199H5.75V12.8699ZM7.37 9.14989C7.25125 9.08926 7.12745 9.03908 7 8.99989V5.69989C7.1262 5.67366 7.24997 5.63686 7.37 5.58989L13.55 3.12989V11.6099L7.37 9.14989ZM14.83 6.11989V8.61989C15.1615 8.61989 15.4795 8.4882 15.7139 8.25378C15.9483 8.01936 16.08 7.70142 16.08 7.36989C16.08 7.03837 15.9483 6.72043 15.7139 6.48601C15.4795 6.25159 15.1615 6.11989 14.83 6.11989Z"/>
-            </svg>
+            <Loudspeaker />
           </a>
         </div>
         {data.wallets.length > 0 && (
@@ -64,26 +62,96 @@ const t = useTranslations(lang);
       </div>
     </div>
   </section>
+  <section class="section audienceSection">
+    <div class="contentWrapper audience-grid">
+      <article class="audience-card publisher">
+        <div>
+          <h2>I am a publisher</h2>
+          <p class="audience-desc font-h6">I want to earn from my content</p>
+          <PillTag pills={data.pillTags.publisher} />
+        </div>
+        <div class="media-cta">
+          <img
+            width="460"
+            height="460"
+            class="inactive audience-img"
+            aria-hidden="true"
+            src="/img/hero-publisher-inactive.png"
+            loading="lazy"
+          />
+          <img
+            width="460"
+            height="460"
+            class="active audience-img"
+            aria-hidden="true"
+            src="/img/hero-publisher.png"
+          />
+          <a class="btn primary flexible" href="/publishers" data-umami-event="Home page link - Publishers">Get started as a publisher</a>
+        </div>
+      </article>
+      <div class="divider vertical"></div>
+      <article class="audience-card supporter">
+        <div>
+          <h2>I want to give my support</h2>
+          <p class="audience-desc font-h6">Because great content deserves something in return</p>
+          <PillTag pills={data.pillTags.supporter} />
+        </div>
+        <div class="media-cta">
+          <img
+            width="460"
+            height="460"
+            class="inactive audience-img"
+            aria-hidden="true"
+            src="/img/hero-supporter-inactive.png"
+            loading="lazy"
+          />
+          <img
+            width="460"
+            height="460"
+            class="active audience-img"
+            aria-hidden="true"
+            src="/img/hero-supporter.png"
+          />
+          <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">Support the content I love</a>
+        </div>
+      </article>
+    </div>
+    <div class="contentWrapper">
+      <div class="divider horizontal"></div>
+      <article class="audience-card developer">
+        <div>
+          <h2>I am a developer</h2>
+          <p class="audience-desc font-h6">I want to help shape the future of the web</p>
+          <PillTag pills={data.pillTags.developer} />
+          <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
+        </div>
+        <div class="developer-images">
+          <img
+            width="460"
+            height="460"
+            class="inactive audience-img"
+            aria-hidden="true"
+            src="/img/hero-dev-inactive.png"
+            loading="lazy"
+          />
+          <img
+            width="460"
+            height="460"
+            class="active audience-img"
+            aria-hidden="true"
+            src="/img/hero-dev.png"
+          />
+        </div>
+      </article>
+    </div>
+  </section>
   <UpdatesSection updates={data.updates}/>
 </Base>
 
 <style>
-section.hero {
+.section.hero {
   text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
-
-.hero .contentWrapper {
-  height: 100%;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .heading-wrapper {
   display: flex;
   flex-direction: column;
@@ -102,13 +170,19 @@ section.hero {
   height: auto;
 }
 
-.hero-video {
+.hero-img {
+  width: 100%;
   max-height: 50vh;
   max-width: 80vw;
-  object-fit: contain;
-  aspect-ratio: 1280 / 941;
+  aspect-ratio: 814 / 599;
   margin-bottom: var(--spacing-lg);
-  flex: 1 1 10%;
+}
+
+.hero-img img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .heroTagline {
@@ -148,13 +222,140 @@ section.hero {
   flex: 1 1 20rem;
 }
 
-@media screen and (max-width: 767px) {
-  section.hero {
-    min-height: unset;
-  }
+.audienceSection {
+  margin-inline: var(--spacing-md);
+}
 
-  .heading-wrapper h1 {
-    font: var(--font-h3);
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.25rem 1fr;
+  gap: var(--spacing-xs);
+  align-items: start;
+  margin-bottom: var(--spacing-xs);
+}
+
+.audience-grid > * {
+  width: 100%;
+  height: 100%;
+}
+
+.audience-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-white);
+  border-radius: var(--pill-rounding);
+  max-width: 100%;
+  justify-content: space-between;
+}
+
+.audience-card.developer {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.audience-card .btn, .audience-card .media-cta {
+  margin-top: var(--spacing-3xl);
+}
+
+.audience-card.developer div {
+  flex-basis: 50%;
+}
+
+.audience-card > div {
+  width: 100%;
+}
+
+.audience-card .btn {
+  width: fit-content;
+}
+
+.audience-img {
+  max-width: 30vw;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.active.audience-img {
+  display: none;
+}
+
+.audience-card {
+  padding: 2rem;
+  color: var(--inactive-font-color);
+}
+
+.audience-card:hover, .audience-card:focus {
+  color: var(--default-font-color);
+}
+
+.audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
+  display: block;
+}
+
+.audience-card:hover .inactive.audience-img, .audience-card:focus .inactive.audience-img {
+  display: none;
+}
+
+.audience-card .audience-desc {
+  margin-block-end: var(--spacing-lg);
+}
+
+.divider {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+}
+
+.divider.vertical {
+  width: 0.25rem;
+  justify-content: center;
+}
+
+.divider.horizontal {
+  height: 0.25rem;
+  width: 100%;
+  align-items: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  border-radius: var(--fully-rounded);
+  background-image: linear-gradient(
+    to var(--gradient-direction),
+    #7F76B2 12%,
+    #F69656 30%,
+    #F2797F 59%,
+    #9CD6CB 90%
+  );
+}
+
+.divider.vertical::before {
+  top: var(--padding-2xl);
+  bottom: var(--padding-2xl);
+  left: 0;
+  right: 0;
+  --gradient-direction: top;
+}
+
+.divider.horizontal::before {
+  left: calc(12.5% + var(--padding-2xl));
+  right: calc(12.5% + var(--padding-2xl));
+  top: 0;
+  bottom: 0;
+  --gradient-direction: left;
+}
+
+@media screen and (max-width: 767px) {
+
+  .section.audienceSection {
+    margin-inline: 0;
+  }
+  .audience-card h2 {
+    margin-bottom: var(--spacing-2xs);
   }
 
   .heading-wrapper img {
@@ -176,6 +377,45 @@ section.hero {
   .cards {
     flex: 1 1 auto;
     align-items: stretch;
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-3xl);
+  }
+
+  .divider.vertical, .divider.horizontal {
+    display: none;
+  }
+
+  .audience-card {
+    color: var(--default-font-color);
+    padding: var(--padding-md);
+  }
+
+  .audience-card h2 {
+    font: var(--font-h3);
+  }
+
+  .audience-card.developer div {
+    flex-basis: 100%;
+  }
+
+  .audience-card .btn {
+    width: 100%;
+  }
+
+  .inactive.audience-img, .developer-images {
+    display: none;
+  }
+
+  .audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
+    display: none;
+  }
+
+  .audience-card .media-cta {
+    margin-top: 0;
   }
 }
 </style>
