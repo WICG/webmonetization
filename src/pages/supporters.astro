@@ -128,9 +128,29 @@ const t = useTranslations(lang)
       grid-column: 1;
       grid-row: 2 / span 2;
       box-shadow:
-        0px 55.67px 55.67px rgba(0, 0, 0, 0.09),
-        0px 14.34px 30.36px rgba(0, 0, 0, 0.1);
+        0px 55px 55px rgba(0, 0, 0, 0.09),
+        0px 15px 30px rgba(0, 0, 0, 0.1);
+        animation: pulseBoxShadow 3.5s ease-in-out infinite;
     }
+
+    @keyframes pulseBoxShadow {
+      0% {
+        box-shadow:
+          0px 0px 0px rgba(0, 0, 0, 0),
+          0px 0px 0px rgba(0, 0, 0, 0);
+      }
+      50% {
+        box-shadow:
+          0px 55px 55px rgba(0, 0, 0, 0.09),
+          0px 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      100% {
+        box-shadow:
+          0px 0px 0px rgba(0, 0, 0, 0),
+          0px 0px 0px rgba(0, 0, 0, 0);
+      }
+    }
+
     .text {
       grid-column: 2;
       grid-row: 2;
