@@ -34,7 +34,7 @@ const { content } = Astro.props
         <h2>{content.title}</h2>
       </div>
       <div class='image'>
-        <img src={content.image.src} aria-hidden='true' />
+        <img src={content.image.src} width={content.image.width} height={content.image.height} aria-hidden='true' />
       </div>
       <div class='text'>
         <slot />
