@@ -4,9 +4,10 @@ interface Props {
     Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
   >
   includeGitHub?: boolean
+  className?: string
 }
 
-const { utm, includeGitHub = false } = Astro.props
+const { utm, includeGitHub = false, className } = Astro.props
 
 const URLS = {
   chrome: `https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii`,
@@ -27,7 +28,7 @@ const toURL = (url: string) => {
 }
 ---
 
-<ul>
+<ul class={className}>
   <li>
     <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
       <img
@@ -77,17 +78,21 @@ const toURL = (url: string) => {
 <style>
   ul {
     list-style: none;
-    display: inline-flex;
+    display: flex;
     align-items: baseline;
-    justify-content: center;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: var(--space-m);
     padding: 0;
   }
 
+  li {
+    margin: 1.125rem;
+    width: max-content;
+  }
+
   a {
-    padding: 0.5rem;
     display: flex;
+    padding: 1.25rem;
     border-radius: 0.5rem;
     --shadow-color: rgba(191, 191, 191, 1);
     --shadow-x: 2px;
@@ -97,9 +102,13 @@ const toURL = (url: string) => {
     transition: box-shadow 0.2s ease-in-out;
   }
 
+  .supporters a {
+    background-color: #fff;
+  }
+
   img {
-    width: 3rem;
-    height: 3rem;
+    width: 3.75rem;
+    height: 3.75rem;
     transition: transform 0.2s ease-in-out;
   }
 
@@ -109,4 +118,22 @@ const toURL = (url: string) => {
   a:hover img {
     transform: scale(1.05);
   }
+
+  ul.supporters {
+    justify-content: space-between;
+  }
+
+@media screen and (max-width: 767px) {
+  ul.supporters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-self: center;
+    width: max-content;
+  }
+
+  ul.supporters li {
+    justify-self: center;
+    align-self: center;
+  }
+}
 </style>

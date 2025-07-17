@@ -5,6 +5,7 @@ import data from '../data/home.json'
 import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import Arrow from '../../public/img/arrow.svg'
+import ExtensionLinks from "../components/ExtensionLinks.astro"
 const heroContent = {
   heroTitle: 'I want to give my support',
   heroSubtitle: 'Because great content deserves something in return',
@@ -74,6 +75,15 @@ const t = useTranslations(lang)
       </div>
     </div>
   </section>
+  <section class='section'>
+    <div class='contentWrapper'>
+      <div class='extension'>
+        <h2 class='header'>Get the extension</h2>
+        <ExtensionLinks includeGitHub utm={{ utm_campaign: 'supporters_landing_page' }} className="supporters" />
+        <div class="decorative-line" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
 </Base>
 
 <style>
@@ -108,6 +118,12 @@ const t = useTranslations(lang)
   .btn {
     margin-bottom: var(--spacing-lg);
     width: 100%;
+  }
+
+  .extension {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
   }
 
   @media screen and (min-width: 768px) {
@@ -160,6 +176,27 @@ const t = useTranslations(lang)
       grid-row: 3;
       align-self: flex-start;
       width: max-content;
+    }
+
+    .extension {
+      border: 1px solid var(--color-purple-100);
+      border-radius: var(--moderate-rounding);
+      padding: var(--padding-2xl);
+    }
+
+    .decorative-line {
+      width: 100%;
+      height: 4px;
+      background-image: url(/img/bg-lines.svg);
+      background-repeat: no-repeat;
+      background-size: 100% 4px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .extension .header {
+      font: var(--font-h3);
+      text-align: center;
     }
   }
 </style>
