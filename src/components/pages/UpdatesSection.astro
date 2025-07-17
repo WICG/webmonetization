@@ -67,8 +67,7 @@ const { updates } = Astro.props;
 
     window.addEventListener('resize', () => {
       width = updatesContainer.offsetWidth;
-      const currentScroll = updatesContainer.scrollLeft; 
-      const currentIndex = Math.round(currentScroll / width);
+      const currentIndex = getCurrentSlideIndex();
 
       updatesContainer.scrollTo({
         left: currentIndex * width,
@@ -90,13 +89,25 @@ const { updates } = Astro.props;
         behavior: 'smooth',
       });
 
-      updatesContainer?.addEventListener('scrollend', ()=> {
-        const currentIndex = getCurrentSlideIndex();
-        updateUI(direction, currentIndex); 
-        updateTabIndices(currentIndex); 
-      })
+      // check for scrollend support
+      if ('onscrollend' in window) {
+        updatesContainer?.addEventListener('scrollend', ()=> afterScroll(direction)); 
+      }
+      else {
+        let scrollTimeout:NodeJS.Timeout; 
+        updatesContainer?.addEventListener('scroll', ()=> {
+          clearTimeout(scrollTimeout); 
+          scrollTimeout = setTimeout(()=>afterScroll(direction), 0)
+        }); 
+      }
     }
 
+    function afterScroll(direction: "left" | "right") {
+      const currentIndex = getCurrentSlideIndex();
+      updateUI(direction, currentIndex); 
+      updateTabIndices(currentIndex); 
+    }
+    
     function updateTabIndices(currentIndex : number){
       carouselLinks.forEach( (link, i) => {
         if(link instanceof HTMLAnchorElement) {
