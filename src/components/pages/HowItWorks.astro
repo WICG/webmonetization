@@ -1,0 +1,46 @@
+---
+---
+<section class="section">
+    <div class="contentWrapper">
+      <div class="how-it-works">
+        <h2>How it works</h2>
+        <slot />
+        <div class="diagram-container">
+          <picture>
+            <source srcset="/img/how-it-works-vertical.svg" media="(max-width: 767px)">
+            <img
+            alt="Diagram showing the flow of a Web Monetization payment: from content consumer to their digital wallet, to the Web Monetization extension, to the publisher’s wallet, and finally to the publisher."
+            src="/img/how-it-works-horizontal.svg"
+            loading="lazy"
+          />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+  .how-it-works {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+    padding-inline: var(--padding-md);
+  }
+
+  .how-it-works .diagram-container {
+    aspect-ratio: 1248/280;
+  }
+
+  @media screen and (max-width: 767px) {
+    .how-it-works h2 {
+      font: var(--font-h3);
+    }
+
+    .how-it-works .diagram-container {
+        width: 100%;
+        align-self: center;
+        aspect-ratio: 343/648;
+        max-width: 30rem;
+    }
+  }
+</style>

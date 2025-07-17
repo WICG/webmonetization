@@ -163,5 +163,39 @@
       "link": "https://interledger.org/summit/hackathon",
       "event": "Home page UpdatesList"
     }
-  ]
+  ],
+  "pillTags": {
+    "publisher": [
+      { "text": "I own and publish digital content"
+      },
+      { "text": "I want to be fairly supported"
+      },
+      { "text": "I want to expand my reach"
+      },
+      { "text": "I can share revenue with collaborators"
+      },
+      { "text": "I can tell my audience about Web Monetization"
+      }
+    ],
+    "supporter": [
+      { "text": "I value the content I consume"
+      },
+      { "text": "I want to support creators directly"
+      },
+      { "text": "I choose how much and who to support"
+      },
+      { "text": " I care about an open, fair web"
+      }
+    ],
+    "developer": [
+      { "text": "I build tools for publishers"
+      },
+      { "text": "I can improve the extension or plugins"
+      },
+      { "text": "I care about open standards"
+      },
+      { "text": "I want to collaborate with the community"
+      }
+    ]
+  }
 }

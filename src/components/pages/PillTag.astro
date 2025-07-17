@@ -1,0 +1,34 @@
+---
+interface Props {
+  pills: Array<{ text: string }>
+}
+const { pills } = Astro.props;
+---
+<ul class="pills">
+    {pills.map((pill) => (
+        <li class="pill-tag">
+            {pill.text}
+        </li>
+    ))}
+</ul>
+
+<style>
+    .pills {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100%;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .pill-tag{
+        border: 1px solid var(--pill-border-color);
+        border-radius: var(--pill-rounding);
+        margin-right: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+        color: var(--pill-text-color);
+        font: var(--font-small-regular);
+        padding: var(--padding-2xs) var(--padding-sm);
+    }
+</style>

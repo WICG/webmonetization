@@ -1,0 +1,145 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import data from '../data/home.json'
+import AudienceHero from '../components/pages/AudienceHero.astro'
+import HowItWorks from '../components/pages/HowItWorks.astro'
+import Arrow from '../../public/img/arrow.svg'
+const heroContent = {
+  heroTitle: 'I want to give my support',
+  heroSubtitle: 'Because great content deserves something in return',
+  heroImgSrc: '/img/hero-supporter.svg',
+  heroImgWidth: 460,
+  heroImgHeight: 460,
+  heroParagraph:
+    'With Web Monetization, you can support publishers directly and help build a more sustainable content ecosystem. Pay only for what you consume through seamless micropayments. No long-term commitments, just access to content on your terms.',
+  pills: data.pillTags.supporter,
+  primaryCta: {
+    href: '/supporters/get-started/',
+    text: 'Get started with the Web Monetization extension',
+    event: 'Supporters page link - Extension',
+  },
+  secondaryCta: {
+    href: '/wallets/',
+    text: 'Set up a wallet or learn more',
+    event: 'Supporters page link - Wallets',
+  },
+}
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<Base
+  title={t('pages.supporters.title')}
+  description={t('pages.supporters.description')}
+>
+  <AudienceHero content={heroContent} />
+  <HowItWorks>
+    <p>
+      To support Web Monetized sites, all you need is a compatible digital
+      wallet and the Web Monetization browser extension. Once set up, you can
+      make continuous payments in real time or one time payments to the websites
+      you enjoy, directly from your browser, privately, effortlessly, and on
+      your own terms.
+    </p>
+  </HowItWorks>
+  <section class='section'>
+    <div class='contentWrapper'>
+      <div class='content'>
+        <h2 class='header'>Web Monetization extension</h2>
+        <p class='text'>
+          The Web Monetization browser extension makes it easy to support your
+          favorite sites with real-time, privacy-friendly micropayments. Pay
+          only for what you consume and directly support the publishers you
+          value. All you need is a compatible wallet and a quick setup to get
+          started.
+        </p>
+        <div class='image'>
+          <img
+            src='/img/wm-extension.svg'
+            width='378'
+            height='507'
+            aria-hidden='true'
+          />
+        </div>
+        <a
+          href='/supporters/get-started/'
+          class='btn secondary flexible'
+          data-umami-event='Supporters page link - supporter docs'
+        >
+          Get started
+          <Arrow class='arrow' />
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: center;
+  }
+
+  .image {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    max-width: 25rem;
+  }
+
+  .image img {
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .btn .arrow {
+    height: var(--spacing-md);
+    width: var(--spacing-md);
+    display: inline-block;
+    margin: var(--spacing-3xs) 0;
+  }
+
+  .btn {
+    margin-bottom: var(--spacing-lg);
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    .content {
+      display: grid;
+      column-gap: var(--spacing-5xl);
+      grid-template-columns: 1fr 2fr;
+      align-items: flex-end;
+    }
+
+    .header {
+      grid-column: 1 / span 2;
+      grid-row: 1;
+    }
+
+    .image {
+      max-width: 100%;
+      grid-column: 1;
+      grid-row: 2 / span 2;
+      box-shadow:
+        0px 55.67px 55.67px rgba(0, 0, 0, 0.09),
+        0px 14.34px 30.36px rgba(0, 0, 0, 0.1);
+    }
+    .text {
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .btn {
+      grid-column: 2;
+      grid-row: 3;
+      align-self: flex-start;
+      width: max-content;
+    }
+  }
+</style>
