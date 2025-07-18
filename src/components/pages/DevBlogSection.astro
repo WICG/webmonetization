@@ -1,0 +1,36 @@
+---
+import BlogCard from "./BlogCard.astro";
+import type { Blog } from "../../types/blog";
+
+interface Props {
+  blog: Blog
+}
+const { blog } = Astro.props;
+---
+<section class="section dev-blog">
+  <div class="contentWrapper">
+      <h2 class="dev-blog-heading">Community</h2>
+      <BlogCard blog={blog} ctaButtonClass="primary" h3Class="" imgClass="dev-blog-img"/>
+  </div>
+</section>
+
+<style>
+  .dev-blog .contentWrapper{
+    margin-bottom: var(--spacing-2xl); 
+  }
+
+  .dev-blog-heading {
+    font: var(--font-h2);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  @media screen and (max-width: 1034px) {
+    .dev-blog .contentWrapper {
+      margin-bottom: var(--spacing-lg); 
+    }
+
+    .dev-blog-heading {
+    font: var(--font-h3);
+    }
+  }
+</style>

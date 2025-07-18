@@ -4,13 +4,14 @@ import type { Blog } from '../../types/blog';
 interface Props {
   blog: Blog, 
   ctaButtonClass: string, 
-  h3Class: string
+  h3Class: string, 
+  imgClass: string
 }
-const { blog, ctaButtonClass, h3Class } = Astro.props;
+const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
 ---
 
 <div class="blog-card">
-  <div class="blog-img">
+  <div class=`blog-img ${imgClass}`>
     <img
     src={`/img/${blog.image}`}
     aria-hidden="true"
@@ -121,11 +122,18 @@ h3.blog-title {
     font: var(--font-h5);
   }    
 
-  .blog-content .btn.flexible{
+  .blog-content .btn.flexible {
     flex: unset;
     align-self: center;
     width: 100%;
     max-width: 36rem; 
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .dev-blog-img img {
+    aspect-ratio: 343/273; 
+    object-fit: cover;
   }
 }
 </style>

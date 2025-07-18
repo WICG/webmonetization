@@ -5,12 +5,12 @@ import dataPill from "../data/home.json";
 import data from "../data/developers.json";
 import AudienceHero from "../components/pages/AudienceHero.astro";
 import SplitLayout from '../components/pages/SplitLayout.astro'
+import DevBlogSection from '../components/pages/DevBlogSection.astro';
 
 const heroContent = {
   ...data.heroContent,
   pills: dataPill.pillTags.developer
 }
-const playgroundContent = data.playgroundContent; 
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -18,9 +18,10 @@ const t = useTranslations(lang);
 ---
 <Base title={t('pages.developers.title')} description={t('pages.developers.description')}>
   <AudienceHero content={heroContent} />
-  <SplitLayout content={playgroundContent}>
+  <SplitLayout content={data.playgroundContent}>
     <p>The Web Monetization Playground is a developer-friendly environment to understand how Web Monetization works under the hood and to test payment flows.</p>
   </SplitLayout>
+  <DevBlogSection blog = {data.blog}/>
 </Base>
 
 <style>

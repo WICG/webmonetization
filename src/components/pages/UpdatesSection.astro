@@ -9,8 +9,8 @@ const { updates } = Astro.props;
 <section class="section">
   <div class="contentWrapper">
     {updates.length > 0 && (
-      <h2 class="font-h2 updates-heading">Important Updates</h2>
-      <UpdatesWrapper updates={updates}/>  
+      <h2 class="updates-heading">Important Updates</h2>
+      <UpdatesWrapper updates={updates} />  
     )}
     <div class="updates-dots" id="updates-dots">
       {updates.map( update => <span></span>)}
@@ -20,6 +20,7 @@ const { updates } = Astro.props;
 
 <style>
 .updates-heading {
+  font: var(--font-h2);
   margin-bottom: var(--spacing-lg);
 }
 
