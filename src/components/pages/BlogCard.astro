@@ -65,13 +65,13 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
 }
 
 .blog-img {
-  flex-basis: 50%;     
-  min-width: 17rem;
+  flex-basis: 50%;
 }
 
 .blog-img img  {
+  width: 100%;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .blog-content {
@@ -104,35 +104,23 @@ h3.blog-title {
 @media screen and (max-width: 1034px) {
   .blog-card {
     flex-direction: column;
-    margin: auto;
   }
 
   .blog-img {
-    flex-basis: unset;  
+    flex-basis: unset;
     padding-block: 0;
-    min-width: unset;
-  }
-
-  .blog-content {
-    align-items: stretch;
+    max-width: 30rem;
+    width: 100%;
   }
 
   h3.update-title {
     font: var(--font-h5);
-  }    
+  }
 
   .blog-content .btn.flexible {
-    flex: unset;
     align-self: center;
     width: 100%;
-    max-width: 36rem; 
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .dev-blog-img img {
-    aspect-ratio: 343/273; 
-    object-fit: cover;
+    max-width: 36rem;
   }
 }
 </style>
