@@ -11,10 +11,10 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
 ---
 
 <div class="blog-card">
-  <div class=`blog-img ${imgClass}`>
+  <div class={`blog-img ${imgClass}`}>
     <img
     src={`/img/${blog.image}`}
-    aria-hidden="true"
+    alt=''
     width={blog.imageWidth}
     height={blog.imageHeight}
     loading="lazy"
@@ -22,20 +22,19 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
   </div>
   <div class="blog-content">
     {blog.titleLink ?  
-      <h3 class={`blog-title ${h3Class}`}><a href={blog.titleLink}>{blog.title}</a></h3> : 
+      <h3 class={`blog-title ${h3Class}`}><a href={blog.titleLink} target="_blank" rel="noreferrer noopener" data-umami-event={`${blog.event} - ${blog.title}`}>{blog.title}</a></h3> :
       <h3 class={`blog-title ${h3Class}`}>{blog.title}</h3>
     }
     {blog.subtitles && 
       <p class="bold blog-subtitles">
         {
           Object.values(blog.subtitles).map( (subtitle, i, arr) => {
-            if( i + 1 < arr.length) {
-              return (
-                <span>{subtitle}</span>
-                <span class="dot"></span>
+            return (
+                <>
+                  <span>{subtitle}</span>
+                  {i < arr.length - 1 && <span class="dot"></span>}
+                </>
               )
-            }
-            return (<span>{subtitle}</span>);
           })
         }
       </p>
@@ -47,7 +46,7 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
     </div>
     <a
       href={blog.link}
-      class=`btn ${ctaButtonClass} flexible carousel-links`
+      class={`btn ${ctaButtonClass} flexible carousel-links`}
       data-umami-event={`${blog.event} - ${blog.title}`}
       target="_blank" rel="noreferrer noopener"
     >
