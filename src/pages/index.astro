@@ -5,6 +5,7 @@ import data from "../data/home.json";
 import CardList from "../components/pages/CardList.astro";
 import PillTag from "../components/pages/PillTag.astro";
 import Loudspeaker from '../../public/img/loudspeaker.svg'
+import UpdatesSection from '../components/pages/UpdatesSection.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -144,6 +145,7 @@ const t = useTranslations(lang);
       </article>
     </div>
   </section>
+  <UpdatesSection updates={data.updates}/>
 </Base>
 
 <style>
