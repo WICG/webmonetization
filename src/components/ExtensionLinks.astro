@@ -4,10 +4,10 @@ interface Props {
     Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
   >
   includeGitHub?: boolean
-  className?: string
+  variant?: 'docs' | 'pages'
 }
 
-const { utm, includeGitHub = false, className } = Astro.props
+const { utm, includeGitHub = false, variant } = Astro.props
 
 const URLS = {
   chrome: `https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii`,
@@ -28,7 +28,7 @@ const toURL = (url: string) => {
 }
 ---
 
-<ul class={className}>
+<ul class={variant}>
   <li>
     <div class='container'>
       <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
@@ -86,20 +86,64 @@ const toURL = (url: string) => {
 <style>
   ul {
     list-style: none;
-    display: flex;
     align-items: baseline;
-    justify-content: space-around;
     flex-wrap: wrap;
     padding: 0;
   }
 
-  li {
+  a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+  }
+
+  img {
+    transition: transform 0.2s ease-in-out;
+  }
+  a:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Docs variant */
+  ul.docs {
+    display: inline-flex;
+    justify-content: center;
+    gap: var(--space-m);
+  }
+
+  .docs a {
+    padding: 0.5rem;
+    --shadow-color: rgba(191, 191, 191, 1);
+    --shadow-x: 2px;
+    box-shadow:
+      var(--shadow-x) 2px 8px var(--shadow-color),
+      var(--shadow-x) 2px 2px 1px var(--shadow-color);
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .docs img {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .docs a:hover {
+    --shadow-x: 3px;
+  }
+
+  /* Pages variant */
+  ul.pages {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pages li {
     margin: 0.5625rem;
     width: max-content;
     aspect-ratio: 1/1;
   }
 
-  .container {
+  .pages .container {
     padding: 0.5625rem;
     position: relative;
     width: 100%;
@@ -107,38 +151,25 @@ const toURL = (url: string) => {
     display: inline-block;
   }
 
-  a {
-    display: flex;
+  .pages a {
     padding: 1.25rem;
-    width: 100%;
-    height: 100%;
-    border-radius: 0.5rem;
     background-color: #fff;
   }
 
-  img {
+  .pages img {
     width: 3.75rem;
     height: 3.75rem;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  a:hover img {
-    transform: scale(1.05);
-  }
-
-  ul.supporters {
-    justify-content: space-between;
   }
 
   @media screen and (max-width: 767px) {
-    ul.supporters {
+    ul.pages {
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-self: center;
       width: max-content;
     }
 
-    ul.supporters li {
+    ul.pages li {
       justify-self: center;
       align-self: center;
     }
@@ -151,8 +182,8 @@ const toURL = (url: string) => {
       inherits: false;
     }
 
-    .container::before,
-    .container::after {
+    .pages .container::before,
+    .pages .container::after {
       content: '';
       position: absolute;
       inset: 0;
@@ -168,7 +199,7 @@ const toURL = (url: string) => {
       filter: blur(60px);
     }
 
-    .container::after {
+    .pages .container::after {
       animation-duration: 12s;
       opacity: 0.6;
       filter: blur(12px);
