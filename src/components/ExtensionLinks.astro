@@ -30,46 +30,54 @@ const toURL = (url: string) => {
 
 <ul class={className}>
   <li>
-    <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
-      <img
-        alt='Chrome Web Store'
-        src='/img/chrome-webstore.png'
-        width='200'
-        height='200'
-      />
-    </a>
+    <div class='container'>
+      <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
+        <img
+          alt='Chrome Web Store'
+          src='/img/chrome-webstore.png'
+          width='200'
+          height='200'
+        />
+      </a>
+    </div>
   </li>
   <li>
-    <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
-      <img
-        alt='Firefox Add-ons'
-        src='/img/Fx-Browser-icon.png'
-        width='200'
-        height='200'
-      />
-    </a>
+    <div class='container'>
+      <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
+        <img
+          alt='Firefox Add-ons'
+          src='/img/Fx-Browser-icon.png'
+          width='200'
+          height='200'
+        />
+      </a>
+    </div>
   </li>
   <li>
-    <a href={toURL(URLS.edge)} title='Edge Add-ons'>
-      <img
-        alt='Edge Add-ons'
-        src='/img/microsoft-edge.png'
-        width='200'
-        height='200'
-      />
-    </a>
+    <div class='container'>
+      <a href={toURL(URLS.edge)} title='Edge Add-ons'>
+        <img
+          alt='Edge Add-ons'
+          src='/img/microsoft-edge.png'
+          width='200'
+          height='200'
+        />
+      </a>
+    </div>
   </li>
   {
     includeGitHub && (
       <li>
-        <a href={toURL(URLS.github)} title='Latest release on GitHub'>
-          <img
-            alt='Latest release on GitHub'
-            src='/img/icon-github.svg'
-            width='24'
-            height='24'
-          />
-        </a>
+        <div class='container'>
+          <a href={toURL(URLS.github)} title='Latest release on GitHub'>
+            <img
+              alt='Latest release on GitHub'
+              src='/img/icon-github.svg'
+              width='24'
+              height='24'
+            />
+          </a>
+        </div>
       </li>
     )
   }
@@ -86,23 +94,25 @@ const toURL = (url: string) => {
   }
 
   li {
-    margin: 1.125rem;
+    margin: 0.5625rem;
     width: max-content;
+    aspect-ratio: 1/1;
+  }
+
+  .container {
+    padding: 0.5625rem;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
   }
 
   a {
     display: flex;
     padding: 1.25rem;
+    width: 100%;
+    height: 100%;
     border-radius: 0.5rem;
-    --shadow-color: rgba(191, 191, 191, 1);
-    --shadow-x: 2px;
-    box-shadow:
-      var(--shadow-x) 2px 8px var(--shadow-color),
-      var(--shadow-x) 2px 2px 1px var(--shadow-color);
-    transition: box-shadow 0.2s ease-in-out;
-  }
-
-  .supporters a {
     background-color: #fff;
   }
 
@@ -112,9 +122,6 @@ const toURL = (url: string) => {
     transition: transform 0.2s ease-in-out;
   }
 
-  a:hover {
-    --shadow-x: 3px;
-  }
   a:hover img {
     transform: scale(1.05);
   }
@@ -123,17 +130,57 @@ const toURL = (url: string) => {
     justify-content: space-between;
   }
 
-@media screen and (max-width: 767px) {
-  ul.supporters {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-self: center;
-    width: max-content;
+  @media screen and (max-width: 767px) {
+    ul.supporters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-self: center;
+      width: max-content;
+    }
+
+    ul.supporters li {
+      justify-self: center;
+      align-self: center;
+    }
   }
 
-  ul.supporters li {
-    justify-self: center;
-    align-self: center;
+  @media screen and (min-width: 768px) {
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .container::before,
+    .container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: conic-gradient(
+        from var(--angle, 0deg),
+        rgba(246, 150, 86, 0.8) 0deg 90deg,
+        rgba(127, 118, 178, 0.8) 90deg 180deg,
+        rgba(242, 121, 127, 0.8) 180deg 270deg,
+        rgba(156, 214, 203, 0.8) 270deg 360deg
+      );
+      z-index: -1;
+      animation: spin 6s linear infinite;
+      filter: blur(60px);
+    }
+
+    .container::after {
+      animation-duration: 12s;
+      opacity: 0.6;
+      filter: blur(12px);
+    }
+
+    @keyframes spin {
+      0% {
+        --angle: 0deg;
+      }
+      100% {
+        --angle: 360deg;
+      }
+    }
   }
-}
 </style>
