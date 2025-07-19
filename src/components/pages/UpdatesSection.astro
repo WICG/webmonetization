@@ -1,10 +1,10 @@
 ---
-import BlogCard from './BlogCard.astro'
-import type { Blog } from '../../types/blog'
+import UpdateCard from './UpdateCard.astro'
+import type { UpdateContent } from '../../types/update-content'
 import ChevronArrow from '../../../public/img/arrow-chevron.svg'
 
 export interface Updates {
-  updates: Array<Blog>
+  updates: Array<UpdateContent>
 }
 
 const { updates } = Astro.props
@@ -25,9 +25,9 @@ const { updates } = Astro.props
       </button>
       <ul class='updates-list' id='updates-list'>
         {
-          updates.map((update: Blog) => (
+          updates.map((update: UpdateContent) => (
             <li class='update-slide'>
-              <BlogCard
+              <UpdateCard
                 blog={update}
                 ctaButtonClass='secondary'
                 h3Class='update-title'
@@ -48,7 +48,7 @@ const { updates } = Astro.props
     </div>
     <div class='updates-dots' id='updates-dots'>
       {
-        updates.map((_: Blog, i: number) => (
+        updates.map((_: UpdateContent, i: number) => (
           <span class={`dot ${i === 0 ? 'active' : ''}`} aria-hidden='true' />
         ))
       }

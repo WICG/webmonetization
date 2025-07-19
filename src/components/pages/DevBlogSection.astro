@@ -1,16 +1,16 @@
 ---
-import BlogCard from "./BlogCard.astro";
-import type { Blog } from "../../types/blog";
+import UpdateCard from "./UpdateCard.astro";
+import type { UpdateContent } from "../../types/update-content";
 
 interface Props {
-  blog: Blog
+  blog: UpdateContent
 }
 const { blog } = Astro.props;
 ---
 <section class="section dev-blog">
   <div class="contentWrapper">
       <h2 class="dev-blog-heading">Community</h2>
-      <BlogCard blog={blog} ctaButtonClass="primary" h3Class="" imgClass="dev-blog-img"/>
+      <UpdateCard blog={blog} ctaButtonClass="primary" h3Class="" imgClass="dev-blog-img"/>
   </div>
 </section>
 

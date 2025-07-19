@@ -1,4 +1,4 @@
-export interface Blog {
+export interface UpdateContent {
   image: string
   imageWidth: number
   imageHeight: number
