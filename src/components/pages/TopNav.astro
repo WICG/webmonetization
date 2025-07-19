@@ -3,7 +3,7 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils'
 import NavToolsDropdown from './NavToolsDropdown.astro'
 import HamburgerMenu from '../../../public/img/hamburger-menu.svg'
 import CloseMenu from '../../../public/img/close-menu.svg'
-import DropdownArrow from '../../../public/img/dropdown-arrow.svg'
+import ChevronArrow from '../../../public/img/arrow-chevron.svg'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -38,7 +38,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
           type='button'
         >
           Tools
-          <DropdownArrow class='tools-arrow-icon' />
+          <ChevronArrow class='tools-arrow-icon' />
         </button>
         <NavToolsDropdown />
       </li>

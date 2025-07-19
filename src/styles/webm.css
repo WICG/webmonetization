@@ -363,6 +363,10 @@ input:not([type='submit']):not([type='file']):focus {
   cursor: pointer;
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+}
+
 .btn.flexible {
   flex: 1 1 auto;
   justify-content: center;
