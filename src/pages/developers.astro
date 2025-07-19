@@ -1,7 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
-import dataPill from "../data/home.json";
 import data from "../data/developers.json";
 import AudienceHero from "../components/pages/AudienceHero.astro";
 import SplitLayout from '../components/pages/SplitLayout.astro'
@@ -9,7 +8,7 @@ import DevBlogSection from '../components/pages/DevBlogSection.astro';
 
 const heroContent = {
   ...data.heroContent,
-  pills: dataPill.pillTags.developer
+  pills: data.developerTags
 }
 
 const lang = getLangFromUrl(Astro.url);

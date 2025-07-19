@@ -1,5 +1,5 @@
 ---
-import type { UpdateContent } from '../../types/update-content'; 
+import type { UpdateContent } from '../../types/shared';
 
 interface Props {
   blog: UpdateContent, 
@@ -22,7 +22,7 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
   </div>
   <div class="blog-content">
     {blog.titleLink ?  
-      <h3 class={`blog-title ${h3Class}`}><a href={blog.titleLink} target="_blank" rel="noreferrer noopener" data-umami-event={`${blog.event} - ${blog.title}`}>{blog.title}</a></h3> :
+      <h3 class={`blog-title ${h3Class}`}><a href={blog.titleLink} target="_blank" rel="noreferrer noopener" data-umami-event={blog.titleEvent}>{blog.title}</a></h3> :
       <h3 class={`blog-title ${h3Class}`}>{blog.title}</h3>
     }
     {blog.subtitles && 
@@ -45,16 +45,15 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
       )}
     </div>
     <a
-      href={blog.link}
+      href={blog.cta.href}
       class={`btn ${ctaButtonClass} flexible carousel-cta`}
-      data-umami-event={`${blog.event} - ${blog.title}`}
+      data-umami-event={blog.cta.event}
       target="_blank" rel="noreferrer noopener"
     >
-      {blog.ctaText}
+      {blog.cta.text}
     </a>
   </div>
 </div>
-
 
 <style>
 .blog-card {

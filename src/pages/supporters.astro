@@ -1,30 +1,14 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
-import data from '../data/home.json'
+import data from '../data/supporters.json'
 import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import Arrow from '../../public/img/arrow.svg'
 import ExtensionLinks from "../components/ExtensionLinks.astro"
 const heroContent = {
-  heroTitle: 'I want to give my support',
-  heroSubtitle: 'Because great content deserves something in return',
-  heroImgSrc: '/img/hero-supporter.svg',
-  heroImgWidth: 460,
-  heroImgHeight: 460,
-  heroParagraph:
-    'With Web Monetization, you can support publishers directly and help build a more sustainable content ecosystem. Pay only for what you consume through seamless micropayments. No long-term commitments, just access to content on your terms.',
-  pills: data.pillTags.supporter,
-  primaryCta: {
-    href: '/supporters/get-started/',
-    text: 'Get started with the Web Monetization extension',
-    event: 'Supporters page link - Extension',
-  },
-  secondaryCta: {
-    href: '/wallets/',
-    text: 'Set up a wallet or learn more',
-    event: 'Supporters page link - Wallets',
-  },
+  ...data.heroContent,
+  pills: data.supporterTags
 }
 
 const lang = getLangFromUrl(Astro.url)

@@ -32,12 +32,25 @@
     "imageHeight": 273,
     "title": "An Evolving Digital Future: The Rise of Digital Public Infrastructures across the Caribbean (and Other Countries)",
     "titleLink": "https://interledger.org/news/announcing-interledger-foundations-web-monetization-extension-beta-release",
+    "titleEvent": "Developers page - An Evolving Digital Future",
     "paragraphs": [
       "Reflections on the Caribbean Digital Public Infrastructure Summit held in April at the UWI Regional Headquarters in Kingston.",
       "The first Caribbean DPI Summit held in Jamaica, marked a pivotal moment in the region’s digital transformation journey. Known for its vibrant culture..."
     ],
-    "ctaText": "See this in the Interledger Community",
-    "link": "https://interledger.org/developers/blog/",
-    "event": "Developers page link"
-  }
+    "cta": {
+      "text": "See this in the Interledger Community",
+      "href": "https://interledger.org/developers/blog/",
+      "event": "Developers page link - Tech blog"
+    }
+  },
+  "developerTags": [
+    { "text": "I build tools for publishers"
+    },
+    { "text": "I can improve the extension or plugins"
+    },
+    { "text": "I care about open standards"
+    },
+    { "text": "I want to collaborate with the community"
+    }
+  ]
 }
