@@ -14,7 +14,3 @@ export interface Blog {
   link: string
   event: string
 }
-
-export interface Updates {
-  updates: Array<Blog>
-}
