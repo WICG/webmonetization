@@ -6,12 +6,14 @@ import ChevronArrow from '../../../public/img/arrow-chevron.svg'
 export interface Updates {
   updates: Array<Blog>
 }
+
+const { updates } = Astro.props
 ---
 
 <section class='section'>
   <div class='contentWrapper'>
     <h2 class='updates-heading'>Important Updates</h2>
-    <div class='updates-carousel'>
+    <div class='updates-carousel' id='updates-carousel'>
       <button
         class='carousel-button btn flexible'
         id='prev-button'
@@ -23,7 +25,7 @@ export interface Updates {
       </button>
       <ul class='updates-list' id='updates-list'>
         {
-          updates.map((update) => (
+          updates.map((update: Blog) => (
             <li class='update-slide'>
               <BlogCard
                 blog={update}
@@ -45,7 +47,11 @@ export interface Updates {
       </button>
     </div>
     <div class='updates-dots' id='updates-dots'>
-      {updates.map((update) => <span />)}
+      {
+        updates.map((_: Blog, i: number) => (
+          <span class={`dot ${i === 0 ? 'active' : ''}`} aria-hidden='true' />
+        ))
+      }
     </div>
   </div>
 </section>
@@ -125,7 +131,7 @@ export interface Updates {
     background-color: #d9d9d9;
   }
 
-  .updates-dots span.active-dot {
+  .updates-dots span.active {
     background: linear-gradient(
       to right,
       var(--gradient-3-start),
@@ -145,21 +151,68 @@ export interface Updates {
 </style>
 
 <script>
-  const updatesContainer = document.querySelector('#updates-list')
-  const prevButton = document.querySelector('#prev-button')
-  const nextButton = document.querySelector('#next-button')
-  const carouselDots = document.querySelectorAll('#updates-dots span')
-  const carouselLinks = document.querySelectorAll('a.carousel-links')
+  const updatesContainer = document.querySelector('#updates-carousel')
+  const updatesList = document.querySelector('#updates-list')
+  const prevButton: HTMLButtonElement | null =
+    document.querySelector('#prev-button')
+  const nextButton: HTMLButtonElement | null =
+    document.querySelector('#next-button')
+  const carouselDots = document.querySelectorAll('#updates-dots .dot')
+  const carouselCTAs = document.querySelectorAll('a.carousel-cta')
   const numberOfUpdates = carouselDots.length
+  let currentIndex = 0
 
-  if (updatesContainer instanceof HTMLElement) {
-    let width = updatesContainer.offsetWidth
+  if (updatesList instanceof HTMLElement) {
+    let width = updatesList.clientWidth
+
+    function updateTabBehaviour(index: number) {
+      carouselCTAs.forEach((link, i) => {
+        if (link instanceof HTMLAnchorElement) {
+          link.tabIndex = i === index ? 0 : -1
+        }
+      })
+      if (prevButton && nextButton) {
+        prevButton.disabled = index === 0
+        nextButton.disabled = index === numberOfUpdates - 1
+      }
+    }
+
+    function updateDots(index: number) {
+      carouselDots.forEach((dot, i) =>
+        dot.classList.toggle('active', i === index)
+      )
+    }
+
+    function beforeScroll(indexToGo: number) {
+      updateDots(indexToGo)
+      updateTabBehaviour(indexToGo)
+    }
+
+    function scrollUpdates(direction: 'left' | 'right') {
+      let indexToGo
+      if (direction === 'left') {
+        indexToGo = currentIndex - 1 < 0 ? 0 : currentIndex - 1
+      } else {
+        indexToGo =
+          currentIndex >= numberOfUpdates - 1
+            ? numberOfUpdates - 1
+            : currentIndex + 1
+      }
+
+      beforeScroll(indexToGo)
+
+      updatesList?.scrollTo({
+        left: width * indexToGo,
+        behavior: 'smooth',
+      })
+
+      currentIndex = indexToGo
+    }
 
     window.addEventListener('resize', () => {
-      width = updatesContainer.offsetWidth
-      const currentIndex = getCurrentSlideIndex()
+      width = updatesList.clientWidth
 
-      updatesContainer.scrollTo({
+      updatesList.scrollTo({
         left: currentIndex * width,
         behavior: 'auto',
       })
@@ -167,85 +220,12 @@ export interface Updates {
 
     prevButton?.addEventListener('click', () => scrollUpdates('left'))
     nextButton?.addEventListener('click', () => scrollUpdates('right'))
+    updatesContainer?.addEventListener('keydown', (e) => {
+      const event = e as KeyboardEvent;
+      if (event.key === 'ArrowLeft') scrollUpdates('left')
+      if (event.key === 'ArrowRight') scrollUpdates('right')
+    })
 
-    carouselDots[0].classList.add('active-dot')
-    updateTabIndices(0)
-
-    function scrollUpdates(direction: 'left' | 'right') {
-      const amount = direction === 'left' ? -width : width
-
-      updatesContainer?.scrollBy({
-        left: amount,
-        behavior: 'smooth',
-      })
-
-      // check for scrollend support
-      if ('onscrollend' in window) {
-        updatesContainer?.addEventListener('scrollend', () =>
-          afterScroll(direction)
-        )
-      } else {
-        let scrollTimeout: NodeJS.Timeout
-        updatesContainer?.addEventListener('scroll', () => {
-          clearTimeout(scrollTimeout)
-          scrollTimeout = setTimeout(() => afterScroll(direction), 0)
-        })
-      }
-    }
-
-    function afterScroll(direction: 'left' | 'right') {
-      const currentIndex = getCurrentSlideIndex()
-      updateUI(direction, currentIndex)
-      updateTabIndices(currentIndex)
-    }
-
-    function updateTabIndices(currentIndex: number) {
-      carouselLinks.forEach((link, i) => {
-        if (link instanceof HTMLAnchorElement) {
-          link.tabIndex = i === currentIndex ? 0 : -1
-        }
-      })
-      if (
-        prevButton instanceof HTMLButtonElement &&
-        nextButton instanceof HTMLButtonElement
-      ) {
-        prevButton.tabIndex = currentIndex === 0 ? -1 : 0
-        nextButton.tabIndex = currentIndex === numberOfUpdates - 1 ? -1 : 0
-      }
-    }
-
-    function updateUI(direction: 'left' | 'right', currentIndex: number) {
-      const indexToGo =
-        direction === 'left'
-          ? currentIndex - 1 >= 0
-            ? currentIndex
-            : 0
-          : currentIndex + 1 <= numberOfUpdates - 1
-            ? currentIndex
-            : numberOfUpdates - 1
-
-      carouselDots.forEach((dot) => dot.classList.remove('active-dot'))
-      carouselDots[indexToGo].classList.add('active-dot')
-
-      // Try use disabled instead of inactive. I've removed the class
-      prevButton?.classList.remove('inactive-arrow')
-      nextButton?.classList.remove('inactive-arrow')
-
-      if (indexToGo === 0) {
-        prevButton?.classList.add('inactive-arrow')
-      }
-
-      if (indexToGo === numberOfUpdates - 1) {
-        nextButton?.classList.add('inactive-arrow')
-      }
-    }
-
-    function getCurrentSlideIndex() {
-      if (!updatesContainer) return 0
-
-      const scrollLeft = updatesContainer.scrollLeft
-      const currentIndex = Math.round(scrollLeft / width)
-      return currentIndex
-    }
+    updateTabBehaviour(0)
   }
 </script>
