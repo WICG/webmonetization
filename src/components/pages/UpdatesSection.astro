@@ -134,6 +134,7 @@ const { updates } = Astro.props;
       carouselDots.forEach((dot) => dot.classList.remove('active-dot'));
       carouselDots[indexToGo].classList.add('active-dot');
 
+      // Try use disabled instead of inactive. I've removed the class
       prevButton?.classList.remove('inactive-arrow');
       nextButton?.classList.remove('inactive-arrow');
 

@@ -7,8 +7,8 @@ const { updates } = Astro.props
 ---
 
 <div class='updates-carousel'>
-  <button class='carousel-arrow inactive-arrow btn flexible' id='prev-button'>
-    <svg role='img' viewBox='0 0 20 21' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <button class='carousel-arrow btn flexible' id='prev-button' aria-label='Previous' aria-controls='#updates-list' disabled>
+    <svg aria-hidden='true' viewBox='0 0 20 21' fill='none'>
       <title>Previous Button</title>
       <path
         d='M7.3445 10.3203L13.7753 16.7495C13.8981 16.8723 13.9587 17.02 13.957 17.1928C13.9553 17.365 13.8931 17.5128 13.7703 17.6361C13.647 17.7589 13.4989 17.8203 13.3262 17.8203C13.1539 17.8203 13.0062 17.7589 12.8828 17.6361L6.5195 11.267C6.38505 11.1325 6.28672 10.9825 6.2245 10.817C6.16228 10.6514 6.13144 10.4859 6.132 10.3203C6.13255 10.1548 6.16339 9.9892 6.2245 9.82365C6.28561 9.65809 6.38394 9.50809 6.5195 9.37365L12.8878 3.00365C13.0112 2.88087 13.1584 2.82031 13.3295 2.82198C13.5001 2.82365 13.6467 2.88587 13.7695 3.00865C13.8923 3.13142 13.9537 3.2792 13.9537 3.45198C13.9537 3.62476 13.8923 3.77226 13.7695 3.89448L7.3445 10.3203Z'
@@ -24,8 +24,8 @@ const { updates } = Astro.props
       ))
     }
   </ul>
-  <button class='carousel-arrow btn flexible' id='next-button'>
-    <svg role='img' viewBox='0 0 20 21' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <button class='carousel-arrow btn flexible' id='next-button' aria-label='Next' aria-controls='#updates-list'>
+    <svg aria-hidden='true' viewBox='0 0 20 21' fill='none'>
       <title>Next Button</title>
       <path
         d='M12.6555 10.3203L6.22467 3.89115C6.10189 3.76837 6.04134 3.62059 6.043 3.44781C6.04467 3.27559 6.10689 3.12781 6.22967 3.00448C6.353 2.8817 6.50106 2.82031 6.67384 2.82031C6.84606 2.82031 6.99384 2.8817 7.11717 3.00448L13.4805 9.37365C13.6149 9.50809 13.7133 9.65809 13.7755 9.82365C13.8377 9.9892 13.8686 10.1548 13.868 10.3203C13.8674 10.4859 13.8366 10.6514 13.7755 10.817C13.7144 10.9825 13.6161 11.1325 13.4805 11.267L7.11217 17.637C6.98884 17.7598 6.84161 17.8203 6.6705 17.8186C6.49995 17.817 6.35328 17.7548 6.2305 17.632C6.10772 17.5092 6.04634 17.3614 6.04634 17.1886C6.04634 17.0159 6.10772 16.8684 6.2305 16.7461L12.6555 10.3203Z'
