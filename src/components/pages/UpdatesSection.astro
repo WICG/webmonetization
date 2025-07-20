@@ -164,6 +164,9 @@ const { updates } = Astro.props
 
   if (updatesList instanceof HTMLElement) {
     let width = updatesList.clientWidth
+    let touchStartX = 0
+    let touchEndX = 0
+    const swipeThreshold = 50
 
     function updateTabBehaviour(index: number) {
       carouselCTAs.forEach((link, i) => {
@@ -224,6 +227,25 @@ const { updates } = Astro.props
       const event = e as KeyboardEvent;
       if (event.key === 'ArrowLeft') scrollUpdates('left')
       if (event.key === 'ArrowRight') scrollUpdates('right')
+    })
+
+    updatesList.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX
+    })
+
+    updatesList.addEventListener('touchmove', (e) => {
+      touchEndX = e.touches[0].clientX
+    })
+
+    updatesList.addEventListener('touchend', () => {
+      const swipeDistance = touchStartX - touchEndX
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+          scrollUpdates('right')
+        } else {
+          scrollUpdates('left')
+        }
+      }
     })
 
     updateTabBehaviour(0)
