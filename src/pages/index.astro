@@ -5,7 +5,7 @@ import data from "../data/home.json";
 import publisherData from "../data/publishers.json";
 import supporterData from "../data/supporters.json";
 import developerData from "../data/developers.json";
-import CardList from "../components/pages/CardList.astro";
+import WalletList from "../components/pages/WalletList.astro";
 import PillTag from "../components/pages/PillTag.astro";
 import Loudspeaker from '../../public/img/loudspeaker.svg'
 import UpdatesSection from '../components/pages/UpdatesSection.astro';
@@ -59,7 +59,7 @@ const t = useTranslations(lang);
         </div>
         {data.wallets.length > 0 && (
         <div class="cards">
-          <CardList cards={data.wallets} />
+          <WalletList cards={data.wallets} />
         </div>
       )}
       </div>

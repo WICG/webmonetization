@@ -1,0 +1,173 @@
+---
+interface Props {
+  cards: Array<{
+    name?: string
+    desc: string
+    cta: {
+        href: string
+        event: string
+        text: string
+        primary: boolean
+        external: boolean
+    }
+    imageSrc?: string
+    imgWidth: number
+    imgHeight: number
+  }>
+}
+const { cards } = Astro.props
+
+const cardList = [
+    ...cards.slice(0, 3),
+    {
+      "cta" : {
+        "href": "/developers/libraries/",
+        "text": "See the full list",
+        "event": "Developers page - Full plugin list",
+        "primary": true,
+        "external": false
+      },
+      "desc": "Accelerate your integration with a growing set of libraries and plugins designed to simplify Web Monetization. Whether you're building a website, a plugin, or a browser extension, these tools help you implement payment flows, manage wallet logic, and connect to the ecosystem faster so you can focus on building great experiences."
+    }
+]
+---
+
+<ul class='cards'>
+  {
+    cardList.map((card) => (
+      <li class='card'>
+        {card.imageSrc && (
+          <div class='image'>
+            <img
+              class='cardLogo'
+              src={`/img/${card.imageSrc}`}
+              alt='hiii'
+              width={card.imgWidth}
+              height={card.imgHeight}
+            />
+          </div>
+          <div class="decorative-line" aria-hidden="true"></div>
+        )}
+        {card.name && <h3>{card.name}</h3>}
+        <div class='cardContent'>
+          <p class='desc'>{card.desc}</p>
+          <a
+            href={card.cta.href}
+            class={`btn flexible ${card.cta.primary ? 'primary' : 'secondary'}`}
+            data-umami-event={card.cta.event}
+            target={card.cta.external ? '_blank' : undefined}
+            rel={card.cta.external ? 'noreferrer noopener' : undefined}
+        >
+            {card.cta.text}
+        </a>
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin: 0;
+    padding: 0;
+  }
+  .card {
+    background-color: var(--color-mint-50);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: var(--pill-rounding);
+    border: 1px solid var(--border-color);
+    padding: var(--padding-md);
+    gap: var(--spacing-md);
+    flex-direction: column;
+  }
+
+  li.card:last-child {
+    background-color: transparent;
+    border: none;
+  }
+
+  li.card:last-child .desc {
+    color: var(--default-font-color);
+  }
+
+  .cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .card .image {
+    background-color: var(--color-white);
+    border-radius: var(--pill-rounding);
+    width: 100%;
+    height: 6.25rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .decorative-line {
+      width: 100%;
+      height: 4px;
+      background-image: url(/img/bg-lines.svg);
+      background-repeat: no-repeat;
+      background-size: 100% 4px;
+    }
+
+  .card h3 {
+    font: var(--font-h2);
+    color: var(--heading-container);
+    width: 100%;
+}
+
+    .card .desc {
+        color: var(--button-secondary-color);
+    }
+
+  .card a {
+    max-height: max-content;
+  }
+
+  .card:hover .desc {
+    color: var(--default-font-color);
+  }
+
+  .cardLogo {
+    max-width: var(--spacing-5xl);
+    height: 5.25rem;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+  }
+
+  @media screen and (max-width: 767px) {
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-lg);
+    }
+
+    .card {
+      background-color: var(--color-white);
+      border: none;
+    }
+
+    li.card:last-child {
+      background-color: transparent;
+    }
+
+    .card h3 {
+        font: var(--font-h3);
+    }
+
+    .card a {
+      max-height: max-content;
+      width: 100%;
+    }
+  }
+</style>

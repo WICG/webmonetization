@@ -1,30 +1,58 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Base from "../layouts/Base.astro";
-import data from "../data/developers.json";
-import AudienceHero from "../components/pages/AudienceHero.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import data from '../data/developers.json'
+import AudienceHero from '../components/pages/AudienceHero.astro'
 import SplitLayout from '../components/pages/SplitLayout.astro'
-import DevBlogSection from '../components/pages/DevBlogSection.astro';
+import DevBlogSection from '../components/pages/DevBlogSection.astro'
+import PluginList from '../components/pages/PluginList.astro'
 
 const heroContent = {
   ...data.heroContent,
-  pills: data.developerTags
+  pills: data.developerTags,
 }
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
-<Base title={t('pages.developers.title')} description={t('pages.developers.description')}>
+
+<Base
+  title={t('pages.developers.title')}
+  description={t('pages.developers.description')}
+>
   <AudienceHero content={heroContent} />
   <SplitLayout content={data.playgroundContent}>
-    <p>The Web Monetization Playground is a developer-friendly environment to understand how Web Monetization works under the hood and to test payment flows.</p>
+    <p>
+      The Web Monetization Playground is a developer-friendly environment to
+      understand how Web Monetization works under the hood and to test payment
+      flows.
+    </p>
   </SplitLayout>
-  <DevBlogSection blog = {data.blog}/>
+  {
+    data.plugins.length > 0 && (
+      <section class='section plugins'>
+        <div class='contentWrapper'>
+          <h2>Web Monetization libraries & plugins</h2>
+          <PluginList cards={data.plugins} />
+        </div>
+      </section>
+    )
+  }
+  <DevBlogSection blog={data.blog} />
 </Base>
 
 <style>
-    .hero-ctas a.secondary {
-        display: none;
-    }
+  .hero-ctas a.secondary {
+    display: none;
+  }
+
+  .plugins h2 {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  @media screen and (max-width: 767px) {
+    .plugins h2 {
+    margin-bottom: var(--spacing-lg);
+  }
+  }
 </style>

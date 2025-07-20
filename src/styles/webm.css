@@ -127,6 +127,8 @@
   --nav-text-color: var(--color-purple-300);
   --surface-hover-color: var(--color-purple-50);
 
+  --heading-container: var(--color-purple-300);
+
   --footer-bg-color: var(--color-mint-100);
 
   --pill-border-color: var(--color-blue-300);
