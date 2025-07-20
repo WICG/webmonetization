@@ -1,5 +1,6 @@
 ---
 import type { UpdateContent } from '../../types/shared';
+import ExternalLink from '../../../public/img/external-link.svg'
 
 interface Props {
   blog: UpdateContent, 
@@ -22,7 +23,12 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
   </div>
   <div class="blog-content">
     {blog.titleLink ?  
-      <h3 class={`blog-title ${h3Class}`}><a href={blog.titleLink} target="_blank" rel="noreferrer noopener" data-umami-event={blog.titleEvent}>{blog.title}</a></h3> :
+      <h3 class={`blog-title ${h3Class}`}>
+        <a href={blog.titleLink} target="_blank" rel="noreferrer noopener" data-umami-event={blog.titleEvent}>
+          {blog.title}
+          <ExternalLink class='external'/>
+        </a>
+      </h3> :
       <h3 class={`blog-title ${h3Class}`}>{blog.title}</h3>
     }
     {blog.subtitles && 
@@ -84,6 +90,14 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
 h3.blog-title {
   font: var(--font-h4);
 }
+
+.external {
+  display: inline-block;
+  height: var(--spacing-md);
+  width: var(--spacing-md);
+  margin-inline-start: var(--space-2xs);
+}
+
 .blog-subtitles {
   display: flex;
   flex-direction: row;

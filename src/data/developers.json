@@ -27,18 +27,17 @@
     }
   }, 
   "blog": {
-    "image": "wm-dev-blog.png",
-    "imageWidth": 616,
-    "imageHeight": 273,
-    "title": "An Evolving Digital Future: The Rise of Digital Public Infrastructures across the Caribbean (and Other Countries)",
-    "titleLink": "https://interledger.org/news/announcing-interledger-foundations-web-monetization-extension-beta-release",
-    "titleEvent": "Developers page - An Evolving Digital Future",
+    "image": "tech-blog-thumbnail.svg",
+    "imageWidth": 718,
+    "imageHeight": 390,
+    "title": "End-to-end testing the Web Monetization browser extension",
+    "titleLink": "https://interledger.org/developers/blog/e2e-testing-wm-browser-extension/",
+    "titleEvent": "Developers page - WM ext e2e testing blog",
     "paragraphs": [
-      "Reflections on the Caribbean Digital Public Infrastructure Summit held in April at the UWI Regional Headquarters in Kingston.",
-      "The first Caribbean DPI Summit held in Jamaica, marked a pivotal moment in the region’s digital transformation journey. Known for its vibrant culture..."
+      "End-to-end testing a browser extension can be tricky, but Playwright helps us get it right. In this post, we share how we test the Web Monetization extension—from wallet connections to micro-payments—ensuring a smooth, reliable experience for users."
     ],
     "cta": {
-      "text": "See this in the Interledger Community",
+      "text": "Read the blog",
       "href": "https://interledger.org/developers/blog/",
       "event": "Developers page link - Tech blog"
     }
