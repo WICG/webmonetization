@@ -39,7 +39,7 @@
   --font-standard-regular: var(--font-weight-regular) 1rem/1.5rem var(--font-base);
   --font-standard-bold: var(--font-weight-bold) 1rem/1.5rem var(--font-base);
   --font-h6: var(--font-weight-bold) 1.125rem/1.625rem var(--font-base);
-  --font-h5: var(--font-weight-regular) 1.125rem/1.75rem var(--font-base);
+  --font-h5: var(--font-weight-regular) 1.25rem/1.75rem var(--font-base);
   --font-h4: var(--font-weight-bold) 1.5rem/2rem var(--font-base);
   --font-h3: var(--font-weight-medium) 1.875rem/2.375rem var(--font-base);
   --font-h2: var(--font-weight-bold) 2.25rem/2.75rem var(--font-base);
@@ -104,6 +104,10 @@
   --color-black: #000;
   --color-white: #fff;
 
+  --gradient-3-start: #009877; 
+  --gradient-3-stop: #50D098; 
+
+
   --default-font-color: var(--color-silver-950);
   --inactive-font-color: var(--color-silver-800);
 
@@ -115,7 +119,10 @@
   --button-secondary-border: var(--color-silver-800);
   --button-secondary-border-focus: var(--color-black);
   --button-hover-color: var(--color-purple-600);
-  --button-ghost-color: var (--color-purple-300);
+  --button-ghost-color: var(--color-purple-300);
+  --button-carousel-color: var(--color-purple-300);
+  --button-carousel-inactive-color: var(--color-purple-100);
+  --button-carousel-hover-color: var(--color-purple-800);
 
   --nav-text-color: var(--color-purple-300);
   --surface-hover-color: var(--color-purple-50);
@@ -356,6 +363,10 @@ input:not([type='submit']):not([type='file']):focus {
   cursor: pointer;
 }
 
+.btn:disabled {
+  cursor: not-allowed;
+}
+
 .btn.flexible {
   flex: 1 1 auto;
   justify-content: center;
@@ -484,7 +495,7 @@ tbody tr:last-of-type td:last-child {
 .contentWrapper {
   max-width: 1280px;
   margin-inline: auto;
-  padding-inline: var(--space-s);
+  padding-inline: var(--padding-md);
 }
 
 .section {

@@ -112,38 +112,62 @@
       "link": "https://gatehub.net/?ref=webmonetization.org"
     }
   ],
-  "pillTags": {
-    "publisher": [
-      { "text": "I own and publish digital content"
+  "updates": [
+    {
+      "image": "wm-launch-feature.svg",
+      "imageWidth": 580,
+      "imageHeight": 315,
+      "title": "Announcing the Interledger Foundation’s Web Monetization Extension Beta Release",
+      "subtitles": {
+        "tag": "Why This Matters",
+        "date": "24 Mar 2025",
+        "author": "Rabeb Othmani"
       },
-      { "text": "I want to be fairly supported"
-      },
-      { "text": "I want to expand my reach"
-      },
-      { "text": "I can share revenue with collaborators"
-      },
-      { "text": "I can tell my audience about Web Monetization"
+      "paragraphs": [
+        "The digital content economy is evolving rapidly, with projections reaching $69.8 billion by 2030 (Grand View Research). As this landscape grows, content creators, publishers, and users alike are looking for more flexible, intuitive ways to connect and transact.",
+        "While ads, subscriptions, and paywalls remain essential tools, the future is about expanding possibilities and empowering choice."
+      ],
+      "cta": {
+        "text": "Read the full article",
+        "href": "https://interledger.org/news/announcing-interledger-foundations-web-monetization-extension-beta-release",
+        "event": "Home page - Update Announcing WM extension"
       }
-    ],
-    "supporter": [
-      { "text": "I value the content I consume"
+    },
+    {
+      "image": "wm-summit.png",
+      "imageWidth": 600,
+      "imageHeight": 327,
+      "title": "Interledger Summit - Mexico City",
+      "subtitles": {
+        "tag": "Summit",
+        "date": "5-6 Nov 2025"
       },
-      { "text": "I want to support creators directly"
-      },
-      { "text": "I choose how much and who to support"
-      },
-      { "text": " I care about an open, fair web"
+      "paragraphs": [
+        "The Interledger Summit is a global gathering of technologists, policy makers, advocates and artists who believe in open financial infrastructure. It bridges the gap between policy, technology and community and creates a vibrant environment for new ideas, collaborations and celebration of ideas."
+      ],
+      "cta": {
+        "text": "Visit the summit website",
+        "href": "https://interledger.org/summit",
+        "event": "Home page - Update Summit"
       }
-    ],
-    "developer": [
-      { "text": "I build tools for publishers"
+    },
+    {
+      "image": "wm-hackathon.png",
+      "imageWidth": 600,
+      "imageHeight": 325,
+      "title": "Interledger Hackathon - Mexico City",
+      "subtitles": {
+        "tag": "Hackathon",
+        "date": "8-9 Nov 2025"
       },
-      { "text": "I can improve the extension or plugins"
-      },
-      { "text": "I care about open standards"
-      },
-      { "text": "I want to collaborate with the community"
+      "paragraphs": [
+        "Join us in Mexico City on November 8–9 for the annual Interledger Hackathon! Explore the power of the Interledger Open Payments API and build innovative solutions that simplify cross-border payments, enhance financial inclusion, and automate financial workflows."
+      ],
+      "cta": {
+        "text": "Learn more about the hackathon",
+        "href": "https://interledger.org/summit/hackathon",
+        "event": "Home page - Update Hackathon"
       }
-    ]
-  }
+    }
+  ]
 }

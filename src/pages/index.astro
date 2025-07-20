@@ -2,9 +2,13 @@
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
 import data from "../data/home.json";
+import publisherData from "../data/publishers.json";
+import supporterData from "../data/supporters.json";
+import developerData from "../data/developers.json";
 import CardList from "../components/pages/CardList.astro";
 import PillTag from "../components/pages/PillTag.astro";
 import Loudspeaker from '../../public/img/loudspeaker.svg'
+import UpdatesSection from '../components/pages/UpdatesSection.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -30,7 +34,7 @@ const t = useTranslations(lang);
         src="/img/hero-img.svg"
         width="814"
         height="599"
-        aria-hidden="true"
+        alt=""
         />
       </div>
       <p class="heroTagline">
@@ -67,14 +71,14 @@ const t = useTranslations(lang);
         <div>
           <h2>I am a publisher</h2>
           <p class="audience-desc font-h6">I want to earn from my content</p>
-          <PillTag pills={data.pillTags.publisher} />
+          <PillTag pills={publisherData.publisherTags} />
         </div>
         <div class="media-cta">
           <img
             width="460"
             height="460"
             class="inactive audience-img"
-            aria-hidden="true"
+            alt=""
             src="/img/hero-publisher-inactive.png"
             loading="lazy"
           />
@@ -82,7 +86,7 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="active audience-img"
-            aria-hidden="true"
+            alt=""
             src="/img/hero-publisher.png"
           />
           <a class="btn primary flexible" href="/publishers" data-umami-event="Home page link - Publishers">Get started as a publisher</a>
@@ -93,14 +97,14 @@ const t = useTranslations(lang);
         <div>
           <h2>I want to give my support</h2>
           <p class="audience-desc font-h6">Because great content deserves something in return</p>
-          <PillTag pills={data.pillTags.supporter} />
+          <PillTag pills={supporterData.supporterTags} />
         </div>
         <div class="media-cta">
           <img
             width="460"
             height="460"
             class="inactive audience-img"
-            aria-hidden="true"
+            alt=""
             src="/img/hero-supporter-inactive.png"
             loading="lazy"
           />
@@ -108,7 +112,7 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="active audience-img"
-            aria-hidden="true"
+            alt=""
             src="/img/hero-supporter.png"
           />
           <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">Support the content I love</a>
@@ -121,7 +125,7 @@ const t = useTranslations(lang);
         <div>
           <h2>I am a developer</h2>
           <p class="audience-desc font-h6">I want to help shape the future of the web</p>
-          <PillTag pills={data.pillTags.developer} />
+          <PillTag pills={developerData.developerTags} />
           <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
         </div>
         <div class="developer-images">
@@ -129,7 +133,7 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="inactive audience-img"
-            aria-hidden="true"
+            alt=""
             src="/img/hero-dev-inactive.png"
             loading="lazy"
           />
@@ -137,13 +141,16 @@ const t = useTranslations(lang);
             width="460"
             height="460"
             class="active audience-img"
-            aria-hidden="true"
+            alt=""
             src="/img/hero-dev.png"
           />
         </div>
       </article>
     </div>
   </section>
+  {data.updates && data.updates.length > 0 && (
+    <UpdatesSection updates={data.updates} />
+  )}
 </Base>
 
 <style>

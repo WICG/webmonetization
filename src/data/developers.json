@@ -1,0 +1,55 @@
+{
+  "heroContent": {
+    "heroTitle": "I am a developer",
+    "heroSubtitle": "I want to help shape the future of the web",
+    "heroImgSrc": "/img/hero-developer.svg",
+    "heroImgWidth": 461,
+    "heroImgHeight": 461,
+    "heroParagraph": "Whether you're building plugins, extensions, or libraries,  your contributions can make open, sustainable monetization a reality.",
+    "primaryCta": {
+      "href": "/developers/interfaces/",
+      "text": "Read the technical documentation",
+      "event": "Developers page link - WM API"
+    }
+  },
+  "playgroundContent": {
+    "image": {
+      "src": "/img/developer-playground.svg",
+      "width": 292,
+      "height": 347,
+      "position": "left"
+    },
+    "title": "Web Monetization Playground",
+    "primaryCta": {
+      "text": "Try the playground",
+      "href": "/play/",
+      "event": "Developers page - Playground"
+    }
+  }, 
+  "blog": {
+    "image": "tech-blog-thumbnail.svg",
+    "imageWidth": 718,
+    "imageHeight": 390,
+    "title": "End-to-end testing the Web Monetization browser extension",
+    "titleLink": "https://interledger.org/developers/blog/e2e-testing-wm-browser-extension/",
+    "titleEvent": "Developers page - WM ext e2e testing blog",
+    "paragraphs": [
+      "End-to-end testing a browser extension can be tricky, but Playwright helps us get it right. In this post, we share how we test the Web Monetization extension—from wallet connections to micro-payments—ensuring a smooth, reliable experience for users."
+    ],
+    "cta": {
+      "text": "Read the blog",
+      "href": "https://interledger.org/developers/blog/",
+      "event": "Developers page link - Tech blog"
+    }
+  },
+  "developerTags": [
+    { "text": "I build tools for publishers"
+    },
+    { "text": "I can improve the extension or plugins"
+    },
+    { "text": "I care about open standards"
+    },
+    { "text": "I want to collaborate with the community"
+    }
+  ]
+}

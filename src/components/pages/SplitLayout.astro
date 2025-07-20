@@ -1,9 +1,5 @@
 ---
-interface CTA {
-  text: string
-  href: string
-  event: string
-}
+import type { CTA } from '../../types/shared'
 
 interface Image {
   src: string
@@ -34,7 +30,7 @@ const { content } = Astro.props
         <h2>{content.title}</h2>
       </div>
       <div class='image'>
-        <img src={content.image.src} width={content.image.width} height={content.image.height} aria-hidden='true' />
+        <img src={content.image.src} width={content.image.width} height={content.image.height} alt='' />
       </div>
       <div class='text'>
         <slot />
