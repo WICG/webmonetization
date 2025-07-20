@@ -82,9 +82,10 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props;
 .blog-content {
   flex-basis: 50%;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: start;
   gap: var(--spacing-md);
+  justify-content: space-between;
 }
 
 h3.blog-title {
@@ -117,6 +118,7 @@ h3.blog-title {
 @media screen and (max-width: 1034px) {
   .blog-card {
     flex-direction: column;
+    height: 100%;
   }
 
   .blog-img {
@@ -130,10 +132,16 @@ h3.blog-title {
     font: var(--font-h5);
   }
 
+  .blog-content {
+    flex-basis: 100%;
+    justify-content: space-around;
+  }
+
   .blog-content .btn.flexible {
     align-self: center;
     width: 100%;
     max-width: 36rem;
+    max-height: max-content;
   }
 }
 </style>
