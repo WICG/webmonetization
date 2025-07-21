@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
+import Arrow from '../../public/img/arrow.svg'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -11,7 +12,13 @@ const description = t('site.description')
 <Base title={title} description={description} hasFooter={false}>
   <section class='section'>
     <div class='contentWrapper'>
-      <h1>Web Monetization Playground</h1>
+      <div class='header'>
+        <a class='btn ghost' href='/tools' data-umami-event='Playground page link - Tools'>
+          <Arrow class='arrow' />
+          Go back
+        </a>
+        <h1>Web Monetization Playground</h1>
+      </div>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
@@ -90,9 +97,34 @@ const description = t('site.description')
     }
   }
 
-  h1 {
-    text-align: center;
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
     margin-bottom: var(--spacing-3xl);
+    gap: var(--spacing-xs);
+    padding-inline: var( --padding-md);
+  }
+
+  .header a.btn {
+    align-self: auto;
+    font: var(--font-standard-regular);
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .btn .arrow {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    margin: var(--spacing-3xs) 0;
+    transform: rotate(180deg);
+  }
+
+  .header h1 {
+    width: 100%;
+    text-align: center;
   }
 
   .form-wrapper {
@@ -201,8 +233,14 @@ const description = t('site.description')
   }
 
   @media screen and (max-width: 767px) {
-    h1 {
+    .header {
+      flex-direction: column;
       margin-bottom: var(--spacing-lg);
+      align-items: flex-start;
+    }
+
+    .header .btn {
+      align-self: flex-start;
     }
 
     .link-events {
