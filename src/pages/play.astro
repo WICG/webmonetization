@@ -1,16 +1,17 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Base from "../layouts/Base.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const title = `Playground | ${t("site.title")}`;
-const description = t("site.description");
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const title = `Playground | ${t('site.title')}`
+const description = t('site.description')
 ---
+
 <Base title={title} description={description} hasFooter={false}>
-  <section class="section">
-    <div class="contentWrapper">
-      <h1 class="heading2">Web Monetization Playground</h1>
+  <section class='section'>
+    <div class='contentWrapper'>
+      <h1>Web Monetization Playground</h1>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
@@ -19,180 +20,195 @@ const description = t("site.description");
               type='text'
               id='walletAddressUrl'
               name='walletAddressUrl'
+              placeholder='Fill in your wallet address'
               required
             />
           </div>
-          <button class='btn full-width' type='submit' data-umami-event='Play page - Add WebMo link' disabled>
+          <button
+            class='btn tools-primary-btn'
+            type='submit'
+            data-umami-event='Play page - Add WebMo link'
+            disabled
+          >
             Add monetization link
           </button>
           <p>Checking if your browser supports Web Monetization...</p>
         </form>
       </div>
     </div>
-    <div id='link-events' class="link-events"></div>
+    <div class='contentWrapper'>
+      <div id='link-events' class='link-events'></div>
+    </div>
   </section>
 </Base>
 
 <style>
   :root {
-    --white: #fff;
-    --light-teal: #def4ef;
-    --bright-teal: #a4eae8;
-    --teal: #007777;
+    --helper-text-default: var(--color-silver-800);
+    --button-tools-primary-color: var(--color-green-300);
+    --button-tools-primary-hover-color: var(--color-green-600);
+    --field-edge: var(--color-silver-300);
+    --paragraph-success: var(--color-green-600);
   }
 
   body {
-    background-image: url('/img/bg-tile.svg');
-    background-size: 25em;
+    background-image: none;
   }
 
-  h1 {
-    text-align: center;
+  button.tools-primary-btn {
+    background-color: var(--button-tools-primary-color);
+    font: var(--font-standard-bold);
+    border: none;
+    color: var(--color-white);
+    justify-content: center;
   }
 
-  button {
-    &.full-width {
-      width: 100%;
-    }
+  button.tools-primary-btn:hover,
+  button.tools-primary-btn:focus-visible {
+    background-color: var(--button-tools-primary-hover-color);
+  }
 
-    &:disabled {
-      filter: grayscale(1);
-      cursor: not-allowed;
+  .link-events {
+    div[data-wallet-address] {
+      & .log-header {
+        & .actions {
+          & button.tools-secondary-btn {
+            background-color: transparent;
+            color: var(--button-ghost-color);
+            border: 1px solid var(--button-ghost-color);
+            font: var(--font-standard-regular);
+          }
 
-      &:hover,
-      &:focus {
-        text-decoration-color: transparent;
+          & button.tools-secondary-btn:hover,
+          button.tools-secondary-btn:focus-visible {
+            background-color: transparent;
+            color: var(--button-hover-color);
+            border: 1px solid var(--button-hover-color);
+          }
+        }
       }
     }
   }
 
+  h1 {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+
   .form-wrapper {
+    padding-inline: var(--padding-md);
+  }
+
+  form {
+    width: 100%;
+    padding: var(--padding-md);
+    background-color: var(--color-white);
+    border-radius: var(--moderate-rounding);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-inline: auto;
-
-    form {
-      width: 100%;
-      max-width: 25em;
-    }
-
-    p {
-      margin-block-start: var(--space-3xs);
-      text-align: center;
-    }
+    gap: var(--spacing-md);
   }
 
   .form-field {
     display: flex;
     flex-direction: column;
-    margin-block-end: var(--space-m);
+    gap: var(--spacing-md);
+  }
 
-    label {
-      white-space: nowrap;
-      margin-block-end: var(--space-3xs);
-    }
+  label {
+    white-space: nowrap;
+    font: var(--font-caption);
+    color: var(--helper-text-default);
+  }
+
+  .form-wrapper .form-field input {
+    border: 1px solid var(--field-edge);
   }
 
   .link-events {
-    padding-inline: var(--space-s);
-    margin-block-start: var(--space-l);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-inline: var(--padding-md);
+    margin-top: var(--spacing-md);
+    gap: var(--spacing-md);
+    font: var(--font-small-regular);
+  }
 
+  .link-events {
     div[data-wallet-address] {
-      border-radius: var(--border-radius);
-      padding: var(--space-xs);
-      background-color: var(--light-teal);
-      font-size: var(--step--1);
-      margin-block-end: var(--space-s);
-
+      padding: var(--padding-md);
+      background-color: var(--color-mint-50);
+      border-radius: var(--moderate-rounding);
+      border: 1px solid var(--color-green-100);
       & .log-header {
-        color: var(--teal);
-
-        & h4 {
+        padding-bottom: var(--padding-sm);
+        margin-bottom: var(--spacing-sm);
+        border-bottom: 1px solid var(--color-silver-200);
+        gap: var(--spacing-sm);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & p {
+          max-width: 100%;
           overflow-x: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           text-align: center;
-          margin-block-end: var(--space-2xs);
+          color: var(--paragraph-success);
         }
-      }
 
-      & .actions {
-        display: flex;
-        gap: var(--space-xs);
-        justify-content: center;
-        flex: none;
-      }
-
-      & .amount {
-        margin-block-end: var(--space-2xs);
+        & .actions {
+          display: flex;
+          gap: var(--spacing-sm);
+          justify-content: center;
+          flex: none;
+          flex-wrap: wrap;
+        }
       }
 
       & ul.events {
         font-family: var(--sl-font-system-mono);
-        min-height: 20rem;
-        max-height: 20rem;
-        margin-block: var(--space-2xs);
-        padding-block-start: var(--space-2xs);
-        padding-inline-start: var(--space-2xs);
+        height: 20rem;
+        margin-block: var(--spacing-sm);
+        padding-block-start: var(--padding-sm);
+        padding-inline-start: var(--padding-sm);
         list-style: none;
         overflow-y: auto;
         white-space: nowrap;
 
         & li {
-          margin-block-end: var(--space-3xs);
-        }
+          margin-block-end: var(--spacing-2xs);
 
-        & details {
-          & summary {
-            cursor: pointer;
-            & span {
-              text-decoration: underline dotted;
-              text-underline-offset: 2px;
+          & details {
+            & summary {
+              cursor: pointer;
+
+              & span {
+                text-decoration: underline dotted;
+                text-underline-offset: 2px;
+              }
+            }
+
+            & pre {
+              padding: var(--padding-xs);
+              margin-inline-start: var(--spacing-md);
             }
           }
-
-          pre {
-            padding: var(--space-2xs);
-            margin-inline-start: var(--space-s);
-          }
         }
       }
     }
   }
 
-  @media screen and (max-width: 425px) {
-    .link-events {
-      div[data-wallet-address] {
-        & .log-header {
-          & h4 {
-            text-align: center;
-            font-size: smaller;
-            margin-block-end: var(--space-2xs);
-          }
-        }
-      }
+  @media screen and (max-width: 767px) {
+    h1 {
+      margin-bottom: var(--spacing-lg);
     }
-  }
 
-  @media screen and (min-width: 768px) {
     .link-events {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
-      gap: var(--space-s);
-
       div[data-wallet-address] {
-        margin-block-end: 0;
-
         & .log-header {
-          display: flex;
-          gap: var(--space-xs);
-          align-items: center;
-          justify-content: space-between;
-
-          & h4 {
-            margin-block-end: 0;
-          }
+          flex-direction: column;
         }
       }
     }
@@ -242,7 +258,7 @@ const description = t("site.description");
     const header = document.createElement('div')
     header.classList.add('log-header')
 
-    const title = document.createElement('h4')
+    const title = document.createElement('p')
     title.textContent = href
 
     const actions = document.createElement('div')
@@ -250,7 +266,7 @@ const description = t("site.description");
 
     const disableButton = document.createElement('button')
     disableButton.textContent = 'Disable'
-    disableButton.classList.add('btn', 'outline')
+    disableButton.classList.add('btn', 'tools-secondary-btn')
     disableButton.addEventListener('click', () => {
       const link = document.querySelector(
         `link[rel='monetization'][href='${href}']`
@@ -261,7 +277,7 @@ const description = t("site.description");
 
     const removeButton = document.createElement('button')
     removeButton.textContent = 'Remove'
-    removeButton.classList.add('btn', 'outline')
+    removeButton.classList.add('btn', 'tools-secondary-btn')
     removeButton.addEventListener('click', () => {
       const link = document.querySelector(
         `link[rel='monetization'][href='${href}']`
@@ -275,7 +291,7 @@ const description = t("site.description");
 
     const clearButton = document.createElement('button')
     clearButton.textContent = 'Clear events'
-    clearButton.classList.add('btn', 'outline')
+    clearButton.classList.add('btn', 'tools-secondary-btn')
     clearButton.addEventListener('click', () => {
       const ul = document.querySelector(
         `#link-events div[data-wallet-address='${href}'] ul.events`
