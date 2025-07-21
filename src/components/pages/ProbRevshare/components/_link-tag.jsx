@@ -9,14 +9,17 @@ export function SharesLinkTag() {
 
   if (!validateShares(shares)) {
     return (
-      <p>
-        Unable to generate link tag. Please check your entries for errors.
-      </p>
+      <p>Unable to generate link tag. Please check your entries for errors.</p>
     )
   }
 
   if (!pointer) {
-    return <p>Enter shares with valid wallet addresses or payment pointers and weights.</p>
+    return (
+      <p>
+        Enter shares with valid wallet addresses or payment pointers and
+        weights.
+      </p>
+    )
   }
 
   return (
