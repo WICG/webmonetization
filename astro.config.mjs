@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
-import react from '@astrojs/react'
 import starlightLinksValidator from 'starlight-links-validator'
 import starlightFullViewMode from 'starlight-fullview-mode'
 
@@ -37,7 +36,7 @@ export default defineConfig({
       expressiveCode: {
         styleOverrides: {
           borderColor: 'transparent',
-          borderRadius: 'var(--border-radius)',
+          borderRadius: 'var(--moderate-rounding)',
         },
       },
       defaultLocale: 'root',
@@ -253,7 +252,6 @@ export default defineConfig({
         },
       ],
     }),
-    react(),
   ],
   redirects: {
     '/link-tag': '/tools/link-tag',
@@ -290,6 +288,7 @@ export default defineConfig({
     '/docs/resources/libraries': '/developers/libraries',
     '/docs/resources/op-wallets': '/wallets',
     '/docs/resources/get-involved': '/resources/get-involved',
+    '/install': '/supporters'
   },
   server: {
     port: 1100,

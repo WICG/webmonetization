@@ -134,23 +134,15 @@
   --pill-border-color: var(--color-blue-300);
   --pill-text-color: var(--color-silver-800);
 
+  --field-edge: var(--color-silver-300);
+
   --border-color: var(--color-silver-200);
 
   --background-color: #F6F8FA;
 
 /* TODO clean up */
 
-  --step--2: clamp(0.64rem, 0.6057rem + 0.1714vi, 0.76rem);
   --step--1: clamp(0.8rem, 0.7571rem + 0.2143vi, 0.95rem);
-  --step-0: clamp(1rem, 0.9464rem + 0.2679vi, 1.1875rem);
-  --step-1: clamp(1.25rem, 1.183rem + 0.3348vi, 1.4844rem);
-  --step-2: clamp(1.5625rem, 1.4788rem + 0.4185vi, 1.8555rem);
-  --step-3: clamp(1.9531rem, 1.8485rem + 0.5232vi, 2.3193rem);
-  --step-4: clamp(2.4414rem, 2.3106rem + 0.6539vi, 2.8992rem);
-  --step-5: clamp(3.0518rem, 2.8883rem + 0.8174vi, 3.624rem);
-  --step-6: clamp(3.8147rem, 3.6103rem + 1.0218vi, 4.53rem);
-  --space-3xs: clamp(0.25rem, 0.2321rem + 0.0893vi, 0.3125rem);
-  --space-2xs: clamp(0.5rem, 0.4643rem + 0.1786vi, 0.625rem);
   --space-xs: clamp(0.75rem, 0.7143rem + 0.1786vi, 0.875rem);
   --space-s: clamp(1rem, 0.9464rem + 0.2679vi, 1.1875rem);
   --space-m: clamp(1.5rem, 1.4107rem + 0.4464vi, 1.8125rem);
@@ -158,7 +150,6 @@
   --space-xl: clamp(3rem, 2.8393rem + 0.8036vi, 3.5625rem);
   --space-2xl: clamp(4rem, 3.7857rem + 1.0714vi, 4.75rem);
   --space-3xl: clamp(6rem, 5.6786rem + 1.6071vi, 7.125rem);
-  --border-radius: 6px;
 
   --wm-accent: oklch(51.54% 0.088 194.769);
   --sl-color-white: hsl(0, 0%, 100%);
@@ -303,7 +294,6 @@ main code {
   padding: 0.125rem 0.375rem;
   font-size: var(--step--1);
   font-family: var(--__sl-font-mono);
-  border: 1px solid var(--pill-border-color);
   border-radius: var(--pill-rounding);
 }
 
@@ -323,7 +313,7 @@ main code {
 /* Input styles */
 :focus-visible {
   outline-color: var(--button-hover-color);
-  border-radius: var(--border-radius);
+  border-radius: var(--moderate-rounding);
 }
 
 label {
@@ -334,8 +324,8 @@ label {
 input:not([type='submit']):not([type='file']),
 textarea {
   border: 1px solid var(--sl-color-accent-high);
-  padding: var(--space-2xs);
-  border-radius: var(--border-radius);
+  padding: var(--padding-xs);
+  border-radius: var(--moderate-rounding);
 }
 
 input:not([type='submit']):not([type='file']):focus {
@@ -412,7 +402,7 @@ table {
   display: table;
   width: 100%;
   border-collapse: collapse;
-  border-radius: var(--border-radius);
+  border-radius: var(--moderate-rounding);
   box-shadow: var(--sl-shadow-sm);
 }
 
@@ -439,59 +429,35 @@ th {
 th,
 td {
   border: 0;
-  padding: var(--space-2xs) var(--space-xs);
+  padding: var(--padding-xs) var(--space-xs);
 }
 
 thead tr:first-of-type th:first-child {
-  border-start-start-radius: var(--border-radius);
+  border-start-start-radius: var(--moderate-rounding);
 }
 
 thead tr:first-of-type th:last-child {
-  border-start-end-radius: var(--border-radius);
+  border-start-end-radius: var(--moderate-rounding);
 }
 
 tbody tr:first-of-type th:first-child,
 tbody tr:first-of-type td:first-child {
-  border-start-start-radius: var(--border-radius);
+  border-start-start-radius: var(--moderate-rounding);
 }
 
 tbody tr:first-of-type th:last-child,
 tbody tr:first-of-type td:last-child {
-  border-start-end-radius: var(--border-radius);
+  border-start-end-radius: var(--moderate-rounding);
 }
 
 tbody tr:last-of-type th:first-child,
 tbody tr:last-of-type td:first-child {
-  border-end-start-radius: var(--border-radius);
+  border-end-start-radius: var(--moderate-rounding);
 }
 
 tbody tr:last-of-type th:last-child,
 tbody tr:last-of-type td:last-child {
-  border-end-end-radius: var(--border-radius);
-}
-
-/* Typography styles */
-.heading1 {
-  font-size: var(--step-4);
-}
-
-.heading2 {
-  font-size: var(--step-3);
-  margin-block-end: var(--space-s);
-}
-
-.heading3 {
-  font-size: var(--step-2);
-  margin-block-end: var(--space-s);
-}
-
-.heading4 {
-  font-size: var(--step-1);
-  margin-block-end: var(--space-2xs);
-}
-
-.bodyText {
-  font-size: var(--step-0);
+  border-end-end-radius: var(--moderate-rounding);
 }
 
 /* Shared section styles */
@@ -526,31 +492,6 @@ tbody tr:last-of-type td:last-child {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-}
-
-.sectionHeader {
-  text-align: center;
-}
-
-.sectionHeader p {
-  margin-block-end: var(--space-s);
-}
-
-/* Grid layout styles */
-.twoColGrid,
-.threeColGrid {
-  display: grid;
-  gap: var(--space-l);
-}
-
-@media screen and (min-width: 900px) {
-  .twoColGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .threeColGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
 }
 
 @media screen and (max-width: 767px) {

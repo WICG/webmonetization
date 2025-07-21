@@ -1,7 +1,4 @@
 {
-  "browsers": [],
-  "providers": [],
-  "search": [],
   "wallets": [
     {
       "name": "Interledger Wallet",
@@ -40,7 +37,7 @@
       }
     },
     {
-      "image": "wm-summit.png",
+      "image": "2025-summit.png",
       "imageWidth": 600,
       "imageHeight": 327,
       "title": "Interledger Summit - Mexico City",
@@ -58,7 +55,7 @@
       }
     },
     {
-      "image": "wm-hackathon.png",
+      "image": "2025-hackathon.png",
       "imageWidth": 600,
       "imageHeight": 325,
       "title": "Interledger Hackathon - Mexico City",
