@@ -5,10 +5,10 @@ import data from '../data/supporters.json'
 import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import Arrow from '../../public/img/arrow.svg'
-import ExtensionLinks from "../components/ExtensionLinks.astro"
+import ExtensionLinks from '../components/ExtensionLinks.astro'
 const heroContent = {
   ...data.heroContent,
-  pills: data.supporterTags
+  pills: data.supporterTags,
 }
 
 const lang = getLangFromUrl(Astro.url)
@@ -41,12 +41,7 @@ const t = useTranslations(lang)
           started.
         </p>
         <div class='image'>
-          <img
-            src='/img/wm-extension.png'
-            width='896'
-            height='1200'
-            alt=''
-          />
+          <img src='/img/wm-extension.png' width='896' height='1200' alt='' />
         </div>
         <a
           href='/supporters/get-started/'
@@ -63,8 +58,12 @@ const t = useTranslations(lang)
     <div class='contentWrapper'>
       <div class='extension'>
         <h2 class='header'>Get the extension</h2>
-        <ExtensionLinks includeGitHub utm={{ utm_campaign: 'supporters_landing_page' }} variant="pages" />
-        <div class="decorative-line" aria-hidden="true"></div>
+        <ExtensionLinks
+          includeGitHub
+          utm={{ utm_campaign: 'supporters_landing_page' }}
+          variant='pages'
+        />
+        <div class='decorative-line' aria-hidden='true'></div>
       </div>
     </div>
   </section>
@@ -130,7 +129,7 @@ const t = useTranslations(lang)
       box-shadow:
         0px 55px 55px rgba(0, 0, 0, 0.09),
         0px 15px 30px rgba(0, 0, 0, 0.1);
-        animation: pulseBoxShadow 3.5s ease-in-out infinite;
+      animation: pulseBoxShadow 3.5s ease-in-out infinite;
     }
 
     @keyframes pulseBoxShadow {

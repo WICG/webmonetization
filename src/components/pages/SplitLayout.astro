@@ -30,7 +30,12 @@ const { content } = Astro.props
         <h2>{content.title}</h2>
       </div>
       <div class='image'>
-        <img src={content.image.src} width={content.image.width} height={content.image.height} alt='' />
+        <img
+          src={content.image.src}
+          width={content.image.width}
+          height={content.image.height}
+          alt=''
+        />
       </div>
       <div class='text'>
         <slot />
@@ -103,7 +108,7 @@ const { content } = Astro.props
       display: grid;
       column-gap: var(--spacing-3xl);
     }
-    
+
     .layout.right {
       grid-template-columns: 2fr 1fr;
     }

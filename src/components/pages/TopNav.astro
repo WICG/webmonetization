@@ -24,8 +24,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       title='Toggle Menu'
       type='button'
     >
-      <HamburgerMenu class='menu-icon icon--hamburger'/>
-      <CloseMenu class='menu-icon icon--close'/>
+      <HamburgerMenu class='menu-icon icon--hamburger' />
+      <CloseMenu class='menu-icon icon--close' />
     </button>
     <ul id='navMenu' class='nav-menu collapsed'>
       <li class='nav-link__tools' id='tools-wrapper'>
@@ -153,7 +153,8 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     opacity: 1;
   }
 
-  .menu-icon:hover, .menu-icon:focus-visible {
+  .menu-icon:hover,
+  .menu-icon:focus-visible {
     fill: var(--button-hover-color);
   }
 

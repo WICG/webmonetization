@@ -1,8 +1,8 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils'
-import publisherIcon from '../../../public/img/publishers-icon.png?inline';
-import supporterIcon from '../../../public/img/supporters-icon.png?inline';
-import devIcon from '../../../public/img/developer-icon.png?inline';
+import publisherIcon from '../../../public/img/publishers-icon.png?inline'
+import supporterIcon from '../../../public/img/supporters-icon.png?inline'
+import devIcon from '../../../public/img/developer-icon.png?inline'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -13,29 +13,29 @@ const t = useTranslations(lang)
     <li>
       <a href='/publishers' class='tool-link'
         ><img
-          width="460"
-          height="461"
-          class="tool-icon"
-          alt=""
+          width='460'
+          height='461'
+          class='tool-icon'
+          alt=''
           src={publisherIcon}
         /><div class='tool-label'>{t('nav.pub-tools')}</div></a
       >
     </li><li>
       <a href='/supporters' class='tool-link'
         ><img
-          width="460"
-          height="461"
-          class="tool-icon"
-          alt=""
+          width='460'
+          height='461'
+          class='tool-icon'
+          alt=''
           src={supporterIcon}
         /><div class='tool-label'>{t('nav.supp-tools')}</div></a
       >
     </li><li>
       <a href='/developers' class='tool-link'
         ><img
-          width="460"
-          height="464"
-          class="tool-icon"
+          width='460'
+          height='464'
+          class='tool-icon'
           alt=''
           src={devIcon}
         /><div class='tool-label'>{t('nav.dev-tools')}</div></a
@@ -84,7 +84,8 @@ const t = useTranslations(lang)
     min-width: 0;
   }
 
-  .tool-link:hover, .tool-link:focus-visible {
+  .tool-link:hover,
+  .tool-link:focus-visible {
     background-color: var(--surface-hover-color);
   }
 
@@ -125,7 +126,10 @@ const t = useTranslations(lang)
       outline-offset: -1px;
       max-width: 20rem;
       width: max-content;
-      max-height: calc(100vh - var(--icon-size-nav-home-md) - 2 * var(--padding-xs) - var(--spacing-md));
+      max-height: calc(
+        100vh - var(--icon-size-nav-home-md) - 2 * var(--padding-xs) -
+          var(--spacing-md)
+      );
       overflow: auto;
     }
   }

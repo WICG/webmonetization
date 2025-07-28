@@ -21,9 +21,9 @@ import PillTag from './PillTag.astro'
 <section class='section hero'>
   <div class='contentWrapper'>
     <div class='hero-content'>
-      <div class="hero-header">
-          <h1 class='hero-title'>{content.heroTitle}</h1>
-          <p class='hero-subtitle'>{content.heroSubtitle}</p>
+      <div class='hero-header'>
+        <h1 class='hero-title'>{content.heroTitle}</h1>
+        <p class='hero-subtitle'>{content.heroSubtitle}</p>
       </div>
       <div class='hero-image'>
         <img
@@ -41,11 +41,16 @@ import PillTag from './PillTag.astro'
         <a
           href={content.primaryCta.href}
           class='btn primary'
-          data-umami-event={content.primaryCta.event}>{content.primaryCta.text}</a
+          data-umami-event={content.primaryCta.event}
+          >{content.primaryCta.text}</a
         >
         {
           content.secondaryCta && (
-            <a href={content.secondaryCta.href} class='btn secondary' data-umami-event={content.secondaryCta.event}>
+            <a
+              href={content.secondaryCta.href}
+              class='btn secondary'
+              data-umami-event={content.secondaryCta.event}
+            >
               {content.secondaryCta.text}
             </a>
           )
@@ -56,7 +61,6 @@ import PillTag from './PillTag.astro'
 </section>
 
 <style>
-
   .hero-content {
     display: flex;
     flex-direction: column;

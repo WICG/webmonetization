@@ -224,7 +224,7 @@ const { updates } = Astro.props
     prevButton?.addEventListener('click', () => scrollUpdates('left'))
     nextButton?.addEventListener('click', () => scrollUpdates('right'))
     updatesContainer?.addEventListener('keydown', (e) => {
-      const event = e as KeyboardEvent;
+      const event = e as KeyboardEvent
       if (event.key === 'ArrowLeft') scrollUpdates('left')
       if (event.key === 'ArrowRight') scrollUpdates('right')
     })

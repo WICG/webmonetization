@@ -7,83 +7,88 @@
     "heroImgHeight": 460,
     "heroParagraph": "Web Monetization is a lightweight, privacy-preserving way to monetize your content. With its pay-as-you-browse model, you'll earn revenue based on the amount of time your visitors spend on your site. Web Monetization offers flexible, non-intrusive monetization without disrupting your existing revenue streams. It works seamlessly alongside ads, subscriptions, and memberships. All you need is a wallet address and a single line of code.",
     "primaryCta": {
-        "href": "/developers/get-started/",
-        "text": "Monetize my website",
-        "event": "Publishers page link - Monetize"
+      "href": "/developers/get-started/",
+      "text": "Monetize my website",
+      "event": "Publishers page link - Monetize"
     },
     "secondaryCta": {
-        "href": "/tools/",
-        "text": "Get the publisher tools",
-        "event": "Publishers page link - Tools"
+      "href": "/tools/",
+      "text": "Get the publisher tools",
+      "event": "Publishers page link - Tools"
     }
   },
   "publisherTags": [
-    { "text": "I own and publish digital content"
+    {
+      "text": "I own and publish digital content"
     },
-    { "text": "I want to be fairly supported"
+    {
+      "text": "I want to be fairly supported"
     },
-    { "text": "I want to expand my reach"
+    {
+      "text": "I want to expand my reach"
     },
-    { "text": "I can share revenue with collaborators"
+    {
+      "text": "I can share revenue with collaborators"
     },
-    { "text": "I can tell my audience about Web Monetization"
+    {
+      "text": "I can tell my audience about Web Monetization"
     }
   ],
   "walletConnectionContent": {
     "image": {
-        "src": "/img/link-tag-generator.svg",
-        "width": 376,
-        "height": 270,
-        "position": "right"
+      "src": "/img/link-tag-generator.svg",
+      "width": 376,
+      "height": 270,
+      "position": "right"
     },
     "title": "Web monetize your pages",
     "primaryCta": {
-        "text": "Use the link tag generator",
-        "href": "/tools/link-tag/",
-        "event": "Publishers page - Link tag generator"
+      "text": "Use the link tag generator",
+      "href": "/tools/link-tag/",
+      "event": "Publishers page - Link tag generator"
     },
     "secondaryCta": {
-        "text": "Show me the documentation",
-        "href": "/developers/overview/",
-        "event": "Publishers page - Developer docs"
+      "text": "Show me the documentation",
+      "href": "/developers/overview/",
+      "event": "Publishers page - Developer docs"
     }
   },
   "toolsContent": {
     "image": {
-        "src": "/img/tools-overview.png",
-        "width": 483,
-        "height": 325,
-        "position": "left"
+      "src": "/img/tools-overview.png",
+      "width": 483,
+      "height": 325,
+      "position": "left"
     },
     "title": "Tell your visitors you support Web Monetization",
     "primaryCta": {
-        "text": "Use our publisher tools",
-        "href": "/tools/",
-        "event": "Publishers page - Tools page"
+      "text": "Use our publisher tools",
+      "href": "/tools/",
+      "event": "Publishers page - Tools page"
     },
     "secondaryCta": {
-        "text": "Show me the documentation",
-        "href": "/developers/tools/",
-        "event": "Publishers page - Developer tools docs"
+      "text": "Show me the documentation",
+      "href": "/developers/tools/",
+      "event": "Publishers page - Developer tools docs"
     }
   },
   "WordPressPluginContent": {
     "image": {
-        "src": "/img/wordpress.svg",
-        "width": 54,
-        "height": 36,
-        "position": "right"
+      "src": "/img/wordpress.svg",
+      "width": 54,
+      "height": 36,
+      "position": "right"
     },
     "title": "Web monetize your WordPress site",
     "primaryCta": {
-        "text": "Use the WordPress plugin",
-        "href": "",
-        "event": "Publishers page - WP plugin"
+      "text": "Use the WordPress plugin",
+      "href": "",
+      "event": "Publishers page - WP plugin"
     },
     "secondaryCta": {
-        "text": "Show me the documentation",
-        "href": "/developers/overview/",
-        "event": "Publishers page - Developer docs"
+      "text": "Show me the documentation",
+      "href": "/developers/overview/",
+      "event": "Publishers page - Developer docs"
     }
   }
 }
