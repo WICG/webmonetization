@@ -1,60 +1,71 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import InterFont from "../components/pages/InterFont.astro"
-import TopNav from "../components/pages/TopNav.astro";
-import Footer from "../components/pages/Footer.astro";
-import '../styles/webm.css';
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import InterFont from '../components/pages/InterFont.astro'
+import TopNav from '../components/pages/TopNav.astro'
+import Footer from '../components/pages/Footer.astro'
+import MinimalFooter from '../components/pages/MinimalFooter.astro'
+import '../styles/webm.css'
 
 interface Props {
-	title: string;
-	description: string;
-	image?: string;
-  hasFooter?: boolean;
+  title: string
+  description: string
+  image?: string
+  hasFooter?: boolean
 }
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title = t("site.title"), description = t("site.description"), image = '/img/wm-social.png', hasFooter = true } = Astro.props;
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const {
+  title = t('site.title'),
+  description = t('site.description'),
+  image = '/img/wm-social.png',
+  hasFooter = true,
+} = Astro.props
 ---
-<html lang={lang} data-theme="light">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="generator" content={Astro.generator} />
+<html lang={lang} data-theme='light'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
 
-  <link rel="canonical" href={canonicalURL} />
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width,initial-scale=1' />
+  <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+  <meta name='generator' content={Astro.generator} />
+
+  <link rel='canonical' href={canonicalURL} />
 
   <title>{title}</title>
-  <meta name="title" content={title} />
-  <meta name="description" content={description} />
+  <meta name='title' content={title} />
+  <meta name='description' content={description} />
 
   <InterFont />
 
-  <script defer src="https://ilf-site-analytics.netlify.app/script.js" data-website-id="3b8cb97a-2a94-43c2-85e7-277c92c9cf48" data-domains: "webmonetization.org"></script>
+  <script
+    defer
+    src='https://ilf-site-analytics.netlify.app/script.js'
+    data-website-id='3b8cb97a-2a94-43c2-85e7-277c92c9cf48'
+    data-domains:
+    "webmonetization.org"></script>
 
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={Astro.url} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content={new URL(image, Astro.url)} />
+  <meta property='og:type' content='website' />
+  <meta property='og:url' content={Astro.url} />
+  <meta property='og:title' content={title} />
+  <meta property='og:description' content={description} />
+  <meta property='og:image' content={new URL(image, Astro.url)} />
 
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content={Astro.url} />
-  <meta property="twitter:title" content={title} />
-  <meta property="twitter:description" content={description} />
-  <meta property="twitter:image" content={new URL(image, Astro.url)} />
+  <meta property='twitter:card' content='summary_large_image' />
+  <meta property='twitter:url' content={Astro.url} />
+  <meta property='twitter:title' content={title} />
+  <meta property='twitter:description' content={description} />
+  <meta property='twitter:image' content={new URL(image, Astro.url)} />
 
   <body>
     <TopNav />
 
     <main>
-      <slot /> 
+      <slot />
     </main>
-  
-    {hasFooter ? <Footer /> : ''}
+
+    {hasFooter ? <Footer /> : <MinimalFooter />}
   </body>
-  
 </html>
