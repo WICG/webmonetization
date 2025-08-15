@@ -22,15 +22,16 @@ const { content } = Astro.props
 
 <section class='section'>
   <div class='contentWrapper'>
-    <div
-      class={content.image.position === 'right'
-        ? 'layout right'
-        : 'layout left'}
-    >
+    <div class:list={['layout', content.image.position]}>
       <div class='header'>
         <h2>{content.title}</h2>
       </div>
-      <div class='image' style={content.image.padding ? `padding:${content.image.padding}` : undefined}>
+      <div
+        class='image'
+        style={content.image.padding
+          ? `padding:${content.image.padding}`
+          : undefined}
+      >
         <img
           src={content.image.src}
           width={content.image.width}

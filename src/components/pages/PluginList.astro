@@ -53,7 +53,7 @@ const cardList = [
           <p class='desc'>{card.desc}</p>
           <a
             href={card.cta.href}
-            class={`btn flexible ${card.cta.primary ? 'primary' : 'secondary'}`}
+            class:list={['btn flexible', card.cta.primary ? 'primary' : 'secondary']}
             data-umami-event={card.cta.event}
             target={card.cta.external ? '_blank' : undefined}
             rel={card.cta.external ? 'noreferrer noopener' : undefined}

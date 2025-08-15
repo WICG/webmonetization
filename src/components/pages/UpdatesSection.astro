@@ -49,7 +49,7 @@ const { updates } = Astro.props
     <div class='updates-dots' id='updates-dots'>
       {
         updates.map((_: UpdateContent, i: number) => (
-          <span class={`dot ${i === 0 ? 'active' : ''}`} aria-hidden='true' />
+          <span class:list={['dot', i === 0 && 'active']} aria-hidden='true' />
         ))
       }
     </div>
