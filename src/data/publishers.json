@@ -75,9 +75,10 @@
   "WordPressPluginContent": {
     "image": {
       "src": "/img/wordpress.svg",
-      "width": 54,
-      "height": 36,
-      "position": "right"
+      "width": 24,
+      "height": 24,
+      "position": "right",
+      "padding": "20px 40px"
     },
     "title": "Web monetize your WordPress site",
     "primaryCta": {
