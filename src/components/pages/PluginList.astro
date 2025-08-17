@@ -1,23 +1,12 @@
 ---
+import type { Plugin } from '../../data/developers.ts'
+
 interface Props {
-  cards: Array<{
-    name?: string
-    desc: string
-    cta: {
-        href: string
-        event: string
-        text: string
-        primary: boolean
-        external: boolean
-    }
-    imageSrc?: string
-    imgWidth: number
-    imgHeight: number
-  }>
+  cards: Array<Plugin>
 }
 const { cards } = Astro.props
 
-const cardList = [
+const cardList: Plugin[] = [
     ...cards.slice(0, 3),
     {
       "cta" : {
@@ -36,14 +25,14 @@ const cardList = [
   {
     cardList.map((card) => (
       <li class='card'>
-        {card.imageSrc && (
+        {card.image && (
           <div class='image'>
             <img
               class='cardLogo'
-              src={`/img/${card.imageSrc}`}
+              src={card.image.src}
               alt='hiii'
-              width={card.imgWidth}
-              height={card.imgHeight}
+              width={card.image.width}
+              height={card.image.height}
             />
           </div>
           <div class="decorative-line" aria-hidden="true"></div>

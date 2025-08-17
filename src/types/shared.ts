@@ -5,9 +5,7 @@ export interface CTA {
 }
 
 export interface UpdateContent {
-  image: string
-  imageWidth: number
-  imageHeight: number
+  image: ImageMetadata
   title: string
   titleLink?: string
   titleEvent?: string
@@ -18,4 +16,26 @@ export interface UpdateContent {
   }
   paragraphs: string[]
   cta: CTA
+}
+
+export interface HeroContent {
+  heroTitle: string
+  heroSubtitle: string,
+  image: ImageMetadata,
+  heroParagraph: string,
+  primaryCta: CTA,
+  secondaryCta?: CTA
+}
+
+export type Pills = Array<{ text: string }>
+
+export interface ContentSection {
+  image: ImageMetadata,
+  imgMetaData: {
+    position: "right" | "left",
+    padding?: string,
+  },
+  title: string,
+  primaryCta: CTA,
+  secondaryCta?: CTA
 }

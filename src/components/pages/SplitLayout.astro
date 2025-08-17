@@ -1,35 +1,23 @@
 ---
-import type { CTA } from '../../types/shared'
-
-interface Image {
-  src: string
-  width: number
-  height: number
-  position: 'left' | 'right'
-  padding?: string
-}
+import type { ContentSection } from '../../types/shared.ts'
 
 interface Props {
-  content: {
-    image: Image
-    title: string
-    primaryCta: CTA
-    secondaryCta?: CTA
-  }
+  content: ContentSection
 }
+
 const { content } = Astro.props
 ---
 
 <section class='section'>
   <div class='contentWrapper'>
-    <div class:list={['layout', content.image.position]}>
+    <div class:list={['layout', content.imgMetaData.position]}>
       <div class='header'>
         <h2>{content.title}</h2>
       </div>
       <div
         class='image'
-        style={content.image.padding
-          ? `padding:${content.image.padding}`
+        style={content.imgMetaData.padding
+          ? `padding:${content.imgMetaData.padding}`
           : undefined}
       >
         <img

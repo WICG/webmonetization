@@ -1,8 +1,9 @@
 ---
-import Wallet from '../../../public/img/wallet.svg'
+import WalletIcon from '../../../public/img/wallet.svg'
+import type { Wallet } from '../../data/home'
 
 interface Props {
-  cards: Array<{ name: string; link: string; image: string }>
+  cards: Array<Wallet>
 }
 const { cards } = Astro.props
 ---
@@ -12,10 +13,10 @@ const { cards } = Astro.props
     <div class='card'>
       <img
         class='cardLogo'
-        src={`/img/${card.image}`}
+        src={card.image.src}
         alt={card.name}
-        width='146'
-        height='32'
+        width={card.image.width}
+        height={card.image.height}
       />
       <a
         href={card.link}
@@ -25,7 +26,7 @@ const { cards } = Astro.props
         rel='noreferrer noopener'
       >
         Set up a wallet
-        <Wallet />
+        <WalletIcon />
       </a>
     </div>
   ))

@@ -1,426 +1,460 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Base from "../layouts/Base.astro";
-import data from "../data/home.json";
-import publisherData from "../data/publishers.json";
-import supporterData from "../data/supporters.json";
-import developerData from "../data/developers.json";
-import WalletList from "../components/pages/WalletList.astro";
-import PillTag from "../components/pages/PillTag.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import {wallets, updates} from '../data/home.ts'
+import {publisherTags} from '../data/publishers.ts'
+import { supporterTags } from '../data/supporters.ts'
+import { developerTags } from '../data/developers.ts'
+import WalletList from '../components/pages/WalletList.astro'
+import PillTag from '../components/pages/PillTag.astro'
 import Loudspeaker from '../../public/img/loudspeaker.svg'
-import UpdatesSection from '../components/pages/UpdatesSection.astro';
+import UpdatesSection from '../components/pages/UpdatesSection.astro'
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
+
 <Base title={t('site.title')} description={t('site.description')}>
-  <section class="section hero">
-    <div class="contentWrapper">
-      <div class="heading-wrapper">
-        <h1>
-          Welcome to Web Monetization
-        </h1>
+  <section class='section hero'>
+    <div class='contentWrapper'>
+      <div class='heading-wrapper'>
+        <h1>Welcome to Web Monetization</h1>
         <img
-          alt=""
-          role="presentation"
-          src="/img/wm-heading-vector.svg"
-          width="442"
-          height="23"
+          alt=''
+          role='presentation'
+          src='/img/wm-heading-vector.svg'
+          width='442'
+          height='23'
         />
       </div>
-      <div class="hero-img">
-        <img
-        src="/img/hero-img.svg"
-        width="814"
-        height="599"
-        alt=""
-        />
+      <div class='hero-img'>
+        <img src='/img/hero-img.svg' width='814' height='599' alt='' />
       </div>
-      <p class="heroTagline">
-        Web Monetization introduces a new way for content owners and publishers to earn while allowing users to engage on their own terms. By enabling streaming micropayments, Web Monetization complements ads, subscriptions, and memberships, giving publishers more revenue options and users more ways to access and support content.
+      <p class='heroTagline'>
+        Web Monetization introduces a new way for content owners and publishers
+        to earn while allowing users to engage on their own terms. By enabling
+        streaming micropayments, Web Monetization complements ads,
+        subscriptions, and memberships, giving publishers more revenue options
+        and users more ways to access and support content.
       </p>
     </div>
   </section>
-  <section class="section">
-    <div class="contentWrapper">
-      <div class="wallet-info">
-        <div class="wallet-content">
-          <h2 class="font-h3">Wallets</h2>
+  <section class='section'>
+    <div class='contentWrapper'>
+      <div class='wallet-info'>
+        <div class='wallet-content'>
+          <h2 class='font-h3'>Wallets</h2>
           <p>
-            To send or receive Web Monetization payments, you must have an account with a compatible wallet provider.  These providers offer Web Monetization-enabled wallets that you can use.
+            To send or receive Web Monetization payments, you must have an
+            account with a compatible wallet provider. These providers offer Web
+            Monetization-enabled wallets that you can use.
           </p>
           <strong>More wallet providers coming soon!</strong>
-          <p class="bold">Do you know other wallets?</p>
-          <a href="https://github.com/WICG/webmonetization/pulls" target="_blank" rel="noreferrer noopener" data-umami-event="Home page link - GitHub PR" class="btn secondary">
+          <p class='bold'>Do you know other wallets?</p>
+          <a
+            href='https://github.com/WICG/webmonetization/pulls'
+            target='_blank'
+            rel='noreferrer noopener'
+            data-umami-event='Home page link - GitHub PR'
+            class='btn secondary'
+          >
             Make a PR
             <Loudspeaker />
           </a>
         </div>
-        {data.wallets.length > 0 && (
-        <div class="cards">
-          <WalletList cards={data.wallets} />
-        </div>
-      )}
+        {
+          wallets.length > 0 && (
+            <div class='cards'>
+              <WalletList cards={wallets} />
+            </div>
+          )
+        }
       </div>
     </div>
   </section>
-  <section class="section audienceSection">
-    <div class="contentWrapper audience-grid">
-      <article class="audience-card publisher">
+  <section class='section audienceSection'>
+    <div class='contentWrapper audience-grid'>
+      <article class='audience-card publisher'>
         <div>
           <h2>I am a publisher</h2>
-          <p class="audience-desc font-h6">I want to earn from my content</p>
-          <PillTag pills={publisherData.publisherTags} />
+          <p class='audience-desc font-h6'>I want to earn from my content</p>
+          <PillTag pills={publisherTags} />
         </div>
-        <div class="media-cta">
+        <div class='media-cta'>
           <img
-            width="460"
-            height="460"
-            class="inactive audience-img"
-            alt=""
-            src="/img/hero-publisher-inactive.png"
-            loading="lazy"
+            width='460'
+            height='460'
+            class='inactive audience-img'
+            alt=''
+            src='/img/hero-publisher-inactive.png'
+            loading='lazy'
           />
           <img
-            width="460"
-            height="460"
-            class="active audience-img"
-            alt=""
-            src="/img/hero-publisher.png"
+            width='460'
+            height='460'
+            class='active audience-img'
+            alt=''
+            src='/img/hero-publisher.png'
           />
-          <a class="btn primary flexible" href="/publishers" data-umami-event="Home page link - Publishers">Get started as a publisher</a>
+          <a
+            class='btn primary flexible'
+            href='/publishers'
+            data-umami-event='Home page link - Publishers'
+            >Get started as a publisher</a
+          >
         </div>
       </article>
-      <div class="divider vertical"></div>
-      <article class="audience-card supporter">
+      <div class='divider vertical'></div>
+      <article class='audience-card supporter'>
         <div>
           <h2>I want to give my support</h2>
-          <p class="audience-desc font-h6">Because great content deserves something in return</p>
-          <PillTag pills={supporterData.supporterTags} />
+          <p class='audience-desc font-h6'>
+            Because great content deserves something in return
+          </p>
+          <PillTag pills={supporterTags} />
         </div>
-        <div class="media-cta">
+        <div class='media-cta'>
           <img
-            width="460"
-            height="460"
-            class="inactive audience-img"
-            alt=""
-            src="/img/hero-supporter-inactive.png"
-            loading="lazy"
+            width='460'
+            height='460'
+            class='inactive audience-img'
+            alt=''
+            src='/img/hero-supporter-inactive.png'
+            loading='lazy'
           />
           <img
-            width="460"
-            height="460"
-            class="active audience-img"
-            alt=""
-            src="/img/hero-supporter.png"
+            width='460'
+            height='460'
+            class='active audience-img'
+            alt=''
+            src='/img/hero-supporter.png'
           />
-          <a class="btn primary flexible" href="/supporters" data-umami-event="Home page link - Supporters">Support the content I love</a>
+          <a
+            class='btn primary flexible'
+            href='/supporters'
+            data-umami-event='Home page link - Supporters'
+            >Support the content I love</a
+          >
         </div>
       </article>
     </div>
-    <div class="contentWrapper">
-      <div class="divider horizontal"></div>
-      <article class="audience-card developer">
+    <div class='contentWrapper'>
+      <div class='divider horizontal'></div>
+      <article class='audience-card developer'>
         <div>
           <h2>I am a developer</h2>
-          <p class="audience-desc font-h6">I want to help shape the future of the web</p>
-          <PillTag pills={developerData.developerTags} />
-          <a class="btn primary flexible" href="/developers" data-umami-event="Home page link - Developers">Contribute as a developer</a>
+          <p class='audience-desc font-h6'>
+            I want to help shape the future of the web
+          </p>
+          <PillTag pills={developerTags} />
+          <a
+            class='btn primary flexible'
+            href='/developers'
+            data-umami-event='Home page link - Developers'
+            >Contribute as a developer</a
+          >
         </div>
-        <div class="developer-images">
+        <div class='developer-images'>
           <img
-            width="460"
-            height="460"
-            class="inactive audience-img"
-            alt=""
-            src="/img/hero-dev-inactive.png"
-            loading="lazy"
+            width='460'
+            height='460'
+            class='inactive audience-img'
+            alt=''
+            src='/img/hero-dev-inactive.png'
+            loading='lazy'
           />
           <img
-            width="460"
-            height="460"
-            class="active audience-img"
-            alt=""
-            src="/img/hero-dev.png"
+            width='460'
+            height='460'
+            class='active audience-img'
+            alt=''
+            src='/img/hero-dev.png'
           />
         </div>
       </article>
     </div>
   </section>
-  {data.updates && data.updates.length > 0 && (
-    <UpdatesSection updates={data.updates} />
-  )}
+  {
+    updates && updates.length > 0 && (
+      <UpdatesSection updates={updates} />
+    )
+  }
 </Base>
 
 <style>
-.section.hero {
-  text-align: center;
-}
-.heading-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: var(--spacing-lg);
-}
-
-.heading-wrapper h1 {
-  margin: 0;
-}
-
-.heading-wrapper img {
-  width: 75%;
-  max-width: 25rem;
-  margin-top: 0.5rem;
-  height: auto;
-}
-
-.hero-img {
-  width: 100%;
-  max-height: 50vh;
-  max-width: 80vw;
-  aspect-ratio: 814 / 599;
-  margin-bottom: var(--spacing-lg);
-}
-
-.hero-img img {
-  width: 100%;
-  height: auto;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.heroTagline {
-  font: var(--font-style-h5);
-  margin-bottom: var(--spacing-lg);
-}
-
-.wallet-info {
-  margin-inline: var(--spacing-md);
-  padding: var(--spacing-md);
-  background: var(--color-white);
-  border-radius: var(--pill-rounding);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--spacing-2xl);
-}
-
-.wallet-info .wallet-content {
-  display: flex;
-  gap: var(--spacing-md);
-  flex-direction: column;
-  align-items: flex-start;
-  flex: 10 1 20rem;
-}
-
-.wallet-info a svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  fill: currentColor;
-}
-
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-lg);
-  align-items: flex-end;
-  flex: 1 1 20rem;
-}
-
-.audienceSection {
-  margin-inline: var(--spacing-md);
-}
-
-.audience-grid {
-  display: grid;
-  grid-template-columns: 1fr 0.25rem 1fr;
-  gap: var(--spacing-xs);
-  align-items: start;
-  margin-bottom: var(--spacing-xs);
-}
-
-.audience-grid > * {
-  width: 100%;
-  height: 100%;
-}
-
-.audience-card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--color-white);
-  border-radius: var(--pill-rounding);
-  max-width: 100%;
-  justify-content: space-between;
-}
-
-.audience-card.developer {
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-}
-
-.audience-card .btn, .audience-card .media-cta {
-  margin-top: var(--spacing-3xl);
-}
-
-.audience-card.developer div {
-  flex-basis: 50%;
-}
-
-.audience-card > div {
-  width: 100%;
-}
-
-.audience-card .btn {
-  width: fit-content;
-}
-
-.audience-img {
-  max-width: 30vw;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-.active.audience-img {
-  display: none;
-}
-
-.audience-card {
-  padding: 2rem;
-  color: var(--inactive-font-color);
-}
-
-.audience-card:hover, .audience-card:focus {
-  color: var(--default-font-color);
-}
-
-.audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
-  display: block;
-}
-
-.audience-card:hover .inactive.audience-img, .audience-card:focus .inactive.audience-img {
-  display: none;
-}
-
-.audience-card .audience-desc {
-  margin-block-end: var(--spacing-lg);
-}
-
-.divider {
-  position: relative;
-  align-self: stretch;
-  display: flex;
-}
-
-.divider.vertical {
-  width: 0.25rem;
-  justify-content: center;
-}
-
-.divider.horizontal {
-  height: 0.25rem;
-  width: 100%;
-  align-items: center;
-  margin-bottom: var(--spacing-xs);
-}
-
-.divider::before {
-  content: "";
-  position: absolute;
-  border-radius: var(--fully-rounded);
-  background-image: linear-gradient(
-    to var(--gradient-direction),
-    #7F76B2 12%,
-    #F69656 30%,
-    #F2797F 59%,
-    #9CD6CB 90%
-  );
-}
-
-.divider.vertical::before {
-  top: var(--padding-2xl);
-  bottom: var(--padding-2xl);
-  left: 0;
-  right: 0;
-  --gradient-direction: top;
-}
-
-.divider.horizontal::before {
-  left: calc(12.5% + var(--padding-2xl));
-  right: calc(12.5% + var(--padding-2xl));
-  top: 0;
-  bottom: 0;
-  --gradient-direction: left;
-}
-
-@media screen and (max-width: 767px) {
-
-  .section.audienceSection {
-    margin-inline: 0;
+  .section.hero {
+    text-align: center;
   }
-  .audience-card h2 {
-    margin-bottom: var(--spacing-2xs);
+  .heading-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .heading-wrapper h1 {
+    margin: 0;
   }
 
   .heading-wrapper img {
-    max-width: 16rem;
+    width: 75%;
+    max-width: 25rem;
+    margin-top: 0.5rem;
+    height: auto;
+  }
+
+  .hero-img {
+    width: 100%;
+    max-height: 50vh;
+    max-width: 80vw;
+    aspect-ratio: 814 / 599;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .hero-img img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
   }
 
   .heroTagline {
-    margin-bottom: 0;
+    font: var(--font-style-h5);
+    margin-bottom: var(--spacing-lg);
   }
 
   .wallet-info {
-    grid-template-columns: 1fr;
+    margin-inline: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-white);
+    border-radius: var(--pill-rounding);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-2xl);
   }
 
   .wallet-info .wallet-content {
-    flex: 1 1 auto;
+    display: flex;
+    gap: var(--spacing-md);
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 10 1 20rem;
+  }
+
+  .wallet-info a svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
   }
 
   .cards {
-    flex: 1 1 auto;
-    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: flex-end;
+    flex: 1 1 20rem;
+  }
+
+  .audienceSection {
+    margin-inline: var(--spacing-md);
   }
 
   .audience-grid {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-3xl);
-    margin-bottom: var(--spacing-3xl);
+    display: grid;
+    grid-template-columns: 1fr 0.25rem 1fr;
+    gap: var(--spacing-xs);
+    align-items: start;
+    margin-bottom: var(--spacing-xs);
   }
 
-  .divider.vertical, .divider.horizontal {
+  .audience-grid > * {
+    width: 100%;
+    height: 100%;
+  }
+
+  .audience-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-white);
+    border-radius: var(--pill-rounding);
+    max-width: 100%;
+    justify-content: space-between;
+  }
+
+  .audience-card.developer {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .audience-card .btn,
+  .audience-card .media-cta {
+    margin-top: var(--spacing-3xl);
+  }
+
+  .audience-card.developer div {
+    flex-basis: 50%;
+  }
+
+  .audience-card > div {
+    width: 100%;
+  }
+
+  .audience-card .btn {
+    width: fit-content;
+  }
+
+  .audience-img {
+    max-width: 30vw;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .active.audience-img {
     display: none;
   }
 
   .audience-card {
+    padding: 2rem;
+    color: var(--inactive-font-color);
+  }
+
+  .audience-card:hover,
+  .audience-card:focus {
     color: var(--default-font-color);
-    padding: var(--padding-md);
   }
 
-  .audience-card h2 {
-    font: var(--font-h3);
+  .audience-card:hover .active.audience-img,
+  .audience-card:focus .active.audience-img {
+    display: block;
   }
 
-  .audience-card.developer div {
-    flex-basis: 100%;
+  .audience-card:hover .inactive.audience-img,
+  .audience-card:focus .inactive.audience-img {
+    display: none;
   }
 
-  .audience-card .btn {
+  .audience-card .audience-desc {
+    margin-block-end: var(--spacing-lg);
+  }
+
+  .divider {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+  }
+
+  .divider.vertical {
+    width: 0.25rem;
+    justify-content: center;
+  }
+
+  .divider.horizontal {
+    height: 0.25rem;
     width: 100%;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
   }
 
-  .inactive.audience-img, .developer-images {
-    display: none;
+  .divider::before {
+    content: '';
+    position: absolute;
+    border-radius: var(--fully-rounded);
+    background-image: linear-gradient(
+      to var(--gradient-direction),
+      #7f76b2 12%,
+      #f69656 30%,
+      #f2797f 59%,
+      #9cd6cb 90%
+    );
   }
 
-  .audience-card:hover .active.audience-img, .audience-card:focus .active.audience-img {
-    display: none;
+  .divider.vertical::before {
+    top: var(--padding-2xl);
+    bottom: var(--padding-2xl);
+    left: 0;
+    right: 0;
+    --gradient-direction: top;
   }
 
-  .audience-card .media-cta {
-    margin-top: 0;
+  .divider.horizontal::before {
+    left: calc(12.5% + var(--padding-2xl));
+    right: calc(12.5% + var(--padding-2xl));
+    top: 0;
+    bottom: 0;
+    --gradient-direction: left;
   }
-}
+
+  @media screen and (max-width: 767px) {
+    .section.audienceSection {
+      margin-inline: 0;
+    }
+    .audience-card h2 {
+      margin-bottom: var(--spacing-2xs);
+    }
+
+    .heading-wrapper img {
+      max-width: 16rem;
+    }
+
+    .heroTagline {
+      margin-bottom: 0;
+    }
+
+    .wallet-info {
+      grid-template-columns: 1fr;
+    }
+
+    .wallet-info .wallet-content {
+      flex: 1 1 auto;
+    }
+
+    .cards {
+      flex: 1 1 auto;
+      align-items: stretch;
+    }
+
+    .audience-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-3xl);
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .divider.vertical,
+    .divider.horizontal {
+      display: none;
+    }
+
+    .audience-card {
+      color: var(--default-font-color);
+      padding: var(--padding-md);
+    }
+
+    .audience-card h2 {
+      font: var(--font-h3);
+    }
+
+    .audience-card.developer div {
+      flex-basis: 100%;
+    }
+
+    .audience-card .btn {
+      width: 100%;
+    }
+
+    .inactive.audience-img,
+    .developer-images {
+      display: none;
+    }
+
+    .audience-card:hover .active.audience-img,
+    .audience-card:focus .active.audience-img {
+      display: none;
+    }
+
+    .audience-card .media-cta {
+      margin-top: 0;
+    }
+  }
 </style>

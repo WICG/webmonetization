@@ -14,10 +14,10 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props
 <div class='blog-card'>
   <div class={`blog-img ${imgClass}`}>
     <img
-      src={`/img/${blog.image}`}
+      src={blog.image.src}
       alt=''
-      width={blog.imageWidth}
-      height={blog.imageHeight}
+      width={blog.image.width}
+      height={blog.image.height}
       loading='lazy'
     />
   </div>

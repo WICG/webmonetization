@@ -1,19 +1,12 @@
 ---
-import type { CTA } from '../../types/shared'
+import type { HeroContent, Pills } from '../../types/shared'
 
-interface HeroContent {
-  heroTitle: string
-  heroSubtitle: string
-  heroImgSrc: string
-  heroImgWidth: number
-  heroImgHeight: number
-  heroParagraph: string
-  pills: Array<{ text: string }>
-  primaryCta: CTA
-  secondaryCta?: CTA
+const { content, pills } = Astro.props as { content: HeroContent; pills: Pills }
+
+interface Props {
+  content: HeroContent
+  pills: Pills
 }
-
-const { content } = Astro.props
 
 import PillTag from './PillTag.astro'
 ---
@@ -27,15 +20,15 @@ import PillTag from './PillTag.astro'
       </div>
       <div class='hero-image'>
         <img
-          src={content.heroImgSrc}
+          src={content.image.src}
           alt=''
-          width={content.heroImgWidth}
-          height={content.heroImgHeight}
+          width={content.image.width}
+          height={content.image.height}
         />
       </div>
       <p class='hero-paragraph'>{content.heroParagraph}</p>
       <div class='hero-tags'>
-        <PillTag pills={content.pills} />
+        <PillTag pills={pills} />
       </div>
       <div class='hero-ctas'>
         <a

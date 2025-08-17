@@ -1,20 +1,10 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
-import data from '../data/publishers.json'
+import {heroContent, publisherTags, toolsContent, walletConnectionContent, wordPressPluginContent} from '../data/publishers.ts'
 import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import SplitLayout from '../components/pages/SplitLayout.astro'
-const heroContent = {
-  ...data.heroContent,
-  pills: data.publisherTags,
-}
-
-const walletConnectionContent = data.walletConnectionContent
-
-const toolsContent = data.toolsContent
-
-const WordPressPluginContent = data.WordPressPluginContent
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -24,7 +14,7 @@ const t = useTranslations(lang)
   title={t('pages.publishers.title')}
   description={t('pages.publishers.description')}
 >
-  <AudienceHero content={heroContent} />
+  <AudienceHero content={heroContent} pills={publisherTags} />
   <HowItWorks>
     <p>
       To receive Web Monetization payments, you’ll need an account with a
@@ -54,7 +44,7 @@ const t = useTranslations(lang)
       > element, then add it to the pages you want to monetize.
     </p>
   </SplitLayout>
-  <SplitLayout content={WordPressPluginContent}>
+  <SplitLayout content={wordPressPluginContent}>
     <p>
       Get started with Web Monetization on WordPress using our new WordPress
       plugin, built to help you earn while keeping your content open and your

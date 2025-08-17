@@ -1,15 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
-import data from '../data/supporters.json'
+import { heroContent, supporterTags } from '../data/supporters.ts'
 import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import Arrow from '../../public/img/arrow.svg'
 import ExtensionLinks from '../components/ExtensionLinks.astro'
-const heroContent = {
-  ...data.heroContent,
-  pills: data.supporterTags,
-}
+
+const pills = supporterTags
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -19,7 +17,7 @@ const t = useTranslations(lang)
   title={t('pages.supporters.title')}
   description={t('pages.supporters.description')}
 >
-  <AudienceHero content={heroContent} />
+  <AudienceHero content={heroContent} pills={pills} />
   <HowItWorks>
     <p>
       To support Web Monetized sites, all you need is a compatible digital
