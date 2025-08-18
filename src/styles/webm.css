@@ -241,7 +241,7 @@ main {
 }
 
 a {
-  text-decoration: underline rgba(255, 255, 255, 0);
+  text-decoration: underline;
   transition: text-decoration-color 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 

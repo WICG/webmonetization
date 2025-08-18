@@ -99,6 +99,14 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props
     font: var(--font-h4);
   }
 
+  h3.blog-title a {
+    text-decoration: none;
+  }
+
+  h3.blog-title a:hover {
+    text-decoration: underline;
+  }
+
   .external {
     display: inline-block;
     height: var(--spacing-md);

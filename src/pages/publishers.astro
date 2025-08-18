@@ -1,7 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
-import {heroContent, publisherTags, toolsContent, walletConnectionContent, wordPressPluginContent} from '../data/publishers.ts'
+import {
+  heroContent,
+  publisherTags,
+  toolsContent,
+  walletConnectionContent,
+  wordPressPluginContent,
+} from '../data/publishers.ts'
 import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import SplitLayout from '../components/pages/SplitLayout.astro'
@@ -19,11 +25,13 @@ const t = useTranslations(lang)
     <p>
       To receive Web Monetization payments, you’ll need an account with a
       compatible digital wallet provider. Once you have your wallet address, use
-      the link generator tool to create a Web Monetization <code
-        >&lt;link&gt;</code
-      > element and add it to each page you want to monetize. Visitors with the Web
-      Monetization browser extension can then stream payments to you at a rate and
-      frequency they choose.
+      the <a
+        href='/tools/link-tag/'
+        data-umami-event='Publisher page link - Link tag generator'
+        >link generator</a
+      > tool to create a Web Monetization <code>&lt;link&gt;</code> element and add
+      it to each page you want to monetize. Visitors with the Web Monetization browser
+      extension can then stream payments to you at a rate and frequency they choose.
     </p>
   </HowItWorks>
   <SplitLayout content={walletConnectionContent}>
