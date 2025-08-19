@@ -1,0 +1,66 @@
+---
+import Arrow from '../../../public/img/arrow.svg'
+
+interface Props {
+  headingText: string
+  pageTitle: string
+}
+const { headingText, pageTitle } = Astro.props
+---
+
+<div class='header'>
+  <a
+    class='btn ghost'
+    id='back-btn'
+    href='/tools'
+    data-umami-event={`${pageTitle} page link - Tools`}
+  >
+    <Arrow class='arrow' />
+    Go back
+  </a>
+  <h1>{headingText}</h1>
+</div>
+
+<style>
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    display: flex;
+    margin-bottom: var(--spacing-3xl);
+    gap: var(--spacing-xs);
+    padding-inline: var(--padding-md);
+  }
+
+  .header a.btn {
+    align-self: auto;
+    font: var(--font-standard-regular);
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .btn .arrow {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    margin: var(--spacing-3xs) 0;
+    transform: rotate(180deg);
+  }
+
+  .header h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .header {
+      flex-direction: column;
+      margin-bottom: var(--spacing-lg);
+      align-items: flex-start;
+    }
+
+    .header .btn {
+      align-self: flex-start;
+    }
+  }
+</style>

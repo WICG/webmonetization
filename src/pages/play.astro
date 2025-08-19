@@ -1,7 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
-import Arrow from '../../public/img/arrow.svg'
+import ToolsHeader from '../components/pages/ToolsHeader.astro'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -12,17 +12,7 @@ const description = t('site.description')
 <Base title={title} description={description} toolsStyling={true}>
   <section class='section'>
     <div class='contentWrapper'>
-      <div class='header'>
-        <a
-          class='btn ghost'
-          href='/tools'
-          data-umami-event='Playground page link - Tools'
-        >
-          <Arrow class='arrow' />
-          Go back
-        </a>
-        <h1>Web Monetization Playground</h1>
-      </div>
+      <ToolsHeader headingText='Web Monetization Playground' pageTitle='Playground'/>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
