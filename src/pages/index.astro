@@ -1,8 +1,8 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
-import {wallets, updates} from '../data/home.ts'
-import {publisherTags} from '../data/publishers.ts'
+import { wallets, updates } from '../data/home.ts'
+import { publisherTags } from '../data/publishers.ts'
 import { supporterTags } from '../data/supporters.ts'
 import { developerTags } from '../data/developers.ts'
 import WalletList from '../components/pages/WalletList.astro'
@@ -141,7 +141,7 @@ const t = useTranslations(lang)
     <div class='contentWrapper'>
       <div class='divider horizontal'></div>
       <article class='audience-card developer'>
-        <div>
+        <div class='dev-wrapper'>
           <h2>I am a developer</h2>
           <p class='audience-desc font-h6'>
             I want to help shape the future of the web
@@ -174,11 +174,7 @@ const t = useTranslations(lang)
       </article>
     </div>
   </section>
-  {
-    updates && updates.length > 0 && (
-      <UpdatesSection updates={updates} />
-    )
-  }
+  {updates && updates.length > 0 && <UpdatesSection updates={updates} />}
 </Base>
 
 <style>
@@ -292,16 +288,18 @@ const t = useTranslations(lang)
     margin-top: var(--spacing-3xl);
   }
 
+  .dev-wrapper,
+  .audience-card .media-cta {
+    display: flex;
+    flex-direction: column;
+  }
+
   .audience-card.developer div {
     flex-basis: 50%;
   }
 
   .audience-card > div {
     width: 100%;
-  }
-
-  .audience-card .btn {
-    width: fit-content;
   }
 
   .audience-img {
@@ -437,10 +435,6 @@ const t = useTranslations(lang)
 
     .audience-card.developer div {
       flex-basis: 100%;
-    }
-
-    .audience-card .btn {
-      width: 100%;
     }
 
     .inactive.audience-img,

@@ -365,11 +365,12 @@ input:not([type='submit']):not([type='file']):focus {
   text-decoration: none;
   border-radius: var(--moderate-rounding);
   display: inline-flex;
-  width: auto;
+  width: max-content;
   align-items: center;
   gap: var(--spacing-xs);
   transition: background-color 0.2s ease-in;
   cursor: pointer;
+  text-align: center;
 }
 
 .btn:disabled {
@@ -378,8 +379,14 @@ input:not([type='submit']):not([type='file']):focus {
 }
 
 .btn.flexible {
-  flex: 1 1 auto;
   justify-content: center;
+}
+
+@media screen and (max-width: 767px) {
+  .btn.flexible {
+    align-self: stretch;
+    width: auto;
+  }
 }
 
 .btn.primary {
