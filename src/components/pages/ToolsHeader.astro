@@ -23,17 +23,17 @@ const { headingText, pageTitle } = Astro.props
 
 <style>
   .header {
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    margin-bottom: var(--spacing-lg);
+    align-items: flex-start;
     justify-content: flex-start;
     display: flex;
-    margin-bottom: var(--spacing-3xl);
     gap: var(--spacing-xs);
     padding-inline: var(--padding-md);
   }
 
-  .header a.btn {
-    align-self: auto;
+  .header #back-btn {
+    align-self: flex-start;
     font: var(--font-standard-regular);
     flex: 0 0 auto;
     white-space: nowrap;
@@ -50,17 +50,26 @@ const { headingText, pageTitle } = Astro.props
   .header h1 {
     width: 100%;
     text-align: center;
+    font: var(--font-h2);
   }
 
-  @media screen and (max-width: 767px) {
+  @media screen and (min-width: 768px) {
     .header {
-      flex-direction: column;
-      margin-bottom: var(--spacing-lg);
-      align-items: flex-start;
+      flex-direction: row;
+      margin-bottom: var(--spacing-3xl);
+      align-items: center;
+      position: relative;
     }
 
-    .header .btn {
-      align-self: flex-start;
+    .header #back-btn {
+      align-self: auto;
+      position: absolute;
+      left: 0;
+    }
+
+    .header h1 {
+      padding-inline: 7.5rem;
+      font: var(--font-h1);
     }
   }
 </style>
