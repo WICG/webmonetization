@@ -382,5 +382,11 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   document.addEventListener('click', handleClickOutside)
   document.addEventListener('keydown', handleEsc)
   isWide.addEventListener('change', handleResize)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      closeMenu()
+      closeSubmenu()
+    }
+  })
   handleResize(isWide)
 </script>
