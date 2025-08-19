@@ -9,11 +9,15 @@ const title = `Playground | ${t('site.title')}`
 const description = t('site.description')
 ---
 
-<Base title={title} description={description} hasFooter={false}>
+<Base title={title} description={description} toolsStyling={true}>
   <section class='section'>
     <div class='contentWrapper'>
       <div class='header'>
-        <a class='btn ghost' href='/tools' data-umami-event='Playground page link - Tools'>
+        <a
+          class='btn ghost'
+          href='/tools'
+          data-umami-event='Playground page link - Tools'
+        >
           <Arrow class='arrow' />
           Go back
         </a>
@@ -50,33 +54,8 @@ const description = t('site.description')
 </Base>
 
 <style>
-  :root {
-    --helper-text-default: var(--color-silver-800);
-    --button-tools-primary-color: var(--color-green-300);
-    --button-tools-primary-hover-color: var(--color-green-600);
-    --field-edge: var(--color-silver-300);
-    --paragraph-success: var(--color-green-600);
-  }
-
-  body {
-    background-image: none;
-  }
-
-  button.tools-primary-btn {
-    background-color: var(--button-tools-primary-color);
-    font: var(--font-standard-bold);
-    border: none;
-    color: var(--color-white);
-    justify-content: center;
-  }
-
-  button.tools-primary-btn:hover,
-  button.tools-primary-btn:focus-visible {
-    background-color: var(--button-tools-primary-hover-color);
-  }
-
   .link-events {
-    div[data-wallet-address] {
+    & div[data-wallet-address] {
       & .log-header {
         & .actions {
           & button.tools-secondary-btn {
@@ -87,7 +66,7 @@ const description = t('site.description')
           }
 
           & button.tools-secondary-btn:hover,
-          button.tools-secondary-btn:focus-visible {
+          & button.tools-secondary-btn:focus-visible {
             background-color: transparent;
             color: var(--button-hover-color);
             border: 1px solid var(--button-hover-color);
@@ -95,66 +74,6 @@ const description = t('site.description')
         }
       }
     }
-  }
-
-  .header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    display: flex;
-    margin-bottom: var(--spacing-3xl);
-    gap: var(--spacing-xs);
-    padding-inline: var( --padding-md);
-  }
-
-  .header a.btn {
-    align-self: auto;
-    font: var(--font-standard-regular);
-    flex: 0 0 auto;
-    white-space: nowrap;
-  }
-
-  .btn .arrow {
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-    margin: var(--spacing-3xs) 0;
-    transform: rotate(180deg);
-  }
-
-  .header h1 {
-    width: 100%;
-    text-align: center;
-  }
-
-  .form-wrapper {
-    padding-inline: var(--padding-md);
-  }
-
-  form {
-    width: 100%;
-    padding: var(--padding-md);
-    background-color: var(--color-white);
-    border-radius: var(--moderate-rounding);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-
-  label {
-    white-space: nowrap;
-    font: var(--font-caption);
-    color: var(--helper-text-default);
-  }
-
-  .form-wrapper .form-field input {
-    border: 1px solid var(--field-edge);
   }
 
   .link-events {
@@ -168,7 +87,7 @@ const description = t('site.description')
   }
 
   .link-events {
-    div[data-wallet-address] {
+    & div[data-wallet-address] {
       padding: var(--padding-md);
       background-color: var(--color-mint-50);
       border-radius: var(--moderate-rounding);
@@ -233,18 +152,8 @@ const description = t('site.description')
   }
 
   @media screen and (max-width: 767px) {
-    .header {
-      flex-direction: column;
-      margin-bottom: var(--spacing-lg);
-      align-items: flex-start;
-    }
-
-    .header .btn {
-      align-self: flex-start;
-    }
-
     .link-events {
-      div[data-wallet-address] {
+      & div[data-wallet-address] {
         & .log-header {
           flex-direction: column;
         }

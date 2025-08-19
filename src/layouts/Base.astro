@@ -10,7 +10,7 @@ interface Props {
   title: string
   description: string
   image?: string
-  hasFooter?: boolean
+  toolsStyling?: boolean
 }
 
 const lang = getLangFromUrl(Astro.url)
@@ -20,7 +20,7 @@ const {
   title = t('site.title'),
   description = t('site.description'),
   image = '/img/wm-social.png',
-  hasFooter = true,
+  toolsStyling = false,
 } = Astro.props
 ---
 
@@ -59,13 +59,13 @@ const {
   <meta property='twitter:description' content={description} />
   <meta property='twitter:image' content={new URL(image, Astro.url)} />
 
-  <body>
+  <body {...toolsStyling ? { class: 'tools-style' } : {}}>
     <TopNav />
 
     <main>
       <slot />
     </main>
 
-    {hasFooter ? <Footer /> : <MinimalFooter />}
+    {toolsStyling ? <Footer /> : <MinimalFooter />}
   </body>
 </html>
