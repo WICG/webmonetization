@@ -60,7 +60,9 @@ import PillTag from './PillTag.astro'
     gap: var(--spacing-lg);
     padding-left: var(--padding-md);
     padding-right: var(--padding-md);
-    align-items: center;
+  }
+
+  .hero-paragraph {
     text-align: center;
   }
 
@@ -107,9 +109,11 @@ import PillTag from './PillTag.astro'
       grid-template-columns: 1fr 1fr;
       column-gap: var(--spacing-3xl);
       row-gap: var(--spacing-2xl);
-      align-items: start;
-      text-align: left;
     }
+
+    .hero-paragraph {
+    text-align: left;
+  }
 
     .hero-header {
       grid-column: 1;

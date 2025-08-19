@@ -63,7 +63,11 @@ const { content } = Astro.props
   }
 
   .header {
-    text-align: center;
+    width: 100%;
+  }
+
+  .header h2 {
+    font: var(--font-h3);
   }
 
   .image {
@@ -137,8 +141,11 @@ const { content } = Astro.props
     }
 
     .header {
-      text-align: left;
       grid-row: 1;
+    }
+
+    .header h2 {
+      font: var(--font-h2);
     }
 
     .text {
