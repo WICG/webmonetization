@@ -192,6 +192,17 @@ const { updates } = Astro.props
     }
 
     function scrollUpdates(direction: 'left' | 'right') {
+      setCurrentIndex(direction)
+
+      beforeScroll(currentIndex)
+
+      updatesList?.scrollTo({
+        left: width * currentIndex,
+        behavior: 'smooth',
+      })
+    }
+
+    function setCurrentIndex(direction: 'left' | 'right') {
       let indexToGo
       if (direction === 'left') {
         indexToGo = currentIndex - 1 < 0 ? 0 : currentIndex - 1
@@ -201,13 +212,6 @@ const { updates } = Astro.props
             ? numberOfUpdates - 1
             : currentIndex + 1
       }
-
-      beforeScroll(indexToGo)
-
-      updatesList?.scrollTo({
-        left: width * indexToGo,
-        behavior: 'smooth',
-      })
 
       currentIndex = indexToGo
     }
