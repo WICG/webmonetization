@@ -1,4 +1,6 @@
 ---
+import howItWorksVertical from '@assets/how-it-works-vertical.svg';
+import howItWorksHorizontal from '@assets/how-it-works-horizontal.svg';
 
 ---
 
@@ -10,12 +12,12 @@
       <div class='diagram-container'>
         <picture>
           <source
-            srcset='/img/how-it-works-vertical.svg'
+            srcset={howItWorksVertical.src}
             media='(max-width: 767px)'
           />
           <img
             alt='Diagram showing the flow of a Web Monetization payment: from content consumer to their digital wallet, to the Web Monetization extension, to the publisher’s wallet, and finally to the publisher.'
-            src='/img/how-it-works-horizontal.svg'
+            src={howItWorksHorizontal.src}
             loading='lazy'
           />
         </picture>

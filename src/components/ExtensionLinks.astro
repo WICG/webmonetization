@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import chromeWebstore from '@assets/chrome-webstore.png';
+import fxBrowserIcon from '@assets/Fx-Browser-icon.png';
+import microsoftEdge from '@assets/microsoft-edge.png';
+import githubIcon from '@assets/icon-github.svg';
 interface Props {
   utm?: Partial<
     Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
@@ -32,36 +37,21 @@ const toURL = (url: string) => {
   <li>
     <div class='container'>
       <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
-        <img
-          alt='Chrome Web Store'
-          src='/img/chrome-webstore.png'
-          width='200'
-          height='200'
-        />
+        <Image src={chromeWebstore} alt='Chrome Web Store' />
       </a>
     </div>
   </li>
   <li>
     <div class='container'>
       <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
-        <img
-          alt='Firefox Add-ons'
-          src='/img/Fx-Browser-icon.png'
-          width='200'
-          height='200'
-        />
+        <Image src={fxBrowserIcon} alt='Firefox Add-ons' />
       </a>
     </div>
   </li>
   <li>
     <div class='container'>
       <a href={toURL(URLS.edge)} title='Edge Add-ons'>
-        <img
-          alt='Edge Add-ons'
-          src='/img/microsoft-edge.png'
-          width='200'
-          height='200'
-        />
+        <Image src={microsoftEdge} alt='Edge Add-ons' />
       </a>
     </div>
   </li>
@@ -70,11 +60,9 @@ const toURL = (url: string) => {
       <li>
         <div class='container'>
           <a href={toURL(URLS.github)} title='Latest release on GitHub'>
-            <img
+            <Image
               alt='Latest release on GitHub'
-              src='/img/icon-github.svg'
-              width='24'
-              height='24'
+              src={githubIcon}
             />
           </a>
         </div>

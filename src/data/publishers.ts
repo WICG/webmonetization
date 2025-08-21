@@ -1,8 +1,8 @@
 import type { ContentSection, HeroContent, Pills } from '../types/shared'
-import publisherHero from "../../public/img/hero-publisher.svg";
-import linkTagGenerator from "../../public/img/link-tag-generator.svg";
-import toolsOverview from "../../public/img/tools-overview.png";
-import wordPressLogo from "../../public/img/wordpress.svg";
+import publisherHero from "@assets/hero-publisher.svg";
+import linkTagGenerator from "@assets/link-tag-generator.svg";
+import toolsOverview from "@assets/tools-overview.png";
+import wordPressLogo from "@assets/wordpress.svg";
 
 export const heroContent: HeroContent = {
     heroTitle: "I am a publisher",

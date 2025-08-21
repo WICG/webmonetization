@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import Base from "../layouts/Base.astro";
+import wmLogo from '@assets/wm-logo--animated.svg';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,7 +15,7 @@ const description = t("site.description");
       <img
         alt='Loading'
         class='heroLogo'
-        src='/img/wm-logo--animated.svg'
+        src={wmLogo.src}
       />
       <h2 class="heroHeading">Please wait ...</h2>
       <p>Do not close this tab.</p>
@@ -24,7 +25,7 @@ const description = t("site.description");
 
 <style>
   body {
-    background-image: url('/img/bg-tile.svg');
+    background-image: url('../assets/bg-tile.svg');
     background-size: 25em;
   }
 
@@ -151,7 +152,7 @@ const description = t("site.description");
   const intent = (searchParams.get('intent') ?? 'connect') as Intent
 
   function updateImage(type: 'success' | 'error' | 'warning') {
-    heroLogo.src = `/img/${type}.svg`
+    heroLogo.src = `/../assets/${type}.svg`
     heroLogo.alt = type
   }
 

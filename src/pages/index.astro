@@ -7,8 +7,17 @@ import { supporterTags } from '../data/supporters.ts'
 import { developerTags } from '../data/developers.ts'
 import WalletList from '../components/pages/WalletList.astro'
 import PillTag from '../components/pages/PillTag.astro'
-import Loudspeaker from '../../public/img/loudspeaker.svg'
+import Loudspeaker from '@assets/loudspeaker.svg'
 import UpdatesSection from '../components/pages/UpdatesSection.astro'
+import { Image } from 'astro:assets';
+import headingVector from '@assets/wm-heading-vector.svg';
+import hero from '@assets/hero-img.svg';
+import publisherInactive from '@assets/hero-publisher-inactive.png';
+import publisherActive from '@assets/hero-publisher.png';
+import supporterInactive from '@assets/hero-supporter-inactive.png';
+import supporterActive from '@assets/hero-supporter.png';
+import developerInactive from '@assets/hero-dev-inactive.png';
+import developerActive from '@assets/hero-dev.png';
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -19,16 +28,13 @@ const t = useTranslations(lang)
     <div class='contentWrapper'>
       <div class='heading-wrapper'>
         <h1>Welcome to Web Monetization</h1>
-        <img
+        <Image
           alt=''
-          role='presentation'
-          src='/img/wm-heading-vector.svg'
-          width='442'
-          height='23'
+          src={headingVector}
         />
       </div>
       <div class='hero-img'>
-        <img src='/img/hero-img.svg' width='814' height='599' alt='' />
+        <Image src={hero} alt='' />
       </div>
       <p class='heroTagline'>
         Web Monetization introduces a new way for content owners and publishers
@@ -82,19 +88,19 @@ const t = useTranslations(lang)
         </div>
         <div class='media-cta'>
           <img
-            width='460'
-            height='460'
+            width={publisherInactive.width}
+            height={publisherInactive.height}
             class='inactive audience-img'
             alt=''
-            src='/img/hero-publisher-inactive.png'
+            src={publisherInactive.src}
             loading='lazy'
           />
           <img
-            width='460'
-            height='460'
+            width={publisherActive.width}
+            height={publisherActive.height}
             class='active audience-img'
             alt=''
-            src='/img/hero-publisher.png'
+            src={publisherActive.src}
           />
           <a
             class='btn primary flexible'
@@ -115,19 +121,19 @@ const t = useTranslations(lang)
         </div>
         <div class='media-cta'>
           <img
-            width='460'
-            height='460'
+            width={supporterInactive.width}
+            height={supporterInactive.height}
             class='inactive audience-img'
             alt=''
-            src='/img/hero-supporter-inactive.png'
+            src={supporterInactive.src}
             loading='lazy'
           />
           <img
-            width='460'
-            height='460'
+            width={supporterActive.width}
+            height={supporterActive.height}
             class='active audience-img'
             alt=''
-            src='/img/hero-supporter.png'
+            src={supporterActive.src}
           />
           <a
             class='btn primary flexible'
@@ -156,19 +162,19 @@ const t = useTranslations(lang)
         </div>
         <div class='developer-images'>
           <img
-            width='460'
-            height='460'
+            width={developerInactive.width}
+            height={developerInactive.height}
             class='inactive audience-img'
             alt=''
-            src='/img/hero-dev-inactive.png'
+            src={developerInactive.src}
             loading='lazy'
           />
           <img
-            width='460'
-            height='460'
+            width={developerActive.width}
+            height={developerActive.height}
             class='active audience-img'
             alt=''
-            src='/img/hero-dev.png'
+            src={developerActive.src}
           />
         </div>
       </article>

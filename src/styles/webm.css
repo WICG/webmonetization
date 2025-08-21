@@ -223,7 +223,7 @@ body {
   min-width: 320px;
   color: var(--default-font-color);
   font-family: var(--font-base);
-  background-image: url("/img/hero-gradient-background.svg");
+  background-image: url("../assets/hero-gradient-background.svg");
   background-color: var(--background-color);
   background-repeat: no-repeat;
   background-size: cover;

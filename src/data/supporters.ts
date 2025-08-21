@@ -1,5 +1,5 @@
 import type { HeroContent, Pills } from '../types/shared'
-import supporterHero from "../../public/img/hero-supporter.svg";
+import supporterHero from "@assets/hero-supporter.svg";
 
 export const heroContent: HeroContent = {
     heroTitle: "I want to give my support",
