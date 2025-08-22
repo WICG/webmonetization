@@ -16,21 +16,24 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://community.interledger.org/'
             data-umami-event='Footer - Community'
             rel='noopener noreferrer'
-            target='_blank'>Community</a>
+            target='_blank'>Community</a
+          >
         </li>
         <li>
           <a
             href='https://github.com/WICG/webmonetization'
             data-umami-event='Footer - GitHub'
             rel='noopener noreferrer'
-            target='_blank'>GitHub</a>
+            target='_blank'>GitHub</a
+          >
         </li>
         <li>
           <a
             href='https://interledger.org/blog'
             data-umami-event='Footer - Blog'
             rel='noopener noreferrer'
-            target='_blank'>Blog</a>
+            target='_blank'>Blog</a
+          >
         </li>
       </ul>
       <ul>
@@ -39,21 +42,24 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://interledger.org/'
             data-umami-event='Footer - Interledger Foundation'
             rel='noopener noreferrer'
-            target='_blank'>Interledger Foundation</a>
+            target='_blank'>Interledger Foundation</a
+          >
         </li>
         <li>
           <a
             href='https://wicg.io/'
             data-umami-event='Footer - WICG'
             rel='noopener noreferrer'
-            target='_blank'>Web Incubator Community Group</a>
+            target='_blank'>Web Incubator Community Group</a
+          >
         </li>
         <li>
           <a
             href='https://interledger.org/summit'
             data-umami-event='Footer - Summit'
             rel='noopener noreferrer'
-            target='_blank'>Summit</a>
+            target='_blank'>Summit</a
+          >
         </li>
       </ul>
       <ul>
@@ -62,21 +68,24 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://www.iubenda.com/privacy-policy/95080147'
             data-umami-event='Footer - Privacy Policy'
             rel='noopener noreferrer'
-            target='_blank'>Privacy Policy</a>
+            target='_blank'>Privacy Policy</a
+          >
         </li>
         <li>
           <a
             href='https://www.iubenda.com/privacy-policy/95080147/cookie-policy'
             data-umami-event='Footer - Cookie Policy'
             rel='noopener noreferrer'
-            target='_blank'>Cookie Policy</a>
+            target='_blank'>Cookie Policy</a
+          >
         </li>
         <li>
           <a
             href='https://www.iubenda.com/terms-and-conditions/95080147'
             data-umami-event='Footer - T & C'
             rel='noopener noreferrer'
-            target='_blank'>Terms & Conditions</a>
+            target='_blank'>Terms & Conditions</a
+          >
         </li>
       </ul>
     </nav>
@@ -148,8 +157,15 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
         <WmNamedLogo />
       </a>
     </div>
-    <small>
-      Copyright © {new Date().getFullYear()} Interledger Foundation.
+    <small class='copyright'>
+      <a href='https://www.w3.org/policies/#copyright'>Copyright</a> © {
+        new Date().getFullYear()
+      } the Contributors to the Web Monetization Specification, published by the
+      <a href='https://www.w3.org/community/wicg/'
+        >Web Platform Incubator Community Group</a
+      > under the <a href='https://www.w3.org/community/about/process/cla/'
+        >W3C Community Contributor License Agreement (CLA)</a
+      >. A human-readable summary is available.
     </small>
   </div>
 </footer>
@@ -252,6 +268,21 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
     height: 1px;
     background-color: var(--color-purple-100);
     border: none;
+  }
+
+  .copyright {
+    justify-self: center;
+    max-width: 60em;
+  }
+
+  .copyright a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .copyright a:hover,
+  .copyright a:focus {
+    color: var(--default-font-color);
   }
 
   @media screen and (min-width: 768px) {

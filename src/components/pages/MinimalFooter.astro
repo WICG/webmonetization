@@ -4,8 +4,15 @@
 
 <footer>
   <div class='contentWrapper'>
-    <small>
-      Copyright © {new Date().getFullYear()} Interledger Foundation.
+    <small class='copyright'>
+      <a href='https://www.w3.org/policies/#copyright'>Copyright</a> © {
+        new Date().getFullYear()
+      } the Contributors to the Web Monetization Specification, published by the
+      <a href='https://www.w3.org/community/wicg/'
+        >Web Platform Incubator Community Group</a
+      > under the <a href='https://www.w3.org/community/about/process/cla/'
+        >W3C Community Contributor License Agreement (CLA)</a
+      >. A human-readable summary is available.
     </small>
   </div>
 </footer>
@@ -21,5 +28,20 @@
     color: var(--color-silver-800);
     font: var(--font-small-regular);
     text-align: center;
+  }
+
+  .copyright {
+    justify-self: center;
+    max-width: 60em;
+  }
+
+  .copyright a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  .copyright a:hover,
+  .copyright a:focus {
+    color: var(--default-font-color);
   }
 </style>
