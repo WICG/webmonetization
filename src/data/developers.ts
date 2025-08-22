@@ -1,10 +1,10 @@
 import type { CTA, HeroContent, Pills, UpdateContent, ContentSection } from '../types/shared'
-import blogThumbnail from "../../public/img/tech-blog-thumbnail.svg";
-import developerHero from "../../public/img/hero-developer.svg";
-import developerPlayground from "../../public/img/developer-playground.svg";
-import astroPlugin from "../../public/img/logo-plugin-astro.svg";
-import reactPlugin from "../../public/img/logo-plugin-react.svg";
-import evelentyPlugin from "../../public/img/logo-plugin-11ty.png";
+import blogThumbnail from "@assets/tech-blog-thumbnail.svg";
+import developerHero from "@assets/hero-developer.svg";
+import developerPlayground from "@assets/developer-playground.svg";
+import astroPlugin from "@assets/logo-plugin-astro.svg";
+import reactPlugin from "@assets/logo-plugin-react.svg";
+import evelentyPlugin from "@assets/logo-plugin-11ty.png";
 
 export interface Plugin {
     name?: string,

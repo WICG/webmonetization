@@ -1,9 +1,11 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils'
 import NavToolsDropdown from './NavToolsDropdown.astro'
-import HamburgerMenu from '../../../public/img/hamburger-menu.svg'
-import CloseMenu from '../../../public/img/close-menu.svg'
-import ChevronArrow from '../../../public/img/arrow-chevron.svg'
+import HamburgerMenu from '@assets/hamburger-menu.svg'
+import CloseMenu from '@assets/close-menu.svg'
+import ChevronArrow from '@assets/arrow-chevron.svg'
+import { Image } from 'astro:assets';
+import wmLogo from '@assets/wm-logo.svg';
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -13,7 +15,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
 <header>
   <nav class='site-nav contentWrapper' id='siteNav'>
     <a href={homePageUrl} class='site-title'>
-      <img src='/img/wm-logo.svg' alt='Web Monetization logo' />
+      <Image src={wmLogo} alt='Web Monetization logo' />
     </a>
     <button
       id='menuToggle'

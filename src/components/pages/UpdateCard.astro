@@ -1,6 +1,7 @@
 ---
 import type { UpdateContent } from '../../types/shared'
-import ExternalLink from '../../../public/img/external-link.svg'
+import ExternalLink from '@assets/external-link.svg'
+import { Image } from 'astro:assets'
 
 interface Props {
   blog: UpdateContent
@@ -13,13 +14,7 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props
 
 <div class='blog-card'>
   <div class={`blog-img ${imgClass}`}>
-    <img
-      src={blog.image.src}
-      alt=''
-      width={blog.image.width}
-      height={blog.image.height}
-      loading='lazy'
-    />
+    <Image src={blog.image} alt='' />
   </div>
   <div class='blog-content'>
     {

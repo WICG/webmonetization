@@ -4,10 +4,12 @@ import Search from "@astrojs/starlight/components/Search.astro";
 import ThemeSelect from "@astrojs/starlight/components/ThemeSelect.astro";
 import SocialIcons from "@astrojs/starlight/components/SocialIcons.astro";
 import LanguageSelect from "@astrojs/starlight/components/LanguageSelect.astro";
+import { Image } from 'astro:assets'
+import wmLogo from '@assets/wm-logo.svg'
 ---
 <div class="header sl-flex">
   <a href="/" class="site-title">
-    <img src="/img/wm-logo.svg" alt="Web Monetization logo">
+    <Image src={wmLogo} alt="Web Monetization logo" />
     <span>Web Monetization</span>
   </a>
   <div class="secondary-wrap">

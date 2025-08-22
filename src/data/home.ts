@@ -1,10 +1,10 @@
 import type { UpdateContent } from '../types/shared'
-import interledgerWallet from "../../public/img/logo-wallet-interledger-wallet.svg";
-import chimoneyWallet from "../../public/img/logo-wallet-chimoney.svg";
-import gateHubWallet from "../../public/img/logo-wallet-gatehub.svg";
-import wmLaunch from "../../public/img/wm-launch-feature.svg";
-import wmSummit from "../../public/img/wm-summit.png";
-import wmHackathon from "../../public/img/wm-hackathon.png";
+import interledgerWallet from "@assets/logo-wallet-interledger-wallet.svg";
+import chimoneyWallet from "@assets/logo-wallet-chimoney.svg";
+import gateHubWallet from "@assets/logo-wallet-gatehub.svg";
+import wmLaunch from "@assets/wm-launch-feature.svg";
+import wmSummit from "@assets/wm-summit.png";
+import wmHackathon from "@assets/wm-hackathon.png";
 
 export interface Wallet {
   name: string,
@@ -24,7 +24,7 @@ export const wallets: Wallet[] = [
     link: "https://chimoney.app/?ref=webmonetization.org"
   },
   {
-    name: "Gatehub",
+    name: "GateHub",
     image: gateHubWallet,
     link: "https://gatehub.net/?ref=webmonetization.org"
   }

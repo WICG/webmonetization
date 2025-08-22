@@ -4,8 +4,10 @@ import Base from '../layouts/Base.astro'
 import { heroContent, supporterTags } from '../data/supporters.ts'
 import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
-import Arrow from '../../public/img/arrow.svg'
+import Arrow from '@assets/arrow.svg'
 import ExtensionLinks from '../components/ExtensionLinks.astro'
+import { Image } from 'astro:assets';
+import wmExtension from '@assets/wm-extension.png';
 
 const pills = supporterTags
 
@@ -39,7 +41,7 @@ const t = useTranslations(lang)
           started.
         </p>
         <div class='image'>
-          <img src='/img/wm-extension.png' width='896' height='1200' alt='' />
+          <Image src={wmExtension} alt='' />
         </div>
         <a
           href='/supporters/get-started/'
@@ -167,7 +169,7 @@ const t = useTranslations(lang)
     .decorative-line {
       width: 100%;
       height: 4px;
-      background-image: url(/img/bg-lines.svg);
+      background-image: url(../assets/bg-lines.svg);
       background-repeat: no-repeat;
       background-size: 100% 4px;
     }
