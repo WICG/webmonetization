@@ -5,13 +5,13 @@ import toolsOverview from "@assets/tools-overview.png";
 import wordPressLogo from "@assets/wordpress.svg";
 
 export const heroContent: HeroContent = {
-    heroTitle: "I am a publisher",
-    heroSubtitle: "I want to monetize my website",
+    heroTitle: "Browsing time becomes income.\nInstantly.",
+    heroSubtitle: "Web Monetization transforms browsing time into income, one second at a time.",
     image: publisherHero,
-    heroParagraph: "Web Monetization is a lightweight, privacy-preserving way to monetize your content. With its pay-as-you-browse model, you'll earn revenue based on the amount of time your visitors spend on your site. Web Monetization offers flexible, non-intrusive monetization without disrupting your existing revenue streams. It works seamlessly alongside ads, subscriptions, and memberships. All you need is a wallet address and a single line of code.",
+    heroParagraph: "Earn money every second someone spends on your content. Our pay-as-you-browse model turns attention into direct, automatic payments. Web Monetization is fast, secure, private, and integrates seamless with your current setup. Get paid as people browse from those who value your work. All it takes is a wallet address and a single line of code.",
     primaryCta: {
         href: "/developers/get-started/",
-        text: "Monetize my website",
+        text: "Get the publisher's tools",
         event: "Publishers page link - Monetize"
     },
     secondaryCta: {
@@ -22,19 +22,13 @@ export const heroContent: HeroContent = {
 }
 export const publisherTags: Pills = [
     {
-        text: "I own and publish digital content"
+        text: "Gain income based on presence, without disrupting experience."
     },
     {
-        text: "I want to be fairly supported"
+        text: "Add a new income layer without changing your existing setup."
     },
     {
-        text: "I want to expand my reach"
-    },
-    {
-        text: "I can share revenue with collaborators"
-    },
-    {
-        text: "I can tell my audience about Web Monetization"
+        text: "Receive earnings in real time, with no middleman in the way."
     }
 ]
 export const walletConnectionContent: ContentSection = {
@@ -42,14 +36,14 @@ export const walletConnectionContent: ContentSection = {
     imgMetaData: {
         position: "right"
     },
-    title: "Web monetize your pages",
+    title: "Connect your website to your wallet and start earning automatically with Web Monetization",
     primaryCta: {
-        text: "Use the link tag generator",
+        text: "Generate your link and start earning",
         href: "/tools/link-tag/",
         event: "Publishers page - Link tag generator"
     },
     secondaryCta: {
-        text: "Show me the documentation",
+        text: "See the documentation",
         href: "/developers/overview/",
         event: "Publishers page - Developer docs"
     }
@@ -59,14 +53,14 @@ export const toolsContent: ContentSection = {
     imgMetaData: {
         position: "left"
     },
-    title: "Tell your visitors you support Web Monetization",
+    title: "Bring your audience into Web Monetization, effortlessly",
     primaryCta: {
-        text: "Use our publisher tools",
+        text: "Get our free Interaction Tools",
         href: "/tools/",
         event: "Publishers page - Tools page"
     },
     secondaryCta: {
-        text: "Show me the documentation",
+        text: "See the documentation",
         href: "/developers/tools/",
         event: "Publishers page - Developer tools docs"
     }
@@ -77,14 +71,14 @@ export const wordPressPluginContent: ContentSection = {
         position: "right",
         padding: "20px 40px"
     },
-    title: "Web monetize your WordPress site",
+    title: "Add Web Monetization to WordPress. Fast, Free, Private.",
     primaryCta: {
-        text: "Use the WordPress plugin",
+        text: "Get the WordPress plugin",
         href: "",
         event: "Publishers page - WP plugin"
     },
     secondaryCta: {
-        text: "Show me the documentation",
+        text: "Seee the documentation",
         href: "/developers/overview/",
         event: "Publishers page - Developer docs"
     }

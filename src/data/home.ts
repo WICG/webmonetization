@@ -33,7 +33,7 @@ export const wallets: Wallet[] = [
 export const updates: UpdateContent[] = [
   {
     image: wmLaunch,
-    title: "Announcing the Interledger Foundation’s Web Monetization Extension Beta Release",
+    title: "Announcing the Interledger Foundation's Web Monetization Extension Beta Release",
     subtitles: {
       date: "24 Mar 2025",
       author: "Rabeb Othmani"

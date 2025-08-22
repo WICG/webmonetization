@@ -27,18 +27,15 @@ const t = useTranslations(lang)
   <section class='section hero'>
     <div class='contentWrapper'>
       <div class='heading-wrapper'>
-        <h1>Welcome to Web Monetization</h1>
+        <h1>The web can work better for everyone</h1>
         <Image alt='' src={headingVector} />
       </div>
       <div class='hero-img'>
         <Image src={hero} alt='' loading='eager' />
       </div>
       <p class='heroTagline'>
-        Web Monetization introduces a new way for content owners and publishers
-        to earn while allowing users to engage on their own terms. By enabling
-        streaming micropayments, Web Monetization complements ads,
-        subscriptions, and memberships, giving publishers more revenue options
-        and users more ways to access and support content.
+        Web Monetization connects publishers and users by turning engagement
+        into streams of support, adding a new payment layer to the open web.
       </p>
     </div>
   </section>
@@ -48,11 +45,20 @@ const t = useTranslations(lang)
         <div class='wallet-content'>
           <h2 class='font-h3'>Wallets</h2>
           <p>
-            To send or receive Web Monetization payments, you must have an
-            account with a compatible wallet provider. These providers offer Web
-            Monetization-enabled wallets that you can use.
+            Web Monetization gives publishers more revenue options and users
+            more ways to sustain the content they love. Built as a growing, open
+            protocol web standard, Web Monetization enables real-time
+            wallet-to-wallet transfers through its free-to-use, frictionless
+            model.
           </p>
-          <strong>More wallet providers coming soon!</strong>
+          <p>
+            Support can take many forms, from a one-time payment to a
+            continuous, pay-as-you-browse model, all flowing seamlessly while
+            users engage with web monetized content. Publishers earn the moment
+            someone engages, while users contribute in real time, using a
+            balance they control.
+          </p>
+          <strong>No clicks. No friction. Just payments.</strong>
           <p class='bold'>Do you know other wallets?</p>
           <a
             href='https://github.com/WICG/webmonetization/pulls'
@@ -79,8 +85,8 @@ const t = useTranslations(lang)
     <div class='contentWrapper audience-grid'>
       <article class='audience-card publisher'>
         <div>
-          <h2>I am a publisher</h2>
-          <p class='audience-desc font-h6'>I want to earn from my content</p>
+          <h2>I'm a publisher</h2>
+          <p class='audience-desc font-h6'>and I want to get monetized.</p>
           <PillTag pills={publisherTags} />
         </div>
         <div class='media-cta'>
@@ -95,16 +101,16 @@ const t = useTranslations(lang)
             class='btn primary flexible'
             href='/publishers'
             data-umami-event='Home page link - Publishers'
-            >Get started as a publisher</a
+            >Start earning today</a
           >
         </div>
       </article>
       <div class='divider vertical'></div>
       <article class='audience-card supporter'>
         <div>
-          <h2>I want to give my support</h2>
+          <h2>I enjoy online content</h2>
           <p class='audience-desc font-h6'>
-            Because great content deserves something in return
+            and I want to support the work that matters to me.
           </p>
           <PillTag pills={supporterTags} />
         </div>
@@ -120,7 +126,7 @@ const t = useTranslations(lang)
             class='btn primary flexible'
             href='/supporters'
             data-umami-event='Home page link - Supporters'
-            >Support the content I love</a
+            >Start supporting on your terms</a
           >
         </div>
       </article>
@@ -131,14 +137,14 @@ const t = useTranslations(lang)
         <div class='dev-wrapper'>
           <h2>I am a developer</h2>
           <p class='audience-desc font-h6'>
-            I want to help shape the future of the web
+            and I want to help shape the future of the web.
           </p>
           <PillTag pills={developerTags} />
           <a
             class='btn primary flexible'
             href='/developers'
             data-umami-event='Home page link - Developers'
-            >Contribute as a developer</a
+            >Join the developer community</a
           >
         </div>
         <div class='developer-images'>

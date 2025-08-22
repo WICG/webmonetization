@@ -6,8 +6,8 @@ import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import Arrow from '@assets/arrow.svg'
 import ExtensionLinks from '../components/ExtensionLinks.astro'
-import { Image } from 'astro:assets';
-import wmExtension from '@assets/wm-extension.png';
+import { Image } from 'astro:assets'
+import wmExtension from '@assets/wm-extension.png'
 
 const pills = supporterTags
 
@@ -24,22 +24,22 @@ const t = useTranslations(lang)
     <p>
       To support Web Monetized sites, all you need is a compatible digital
       wallet and the Web Monetization browser extension. Once set up, you can
-      make continuous payments in real time or one time payments to the websites
-      you enjoy, directly from your browser, privately, effortlessly, and on
-      your own terms.
+      send micropayments while you browse, directly from your browser,
+      privately, effortlessly, and on your own terms.
     </p>
   </HowItWorks>
   <section class='section'>
     <div class='contentWrapper'>
       <div class='content'>
         <h2 class='header'>Web Monetization extension</h2>
-        <p class='text'>
-          The Web Monetization browser extension makes it easy to support your
-          favorite sites with real-time, privacy-friendly micropayments. Pay
-          only for what you consume and directly support the publishers you
-          value. All you need is a compatible wallet and a quick setup to get
-          started.
-        </p>
+        <ul class='text'>
+          <li>Pay as you browse</li>
+          <li>
+            Be able to help the digital publishers that you want to support
+          </li>
+          <li>Help and be under the umbrella of anonimity at the same time</li>
+          <li>User a democratic payment methodz</li>
+        </ul>
         <div class='image'>
           <Image src={wmExtension} alt='' />
         </div>
@@ -48,7 +48,7 @@ const t = useTranslations(lang)
           class='btn secondary flexible'
           data-umami-event='Supporters page link - supporter docs'
         >
-          Get started
+          Here's how to get started
           <Arrow class='arrow' />
         </a>
       </div>
@@ -57,7 +57,7 @@ const t = useTranslations(lang)
   <section class='section'>
     <div class='contentWrapper'>
       <div class='extension'>
-        <h2 class='header'>Get the extension</h2>
+        <h2 class='header'>Support content with the web extensions</h2>
         <ExtensionLinks
           includeGitHub
           utm={{ utm_campaign: 'supporters_landing_page' }}
