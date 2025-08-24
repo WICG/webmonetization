@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import githubIcon from '@assets/icon-github.svg';
 const { plugins } = Astro.props;
 
 const findStartWith = (array: any[], arg: string) => {
@@ -19,7 +21,7 @@ const findStartWith = (array: any[], arg: string) => {
     </tr>
   </thead>
   <tbody>
-    {plugins.map((plugin: {name: string, desc: string, version: String[], link: string}) => (
+    {plugins.map((plugin: {name: string, desc: string, version: String[], cta: { href: string }}) => (
       <tr>
         <td>
           <strong>{plugin.name}</strong>
@@ -33,10 +35,10 @@ const findStartWith = (array: any[], arg: string) => {
           {findStartWith(plugin.version, '1.') ? '✅' : '❌'}
         </td>
         <td class="cellCenter">
-          <a href={plugin.link}>
-            <img
+          <a href={plugin.cta.href}>
+            <Image
               alt={`Link to ${plugin.name}'s GitHub repo`}
-              src='/img/icon-github.svg'
+              src={githubIcon}
               class="icon--github"
             />
           </a>

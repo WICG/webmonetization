@@ -1,0 +1,157 @@
+---
+import type { HeroContent, Pills } from '../../types/shared'
+import { Image } from 'astro:assets'
+
+const { content, pills } = Astro.props as { content: HeroContent; pills: Pills }
+
+interface Props {
+  content: HeroContent
+  pills: Pills
+}
+
+import PillTag from './PillTag.astro'
+---
+
+<section class='section hero'>
+  <div class='contentWrapper'>
+    <div class='hero-content'>
+      <div class='hero-header'>
+        <h1 class='hero-title'>{content.heroTitle}</h1>
+        <p class='hero-subtitle'>{content.heroSubtitle}</p>
+      </div>
+      <div class='hero-image'>
+        <Image src={content.image} alt='' loading='eager' />
+      </div>
+      <p class='hero-paragraph'>{content.heroParagraph}</p>
+      <div class='hero-tags'>
+        <PillTag pills={pills} />
+      </div>
+      <div class='hero-ctas'>
+        <a
+          href={content.primaryCta.href}
+          class='btn primary'
+          data-umami-event={content.primaryCta.event}
+          >{content.primaryCta.text}</a
+        >
+        {
+          content.secondaryCta && (
+            <a
+              href={content.secondaryCta.href}
+              class='btn secondary'
+              data-umami-event={content.secondaryCta.event}
+            >
+              {content.secondaryCta.text}
+            </a>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding-left: var(--padding-md);
+    padding-right: var(--padding-md);
+  }
+
+  .hero-paragraph {
+    text-align: center;
+    white-space: pre-line;
+  }
+
+  .hero-title {
+    margin-bottom: var(--spacing-2xs);
+    font: var(--font-h2);
+    white-space: pre-line;
+  }
+
+  .hero-subtitle {
+    font: var(--font-h6);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .hero-ctas {
+    width: 100%;
+  }
+
+  .hero-ctas a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-image {
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  .hero-image img {
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 1035px) {
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--spacing-3xl);
+      row-gap: var(--spacing-2xl);
+    }
+
+    .hero-paragraph {
+      text-align: left;
+    }
+
+    .hero-header {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .hero-title {
+      font: var(--font-display-1);
+    }
+
+    .hero-subtitle {
+      font: var(--font-h5);
+    }
+
+    .hero-tags {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .hero-ctas {
+      grid-column: 1;
+      grid-row: 3;
+      gap: var(--spacing-2xl);
+      text-align: left;
+    }
+
+    .hero-ctas a {
+      width: max-content;
+      justify-content: flex-start;
+    }
+
+    .hero-paragraph {
+      grid-column: 1;
+      grid-row: 4;
+    }
+
+    .hero-image {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+      align-self: center;
+    }
+  }
+</style>

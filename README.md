@@ -82,10 +82,10 @@ Some of the commonly repeated patterns within the documentation pages are extrac
 
 The `BrowserCompat` and `Specification` components are specific to Web Monetization.
 
-- `BrowserCompat` generates a compatibility table based on the browser compatibility data passed into it. Additional information can be found [here](https://interledger.tech/webm/browsercompat).
-- `Specification` displays a link to the relevant section of the Web Monetization specification in a table. Additional information can be found [here](https://interledger.tech/webm/specification).
+- `BrowserCompat` generates a compatibility table based on the browser compatibility data passed into it. Additional information can be found [here](https://interledger.net/webm/browsercompat/).
+- `Specification` displays a link to the relevant section of the Web Monetization specification in a table. Additional information can be found [here](https://interledger.net/webm/specification/).
 
-Documentation on how to import and use shared components is available on https://interledger.tech/. If you are using multiple shared components on the same page, you can import them like so:
+Documentation on how to import and use shared components is available on https://interledger.net/. If you are using multiple shared components on the same page, you can import them like so:
 
 ```jsx
 import { CodeBlock, LinkOut } from '@interledger/docs-design-system'
@@ -121,7 +121,7 @@ Be sure to add your new doc to the sidebar! The sidebar is configured in `astro.
 
 Astro is a content-focused web framework that integrates with a lot of existing framework libraries, making it relatively flexible for building customised sites.
 
-Custom pages exist in the `/src/pages` directory, and out-of-the-box come with absolutely nothing. For the Web Monetization website, we have created custom layout components that form the frame of a basic HTML web page, and allow you to add content that would populate the `main` element of the page via a concept known as [slots](https://docs.astro.build/en/core-concepts/astro-components/#slots). A `<slot />` allows you to specify where individual page content should be injected.
+Custom pages exist in the `/src/pages` directory, and out-of-the-box come with absolutely nothing. For the Web Monetization website, we have created custom layout components that form the frame of a basic HTML web page, and allow you to add content that would populate the `main` element of the page via a concept known as [slots](https://docs.astro.build/en/basics/astro-components/#slots). A `<slot />` allows you to specify where individual page content should be injected.
 
 ```jsx
 ---
@@ -133,7 +133,7 @@ import Base from '../layouts/Base.astro';
 </Base>
 ```
 
-Refer to the Astro documentation on [pages](https://docs.astro.build/en/core-concepts/astro-pages/) for additional details.
+Refer to the Astro documentation on [pages](https://docs.astro.build/en/basics/astro-pages/) for additional details.
 
 ## Localization/Internationalization
 
