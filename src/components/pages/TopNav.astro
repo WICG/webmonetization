@@ -350,16 +350,25 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
   }
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (!isWide.matches) {
+    const target = event.target as Node
+    const clickedMenuToggle = menuToggleButton?.contains(target)
+
+    if (clickedMenuToggle) {
       return
     }
 
-    const target = event.target as Node
-    const isInMenu = navMenu?.contains(target)
-    const isInToggle = menuToggleButton?.contains(target)
+    if (!isWide.matches) {
+      const clickedToolsDropdown = toolsDropdown?.contains(target)
+      if (submenuOpen && !clickedToolsDropdown) {
+        closeSubmenu()
+      }
+      return
+    } else {
+      const isInMenu = navMenu?.contains(target)
 
-    if (!isInMenu && !isInToggle) {
-      closeMenu()
+      if (!isInMenu) {
+        closeMenu()
+      }
     }
   }
 
