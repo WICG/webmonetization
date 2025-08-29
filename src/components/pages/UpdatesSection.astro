@@ -26,7 +26,7 @@ const { updates } = Astro.props
       <ul class='updates-list' id='updates-list'>
         {
           updates.map((update: UpdateContent) => (
-            <li class='update-slide'>
+            <li class='update-slide' id='update-slide'>
               <UpdateCard
                 blog={update}
                 ctaButtonClass='secondary'
@@ -110,9 +110,11 @@ const { updates } = Astro.props
     flex-direction: row;
     overflow-x: hidden;
     padding: 0;
+    scroll-snap-type: x mandatory;
   }
   .update-slide {
     flex: 0 0 100%;
+    scroll-snap-align: start;
   }
 
   .updates-dots {
@@ -159,6 +161,7 @@ const { updates } = Astro.props
     document.querySelector('#next-button')
   const carouselDots = document.querySelectorAll('#updates-dots .dot')
   const carouselCTAs = document.querySelectorAll('a.carousel-cta')
+  const updates = Array.from(document.querySelectorAll('#update-slide'))
   const numberOfUpdates = carouselDots.length
   let currentIndex = 0
 
@@ -196,10 +199,7 @@ const { updates } = Astro.props
 
       beforeScroll(currentIndex)
 
-      updatesList?.scrollTo({
-        left: width * currentIndex,
-        behavior: 'smooth',
-      })
+      updates[currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' })
     }
 
     function setCurrentIndex(direction: 'left' | 'right') {
