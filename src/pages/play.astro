@@ -21,7 +21,7 @@ const description = t('site.description')
               type='text'
               id='walletAddressUrl'
               name='walletAddressUrl'
-              placeholder='Fill in your wallet address'
+              placeholder='https://walletprovider.com/myWallet'
               required
             />
           </div>
@@ -44,40 +44,16 @@ const description = t('site.description')
 </Base>
 
 <style>
-  .link-events {
-    & div[data-wallet-address] {
-      & .log-header {
-        & .actions {
-          & button.tools-secondary-btn {
-            background-color: transparent;
-            color: var(--button-ghost-color);
-            border: 1px solid var(--button-ghost-color);
-            font: var(--font-standard-regular);
-          }
-
-          & button.tools-secondary-btn:hover,
-          & button.tools-secondary-btn:focus-visible {
-            background-color: transparent;
-            color: var(--button-hover-color);
-            border: 1px solid var(--button-hover-color);
-          }
-        }
-      }
-    }
-  }
 
   .link-events {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
     width: 100%;
     padding-inline: var(--padding-md);
     margin-top: var(--spacing-md);
     gap: var(--spacing-md);
     font: var(--font-small-regular);
-  }
-
-  .link-events {
-    & div[data-wallet-address] {
+    div[data-wallet-address] {
       padding: var(--padding-md);
       background-color: var(--color-mint-50);
       border-radius: var(--moderate-rounding);
@@ -99,12 +75,18 @@ const description = t('site.description')
           color: var(--paragraph-success);
         }
 
-        & .actions {
-          display: flex;
-          gap: var(--spacing-sm);
-          justify-content: center;
-          flex: none;
-          flex-wrap: wrap;
+        & button.tools-secondary-btn {
+          background-color: transparent;
+          color: var(--button-ghost-color);
+          border: 1px solid var(--button-ghost-color);
+          font: var(--font-standard-regular);
+        }
+
+        & button.tools-secondary-btn:hover,
+        & button.tools-secondary-btn:focus-visible {
+          background-color: transparent;
+          color: var(--button-hover-color);
+          border: 1px solid var(--button-hover-color);
         }
       }
 
@@ -112,11 +94,11 @@ const description = t('site.description')
         font-family: var(--sl-font-system-mono);
         height: 20rem;
         margin-block: var(--spacing-sm);
-        padding-block-start: var(--padding-sm);
-        padding-inline-start: var(--padding-sm);
+        padding: var(--padding-sm) 0px var(--padding-sm) var(--padding-sm);
         list-style: none;
         overflow-y: auto;
         white-space: nowrap;
+        border-bottom: 1px solid var(--color-silver-200);
 
         & li {
           margin-block-end: var(--spacing-2xs);
@@ -137,6 +119,26 @@ const description = t('site.description')
             }
           }
         }
+      }
+
+      & .log-footer {
+        gap: var(--spacing-sm);
+        display: flex;
+        align-items: center;
+        justify-content: right;
+
+        & button.tools-secondary-btn {
+            background-color: transparent;
+            color: var(--button-ghost-color);
+            border: 1px solid var(--button-ghost-color);
+            font: var(--font-standard-regular);
+          }
+        & button.tools-secondary-btn:hover,
+          & button.tools-secondary-btn:focus-visible {
+            background-color: transparent;
+            color: var(--button-hover-color);
+            border: 1px solid var(--button-hover-color);
+          }
       }
     }
   }
@@ -198,8 +200,8 @@ const description = t('site.description')
     const title = document.createElement('p')
     title.textContent = href
 
-    const actions = document.createElement('div')
-    actions.classList.add('actions')
+    const footer = document.createElement('div')
+    footer.classList.add('log-footer')
 
     const disableButton = document.createElement('button')
     disableButton.textContent = 'Disable'
@@ -227,7 +229,7 @@ const description = t('site.description')
     })
 
     const clearButton = document.createElement('button')
-    clearButton.textContent = 'Clear events'
+    clearButton.textContent = 'Clean'
     clearButton.classList.add('btn', 'tools-secondary-btn')
     clearButton.addEventListener('click', () => {
       const ul = document.querySelector(
@@ -236,12 +238,11 @@ const description = t('site.description')
       ul.innerHTML = ''
     })
 
-    actions.append(disableButton)
-    actions.append(clearButton)
-    actions.append(removeButton)
-
     header.append(title)
-    header.append(actions)
+    header.append(disableButton)
+
+    footer.append(clearButton)
+    footer.append(removeButton)
 
     const eventLog = document.createElement('div')
     eventLog.dataset.walletAddress = href
@@ -251,6 +252,7 @@ const description = t('site.description')
 
     eventLog.append(header)
     eventLog.append(events)
+    eventLog.append(footer)
 
     linkEvents.append(eventLog)
   }

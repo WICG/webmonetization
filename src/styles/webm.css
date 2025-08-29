@@ -569,6 +569,7 @@ button.tools-primary-btn {
   border: none;
   color: var(--color-white);
   justify-content: center;
+  width: 100%;
 }
 
 button.tools-primary-btn:hover,
