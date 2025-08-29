@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import desktopIcon from '@assets/components/browsercompat/icon-desktop.svg';
 import phoneIcon from '@assets/components/browsercompat/icon-phone.svg';
 import checkIcon from '@assets/components/browsercompat/icon-check.svg';
@@ -16,14 +15,21 @@ const compatData = json.api
       <tr class="platforms">
         <td></td>
         <th class="desktop" colspan='6' title='desktop'>
-          <Image
-            src={desktopIcon}
+          <img
+            src={desktopIcon.src}
+            width={desktopIcon.width}
+            height={desktopIcon.height}
             alt=''
           />
           <span class='visually-hidden'>desktop</span>
         </th>
         <th class="mobile" colspan='7' title='mobile'>
-          <Image src={phoneIcon} alt='' />
+          <img
+            src={phoneIcon.src}
+            alt=''
+            width={phoneIcon.width}
+            height={phoneIcon.height}
+          />
           <span class='visually-hidden'>mobile</span>
         </th>
       </tr>
@@ -83,18 +89,22 @@ const compatData = json.api
               <td>
                 {compatData[key].__compat.support[platform]
                   .version_added && (
-                  <Image
-                    src={checkIcon}
+                  <img
+                    src={checkIcon.src}
                     alt=''
                     class="iconGreen"
+                    width={checkIcon.width}
+                    height={checkIcon.height}
                   />
                 )}
                 {!compatData[key].__compat.support[platform]
                   .version_added && (
-                  <Image
-                    src={cancelIcon}
+                  <img
+                    src={cancelIcon.src}
                     alt=''
                     class="iconRed"
+                    width={cancelIcon.width}
+                    height={cancelIcon.height}
                   />
                 )}
                 <span>
@@ -110,10 +120,12 @@ const compatData = json.api
                       .version_added}
                 </span>
                 {compatData[key].__compat.support[platform].notes && (
-                  <Image
-                    src={extensionIcon}
+                  <img
+                    src={extensionIcon.src}
                     alt=''
                     class="iconGreen"
+                    width={extensionIcon.width}
+                    height={extensionIcon.height}
                   />
                 )}
               </td>
@@ -128,30 +140,36 @@ const compatData = json.api
 <dl class="legend">
   <div class="legendItem">
     <dt>
-      <Image
-        src={checkIcon}
+      <img
+        src={checkIcon.src}
         alt=''
         class="iconGreen"
+        width={checkIcon.width}
+        height={checkIcon.height}
       />
     </dt>
     <dd>Full Support</dd>
   </div>
   <div class="legendItem">
     <dt>
-      <Image
-        src={cancelIcon}
+      <img
+        src={cancelIcon.src}
         alt=''
         class="iconRed"
+        width={cancelIcon.width}
+        height={cancelIcon.height}
       />
     </dt>
     <dd>No Support</dd>
   </div>
   <div class="legendItem">
     <dt>
-      <Image
-        src={extensionIcon}
+      <img
+        src={extensionIcon.src}
         alt=''
         class="iconGreen"
+        width={extensionIcon.width}
+        height={extensionIcon.height}
       />
     </dt>
     <dd>You'll need to use a Web Monetization Extension</dd>

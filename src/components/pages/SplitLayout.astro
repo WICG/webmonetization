@@ -1,6 +1,5 @@
 ---
 import type { ContentSection } from '../../types/shared.ts'
-import { Image } from 'astro:assets'
 
 interface Props {
   content: ContentSection
@@ -21,7 +20,12 @@ const { content } = Astro.props
           ? `padding:${content.imgMetaData.padding}`
           : undefined}
       >
-        <Image src={content.image} alt='' />
+        <img
+          src={content.image.src}
+          alt=''
+          width={content.image.width}
+          height={content.image.height}
+        />
       </div>
       <div class='text'>
         <slot />

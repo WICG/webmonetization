@@ -9,7 +9,6 @@ import WalletList from '../components/pages/WalletList.astro'
 import PillTag from '../components/pages/PillTag.astro'
 import Loudspeaker from '@assets/loudspeaker.svg'
 import UpdatesSection from '../components/pages/UpdatesSection.astro'
-import { Image } from 'astro:assets'
 import headingVector from '@assets/wm-heading-vector.svg'
 import hero from '@assets/hero-img.svg'
 import publisherInactive from '@assets/hero-publisher-inactive.png'
@@ -28,10 +27,21 @@ const t = useTranslations(lang)
     <div class='contentWrapper'>
       <div class='heading-wrapper'>
         <h1>Welcome to Web Monetization</h1>
-        <Image alt='' src={headingVector} />
+        <img
+          alt=''
+          src={headingVector.src}
+          width={headingVector.width}
+          height={headingVector.height}
+        />
       </div>
       <div class='hero-img'>
-        <Image src={hero} alt='' loading='eager' />
+        <img
+          src={hero.src}
+          alt=''
+          loading='eager'
+          width={hero.width}
+          height={hero.height}
+        />
       </div>
       <p class='heroTagline'>
         Web Monetization introduces a new way for content owners and publishers
@@ -84,12 +94,20 @@ const t = useTranslations(lang)
           <PillTag pills={publisherTags} />
         </div>
         <div class='media-cta'>
-          <Image class='inactive audience-img' alt='' src={publisherInactive} />
-          <Image
+          <img
+            class='inactive audience-img'
+            alt=''
+            src={publisherInactive.src}
+            width={publisherInactive.width}
+            height={publisherInactive.height}
+          />
+          <img
             class='active audience-img'
             alt=''
-            src={publisherActive}
+            src={publisherActive.src}
             loading='eager'
+            width={publisherActive.width}
+            height={publisherActive.height}
           />
           <a
             class='btn primary flexible'
@@ -109,12 +127,20 @@ const t = useTranslations(lang)
           <PillTag pills={supporterTags} />
         </div>
         <div class='media-cta'>
-          <Image class='inactive audience-img' alt='' src={supporterInactive} />
-          <Image
+          <img
+            class='inactive audience-img'
+            alt=''
+            src={supporterInactive.src}
+            width={supporterInactive.width}
+            height={supporterInactive.height}
+          />
+          <img
             class='active audience-img'
             alt=''
-            src={supporterActive}
+            src={supporterActive.src}
             loading='eager'
+            width={supporterActive.width}
+            height={supporterActive.height}
           />
           <a
             class='btn primary flexible'
@@ -142,12 +168,20 @@ const t = useTranslations(lang)
           >
         </div>
         <div class='developer-images'>
-          <Image class='inactive audience-img' alt='' src={developerInactive} />
-          <Image
+          <img
+            class='inactive audience-img'
+            alt=''
+            src={developerInactive.src}
+            width={developerInactive.width}
+            height={developerInactive.height}
+          />
+          <img
             class='active audience-img'
             alt=''
-            src={developerActive}
+            src={developerActive.src}
             loading='eager'
+            width={developerActive.width}
+            height={developerActive.height}
           />
         </div>
       </article>

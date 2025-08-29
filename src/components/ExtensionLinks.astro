@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets'
 import chromeWebstore from '@assets/chrome-webstore.png'
 import fxBrowserIcon from '@assets/Fx-Browser-icon.png'
 import microsoftEdge from '@assets/microsoft-edge.png'
@@ -37,21 +36,21 @@ const toURL = (url: string) => {
   <li>
     <div class='container'>
       <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
-        <Image src={chromeWebstore} alt='Chrome Web Store' />
+        <img src={chromeWebstore.src} alt='Chrome Web Store' width={chromeWebstore.width} height={chromeWebstore.height} />
       </a>
     </div>
   </li>
   <li>
     <div class='container'>
       <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
-        <Image src={fxBrowserIcon} alt='Firefox Add-ons' />
+        <img src={fxBrowserIcon.src} alt='Firefox Add-ons' width={fxBrowserIcon.width} height={fxBrowserIcon.height} />
       </a>
     </div>
   </li>
   <li>
     <div class='container'>
       <a href={toURL(URLS.edge)} title='Edge Add-ons'>
-        <Image src={microsoftEdge} alt='Edge Add-ons' />
+        <img src={microsoftEdge.src} alt='Edge Add-ons' width={microsoftEdge.width} height={microsoftEdge.height} />
       </a>
     </div>
   </li>
@@ -60,7 +59,7 @@ const toURL = (url: string) => {
       <li>
         <div class='container'>
           <a href={toURL(URLS.github)} title='Latest release on GitHub'>
-            <Image alt='Latest release on GitHub' src={githubIcon} />
+            <img alt='Latest release on GitHub' src={githubIcon.src} width={githubIcon.width} height={githubIcon.height} />
           </a>
         </div>
       </li>

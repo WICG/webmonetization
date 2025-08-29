@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import githubIcon from '@assets/icon-github.svg';
 const { plugins } = Astro.props;
 
@@ -36,10 +35,12 @@ const findStartWith = (array: any[], arg: string) => {
         </td>
         <td class="cellCenter">
           <a href={plugin.cta.href}>
-            <Image
+            <img
               alt={`Link to ${plugin.name}'s GitHub repo`}
-              src={githubIcon}
+              src={githubIcon.src}
               class="icon--github"
+              width={githubIcon.width}
+              height={githubIcon.height}
             />
           </a>
         </td>

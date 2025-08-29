@@ -1,7 +1,6 @@
 ---
 import WalletIcon from '@assets/wallet.svg'
 import type { Wallet } from '../../data/home'
-import { Image } from 'astro:assets'
 
 interface Props {
   cards: Array<Wallet>
@@ -12,7 +11,13 @@ const { cards } = Astro.props
 {
   cards.map((card) => (
     <div class='card'>
-      <Image class='cardLogo' src={card.image} alt={card.name} />
+      <img
+        class='cardLogo'
+        src={card.image.src}
+        alt={card.name}
+        width={card.image.width}
+        height={card.image.height}
+      />
       <a
         href={card.link}
         class='btn secondary flexible'

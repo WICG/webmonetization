@@ -6,8 +6,7 @@ import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import Arrow from '@assets/arrow.svg'
 import ExtensionLinks from '../components/ExtensionLinks.astro'
-import { Image } from 'astro:assets';
-import wmExtension from '@assets/wm-extension.png';
+import wmExtension from '@assets/wm-extension.png'
 
 const pills = supporterTags
 
@@ -41,7 +40,12 @@ const t = useTranslations(lang)
           started.
         </p>
         <div class='image'>
-          <Image src={wmExtension} alt='' />
+          <img
+            src={wmExtension.src}
+            alt=''
+            width={wmExtension.width}
+            height={wmExtension.height}
+          />
         </div>
         <a
           href='/supporters/get-started/'

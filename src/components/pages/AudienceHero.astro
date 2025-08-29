@@ -1,6 +1,5 @@
 ---
 import type { HeroContent, Pills } from '../../types/shared'
-import { Image } from 'astro:assets'
 
 const { content, pills } = Astro.props as { content: HeroContent; pills: Pills }
 
@@ -20,7 +19,13 @@ import PillTag from './PillTag.astro'
         <p class='hero-subtitle'>{content.heroSubtitle}</p>
       </div>
       <div class='hero-image'>
-        <Image src={content.image} alt='' loading='eager' />
+        <img
+          src={content.image.src}
+          alt=''
+          loading='eager'
+          width={content.image.width}
+          height={content.image.height}
+        />
       </div>
       <p class='hero-paragraph'>{content.heroParagraph}</p>
       <div class='hero-tags'>

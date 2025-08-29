@@ -1,6 +1,5 @@
 ---
 import type { Plugin } from '../../data/developers.ts'
-import { Image } from 'astro:assets';
 
 interface Props {
   cards: Array<Plugin>
@@ -28,10 +27,12 @@ const cardList: Plugin[] = [
       <li class='card'>
         {card.image && (
           <div class='image'>
-            <Image
+            <img
               class='cardLogo'
-              src={card.image}
+              src={card.image.src}
               alt=''
+              width={card.image.width}
+              height={card.image.height}
             />
           </div>
           <div class="decorative-line" aria-hidden="true"></div>
