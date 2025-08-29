@@ -2,32 +2,27 @@ import type { HeroContent, Pills } from '../types/shared'
 import supporterHero from "@assets/hero-supporter.svg";
 
 export const heroContent: HeroContent = {
-    heroTitle: "I want to give my support",
-    heroSubtitle: "Because great content deserves something in return",
+    heroTitle: "Support the content you love, effortlessly",
     image: supporterHero,
-    heroParagraph: "With Web Monetization, you can support publishers directly and help build a more sustainable content ecosystem. Pay only for what you consume through seamless micropayments. No long-term commitments, just access to content on your terms.",
     primaryCta: {
         href: "/supporters/get-started/",
-        text: "Get started with the Web Monetization extension",
+        text: "Install the Web Monetization Browser Extension",
         event: "Supporters page link - Extension"
     },
     secondaryCta: {
         href: "/wallets/",
-        text: "Set up a wallet or learn more",
+        text: "Set up a wallet",
         event: "Supporters page link - Wallets"
     }
 }
 export const supporterTags: Pills = [
     {
-        text: "I value the content I consume"
+        text: "Send your support straight to the source."
     },
     {
-        text: "I want to support creators directly"
+        text: "Keep your data private while making a real difference."
     },
     {
-        text: "I choose how much and who to support"
-    },
-    {
-        text: "I care about an open, fair web"
+        text: "Support freely, with any amount, across multiple currencies."
     }
 ]

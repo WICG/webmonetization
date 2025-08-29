@@ -16,7 +16,6 @@ import PillTag from './PillTag.astro'
     <div class='hero-content'>
       <div class='hero-header'>
         <h1 class='hero-title'>{content.heroTitle}</h1>
-        <p class='hero-subtitle'>{content.heroSubtitle}</p>
       </div>
       <div class='hero-image'>
         <img
@@ -27,7 +26,7 @@ import PillTag from './PillTag.astro'
           height={content.image.height}
         />
       </div>
-      <p class='hero-paragraph'>{content.heroParagraph}</p>
+      <slot />
       <div class='hero-tags'>
         <PillTag pills={pills} />
       </div>
@@ -70,10 +69,6 @@ import PillTag from './PillTag.astro'
   .hero-title {
     margin-bottom: var(--spacing-2xs);
     font: var(--font-h2);
-  }
-
-  .hero-subtitle {
-    font: var(--font-h6);
   }
 
   .hero-ctas {
@@ -123,10 +118,6 @@ import PillTag from './PillTag.astro'
 
     .hero-title {
       font: var(--font-display-1);
-    }
-
-    .hero-subtitle {
-      font: var(--font-h5);
     }
 
     .hero-tags {

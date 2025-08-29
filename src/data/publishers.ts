@@ -5,36 +5,23 @@ import toolsOverview from "@assets/tools-overview.png";
 import wordPressLogo from "@assets/wordpress.svg";
 
 export const heroContent: HeroContent = {
-    heroTitle: "I am a publisher",
-    heroSubtitle: "I want to monetize my website",
+    heroTitle: "Engagement equals income, instantly",
     image: publisherHero,
-    heroParagraph: "Web Monetization is a lightweight, privacy-preserving way to monetize your content. With its pay-as-you-browse model, you'll earn revenue based on the amount of time your visitors spend on your site. Web Monetization offers flexible, non-intrusive monetization without disrupting your existing revenue streams. It works seamlessly alongside ads, subscriptions, and memberships. All you need is a wallet address and a single line of code.",
     primaryCta: {
-        href: "/developers/get-started/",
-        text: "Monetize my website",
-        event: "Publishers page link - Monetize"
-    },
-    secondaryCta: {
         href: "/tools/",
-        text: "Get the publisher tools",
+        text: "Get to the publisher's tools",
         event: "Publishers page link - Tools"
     }
 }
 export const publisherTags: Pills = [
     {
-        text: "I own and publish digital content"
+        text: "Get paid in real time without disrupting the user experience."
     },
     {
-        text: "I want to be fairly supported"
+        text: "Give your audiences a seamless way to support you."
     },
     {
-        text: "I want to expand my reach"
-    },
-    {
-        text: "I can share revenue with collaborators"
-    },
-    {
-        text: "I can tell my audience about Web Monetization"
+        text: "Add a new revenue stream without changing your existing setup."
     }
 ]
 export const walletConnectionContent: ContentSection = {
@@ -42,14 +29,14 @@ export const walletConnectionContent: ContentSection = {
     imgMetaData: {
         position: "right"
     },
-    title: "Web monetize your pages",
+    title: "Connect your website to your wallet and earn in real time",
     primaryCta: {
-        text: "Use the link tag generator",
+        text: "Generate your link and start earning",
         href: "/tools/link-tag/",
         event: "Publishers page - Link tag generator"
     },
     secondaryCta: {
-        text: "Show me the documentation",
+        text: "See the documentation",
         href: "/developers/overview/",
         event: "Publishers page - Developer docs"
     }
@@ -59,14 +46,14 @@ export const toolsContent: ContentSection = {
     imgMetaData: {
         position: "left"
     },
-    title: "Tell your visitors you support Web Monetization",
+    title: "Tell your audience about Web Monetization",
     primaryCta: {
-        text: "Use our publisher tools",
+        text: "Browse the tools",
         href: "/tools/",
         event: "Publishers page - Tools page"
     },
     secondaryCta: {
-        text: "Show me the documentation",
+        text: "See the documentation",
         href: "/developers/tools/",
         event: "Publishers page - Developer tools docs"
     }
@@ -77,14 +64,14 @@ export const wordPressPluginContent: ContentSection = {
         position: "right",
         padding: "20px 40px"
     },
-    title: "Web monetize your WordPress site",
+    title: "Add Web Monetization to WordPress. Fast, Free, Private.",
     primaryCta: {
-        text: "Use the WordPress plugin",
+        text: "Get the WordPress plugin",
         href: "",
         event: "Publishers page - WP plugin"
     },
     secondaryCta: {
-        text: "Show me the documentation",
+        text: "See the documentation",
         href: "/developers/overview/",
         event: "Publishers page - Developer docs"
     }

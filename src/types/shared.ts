@@ -19,10 +19,8 @@ export interface UpdateContent {
 }
 
 export interface HeroContent {
-  heroTitle: string
-  heroSubtitle: string,
+  heroTitle: string,
   image: ImageMetadata,
-  heroParagraph: string,
   primaryCta: CTA,
   secondaryCta?: CTA
 }

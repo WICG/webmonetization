@@ -18,27 +18,34 @@ const t = useTranslations(lang)
   title={t('pages.supporters.title')}
   description={t('pages.supporters.description')}
 >
-  <AudienceHero content={heroContent} pills={pills} />
+  <AudienceHero content={heroContent} pills={pills}>
+    <p>
+      With Web Monetization, your support fuels a better internet. Support
+      publishers directly by streaming micropayments. Pay only for what you
+      value and help create a more open, sustainable content ecosystem, one
+      second at a time. No tracking, no strings attached.
+    </p>
+  </AudienceHero>
   <HowItWorks>
     <p>
-      To support Web Monetized sites, all you need is a compatible digital
-      wallet and the Web Monetization browser extension. Once set up, you can
-      make continuous payments in real time or one time payments to the websites
-      you enjoy, directly from your browser, privately, effortlessly, and on
-      your own terms.
+      To support web monetized sites, all you need is a compatible wallet and
+      the Web Monetization browser extension. Once set up, you can send
+      micropayments while you browse, directly, privately, and on your own
+      terms.
     </p>
   </HowItWorks>
   <section class='section'>
     <div class='contentWrapper'>
       <div class='content'>
         <h2 class='header'>Web Monetization extension</h2>
-        <p class='text'>
-          The Web Monetization browser extension makes it easy to support your
-          favorite sites with real-time, privacy-friendly micropayments. Pay
-          only for what you consume and directly support the publishers you
-          value. All you need is a compatible wallet and a quick setup to get
-          started.
-        </p>
+        <ol class='text'>
+          <li>
+            Sign up with a compatible wallet provider to get a wallet address.
+          </li>
+          <li>Install the extension from Chrome, Firefox, or Edge.</li>
+          <li>Connect your wallet in the extension and set your budget.</li>
+          <li>Browse web-monetized sites and stream support automatically.</li>
+        </ol>
         <div class='image'>
           <img
             src={wmExtension.src}
@@ -52,7 +59,7 @@ const t = useTranslations(lang)
           class='btn secondary flexible'
           data-umami-event='Supporters page link - supporter docs'
         >
-          Get started
+          Here's how to get started
           <Arrow class='arrow' />
         </a>
       </div>
@@ -61,7 +68,7 @@ const t = useTranslations(lang)
   <section class='section'>
     <div class='contentWrapper'>
       <div class='extension'>
-        <h2 class='header'>Get the extension</h2>
+        <h2 class='header'>Support content with the web extensions</h2>
         <ExtensionLinks
           includeGitHub
           utm={{ utm_campaign: 'supporters_landing_page' }}

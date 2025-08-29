@@ -7,27 +7,23 @@ import reactPlugin from "@assets/logo-plugin-react.svg";
 import evelentyPlugin from "@assets/logo-plugin-11ty.png";
 
 export interface Plugin {
-    name?: string,
+    name: string,
     image?: ImageMetadata,
     cta: {
         href: string
         event?: string
         text?: string
-        primary?: boolean
-        external?: boolean
     },
     desc: string,
-    version?: string[]
+    version: string[]
 }
 
 export const heroContent: HeroContent = {
-    heroTitle: "I am a developer",
-    heroSubtitle: "I want to help shape the future of the web",
+    heroTitle: "Pay the web forward",
     image: developerHero,
-    heroParagraph: "Whether you're building plugins, extensions, or libraries,  your contributions can make open, sustainable monetization a reality.",
     primaryCta: {
         href: "/developers/interfaces/",
-        text: "Read the technical documentation",
+        text: "Read more of the technical documentation",
         event: "Developers page link - WM API"
     }
 }
@@ -37,9 +33,9 @@ export const playgroundContent: ContentSection = {
     imgMetaData: {
         position: "left"
     },
-    title: "Web Monetization Playground",
+    title: "Developer's Playground",
     primaryCta: {
-        text: "Try the playground",
+        text: "Try the Playground",
         href: "/play/",
         event: "Developers page - Playground"
     }
@@ -62,16 +58,16 @@ export const blog: UpdateContent = {
 
 export const developerTags: Pills = [
     {
-        text: "I build tools for publishers"
+        text: "Advance open standards."
     },
     {
-        text: "I can improve the extension or plugins"
+        text: "Collaborate with the community."
     },
     {
-        text: "I care about open standards"
+        text: "Improve extensions and plugins."
     },
     {
-        text: "I want to collaborate with the community"
+        text: "Build tools that empower publishers."
     }
 ]
 
@@ -83,7 +79,6 @@ export const plugins: Plugin[] = [
             href: "https://github.com/devcer/astro-monetization",
             text: "Find out more",
             event: "Developers page - Astro Monetization plugin",
-            primary: false
         },
         desc: "This Astro component simplifies the process of adding monetization links to your Astro sites.",
         version: [
@@ -97,8 +92,6 @@ export const plugins: Plugin[] = [
             href: "https://github.com/guidovizoso/react-monetize",
             text: "Find out more",
             event: "Developers page - react-monetize plugin",
-            primary: false,
-            external: true
         },
         desc: "Helpers and hooks to speed up your integration with Web Monetization API",
         version: [
@@ -113,8 +106,6 @@ export const plugins: Plugin[] = [
             href: "https://github.com/devcer/eleventy-plugin-monetization",
             text: "Find out more",
             event: "Developers page - Monetize 11ty plugin",
-            primary: false,
-            external: true
         },
         desc: "An Eleventy plugin to monetize posts and site content by creating exclusive content areas",
         version: [

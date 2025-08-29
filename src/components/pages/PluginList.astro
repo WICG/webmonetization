@@ -6,19 +6,7 @@ interface Props {
 }
 const { cards } = Astro.props
 
-const cardList: Plugin[] = [
-    ...cards.slice(0, 3),
-    {
-      "cta" : {
-        "href": "/developers/libraries/",
-        "text": "See the full list",
-        "event": "Developers page - Full plugin list",
-        "primary": true,
-        "external": false
-      },
-      "desc": "Accelerate your integration with a growing set of libraries and plugins designed to simplify Web Monetization. Whether you're building a website, a plugin, or a browser extension, these tools help you implement payment flows, manage wallet logic, and connect to the ecosystem faster so you can focus on building great experiences."
-    }
-]
+const cardList: Plugin[] = [...cards.slice(0, 3)]
 ---
 
 <ul class='cards'>
@@ -42,10 +30,10 @@ const cardList: Plugin[] = [
           <p class='desc'>{card.desc}</p>
           <a
             href={card.cta.href}
-            class:list={['btn flexible', card.cta.primary ? 'primary' : 'secondary']}
+            class='btn flexible secondary'
             data-umami-event={card.cta.event}
-            target={card.cta.external ? '_blank' : undefined}
-            rel={card.cta.external ? 'noreferrer noopener' : undefined}
+            target='_blank'
+            rel='noreferrer noopener'
         >
             {card.cta.text}
         </a>
@@ -53,6 +41,19 @@ const cardList: Plugin[] = [
       </li>
     ))
   }
+  <li class='card'>
+    <div class='cardContent'>
+      <a
+        href='/developers/libraries/'
+        class='btn flexible primary'
+        data-umami-event='Developers page - Full plugin list'
+        target='_blank'
+        rel='noreferrer noopener'
+      >
+        See the full list
+      </a>
+    </div>
+  </li>
 </ul>
 
 <style>

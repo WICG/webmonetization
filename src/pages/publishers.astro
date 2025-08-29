@@ -20,44 +20,48 @@ const t = useTranslations(lang)
   title={t('pages.publishers.title')}
   description={t('pages.publishers.description')}
 >
-  <AudienceHero content={heroContent} pills={publisherTags} />
+  <AudienceHero content={heroContent} pills={publisherTags}>
+    <p>
+      Earn money every second someone spends on your content. Our
+      pay-as-you-browse model turns attention into direct, automatic payments.
+      Web Monetization is fast, secure, private, and integrates seamlessly with
+      your current setup.
+    </p>
+    <p>All it takes is a wallet address and a single line of code.</p>
+  </AudienceHero>
   <HowItWorks>
     <p>
-      To receive Web Monetization payments, you’ll need an account with a
-      compatible digital wallet provider. Once you have your wallet address, use
-      the <a
+      To get paid, you'll just need an account with a compatible wallet. Once
+      you have your wallet address, use the <a
         href='/tools/link-tag/'
         data-umami-event='Publisher page link - Link tag generator'
         >link generator</a
       > tool to create a Web Monetization <code>&lt;link&gt;</code> element and add
-      it to each page you want to monetize. Visitors with the Web Monetization browser
-      extension can then stream payments to you at a rate and frequency they choose.
+      it to each page you want to monetize. Supporters with the Web Monetization
+      browser extension can then stream payments to you at a rate and frequency they
+      choose, or send you one-time support.
     </p>
   </HowItWorks>
   <SplitLayout content={walletConnectionContent}>
     <p>
-      Encourage your visitors to support you through Web Monetization. Add
-      visually appealing and user-friendly elements to your site to get the word
-      out. No coding skills needed.
-    </p>
-    <p>
-      Promote Web Monetization as a model for users to support your website!
+      Monetizing your website has never been easier. Use your wallet address
+      with the link tag generator to create a <code>&lt;link&gt;</code> element and
+      add it to each page you want to monetize.
     </p>
   </SplitLayout>
   <SplitLayout content={toolsContent}>
     <p>
-      Monetizing your website is simple and requires just one line of code. Use
-      your wallet address with the link tag generator to create a <code
-        >&lt;link&gt;</code
-      > element, then add it to the pages you want to monetize.
+      Let your audience know they can finally support you directly and on their
+      terms. Use our custom-made tools to signal it. They're user-friendly,
+      visually appealing, and require no coding.
     </p>
   </SplitLayout>
   <SplitLayout content={wordPressPluginContent}>
     <p>
-      Get started with Web Monetization on WordPress using our new WordPress
-      plugin, built to help you earn while keeping your content open and your
-      audience’s privacy intact. Add a wallet address, choose what to monetize,
-      and you’re ready in minutes. No coding needed, just one simple plugin!
+      Start earning from your WordPress content using our new Web Monetization
+      plugin, built for an open web experience with no paywalls and no hassle.
+      Just add your wallet, pick what to monetize, and you're ready to collect
+      in minutes. One simple plugin. No coding needed. Privacy respected.
     </p>
   </SplitLayout>
 </Base>
