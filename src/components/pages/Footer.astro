@@ -158,14 +158,29 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
       </a>
     </div>
     <small class='copyright'>
-      <a href='https://www.w3.org/policies/#copyright'>Copyright</a> © {
-        new Date().getFullYear()
-      } the Contributors to the Web Monetization Specification, published by the
-      <a href='https://www.w3.org/community/wicg/'
-        >Web Platform Incubator Community Group</a
-      > under the <a href='https://www.w3.org/community/about/process/cla/'
-        >W3C Community Contributor License Agreement (CLA)</a
-      >. A human-readable summary is available.
+      <a
+        href='https://www.w3.org/policies/#copyright'
+        data-umami-event='Footer - Copyright'
+        rel='noopener noreferrer'
+        target='_blank'>Copyright</a
+      > © {new Date().getFullYear()} the Contributors to the Web Monetization Specification,
+      published by the
+      <a
+        href='https://www.w3.org/community/wicg/'
+        data-umami-event='Footer - Web Platform Incubator Community Group'
+        rel='noopener noreferrer'
+        target='_blank'>Web Platform Incubator Community Group</a
+      > under the <a
+        href='https://www.w3.org/community/about/process/cla/'
+        data-umami-event='Footer - W3C Community CLA'
+        rel='noopener noreferrer'
+        target='_blank'>W3C Community Contributor License Agreement (CLA)</a
+      >. A human-readable <a
+        href='https://www.w3.org/community/about/process/cla-deed/'
+        data-umami-event='Footer - Summary CLA'
+        rel='noopener noreferrer'
+        target='_blank'>summary</a
+      > is available.
     </small>
   </div>
 </footer>
@@ -271,7 +286,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
   }
 
   .copyright {
-    justify-self: center;
+    margin: auto;
     max-width: 60em;
   }
 
