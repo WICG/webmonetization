@@ -32,23 +32,6 @@ export const wallets: Wallet[] = [
 
 export const updates: UpdateContent[] = [
   {
-    image: wmLaunch,
-    title: "Announcing the Interledger Foundation’s Web Monetization Extension Beta Release",
-    subtitles: {
-      date: "24 Mar 2025",
-      author: "Rabeb Othmani"
-    },
-    paragraphs: [
-      "As the digital content economy grows, content creators, publishers, and users alike are looking for more flexible, intuitive ways to connect and transact.",
-      "While ads, subscriptions, and paywalls remain essential tools, the future is about expanding possibilities and empowering choice."
-    ],
-    cta: {
-      text: "Read the full article",
-      href: "https://interledger.org/news/announcing-interledger-foundations-web-monetization-extension-beta-release",
-      event: "Home page - Update Announcing WM extension"
-    }
-  },
-  {
     image: wmSummit,
     title: "Interledger Summit - Mexico City",
     subtitles: {
@@ -78,6 +61,23 @@ export const updates: UpdateContent[] = [
       text: "Learn more about the hackathon",
       href: "https://interledger.org/summit/hackathon",
       event: "Home page - Update Hackathon"
+    }
+  },
+  {
+    image: wmLaunch,
+    title: "Announcing the Interledger Foundation’s Web Monetization Extension Beta Release",
+    subtitles: {
+      date: "24 Mar 2025",
+      author: "Rabeb Othmani"
+    },
+    paragraphs: [
+      "As the digital content economy grows, content creators, publishers, and users alike are looking for more flexible, intuitive ways to connect and transact.",
+      "While ads, subscriptions, and paywalls remain essential tools, the future is about expanding possibilities and empowering choice."
+    ],
+    cta: {
+      text: "Read the full article",
+      href: "https://interledger.org/news/announcing-interledger-foundations-web-monetization-extension-beta-release",
+      event: "Home page - Update Announcing WM extension"
     }
   }
 ]
