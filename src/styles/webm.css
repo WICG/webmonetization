@@ -25,7 +25,7 @@
   --spacing-2xl: 2rem;
   --spacing-3xl: 3rem;
   --spacing-4xl: 3.75rem;
-  --spacing-5xl: 7.5rem;
+  --spacing-5xl: 10rem;
 
   --icon-size-nav-home-md: 2.75rem;
 
@@ -503,7 +503,7 @@ tbody tr:last-of-type td:last-child {
 
 @media screen and (max-width: 767px) {
   .section {
-    padding-block-start: var(--spacing-3xl);
+    padding-block-start: var(--spacing-4xl);
   }
 
   .section.hero {
