@@ -14,7 +14,10 @@ const { content } = Astro.props
       <slot />
       <div class='diagram-container'>
         <picture>
-          <source srcset={content.imageVertical.src} media='(max-width: 767px)' />
+          <source
+            srcset={content.imageVertical.src}
+            media='(max-width: 767px)'
+          />
           <img
             alt={content.alt}
             src={content.imageHorizontal.src}
@@ -35,7 +38,20 @@ const { content } = Astro.props
   }
 
   .how-it-works .diagram-container {
-    aspect-ratio: 1248/280;
+    aspect-ratio: 1248/260;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    max-height: 40rem;
+  }
+
+  .how-it-works .diagram-container img {
+    height: auto;
+    width: 100%;
+    display: block;
+    max-height: 100%;
   }
 
   @media screen and (max-width: 767px) {
@@ -44,10 +60,7 @@ const { content } = Astro.props
     }
 
     .how-it-works .diagram-container {
-      width: 100%;
-      align-self: center;
-      aspect-ratio: 343/648;
-      max-width: 30rem;
+      aspect-ratio: 200/648;
     }
   }
 </style>
