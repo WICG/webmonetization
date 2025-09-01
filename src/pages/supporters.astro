@@ -86,11 +86,19 @@ const t = useTranslations(lang)
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
-    align-items: center;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: var(--padding-lg);
+    gap: var(--spacing-lg);
   }
 
   .image {
-    justify-content: center;
+    justify-self: center;
+    align-self: center;
     display: flex;
     width: 100%;
     max-width: 25rem;
@@ -123,7 +131,7 @@ const t = useTranslations(lang)
   @media screen and (min-width: 768px) {
     .content {
       display: grid;
-      column-gap: var(--spacing-5xl);
+      column-gap: var(--spacing-3xl);
       grid-template-columns: 1fr 2fr;
       align-items: flex-end;
     }
