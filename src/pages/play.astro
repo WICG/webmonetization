@@ -13,6 +13,7 @@ const description = t('site.description')
   <section class='section'>
     <div class='contentWrapper'>
       <ToolsHeader headingText='Web Monetization Playground' pageTitle='Playground'/>
+      <p class='text'>The Web Monetization Playground is an interactive environment that shows how Web Monetization works under the hood. Add a wallet address or payment pointer and watch events and payment flows unfold in real time.</p>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
@@ -33,7 +34,7 @@ const description = t('site.description')
           >
             Add monetization link
           </button>
-          <p>Checking if your browser supports Web Monetization...</p>
+          <p id='notice'>Checking if your browser supports Web Monetization...</p>
         </form>
       </div>
     </div>
@@ -45,6 +46,10 @@ const description = t('site.description')
 
 <style>
 
+p.text {
+  padding-inline: var(--padding-md);
+  margin-bottom: var(--spacing-3xl);
+}
   .link-events {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -144,6 +149,10 @@ const description = t('site.description')
   }
 
   @media screen and (max-width: 767px) {
+
+    p.text {
+      margin-bottom: var(--spacing-lg);
+    }
     .link-events {
       & div[data-wallet-address] {
         & .log-header {
@@ -156,7 +165,7 @@ const description = t('site.description')
 
 <script>
   const form = document.querySelector('#walletAddressForm') as HTMLFormElement
-  const notice = document.querySelector('p') as HTMLParagraphElement
+  const notice = document.querySelector('#notice') as HTMLParagraphElement
   const input = form.querySelector('input') as HTMLInputElement
   const submitButton = form.querySelector('button') as HTMLButtonElement
   const linkEvents = document.querySelector('#link-events') as HTMLDivElement
