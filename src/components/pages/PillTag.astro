@@ -1,5 +1,6 @@
 ---
 import type { Pills } from '../../types/shared'
+import Star from '../../assets/star.svg'
 
 interface Props {
   pills: Pills
@@ -8,13 +9,21 @@ const { pills } = Astro.props
 ---
 
 <ul class='pills'>
-  {pills.map((pill) => <li class='pill-tag'>{pill.text}</li>)}
+  {
+    pills.map((pill) => (
+      <li class='pill-tag'>
+        <Star class='bullet-point' />
+        <p>{pill.text}</p>
+      </li>
+    ))
+  }
 </ul>
 
 <style>
   .pills {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--spacing-xs);
     max-width: 100%;
     list-style-type: none;
     padding: 0;
@@ -22,12 +31,24 @@ const { pills } = Astro.props
   }
 
   .pill-tag {
-    border: 1px solid var(--pill-border-color);
+    background-color: var(--color-white);
     border-radius: var(--pill-rounding);
-    margin-right: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
     color: var(--pill-text-color);
     font: var(--font-small-regular);
-    padding: var(--padding-2xs) var(--padding-sm);
+    padding: var(--padding-md);
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  .bullet-point {
+    width: 0.875rem;
+    height: 0.875rem;
+    margin-top: var(--spacing-2xs);
+  }
+
+  @media screen and (max-width: 767px) {
+    .pill-tag {
+      width: 100%;
+    }
   }
 </style>
