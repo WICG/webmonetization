@@ -1,5 +1,7 @@
-import type { HeroContent, Pills } from '../types/shared'
+import type { HeroContent, Pills, HowItWorks } from '../types/shared'
 import supporterHero from "@assets/hero-supporter.svg";
+import howItWorksHorizontal from "@assets/how-it-works-supporters-horizontal.png"
+import howItWorksVertical from "@assets/how-it-works-supporters-vertical.png"
 
 export const heroContent: HeroContent = {
     heroTitle: "Support the content you love, effortlessly",
@@ -26,3 +28,9 @@ export const supporterTags: Pills = [
         text: "Support freely, with any amount, across multiple currencies."
     }
 ]
+
+export const HowItWorksSupporters: HowItWorks = {
+    imageHorizontal: howItWorksHorizontal,
+    imageVertical: howItWorksVertical,
+    alt: 'Diagram showing the flow of a Web Monetization payment: from content supporter through their digital wallet, as directed by the Web Monetization extension, to the publisher’s wallet, and finally to the publisher.',
+}

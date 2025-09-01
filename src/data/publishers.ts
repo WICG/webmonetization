@@ -1,8 +1,10 @@
-import type { ContentSection, HeroContent, Pills } from '../types/shared'
+import type { ContentSection, HeroContent, Pills, HowItWorks } from '../types/shared'
 import publisherHero from "@assets/hero-publisher.svg";
 import linkTagGenerator from "@assets/link-tag-generator.svg";
 import toolsOverview from "@assets/tools-overview.png";
 import wordPressLogo from "@assets/wordpress.svg";
+import howItWorksHorizontal from "@assets/how-it works-publishers-horizontal.png"
+import howItWorksVertical from "@assets/how-it-works-publishers-vertical.png"
 
 export const heroContent: HeroContent = {
     heroTitle: "Engagement equals income, instantly",
@@ -75,4 +77,10 @@ export const wordPressPluginContent: ContentSection = {
         href: "/developers/overview/",
         event: "Publishers page - Developer docs"
     }
+}
+
+export const HowItWorksPublishers: HowItWorks = {
+    imageHorizontal: howItWorksHorizontal,
+    imageVertical: howItWorksVertical,
+    alt: 'Diagram showing the flow of a Web Monetization payment: from content consumer through their digital wallet, as directed by the Web Monetization extension, to the publisher’s wallet, and finally to the publisher.',
 }

@@ -1,7 +1,10 @@
 ---
-import howItWorksVertical from '@assets/how-it-works-vertical.svg';
-import howItWorksHorizontal from '@assets/how-it-works-horizontal.svg';
+import type { HowItWorks } from '../../types/shared.ts'
+interface Props {
+  content: HowItWorks
+}
 
+const { content } = Astro.props
 ---
 
 <section class='section'>
@@ -11,13 +14,10 @@ import howItWorksHorizontal from '@assets/how-it-works-horizontal.svg';
       <slot />
       <div class='diagram-container'>
         <picture>
-          <source
-            srcset={howItWorksVertical.src}
-            media='(max-width: 767px)'
-          />
+          <source srcset={content.imageVertical.src} media='(max-width: 767px)' />
           <img
-            alt='Diagram showing the flow of a Web Monetization payment: from content consumer to their digital wallet, to the Web Monetization extension, to the publisher’s wallet, and finally to the publisher.'
-            src={howItWorksHorizontal.src}
+            alt={content.alt}
+            src={content.imageHorizontal.src}
             loading='lazy'
           />
         </picture>

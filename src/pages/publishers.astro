@@ -12,6 +12,8 @@ import AudienceHero from '../components/pages/AudienceHero.astro'
 import HowItWorks from '../components/pages/HowItWorks.astro'
 import SplitLayout from '../components/pages/SplitLayout.astro'
 
+import { HowItWorksPublishers } from '../data/publishers.ts'
+
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
@@ -29,7 +31,7 @@ const t = useTranslations(lang)
     </p>
     <p>All it takes is a wallet address and a single line of code.</p>
   </AudienceHero>
-  <HowItWorks>
+  <HowItWorks content={HowItWorksPublishers}>
     <p>
       To get paid, you'll just need an account with a compatible wallet. Once
       you have your wallet address, use the <a

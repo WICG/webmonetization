@@ -1,3 +1,5 @@
+import type { ImageMetadata } from "astro"
+
 export interface CTA {
   text: string
   href: string
@@ -36,4 +38,10 @@ export interface ContentSection {
   title: string,
   primaryCta: CTA,
   secondaryCta?: CTA
+}
+
+export interface HowItWorks {
+  imageHorizontal: ImageMetadata,
+  imageVertical: ImageMetadata,
+  alt: string,
 }

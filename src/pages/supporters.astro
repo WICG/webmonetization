@@ -9,6 +9,7 @@ import ExtensionLinks from '../components/ExtensionLinks.astro'
 import wmExtension from '@assets/wm-extension.png'
 
 const pills = supporterTags
+import { HowItWorksSupporters } from '../data/supporters.ts'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -26,7 +27,7 @@ const t = useTranslations(lang)
       second at a time. No tracking, no strings attached.
     </p>
   </AudienceHero>
-  <HowItWorks>
+  <HowItWorks content={HowItWorksSupporters}>
     <p>
       To support web monetized sites, all you need is a compatible wallet and
       the Web Monetization browser extension. Once set up, you can send
