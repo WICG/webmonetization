@@ -59,13 +59,18 @@ const t = useTranslations(lang)
     display: none;
   }
 
-  .plugins h2 {
-    margin-bottom: var(--spacing-2xl);
+  .plugins .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
   }
 
   @media screen and (max-width: 767px) {
-    .plugins h2 {
-      margin-bottom: var(--spacing-lg);
+    .plugins .contentWrapper {
+    gap: var(--spacing-lg);
+  }
+
+  .plugins h2 {
       font: var(--font-h3);
     }
   }

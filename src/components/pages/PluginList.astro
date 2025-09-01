@@ -78,7 +78,6 @@ const cardList: Plugin[] = [...cards.slice(0, 3)]
 
   li.card:last-child {
     background-color: transparent;
-    border: none;
   }
 
   li.card:last-child .desc {
@@ -149,6 +148,10 @@ const cardList: Plugin[] = [...cards.slice(0, 3)]
 
     li.card:last-child {
       background-color: transparent;
+    }
+
+    li.card:last-child .cardContent {
+      width: 100%;
     }
 
     .card h3 {
