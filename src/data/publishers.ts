@@ -8,7 +8,7 @@ import howItWorksVertical from "@assets/how-it-works-publishers-vertical.png"
 import heroVideo from "@assets/animations/hero-publisher.mp4";
 
 export const heroContent: HeroContent = {
-    heroTitle: "Engagement equals income, instantly",
+    heroTitle: "Engagement equals income, <strong>instantly</strong>",
     posterImage: heroPoster,
     videoSrc: heroVideo,
     primaryCta: {

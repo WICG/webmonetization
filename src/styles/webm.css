@@ -482,10 +482,6 @@ tbody tr:last-of-type td:last-child {
   padding-block-start: var(--spacing-5xl);
 }
 
-.section:first-of-type {
-  padding-block-start: 10rem;
-}
-
 .section:last-of-type {
   padding-block-end: 3.75rem;
 }

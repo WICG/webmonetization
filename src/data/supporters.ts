@@ -5,7 +5,7 @@ import howItWorksVertical from "@assets/how-it-works-supporters-vertical.png"
 import heroVideo from "@assets/animations/hero-supporter.mp4";
 
 export const heroContent: HeroContent = {
-    heroTitle: "Support the content you love, effortlessly",
+    heroTitle: "Support the content you love, <strong>effortlessly</strong>",
     posterImage: heroPoster,
     videoSrc: heroVideo,
     primaryCta: {

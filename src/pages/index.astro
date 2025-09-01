@@ -8,7 +8,6 @@ import { developerTags } from '../data/developers.ts'
 import WalletList from '../components/pages/WalletList.astro'
 import PillTag from '../components/pages/PillTag.astro'
 import UpdatesSection from '../components/pages/UpdatesSection.astro'
-import headingVector from '@assets/wm-heading-vector.svg'
 import hero from '@assets/hero-img.svg'
 import publisherInactive from '@assets/audience-publisher.png'
 import publisherActive from '@assets/animations/audience-publisher.mp4'
@@ -31,28 +30,25 @@ const t = useTranslations(lang)
 >
   <section class='section hero'>
     <div class='contentWrapper'>
-      <div class='heading-wrapper'>
-        <h1>Revolutionizing the digital content economy</h1>
-        <img
-          alt=''
-          src={headingVector.src}
-          width={headingVector.width}
-          height={headingVector.height}
-        />
+      <div class='hero-content'>
+        <div class='heading-wrapper'>
+          <h1>Revolutionizing the digital content economy</h1>
+          <p class='heroTagline'>
+            Web Monetization connects publishers, creators and their audiences,
+            turning engagement into revenue. No friction, no barriers, no
+            limits.
+          </p>
+        </div>
+        <div class='hero-img'>
+          <img
+            src={hero.src}
+            alt=''
+            loading='eager'
+            width={hero.width}
+            height={hero.height}
+          />
+        </div>
       </div>
-      <div class='hero-img'>
-        <img
-          src={hero.src}
-          alt=''
-          loading='eager'
-          width={hero.width}
-          height={hero.height}
-        />
-      </div>
-      <p class='heroTagline'>
-        Web Monetization connects publishers, creators and their audiences,
-        turning engagement into revenue. No friction, no barriers, no limits.
-      </p>
     </div>
   </section>
   <section class='section'>
@@ -216,32 +212,27 @@ const t = useTranslations(lang)
 </Base>
 
 <style>
-  .section.hero {
-    text-align: center;
+  .hero-content {
+    display: flex;
+    gap: var(--spacing-4xl);
   }
+
   .heading-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-2xl);
+    justify-content: space-around;
   }
 
   .heading-wrapper h1 {
     margin: 0;
-  }
-
-  .heading-wrapper img {
-    width: 75%;
-    max-width: 25rem;
-    margin-top: 0.5rem;
-    height: auto;
+    font: var(--font-display-2);
   }
 
   .hero-img {
     width: 100%;
     max-height: 50vh;
     max-width: 80vw;
-    margin-bottom: var(--spacing-lg);
     display: flex;
   }
 
@@ -429,15 +420,22 @@ const t = useTranslations(lang)
   }
 
   @media screen and (max-width: 767px) {
+    .section.hero {
+      text-align: center;
+    }
+    .hero-content {
+      flex-direction: column;
+      gap: var(--spacing-2xl);
+    }
+
+    .heading-wrapper h1 {
+      font: var(--font-h2);
+    }
     .section.audienceSection {
       margin-inline: 0;
     }
     .audience-card h2 {
       margin-bottom: var(--spacing-2xs);
-    }
-
-    .heading-wrapper img {
-      max-width: 16rem;
     }
 
     .heroTagline {

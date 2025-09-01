@@ -15,7 +15,7 @@ import PillTag from './PillTag.astro'
   <div class='contentWrapper'>
     <div class='hero-content'>
       <div class='hero-header'>
-        <h1 class='hero-title'>{content.heroTitle}</h1>
+        <h1 class='hero-title' set:html={content.heroTitle} />
       </div>
       <div class='hero-image'>
         <video
@@ -126,7 +126,7 @@ import PillTag from './PillTag.astro'
     }
 
     .hero-title {
-      font: var(--font-display-1);
+      font: var(--font-display-2);
     }
 
     .hero-tags {

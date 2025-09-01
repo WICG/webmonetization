@@ -20,7 +20,7 @@ export interface Plugin {
 }
 
 export const heroContent: HeroContent = {
-    heroTitle: "Pay the web forward",
+    heroTitle: "Pay the web <strong>forward</strong>",
     posterImage: heroPoster,
     videoSrc: heroVideo,
     primaryCta: {
