@@ -24,7 +24,11 @@ const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<Base title={t('site.title')} description={t('site.description')} homePage={true}>
+<Base
+  title={t('site.title')}
+  description={t('site.description')}
+  homePage={true}
+>
   <section class='section hero'>
     <div class='contentWrapper'>
       <div class='heading-wrapper'>
@@ -70,16 +74,8 @@ const t = useTranslations(lang)
             enables real-time wallet-to-wallet transfers through its
             free-to-use, frictionless model.
           </p>
-          <p>No friction, no barriers, no limits.</p>
+          <p class='font-h5'>No friction, no barriers, no limits.</p>
           <h2 class='font-h3'>Compatible wallets</h2>
-          <strong>More wallet providers coming soon!</strong>
-          <a
-            href='https://github.com/WICG/webmonetization/pulls'
-            target='_blank'
-            rel='noreferrer noopener'
-            data-umami-event='Home page link - GitHub PR'
-            class='bold'>Do you know other wallets? Make a PR</a
-          >
         </div>
         {
           wallets.length > 0 && (
@@ -88,6 +84,13 @@ const t = useTranslations(lang)
             </div>
           )
         }
+        <a
+          href='https://github.com/WICG/webmonetization/pulls'
+          target='_blank'
+          rel='noreferrer noopener'
+          data-umami-event='Home page link - GitHub PR'
+          class='bold'>Do you know other wallets? Make a PR</a
+        >
       </div>
     </div>
   </section>
@@ -108,7 +111,7 @@ const t = useTranslations(lang)
             height={publisherInactive.height}
           />
           <video
-           class='active audience-video'
+            class='active audience-video'
             preload='metadata'
             poster={publisherPoster.src}
             width={publisherPoster.width}
@@ -147,7 +150,7 @@ const t = useTranslations(lang)
             height={supporterInactive.height}
           />
           <video
-           class='active audience-video'
+            class='active audience-video'
             preload='metadata'
             poster={supporterPoster.src}
             width={supporterPoster.width}
@@ -191,7 +194,7 @@ const t = useTranslations(lang)
             height={developerInactive.height}
           />
           <video
-           class='active audience-video'
+            class='active audience-video'
             preload='metadata'
             poster={developerPoster.src}
             width={developerPoster.width}
@@ -261,8 +264,8 @@ const t = useTranslations(lang)
     padding: var(--spacing-md);
     background: var(--color-white);
     border-radius: var(--pill-rounding);
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
+    flex-direction: column;
     gap: var(--spacing-2xl);
   }
 
@@ -271,7 +274,10 @@ const t = useTranslations(lang)
     gap: var(--spacing-md);
     flex-direction: column;
     align-items: flex-start;
-    flex: 10 1 20rem;
+  }
+
+  p.font-h5 {
+    color: var(--helper-text-default);
   }
 
   .wallet-info a svg {
@@ -282,10 +288,9 @@ const t = useTranslations(lang)
 
   .cards {
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    align-items: flex-end;
-    flex: 1 1 20rem;
+    gap: var(--spacing-4xl);
+    justify-content: space-around;
+    align-items: center;
   }
 
   .audienceSection {
@@ -339,7 +344,8 @@ const t = useTranslations(lang)
     width: 100%;
   }
 
-  .audience-img, .audience-video {
+  .audience-img,
+  .audience-video {
     max-width: 30vw;
     height: auto;
     object-fit: contain;
@@ -438,10 +444,6 @@ const t = useTranslations(lang)
       margin-bottom: 0;
     }
 
-    .wallet-info {
-      grid-template-columns: 1fr;
-    }
-
     .wallet-info .wallet-content {
       flex: 1 1 auto;
     }
@@ -449,6 +451,12 @@ const t = useTranslations(lang)
     .cards {
       flex: 1 1 auto;
       align-items: stretch;
+      flex-direction: column;
+    }
+
+    a.bold {
+      text-align: center;
+      width: 100%;
     }
 
     .audience-grid {

@@ -37,13 +37,15 @@ const { cards } = Astro.props
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: var(--pill-rounding);
-    padding: var(--padding-md);
     gap: var(--spacing-md);
-    border: 1px solid var(--border-color);
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1 1 0;
   }
+
+  .card a {
+    width: 100%;
+  }
+
   .card a svg {
     width: 1.25rem;
     height: 1.25rem;

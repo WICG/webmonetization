@@ -110,6 +110,7 @@
 
   --default-font-color: var(--color-silver-950);
   --inactive-font-color: var(--color-silver-800);
+  --helper-text-default: var(--color-silver-800);
 
   --button-primary-color: var(--color-white);
   --button-primary-bg: var(--color-black);
@@ -141,7 +142,6 @@
   --background-color: #F6F8FA;
 
   /* Tools styling colors */
-  --helper-text-default: var(--color-silver-800);
   --button-tools-primary-color: var(--color-green-300);
   --button-tools-primary-hover-color: var(--color-green-600);
   --paragraph-success: var(--color-green-600);
@@ -260,7 +260,7 @@ p.small-bold {
   font: var(--font-small-bold);
 }
 
-p.bold {
+p.bold, a.bold {
   font: var(--font-standard-bold);
 }
 
