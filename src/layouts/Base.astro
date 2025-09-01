@@ -10,6 +10,7 @@ interface Props {
   title: string
   description: string
   image?: string
+  homePage?: boolean
   toolsStyling?: boolean
 }
 
@@ -20,6 +21,7 @@ const {
   title = t('site.title'),
   description = t('site.description'),
   image = '/img/wm-social.png',
+  homePage = false,
   toolsStyling = false,
 } = Astro.props
 ---
@@ -59,10 +61,10 @@ const {
   <meta property='twitter:description' content={description} />
   <meta property='twitter:image' content={new URL(image, Astro.url)} />
 
-  <body {...toolsStyling ? { class: 'tools-style' } : {}}>
+  <body {...homePage ? { class: 'home-page' } : {}}>
     <TopNav />
 
-    <main>
+    <main {...toolsStyling ? { class: 'tools-style' } : {}}>
       <slot />
     </main>
 

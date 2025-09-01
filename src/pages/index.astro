@@ -18,13 +18,13 @@ import supporterActive from '@assets/animations/audience-supporter.mp4'
 import supporterPoster from '@assets/audience-supporter-poster.png'
 import developerInactive from '@assets/audience-developer.png'
 import developerActive from '@assets/animations/audience-developer.mp4'
-import developerPoster from '@assets/audience-developer-poster.png'
+import developerPoster from '@assets/hero-developer-poster.png'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
 
-<Base title={t('site.title')} description={t('site.description')}>
+<Base title={t('site.title')} description={t('site.description')} homePage={true}>
   <section class='section hero'>
     <div class='contentWrapper'>
       <div class='heading-wrapper'>

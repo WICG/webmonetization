@@ -22,7 +22,8 @@ export interface UpdateContent {
 
 export interface HeroContent {
   heroTitle: string,
-  image: ImageMetadata,
+  posterImage: ImageMetadata,
+  videoSrc: string,
   primaryCta: CTA,
   secondaryCta?: CTA
 }

@@ -1,14 +1,16 @@
 import type { ContentSection, HeroContent, Pills, HowItWorks } from '../types/shared'
-import publisherHero from "@assets/hero-publisher.svg";
+import heroPoster from "@assets/hero-publisher-poster.png";
 import linkTagGenerator from "@assets/link-tag-generator.svg";
 import toolsOverview from "@assets/tools-overview.png";
 import wordPressLogo from "@assets/wordpress.svg";
 import howItWorksHorizontal from "@assets/how-it works-publishers-horizontal.png"
 import howItWorksVertical from "@assets/how-it-works-publishers-vertical.png"
+import heroVideo from "@assets/animations/hero-publisher.mp4";
 
 export const heroContent: HeroContent = {
     heroTitle: "Engagement equals income, instantly",
-    image: publisherHero,
+    posterImage: heroPoster,
+    videoSrc: heroVideo,
     primaryCta: {
         href: "/tools/",
         text: "Get to the publisher's tools",

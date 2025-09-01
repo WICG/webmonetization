@@ -1,11 +1,13 @@
 import type { HeroContent, Pills, HowItWorks } from '../types/shared'
-import supporterHero from "@assets/hero-supporter.svg";
+import heroPoster from "@assets/hero-supporter-poster.png";
 import howItWorksHorizontal from "@assets/how-it-works-supporters-horizontal.png"
 import howItWorksVertical from "@assets/how-it-works-supporters-vertical.png"
+import heroVideo from "@assets/animations/hero-supporter.mp4";
 
 export const heroContent: HeroContent = {
     heroTitle: "Support the content you love, effortlessly",
-    image: supporterHero,
+    posterImage: heroPoster,
+    videoSrc: heroVideo,
     primaryCta: {
         href: "/supporters/get-started/",
         text: "Install the Web Monetization Browser Extension",

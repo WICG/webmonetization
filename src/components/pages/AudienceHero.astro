@@ -18,13 +18,21 @@ import PillTag from './PillTag.astro'
         <h1 class='hero-title'>{content.heroTitle}</h1>
       </div>
       <div class='hero-image'>
-        <img
-          src={content.image.src}
-          alt=''
-          loading='eager'
-          width={content.image.width}
-          height={content.image.height}
-        />
+        <video
+           class='active audience-video'
+            preload='auto'
+            poster={content.posterImage.src}
+            width={content.posterImage.width}
+            height={content.posterImage.height}
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-hidden='true'
+          >
+            <source src={content.videoSrc} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
       </div>
       <slot />
       <div class='hero-tags'>
@@ -92,7 +100,7 @@ import PillTag from './PillTag.astro'
     max-width: 30rem;
   }
 
-  .hero-image img {
+  .hero-image video {
     max-height: 100%;
     max-width: 100%;
     width: 100%;

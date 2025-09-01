@@ -223,7 +223,7 @@ body {
   min-width: 320px;
   color: var(--default-font-color);
   font-family: var(--font-base);
-  background-image: url("../assets/hero-gradient-background.svg");
+  background-image: none;
   background-color: var(--background-color);
   background-repeat: no-repeat;
   background-size: cover;
@@ -525,8 +525,8 @@ tbody tr:last-of-type td:last-child {
 
 /* Tools page styling */
 
-body.tools-style {
-  background-image: none;
+body.home-page {
+  background-image: url("../assets/hero-gradient-background.svg");
 }
 
 .tools-style input:not([type='submit']):not([type='file']) {

@@ -1,10 +1,11 @@
-import type { CTA, HeroContent, Pills, UpdateContent, ContentSection } from '../types/shared'
+import type { HeroContent, Pills, UpdateContent, ContentSection } from '../types/shared'
 import blogThumbnail from "@assets/tech-blog-thumbnail.svg";
-import developerHero from "@assets/hero-developer.svg";
+import heroPoster from "@assets/hero-developer-poster.png";
 import developerPlayground from "@assets/developer-playground.svg";
 import astroPlugin from "@assets/logo-plugin-astro.svg";
 import reactPlugin from "@assets/logo-plugin-react.svg";
 import evelentyPlugin from "@assets/logo-plugin-11ty.png";
+import heroVideo from "@assets/animations/hero-developer.mp4";
 
 export interface Plugin {
     name: string,
@@ -20,7 +21,8 @@ export interface Plugin {
 
 export const heroContent: HeroContent = {
     heroTitle: "Pay the web forward",
-    image: developerHero,
+    posterImage: heroPoster,
+    videoSrc: heroVideo,
     primaryCta: {
         href: "/developers/interfaces/",
         text: "Read more of the technical documentation",
