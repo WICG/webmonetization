@@ -10,12 +10,15 @@ import PillTag from '../components/pages/PillTag.astro'
 import UpdatesSection from '../components/pages/UpdatesSection.astro'
 import headingVector from '@assets/wm-heading-vector.svg'
 import hero from '@assets/hero-img.svg'
-import publisherInactive from '@assets/hero-publisher-inactive.png'
-import publisherActive from '@assets/hero-publisher.png'
-import supporterInactive from '@assets/hero-supporter-inactive.png'
-import supporterActive from '@assets/hero-supporter.png'
-import developerInactive from '@assets/hero-dev-inactive.png'
-import developerActive from '@assets/hero-dev.png'
+import publisherInactive from '@assets/audience-publisher.png'
+import publisherActive from '@assets/animations/audience-publisher.mp4'
+import publisherPoster from '@assets/audience-publisher-poster.png'
+import supporterInactive from '@assets/audience-supporter.png'
+import supporterActive from '@assets/animations/audience-supporter.mp4'
+import supporterPoster from '@assets/audience-supporter-poster.png'
+import developerInactive from '@assets/audience-developer.png'
+import developerActive from '@assets/animations/audience-developer.mp4'
+import developerPoster from '@assets/audience-developer-poster.png'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -104,14 +107,20 @@ const t = useTranslations(lang)
             width={publisherInactive.width}
             height={publisherInactive.height}
           />
-          <img
-            class='active audience-img'
-            alt=''
-            src={publisherActive.src}
-            loading='eager'
-            width={publisherActive.width}
-            height={publisherActive.height}
-          />
+          <video
+           class='active audience-video'
+            preload='metadata'
+            poster={publisherPoster.src}
+            width={publisherPoster.width}
+            height={publisherPoster.height}
+            autoplay
+            loop
+            muted
+            playsinline
+          >
+            <source src={publisherActive} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
           <a
             class='btn primary flexible'
             href='/publishers'
@@ -137,14 +146,20 @@ const t = useTranslations(lang)
             width={supporterInactive.width}
             height={supporterInactive.height}
           />
-          <img
-            class='active audience-img'
-            alt=''
-            src={supporterActive.src}
-            loading='eager'
-            width={supporterActive.width}
-            height={supporterActive.height}
-          />
+          <video
+           class='active audience-video'
+            preload='metadata'
+            poster={supporterPoster.src}
+            width={supporterPoster.width}
+            height={supporterPoster.height}
+            autoplay
+            loop
+            muted
+            playsinline
+          >
+            <source src={supporterActive} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
           <a
             class='btn primary flexible'
             href='/supporters'
@@ -159,15 +174,12 @@ const t = useTranslations(lang)
       <article class='audience-card developer'>
         <div class='dev-wrapper'>
           <h2>I'm a developer</h2>
-          <p class='audience-desc font-h6'>
-            and I want to pay the web forward
-          </p>
+          <p class='audience-desc font-h6'>and I want to pay the web forward</p>
           <PillTag pills={developerTags} />
           <a
             class='btn primary flexible'
             href='/developers'
-            data-umami-event='Home page link - Developers'
-            >Join the community</a
+            data-umami-event='Home page link - Developers'>Join the community</a
           >
         </div>
         <div class='developer-images'>
@@ -178,14 +190,21 @@ const t = useTranslations(lang)
             width={developerInactive.width}
             height={developerInactive.height}
           />
-          <img
-            class='active audience-img'
-            alt=''
-            src={developerActive.src}
-            loading='eager'
-            width={developerActive.width}
-            height={developerActive.height}
-          />
+          <video
+           class='active audience-video'
+            preload='metadata'
+            poster={developerPoster.src}
+            width={developerPoster.width}
+            height={developerPoster.height}
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-hidden='true'
+          >
+            <source src={developerActive} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
         </div>
       </article>
     </div>
@@ -320,14 +339,14 @@ const t = useTranslations(lang)
     width: 100%;
   }
 
-  .audience-img {
+  .audience-img, .audience-video {
     max-width: 30vw;
     height: auto;
     object-fit: contain;
     display: block;
   }
 
-  .active.audience-img {
+  .active.audience-video {
     display: none;
   }
 
@@ -339,10 +358,11 @@ const t = useTranslations(lang)
   .audience-card:hover,
   .audience-card:focus {
     color: var(--default-font-color);
+    background-color: var(--color-white);
   }
 
-  .audience-card:hover .active.audience-img,
-  .audience-card:focus .active.audience-img {
+  .audience-card:hover .active.audience-video,
+  .audience-card:focus .active.audience-video {
     display: block;
   }
 
@@ -460,8 +480,8 @@ const t = useTranslations(lang)
       display: none;
     }
 
-    .audience-card:hover .active.audience-img,
-    .audience-card:focus .active.audience-img {
+    .audience-card:hover .active.audience-video,
+    .audience-card:focus .active.audience-video {
       display: none;
     }
 
