@@ -1,0 +1,30 @@
+h1, h2, h3 {
+  text-align: center;
+}
+
+img, video { 
+  max-width: 100% 
+}
+
+footer {
+  padding-top: 2rem;
+  text-align: center;
+  background-color: rgb(232, 232, 232);
+  /* position:absolute;
+  bottom:0; */
+  width:100%;
+  height: 50px;
+}
+
+.container {
+  min-height: calc(100vh - 70px);
+}
+
+.warning {
+  padding-top: 25px;
+  text-align: center;
+  border: 1px solid;
+  border-color: tomato;
+  border-radius: 10px;
+  background-color: rgb(246, 205, 201);
+}
