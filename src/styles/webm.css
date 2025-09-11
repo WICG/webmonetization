@@ -501,6 +501,12 @@ tbody tr:last-of-type td:last-child {
   align-items: center;
 }
 
+@media screen and (max-width: 640px) {
+  .contentWrapper {
+    padding-inline: var(--padding-sm);
+  }
+}
+
 @media screen and (max-width: 767px) {
   .section {
     padding-block-start: var(--spacing-4xl);
