@@ -486,21 +486,6 @@ tbody tr:last-of-type td:last-child {
   padding-block-end: 3.75rem;
 }
 
-.section.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.hero .contentWrapper {
-  height: 100%;
-  display: flex;
-  flex-grow: 1;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
 @media screen and (max-width: 640px) {
   .contentWrapper {
     padding-inline: var(--padding-sm);
@@ -510,10 +495,6 @@ tbody tr:last-of-type td:last-child {
 @media screen and (max-width: 767px) {
   .section {
     padding-block-start: var(--spacing-4xl);
-  }
-
-  .section.hero {
-    min-height: unset;
   }
 
   .section:first-of-type {

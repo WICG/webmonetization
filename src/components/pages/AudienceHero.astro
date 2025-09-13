@@ -1,5 +1,6 @@
 ---
 import type { HeroContent, Pills } from '../../types/shared'
+import HeroWrapper from './HeroWrapper.astro'
 
 const { content, pills } = Astro.props as { content: HeroContent; pills: Pills }
 
@@ -11,60 +12,57 @@ interface Props {
 import PillTag from './PillTag.astro'
 ---
 
-<section class='section hero'>
-  <div class='contentWrapper'>
-    <div class='hero-content'>
-      <div class='hero-header'>
-        <h1 class='hero-title' set:html={content.heroTitle} />
-      </div>
-      <div class='hero-image'>
-        <video
-           class='active audience-video'
-            preload='auto'
-            poster={content.posterImage.src}
-            width={content.posterImage.width}
-            height={content.posterImage.height}
-            autoplay
-            loop
-            muted
-            playsinline
-            aria-hidden='true'
+<HeroWrapper>
+  <div class='hero-content'>
+    <div class='hero-header'>
+      <h1 class='hero-title' set:html={content.heroTitle} />
+    </div>
+    <div class='hero-image'>
+      <video
+        class='active audience-video'
+        preload='auto'
+        poster={content.posterImage.src}
+        width={content.posterImage.width}
+        height={content.posterImage.height}
+        autoplay
+        loop
+        muted
+        playsinline
+        aria-hidden='true'
+      >
+        <source src={content.videoSrc} type='video/mp4' />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <slot />
+    <div class='hero-tags'>
+      <PillTag pills={pills} />
+    </div>
+    <div class='hero-ctas'>
+      <a
+        href={content.primaryCta.href}
+        class='btn primary'
+        data-umami-event={content.primaryCta.event}>{content.primaryCta.text}</a
+      >
+      {
+        content.secondaryCta && (
+          <a
+            href={content.secondaryCta.href}
+            class='btn secondary'
+            data-umami-event={content.secondaryCta.event}
           >
-            <source src={content.videoSrc} type='video/mp4' />
-            Your browser does not support the video tag.
-          </video>
-      </div>
-      <slot />
-      <div class='hero-tags'>
-        <PillTag pills={pills} />
-      </div>
-      <div class='hero-ctas'>
-        <a
-          href={content.primaryCta.href}
-          class='btn primary'
-          data-umami-event={content.primaryCta.event}
-          >{content.primaryCta.text}</a
-        >
-        {
-          content.secondaryCta && (
-            <a
-              href={content.secondaryCta.href}
-              class='btn secondary'
-              data-umami-event={content.secondaryCta.event}
-            >
-              {content.secondaryCta.text}
-            </a>
-          )
-        }
-      </div>
+            {content.secondaryCta.text}
+          </a>
+        )
+      }
     </div>
   </div>
-</section>
+</HeroWrapper>
 
 <style>
   .hero-content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--spacing-lg);
     padding-left: var(--padding-md);
     padding-right: var(--padding-md);

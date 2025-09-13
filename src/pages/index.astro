@@ -5,6 +5,7 @@ import { wallets, updates } from '../data/home.ts'
 import { publisherTags } from '../data/publishers.ts'
 import { supporterTags } from '../data/supporters.ts'
 import { developerTags } from '../data/developers.ts'
+import HeroWrapper from '../components/pages/HeroWrapper.astro'
 import WalletList from '../components/pages/WalletList.astro'
 import PillTag from '../components/pages/PillTag.astro'
 import UpdatesSection from '../components/pages/UpdatesSection.astro'
@@ -28,29 +29,26 @@ const t = useTranslations(lang)
   description={t('site.description')}
   homePage={true}
 >
-  <section class='section hero'>
-    <div class='contentWrapper'>
-      <div class='hero-content'>
-        <div class='heading-wrapper'>
-          <h1>Revolutionizing the digital content economy</h1>
-          <p class='heroTagline'>
-            Web Monetization connects publishers, creators and their audiences,
-            turning engagement into revenue. No friction, no barriers, no
-            limits.
-          </p>
-        </div>
-        <div class='hero-img'>
-          <img
-            src={hero.src}
-            alt=''
-            loading='eager'
-            width={hero.width}
-            height={hero.height}
-          />
-        </div>
+  <HeroWrapper>
+    <div class='hero-content'>
+      <div class='heading-wrapper'>
+        <h1>Revolutionizing the digital content economy</h1>
+        <p class='heroTagline'>
+          Web Monetization connects publishers, creators and their audiences,
+          turning engagement into revenue. No friction, no barriers, no limits.
+        </p>
+      </div>
+      <div class='hero-img'>
+        <img
+          src={hero.src}
+          alt=''
+          loading='eager'
+          width={hero.width}
+          height={hero.height}
+        />
       </div>
     </div>
-  </section>
+  </HeroWrapper>
   <section class='section'>
     <div class='contentWrapper'>
       <div class='wallet-info'>
@@ -213,7 +211,8 @@ const t = useTranslations(lang)
 
 <style>
   .hero-content {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: var(--spacing-4xl);
   }
 
@@ -421,12 +420,10 @@ const t = useTranslations(lang)
   }
 
   @media screen and (max-width: 767px) {
-    .section.hero {
-      text-align: center;
-    }
     .hero-content {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       gap: var(--spacing-2xl);
+      text-align: center;
     }
 
     .heading-wrapper h1 {
