@@ -1,46 +1,38 @@
 ---
 import { getLangFromUrl, useTranslations } from '../../i18n/utils'
-import publisherIcon from '@assets/publishers-icon.png?inline'
-import supporterIcon from '@assets/supporters-icon.png?inline'
-import devIcon from '@assets/developer-icon.png?inline'
+import { toolsSubmenu } from '../../data/nav'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
+const currentPath = Astro.url.pathname
+const normalize = (p: string): string => p.replace(/\/+$/, '') || '/'
+const isActive = (path: string): boolean =>
+  normalize(currentPath) === normalize(path)
 ---
 
 <div class='tools-dropdown'>
   <ul class='tools-list'>
-    <li>
-      <a href='/publishers' class='tool-link'
-        ><img
-          width='460'
-          height='461'
-          class='tool-icon'
-          alt=''
-          src={publisherIcon}
-        /><div class='tool-label'>{t('nav.pub-tools')}</div></a
-      >
-    </li><li>
-      <a href='/supporters' class='tool-link'
-        ><img
-          width='460'
-          height='461'
-          class='tool-icon'
-          alt=''
-          src={supporterIcon}
-        /><div class='tool-label'>{t('nav.supp-tools')}</div></a
-      >
-    </li><li>
-      <a href='/developers' class='tool-link'
-        ><img
-          width='460'
-          height='464'
-          class='tool-icon'
-          alt=''
-          src={devIcon}
-        /><div class='tool-label'>{t('nav.dev-tools')}</div></a
-      >
-    </li>
+    {
+      toolsSubmenu.map((menuItem) => (
+        <li>
+          <a
+            href={menuItem.path}
+            class:list={[{ active: isActive(menuItem.path) }, 'tool-link']}
+          >
+            <>
+              <img
+                width={menuItem.image.width}
+                height={menuItem.image.height}
+                class='tool-icon'
+                alt=''
+                src={menuItem.image.src}
+              />
+              <div class='tool-label'>{t(menuItem.translationKey)}</div>
+            </>
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </div>
 
@@ -70,14 +62,15 @@ const t = useTranslations(lang)
   }
 
   .tool-link {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: var(--spacing-xs);
     align-items: center;
     justify-content: flex-start;
-    gap: var(--spacing-xs);
-    padding: var(--padding-sm);
-    padding-left: 0px;
-    border-radius: var(--moderate-rounding);
     text-decoration: none;
+    position: relative;
+    padding: var(--padding-sm);
+    border-radius: var(--moderate-rounding);
     background-color: transparent;
     transition: background-color 0.2s ease-in;
     width: 100%;
@@ -85,13 +78,25 @@ const t = useTranslations(lang)
   }
 
   .tool-link:hover,
-  .tool-link:focus-visible {
+  .tool-link:focus-visible,
+  .tool-link.active {
     background-color: var(--surface-hover-color);
   }
 
   .tool-icon {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .active.tool-link::before {
+    content: '';
+    position: absolute;
+    left: var(--spacing-2xs);
+    top: var(--padding-sm);
+    bottom: var(--padding-sm);
+    width: 1px;
+    background: var(--nav-text-color);
+    border-radius: var(--fully-rounded);
   }
 
   .tool-label {

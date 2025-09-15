@@ -5,10 +5,19 @@ import HamburgerMenu from '@assets/hamburger-menu.svg'
 import CloseMenu from '@assets/close-menu.svg'
 import ChevronArrow from '@assets/arrow-chevron.svg'
 import wmLogo from '@assets/wm-logo.svg'
+import { toolsSubmenu } from '../../data/nav'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
+const currentPath = Astro.url.pathname
+const normalize = (p: string) => p.replace(/\/+$/, '') || '/'
+
+const isToolsActive = toolsSubmenu.some((menuItem) => {
+  const base = normalize(menuItem.path)
+  const curr = normalize(currentPath)
+  return curr === base
+})
 ---
 
 <header>
@@ -37,7 +46,7 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
       <li class='nav-link__tools' id='tools-wrapper'>
         <button
           id='toolsToggle'
-          class='tools-toggle'
+          class:list={[{ active: isToolsActive }, 'tools-toggle']}
           aria-expanded='false'
           aria-label='Tools Menu'
           title='Tools Menu'
@@ -107,6 +116,25 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
     background: var(--surface-hover-color);
     color: var(--button-hover-color);
     fill: var(--button-hover-color);
+  }
+
+  .tools-toggle {
+    position: relative;
+  }
+
+  .tools-toggle.active {
+    background: var(--surface-hover-color);
+  }
+
+  .tools-toggle.active::after {
+    content: '';
+    position: absolute;
+    bottom: var(--spacing-2xs);
+    left: var(--spacing-md);
+    right: var(--spacing-md);
+    height: 1px;
+    background-color: var(--nav-text-color);
+    border-radius: var(--fully-rounded);
   }
 
   .tools-arrow-icon {
