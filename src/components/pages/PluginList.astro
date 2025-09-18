@@ -1,10 +1,14 @@
 ---
 import type { Plugin } from '../../data/developers.ts'
+import { getLangFromUrl } from '../../i18n/utils'
 
 interface Props {
   cards: Array<Plugin>
+  fullListText: string
 }
-const { cards } = Astro.props
+const { cards, fullListText } = Astro.props
+const lang = getLangFromUrl(Astro.url)
+const libraryUrl = lang === 'en' ? '/developers/libraries/' : `/${lang}/developers/libraries/`
 
 const cardList: Plugin[] = [...cards.slice(0, 3)]
 ---
@@ -44,13 +48,13 @@ const cardList: Plugin[] = [...cards.slice(0, 3)]
   <li class='card'>
     <div class='cardContent'>
       <a
-        href='/developers/libraries/'
+        href={libraryUrl}
         class='btn flexible primary'
         data-umami-event='Developers page - Full plugin list'
         target='_blank'
         rel='noreferrer noopener'
       >
-        See the full list
+        {fullListText}
       </a>
     </div>
   </li>

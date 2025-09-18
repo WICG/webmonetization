@@ -74,7 +74,7 @@ const t = useTranslations(lang)
         {
           wallets.length > 0 && (
             <div class='cards'>
-              <WalletList cards={wallets} />
+              <WalletList cards={wallets} ctaText='Set up a wallet' />
             </div>
           )
         }
@@ -206,7 +206,11 @@ const t = useTranslations(lang)
       </article>
     </div>
   </section>
-  {updates && updates.length > 0 && <UpdatesSection updates={updates} />}
+  {
+    updates && updates.length > 0 && (
+      <UpdatesSection updates={updates} heading='Important Updates' />
+    )
+  }
 </Base>
 
 <style>

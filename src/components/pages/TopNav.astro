@@ -10,6 +10,8 @@ import { toolsSubmenu } from '../../data/nav'
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
+const docsUrl = lang === 'en' ? '/docs' : `/${lang}/docs`
+const specUrl = lang === 'en' ? '/specification' : `/${lang}/specification`
 const currentPath = Astro.url.pathname
 const normalize = (p: string) => p.replace(/\/+$/, '') || '/'
 
@@ -35,8 +37,8 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
       class='menu-toggle ghost btn'
       aria-controls='nav-menu'
       aria-expanded='false'
-      aria-label='Toggle Menu'
-      title='Toggle Menu'
+      aria-label={t('nav.toggle_menu')}
+      title={t('nav.toggle_menu')}
       type='button'
     >
       <HamburgerMenu class='menu-icon icon--hamburger' />
@@ -48,22 +50,22 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
           id='toolsToggle'
           class:list={[{ active: isToolsActive }, 'tools-toggle']}
           aria-expanded='false'
-          aria-label='Tools Menu'
-          title='Tools Menu'
+          aria-label={t('nav.tools_menu')}
+          title={t('nav.tools_menu')}
           type='button'
         >
-          Tools
+          {t('nav.tools')}
           <ChevronArrow class='tools-arrow-icon' />
         </button>
         <NavToolsDropdown />
       </li>
       <li class='nav-link__docs'>
-        <a href='/docs' data-umami-event='Landing page - WebMo docs'
+        <a href={docsUrl} data-umami-event='Landing page - WebMo docs'
           >{t('nav.documentation')}</a
         >
       </li>
       <li class='nav-link__spec'>
-        <a href='/specification' data-umami-event='Landing page - WebMo specs'
+        <a href={specUrl} data-umami-event='Landing page - WebMo specs'
           >{t('nav.specification')}</a
         >
       </li>

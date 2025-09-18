@@ -5,6 +5,9 @@ import Instagram from '@assets/instagram.svg'
 import Github from '@assets/github.svg'
 import Youtube from '@assets/youtube.svg'
 import WmNamedLogo from '@assets/wm-named-logo.svg'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <footer>
@@ -16,7 +19,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://community.interledger.org/'
             data-umami-event='Footer - Community'
             rel='noopener noreferrer'
-            target='_blank'>Community</a
+            target='_blank'>{t('footer.menu.community')}</a
           >
         </li>
         <li>
@@ -24,7 +27,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://github.com/WICG/webmonetization'
             data-umami-event='Footer - GitHub'
             rel='noopener noreferrer'
-            target='_blank'>GitHub</a
+            target='_blank'>{t('footer.menu.github')}</a
           >
         </li>
         <li>
@@ -32,7 +35,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://interledger.org/blog'
             data-umami-event='Footer - Blog'
             rel='noopener noreferrer'
-            target='_blank'>Blog</a
+            target='_blank'>{t('footer.menu.blog')}</a
           >
         </li>
       </ul>
@@ -58,7 +61,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://interledger.org/summit'
             data-umami-event='Footer - Summit'
             rel='noopener noreferrer'
-            target='_blank'>Summit</a
+            target='_blank'>{t('footer.menu.summit')}</a
           >
         </li>
       </ul>
@@ -68,7 +71,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://www.iubenda.com/privacy-policy/95080147'
             data-umami-event='Footer - Privacy Policy'
             rel='noopener noreferrer'
-            target='_blank'>Privacy Policy</a
+            target='_blank'>{t('footer.menu.privacy_policy')}</a
           >
         </li>
         <li>
@@ -76,7 +79,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://www.iubenda.com/privacy-policy/95080147/cookie-policy'
             data-umami-event='Footer - Cookie Policy'
             rel='noopener noreferrer'
-            target='_blank'>Cookie Policy</a
+            target='_blank'>{t('footer.menu.cookie_policy')}</a
           >
         </li>
         <li>
@@ -84,7 +87,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
             href='https://www.iubenda.com/terms-and-conditions/95080147'
             data-umami-event='Footer - T & C'
             rel='noopener noreferrer'
-            target='_blank'>Terms & Conditions</a
+            target='_blank'>{t('footer.menu.terms_conditions')}</a
           >
         </li>
       </ul>
@@ -94,7 +97,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
         <li>
           <a
             href='https://www.linkedin.com/company/interledger-foundation/'
-            aria-label="Interledger's LinkedIn account"
+            aria-label={t('footer.menu.social.linkedin')}
             data-umami-event='Footer - LinkedIn'
             rel='noopener noreferrer'
             target='_blank'
@@ -105,7 +108,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
         <li>
           <a
             href='https://communityinviter.com/apps/interledger/interledger-working-groups-slack'
-            aria-label='Interledger Community Slack'
+            aria-label={t('footer.menu.social.slack')}
             data-umami-event='Footer - Slack'
             rel='noopener noreferrer'
             target='_blank'
@@ -116,7 +119,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
         <li>
           <a
             href='https://www.instagram.com/interledgerfoundation/'
-            aria-label="Interledger's Instagram account"
+            aria-label={t('footer.menu.social.instagram')}
             data-umami-event='Footer - Instagram'
             rel='noopener noreferrer'
             target='_blank'
@@ -127,7 +130,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
         <li>
           <a
             href='https://github.com/WICG/webmonetization'
-            aria-label="Web Monetization's GitHub account"
+            aria-label={t('footer.menu.social.wm_github')}
             data-umami-event='Footer - GitHub'
             rel='noopener noreferrer'
             target='_blank'
@@ -138,7 +141,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
         <li>
           <a
             href='https://www.youtube.com/@InterledgerFoundation'
-            aria-label="Interledger's Youtube channel"
+            aria-label={t('footer.menu.social.youtube')}
             data-umami-event='Footer - YouTube'
             rel='noopener noreferrer'
             target='_blank'
@@ -150,7 +153,7 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
       <hr class='line' />
       <a
         href='/'
-        aria-label='Home page link'
+        aria-label={t('footer.menu.home')}
         data-umami-event='Footer - Home link'
         class='home-link'
       >
@@ -162,25 +165,29 @@ import WmNamedLogo from '@assets/wm-named-logo.svg'
         href='https://www.w3.org/policies/#copyright'
         data-umami-event='Footer - Copyright'
         rel='noopener noreferrer'
-        target='_blank'>Copyright</a
-      > © {new Date().getFullYear()} the Contributors to the Web Monetization Specification,
-      published by the
+        target='_blank'>{t('footer.copyright.link_label')}</a
+      > © {new Date().getFullYear()}
+      {t('footer.copyright.text_after_year')}
       <a
         href='https://www.w3.org/community/wicg/'
         data-umami-event='Footer - Web Platform Incubator Community Group'
         rel='noopener noreferrer'
-        target='_blank'>Web Platform Incubator Community Group</a
-      > under the <a
+        target='_blank'>{t('footer.copyright.WICG_link_label')}</a
+      >
+      {t('footer.copyright.under_text')}
+      <a
         href='https://www.w3.org/community/about/process/cla/'
         data-umami-event='Footer - W3C Community CLA'
         rel='noopener noreferrer'
-        target='_blank'>W3C Community Contributor License Agreement (CLA)</a
-      >. A human-readable <a
+        target='_blank'>{t('footer.copyright.license_link_label')}</a
+      >. {t('footer.copyright.summary_text')}
+      <a
         href='https://www.w3.org/community/about/process/cla-deed/'
         data-umami-event='Footer - Summary CLA'
         rel='noopener noreferrer'
-        target='_blank'>summary</a
-      > is available.
+        target='_blank'>{t('footer.copyright.summary_link_label')}</a
+      >
+      {t('footer.copyright.summary_suffix')}.
     </small>
   </div>
 </footer>

@@ -43,15 +43,21 @@ const t = useTranslations(lang)
             There have been a number of libraries and plugins developed over the
             years to enable Web Monetization features on the web, but a lot of
             them need updating to conform to the latest specification. If you
-            would like to help out this effort, please check out the <a href='/developers/libraries/' data-umami-event='Developers page - Full plugin list'>full list</a>.
-            These plugins have already been updated:
+            would like to help out this effort, please check out the{' '}
+            <a
+              href='/developers/libraries/'
+              data-umami-event='Developers page - Full plugin list'
+            >
+              full list
+            </a>
+            . These plugins have already been updated:
           </p>
-          <PluginList cards={plugins} />
+          <PluginList cards={plugins} fullListText='See the full list' />
         </div>
       </section>
     )
   }
-  <DevBlogSection blog={blog} />
+  <DevBlogSection blog={blog} heading='Tech blog' />
 </Base>
 
 <style>
@@ -67,10 +73,10 @@ const t = useTranslations(lang)
 
   @media screen and (max-width: 767px) {
     .plugins .contentWrapper {
-    gap: var(--spacing-lg);
-  }
+      gap: var(--spacing-lg);
+    }
 
-  .plugins h2 {
+    .plugins h2 {
       font: var(--font-h3);
     }
   }

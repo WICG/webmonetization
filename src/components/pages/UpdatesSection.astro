@@ -2,22 +2,27 @@
 import UpdateCard from './UpdateCard.astro'
 import type { UpdateContent } from '../../types/shared'
 import ChevronArrow from '@assets/arrow-chevron.svg'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
 
 interface Props {
   updates: Array<UpdateContent>
+  heading: string
 }
 
-const { updates } = Astro.props
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const { updates, heading } = Astro.props
 ---
 
 <section class='section'>
   <div class='contentWrapper'>
-    <h2 class='updates-heading'>Important Updates</h2>
+    <h2 class='updates-heading'>{heading}</h2>
     <div class='updates-carousel' id='updates-carousel'>
       <button
         class='carousel-button btn flexible'
         id='prev-button'
-        aria-label='Previous'
+        aria-label={t('aria.nav.back')}
         aria-controls='updates-list'
         disabled
       >
@@ -40,7 +45,7 @@ const { updates } = Astro.props
       <button
         class='carousel-button btn flexible'
         id='next-button'
-        aria-label='Next'
+        aria-label={t('aria.nav.next')}
         aria-controls='updates-list'
       >
         <ChevronArrow class='button-arrow' id='next-button-arrow' />
@@ -199,7 +204,11 @@ const { updates } = Astro.props
 
       beforeScroll(currentIndex)
 
-      updates[currentIndex].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' })
+      updates[currentIndex].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start',
+        block: 'nearest',
+      })
     }
 
     function setCurrentIndex(direction: 'left' | 'right') {

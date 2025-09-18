@@ -1,7 +1,10 @@
 ---
 import type { HeroContent, Pills } from '../../types/shared'
 import HeroWrapper from './HeroWrapper.astro'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
 
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 const { content, pills } = Astro.props as { content: HeroContent; pills: Pills }
 
 interface Props {
@@ -31,7 +34,7 @@ import PillTag from './PillTag.astro'
         aria-hidden='true'
       >
         <source src={content.videoSrc} type='video/mp4' />
-        Your browser does not support the video tag.
+        {t('media.video.unsupported')}
       </video>
     </div>
     <slot />

@@ -1,5 +1,7 @@
 ---
-
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
 
 <footer>
@@ -9,25 +11,29 @@
         href='https://www.w3.org/policies/#copyright'
         data-umami-event='Footer - Copyright'
         rel='noopener noreferrer'
-        target='_blank'>Copyright</a
-      > © {new Date().getFullYear()} the Contributors to the Web Monetization Specification,
-      published by the
+        target='_blank'>{t('footer.copyright.link_label')}</a
+      > © {new Date().getFullYear()}
+      {t('footer.copyright.text_after_year')}
       <a
         href='https://www.w3.org/community/wicg/'
         data-umami-event='Footer - Web Platform Incubator Community Group'
         rel='noopener noreferrer'
-        target='_blank'>Web Platform Incubator Community Group</a
-      > under the <a
+        target='_blank'>{t('footer.copyright.WICG_link_label')}</a
+      >
+      {t('footer.copyright.under_text')}
+      <a
         href='https://www.w3.org/community/about/process/cla/'
         data-umami-event='Footer - W3C Community CLA'
         rel='noopener noreferrer'
-        target='_blank'>W3C Community Contributor License Agreement (CLA)</a
-      >. A human-readable <a
+        target='_blank'>{t('footer.copyright.license_link_label')}</a
+      >. {t('footer.copyright.summary_text')}
+      <a
         href='https://www.w3.org/community/about/process/cla-deed/'
         data-umami-event='Footer - Summary CLA'
         rel='noopener noreferrer'
-        target='_blank'>summary</a
-      > is available.
+        target='_blank'>{t('footer.copyright.summary_link_label')}</a
+      >
+      {t('footer.copyright.summary_suffix')}.
     </small>
   </div>
 </footer>

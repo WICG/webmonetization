@@ -3,6 +3,7 @@ import chromeWebstore from '@assets/chrome-webstore.png'
 import fxBrowserIcon from '@assets/Fx-Browser-icon.png'
 import microsoftEdge from '@assets/microsoft-edge.png'
 import githubIcon from '@assets/icon-github.svg'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
 interface Props {
   utm?: Partial<
     Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
@@ -10,6 +11,9 @@ interface Props {
   includeGitHub?: boolean
   variant?: 'docs' | 'pages'
 }
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 
 const { utm, includeGitHub = false, variant } = Astro.props
 
@@ -35,22 +39,37 @@ const toURL = (url: string) => {
 <ul class={variant}>
   <li>
     <div class='container'>
-      <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
-        <img src={chromeWebstore.src} alt='Chrome Web Store' width={chromeWebstore.width} height={chromeWebstore.height} />
+      <a href={toURL(URLS.chrome)} title={t('media.title.extension.chrome')}>
+        <img
+          src={chromeWebstore.src}
+          alt={t('media.title.extension.chrome')}
+          width={chromeWebstore.width}
+          height={chromeWebstore.height}
+        />
       </a>
     </div>
   </li>
   <li>
     <div class='container'>
-      <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
-        <img src={fxBrowserIcon.src} alt='Firefox Add-ons' width={fxBrowserIcon.width} height={fxBrowserIcon.height} />
+      <a href={toURL(URLS.firefox)} title={t('media.title.extension.firefox')}>
+        <img
+          src={fxBrowserIcon.src}
+          alt={t('media.title.extension.firefox')}
+          width={fxBrowserIcon.width}
+          height={fxBrowserIcon.height}
+        />
       </a>
     </div>
   </li>
   <li>
     <div class='container'>
-      <a href={toURL(URLS.edge)} title='Edge Add-ons'>
-        <img src={microsoftEdge.src} alt='Edge Add-ons' width={microsoftEdge.width} height={microsoftEdge.height} />
+      <a href={toURL(URLS.edge)} title={t('media.title.extension.edge')}>
+        <img
+          src={microsoftEdge.src}
+          alt={t('media.title.extension.edge')}
+          width={microsoftEdge.width}
+          height={microsoftEdge.height}
+        />
       </a>
     </div>
   </li>
@@ -58,8 +77,16 @@ const toURL = (url: string) => {
     includeGitHub && (
       <li>
         <div class='container'>
-          <a href={toURL(URLS.github)} title='Latest release on GitHub'>
-            <img alt='Latest release on GitHub' src={githubIcon.src} width={githubIcon.width} height={githubIcon.height} />
+          <a
+            href={toURL(URLS.github)}
+            title={t('media.title.extension.github')}
+          >
+            <img
+              alt={t('media.title.extension.github')}
+              src={githubIcon.src}
+              width={githubIcon.width}
+              height={githubIcon.height}
+            />
           </a>
         </div>
       </li>

@@ -3,14 +3,15 @@ import UpdateCard from './UpdateCard.astro'
 import type { UpdateContent } from '../../types/shared'
 
 interface Props {
+  heading: string
   blog: UpdateContent
 }
-const { blog } = Astro.props
+const { blog, heading } = Astro.props
 ---
 
 <section class='section dev-blog'>
   <div class='contentWrapper'>
-    <h2 class='dev-blog-heading'>Tech blog</h2>
+    <h2 class='dev-blog-heading'>{heading}</h2>
     <UpdateCard
       blog={blog}
       ctaButtonClass='primary'

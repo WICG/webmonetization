@@ -5,15 +5,25 @@ import ToolsHeader from '../components/pages/ToolsHeader.astro'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
-const title = `Playground | ${t('site.title')}`
-const description = t('site.description')
 ---
 
-<Base title={title} description={description} toolsStyling={true}>
+<Base
+  title={t('pages.play.title')}
+  description={t('pages.play.description')}
+  toolsStyling={true}
+>
   <section class='section'>
     <div class='contentWrapper'>
-      <ToolsHeader headingText='Web Monetization Playground' pageTitle='Playground'/>
-      <p class='text'>The Web Monetization Playground is an interactive environment that shows how Web Monetization works under the hood. Add a wallet address or payment pointer and watch events and payment flows unfold in real time.</p>
+      <ToolsHeader
+        headingText='Web Monetization Playground'
+        pageTitle='Playground'
+        backButtonText='Go back'
+      />
+      <p class='text'>
+        The Web Monetization Playground is an interactive environment that shows
+        how Web Monetization works under the hood. Add a wallet address or
+        payment pointer and watch events and payment flows unfold in real time.
+      </p>
       <div class='form-wrapper'>
         <form id='walletAddressForm'>
           <div class='form-field'>
@@ -34,7 +44,9 @@ const description = t('site.description')
           >
             Add monetization link
           </button>
-          <p id='notice'>Checking if your browser supports Web Monetization...</p>
+          <p id='notice'>
+            Checking if your browser supports Web Monetization...
+          </p>
         </form>
       </div>
     </div>
@@ -45,11 +57,10 @@ const description = t('site.description')
 </Base>
 
 <style>
-
-p.text {
-  padding-inline: var(--padding-md);
-  margin-bottom: var(--spacing-3xl);
-}
+  p.text {
+    padding-inline: var(--padding-md);
+    margin-bottom: var(--spacing-3xl);
+  }
   .link-events {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
@@ -133,23 +144,22 @@ p.text {
         justify-content: right;
 
         & button.tools-secondary-btn {
-            background-color: transparent;
-            color: var(--button-ghost-color);
-            border: 1px solid var(--button-ghost-color);
-            font: var(--font-standard-regular);
-          }
+          background-color: transparent;
+          color: var(--button-ghost-color);
+          border: 1px solid var(--button-ghost-color);
+          font: var(--font-standard-regular);
+        }
         & button.tools-secondary-btn:hover,
-          & button.tools-secondary-btn:focus-visible {
-            background-color: transparent;
-            color: var(--button-hover-color);
-            border: 1px solid var(--button-hover-color);
-          }
+        & button.tools-secondary-btn:focus-visible {
+          background-color: transparent;
+          color: var(--button-hover-color);
+          border: 1px solid var(--button-hover-color);
+        }
       }
     }
   }
 
   @media screen and (max-width: 767px) {
-
     p.text {
       margin-bottom: var(--spacing-lg);
     }

@@ -42,6 +42,7 @@ export interface ContentSection {
 }
 
 export interface HowItWorks {
+  heading: string
   imageHorizontal: ImageMetadata,
   imageVertical: ImageMetadata,
   alt: string,

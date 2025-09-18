@@ -1,22 +1,26 @@
 ---
 import Arrow from '@assets/arrow.svg'
+import { getLangFromUrl } from '../../i18n/utils'
 
 interface Props {
   headingText: string
   pageTitle: string
+  backButtonText: string
 }
-const { headingText, pageTitle } = Astro.props
+const { headingText, pageTitle, backButtonText } = Astro.props
+const lang = getLangFromUrl(Astro.url)
+const toolsUrl = lang === 'en' ? '/tools' : `/${lang}/tools`
 ---
 
 <div class='header'>
   <a
     class='btn ghost'
     id='back-btn'
-    href='/tools'
+    href={toolsUrl}
     data-umami-event={`${pageTitle} page link - Tools`}
   >
     <Arrow class='arrow' />
-    Go back
+    {backButtonText}
   </a>
   <h1>{headingText}</h1>
 </div>

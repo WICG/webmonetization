@@ -32,6 +32,7 @@ export const supporterTags: Pills = [
 ]
 
 export const HowItWorksSupporters: HowItWorks = {
+    heading: 'How it works',
     imageHorizontal: howItWorksHorizontal,
     imageVertical: howItWorksVertical,
     alt: 'Diagram showing the flow of a Web Monetization payment: from content supporter through their digital wallet, as directed by the Web Monetization extension, to the publisher’s wallet, and finally to the publisher.',

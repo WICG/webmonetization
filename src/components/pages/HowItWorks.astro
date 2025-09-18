@@ -10,7 +10,7 @@ const { content } = Astro.props
 <section class='section'>
   <div class='contentWrapper'>
     <div class='how-it-works'>
-      <h2>How it works</h2>
+      <h2>{content.heading}</h2>
       <slot />
       <div class='diagram-container'>
         <picture>
