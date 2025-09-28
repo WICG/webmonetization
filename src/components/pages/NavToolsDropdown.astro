@@ -38,7 +38,7 @@ const isActive = (path: string): boolean =>
 
 <style>
   .tools-dropdown {
-    padding: 0px;
+    padding: var(--padding-sm);
     background-color: var(--color-white);
     visibility: hidden;
     height: 0;
@@ -48,7 +48,6 @@ const isActive = (path: string): boolean =>
 
   .tools-dropdown.open {
     visibility: visible;
-    padding: var(--padding-sm);
     height: auto;
   }
 
@@ -94,7 +93,7 @@ const isActive = (path: string): boolean =>
     left: var(--spacing-2xs);
     top: var(--padding-sm);
     bottom: var(--padding-sm);
-    width: 1px;
+    width: 2px;
     background: var(--nav-text-color);
     border-radius: var(--fully-rounded);
   }
@@ -110,13 +109,35 @@ const isActive = (path: string): boolean =>
   }
 
   @media screen and (max-width: 767px) {
-    .tool-label {
-      font: var(--font-small-regular);
+    .tools-dropdown {
+      padding: 0;
+    }
+
+    .tools-dropdown {
+      width: 100%;
+    }
+
+    .tools-list {
+      align-items: stretch;
+    }
+    .tool-link .tool-label {
+      font: var(--font-standard-regular);
+      color: var(--nav-text-color);
+    }
+
+    .tool-link:hover .tool-label,
+    .tool-link.active .tool-label,
+    .tool-link:focus-visible .tool-label {
+      color: var(--button-hover-color);
     }
 
     .tool-icon {
       width: 2.5rem;
       height: 2.5rem;
+    }
+
+    .tool-link .tool-icon {
+      display: none;
     }
   }
 

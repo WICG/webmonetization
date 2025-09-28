@@ -5,6 +5,7 @@ import HamburgerMenu from '@assets/hamburger-menu.svg'
 import CloseMenu from '@assets/close-menu.svg'
 import ChevronArrow from '@assets/arrow-chevron.svg'
 import wmLogo from '@assets/wm-logo.svg'
+import interledgerLogo from '@assets/interledger-logo.png'
 import { toolsSubmenu } from '../../data/nav'
 
 const lang = getLangFromUrl(Astro.url)
@@ -23,14 +24,16 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
 ---
 
 <header>
-  <nav class='site-nav contentWrapper' id='siteNav'>
+  <nav class='site-nav contentWrapper collapsed' id='siteNav'>
     <a href={homePageUrl} class='site-title'>
       <img
         src={wmLogo.src}
         alt='Web Monetization logo'
         width={wmLogo.width}
         height={wmLogo.height}
+        loading='lazy'
       />
+      <span class='mobile-only'>Web Monetization</span>
     </a>
     <button
       id='menuToggle'
@@ -45,7 +48,8 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
       <CloseMenu class='menu-icon icon--close' />
     </button>
     <ul id='navMenu' class='nav-menu collapsed'>
-      <li class='nav-link__tools' id='tools-wrapper'>
+      <li class='nav-group nav-group--tools nav-link__tools' id='tools-wrapper'>
+        <p class='mobile-only menu-label'>{t('nav.tools')}</p>
         <button
           id='toolsToggle'
           class:list={[{ active: isToolsActive }, 'tools-toggle']}
@@ -59,17 +63,31 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
         </button>
         <NavToolsDropdown />
       </li>
-      <li class='nav-link__docs'>
-        <a href={docsUrl} data-umami-event='Landing page - WebMo docs'
-          >{t('nav.documentation')}</a
-        >
-      </li>
-      <li class='nav-link__spec'>
-        <a href={specUrl} data-umami-event='Landing page - WebMo specs'
-          >{t('nav.specification')}</a
-        >
+      <li class='nav-group nav-group--technical'>
+        <p class='mobile-only menu-label'>{t('nav.technical')}</p>
+        <ul class='nav-inline' aria-labelledby='nav-technical-label'>
+          <li class='nav-link__docs'>
+            <a href={docsUrl} data-umami-event='Landing page - WebMo docs'
+              >{t('nav.documentation')}</a
+            >
+          </li>
+          <li class='nav-link__spec'>
+            <a href={specUrl} data-umami-event='Landing page - WebMo specs'
+              >{t('nav.specification')}</a
+            >
+          </li>
+        </ul>
       </li>
     </ul>
+    <div class='mobile-only menu-footer'>
+      <p>{t('nav.footer')}</p>
+      <img
+        src={interledgerLogo.src}
+        alt='Interledger logo'
+        width={interledgerLogo.width}
+        height={interledgerLogo.height}
+      />
+    </div>
   </nav>
 </header>
 
@@ -93,8 +111,31 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
     background-color: var(--color-white);
   }
 
-  .nav-menu button {
-    color: var(--nav-text-color);
+  .site-title {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: var(--spacing-2xs);
+    text-decoration: none;
+  }
+
+  .site-title img {
+    width: var(--icon-size-nav-home-md);
+    height: var(--icon-size-nav-home-md);
+    display: block;
+  }
+
+  button.menu-toggle {
+    display: none;
+  }
+
+  .nav-menu,
+  .nav-inline {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    padding: 0;
   }
 
   .nav-menu button,
@@ -157,52 +198,6 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
     transform: rotate(180deg);
   }
 
-  .site-title {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-
-  .site-title img {
-    width: var(--icon-size-nav-home-md);
-    height: var(--icon-size-nav-home-md);
-    display: block;
-  }
-
-  button.menu-toggle {
-    width: 3rem;
-    height: 3rem;
-    display: none;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .menu-icon {
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    height: 1.25rem;
-    width: 1.25rem;
-    fill: var(--nav-text-color);
-    background-color: transparent;
-    display: block;
-    opacity: 1;
-  }
-
-  .menu-icon:hover,
-  .menu-icon:focus-visible {
-    fill: var(--button-hover-color);
-  }
-
-  .nav-menu {
-    display: flex;
-    gap: var(--spacing-md);
-  }
-
-  .collapsed {
-    display: none;
-  }
-
   @media screen and (max-width: 767px) {
     .site-nav.collapsed {
       box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
@@ -212,73 +207,82 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
       margin: var(--spacing-md) var(--spacing-md) 0 var(--spacing-md);
     }
 
+    .site-nav.collapsed .mobile-only {
+      display: none;
+    }
+
     .site-nav.expanded {
+      display: grid;
+      gap: var(--spacing-lg);
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
       background-color: var(--color-white);
       width: 100vw;
       height: 100vh;
       position: fixed;
-    }
-
-    .site-nav.expanded .nav-menu {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: var(--color-white);
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: var(--spacing-md);
-      padding: 0;
-      margin: 0;
-      max-width: 100%;
-    }
-
-    .site-nav.expanded .nav-menu button,
-    .site-nav.expanded .nav-menu a {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      width: 100%;
-    }
-
-    #tools-wrapper button {
-      width: 100%;
       justify-content: space-between;
+      overflow: auto;
+      padding: var(--padding-lg);
     }
 
-    .site-nav.collapsed .site-title img {
+    .site-nav.expanded a.site-title {
+      align-self: center;
+      justify-self: start;
+      z-index: 2;
+      height: max-content;
+    }
+
+    .site-nav .site-title img {
       width: var(--spacing-2xl);
       height: var(--spacing-2xl);
       flex: none;
     }
 
-    .site-nav.expanded .site-title img {
-      display: none;
+    .site-title span {
+      text-decoration-line: underline;
+      text-decoration-color: transparent;
+      color: var(--color-black);
+    }
+
+    .site-title:hover span {
+      text-decoration-color: currentColor;
     }
 
     button.menu-toggle {
       display: flex;
+      width: 3rem;
+      height: 3rem;
+      align-items: center;
+      justify-content: center;
     }
 
     .site-nav.expanded button.menu-toggle {
-      position: fixed;
-      top: 0;
-      right: 0;
+      align-self: flex-start;
+      justify-self: end;
       z-index: 2;
-      margin: var(--spacing-sm);
     }
 
-    button.menu-toggle {
-      display: flex;
+    .menu-icon {
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+      height: 1.25rem;
+      width: 1.25rem;
+      fill: var(--nav-text-color);
+      background-color: transparent;
+      display: block;
+      opacity: 1;
     }
 
-    .icon--close {
+    .menu-icon:hover,
+    .menu-icon:focus-visible {
+      fill: var(--button-hover-color);
+    }
+
+    .menu-icon.icon--close {
       display: none;
     }
 
-    .icon--hamburger {
+    .menu-icon.icon--hamburger {
       display: block;
     }
 
@@ -288,6 +292,67 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
 
     .menu-toggle.open .icon--close {
       display: block;
+    }
+
+    .nav-menu.collapsed {
+      display: none;
+    }
+
+    .site-nav.expanded .nav-menu {
+      grid-column: 1 / span 2;
+      gap: var(--spacing-lg);
+    }
+
+    .site-nav.expanded .nav-menu,
+    .site-nav.expanded .nav-inline {
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .nav-inline {
+      font: var(--font-standard-regular);
+    }
+
+    .menu-label {
+      font: var(--font-caption);
+      color: var(--default-font-color);
+      border-bottom: 1px solid var(--color-silver-200);
+      width: 100%;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .site-nav.expanded .nav-menu a {
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    .site-nav.expanded .menu-footer {
+      grid-column: 1 / span 2;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-2xs);
+      justify-content: center;
+      align-items: center;
+      padding-top: var(--padding-2xl);
+      width: 100%;
+      border-top: 1px solid var(--color-silver-200);
+    }
+
+    .menu-footer p {
+      font: var(--font-caption);
+      color: var(--default-font-color);
+    }
+
+    .menu-footer img {
+      height: 1.25rem;
+      width: auto;
+    }
+
+    .nav-menu .nav-link__tools .tools-toggle {
+      display: none;
     }
   }
 
@@ -301,9 +366,9 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
       box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
     }
 
-    .nav-menu {
+    .nav-menu,
+    .nav-inline {
       align-items: center;
-      list-style-type: none;
       flex: 1;
       justify-content: end;
     }
@@ -314,6 +379,10 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
 
     .collapsed {
       display: flex;
+    }
+
+    .mobile-only {
+      display: none;
     }
   }
 </style>
@@ -331,7 +400,10 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
     !isWide.matches && menuToggleButton?.classList.contains('open')
       ? true
       : false
-  let submenuOpen = toolsDropdown?.classList.contains('open') ? true : false
+  let submenuOpen =
+    (!isWide.matches && menuOpen) || toolsDropdown?.classList.contains('open')
+      ? true
+      : false
 
   const openMenu = () => {
     menuToggleButton?.setAttribute('aria-expanded', 'true')
@@ -341,6 +413,7 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
     menuOpen = true
     navBar?.classList.add('expanded')
     navBar?.classList.remove('collapsed')
+    openSubmenu()
   }
 
   const closeMenu = () => {
@@ -380,36 +453,25 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
   }
 
   const handleClickOutside = (event: MouseEvent) => {
-    const target = event.target as Node
-    const clickedMenuToggle = menuToggleButton?.contains(target)
-
-    if (clickedMenuToggle) {
+    if (!isWide.matches) {
       return
     }
-
-    if (!isWide.matches) {
-      const clickedToolsDropdown = toolsDropdown?.contains(target)
-      if (submenuOpen && !clickedToolsDropdown) {
-        closeSubmenu()
-      }
-      return
-    } else {
-      const isInMenu = navMenu?.contains(target)
-
-      if (!isInMenu) {
-        closeMenu()
-      }
+    const target = event.target as Node
+    const isInMenu = navMenu?.contains(target)
+    const isInToggle = menuToggleButton?.contains(target)
+    if (!isInMenu && !isInToggle) {
+      closeMenu()
     }
   }
 
   const handleEsc = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
-      if (submenuOpen) {
+      if (!isWide.matches) {
+        if (menuOpen) {
+          closeMenu()
+        }
+      } else if (submenuOpen) {
         closeSubmenu()
-      }
-
-      if (menuOpen) {
-        closeMenu()
       }
     }
   }
