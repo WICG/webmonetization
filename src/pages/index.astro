@@ -37,6 +37,11 @@ const t = useTranslations(lang)
           Web Monetization connects publishers, creators and their audiences,
           turning engagement into revenue. No friction, no barriers, no limits.
         </p>
+        <a
+          class='btn primary flexible hero-btn'
+          href='#start'
+          >Get started today</a
+        >
       </div>
       <div class='hero-img'>
         <img
@@ -49,7 +54,7 @@ const t = useTranslations(lang)
       </div>
     </div>
   </HeroWrapper>
-  <section class='section'>
+  <section class='section' id="start">
     <div class='contentWrapper'>
       <div class='wallet-info'>
         <div class='wallet-content'>
@@ -214,6 +219,12 @@ const t = useTranslations(lang)
 </Base>
 
 <style>
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   .hero-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -251,8 +262,7 @@ const t = useTranslations(lang)
   }
 
   .heroTagline {
-    font: var(--font-style-h5);
-    margin-bottom: var(--spacing-lg);
+    font: var(--font-h5);
   }
 
   .wallet-info {
@@ -431,6 +441,10 @@ const t = useTranslations(lang)
       text-align: center;
     }
 
+    .hero-btn {
+      display: none;
+    }
+
     .heading-wrapper h1 {
       font: var(--font-h2);
     }
@@ -439,10 +453,6 @@ const t = useTranslations(lang)
     }
     .audience-card h2 {
       margin-bottom: var(--spacing-2xs);
-    }
-
-    .heroTagline {
-      margin-bottom: 0;
     }
 
     .wallet-info .wallet-content {
