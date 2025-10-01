@@ -12,7 +12,7 @@ const html = t('footer.copyright.html') as string
     rel='noopener noreferrer'
     target='_blank'>{t('footer.copyright.link_label')}</a
   > © {new Date().getFullYear()}
-  <span set:html={html} />
+  <Fragment set:html={html}/>
 </small>
 
 <style>
