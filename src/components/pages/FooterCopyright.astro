@@ -2,6 +2,7 @@
 import { getLangFromUrl, useTranslations } from '../../i18n/utils'
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
+const html = t('footer.copyright.html') as string
 ---
 
 <small class='copyright'>
@@ -11,27 +12,7 @@ const t = useTranslations(lang)
     rel='noopener noreferrer'
     target='_blank'>{t('footer.copyright.link_label')}</a
   > © {new Date().getFullYear()}
-  {t('footer.copyright.text_after_year')}
-  <a
-    href='https://www.w3.org/community/wicg/'
-    data-umami-event='Footer - Web Platform Incubator Community Group'
-    rel='noopener noreferrer'
-    target='_blank'>{t('footer.copyright.WICG_link_label')}</a
-  >
-  {t('footer.copyright.under_text')}
-  <a
-    href='https://www.w3.org/community/about/process/cla/'
-    data-umami-event='Footer - W3C Community CLA'
-    rel='noopener noreferrer'
-    target='_blank'>{t('footer.copyright.license_link_label')}</a
-  >. {t('footer.copyright.summary_text')}
-  <a
-    href='https://www.w3.org/community/about/process/cla-deed/'
-    data-umami-event='Footer - Summary CLA'
-    rel='noopener noreferrer'
-    target='_blank'>{t('footer.copyright.summary_link_label')}</a
-  >
-  {t('footer.copyright.summary_suffix')}.
+  <span set:html={html} />
 </small>
 
 <style>
@@ -47,13 +28,15 @@ const t = useTranslations(lang)
     max-width: 60em;
   }
 
-  .copyright a {
-    color: inherit;
-    text-decoration: underline;
-  }
+  .copyright {
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
 
-  .copyright a:hover,
-  .copyright a:focus {
-    color: var(--default-font-color);
+    a:hover,
+    a:focus {
+      color: var(--default-font-color);
+    }
   }
 </style>

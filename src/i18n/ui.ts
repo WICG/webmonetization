@@ -41,13 +41,30 @@ export const ui = {
     'footer.menu.cookie_policy': 'Cookie Policy',
     'footer.menu.terms_conditions': 'Terms & Conditions',
     'footer.copyright.link_label': 'Copyright',
-    'footer.copyright.text_after_year': 'the Contributors to the Web Monetization Specification, published by the',
-    'footer.copyright.WICG_link_label': 'Web Platform Incubator Community Group',
-    'footer.copyright.under_text': 'under the',
-    'footer.copyright.license_link_label': 'W3C Community Contributor License Agreement (CLA)',
-    'footer.copyright.summary_text': 'A human-readable',
-    'footer.copyright.summary_link_label': 'summary',
-    'footer.copyright.summary_suffix': 'is available',
+    'footer.copyright.html': `
+      the Contributors to the Web Monetization Specification, published by the
+      <a href="https://www.w3.org/community/wicg/"
+        data-umami-event="Footer - Web Platform Incubator Community Group"
+        rel="noopener noreferrer"
+        target="_blank">
+        Web Platform Incubator Community Group
+      </a>
+      under the
+      <a href="https://www.w3.org/community/about/process/cla/"
+        data-umami-event="Footer - W3C Community CLA"
+        rel="noopener noreferrer"
+        target="_blank">
+        W3C Community Contributor License Agreement (CLA)
+      </a>.
+      A human-readable
+      <a href="https://www.w3.org/community/about/process/cla-deed/"
+        data-umami-event="Footer - Summary CLA"
+        rel="noopener noreferrer"
+        target="_blank">
+        summary
+      </a>
+      is available.
+    `,
     'media.video.unsupported': 'Your browser does not support the video tag.',
     'media.title.extension.chrome': 'Chrome Web Store',
     'media.title.extension.firefox': 'Firefox Add-ons',
