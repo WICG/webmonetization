@@ -189,6 +189,7 @@ const { updates, heading } = Astro.props
   const updates = Array.from(document.querySelectorAll('.update-slide'))
   const numberOfUpdates = carouselDots.length
   let currentIndex = 0
+  const preferedScrollBehaviour: ScrollBehavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
 
   if (updatesList instanceof HTMLElement) {
     let width = updatesList.clientWidth
@@ -229,7 +230,7 @@ const { updates, heading } = Astro.props
     function scrollToUpdate(index: number) {
       beforeScroll(index)
       updates[index].scrollIntoView({
-        behavior: 'smooth',
+        behavior: preferedScrollBehaviour,
         inline: 'start',
         block: 'nearest',
       })
