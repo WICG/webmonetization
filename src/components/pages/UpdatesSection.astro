@@ -54,7 +54,7 @@ const { updates, heading } = Astro.props
     <div class='updates-dots' id='updates-dots'>
       {
         updates.map((_: UpdateContent, i: number) => (
-          <span class:list={['dot', i === 0 && 'active']} aria-hidden='true' />
+          <button class:list={['dot', i === 0 && 'active']} aria-hidden='true' />
         ))
       }
     </div>
@@ -129,16 +129,21 @@ const { updates, heading } = Astro.props
     gap: var(--spacing-xs);
   }
 
-  .updates-dots span {
-    display: inline-block;
+  .updates-dots button.dot {
     width: var(--spacing-sm);
     height: var(--spacing-sm);
     border-radius: 50%;
     border: none;
     background-color: #d9d9d9;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
   }
 
-  .updates-dots span.active {
+  .updates-dots button.dot:hover {
+    background-color: var(--color-silver-400);
+  }
+
+  .updates-dots button.dot.active {
     background: linear-gradient(
       to right,
       var(--gradient-3-start),
@@ -199,16 +204,22 @@ const { updates, heading } = Astro.props
       updateTabBehaviour(indexToGo)
     }
 
-    function scrollUpdates(direction: 'left' | 'right') {
-      setCurrentIndex(direction)
-
-      beforeScroll(currentIndex)
-
-      updates[currentIndex].scrollIntoView({
+    function scrollToUpdate(index: number) {
+      beforeScroll(index)
+      updates[index].scrollIntoView({
         behavior: 'smooth',
         inline: 'start',
         block: 'nearest',
       })
+    }
+
+    function navigateByArrow(direction: 'left' | 'right') {
+      setCurrentIndex(direction)
+      scrollToUpdate(currentIndex)
+    }
+
+    function navigateByDot(index: number) {
+      scrollToUpdate(index)
     }
 
     function setCurrentIndex(direction: 'left' | 'right') {
@@ -234,12 +245,12 @@ const { updates, heading } = Astro.props
       })
     })
 
-    prevButton?.addEventListener('click', () => scrollUpdates('left'))
-    nextButton?.addEventListener('click', () => scrollUpdates('right'))
+    prevButton?.addEventListener('click', () => navigateByArrow('left'))
+    nextButton?.addEventListener('click', () => navigateByArrow('right'))
     updatesContainer?.addEventListener('keydown', (e) => {
       const event = e as KeyboardEvent
-      if (event.key === 'ArrowLeft') scrollUpdates('left')
-      if (event.key === 'ArrowRight') scrollUpdates('right')
+      if (event.key === 'ArrowLeft') navigateByArrow('left')
+      if (event.key === 'ArrowRight') navigateByArrow('right')
     })
 
     updatesList.addEventListener('touchstart', (e) => {
@@ -254,13 +265,17 @@ const { updates, heading } = Astro.props
       const swipeDistance = touchStartX - touchEndX
       if (Math.abs(swipeDistance) > swipeThreshold) {
         if (swipeDistance > 0) {
-          scrollUpdates('right')
+          navigateByArrow('right')
         } else {
-          scrollUpdates('left')
+          navigateByArrow('left')
         }
       }
     })
 
+    carouselDots.forEach( (dot, i) => {
+      dot.addEventListener('click', () => navigateByDot(i))
+    })
+    
     updateTabBehaviour(0)
   }
 </script>
