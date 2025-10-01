@@ -24,7 +24,6 @@ const { updates, heading } = Astro.props
         id='prev-button'
         aria-label={t('aria.nav.back')}
         aria-controls='updates-list'
-        disabled
       >
         <ChevronArrow class='button-arrow' id='prev-button-arrow' />
       </button>
@@ -187,10 +186,6 @@ const { updates, heading } = Astro.props
           link.tabIndex = i === index ? 0 : -1
         }
       })
-      if (prevButton && nextButton) {
-        prevButton.disabled = index === 0
-        nextButton.disabled = index === numberOfUpdates - 1
-      }
     }
 
     function updateDots(index: number) {
@@ -225,11 +220,11 @@ const { updates, heading } = Astro.props
     function setCurrentIndex(direction: 'left' | 'right') {
       let indexToGo
       if (direction === 'left') {
-        indexToGo = currentIndex - 1 < 0 ? 0 : currentIndex - 1
+        indexToGo = currentIndex - 1 < 0 ? numberOfUpdates - 1 : currentIndex - 1
       } else {
         indexToGo =
           currentIndex >= numberOfUpdates - 1
-            ? numberOfUpdates - 1
+            ? 0
             : currentIndex + 1
       }
 
@@ -275,7 +270,7 @@ const { updates, heading } = Astro.props
     carouselDots.forEach( (dot, i) => {
       dot.addEventListener('click', () => navigateByDot(i))
     })
-    
+
     updateTabBehaviour(0)
   }
 </script>
