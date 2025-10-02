@@ -146,14 +146,13 @@ const t = useTranslations(lang)
         & button.tools-secondary-btn {
           background-color: transparent;
           color: var(--button-ghost-color);
-          border: 1px solid var(--button-ghost-color);
+          border: none;
           font: var(--font-standard-regular);
         }
         & button.tools-secondary-btn:hover,
         & button.tools-secondary-btn:focus-visible {
-          background-color: transparent;
+          background-color: var(--surface-hover-color);
           color: var(--button-hover-color);
-          border: 1px solid var(--button-hover-color);
         }
       }
     }
@@ -234,7 +233,10 @@ const t = useTranslations(lang)
     })
 
     const removeButton = document.createElement('button')
-    removeButton.textContent = 'Remove'
+    removeButton.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M7.616 20C7.168 20 6.78667 19.8426 6.472 19.528C6.15733 19.2133 6 18.8323 6 18.385V5.99998H5V4.99998H9V4.22998H15V4.99998H19V5.99998H18V18.385C18 18.845 17.846 19.2293 17.538 19.538C17.23 19.8466 16.8453 20.0006 16.384 20H7.616ZM17 5.99998H7V18.385C7 18.5643 7.05767 18.7116 7.173 18.827C7.28833 18.9423 7.436 19 7.616 19H16.385C16.5383 19 16.6793 18.936 16.808 18.808C16.9367 18.68 17.0007 18.5386 17 18.384V5.99998ZM9.808 17H10.808V7.99998H9.808V17ZM13.192 17H14.192V7.99998H13.192V17Z" fill="currentColor"/>
+      </svg>
+      Remove`
     removeButton.classList.add('btn', 'tools-secondary-btn')
     removeButton.addEventListener('click', () => {
       const link = document.querySelector(
@@ -248,7 +250,10 @@ const t = useTranslations(lang)
     })
 
     const clearButton = document.createElement('button')
-    clearButton.textContent = 'Clean'
+    clearButton.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M4 22V16.134C4 14.9107 4.43133 13.8677 5.294 13.005C6.15667 12.1423 7.19967 11.711 8.423 11.711H9.712V3.634C9.712 3.18467 9.866 2.8 10.174 2.48C10.4827 2.16 10.8607 2 11.308 2H12.692C13.14 2 13.518 2.16 13.826 2.48C14.1347 2.8 14.289 3.18467 14.289 3.634V11.712H15.558C16.7867 11.712 17.8343 12.143 18.701 13.005C19.567 13.8683 20 14.9117 20 16.135V22H4ZM5 21H7.75V17.48C7.75 17.3387 7.798 17.2203 7.894 17.125C7.99 17.0297 8.109 16.9817 8.251 16.981C8.393 16.9803 8.51167 17.028 8.607 17.124C8.70233 17.22 8.75 17.339 8.75 17.481V21H11.5V17.48C11.5 17.3387 11.548 17.2203 11.644 17.125C11.74 17.0297 11.859 16.9817 12.001 16.981C12.143 16.9803 12.2617 17.028 12.357 17.124C12.4523 17.22 12.5 17.339 12.5 17.481V21H15.25V17.48C15.25 17.3387 15.298 17.2203 15.394 17.125C15.49 17.0297 15.609 16.9817 15.751 16.981C15.893 16.9803 16.0117 17.028 16.107 17.124C16.2023 17.22 16.25 17.339 16.25 17.481V21H19V16.134C19 15.1727 18.6653 14.362 17.996 13.702C17.3267 13.042 16.514 12.712 15.558 12.712H8.423C7.47233 12.712 6.66433 13.0447 5.999 13.71C5.333 14.3753 5 15.1833 5 16.134V21ZM13.289 11.712V3.634C13.289 3.454 13.231 3.30333 13.115 3.182C12.9997 3.06067 12.8587 3 12.692 3H11.308C11.1413 3 11 3.061 10.884 3.183C10.7687 3.305 10.711 3.45567 10.711 3.635V11.712H13.289Z" fill="currentColor"/>
+      </svg>
+      Clean`
     clearButton.classList.add('btn', 'tools-secondary-btn')
     clearButton.addEventListener('click', () => {
       const ul = document.querySelector(
