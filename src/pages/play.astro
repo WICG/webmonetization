@@ -91,18 +91,55 @@ const t = useTranslations(lang)
           color: var(--paragraph-success);
         }
 
-        & button.tools-secondary-btn {
-          background-color: transparent;
-          color: var(--button-ghost-color);
-          border: 1px solid var(--button-ghost-color);
-          font: var(--font-standard-regular);
-        }
+        .wallet-switch {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
 
-        & button.tools-secondary-btn:hover,
-        & button.tools-secondary-btn:focus-visible {
-          background-color: transparent;
-          color: var(--button-hover-color);
-          border: 1px solid var(--button-hover-color);
+          .switch-text {
+            font: var(--font-standard-regular);
+            color: var(--default-font-color);
+          }
+
+          .switch-container {
+            position: relative;
+            display: inline-block;
+            width: 2.75rem;
+            height: 1.5rem;
+          }
+
+          input {
+            width: 100%;
+            height: 100%;
+          }
+
+          .switch-slider {
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-silver-300);
+            border-radius: var(--fully-rounded);
+            cursor: pointer;
+          }
+
+          .switch-slider::before {
+            content: '';
+            position: absolute;
+            width: 1.25rem;
+            height: 1.25rem;
+            top: 0.125rem;
+            left: 0.125rem;
+            background-color: var(--color-white);
+            border-radius: var(--fully-rounded);
+            transition: transform 0.3s;
+          }
+
+          input:checked + .switch-slider {
+            background-color: var(--button-ghost-color);
+          }
+
+          input:checked + .switch-slider::before {
+            transform: translateX(1.25rem);
+          }
         }
       }
 
@@ -221,15 +258,21 @@ const t = useTranslations(lang)
     const footer = document.createElement('div')
     footer.classList.add('log-footer')
 
-    const disableButton = document.createElement('button')
-    disableButton.textContent = 'Disable'
-    disableButton.classList.add('btn', 'tools-secondary-btn')
-    disableButton.addEventListener('click', () => {
+    const switchButton = document.createElement('div')
+    switchButton.innerHTML = `
+      <label class="wallet-switch">
+        <span class="switch-text">Enabled</span>
+        <span class="switch-container">
+          <input type="checkbox" checked>
+          <span class="switch-slider"></span>
+        </span>
+      </label>`
+
+    switchButton.addEventListener('click', () => {
       const link = document.querySelector(
         `link[rel='monetization'][href='${href}']`
       ) as HTMLLinkElement
       link.disabled = !link.disabled
-      disableButton.textContent = link.disabled ? 'Enable' : 'Disable'
     })
 
     const removeButton = document.createElement('button')
@@ -263,7 +306,7 @@ const t = useTranslations(lang)
     })
 
     header.append(title)
-    header.append(disableButton)
+    header.append(switchButton)
 
     footer.append(clearButton)
     footer.append(removeButton)
