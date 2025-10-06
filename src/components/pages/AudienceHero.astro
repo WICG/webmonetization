@@ -55,6 +55,7 @@ import PillTag from './PillTag.astro'
             data-umami-event={content.secondaryCta.event}
           >
             {content.secondaryCta.text}
+            {content.secondaryCta.icon && <content.secondaryCta.icon />}
           </a>
         )
       }
@@ -93,6 +94,11 @@ import PillTag from './PillTag.astro'
   .hero-ctas a {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero-ctas a svg {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   .hero-image {
