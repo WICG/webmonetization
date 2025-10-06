@@ -1,0 +1,266 @@
+---
+import UpdateCard from './UpdateCard.astro'
+import type { UpdateContent } from '../../types/shared'
+import ChevronArrow from '@assets/arrow-chevron.svg'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+
+interface Props {
+  updates: Array<UpdateContent>
+  heading: string
+}
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const { updates, heading } = Astro.props
+---
+
+<section class='section'>
+  <div class='contentWrapper'>
+    <h2 class='updates-heading'>{heading}</h2>
+    <div class='updates-carousel' id='updates-carousel'>
+      <button
+        class='carousel-button btn flexible'
+        id='prev-button'
+        aria-label={t('aria.nav.back')}
+        aria-controls='updates-list'
+        disabled
+      >
+        <ChevronArrow class='button-arrow' id='prev-button-arrow' />
+      </button>
+      <ul class='updates-list' id='updates-list'>
+        {
+          updates.map((update: UpdateContent) => (
+            <li class='update-slide' id='update-slide'>
+              <UpdateCard
+                blog={update}
+                ctaButtonClass='secondary'
+                h3Class='update-title'
+                imgClass=''
+              />
+            </li>
+          ))
+        }
+      </ul>
+      <button
+        class='carousel-button btn flexible'
+        id='next-button'
+        aria-label={t('aria.nav.next')}
+        aria-controls='updates-list'
+      >
+        <ChevronArrow class='button-arrow' id='next-button-arrow' />
+      </button>
+    </div>
+    <div class='updates-dots' id='updates-dots'>
+      {
+        updates.map((_: UpdateContent, i: number) => (
+          <span class:list={['dot', i === 0 && 'active']} aria-hidden='true' />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .updates-heading {
+    font: var(--font-h2);
+    margin-bottom: var(--spacing-lg);
+  }
+  ul {
+    list-style-type: none;
+  }
+  .updates-carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .updates-carousel .carousel-button {
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background-color: inherit;
+  }
+
+  .button-arrow {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-block;
+    fill: var(--button-carousel-color);
+  }
+
+  .carousel-button.btn:hover .button-arrow,
+  .carousel-button.btn:focus-visible .button-arrow {
+    fill: var(--button-carousel-hover-color);
+  }
+
+  #prev-button-arrow {
+    transform: rotate(90deg);
+  }
+
+  #next-button-arrow {
+    transform: rotate(-90deg);
+  }
+
+  .updates-carousel .carousel-button:disabled .button-arrow {
+    fill: var(--button-carousel-inactive-color);
+  }
+
+  .updates-list {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    padding: 0;
+    scroll-snap-type: x mandatory;
+  }
+  .update-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  .updates-dots {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+
+  .updates-dots span {
+    display: inline-block;
+    width: var(--spacing-sm);
+    height: var(--spacing-sm);
+    border-radius: 50%;
+    border: none;
+    background-color: #d9d9d9;
+  }
+
+  .updates-dots span.active {
+    background: linear-gradient(
+      to right,
+      var(--gradient-3-start),
+      var(--gradient-3-stop)
+    );
+  }
+
+  @media screen and (max-width: 1034px) {
+    .updates-heading {
+      font: var(--font-h4);
+      text-align: center;
+    }
+    .updates-dots {
+      margin-bottom: var(--spacing-lg);
+    }
+  }
+</style>
+
+<script>
+  const updatesContainer = document.querySelector('#updates-carousel')
+  const updatesList = document.querySelector('#updates-list')
+  const prevButton: HTMLButtonElement | null =
+    document.querySelector('#prev-button')
+  const nextButton: HTMLButtonElement | null =
+    document.querySelector('#next-button')
+  const carouselDots = document.querySelectorAll('#updates-dots .dot')
+  const carouselCTAs = document.querySelectorAll('a.carousel-cta')
+  const updates = Array.from(document.querySelectorAll('#update-slide'))
+  const numberOfUpdates = carouselDots.length
+  let currentIndex = 0
+
+  if (updatesList instanceof HTMLElement) {
+    let width = updatesList.clientWidth
+    let touchStartX = 0
+    let touchEndX = 0
+    const swipeThreshold = 50
+
+    function updateTabBehaviour(index: number) {
+      carouselCTAs.forEach((link, i) => {
+        if (link instanceof HTMLAnchorElement) {
+          link.tabIndex = i === index ? 0 : -1
+        }
+      })
+      if (prevButton && nextButton) {
+        prevButton.disabled = index === 0
+        nextButton.disabled = index === numberOfUpdates - 1
+      }
+    }
+
+    function updateDots(index: number) {
+      carouselDots.forEach((dot, i) =>
+        dot.classList.toggle('active', i === index)
+      )
+    }
+
+    function beforeScroll(indexToGo: number) {
+      updateDots(indexToGo)
+      updateTabBehaviour(indexToGo)
+    }
+
+    function scrollUpdates(direction: 'left' | 'right') {
+      setCurrentIndex(direction)
+
+      beforeScroll(currentIndex)
+
+      updates[currentIndex].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'start',
+        block: 'nearest',
+      })
+    }
+
+    function setCurrentIndex(direction: 'left' | 'right') {
+      let indexToGo
+      if (direction === 'left') {
+        indexToGo = currentIndex - 1 < 0 ? 0 : currentIndex - 1
+      } else {
+        indexToGo =
+          currentIndex >= numberOfUpdates - 1
+            ? numberOfUpdates - 1
+            : currentIndex + 1
+      }
+
+      currentIndex = indexToGo
+    }
+
+    window.addEventListener('resize', () => {
+      width = updatesList.clientWidth
+
+      updatesList.scrollTo({
+        left: currentIndex * width,
+        behavior: 'auto',
+      })
+    })
+
+    prevButton?.addEventListener('click', () => scrollUpdates('left'))
+    nextButton?.addEventListener('click', () => scrollUpdates('right'))
+    updatesContainer?.addEventListener('keydown', (e) => {
+      const event = e as KeyboardEvent
+      if (event.key === 'ArrowLeft') scrollUpdates('left')
+      if (event.key === 'ArrowRight') scrollUpdates('right')
+    })
+
+    updatesList.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX
+    })
+
+    updatesList.addEventListener('touchmove', (e) => {
+      touchEndX = e.touches[0].clientX
+    })
+
+    updatesList.addEventListener('touchend', () => {
+      const swipeDistance = touchStartX - touchEndX
+      if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+          scrollUpdates('right')
+        } else {
+          scrollUpdates('left')
+        }
+      }
+    })
+
+    updateTabBehaviour(0)
+  }
+</script>

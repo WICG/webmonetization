@@ -1,0 +1,162 @@
+---
+import type { ContentSection } from '../../types/shared.ts'
+
+interface Props {
+  content: ContentSection
+}
+
+const { content } = Astro.props
+---
+
+<section class='section'>
+  <div class='contentWrapper'>
+    <div class:list={['layout', content.imgMetaData.position]}>
+      <div class='header'>
+        <h2>{content.title}</h2>
+      </div>
+      <div
+        class='image'
+        style={content.imgMetaData.padding
+          ? `padding:${content.imgMetaData.padding}`
+          : undefined}
+      >
+        <img
+          src={content.image.src}
+          alt=''
+          width={content.image.width}
+          height={content.image.height}
+        />
+      </div>
+      <div class='text'>
+        <slot />
+        <div class='ctas'>
+          <a
+            href={content.primaryCta.href}
+            class='btn primary flexible'
+            data-umami-event={content.primaryCta.event}
+            >{content.primaryCta.text}</a
+          >
+          {
+            content.secondaryCta && (
+              <a
+                href={content.secondaryCta.href}
+                class='btn secondary flexible'
+                data-umami-event={content.secondaryCta.event}
+              >
+                {content.secondaryCta.text}
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
+    padding: var(--padding-md);
+  }
+
+  .header {
+    width: 100%;
+  }
+
+  .header h2 {
+    font: var(--font-h3);
+  }
+
+  .image {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    max-width: 20rem;
+    max-height: 20rem;
+  }
+
+  .image img {
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  .ctas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  @media screen and (min-width: 768px) {
+    .layout {
+      display: grid;
+      column-gap: var(--spacing-3xl);
+    }
+
+    .layout.right {
+      grid-template-columns: 2fr 1fr;
+    }
+
+    .layout.right .header {
+      grid-column: 1;
+    }
+
+    .layout.right .text {
+      grid-column: 1;
+    }
+
+    .layout.right .image {
+      grid-column: 2;
+    }
+
+    .layout.left {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .layout.left .header {
+      grid-column: 2;
+    }
+
+    .layout.left .text {
+      grid-column: 2;
+    }
+
+    .layout.left .image {
+      grid-column: 1;
+    }
+
+    .image {
+      max-width: 100%;
+      grid-row: 1 / span 2;
+    }
+
+    .header {
+      grid-row: 1;
+    }
+
+    .header h2 {
+      font: var(--font-h2);
+    }
+
+    .text {
+      flex: 1 1 100%;
+      grid-row: 2;
+    }
+
+    .ctas {
+      flex-direction: row;
+      text-align: center;
+      max-width: max-content;
+    }
+  }
+</style>

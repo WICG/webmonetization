@@ -1,0 +1,161 @@
+---
+import type { HeroContent, Pills } from '../../types/shared'
+import HeroWrapper from './HeroWrapper.astro'
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const { content, pills } = Astro.props as { content: HeroContent; pills: Pills }
+
+interface Props {
+  content: HeroContent
+  pills: Pills
+}
+
+import PillTag from './PillTag.astro'
+---
+
+<HeroWrapper>
+  <div class='hero-content'>
+    <div class='hero-header'>
+      <h1 class='hero-title' set:html={content.heroTitle} />
+    </div>
+    <div class='hero-image'>
+      <video
+        class='active audience-video'
+        preload='auto'
+        poster={content.posterImage.src}
+        width={content.posterImage.width}
+        height={content.posterImage.height}
+        autoplay
+        loop
+        muted
+        playsinline
+        aria-hidden='true'
+      >
+        <source src={content.videoSrc} type='video/mp4' />
+        {t('media.video.unsupported')}
+      </video>
+    </div>
+    <slot />
+    <div class='hero-tags'>
+      <PillTag pills={pills} />
+    </div>
+    <div class='hero-ctas'>
+      <a
+        href={content.primaryCta.href}
+        class='btn primary'
+        data-umami-event={content.primaryCta.event}>{content.primaryCta.text}</a
+      >
+      {
+        content.secondaryCta && (
+          <a
+            href={content.secondaryCta.href}
+            class='btn secondary'
+            data-umami-event={content.secondaryCta.event}
+          >
+            {content.secondaryCta.text}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</HeroWrapper>
+
+<style>
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    padding-left: var(--padding-md);
+    padding-right: var(--padding-md);
+  }
+
+  .hero-paragraph {
+    text-align: center;
+  }
+
+  .hero-title {
+    margin-bottom: var(--spacing-2xs);
+    font: var(--font-h2);
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .hero-ctas {
+    width: 100%;
+  }
+
+  .hero-ctas a {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-image {
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  .hero-image video {
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  @media (min-width: 1035px) {
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: var(--spacing-3xl);
+      row-gap: var(--spacing-2xl);
+    }
+
+    .hero-paragraph {
+      text-align: left;
+    }
+
+    .hero-header {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .hero-title {
+      font: var(--font-display-2);
+    }
+
+    .hero-tags {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .hero-ctas {
+      grid-column: 1;
+      grid-row: 3;
+      gap: var(--spacing-2xl);
+      text-align: left;
+    }
+
+    .hero-ctas a {
+      width: max-content;
+      justify-content: flex-start;
+    }
+
+    .hero-paragraph {
+      grid-column: 1;
+      grid-row: 4;
+    }
+
+    .hero-image {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+      align-self: center;
+    }
+  }
+</style>

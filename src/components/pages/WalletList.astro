@@ -1,0 +1,63 @@
+---
+import WalletIcon from '@assets/wallet.svg'
+import type { Wallet } from '../../data/home'
+
+interface Props {
+  cards: Array<Wallet>
+  ctaText: string
+}
+const { cards, ctaText } = Astro.props
+---
+
+{
+  cards.map((card) => (
+    <div class='card'>
+      <img
+        class='cardLogo'
+        src={card.image.src}
+        alt={card.name}
+        width={card.image.width}
+        height={card.image.height}
+      />
+      <a
+        href={card.link}
+        class='btn secondary flexible'
+        data-umami-event={`WalletList - ${card.name}`}
+        target='_blank'
+        rel='noreferrer noopener'
+      >
+        {ctaText}
+        <WalletIcon />
+      </a>
+    </div>
+  ))
+}
+
+<style>
+  .card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-direction: column;
+    flex: 1 1 0;
+  }
+
+  .card a {
+    width: 100%;
+  }
+
+  .card a svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+  }
+
+  .cardLogo {
+    width: 146px;
+    height: 32px;
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+  }
+</style>

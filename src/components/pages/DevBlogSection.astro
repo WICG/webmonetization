@@ -1,0 +1,42 @@
+---
+import UpdateCard from './UpdateCard.astro'
+import type { UpdateContent } from '../../types/shared'
+
+interface Props {
+  heading: string
+  blog: UpdateContent
+}
+const { blog, heading } = Astro.props
+---
+
+<section class='section dev-blog'>
+  <div class='contentWrapper'>
+    <h2 class='dev-blog-heading'>{heading}</h2>
+    <UpdateCard
+      blog={blog}
+      ctaButtonClass='primary'
+      h3Class=''
+      imgClass='dev-blog-img'
+    />
+  </div>
+</section>
+
+<style>
+  .dev-blog .contentWrapper {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .dev-blog-heading {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  @media screen and (max-width: 1034px) {
+    .dev-blog .contentWrapper {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .dev-blog-heading {
+      font: var(--font-h3);
+    }
+  }
+</style>

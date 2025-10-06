@@ -1,0 +1,42 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const html = t('footer.copyright.html') as string
+---
+
+<small class='copyright'>
+  <a
+    href='https://www.w3.org/policies/#copyright'
+    data-umami-event='Footer - Copyright'
+    rel='noopener noreferrer'
+    target='_blank'>{t('footer.copyright.link_label')}</a
+  > © {new Date().getFullYear()}
+  <Fragment set:html={html}/>
+</small>
+
+<style>
+  small {
+    display: block;
+    color: var(--color-silver-800);
+    font: var(--font-small-regular);
+    text-align: center;
+  }
+
+  .copyright {
+    margin: auto;
+    max-width: 60em;
+  }
+
+  .copyright {
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--default-font-color);
+    }
+  }
+</style>

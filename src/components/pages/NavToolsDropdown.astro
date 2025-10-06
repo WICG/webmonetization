@@ -1,0 +1,162 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import { toolsSubmenu } from '../../data/nav'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const currentPath = Astro.url.pathname
+const normalize = (p: string): string => p.replace(/\/+$/, '') || '/'
+const isActive = (path: string): boolean =>
+  normalize(currentPath) === normalize(path)
+---
+
+<div class='tools-dropdown'>
+  <ul class='tools-list'>
+    {
+      toolsSubmenu.map((menuItem) => (
+        <li>
+          <a
+            href={menuItem.path}
+            class:list={[{ active: isActive(menuItem.path) }, 'tool-link']}
+          >
+            <>
+              <img
+                width={menuItem.image.width}
+                height={menuItem.image.height}
+                class='tool-icon'
+                alt=''
+                src={menuItem.image.src}
+              />
+              <div class='tool-label'>{t(menuItem.translationKey)}</div>
+            </>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .tools-dropdown {
+    padding: var(--padding-sm);
+    background-color: var(--color-white);
+    visibility: hidden;
+    height: 0;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .tools-dropdown.open {
+    visibility: visible;
+    height: auto;
+  }
+
+  .tools-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    width: 100%;
+  }
+
+  .tool-link {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: var(--spacing-xs);
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+    position: relative;
+    padding: var(--padding-sm);
+    border-radius: var(--moderate-rounding);
+    background-color: transparent;
+    transition: background-color 0.2s ease-in;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tool-link:hover,
+  .tool-link:focus-visible,
+  .tool-link.active {
+    background-color: var(--surface-hover-color);
+  }
+
+  .tool-icon {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .active.tool-link::before {
+    content: '';
+    position: absolute;
+    left: var(--spacing-2xs);
+    top: var(--padding-sm);
+    bottom: var(--padding-sm);
+    width: 2px;
+    background: var(--nav-text-color);
+    border-radius: var(--fully-rounded);
+  }
+
+  .tool-label {
+    font: var(--font-standard-bold);
+    color: var(--default-font-color);
+    flex-grow: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media screen and (max-width: 767px) {
+    .tools-dropdown {
+      padding: 0;
+    }
+
+    .tools-dropdown {
+      width: 100%;
+    }
+
+    .tools-list {
+      align-items: stretch;
+    }
+    .tool-link .tool-label {
+      font: var(--font-standard-regular);
+      color: var(--nav-text-color);
+    }
+
+    .tool-link:hover .tool-label,
+    .tool-link.active .tool-label,
+    .tool-link:focus-visible .tool-label {
+      color: var(--button-hover-color);
+    }
+
+    .tool-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .tool-link .tool-icon {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .tools-dropdown {
+      position: absolute;
+      top: calc(100% + var(--spacing-md));
+      left: 0;
+      border-radius: var(--moderate-rounding);
+      box-shadow: 0px 24px 24px rgba(0, 0, 0, 0.08);
+      outline: 1px solid var(--border-color);
+      outline-offset: -1px;
+      max-width: 20rem;
+      width: max-content;
+      max-height: calc(
+        100vh - var(--icon-size-nav-home-md) - 2 * var(--padding-xs) -
+          var(--spacing-md)
+      );
+      overflow: auto;
+    }
+  }
+</style>

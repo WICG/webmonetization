@@ -1,12 +1,21 @@
 ---
+import chromeWebstore from '@assets/chrome-webstore.png'
+import fxBrowserIcon from '@assets/Fx-Browser-icon.png'
+import microsoftEdge from '@assets/microsoft-edge.png'
+import githubIcon from '@assets/icon-github.svg'
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
 interface Props {
   utm?: Partial<
     Record<`utm_${'source' | 'medium' | 'content' | 'campaign'}`, string>
   >
   includeGitHub?: boolean
+  variant?: 'docs' | 'pages'
 }
 
-const { utm, includeGitHub = false } = Astro.props
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+
+const { utm, includeGitHub = false, variant } = Astro.props
 
 const URLS = {
   chrome: `https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii`,
@@ -27,48 +36,59 @@ const toURL = (url: string) => {
 }
 ---
 
-<ul>
+<ul class={variant}>
   <li>
-    <a href={toURL(URLS.chrome)} title='Chrome Web Store'>
-      <img
-        alt='Chrome Web Store'
-        src='/img/chrome-webstore.png'
-        width='200'
-        height='200'
-      />
-    </a>
+    <div class='container'>
+      <a href={toURL(URLS.chrome)} title={t('media.title.extension.chrome')}>
+        <img
+          src={chromeWebstore.src}
+          alt={t('media.title.extension.chrome')}
+          width={chromeWebstore.width}
+          height={chromeWebstore.height}
+        />
+      </a>
+    </div>
   </li>
   <li>
-    <a href={toURL(URLS.firefox)} title='Firefox Add-ons'>
-      <img
-        alt='Firefox Add-ons'
-        src='/img/Fx-Browser-icon.png'
-        width='200'
-        height='200'
-      />
-    </a>
+    <div class='container'>
+      <a href={toURL(URLS.firefox)} title={t('media.title.extension.firefox')}>
+        <img
+          src={fxBrowserIcon.src}
+          alt={t('media.title.extension.firefox')}
+          width={fxBrowserIcon.width}
+          height={fxBrowserIcon.height}
+        />
+      </a>
+    </div>
   </li>
   <li>
-    <a href={toURL(URLS.edge)} title='Edge Add-ons'>
-      <img
-        alt='Edge Add-ons'
-        src='/img/microsoft-edge.png'
-        width='200'
-        height='200'
-      />
-    </a>
+    <div class='container'>
+      <a href={toURL(URLS.edge)} title={t('media.title.extension.edge')}>
+        <img
+          src={microsoftEdge.src}
+          alt={t('media.title.extension.edge')}
+          width={microsoftEdge.width}
+          height={microsoftEdge.height}
+        />
+      </a>
+    </div>
   </li>
   {
     includeGitHub && (
       <li>
-        <a href={toURL(URLS.github)} title='Latest release on GitHub'>
-          <img
-            alt='Latest release on GitHub'
-            src='/img/icon-github.svg'
-            width='24'
-            height='24'
-          />
-        </a>
+        <div class='container'>
+          <a
+            href={toURL(URLS.github)}
+            title={t('media.title.extension.github')}
+          >
+            <img
+              alt={t('media.title.extension.github')}
+              src={githubIcon.src}
+              width={githubIcon.width}
+              height={githubIcon.height}
+            />
+          </a>
+        </div>
       </li>
     )
   }
@@ -77,18 +97,34 @@ const toURL = (url: string) => {
 <style>
   ul {
     list-style: none;
-    display: inline-flex;
     align-items: baseline;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: var(--space-m);
     padding: 0;
   }
 
   a {
-    padding: 0.5rem;
     display: flex;
+    width: 100%;
+    height: 100%;
     border-radius: 0.5rem;
+  }
+
+  img {
+    transition: transform 0.2s ease-in-out;
+  }
+  a:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Docs variant */
+  ul.docs {
+    display: inline-flex;
+    justify-content: center;
+    gap: var(--space-m);
+  }
+
+  .docs a {
+    padding: 0.5rem;
     --shadow-color: rgba(191, 191, 191, 1);
     --shadow-x: 2px;
     box-shadow:
@@ -97,16 +133,96 @@ const toURL = (url: string) => {
     transition: box-shadow 0.2s ease-in-out;
   }
 
-  img {
+  .docs img {
     width: 3rem;
     height: 3rem;
-    transition: transform 0.2s ease-in-out;
   }
 
-  a:hover {
+  .docs a:hover {
     --shadow-x: 3px;
   }
-  a:hover img {
-    transform: scale(1.05);
+
+  /* Pages variant */
+  ul.pages {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pages li {
+    margin: 0.5625rem;
+    width: max-content;
+    aspect-ratio: 1/1;
+  }
+
+  .pages .container {
+    padding: 0.5625rem;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+  }
+
+  .pages a {
+    padding: 1.25rem;
+    background-color: #fff;
+  }
+
+  .pages img {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    ul.pages {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-self: center;
+      width: max-content;
+    }
+
+    ul.pages li {
+      justify-self: center;
+      align-self: center;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    .pages .container::before,
+    .pages .container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: conic-gradient(
+        from var(--angle, 0deg),
+        rgba(246, 150, 86, 0.8) 0deg 90deg,
+        rgba(127, 118, 178, 0.8) 90deg 180deg,
+        rgba(242, 121, 127, 0.8) 180deg 270deg,
+        rgba(156, 214, 203, 0.8) 270deg 360deg
+      );
+      z-index: -1;
+      animation: spin 6s linear infinite;
+      filter: blur(60px);
+    }
+
+    .pages .container::after {
+      animation-duration: 12s;
+      opacity: 0.6;
+      filter: blur(12px);
+    }
+
+    @keyframes spin {
+      0% {
+        --angle: 0deg;
+      }
+      100% {
+        --angle: 360deg;
+      }
+    }
   }
 </style>

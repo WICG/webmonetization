@@ -1,0 +1,29 @@
+---
+
+---
+
+<section class='section hero'>
+  <div class='contentWrapper'>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section.hero {
+    min-height: 100vh;
+    display: grid;
+  }
+
+  .hero .contentWrapper {
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .section.hero {
+      min-height: unset;
+    }
+  }
+</style>

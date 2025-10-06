@@ -1,167 +1,373 @@
 ---
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils'
+import NavToolsDropdown from './NavToolsDropdown.astro'
+import HamburgerMenu from '@assets/hamburger-menu.svg'
+import CloseMenu from '@assets/close-menu.svg'
+import ChevronArrow from '@assets/arrow-chevron.svg'
+import wmLogo from '@assets/wm-logo.svg'
+import interledgerLogo from '@assets/interledger-logo.png'
+import { toolsSubmenu } from '../../data/nav'
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const homePageUrl = lang === 'en' ? '/' : `/${lang}/`
+const docsUrl = lang === 'en' ? '/docs' : `/${lang}/docs`
+const currentPath = Astro.url.pathname
+const normalize = (p: string) => p.replace(/\/+$/, '') || '/'
+
+const isToolsActive = toolsSubmenu.some((menuItem) => {
+  const base = normalize(menuItem.path)
+  const curr = normalize(currentPath)
+  return curr === base
+})
 ---
+
 <header>
-  <nav class="site-nav">
-    <a href={homePageUrl} class="site-title">
-      <img src="/img/wm-logo.svg" alt="Web Monetization logo">
-      <span>Web Monetization</span>
+  <nav class='site-nav contentWrapper collapsed' id='siteNav'>
+    <a href={homePageUrl} class='site-title'>
+      <img
+        src={wmLogo.src}
+        alt='Web Monetization logo'
+        width={wmLogo.width}
+        height={wmLogo.height}
+        loading='lazy'
+      />
+      <span class='mobile-only'>Web Monetization</span>
     </a>
-    <button id="menuToggle" class="menu-toggle" aria-controls="nav-menu" aria-expanded="true" aria-label="Toggle Menu" title="Toggle Menu">
-      <div id="menuIcon" class="menu-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+    <button
+      id='menuToggle'
+      class='menu-toggle ghost btn'
+      aria-controls='nav-menu'
+      aria-expanded='false'
+      aria-label={t('nav.toggle_menu')}
+      title={t('nav.toggle_menu')}
+      type='button'
+    >
+      <HamburgerMenu class='menu-icon icon--hamburger' />
+      <CloseMenu class='menu-icon icon--close' />
     </button>
-    <ul id="navMenu" class="nav-menu collapsed">
-       <li class="nav-link__docs"><a href="/docs" data-umami-event="Landing page - WebMo docs">{t('nav.documentation')}</a></li>
-       <li class="nav-link__docs"><a href="/specification" data-umami-event="Landing page - WebMo specs">{t('nav.specification')}</a></li>
-       <li class="nav-link__github"><a href="https://github.com/WICG/webmonetization/"><img src="/img/icon-github.svg" alt="Link to GitHub repository"></a></li>
+    <ul id='navMenu' class='nav-menu collapsed'>
+      <li class='nav-group nav-group--tools nav-link__tools' id='tools-wrapper'>
+        <p class='mobile-only menu-label'>{t('nav.tools')}</p>
+        <button
+          id='toolsToggle'
+          class:list={[{ active: isToolsActive }, 'tools-toggle']}
+          aria-expanded='false'
+          aria-label={t('nav.tools_menu')}
+          title={t('nav.tools_menu')}
+          type='button'
+        >
+          {t('nav.tools')}
+          <ChevronArrow class='tools-arrow-icon' />
+        </button>
+        <NavToolsDropdown />
+      </li>
+      <li class='nav-group nav-group--technical'>
+        <p class='mobile-only menu-label'>{t('nav.technical')}</p>
+        <ul class='nav-inline' aria-labelledby='nav-technical-label'>
+          <li class='nav-link__docs'>
+            <a href={docsUrl} data-umami-event='Landing page - WebMo docs'
+              >{t('nav.documentation')}</a
+            >
+          </li>
+          <li class='nav-link__spec'>
+            <a href='/specification' data-umami-event='Landing page - WebMo specs'
+              >{t('nav.specification')}</a
+            >
+          </li>
+        </ul>
+      </li>
     </ul>
- </nav>
+    <div class='mobile-only menu-footer'>
+      <p>{t('nav.footer')}</p>
+      <img
+        src={interledgerLogo.src}
+        alt='Interledger logo'
+        width={interledgerLogo.width}
+        height={interledgerLogo.height}
+      />
+    </div>
+  </nav>
 </header>
 
 <style>
   header {
-    background-color: #fff;
-    color: #333;
-    box-shadow: 0 2px 6px -4px var(--wm-accent);
-    position: sticky;
+    color: var(--nav-text-color);
+    font: var(--font-small-regular);
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
   }
 
-  .site-nav {
+  nav.site-nav {
     display: flex;
     align-items: center;
-    padding-inline: var(--space-s);
     position: relative;
-    max-width: 95rem;
-    margin-inline: auto;
+    justify-content: space-between;
+    padding: var(--padding-xs) var(--padding-2xl);
+    background-color: var(--color-white);
   }
 
   .site-title {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: var(--space-xs);
+    justify-content: center;
+    height: 100%;
+    gap: var(--spacing-2xs);
+    text-decoration: none;
   }
 
   .site-title img {
-    width: 2.5em;
-    flex: none;
-  }
-
-  .site-title span {
-    font-size: larger;
-    white-space: nowrap;
-  }
-
-  a {
-    text-decoration: none;
-    color: var(--sl-color-text);
-    padding-block: var(--space-s);
-  }
-
-  a:hover {
-    color: var(--wm-accent);
-  }
-
-  .menu-toggle {
-    border: 0;
-    background: initial;
-    padding: var(--space-xs) 0;
-    margin-inline-start: auto;
-  }
-
-  .menu-icon {
-    position: relative;
-    transform: rotate(0deg);
-    transition: .5s ease-in-out;
-    cursor: pointer;
-    height: 1em;
-    width: 1.5em;
-  }
-
-  .menu-icon span {
+    width: var(--icon-size-nav-home-md);
+    height: var(--icon-size-nav-home-md);
     display: block;
-    position: absolute;
-    height: 4px;
-    width: 100%;
-    background: var(--sl-color-gray-4);
-    border-radius: 4px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: .25s ease-in-out;
   }
 
-  .menu-icon span:nth-child(1) {
-    top: 0;
-  }
-
-  .menu-icon span:nth-child(2),
-  .menu-icon span:nth-child(3) {
-    top: 50%;
-  }
-
-  .menu-icon span:nth-child(4) {
-    top: 100%;
-  }
-
-  .menu-icon.open span:nth-child(1),
-  .menu-icon.open span:nth-child(4) {
-    top: 50%;
-    width: 0%;
-    left: 50%;
-  }
-
-  .menu-icon.open span:nth-child(2) {
-    transform: rotate(45deg);
-  }
-
-  .menu-icon.open span:nth-child(3) {
-    transform: rotate(-45deg);
-  }
-
-  .nav-link__github img {
-    height: 1.5em;
-    width: 1.5em;
-  }
-
-  .collapsed {
+  button.menu-toggle {
     display: none;
   }
 
-  @media screen and (max-width: 539px) {
-    .nav-menu {
-      position: absolute;
-      top: 100%;
-      background-color: white;
-      width: 100%;
-      list-style: none;
-      padding: 0;
-      left: 0;
-      right: 0;
-      box-shadow: 0 2px 6px -4px var(--wm-accent);
+  .nav-menu,
+  .nav-inline {
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-md);
+    padding: 0;
+  }
+
+  .nav-menu button,
+  .nav-menu a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background: none;
+    border: none;
+    color: var(--nav-text-color);
+    cursor: pointer;
+    padding: var(--padding-sm) var(--padding-md);
+    text-decoration: none;
+    border-radius: var(--moderate-rounding);
+  }
+
+  .nav-menu button:hover,
+  .nav-menu button:focus-visible,
+  .nav-menu a:hover,
+  .nav-menu a:focus-visible {
+    background: var(--surface-hover-color);
+    color: var(--button-hover-color);
+    fill: var(--button-hover-color);
+  }
+
+  .tools-toggle {
+    position: relative;
+  }
+
+  .tools-toggle.active {
+    background: var(--surface-hover-color);
+  }
+
+  .tools-toggle.active::after {
+    content: '';
+    position: absolute;
+    bottom: var(--spacing-2xs);
+    left: var(--spacing-md);
+    right: var(--spacing-md);
+    height: 1px;
+    background-color: var(--nav-text-color);
+    border-radius: var(--fully-rounded);
+  }
+
+  .tools-arrow-icon {
+    height: var(--spacing-md);
+    width: var(--spacing-md);
+    display: inline-block;
+    fill: var(--nav-text-color);
+    margin: var(--spacing-3xs) 0;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-menu button:hover .tools-arrow-icon,
+  .nav-menu button:focus-visible .tools-arrow-icon {
+    fill: var(--button-hover-color);
+  }
+
+  .rotate-180 {
+    transform: rotate(180deg);
+  }
+
+  @media screen and (max-width: 767px) {
+    .site-nav.collapsed {
+      box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
+      border-radius: var(--moderate-rounding);
+      padding: var(--padding-2xs) var(--padding-xs) var(--padding-2xs)
+        var(--padding-md);
+      margin: var(--spacing-md) var(--spacing-md) 0 var(--spacing-md);
     }
 
-    .nav-menu a {
+    .site-nav.collapsed .mobile-only {
+      display: none;
+    }
+
+    .site-nav.expanded {
+      display: grid;
+      gap: var(--spacing-lg);
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr auto;
+      background-color: var(--color-white);
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      justify-content: space-between;
+      overflow: auto;
+      padding: var(--padding-lg);
+    }
+
+    .site-nav.expanded a.site-title {
+      align-self: center;
+      justify-self: start;
+      z-index: 2;
+      height: max-content;
+    }
+
+    .site-nav .site-title img {
+      width: var(--spacing-2xl);
+      height: var(--spacing-2xl);
+      flex: none;
+    }
+
+    .site-title span {
+      text-decoration-line: underline;
+      text-decoration-color: transparent;
+      color: var(--color-black);
+    }
+
+    .site-title:hover span {
+      text-decoration-color: currentColor;
+    }
+
+    button.menu-toggle {
+      display: flex;
+      width: 3rem;
+      height: 3rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .site-nav.expanded button.menu-toggle {
+      align-self: flex-start;
+      justify-self: end;
+      z-index: 2;
+    }
+
+    .menu-icon {
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+      height: 1.25rem;
+      width: 1.25rem;
+      fill: var(--nav-text-color);
+      background-color: transparent;
       display: block;
-      padding-inline: var(--space-xs);
+      opacity: 1;
+    }
+
+    .menu-icon:hover,
+    .menu-icon:focus-visible {
+      fill: var(--button-hover-color);
+    }
+
+    .menu-icon.icon--close {
+      display: none;
+    }
+
+    .menu-icon.icon--hamburger {
+      display: block;
+    }
+
+    .menu-toggle.open .icon--hamburger {
+      display: none;
+    }
+
+    .menu-toggle.open .icon--close {
+      display: block;
+    }
+
+    .nav-menu.collapsed {
+      display: none;
+    }
+
+    .site-nav.expanded .nav-menu {
+      grid-column: 1 / span 2;
+      gap: var(--spacing-lg);
+    }
+
+    .site-nav.expanded .nav-menu,
+    .site-nav.expanded .nav-inline {
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .nav-inline {
+      font: var(--font-standard-regular);
+    }
+
+    .menu-label {
+      font: var(--font-caption);
+      color: var(--default-font-color);
+      border-bottom: 1px solid var(--color-silver-200);
+      width: 100%;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .site-nav.expanded .nav-menu a {
+      justify-content: flex-start;
+      width: 100%;
+    }
+
+    .site-nav.expanded .menu-footer {
+      grid-column: 1 / span 2;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-2xs);
+      justify-content: center;
+      align-items: center;
+      padding-top: var(--padding-2xl);
+      width: 100%;
+      border-top: 1px solid var(--color-silver-200);
+    }
+
+    .menu-footer p {
+      font: var(--font-caption);
+      color: var(--default-font-color);
+    }
+
+    .menu-footer img {
+      height: 1.25rem;
+      width: auto;
+    }
+
+    .nav-menu .nav-link__tools .tools-toggle {
+      display: none;
     }
   }
 
-  @media screen and (min-width: 540px) {
-    .nav-menu {
-      display: flex;
-      gap: var(--space-s);
+  #tools-wrapper {
+    position: relative;
+  }
+
+  @media screen and (min-width: 768px) {
+    header {
+      background-color: var(--color-white);
+      box-shadow: 0 12px 20px 0px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-menu,
+    .nav-inline {
       align-items: center;
-      list-style-type: none;
       flex: 1;
       justify-content: end;
     }
@@ -171,42 +377,122 @@ const homePageUrl = lang === 'en' ? '/' : `/${lang}/`;
     }
 
     .collapsed {
-      display: block;
+      display: flex;
+    }
+
+    .mobile-only {
+      display: none;
     }
   }
 </style>
 
 <script>
-  const toggle = document.getElementById('menuToggle');
-  const icon = document.getElementById('menuIcon');
-  const menu = document.getElementById('navMenu');
-  const isWide = window.matchMedia('(min-width: 540px)');
+  const navBar = document.getElementById('siteNav')
+  const menuToggleButton = document.getElementById('menuToggle')
+  const navMenu = document.getElementById('navMenu')
+  const toolsButton = document.querySelector('#tools-wrapper > button')
+  const toolsDropdown = document.querySelector('#tools-wrapper .tools-dropdown')
+  const isWide = window.matchMedia('(min-width: 768px)')
+  const arrow = toolsButton?.querySelector('.tools-arrow-icon')
 
-  const handleClick = () => {
-    if (toggle?.getAttribute('aria-expanded') === 'false') {
-      toggle.setAttribute('aria-expanded', 'true');
-      menu?.classList.remove("collapsed");
-      icon?.classList.add("open");
-    } else {
-      toggle?.setAttribute('aria-expanded', 'false');
-      menu?.classList.add("collapsed");
-      icon?.classList.remove("open");
+  let menuOpen =
+    !isWide.matches && menuToggleButton?.classList.contains('open')
+      ? true
+      : false
+  let submenuOpen =
+    (!isWide.matches && menuOpen) || toolsDropdown?.classList.contains('open')
+      ? true
+      : false
+
+  const openMenu = () => {
+    menuToggleButton?.setAttribute('aria-expanded', 'true')
+    navMenu?.classList.remove('collapsed')
+    menuToggleButton?.classList.add('open')
+    menuToggleButton?.classList.remove('closed')
+    menuOpen = true
+    navBar?.classList.add('expanded')
+    navBar?.classList.remove('collapsed')
+    openSubmenu()
+  }
+
+  const closeMenu = () => {
+    menuToggleButton?.setAttribute('aria-expanded', 'false')
+    if (!isWide.matches) {
+      navMenu?.classList.add('collapsed')
     }
-  };
+    menuToggleButton?.classList.add('closed')
+    menuToggleButton?.classList.remove('open')
+    menuOpen = false
+    navBar?.classList.remove('expanded')
+    navBar?.classList.add('collapsed')
+    closeSubmenu()
+  }
 
-  const handleResize = (evt: MediaQueryList | MediaQueryListEvent) => {
-    if (evt.matches) {
-      toggle?.setAttribute('aria-expanded', 'false');
-      menu?.classList.remove("collapsed");
-      icon?.classList.remove("open");
-    }  else {
-      toggle?.setAttribute('aria-expanded', 'false');
-      menu?.classList.add("collapsed");
-      icon?.classList.remove("open");
+  const openSubmenu = () => {
+    toolsDropdown?.classList.add('open')
+    arrow?.classList.add('rotate-180')
+    toolsButton?.setAttribute('aria-expanded', 'true')
+    submenuOpen = true
+  }
+
+  const closeSubmenu = () => {
+    toolsDropdown?.classList.remove('open')
+    arrow?.classList.remove('rotate-180')
+    toolsButton?.setAttribute('aria-expanded', 'false')
+    submenuOpen = false
+  }
+
+  const handleMainToggle = () => {
+    menuOpen ? closeMenu() : openMenu()
+  }
+
+  const handleSubmenuToggle = (event: MouseEvent) => {
+    event.stopPropagation()
+    submenuOpen ? closeSubmenu() : openSubmenu()
+  }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (!isWide.matches) {
+      return
     }
-  };
+    const target = event.target as Node
+    const isInMenu = navMenu?.contains(target)
+    const isInToggle = menuToggleButton?.contains(target)
+    if (!isInMenu && !isInToggle) {
+      closeMenu()
+    }
+  }
 
-  toggle?.addEventListener('click', handleClick, false);
-  isWide.addEventListener('change', evt => handleResize(evt));
-  handleResize(isWide);
+  const handleEsc = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      if (!isWide.matches) {
+        if (menuOpen) {
+          closeMenu()
+        }
+      } else if (submenuOpen) {
+        closeSubmenu()
+      }
+    }
+  }
+
+  const handleResize = (event: MediaQueryListEvent | MediaQueryList) => {
+    closeMenu()
+    if (event.matches) {
+      // Wide screen: navMenu always shown
+      navMenu?.classList.remove('collapsed')
+    }
+  }
+
+  menuToggleButton?.addEventListener('click', handleMainToggle)
+  toolsButton?.addEventListener('click', handleSubmenuToggle)
+  document.addEventListener('click', handleClickOutside)
+  document.addEventListener('keydown', handleEsc)
+  isWide.addEventListener('change', handleResize)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      closeMenu()
+      closeSubmenu()
+    }
+  })
+  handleResize(isWide)
 </script>

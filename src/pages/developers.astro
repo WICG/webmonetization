@@ -1,0 +1,83 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import {
+  heroContent,
+  developerTags,
+  playgroundContent,
+  plugins,
+  blog,
+} from '../data/developers.ts'
+import AudienceHero from '../components/pages/AudienceHero.astro'
+import SplitLayout from '../components/pages/SplitLayout.astro'
+import DevBlogSection from '../components/pages/DevBlogSection.astro'
+import PluginList from '../components/pages/PluginList.astro'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<Base
+  title={t('pages.developers.title')}
+  description={t('pages.developers.description')}
+>
+  <AudienceHero content={heroContent} pills={developerTags}>
+    <p>
+      Whether you're building plugins, extensions, or libraries, your
+      contributions make open, sustainable monetization a reality.
+    </p>
+  </AudienceHero>
+  <SplitLayout content={playgroundContent}>
+    <p>
+      The Web Monetization Playground is a developer-friendly environment to
+      understand how Web Monetization works under the hood and to test payment
+      flows.
+    </p>
+  </SplitLayout>
+  {
+    plugins.length > 0 && (
+      <section class='section plugins'>
+        <div class='contentWrapper'>
+          <h2>Web monetization Libraries/Plugins</h2>
+          <p>
+            There have been a number of libraries and plugins developed over the
+            years to enable Web Monetization features on the web, but a lot of
+            them need updating to conform to the latest specification. If you
+            would like to help out this effort, please check out the{' '}
+            <a
+              href='/developers/libraries/'
+              data-umami-event='Developers page - Full plugin list'
+            >
+              full list
+            </a>
+            . These plugins have already been updated:
+          </p>
+          <PluginList cards={plugins} fullListText='See the full list' />
+        </div>
+      </section>
+    )
+  }
+  <DevBlogSection blog={blog} heading='Tech blog' />
+</Base>
+
+<style>
+  .hero-ctas a.secondary {
+    display: none;
+  }
+
+  .plugins .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  @media screen and (max-width: 767px) {
+    .plugins .contentWrapper {
+      gap: var(--spacing-lg);
+    }
+
+    .plugins h2 {
+      font: var(--font-h3);
+    }
+  }
+</style>

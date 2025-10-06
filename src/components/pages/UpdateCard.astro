@@ -1,0 +1,159 @@
+---
+import type { UpdateContent } from '../../types/shared'
+import ExternalLink from '@assets/external-link.svg'
+
+interface Props {
+  blog: UpdateContent
+  ctaButtonClass: string
+  h3Class: string
+  imgClass: string
+}
+const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props
+---
+
+<div class='blog-card'>
+  <div class={`blog-img ${imgClass}`}>
+    <img
+      src={blog.image.src}
+      alt=''
+      width={blog.image.width}
+      height={blog.image.height}
+    />
+  </div>
+  <div class='blog-content'>
+    {
+      blog.titleLink ? (
+        <h3 class={`blog-title ${h3Class}`}>
+          <a
+            href={blog.titleLink}
+            target='_blank'
+            rel='noreferrer noopener'
+            data-umami-event={blog.titleEvent}
+          >
+            {blog.title}
+            <ExternalLink class='external' />
+          </a>
+        </h3>
+      ) : (
+        <h3 class={`blog-title ${h3Class}`}>{blog.title}</h3>
+      )
+    }
+    {
+      blog.subtitles && (
+        <p class='bold blog-subtitles'>
+          {Object.values(blog.subtitles).map((subtitle, i, arr) => {
+            return (
+              <>
+                <span>{subtitle}</span>
+                {i < arr.length - 1 && <span class='dot' />}
+              </>
+            )
+          })}
+        </p>
+      )
+    }
+    <div class='blog-paragraphs'>
+      {blog.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+    <a
+      href={blog.cta.href}
+      class={`btn ${ctaButtonClass} flexible carousel-cta`}
+      data-umami-event={blog.cta.event}
+      target='_blank'
+      rel='noreferrer noopener'
+    >
+      {blog.cta.text}
+    </a>
+  </div>
+</div>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .blog-img {
+    flex-basis: 50%;
+  }
+
+  .blog-img img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .blog-content {
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: var(--spacing-md);
+    justify-content: space-between;
+  }
+
+  h3.blog-title {
+    font: var(--font-h4);
+  }
+
+  h3.blog-title a {
+    text-decoration: none;
+  }
+
+  h3.blog-title a:hover {
+    text-decoration: underline;
+  }
+
+  .external {
+    display: inline-block;
+    height: var(--spacing-md);
+    width: var(--spacing-md);
+    margin-inline-start: var(--spacing-xs);
+  }
+
+  .blog-subtitles {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  .blog-subtitles .dot {
+    display: inline-block;
+    width: var(--spacing-xs);
+    height: var(--spacing-xs);
+    background-color: var(--default-font-color);
+    border-radius: 50%;
+  }
+
+  @media screen and (max-width: 1034px) {
+    .blog-card {
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .blog-img {
+      flex-basis: unset;
+      padding-block: 0;
+      max-width: 30rem;
+      width: 100%;
+    }
+
+    h3.update-title {
+      font: var(--font-h5);
+    }
+
+    .blog-content {
+      flex-basis: 100%;
+      justify-content: space-around;
+    }
+
+    .blog-content .btn.flexible {
+      max-width: 36rem;
+      max-height: max-content;
+    }
+  }
+</style>

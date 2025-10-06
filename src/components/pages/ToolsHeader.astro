@@ -1,0 +1,79 @@
+---
+import Arrow from '@assets/arrow.svg'
+import { getLangFromUrl } from '../../i18n/utils'
+
+interface Props {
+  headingText: string
+  pageTitle: string
+  backButtonText: string
+}
+const { headingText, pageTitle, backButtonText } = Astro.props
+const lang = getLangFromUrl(Astro.url)
+const toolsUrl = lang === 'en' ? '/tools' : `/${lang}/tools`
+---
+
+<div class='header'>
+  <a
+    class='btn ghost'
+    id='back-btn'
+    href={toolsUrl}
+    data-umami-event={`${pageTitle} page link - Tools`}
+  >
+    <Arrow class='arrow' />
+    {backButtonText}
+  </a>
+  <h1>{headingText}</h1>
+</div>
+
+<style>
+  .header {
+    flex-direction: column;
+    margin-bottom: var(--spacing-lg);
+    align-items: flex-start;
+    justify-content: flex-start;
+    display: flex;
+    gap: var(--spacing-xs);
+    padding-inline: var(--padding-md);
+  }
+
+  .header #back-btn {
+    align-self: flex-start;
+    font: var(--font-standard-regular);
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .btn .arrow {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    margin: var(--spacing-3xs) 0;
+    transform: rotate(180deg);
+  }
+
+  .header h1 {
+    width: 100%;
+    text-align: center;
+    font: var(--font-h2);
+  }
+
+  @media screen and (min-width: 768px) {
+    .header {
+      flex-direction: row;
+      margin-bottom: var(--spacing-3xl);
+      align-items: center;
+      position: relative;
+    }
+
+    .header #back-btn {
+      align-self: auto;
+      position: absolute;
+      left: 0;
+    }
+
+    .header h1 {
+      padding-inline: 7.5rem;
+      font: var(--font-h1);
+    }
+  }
+</style>

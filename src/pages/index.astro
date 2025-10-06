@@ -1,242 +1,511 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Base from "../layouts/Base.astro";
-import data from "../data/home.json";
-import contributors from "../data/contributors.json";
-import CardList from "../components/pages/CardList.astro";
-import PrCta from "../components/pages/PrCta.astro";
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import { wallets, updates } from '../data/home.ts'
+import { publisherTags } from '../data/publishers.ts'
+import { supporterTags } from '../data/supporters.ts'
+import { developerTags } from '../data/developers.ts'
+import HeroWrapper from '../components/pages/HeroWrapper.astro'
+import WalletList from '../components/pages/WalletList.astro'
+import PillTag from '../components/pages/PillTag.astro'
+import UpdatesSection from '../components/pages/UpdatesSection.astro'
+import hero from '@assets/hero-img.svg'
+import publisherInactive from '@assets/audience-publisher.png'
+import publisherActive from '@assets/animations/audience-publisher.mp4'
+import publisherPoster from '@assets/audience-publisher-poster.png'
+import supporterInactive from '@assets/audience-supporter.png'
+import supporterActive from '@assets/animations/audience-supporter.mp4'
+import supporterPoster from '@assets/audience-supporter-poster.png'
+import developerInactive from '@assets/audience-developer.png'
+import developerActive from '@assets/animations/audience-developer.mp4'
+import developerPoster from '@assets/hero-developer-poster.png'
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const pluginsList = data.plugins.filter(function(plugin){
-  return plugin.version.includes("2.0");
-});
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
 ---
-<Base title={t('site.title')} description={t('site.description')}>
-  <section class="section hero">
-    <div class="contentWrapperSm">
-      <img
-        alt="Web Monetization Icon"
-        class="heroIcon"
-        src="/img/wm-logo--animated.svg"
-        width="120"
-        height="86"
-      />
-      <h1 class="heading2">Web Monetization</h1>
-      <p class="heroTagline heading4">
-        The Web Monetization API allows websites to automatically and
-        passively receive payments from Web Monetization-enabled visitors.
-      </p>
-    </div>
-    <footer class="heroFooter">
-      <div class="contentWrapperSm">
-        <p>
-          Web Monetization is being proposed as a standard in <a
-            href="https://wicg.io/"
-            data-umami-event="Landing page - Spec"
-          >
-            the W3C Web Incubator Community Group</a>.
+
+<Base
+  title={t('site.title')}
+  description={t('site.description')}
+  homePage={true}
+>
+  <HeroWrapper>
+    <div class='hero-content'>
+      <div class='heading-wrapper'>
+        <h1>Revolutionizing the digital content economy</h1>
+        <p class='heroTagline'>
+          Web Monetization connects publishers, creators and their audiences,
+          turning engagement into revenue. No friction, no barriers, no limits.
         </p>
+        <a
+          class='btn primary flexible hero-btn'
+          href='#start'
+          >Get started today</a
+        >
       </div>
-    </footer>
-  </section>
-  <section class="section">
-    <div class="contentWrapperLg twoColGrid">
-      <div class="gridItem">
-        <h2 class="heading3">Motivation</h2>
-        <p>
-          The ability to transfer money has been a long-standing omission
-          from the web platform. As a result, the web suffers from a flood
-          of advertising and broken business models. Web Monetization
-          provides an open, native, efficient, and automatic way to
-          compensate creators, pay for content, and support crucial web
-          infrastructure.
-        </p>
-      </div>
-      <div class="gridItem">
-        <h2 class="heading3">Why Now?</h2>
-        <p>
-          Until recently, there hasn't been an open, neutral, and cost-efficient protocol for transferring money. <a href="https://interledger.org/" data-umami-event="Landing page - ILP docs">Interledger</a> <a href="https://openpayments.dev/" data-umami-event="Landing page - Open Payments docs">Open Payments</a> provides a simple, interoperable, and currency-independent method for the transfer of small amounts of money. This opens up the possibility for streaming money, which makes the Web Monetization use case possible for the first time.
-        </p>
+      <div class='hero-img'>
+        <img
+          src={hero.src}
+          alt=''
+          loading='eager'
+          width={hero.width}
+          height={hero.height}
+        />
       </div>
     </div>
-  </section>
-  <section class="section">
-    <div class="contentWrapperLg">
-      {data.wallets.length > 0 && (
-        <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">Web Monetization Wallets</h2>
-            <p>
-              These providers offer Open Payments-enabled <a href="/wallets/">wallets</a> that you can use to become Web Monetized:
-            </p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.wallets} />
-          </div>
-          <p class="sectionHeader">Support in <em>Interledger Wallet</em> and <em>Chimoney App</em> is coming soon.</p>
-        </div>
-      )}
-      {data.search.length > 0 && (
-        <div class="gridItem">
-          <div class="sectionHeader">
-            <h2 class="heading3">
-              Web Monetization Enabled Search Engines
-            </h2>
-            <p>These search engines implement Web Monetization features:</p>
-          </div>
-          <div class="cards">
-            <CardList cards={data.search} />
-          </div>
-          <PrCta label="search engine" />
-        </div>
-      )}
-    </div>
-  </section>
-  {data.providers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Providers</h2>
-          <p>These providers offer Web Monetization services:</p>
-        </div>
-        <div class="cards">
-          <CardList cards={data.providers} />
-        </div>
-        <PrCta label="provider" />
-      </div>
-    </section>
-  )}
-  {data.browsers.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">
-            Web Monetization Supported Browsers
-          </h2>
+  </HeroWrapper>
+  <section class='section' id="start">
+    <div class='contentWrapper'>
+      <div class='wallet-info'>
+        <div class='wallet-content'>
+          <h2 class='font-h3'>From one-time payments to pay-as-you-browse</h2>
           <p>
-            These browsers implement Web Monetization natively or via an
-            extension:
+            Web Monetization gives publishers more revenue options and audiences
+            more ways to sustain the content they love. Support can take many
+            forms: from a one-time contribution to a continuous,
+            pay-as-you-browse model. It all flows seamlessly while people engage
+            with the content they love. Publishers earn the moment someone
+            engages, while audiences contribute in real time, using a balance
+            they control.
           </p>
+          <p>
+            Built as a growing, open protocol web standard, Web Monetization
+            enables real-time wallet-to-wallet transfers through its
+            free-to-use, frictionless model.
+          </p>
+          <p class='font-h5'>No friction, no barriers, no limits.</p>
+          <h2 class='font-h3'>Compatible wallets</h2>
         </div>
-        <div class="cards">
-          <CardList cards={data.browsers} />
-        </div>
-        <PrCta label="browser" />
-      </div>
-    </section>
-  )}
-  {data.plugins.length > 0 && (
-    <section class="section">
-      <div class="contentWrapperLg">
-        <div class="sectionHeader">
-          <h2 class="heading3">Web Monetization Libraries/Plugins</h2>
-          <p>There have been a number of libraries and plugins developed over the years to enable Web Monetization features on your website, but a lot of them need updating to conform to the latest specification. If you would like to help out this effort, please check out the <a href="/developers/libraries" data-umami-event="Landing page - WebMo libraries">full list</a>. These plugins have already been updated:</p>
-        </div>
-        <div class="cards">
-          <CardList cards={pluginsList} />
-        </div>
-        <PrCta label="plugin" />
-      </div>
-    </section>
-  )}
-  <section class="section">
-    <div class="contentWrapperLg">
-      <div class="sectionHeader">
-        <h2 class="heading3">Tools</h2>
-      </div>
-      <div class="threeColGrid toolsList">
-        <a class="gridItem" href="/play" data-umami-event="Landing page - Playground">
-          <h3 class="heading4">Web Monetization Playground</h3>
-          <p>Explore how Web Monetization works</p>
-        </a>
-
-        <a class="gridItem" href="/tools/link-tag" data-umami-event="Landing page - Link tag">
-          <h3 class="heading4">Link Tag Generator</h3>
-          <p>Generate a Web Monetization link tag for your site</p>
-        </a>
-
-        <a class="gridItem" href="/tools/prob-revshare" data-umami-event="Landing page - Prob rev share">
-          <h3 class="heading4">Probabilistic RevShare Generator</h3>
-          <p>Split Web Monetization revenue between wallet addresses</p>
-        </a>
+        {
+          wallets.length > 0 && (
+            <div class='cards'>
+              <WalletList cards={wallets} ctaText='Set up a wallet' />
+            </div>
+          )
+        }
+        <a
+          href='https://github.com/WICG/webmonetization/pulls'
+          target='_blank'
+          rel='noreferrer noopener'
+          data-umami-event='Home page link - GitHub PR'
+          class='bold'>Do you know other wallets? Make a PR</a
+        >
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="contentWrapperLg">
-      <div class="sectionHeader">
-        <h2 class="heading3">Contributors</h2>
-        <p>Thank you to all our contributors.</p>
-      </div>
-      {contributors.length > 0 && (
-        <ul class="contributors">
-          {contributors.map((contributor) => (
-            <li class="contributor">
-              <a href={contributor.html_url}>
-                <img alt={contributor.login} src={contributor.avatar_url} />
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+  <section class='section audienceSection'>
+    <div class='contentWrapper audience-grid'>
+      <article class='audience-card publisher'>
+        <div>
+          <h2>I'm a publisher</h2>
+          <p class='audience-desc font-h6'>and I want to get monetized</p>
+          <PillTag pills={publisherTags} />
+        </div>
+        <div class='media-cta'>
+          <img
+            class='inactive audience-img'
+            alt=''
+            src={publisherInactive.src}
+            width={publisherInactive.width}
+            height={publisherInactive.height}
+          />
+          <video
+            class='active audience-video'
+            preload='metadata'
+            poster={publisherPoster.src}
+            width={publisherPoster.width}
+            height={publisherPoster.height}
+            autoplay
+            loop
+            muted
+            playsinline
+          >
+            <source src={publisherActive} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
+          <a
+            class='btn primary flexible'
+            href='/publishers'
+            data-umami-event='Home page link - Publishers'
+            >Start earning today</a
+          >
+        </div>
+      </article>
+      <div class='divider vertical'></div>
+      <article class='audience-card supporter'>
+        <div>
+          <h2>I'm a supporter</h2>
+          <p class='audience-desc font-h6'>
+            and I want to sustain the work that matters to me
+          </p>
+          <PillTag pills={supporterTags} />
+        </div>
+        <div class='media-cta'>
+          <img
+            class='inactive audience-img'
+            alt=''
+            src={supporterInactive.src}
+            width={supporterInactive.width}
+            height={supporterInactive.height}
+          />
+          <video
+            class='active audience-video'
+            preload='metadata'
+            poster={supporterPoster.src}
+            width={supporterPoster.width}
+            height={supporterPoster.height}
+            autoplay
+            loop
+            muted
+            playsinline
+          >
+            <source src={supporterActive} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
+          <a
+            class='btn primary flexible'
+            href='/supporters'
+            data-umami-event='Home page link - Supporters'
+            >Support on your terms</a
+          >
+        </div>
+      </article>
+    </div>
+    <div class='contentWrapper'>
+      <div class='divider horizontal'></div>
+      <article class='audience-card developer'>
+        <div class='dev-wrapper'>
+          <h2>I'm a developer</h2>
+          <p class='audience-desc font-h6'>and I want to pay the web forward</p>
+          <PillTag pills={developerTags} />
+          <a
+            class='btn primary flexible'
+            href='/developers'
+            data-umami-event='Home page link - Developers'>Join the community</a
+          >
+        </div>
+        <div class='developer-images'>
+          <img
+            class='inactive audience-img'
+            alt=''
+            src={developerInactive.src}
+            width={developerInactive.width}
+            height={developerInactive.height}
+          />
+          <video
+            class='active audience-video'
+            preload='metadata'
+            poster={developerPoster.src}
+            width={developerPoster.width}
+            height={developerPoster.height}
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-hidden='true'
+          >
+            <source src={developerActive} type='video/mp4' />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </article>
     </div>
   </section>
+  {
+    updates && updates.length > 0 && (
+      <UpdatesSection updates={updates} heading='Important Updates' />
+    )
+  }
 </Base>
 
 <style>
-/* Hero section styles */
-.hero {
-  background-image: url("/img/bg-lines--light.svg"), url("/img/bg-tile.svg");
-  background-repeat: repeat-x, repeat;
-  background-size: 17em, 20em;
-  background-position: bottom, center;
-  margin-block-end: var(--space-xl);
-  text-align: center;
-}
-.heroIcon {
-  width: 120px;
-  margin-block-end: var(--space-s);
-  margin-inline: auto;
-}
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
 
-.hero h1 {
-  color: var(--wm-accent);
-}
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4xl);
+  }
 
-/* Card wrapper styles */
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-s);
-  margin-block-end: var(--space-s);
-  justify-content: center;
-}
+  .heading-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+    justify-content: space-around;
+  }
 
-/* Tools list styles */
-.toolsList {
-  justify-content: center;
-}
+  .heading-wrapper h1 {
+    margin: 0;
+    font: var(--font-display-2);
+  }
 
-.toolsList a {
-  text-align: center;
-  cursor: pointer;
-}
-/* Contributor section styles */
-.contributors {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-xs);
-  padding: 0;
-}
+  .hero-img {
+    width: 100%;
+    max-height: 50vh;
+    max-width: 80vw;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+  }
 
-.contributor {
-  flex: 0 0 3em;
-}
+  .hero-img img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+    aspect-ratio: 814 / 599;
+    display: block;
+  }
 
-.contributor img {
-  border-radius: 50%;
-}
+  .heroTagline {
+    font: var(--font-h5);
+  }
+
+  .wallet-info {
+    margin-inline: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-white);
+    border-radius: var(--pill-rounding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  .wallet-info .wallet-content {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  p.font-h5 {
+    color: var(--helper-text-default);
+  }
+
+  .wallet-info a svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+  }
+
+  .cards {
+    display: flex;
+    gap: var(--spacing-4xl);
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .audienceSection {
+    margin-inline: var(--spacing-md);
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.25rem 1fr;
+    gap: var(--spacing-xs);
+    align-items: start;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .audience-grid > * {
+    width: 100%;
+    height: 100%;
+  }
+
+  .audience-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-white);
+    border-radius: var(--pill-rounding);
+    max-width: 100%;
+    justify-content: space-between;
+  }
+
+  .audience-card.developer {
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .audience-card .btn,
+  .audience-card .media-cta {
+    margin-top: var(--spacing-3xl);
+  }
+
+  .dev-wrapper,
+  .audience-card .media-cta {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .audience-card.developer div {
+    flex-basis: 50%;
+  }
+
+  .audience-card > div {
+    width: 100%;
+  }
+
+  .audience-img,
+  .audience-video {
+    max-width: 30vw;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .active.audience-video {
+    display: none;
+  }
+
+  .audience-card {
+    padding: 2rem;
+    color: var(--inactive-font-color);
+  }
+
+  .audience-card:hover,
+  .audience-card:focus {
+    color: var(--default-font-color);
+    background-color: var(--color-white);
+  }
+
+  .audience-card:hover .active.audience-video,
+  .audience-card:focus .active.audience-video {
+    display: block;
+  }
+
+  .audience-card:hover .inactive.audience-img,
+  .audience-card:focus .inactive.audience-img {
+    display: none;
+  }
+
+  .audience-card .audience-desc {
+    margin-block-end: var(--spacing-lg);
+  }
+
+  .divider {
+    position: relative;
+    align-self: stretch;
+    display: flex;
+  }
+
+  .divider.vertical {
+    width: 0.25rem;
+    justify-content: center;
+  }
+
+  .divider.horizontal {
+    height: 0.25rem;
+    width: 100%;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .divider::before {
+    content: '';
+    position: absolute;
+    border-radius: var(--fully-rounded);
+    background-image: linear-gradient(
+      to var(--gradient-direction),
+      #7f76b2 12%,
+      #f69656 30%,
+      #f2797f 59%,
+      #9cd6cb 90%
+    );
+  }
+
+  .divider.vertical::before {
+    top: var(--padding-2xl);
+    bottom: var(--padding-2xl);
+    left: 0;
+    right: 0;
+    --gradient-direction: top;
+  }
+
+  .divider.horizontal::before {
+    left: calc(12.5% + var(--padding-2xl));
+    right: calc(12.5% + var(--padding-2xl));
+    top: 0;
+    bottom: 0;
+    --gradient-direction: left;
+  }
+
+  @media screen and (max-width: 767px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-2xl);
+      text-align: center;
+    }
+
+    .hero-btn {
+      display: none;
+    }
+
+    .heading-wrapper h1 {
+      font: var(--font-h2);
+    }
+    .section.audienceSection {
+      margin-inline: 0;
+    }
+    .audience-card h2 {
+      margin-bottom: var(--spacing-2xs);
+    }
+
+    .wallet-info .wallet-content {
+      flex: 1 1 auto;
+    }
+
+    .cards {
+      flex: 1 1 auto;
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    a.bold {
+      text-align: center;
+      width: 100%;
+    }
+
+    .audience-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-3xl);
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .divider.vertical,
+    .divider.horizontal {
+      display: none;
+    }
+
+    .audience-card {
+      color: var(--default-font-color);
+      padding: var(--padding-md);
+    }
+
+    .audience-card h2 {
+      font: var(--font-h3);
+    }
+
+    .audience-card.developer div {
+      flex-basis: 100%;
+    }
+
+    .inactive.audience-img,
+    .developer-images {
+      display: none;
+    }
+
+    .audience-card:hover .active.audience-video,
+    .audience-card:focus .active.audience-video {
+      display: none;
+    }
+
+    .audience-card .media-cta {
+      margin-top: 0;
+    }
+  }
 </style>

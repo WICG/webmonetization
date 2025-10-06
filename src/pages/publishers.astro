@@ -1,0 +1,69 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import {
+  heroContent,
+  publisherTags,
+  toolsContent,
+  walletConnectionContent,
+  wordPressPluginContent,
+} from '../data/publishers.ts'
+import AudienceHero from '../components/pages/AudienceHero.astro'
+import HowItWorks from '../components/pages/HowItWorks.astro'
+import SplitLayout from '../components/pages/SplitLayout.astro'
+
+import { HowItWorksPublishers } from '../data/publishers.ts'
+
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<Base
+  title={t('pages.publishers.title')}
+  description={t('pages.publishers.description')}
+>
+  <AudienceHero content={heroContent} pills={publisherTags}>
+    <p>
+      Earn money every second someone spends on your content. Our
+      pay-as-you-browse model turns attention into direct, automatic payments.
+      Web Monetization is fast, secure, private, and integrates seamlessly with
+      your current setup.
+    </p>
+    <p>All it takes is a wallet address and a single line of code.</p>
+  </AudienceHero>
+  <HowItWorks content={HowItWorksPublishers}>
+    <p>
+      To get paid, you'll just need an account with a compatible wallet. Once
+      you have your wallet address, use the <a
+        href='/tools/link-tag/'
+        data-umami-event='Publisher page link - Link tag generator'
+        >link generator</a
+      > tool to create a Web Monetization <code>&lt;link&gt;</code> element and add
+      it to each page you want to monetize. Supporters with the Web Monetization
+      browser extension can then stream payments to you at a rate and frequency they
+      choose, or send you one-time support.
+    </p>
+  </HowItWorks>
+  <SplitLayout content={walletConnectionContent}>
+    <p>
+      Monetizing your website has never been easier. Use your wallet address
+      with the link tag generator to create a <code>&lt;link&gt;</code> element and
+      add it to each page you want to monetize.
+    </p>
+  </SplitLayout>
+  <SplitLayout content={toolsContent}>
+    <p>
+      Let your audience know they can finally support you directly and on their
+      terms. Use our custom-made tools to signal it. They're user-friendly,
+      visually appealing, and require no coding.
+    </p>
+  </SplitLayout>
+  <SplitLayout content={wordPressPluginContent}>
+    <p>
+      Start earning from your WordPress content using our new Web Monetization
+      plugin, built for an open web experience with no paywalls and no hassle.
+      Just add your wallet, pick what to monetize, and you're ready to collect
+      in minutes. One simple plugin. No coding needed. Privacy respected.
+    </p>
+  </SplitLayout>
+</Base>
