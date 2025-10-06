@@ -18,30 +18,36 @@ const { updates, heading } = Astro.props
 <section class='section'>
   <div class='contentWrapper'>
     <h2 class='updates-heading'>{heading}</h2>
-    <div class='updates-carousel' id='updates-carousel'>
+    <div
+      class='updates-carousel'
+      id='updates-carousel'
+      role='region'
+      aria-roledescription='carousel'
+      aria-label='Updates'
+    >
       <button
         class='carousel-button btn flexible'
         id='prev-button'
         aria-label={t('aria.nav.back')}
         aria-controls='updates-list'
-        disabled
       >
         <ChevronArrow class='button-arrow' id='prev-button-arrow' />
       </button>
-      <ul class='updates-list' id='updates-list'>
+      <div class='updates-list' id='updates-list' aria-live='assertive'>
         {
-          updates.map((update: UpdateContent) => (
-            <li class='update-slide' id='update-slide'>
+          updates.map((update: UpdateContent, i: number) => (
+            <div class='update-slide'>
               <UpdateCard
                 blog={update}
                 ctaButtonClass='secondary'
                 h3Class='update-title'
                 imgClass=''
+                index={i}
               />
-            </li>
+            </div>
           ))
         }
-      </ul>
+      </div>
       <button
         class='carousel-button btn flexible'
         id='next-button'
@@ -51,10 +57,19 @@ const { updates, heading } = Astro.props
         <ChevronArrow class='button-arrow' id='next-button-arrow' />
       </button>
     </div>
-    <div class='updates-dots' id='updates-dots'>
+    <div
+      class='updates-dots'
+      id='updates-dots'
+      role='group'
+      aria-label='Carousel controls'
+    >
       {
         updates.map((_: UpdateContent, i: number) => (
-          <span class:list={['dot', i === 0 && 'active']} aria-hidden='true' />
+          <button
+            class:list={['dot', i === 0 && 'active']}
+            aria-label={`Show slide ${i + 1} of ${updates.length}`}
+            aria-controls='updates-list'
+          />
         ))
       }
     </div>
@@ -129,16 +144,21 @@ const { updates, heading } = Astro.props
     gap: var(--spacing-xs);
   }
 
-  .updates-dots span {
-    display: inline-block;
+  .updates-dots button.dot {
     width: var(--spacing-sm);
     height: var(--spacing-sm);
     border-radius: 50%;
     border: none;
     background-color: #d9d9d9;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
   }
 
-  .updates-dots span.active {
+  .updates-dots button.dot:hover {
+    background-color: var(--color-silver-400);
+  }
+
+  .updates-dots button.dot.active {
     background: linear-gradient(
       to right,
       var(--gradient-3-start),
@@ -166,9 +186,10 @@ const { updates, heading } = Astro.props
     document.querySelector('#next-button')
   const carouselDots = document.querySelectorAll('#updates-dots .dot')
   const carouselCTAs = document.querySelectorAll('a.carousel-cta')
-  const updates = Array.from(document.querySelectorAll('#update-slide'))
+  const updates = Array.from(document.querySelectorAll('.update-slide'))
   const numberOfUpdates = carouselDots.length
   let currentIndex = 0
+  const preferedScrollBehaviour: ScrollBehavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
 
   if (updatesList instanceof HTMLElement) {
     let width = updatesList.clientWidth
@@ -182,10 +203,6 @@ const { updates, heading } = Astro.props
           link.tabIndex = i === index ? 0 : -1
         }
       })
-      if (prevButton && nextButton) {
-        prevButton.disabled = index === 0
-        nextButton.disabled = index === numberOfUpdates - 1
-      }
     }
 
     function updateDots(index: number) {
@@ -194,32 +211,47 @@ const { updates, heading } = Astro.props
       )
     }
 
+    function updateAccessibilityTree(index: number) {
+      updates.forEach((item, i) => {
+        if (index === i) {
+          item.removeAttribute('aria-hidden')
+        } else {
+          item.setAttribute('aria-hidden', 'true')
+        }
+      })
+    }
+
     function beforeScroll(indexToGo: number) {
       updateDots(indexToGo)
       updateTabBehaviour(indexToGo)
+      updateAccessibilityTree(indexToGo)
     }
 
-    function scrollUpdates(direction: 'left' | 'right') {
-      setCurrentIndex(direction)
-
-      beforeScroll(currentIndex)
-
-      updates[currentIndex].scrollIntoView({
-        behavior: 'smooth',
+    function scrollToUpdate(index: number) {
+      beforeScroll(index)
+      updates[index].scrollIntoView({
+        behavior: preferedScrollBehaviour,
         inline: 'start',
         block: 'nearest',
       })
     }
 
+    function navigateByArrow(direction: 'left' | 'right') {
+      setCurrentIndex(direction)
+      scrollToUpdate(currentIndex)
+    }
+
+    function navigateByDot(index: number) {
+      scrollToUpdate(index)
+    }
+
     function setCurrentIndex(direction: 'left' | 'right') {
       let indexToGo
       if (direction === 'left') {
-        indexToGo = currentIndex - 1 < 0 ? 0 : currentIndex - 1
-      } else {
         indexToGo =
-          currentIndex >= numberOfUpdates - 1
-            ? numberOfUpdates - 1
-            : currentIndex + 1
+          currentIndex - 1 < 0 ? numberOfUpdates - 1 : currentIndex - 1
+      } else {
+        indexToGo = currentIndex >= numberOfUpdates - 1 ? 0 : currentIndex + 1
       }
 
       currentIndex = indexToGo
@@ -234,12 +266,12 @@ const { updates, heading } = Astro.props
       })
     })
 
-    prevButton?.addEventListener('click', () => scrollUpdates('left'))
-    nextButton?.addEventListener('click', () => scrollUpdates('right'))
+    prevButton?.addEventListener('click', () => navigateByArrow('left'))
+    nextButton?.addEventListener('click', () => navigateByArrow('right'))
     updatesContainer?.addEventListener('keydown', (e) => {
       const event = e as KeyboardEvent
-      if (event.key === 'ArrowLeft') scrollUpdates('left')
-      if (event.key === 'ArrowRight') scrollUpdates('right')
+      if (event.key === 'ArrowLeft') navigateByArrow('left')
+      if (event.key === 'ArrowRight') navigateByArrow('right')
     })
 
     updatesList.addEventListener('touchstart', (e) => {
@@ -254,13 +286,18 @@ const { updates, heading } = Astro.props
       const swipeDistance = touchStartX - touchEndX
       if (Math.abs(swipeDistance) > swipeThreshold) {
         if (swipeDistance > 0) {
-          scrollUpdates('right')
+          navigateByArrow('right')
         } else {
-          scrollUpdates('left')
+          navigateByArrow('left')
         }
       }
     })
 
+    carouselDots.forEach((dot, i) => {
+      dot.addEventListener('click', () => navigateByDot(i))
+    })
+
     updateTabBehaviour(0)
+    updateAccessibilityTree(0)
   }
 </script>
