@@ -63,7 +63,7 @@ const t = useTranslations(lang)
   }
   .link-events {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(16.5rem, 1fr));
     width: 100%;
     padding-inline: var(--padding-md);
     margin-top: var(--spacing-md);
@@ -200,9 +200,9 @@ const t = useTranslations(lang)
       margin-bottom: var(--spacing-lg);
     }
     .link-events {
-      & div[data-wallet-address] {
+      div[data-wallet-address] {
         & .log-header {
-          flex-direction: column;
+          flex-wrap: wrap;
         }
       }
     }
