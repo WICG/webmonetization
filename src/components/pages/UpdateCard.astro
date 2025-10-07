@@ -14,7 +14,8 @@ const { blog, ctaButtonClass, h3Class, imgClass, index } = Astro.props
 
 <div
   class='blog-card'
-  role='group'
+  id=`carousel-item-${index}`
+  role='tabpanel'
   aria-roledescription='slide'
   aria-labelledby={`carousel-heading-${index}`}
 >

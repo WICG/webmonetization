@@ -17,13 +17,13 @@ const { updates, heading } = Astro.props
 
 <section class='section'>
   <div class='contentWrapper'>
-    <h2 class='updates-heading'>{heading}</h2>
+    <h2 class='updates-heading' id='updates-heading'>{heading}</h2>
     <div
       class='updates-carousel'
       id='updates-carousel'
       role='region'
       aria-roledescription='carousel'
-      aria-label='Updates'
+      aria-labelledby='updates-heading'
     >
       <button
         class='carousel-button btn flexible'
@@ -33,7 +33,7 @@ const { updates, heading } = Astro.props
       >
         <ChevronArrow class='button-arrow' id='prev-button-arrow' />
       </button>
-      <div class='updates-list' id='updates-list' aria-live='assertive'>
+      <div class='updates-list' id='updates-list' aria-live='polite'>
         {
           updates.map((update: UpdateContent, i: number) => (
             <div class='update-slide'>
@@ -60,15 +60,16 @@ const { updates, heading } = Astro.props
     <div
       class='updates-dots'
       id='updates-dots'
-      role='group'
+      role='tablist'
       aria-label='Carousel controls'
     >
       {
         updates.map((_: UpdateContent, i: number) => (
           <button
             class:list={['dot', i === 0 && 'active']}
-            aria-label={`Show slide ${i + 1} of ${updates.length}`}
-            aria-controls='updates-list'
+            role='tab'
+            aria-labelledby={`carousel-heading-${i}`}
+            aria-controls={`carousel-item-${i}`}
           />
         ))
       }
@@ -189,7 +190,11 @@ const { updates, heading } = Astro.props
   const updates = Array.from(document.querySelectorAll('.update-slide'))
   const numberOfUpdates = carouselDots.length
   let currentIndex = 0
-  const preferedScrollBehaviour: ScrollBehavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+  const preferedScrollBehaviour: ScrollBehavior = matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches
+    ? 'auto'
+    : 'smooth'
 
   if (updatesList instanceof HTMLElement) {
     let width = updatesList.clientWidth
@@ -218,6 +223,10 @@ const { updates, heading } = Astro.props
         } else {
           item.setAttribute('aria-hidden', 'true')
         }
+      })
+      carouselDots.forEach((dot, i) => {
+        const selected = (i === index).toString()
+        dot.setAttribute('aria-selected', selected)
       })
     }
 
