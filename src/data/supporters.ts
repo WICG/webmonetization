@@ -14,7 +14,7 @@ export const heroContent: HeroContent = {
         text: "Install the Web Monetization Browser Extension",
         event: "Supporters page link - Extension"
     },
-      secondaryCta: {
+    secondaryCta: {
         href: "/wallets/",
         text: "Set up a wallet",
         icon: WalletIcon,
