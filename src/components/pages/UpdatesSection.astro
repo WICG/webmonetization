@@ -150,6 +150,11 @@ const { updates, heading } = Astro.props
     padding: 0.5rem;
   }
 
+  .updates-dots:focus-within {
+    outline: auto;
+    border-radius: var(--moderate-rounding);
+  }
+
   .updates-dots button.dot {
     width: var(--spacing-sm);
     height: var(--spacing-sm);
