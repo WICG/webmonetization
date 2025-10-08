@@ -312,11 +312,6 @@ const { updates, heading } = Astro.props
     })
 
     function handleKeyNavigation(e: KeyboardEvent) {
-      if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
-        return
-      }
-      e.preventDefault()
-
       switch (e.key) {
         case 'ArrowRight':
           setCurrentIndex('right')
@@ -330,8 +325,11 @@ const { updates, heading } = Astro.props
         case 'Home':
           currentIndex = 0
           break
+        default:
+          return
       }
 
+      e.preventDefault()
       navigateByDot(currentIndex)
       carouselDots[currentIndex].focus()
     }
