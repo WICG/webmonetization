@@ -312,27 +312,28 @@ const { updates, heading } = Astro.props
     })
 
     function handleKeyNavigation(e: KeyboardEvent) {
-      if (['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
-        e.preventDefault()
-
-        switch (e.key) {
-          case 'ArrowRight':
-            setCurrentIndex('right')
-            break
-          case 'ArrowLeft':
-            setCurrentIndex('left')
-            break
-          case 'End':
-            currentIndex = numberOfUpdates - 1
-            break
-          case 'Home':
-            currentIndex = 0
-            break
-        }
-
-        navigateByDot(currentIndex)
-        carouselDots[currentIndex].focus()
+      if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
+        return
       }
+      e.preventDefault()
+
+      switch (e.key) {
+        case 'ArrowRight':
+          setCurrentIndex('right')
+          break
+        case 'ArrowLeft':
+          setCurrentIndex('left')
+          break
+        case 'End':
+          currentIndex = numberOfUpdates - 1
+          break
+        case 'Home':
+          currentIndex = 0
+          break
+      }
+
+      navigateByDot(currentIndex)
+      carouselDots[currentIndex].focus()
     }
 
     carouselControls?.addEventListener('focusin', () => {
