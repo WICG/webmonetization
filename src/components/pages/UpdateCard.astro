@@ -7,11 +7,18 @@ interface Props {
   ctaButtonClass: string
   h3Class: string
   imgClass: string
+  index: number
 }
-const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props
+const { blog, ctaButtonClass, h3Class, imgClass, index } = Astro.props
 ---
 
-<div class='blog-card'>
+<div
+  class='blog-card'
+  id=`carousel-item-${index}`
+  role='tabpanel'
+  aria-roledescription='slide'
+  aria-labelledby={`carousel-heading-${index}`}
+>
   <div class={`blog-img ${imgClass}`}>
     <img
       src={blog.image.src}
@@ -23,7 +30,7 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props
   <div class='blog-content'>
     {
       blog.titleLink ? (
-        <h3 class={`blog-title ${h3Class}`}>
+        <h3 class={`blog-title ${h3Class}`} id={`carousel-heading-${index}`}>
           <a
             href={blog.titleLink}
             target='_blank'
@@ -35,7 +42,9 @@ const { blog, ctaButtonClass, h3Class, imgClass } = Astro.props
           </a>
         </h3>
       ) : (
-        <h3 class={`blog-title ${h3Class}`}>{blog.title}</h3>
+        <h3 class={`blog-title ${h3Class}`} id={`carousel-heading-${index}`}>
+          {blog.title}
+        </h3>
       )
     }
     {
