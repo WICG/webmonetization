@@ -8,12 +8,12 @@ export const TOOL_LABEL_KEYS = ['nav.pub-tools', 'nav.supp-tools', 'nav.dev-tool
 export type ToolLabelKey = typeof TOOL_LABEL_KEYS[number];
 
 interface ToolsSubmenuItem {
-    imageInactive: {
+    image: {
         src: string,
         width: number,
         height: number
     },
-    imageActive: {
+    imageInteractive: {
         src: string
     },
     translationKey: ToolLabelKey,
@@ -25,12 +25,12 @@ export type ToolsSubmenu = Array<ToolsSubmenuItem>
 
 export const toolsSubmenu: ToolsSubmenu = [
     {
-        imageInactive: {
+        image: {
             src: publisherIconInactive,
             width: 460,
             height: 460
         },
-        imageActive: {
+        imageInteractive: {
             src: publisherIconActive
         },
         translationKey: 'nav.pub-tools',
@@ -38,12 +38,12 @@ export const toolsSubmenu: ToolsSubmenu = [
         event: 'Nav link - Publishers'
     },
     {
-        imageInactive: {
+        image: {
             src: supporterIconInactive,
             width: 460,
             height: 460
         },
-        imageActive: {
+        imageInteractive: {
             src: supporterIconActive
         },
         translationKey: 'nav.supp-tools',
@@ -51,12 +51,12 @@ export const toolsSubmenu: ToolsSubmenu = [
         event: 'Nav link - Supporters'
     },
     {
-        imageInactive: {
+        image: {
             src: developerIcon,
             width: 460,
             height: 460
         },
-        imageActive: {
+        imageInteractive: {
             src: developerIcon
         },
         translationKey: 'nav.dev-tools',

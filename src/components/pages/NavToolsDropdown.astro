@@ -22,18 +22,20 @@ const isActive = (path: string): boolean =>
             <>
               <div class='tool-icon-container'>
                 <img
-                  width={menuItem.imageInactive.width}
-                  height={menuItem.imageInactive.height}
+                  width={menuItem.image.width}
+                  height={menuItem.image.height}
                   class='tool-icon default-image'
                   alt=''
-                  src={menuItem.imageInactive.src}
+                  src={menuItem.image.src}
+                  loading='lazy'
                 />
                 <img
-                  width={menuItem.imageInactive.width}
-                  height={menuItem.imageInactive.height}
+                  width={menuItem.image.width}
+                  height={menuItem.image.height}
                   class='tool-icon hovered-image'
                   alt=''
-                  src={menuItem.imageActive.src}
+                  src={menuItem.imageInteractive.src}
+                  loading='lazy'
                 />
               </div>
               <div class='tool-label'>{t(menuItem.translationKey)}</div>
