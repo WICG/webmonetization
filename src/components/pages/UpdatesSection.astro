@@ -62,7 +62,6 @@ const { updates, heading } = Astro.props
       id='updates-dots'
       role='tablist'
       aria-label='Carousel controls'
-      tabindex='0'
     >
       {
         updates.map((_: UpdateContent, i: number) => (
@@ -71,7 +70,6 @@ const { updates, heading } = Astro.props
             role='tab'
             aria-labelledby={`carousel-heading-${i}`}
             aria-controls={`carousel-item-${i}`}
-            tabindex='-1'
           />
         ))
       }
@@ -193,9 +191,8 @@ const { updates, heading } = Astro.props
     document.querySelector('#prev-button')
   const nextButton: HTMLButtonElement | null =
     document.querySelector('#next-button')
-  const carouselControls: HTMLElement | null =
-    document.querySelector('#updates-dots')
-  const carouselDots: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+  const carouselControls = document.querySelector<HTMLElement>('#updates-dots')
+  const carouselDots = document.querySelectorAll<HTMLButtonElement>(
     '#updates-dots button.dot'
   )
   const carouselCTAs = document.querySelectorAll('a.carousel-cta')
@@ -237,8 +234,10 @@ const { updates, heading } = Astro.props
         }
       })
       carouselDots.forEach((dot, i) => {
-        const selected = (i === index).toString()
-        dot.setAttribute('aria-selected', selected)
+        const selected = i === index
+
+        dot.setAttribute('aria-selected', selected.toString())
+        dot.setAttribute('tabindex', selected ? '0' : '-1')
       })
     }
 
@@ -338,7 +337,7 @@ const { updates, heading } = Astro.props
       }
     }
 
-    carouselControls?.addEventListener('focus', () => {
+    carouselControls?.addEventListener('focusin', () => {
       carouselControls.addEventListener('keydown', handleKeyNavigation)
     })
 
