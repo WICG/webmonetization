@@ -187,10 +187,8 @@ const { updates, heading } = Astro.props
 <script>
   const updatesContainer = document.querySelector('#updates-carousel')
   const updatesList = document.querySelector('#updates-list')
-  const prevButton: HTMLButtonElement | null =
-    document.querySelector('#prev-button')
-  const nextButton: HTMLButtonElement | null =
-    document.querySelector('#next-button')
+  const prevButton = document.querySelector<HTMLButtonElement>('#prev-button')
+  const nextButton = document.querySelector<HTMLButtonElement>('#next-button')
   const carouselControls = document.querySelector<HTMLElement>('#updates-dots')
   const carouselDots = document.querySelectorAll<HTMLButtonElement>(
     '#updates-dots button.dot'
