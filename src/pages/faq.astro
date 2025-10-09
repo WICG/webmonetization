@@ -1,0 +1,198 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+---
+
+<Base title={t('pages.faq.title')} description={t('pages.faq.description')}>
+  <section class='section'>
+    <div class='contentWrapper faq-hero'>
+      <h2>Frequently asked <br /><span>Questions</span></h2>
+      <img src='src/assets/faq-hero-icon.png' width='594' height='589' />
+    </div>
+  </section>
+
+  <section class='section faq-main'>
+    <div class='contentWrapper faq-categories'>
+      <div class='faq-category'>
+        <h3>Question Category heading</h3>
+        <div class='faq-item'>
+          <button>
+            Do I have to pay to participate? How about even longer questions?
+          </button>
+          <div class='faq-answer'>
+            <p>
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui
+              blanditiis pra
+            </p>
+          </div>
+        </div>
+        <div class='faq-item'>
+          <button> Do I have to pay to participate? </button>
+          <div class='faq-answer'>
+            <p>No, participation is free</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- duplicate category -->
+      <div class='faq-category'>
+        <h3>Question Category heading</h3>
+        <div class='faq-item'>
+          <button>
+            Do I have to pay to participate? How about even longer questions?
+          </button>
+          <div class='faq-answer'>
+            <p>
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui
+              blanditiis pra
+            </p>
+          </div>
+        </div>
+        <div class='faq-item'>
+          <button> Do I have to pay to participate? </button>
+          <div class='faq-answer'>
+            <p>No, participation is free</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .contentWrapper.faq-hero,
+  .contentWrapper.faq-categories {
+    padding-inline: var(--padding-md);
+  }
+  .faq-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .faq-hero img {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 594px;
+    height: auto;
+    aspect-ratio: 594/589;
+  }
+
+  .faq-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .faq-category h3 {
+    margin-bottom: 24px;
+  }
+
+  .faq-item {
+    background-color: white;
+    margin-bottom: 8px;
+    padding: 16px;
+  }
+
+  .faq-item:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .faq-item button {
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 16px;
+    padding-right: calc(48px - 16px);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .faq-item button::after {
+    content: '';
+    mask: url('src/assets/faq-icon.svg');
+    /* -webkit-mask: url('src/assets/faq-icon(1).svg') no-repeat center / contain; */
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: var(--button-secondary-color);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .faq-item button.expanded {
+    font: var(--font-standard-bold);
+  }
+  .faq-item button.expanded::after {
+    transform: rotate(0deg);
+    background-color: black;
+  }
+
+  .faq-item .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-in-out;
+  }
+
+  .faq-item .faq-answer p {
+    padding-right: calc(48px - 16px);
+  }
+
+  @media (min-width: 768px) {
+    .faq-hero {
+      flex-direction: row;
+      text-align: left;
+      gap: unset;
+      justify-content: space-between;
+    }
+    .faq-hero h2 {
+      font: var(--font-display-2);
+    }
+    .faq-hero h2 span {
+      font-weight: 900;
+    }
+
+    .faq-categories {
+      gap: 160px;
+    }
+    .faq-category h3 {
+      font: var(--font-h2);
+    }
+
+    .faq-item {
+      padding: 32px 32px 56px 32px;
+    }
+    .faq-item .faq-answer p {
+      padding-right: calc(64px - 32px);
+    }
+    .faq-item button {
+      padding-right: calc(64px - 32px);
+    }
+  }
+</style>
+
+<script>
+  const accordionButtons =
+    document.querySelectorAll<HTMLButtonElement>('.faq-item button')
+
+  accordionButtons.forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('expanded')
+      const answer = btn.nextElementSibling
+      if (answer instanceof HTMLElement) {
+        answer.style.maxHeight = answer.style.maxHeight
+          ? ''
+          : `${answer.scrollHeight}px`
+      }
+    })
+  })
+</script>

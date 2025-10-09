@@ -22,6 +22,8 @@ export const ui = {
       'Help shape the future of the web with the Web Monetization API and Open Payments.',
     'pages.play.title': 'Playground',
     'pages.play.description': 'The Web Monetization Playground is an interactive environment that shows how Web Monetization works under the hood',
+    'pages.faq.title': 'FAQ`s | Web Monetization', 
+    'pages.faq.description': 'Welcome to the Web Monetization FAQ, your go-to resource for understanding how Web Monetization works, how to get started, and how to make the most of it.', 
     'nav.tools': 'Tools',
     'nav.technical': 'Technical',
     'nav.documentation': 'Documentation',
