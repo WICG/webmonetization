@@ -27,7 +27,6 @@ const isActive = (path: string): boolean =>
                   class='tool-icon default-image'
                   alt=''
                   src={menuItem.image.src}
-                  loading='lazy'
                 />
                 <img
                   width={menuItem.image.width}
@@ -35,7 +34,6 @@ const isActive = (path: string): boolean =>
                   class='tool-icon hovered-image'
                   alt=''
                   src={menuItem.imageInteractive.src}
-                  loading='lazy'
                 />
               </div>
               <div class='tool-label'>{t(menuItem.translationKey)}</div>
