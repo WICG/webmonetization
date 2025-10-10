@@ -1,6 +1,7 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
+import FaqHeroImg from '../assets/faq-hero-icon.png'
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
@@ -9,11 +10,11 @@ const t = useTranslations(lang)
   <section class='section'>
     <div class='contentWrapper faq-hero'>
       <h2>Frequently asked <br /><span>Questions</span></h2>
-      <img src='src/assets/faq-hero-icon.png' width='594' height='589' />
+      <img src={FaqHeroImg.src} width='594' height='589' />
     </div>
   </section>
 
-  <section class='section faq-main'>
+  <section class='section'>
     <div class='contentWrapper faq-categories'>
       <div class='faq-category'>
         <h3>Question Category heading</h3>
@@ -116,8 +117,7 @@ const t = useTranslations(lang)
 
   .faq-item button::after {
     content: '';
-    mask: url('src/assets/faq-icon.svg');
-    /* -webkit-mask: url('src/assets/faq-icon(1).svg') no-repeat center / contain; */
+    mask: url('/img/faq-icon.svg');
     display: block;
     position: absolute;
     top: 0;
