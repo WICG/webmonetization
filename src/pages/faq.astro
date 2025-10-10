@@ -19,10 +19,12 @@ const t = useTranslations(lang)
       <div class='faq-category'>
         <h3>Question Category heading</h3>
         <div class='faq-item'>
-          <button>
-            Do I have to pay to participate? How about even longer questions?
-          </button>
-          <div class='faq-answer'>
+          <h4>
+            <button aria-controls='faq-answer-0'>
+              Do I have to pay to participate? How about even longer questions?
+            </button>
+          </h4>
+          <div class='faq-answer' id='faq-answer-0' aria-hidden='true'>
             <p>
               At vero eos et accusamus et iusto odio dignissimos ducimus qui
               blanditiis pra
@@ -30,9 +32,17 @@ const t = useTranslations(lang)
           </div>
         </div>
         <div class='faq-item'>
-          <button> Do I have to pay to participate? </button>
-          <div class='faq-answer'>
-            <p>No, participation is free</p>
+          <h4>
+            <button aria-controls='faq-answer-1'>
+              Do I have to pay to participate?
+            </button>
+          </h4>
+          <div class='faq-answer' id='faq-answer-1' aria-hidden='true'>
+            <p>
+              At vero eos et accusamus et iusto odio dignissimos ducimus qui
+              blanditiis pra At vero eos et accusamus et iusto odio dignissimos
+              ducimus qui blanditiis
+            </p>
           </div>
         </div>
       </div>
@@ -67,6 +77,7 @@ const t = useTranslations(lang)
   .contentWrapper.faq-categories {
     padding-inline: var(--padding-md);
   }
+
   .faq-hero {
     display: flex;
     flex-direction: column;
@@ -103,6 +114,10 @@ const t = useTranslations(lang)
     margin-bottom: 0;
   }
 
+  .faq-item h4 {
+    font: var(--font-standard-regular);
+  }
+
   .faq-item button {
     width: 100%;
     text-align: left;
@@ -132,6 +147,7 @@ const t = useTranslations(lang)
   .faq-item button.expanded {
     font: var(--font-standard-bold);
   }
+
   .faq-item button.expanded::after {
     transform: rotate(0deg);
     background-color: black;
@@ -141,6 +157,9 @@ const t = useTranslations(lang)
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-in-out;
+    @media (prefers-reduced-motion) {
+      transition: max-height 0s;
+    }
   }
 
   .faq-item .faq-answer p {
@@ -154,9 +173,11 @@ const t = useTranslations(lang)
       gap: unset;
       justify-content: space-between;
     }
+
     .faq-hero h2 {
       font: var(--font-display-2);
     }
+
     .faq-hero h2 span {
       font-weight: bold;
     }
@@ -164,16 +185,20 @@ const t = useTranslations(lang)
     .faq-categories {
       gap: 10rem;
     }
+
     .faq-category h3 {
       font: var(--font-h2);
     }
 
     .faq-item {
-      padding: var(--padding-2xl) var(--padding-2xl) calc(var(--padding-2xl) + var(--padding-lg)) var(--padding-2xl);
+      padding: var(--padding-2xl) var(--padding-2xl)
+        calc(var(--padding-2xl) + var(--padding-lg)) var(--padding-2xl);
     }
+
     .faq-item .faq-answer p {
       padding-right: var(--padding-2xl);
     }
+
     .faq-item button {
       padding-right: var(--padding-2xl);
     }
@@ -181,18 +206,29 @@ const t = useTranslations(lang)
 </style>
 
 <script>
-  const accordionButtons =
-    document.querySelectorAll<HTMLButtonElement>('.faq-item button')
+  const faqItemHeaders = document.querySelectorAll('.faq-item h4')
 
-  accordionButtons.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('expanded')
-      const answer = btn.nextElementSibling
-      if (answer instanceof HTMLElement) {
-        answer.style.maxHeight = answer.style.maxHeight
-          ? ''
-          : `${answer.scrollHeight}px`
-      }
+  faqItemHeaders.forEach((header) => {
+    const button = header.querySelector<HTMLButtonElement>('button')
+    if (!button) return
+
+    button.ariaExpanded = 'false'
+
+    button.addEventListener('click', () => {
+      const isExpanded = button.ariaExpanded === 'true'
+      button.ariaExpanded = (!isExpanded).toString()
+      button.classList.toggle('expanded')
+
+      const faqAnswer = header.nextElementSibling
+
+      if (!(faqAnswer instanceof HTMLElement)) return
+
+      faqAnswer.style.maxHeight = faqAnswer.style.maxHeight
+        ? ''
+        : `${faqAnswer.scrollHeight}px`
+
+      const isHidden = faqAnswer.ariaHidden === 'true'
+      faqAnswer.ariaHidden = (!isHidden).toString()
     })
   })
 </script>
