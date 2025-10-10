@@ -2,6 +2,7 @@
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
 import Base from '../layouts/Base.astro'
 import FaqHeroImg from '../assets/faq-hero-icon.png'
+import faqContent from '../data/faq'
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
 ---
@@ -16,58 +17,31 @@ const t = useTranslations(lang)
 
   <section class='section'>
     <div class='contentWrapper faq-categories'>
-      <div class='faq-category'>
-        <h3>Question Category heading</h3>
-        <div class='faq-item'>
-          <h4>
-            <button aria-controls='faq-answer-0'>
-              Do I have to pay to participate? How about even longer questions?
-            </button>
-          </h4>
-          <div class='faq-answer' id='faq-answer-0' aria-hidden='true'>
-            <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis pra
-            </p>
+      {
+        faqContent.map((category) => (
+          <div class='faq-category'>
+            <h3>{category.title}</h3>
+            {category.questions.map((item, i) => (
+              <div class='faq-item'>
+                <h4>
+                  <button aria-controls={`faq-answer-${category.id}-${i}`}>
+                    {item.question}
+                  </button>
+                </h4>
+                <div
+                  class='faq-answer'
+                  id={`faq-answer-${category.id}-${i}`}
+                  aria-hidden='true'
+                >
+                  {item.answer.map((answer) => (
+                    <p set:html={answer} />
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-        <div class='faq-item'>
-          <h4>
-            <button aria-controls='faq-answer-1'>
-              Do I have to pay to participate?
-            </button>
-          </h4>
-          <div class='faq-answer' id='faq-answer-1' aria-hidden='true'>
-            <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis pra At vero eos et accusamus et iusto odio dignissimos
-              ducimus qui blanditiis
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- duplicate category -->
-      <div class='faq-category'>
-        <h3>Question Category heading</h3>
-        <div class='faq-item'>
-          <button>
-            Do I have to pay to participate? How about even longer questions?
-          </button>
-          <div class='faq-answer'>
-            <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis pra
-            </p>
-          </div>
-        </div>
-        <div class='faq-item'>
-          <button> Do I have to pay to participate? </button>
-          <div class='faq-answer'>
-            <p>No, participation is free</p>
-          </div>
-        </div>
-      </div>
+        ))
+      }
     </div>
   </section>
 </Base>
@@ -164,6 +138,11 @@ const t = useTranslations(lang)
 
   .faq-item .faq-answer p {
     padding-right: var(--padding-2xl);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .faq-item .faq-answer p:last-of-type {
+    margin-bottom: unset;
   }
 
   @media (min-width: 768px) {
