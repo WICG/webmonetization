@@ -72,13 +72,13 @@ const t = useTranslations(lang)
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 24px;
+    gap: var(--spacing-lg);
   }
 
   .faq-hero img {
     flex-grow: 1;
     width: 100%;
-    max-width: 594px;
+    max-width: 37rem;
     height: auto;
     aspect-ratio: 594/589;
   }
@@ -86,17 +86,17 @@ const t = useTranslations(lang)
   .faq-categories {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: var(--spacing-2xl);
   }
 
   .faq-category h3 {
-    margin-bottom: 24px;
+    margin-bottom: var(--spacing-lg);
   }
 
   .faq-item {
     background-color: white;
-    margin-bottom: 8px;
-    padding: 16px;
+    margin-bottom: var(--spacing-xs);
+    padding: var(--padding-md);
   }
 
   .faq-item:last-of-type {
@@ -109,8 +109,8 @@ const t = useTranslations(lang)
     background-color: transparent;
     border: none;
     padding: 0;
-    margin-bottom: 16px;
-    padding-right: calc(48px - 16px);
+    margin-bottom: var(--spacing-md);
+    padding-right: var(--padding-2xl);
     position: relative;
     cursor: pointer;
   }
@@ -122,8 +122,8 @@ const t = useTranslations(lang)
     position: absolute;
     top: 0;
     right: 0;
-    width: 20px;
-    height: 20px;
+    width: 1.25rem;
+    height: 1.25rem;
     transform: rotate(45deg);
     background-color: var(--button-secondary-color);
     transition: transform 0.2s ease-in-out;
@@ -144,7 +144,7 @@ const t = useTranslations(lang)
   }
 
   .faq-item .faq-answer p {
-    padding-right: calc(48px - 16px);
+    padding-right: var(--padding-2xl);
   }
 
   @media (min-width: 768px) {
@@ -158,24 +158,24 @@ const t = useTranslations(lang)
       font: var(--font-display-2);
     }
     .faq-hero h2 span {
-      font-weight: 900;
+      font-weight: bold;
     }
 
     .faq-categories {
-      gap: 160px;
+      gap: 10rem;
     }
     .faq-category h3 {
       font: var(--font-h2);
     }
 
     .faq-item {
-      padding: 32px 32px 56px 32px;
+      padding: var(--padding-2xl) var(--padding-2xl) calc(var(--padding-2xl) + var(--padding-lg)) var(--padding-2xl);
     }
     .faq-item .faq-answer p {
-      padding-right: calc(64px - 32px);
+      padding-right: var(--padding-2xl);
     }
     .faq-item button {
-      padding-right: calc(64px - 32px);
+      padding-right: var(--padding-2xl);
     }
   }
 </style>
