@@ -10,7 +10,7 @@ const description = t("site.description");
 ---
 
 <Base title={title} description={description}>
-  <section>
+  <section class='section'>
     <div class='contentWrapper heroContent'>
       <img
         alt='Loading'
@@ -152,7 +152,7 @@ const description = t("site.description");
   const intent = (searchParams.get('intent') ?? 'connect') as Intent
 
   function updateImage(type: 'success' | 'error' | 'warning') {
-    heroLogo.src = `/../assets/${type}.svg`
+    heroLogo.src = `/img/${type}.svg`
     heroLogo.alt = type
   }
 
