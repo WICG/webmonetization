@@ -4,13 +4,11 @@ interface FaqQuestion {
 }
 
 interface FaqCategory {
-  id: number
   title: string
   questions: FaqQuestion[]
 }
 
 const gettingStarted: FaqCategory = {
-  id: 1,
   title: 'Getting Started / General',
   questions: [
     {
@@ -35,7 +33,6 @@ const gettingStarted: FaqCategory = {
 }
 
 const wallets: FaqCategory = {
-  id: 2,
   title: 'Wallets & Payment Pointers',
   questions: [
     {
@@ -57,7 +54,6 @@ const wallets: FaqCategory = {
 }
 
 const supporters: FaqCategory = {
-  id: 3,
   title: 'For Supporters',
   questions: [
     {
@@ -112,7 +108,6 @@ const supporters: FaqCategory = {
 }
 
 const publishers: FaqCategory = {
-  id: 4,
   title: 'For Publishers & Content Owners',
   questions: [
     {
@@ -137,7 +132,6 @@ const publishers: FaqCategory = {
 }
 
 const developers: FaqCategory = {
-  id: 5,
   title: 'For Developers',
   questions: [
     {
