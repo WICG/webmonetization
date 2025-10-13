@@ -24,9 +24,13 @@ const t = useTranslations(lang)
             {category.questions.map((item) => (
               <details class='faq-item'>
                 <summary>{item.question}</summary>
-                {item.answer.map((answer) => (
-                  <p set:html={answer} />
-                ))}
+                <div>
+                  <div>
+                    {item.answer.map((answer) => (
+                      <p set:html={answer} />
+                    ))}
+                  </div>
+                </div>
               </details>
             ))}
           </div>
@@ -37,10 +41,6 @@ const t = useTranslations(lang)
 </Base>
 
 <style>
-  :root {
-    interpolate-size: allow-keywords;
-  }
-
   .contentWrapper.faq-hero,
   .contentWrapper.faq-categories {
     padding-inline: var(--padding-md);
@@ -122,21 +122,33 @@ const t = useTranslations(lang)
     margin-bottom: unset;
   }
 
-  details.faq-item::details-content {
-    max-height: 0;
+  details.faq-item > div {
     overflow: hidden;
-    transition:
-      max-height 0.2s,
-      content-visibility 0.2s;
-    transition-behavior: allow-discrete;
-
-    @media (prefers-reduced-motion) {
-      transition: max-height 0s;
-    }
+    display: grid;
+    animation-duration: 0.2s;
   }
 
-  details.faq-item[open]::details-content {
-    max-height: fit-content;
+  details > .animation {
+    animation-name: grid-expand;
+    animation-timing-function: ease-out;
+  }
+
+  details > .collapsing {
+    animation-direction: reverse;
+    animation-timing-function: ease-in;
+  }
+
+  details > div > div {
+    min-height: 0;
+  }
+
+  @keyframes grid-expand {
+    0% {
+      grid-template-rows: 0fr;
+    }
+    100% {
+      grid-template-rows: 1fr;
+    }
   }
 
   @media (min-width: 768px) {
@@ -174,3 +186,45 @@ const t = useTranslations(lang)
     }
   }
 </style>
+
+<script>
+  document
+    .querySelectorAll<HTMLElement>('.faq-item summary')
+    .forEach((element) =>
+      element.addEventListener('click', (event) => {
+        if (event.target instanceof HTMLElement) {
+          const detailsElement = event.target.parentElement
+          const contentElement = event.target.nextElementSibling
+
+          if (!(contentElement instanceof HTMLElement) || !detailsElement)
+            return
+
+          // Chrome sometimes has a hiccup and gets stuck.
+          if (contentElement.classList.contains('animation')) {
+            contentElement.classList.remove('animation', 'collapsing')
+            // ... enforce a reflow so that collapsing may be animated again,
+            void element.offsetWidth
+            // ... and fallback to the default behaviour this time.
+            return
+          }
+
+          const onAnimationEnd = (cb: (event: AnimationEvent) => void) =>
+            contentElement.addEventListener('animationend', cb, { once: true })
+          // request an animation frame to force Safari 16 to actually perform the animation
+          requestAnimationFrame(() => contentElement.classList.add('animation'))
+          onAnimationEnd(() => contentElement.classList.remove('animation'))
+
+          const isDetailsOpen = detailsElement.getAttribute('open') !== null
+          if (isDetailsOpen) {
+            // prevent default collapsing and delay it until the animation has completed
+            event.preventDefault()
+            contentElement.classList.add('collapsing')
+            onAnimationEnd(() => {
+              detailsElement.removeAttribute('open')
+              contentElement.classList.remove('collapsing')
+            })
+          }
+        }
+      })
+    )
+</script>
