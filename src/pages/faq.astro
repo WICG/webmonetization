@@ -104,7 +104,6 @@ const t = useTranslations(lang)
 
   details.faq-item summary {
     display: block;
-    margin-bottom: var(--spacing-md);
     padding-right: var(--padding-2xl);
     cursor: pointer;
   }
@@ -125,6 +124,7 @@ const t = useTranslations(lang)
   details.faq-item > div {
     overflow: hidden;
     display: grid;
+    margin-top: var(--spacing-md);
     animation-duration: 0.2s;
   }
 
@@ -176,8 +176,11 @@ const t = useTranslations(lang)
     }
 
     details.faq-item {
-      padding: var(--padding-2xl) var(--padding-2xl)
-        calc(var(--padding-2xl) + var(--padding-lg)) var(--padding-2xl);
+      padding: var(--padding-2xl);
+    }
+
+    details.faq-item p:last-of-type {
+      margin-bottom: var(--padding-lg);
     }
 
     details.faq-item::after {
@@ -188,6 +191,8 @@ const t = useTranslations(lang)
 </style>
 
 <script>
+  // Credit: adapted from this article on animating <details> elements:
+  // https://linkedlist.ch/animate_details_element_60/
   document
     .querySelectorAll<HTMLElement>('.faq-item summary')
     .forEach((element) =>
