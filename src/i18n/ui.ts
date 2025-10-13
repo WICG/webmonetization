@@ -38,6 +38,7 @@ export const ui = {
     'footer.menu.community': 'Community',
     'footer.menu.github': 'GitHub',
     'footer.menu.blog': 'Blog',
+    'footer.menu.faq': 'FAQ',
     'footer.menu.summit': 'Summit',
     'footer.menu.privacy_policy': 'Privacy Policy',
     'footer.menu.cookie_policy': 'Cookie Policy',
