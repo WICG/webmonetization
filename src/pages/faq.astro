@@ -112,15 +112,16 @@ const t = useTranslations(lang)
     background-color: var(--button-secondary-color);
   }
 
-  details.faq-item p {
-    padding: 0 calc(var(--padding-2xl) + var(--padding-md)) var(--padding-md)
-      var(--padding-md);
+  details.faq-item p:not(:last-of-type) {
+    margin-bottom: var(--spacing-md);
   }
 
   details.faq-item > div {
     overflow: hidden;
     display: grid;
     animation-duration: 0.2s;
+    padding: 0 calc(var(--padding-2xl) + var(--padding-md)) var(--padding-md)
+      var(--padding-md);
   }
 
   details > .animation {
@@ -184,13 +185,9 @@ const t = useTranslations(lang)
       right: var(--spacing-2xl);
     }
 
-    details.faq-item p {
-      padding: 0 calc(2 * var(--padding-2xl)) var(--padding-md)
-        var(--padding-2xl);
-    }
-
-    details.faq-item p:last-of-type {
-      padding-bottom: calc(var(--padding-2xl) + var(--padding-xs));
+    details.faq-item > div {
+      padding: 0 calc(2 * var(--padding-2xl))
+        calc(var(--padding-2xl) + var(--padding-xs)) var(--padding-2xl);
     }
   }
 </style>
