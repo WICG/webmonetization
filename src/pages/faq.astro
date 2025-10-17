@@ -129,9 +129,9 @@ const t = useTranslations(lang)
     animation-timing-function: ease-out;
   }
 
-  details > .collapsing {
+  details > .animation.collapsing {
     animation-direction: reverse;
-    animation-timing-function: ease-in;
+    animation-duration: 0s;
   }
 
   details > div > div {
@@ -172,11 +172,11 @@ const t = useTranslations(lang)
     }
 
     details.faq-item summary {
-      padding: var(--padding-2xl) calc(2 * var(--padding-2xl)) var(--padding-md)
+      padding: var(--padding-2xl) calc(2 * var(--padding-2xl)) var(--padding-2xl)
         var(--padding-2xl);
     }
 
-    details.faq-item {
+    details.faq-item[open] summary {
       padding-bottom: var(--padding-md);
     }
 
