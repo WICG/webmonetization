@@ -20,13 +20,22 @@ const isActive = (path: string): boolean =>
             class:list={[{ active: isActive(menuItem.path) }, 'tool-link']}
           >
             <>
-              <img
-                width={menuItem.image.width}
-                height={menuItem.image.height}
-                class='tool-icon'
-                alt=''
-                src={menuItem.image.src}
-              />
+              <div class='tool-icon-container'>
+                <img
+                  width={menuItem.image.width}
+                  height={menuItem.image.height}
+                  class='tool-icon default-image'
+                  alt=''
+                  src={menuItem.image.src}
+                />
+                <img
+                  width={menuItem.image.width}
+                  height={menuItem.image.height}
+                  class='tool-icon hovered-image'
+                  alt=''
+                  src={menuItem.imageInteractive.src}
+                />
+              </div>
               <div class='tool-label'>{t(menuItem.translationKey)}</div>
             </>
           </a>
@@ -80,11 +89,37 @@ const isActive = (path: string): boolean =>
   .tool-link:focus-visible,
   .tool-link.active {
     background-color: var(--surface-hover-color);
+
+    .tool-icon.default-image {
+      opacity: 0;
+    }
+
+    .tool-icon.hovered-image {
+      opacity: 1;
+    }
+  }
+
+  .tool-icon-container {
+    position: relative;
+    width: 5rem;
+    height: 5rem;
   }
 
   .tool-icon {
+    position: absolute;
     width: 5rem;
     height: 5rem;
+    inset: 0px;
+  }
+
+  .tool-icon.hovered-image {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+  }
+
+  .tool-icon.default-image {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
   }
 
   .active.tool-link::before {
@@ -131,12 +166,7 @@ const isActive = (path: string): boolean =>
       color: var(--button-hover-color);
     }
 
-    .tool-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-    }
-
-    .tool-link .tool-icon {
+    .tool-link .tool-icon-container {
       display: none;
     }
   }
