@@ -74,7 +74,6 @@ const t = useTranslations(lang)
 
   details.faq-item {
     margin-bottom: var(--spacing-xs);
-    padding: var(--padding-md);
     border-radius: var(--pill-rounding);
     background-color: white;
     position: relative;
@@ -84,7 +83,18 @@ const t = useTranslations(lang)
     margin-bottom: 0;
   }
 
-  details.faq-item::after {
+  details.faq-item summary {
+    display: block;
+    padding: var(--padding-md);
+    padding-right: calc(var(--padding-2xl) + var(--padding-md));
+    cursor: pointer;
+  }
+
+  details[open].faq-item summary {
+    font: var(--font-standard-bold);
+  }
+
+  details.faq-item summary::after {
     content: '';
     mask: url('/img/faq-icon.svg');
     display: block;
@@ -97,35 +107,21 @@ const t = useTranslations(lang)
     transition: transform 0.2s ease-in-out;
   }
 
-  details[open].faq-item::after {
+  details[open].faq-item summary::after {
     transform: rotate(45deg);
     background-color: var(--button-secondary-color);
   }
 
-  details.faq-item summary {
-    display: block;
-    padding-right: var(--padding-2xl);
-    cursor: pointer;
-  }
-
-  details[open].faq-item summary {
-    font: var(--font-standard-bold);
-  }
-
-  details.faq-item p {
-    padding-right: var(--padding-2xl);
+  details.faq-item p:not(:last-of-type) {
     margin-bottom: var(--spacing-md);
-  }
-
-  details.faq-item p:last-of-type {
-    margin-bottom: unset;
   }
 
   details.faq-item > div {
     overflow: hidden;
     display: grid;
-    margin-top: var(--spacing-md);
     animation-duration: 0.2s;
+    padding: 0 calc(var(--padding-2xl) + var(--padding-md)) var(--padding-md)
+      var(--padding-md);
   }
 
   details > .animation {
@@ -133,9 +129,9 @@ const t = useTranslations(lang)
     animation-timing-function: ease-out;
   }
 
-  details > .collapsing {
+  details > .animation.collapsing {
     animation-direction: reverse;
-    animation-timing-function: ease-in;
+    animation-duration: 0s;
   }
 
   details > div > div {
@@ -175,17 +171,23 @@ const t = useTranslations(lang)
       font: var(--font-h2);
     }
 
-    details.faq-item {
+    details.faq-item summary {
       padding: var(--padding-2xl);
+      padding-right: calc(2 * var(--padding-2xl));
     }
 
-    details.faq-item p:last-of-type {
-      margin-bottom: var(--padding-lg);
+    details.faq-item[open] summary {
+      padding-bottom: var(--padding-md);
     }
 
-    details.faq-item::after {
+    details.faq-item summary::after {
       top: var(--spacing-2xl);
       right: var(--spacing-2xl);
+    }
+
+    details.faq-item > div {
+      padding: 0 calc(2 * var(--padding-2xl))
+        calc(var(--padding-2xl) + var(--padding-xs)) var(--padding-2xl);
     }
   }
 </style>
