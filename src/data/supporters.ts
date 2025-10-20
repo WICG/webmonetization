@@ -3,6 +3,7 @@ import heroPoster from "@assets/hero-supporter-poster.png";
 import howItWorksHorizontal from "@assets/how-it-works-supporters-horizontal.png"
 import howItWorksVertical from "@assets/how-it-works-supporters-vertical.png"
 import heroVideo from "@assets/animations/hero-supporter.mp4";
+import WalletIcon from '@assets/wallet.svg'
 
 export const heroContent: HeroContent = {
     heroTitle: "Support the content you love, <strong>effortlessly</strong>",
@@ -16,6 +17,7 @@ export const heroContent: HeroContent = {
     secondaryCta: {
         href: "/wallets/",
         text: "Set up a wallet",
+        icon: WalletIcon,
         event: "Supporters page link - Wallets"
     }
 }
