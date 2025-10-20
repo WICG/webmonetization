@@ -1,6 +1,8 @@
-import publisherIcon from '@assets/publishers-icon.png?inline'
-import supporterIcon from '@assets/supporters-icon.png?inline'
-import devIcon from '@assets/developer-icon.png?inline'
+import developerIcon from '@assets/dropdown-developer.png?inline'
+import publisherIconInactive from '@assets/dropdown-publisher-inactive.png?inline'
+import publisherIconActive from '@assets/dropdown-publisher-active.png?inline'
+import supporterIconInactive from '@assets/dropdown-supporter-inactive.png?inline'
+import supporterIconActive from '@assets/dropdown-supporter-active.png?inline'
 
 export const TOOL_LABEL_KEYS = ['nav.pub-tools', 'nav.supp-tools', 'nav.dev-tools'] as const;
 export type ToolLabelKey = typeof TOOL_LABEL_KEYS[number];
@@ -10,6 +12,9 @@ interface ToolsSubmenuItem {
         src: string,
         width: number,
         height: number
+    },
+    imageInteractive: {
+        src: string
     },
     translationKey: ToolLabelKey,
     path: string,
@@ -21,9 +26,12 @@ export type ToolsSubmenu = Array<ToolsSubmenuItem>
 export const toolsSubmenu: ToolsSubmenu = [
     {
         image: {
-            src: publisherIcon,
+            src: publisherIconInactive,
             width: 460,
-            height: 461
+            height: 460
+        },
+        imageInteractive: {
+            src: publisherIconActive
         },
         translationKey: 'nav.pub-tools',
         path: '/publishers',
@@ -31,9 +39,12 @@ export const toolsSubmenu: ToolsSubmenu = [
     },
     {
         image: {
-            src: supporterIcon,
+            src: supporterIconInactive,
             width: 460,
-            height: 461
+            height: 460
+        },
+        imageInteractive: {
+            src: supporterIconActive
         },
         translationKey: 'nav.supp-tools',
         path: '/supporters',
@@ -41,9 +52,12 @@ export const toolsSubmenu: ToolsSubmenu = [
     },
     {
         image: {
-            src: devIcon,
+            src: developerIcon,
             width: 460,
-            height: 464
+            height: 460
+        },
+        imageInteractive: {
+            src: developerIcon
         },
         translationKey: 'nav.dev-tools',
         path: '/developers',
