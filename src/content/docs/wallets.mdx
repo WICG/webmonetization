@@ -1,6 +1,6 @@
 ---
 title: Web Monetization-compatible wallets
-lastUpdated: 2025-05-01
+lastUpdated: 2025-10-27
 banner:
     content: |
         More wallet providers coming soon!
@@ -19,6 +19,7 @@ Be sure to select a wallet that's available in your **region** and supports your
 | -------- | ------------ | -------------------- |
 | <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, Canada, EU, South Africa | $ <abbr title="US dollars">USD</abbr>, $ <abbr title="Canadian dollars">CAD</abbr>, € <abbr title="euros">EUR</abbr>, R <abbr title="South African rand">ZAR</abbr> |
 | <LinkOut href="https://gatehub.net">GateHub*</LinkOut> | USA, EU | $ <abbr title="US dollars">USD</abbr>, € <abbr title="euros">EUR</abbr> |
+| <LinkOut href="https://chimoney.app/">Chimoney App</LinkOut> | <LinkOut href="https://chimoney.app/supported-countries">Global (100+ countries)</LinkOut> | $ <abbr title="US dollars">USD</abbr> |
 
 <sup>* Select *Hosted* wallet during setup</sup>
 
@@ -55,6 +56,10 @@ For now, users of the Interledger Wallet can only send and receive from other In
 
 For now, users of the GateHub wallet can only send and receive from other GateHub wallet users.
 
+### Chimoney App
+
+Chimoney App users can send and receive payments to/from other Chimoney App wallet users. Users must complete KYC verification to activate their wallet address. Transactions are done in USD. Users can withdraw funds via multiple methods including bank transfers, mobile money, and instant transfers (Mexico, Canada, Nigeria, and Brazil - coming soon).
+
 ## Interledger test wallet
 
 The Interledger test wallet provides a great way to test Web Monetization without using real money. The test wallet is an open-source application developed and maintained by the [Interledger Foundation](https://interledger.org).
@@ -81,4 +86,19 @@ The Interledger test wallet provides a great way to test Web Monetization withou
         If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
         :::
     </Steps>
+</details>
+
+<details>
+<summary>Chimoney App</summary>
+    Users of the Chimoney App will have a _wallet address_. After completing your KYC verification on the Chimoney App, your account is automatically issued an Interledger Wallet Address. To locate your wallet address:
+    <Steps>
+    1. Open the Chimoney App and navigate to the **Account** tab.
+    2. Click on **Interledger Wallet Address**.<br /><img src="/img/docs/chimoney/chimoney-wallet-address.png" alt="Chimoney App Account tab showing the Interledger Wallet Address option" class="img-outline" style="max-width:600px" />
+    3. Copy your wallet address. It will look like `https://ilp.chimoney.com/username` or `https://ilp.chimoney.com/123456`.
+        :::note
+        You can use this wallet address in both the Web Monetization extension and on your website. The `https://` prefix is already included.
+        :::
+    </Steps>
+    
+    For detailed setup instructions, visit the <LinkOut href="https://chimoney.io/blogs/how-to-get-started-with-web-monetization-using-chimoney/">Chimoney Web Monetization Guide</LinkOut>.
 </details>
