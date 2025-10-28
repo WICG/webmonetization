@@ -61,10 +61,8 @@ function createWmWidget() {
   return div;
 }
 
-const STOPPED_ICON_SRC =
-  "https://cdn.glitch.com/09917b2c-dfe3-453d-be95-5e0af0bf966c%2Fwm-icon.svg?1584146864109";
-const STARTED_ICON_SRC =
-  "https://cdn.glitch.com/09917b2c-dfe3-453d-be95-5e0af0bf966c%2Fwm-icon-animated.svg?1584146706079";
+const STOPPED_ICON_SRC = "/img/wm-icon.svg";
+const STARTED_ICON_SRC = "/img/wm-icon-animated.svg";
 
 function createWmIcon() {
   const img = document.createElement("img");
