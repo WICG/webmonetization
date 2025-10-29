@@ -71,6 +71,7 @@ export const ui = {
     'media.video.unsupported': 'Your browser does not support the video tag.',
     'media.title.extension.chrome': 'Chrome Web Store',
     'media.title.extension.firefox': 'Firefox Add-ons',
+    'media.title.extension.safari': 'Safari Extension on App Store',
     'media.title.extension.edge': 'Edge Add-ons',
     'media.title.extension.github': 'Latest release on GitHub',
     'aria.nav.back': 'Previous',

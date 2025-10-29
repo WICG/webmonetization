@@ -1,6 +1,7 @@
 ---
 import chromeWebstore from '@assets/chrome-webstore.png'
 import fxBrowserIcon from '@assets/Fx-Browser-icon.png'
+import safariIcon from '@assets/browser-safari.png'
 import microsoftEdge from '@assets/microsoft-edge.png'
 import githubIcon from '@assets/icon-github.svg'
 import { getLangFromUrl, useTranslations } from '../i18n/utils'
@@ -20,6 +21,7 @@ const { utm, includeGitHub = false, variant } = Astro.props
 const URLS = {
   chrome: `https://chromewebstore.google.com/detail/web-monetization/oiabcfomehhigdepbbclppomkhlknpii`,
   firefox: `https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/`,
+  safari: `https://apps.apple.com/app/web-monetization/id6754325288`,
   edge: `https://microsoftedge.microsoft.com/addons/detail/web-monetization/imjgemgmeoioefpmfefmffbboogighjl`,
   github: `https://github.com/interledger/web-monetization-extension/releases/latest`,
 }
@@ -57,6 +59,18 @@ const toURL = (url: string) => {
           alt={t('media.title.extension.firefox')}
           width={fxBrowserIcon.width}
           height={fxBrowserIcon.height}
+        />
+      </a>
+    </div>
+  </li>
+  <li>
+    <div class='container'>
+      <a href={toURL(URLS.safari)} title={t('media.title.extension.safari')}>
+        <img
+          src={safariIcon.src}
+          alt={t('media.title.extension.safari')}
+          width={safariIcon.width}
+          height={safariIcon.height}
         />
       </a>
     </div>
