@@ -196,6 +196,7 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 
 <details>
 <summary>I get an error from my wallet provider when linking the extension to my wallet. Why?</summary>
+
 It's hard to say without a specific error message. Two likely scenarios are:
 * You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe.
 * You accepted the connection too quickly--within a few seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen. Interledger Wallet, for example, enforces a minimum five second wait.
@@ -206,6 +207,7 @@ Click **Connect** and try linking your extension again.
 
 <details>
 <summary>I know the page I'm visiting is web monetized, but the extension says its not. Why?</summary>
+
 The most likely reason is that your wallet provider and the content owner or publisher's wallet provider are unable to transact with one another. Your extension will display an exclamation mark within an orange circle. Open the extension to read the messaging.
 
 Visit the [Web Monetization-enabled wallets](/wallets) page for a list of compatible wallet providers.
@@ -214,6 +216,7 @@ Visit the [Web Monetization-enabled wallets](/wallets) page for a list of compat
 
 <details>
 <summary>Why is the balance in the extension not immediately updating on payments?</summary>
+
 After the extension shows a message that a payment succeeded, the extension's balance may not immediately update to show the new, lower balance. This is a known issue that we're working on. You can track its progress in <LinkOut href="https://github.com/interledger/web-monetization-extension/issues/737">GitHub issue #737</LinkOut>.
 
 </details>
