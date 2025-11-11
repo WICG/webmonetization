@@ -9,7 +9,7 @@ interface Props {
 }
 const { headingText, pageTitle, backButtonText } = Astro.props
 const lang = getLangFromUrl(Astro.url)
-const toolsUrl = lang === 'en' ? '/tools' : `/${lang}/tools`
+const toolsUrl = lang === 'en' ? '/developers' : `/${lang}/developers`
 ---
 
 <div class='header'>
