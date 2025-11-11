@@ -12,7 +12,7 @@ if (window.MonetizationEvent) {
 
     total += Number(value);
 
-    contribution.innerText = new Intl.NumberFormat('en-US', {
+    contribution.innerText = new Intl.NumberFormat(navigator.language, {
       style: 'currency',
       currency,
     }).format(total);
