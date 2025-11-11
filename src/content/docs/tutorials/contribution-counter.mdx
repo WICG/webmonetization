@@ -13,9 +13,9 @@ In this tutorial, you'll create a script that will display a counter on your pag
 
 ## User experience
 
-For visitors without Web Monetization, the counter will show 0.00.
+For visitors without Web Monetization, the counter will show "maybe in the future".
 
-For visitors with Web Monetization, the counter will update based on the amount sent during the current browsing session. The counter resets to 0.00 when your visitor:
+For visitors with Web Monetization, the counter will update based on the amount sent during the current browsing session. The counter resets to "maybe in the future" when your visitor:
 
 - Closes the tab, browser window, or browser.
 - Clicks a link or performs some other action that redirects the visitor to another page. This includes navigating backward or forward.
@@ -23,7 +23,7 @@ For visitors with Web Monetization, the counter will update based on the amount 
 
 ## Create your script
 
-Use the `monetization` event to show a web monetized visitor how much they've sent in $ <abbr title="US dollars">USD</abbr>.
+Use the `monetization` event to show a web monetized visitor how much they've sent.
 
 ### The code
 
@@ -33,25 +33,25 @@ Use the `monetization` event to show a web monetized visitor how much they've se
   <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <script>
-    let total = 0
+    let total = 0;
 
     if (window.MonetizationEvent) {
-      const link = document.querySelector('link[rel="monetization"]')
+      const link = document.querySelector('link[rel="monetization"]');
+      const contribution = document.getElementById('contribution');
 
       link.addEventListener('monetization', (event) => {
         const {
           amountSent: { value, currency },
-        } = event
-        console.log(`Browser sent ${currency} ${value}.`)
+        } = event;
+        console.log(`Browser sent ${currency} ${value}.`);
 
-        if (total === 0) {
-          document.getElementById('currency').innerText = currency
-        }
+        total += Number(value);
 
-        total += Number(value)
-
-        document.getElementById('total').innerText = total.toFixed(9)
-      })
+        contribution.innerText = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency,
+        }).format(total);
+      });
     }
   </script>
 </head>
@@ -59,8 +59,7 @@ Use the `monetization` event to show a web monetized visitor how much they've se
 <body>
   <p>
     Thanks for contributing
-    <span id="total">0.00 USD</span>
-    <span id="currency"></span>
+    <span id="contribution">maybe in the future</span>.
   </p>
 </body>
 ```
@@ -69,48 +68,42 @@ Use the `monetization` event to show a web monetized visitor how much they've se
 
 We’ll bind the `monetization` event if the visitor is web monetized (`window.MonetizationEvent` is defined).
 
-The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and `currency` code of the sent payment. A currency code is a three-letter code, like USD for US dollar, EUR for the euro, or GBP for Great Britain Pound.
+The `monetization` event contains details about the payments that occur. The `amountSent` attribute of the event returns the amount (`value`) and `currency` code of the sent payment. A currency code is a three-letter code, like USD for US Dollar, EUR for the Euro, or GBP for Great Britain Pound. The currency code represents the sender's currency which may be different from the currency you receive (depending on the currency you chose when setting up your wallet account).
 
-```javascript {1,6}
-  if (window.MonetizationEvent) {
-    const link = document.querySelector('link[rel="monetization"]');
+```javascript {1,7}
+if (window.MonetizationEvent) {
+  const link = document.querySelector('link[rel="monetization"]');
+  const contribution = document.getElementById('total');
 
-    link.addEventListener("monetization", (event) => {
-      const {
+  link.addEventListener('monetization', (event) => {
+    const {
       amountSent: { value, currency },
     } = event;
     console.log(`Browser sent ${currency} ${value}.`);
 ```
 
-The `currency` code is set on the visitor's first payment and doesn’t change. The code represents the sender's currency which may be different from the currency you receive (depending on the currency you chose when setting up your wallet account).
-
-```javascript
-// initialize currency on first progress event
-if (total === 0) {
-  document.getElementById('currency').innerText = currency
-}
-```
-
-The amount in `value` is an integer, which we add to the total.
+The amount in `value` is a string (for rounding reasons), which we add to the total after parsing it to a number.
 
 ```javascript
 total += Number(value)
 ```
 
-Lastly, we tell the text on your page to update with the new total. The total should be in a human-readable format, so we need to convert the number to a string and round it to a specified number of decimals. This example uses `9`.
+Lastly, we tell the text on your page to update with the new total. The total should be in a human-readable format, so we use the [`Intl.NumberFormat`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat) API, which does locale-aware currency formatting for us.
 
 ```javascript
-document.getElementById('total').innerText = total.toFixed(9)
+contribution.innerText = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency,
+}).format(total);
 ```
 
-The formatted version of the amount gets written to the `total` span on the page.
+The formatted version of the amount gets written to the `contribution` span on the page.
 
 ```html {4}
 <body>
   <p>
     Thanks for contributing
-    <span id="total">0.00 USD</span>
-    <span id="currency"></span>
+    <span id="contribution">maybe in the future</span>.
   </p>
 </body>
 ```
