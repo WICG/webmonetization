@@ -1,6 +1,6 @@
 # Remove content for web monetized visitors
 
-You can use Web Monetization to remove content, such as advertisements, only for web monetized visitors. 
+You can use Web Monetization to remove content, such as advertisements, only for web monetized visitors.
 
 In this example, non-web monetized visitors are shown a red advertisement box. The box is hidden for web monetized visitors.
 
@@ -26,7 +26,7 @@ The monetization `<link>` element contains a wallet address as the `href` value.
 
 ## ← ad-free.js
 
-Shows/removes the advertisement box based on whether the visitor is web monetized. 
+Shows/removes the advertisement box based on whether the visitor is web monetized.
 
 ## ← wm-previewer.js
 

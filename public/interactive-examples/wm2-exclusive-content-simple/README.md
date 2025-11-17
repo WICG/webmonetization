@@ -8,7 +8,7 @@ This is a simple example for showing exclusive content to web monetized visitors
 
 Web Monetization is an easier way for site visitors to financially contribute to creators.
 
-Site visitors and creators must both have an account with a Web Monetization-compatible digital wallet. 
+Site visitors and creators must both have an account with a Web Monetization-compatible digital wallet.
 
 By adding a single line of code to their pages, creators can receive payments from web monetized site visitors.
 
@@ -20,9 +20,9 @@ Only the web monetized site visitors can choose when and how much to pay. A page
 
 ## ← index.html
 
-Contains a monetization `<link>` element, a `hidden` style, references to two JS files, and the content for the example web page. 
+Contains a monetization `<link>` element, a `hidden` style, references to two JS files, and the content for the example web page.
 
-The monetization `<link>` element contains a wallet address as the `href` value. The wallet address is provided by a Web Monetization-compatible digital wallet. 
+The monetization `<link>` element contains a wallet address as the `href` value. The wallet address is provided by a Web Monetization-compatible digital wallet.
 
 ## ← exclusive-content-simple.js
 
