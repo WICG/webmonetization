@@ -13,6 +13,7 @@ Interledger Foundation's Web Monetization browser extension lets you support you
 You can only use the extension to send payments to web monetized sites. Interledger Foundation encourages content owners and publishers to tell their audience they're web monetized via a banner or some other method.
 
 If you're interested in web monetizing your own content, the [get started](/developers/get-started) page for developers is a good place to start.
+
 </details>
 
 <details>
@@ -22,6 +23,7 @@ To make Web Monetization payments, you only need a digital wallet account from a
 A web monetized site can't pull payments from your wallet. When you link the browser extension to your wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#set-up-continuous-payments).
 
 The sites you pay aren't provided with any of your personally identifiable information, such as your name, email address, or IP address.
+
 </details>
 
 ## Install the extension
@@ -75,12 +77,13 @@ After you install the extension, a page appears to guide you through the configu
 By default, the extension is set to send continuous payments at a rate of $0.60 <abbr title="US dollars">USD</abbr> an hour ($0.01 a minute). If you transact in a currency other than USD, then the extension will default to your currency's equivalent based on the exchange rate. For example, if you transact in Mexican pesos, $0.60 USD is equivalent to around <abbr title="Mexican pesos">MX</abbr> $11.70. The extension will default to MX $11.70 an hour.
 
 Payments continue for as long as a web monetized page is active and in view. Continuous payments stop if you:
-* Disable the extension
-* Disable continuous payments within the extension's settings
-* Minimize your browser
-* Change the focus away from the tab/switch to a different tab
-* Close the tab or browser
-* Spend all of your budget 
+
+- Disable the extension
+- Disable continuous payments within the extension's settings
+- Minimize your browser
+- Change the focus away from the tab/switch to a different tab
+- Close the tab or browser
+- Spend all of your budget
 
 ### Change your continuous payment settings
 
@@ -104,12 +107,12 @@ You can make a one-time payment to a page instead of -- or in addition to -- con
 
 ### About your budget
 
-Your budget is the amount you've given the extension permission to spend from your wallet. If you spend your budgeted amount, the extension will display an orange circle in the toolbar and show an "out of funds" message. You can manually add more funds using the steps below. 
+Your budget is the amount you've given the extension permission to spend from your wallet. If you spend your budgeted amount, the extension will display an orange circle in the toolbar and show an "out of funds" message. You can manually add more funds using the steps below.
 
 If your budget is set to renew monthly and you are out of funds, you can:
 
-* Wait for your budget to renew (your renewal date is shown in the extension) or 
-* Manually add funds
+- Wait for your budget to renew (your renewal date is shown in the extension) or
+- Manually add funds
 
 If you choose to add more funds, the amount you enter will become your new renewal amount and your renewal date will change.
 
@@ -147,6 +150,7 @@ The extension only supports one wallet connection at a time. For example, if you
 When you try to connect the extension to your wallet, the extension attempts to automatically connect with your wallet provider to add a key to your wallet account.
 
 You'll receive an error if the extension is unable to add the key. For example:
+
 <img
   src='/img/docs/extension/connection-failed.png'
   alt='Extension showing an automatic connection error, the key you must copy, and a copy button for the key'
@@ -178,11 +182,11 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 
 #### Continuous payment toggled on
 
-| Icon | State |
-| :--: | ----- | 
-| <div style="padding-left: 5px;">![Continuous payments turned on in extension, extension is paying](/img/docs/extension/enabled-monetized.png 'Active icon state with green circle and checkmark')</div> | Page is web monetized and the extension is continuously paying                                   |
+|                                                                                                                     Icon                                                                                                                     | State                                                                                            |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------ |
+|                   <div style="padding-left: 5px;">![Continuous payments turned on in extension, extension is paying](/img/docs/extension/enabled-monetized.png 'Active icon state with green circle and checkmark')</div>                    | Page is web monetized and the extension is continuously paying                                   |
 | <div style="padding-left: 5px;">![Continuous payments turned on in extension, extension is not paying and needs user attention](/img/docs/extension/enabled-attention.png 'Active icon state with orange circle and exclamation mark')</div> | Page is web monetized, but the extension needs user attention and is **not** continuously paying |
-| <div style="padding-left: 5px;">![Continuous payments turned on in extension, page is not web monetized](/img/docs/extension/enabled-unmonetized.png 'Active icon state with red circle and x')</div> | Page is **not** web monetized, the extension is **not** continuously paying |
+|                    <div style="padding-left: 5px;">![Continuous payments turned on in extension, page is not web monetized](/img/docs/extension/enabled-unmonetized.png 'Active icon state with red circle and x')</div>                     | Page is **not** web monetized, the extension is **not** continuously paying                      |
 
 #### Continuous payment toggled off
 
@@ -190,7 +194,7 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------------------------------------------------------------ |
 |                <div style="padding-left: 5px;">![Continuous payments turned off in extension](/img/docs/extension/disabled-monetized.png 'Inactive icon state with green circle and checkmark')</div>                | Page is web monetized, but the extension is **not** continuously paying                          |
 | <div style="padding-left: 5px;">![Continuous payments turned off in extension, needs user attention](/img/docs/extension/disabled-attention.png 'Inactive icon state with orange circle and exclamation mark')</div> | Page is web monetized, but the extension needs user attention and is **not** continuously paying |
-|      <div style="padding-left: 5px;">![Continuous payments turned off in extension, page isn't web monetized](/img/docs/extension/disabled-unmonetized.png 'Inactive icon state with red circle and x')</div>       | Page is **not** web monetized and the extension is **not** continuously paying                   |
+|       <div style="padding-left: 5px;">![Continuous payments turned off in extension, page isn't web monetized](/img/docs/extension/disabled-unmonetized.png 'Inactive icon state with red circle and x')</div>       | Page is **not** web monetized and the extension is **not** continuously paying                   |
 
 ## FAQ
 
@@ -198,8 +202,9 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 <summary>I get an error from my wallet provider when linking the extension to my wallet. Why?</summary>
 
 It's hard to say without a specific error message. Two likely scenarios are:
-* You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe.
-* You accepted the connection too quickly--within a few seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen. Interledger Wallet, for example, enforces a minimum five second wait.
+
+- You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe.
+- You accepted the connection too quickly--within a few seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen. Interledger Wallet, for example, enforces a minimum five second wait.
 
 Click **Connect** and try linking your extension again.
 
@@ -224,9 +229,9 @@ After the extension shows a message that a payment succeeded, the extension's ba
 <details>
 <summary>How is the balance shown in my wallet related to the balance shown in my extension?</summary>
 
-* Wallet balance - Your available balance; the amount you have to spend on Web Monetization or anything else you can use your wallet balance on.
-* Extension balance - The amount you've given the extension permission to spend.
+- Wallet balance - Your available balance; the amount you have to spend on Web Monetization or anything else you can use your wallet balance on.
+- Extension balance - The amount you've given the extension permission to spend.
 
-It's possible for your extension to show a higher balance than your wallet. In this case, any Web Monetization payment that exceeds your wallet's balance will fail due to insufficient funds. 
+It's possible for your extension to show a higher balance than your wallet. In this case, any Web Monetization payment that exceeds your wallet's balance will fail due to insufficient funds.
 
 </details>
