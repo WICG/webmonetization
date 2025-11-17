@@ -22,6 +22,7 @@ ignorePatterns:
   - 'node_modules/**'
   - '.astro/**'
   - '**/*.d.ts'
+  - 'public/**'
 rules:
   '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }]
   '@typescript-eslint/no-explicit-any': 'warn'
@@ -32,4 +33,3 @@ overrides:
     parserOptions:
       parser: '@typescript-eslint/parser'
       extraFileExtensions: ['.astro']
-

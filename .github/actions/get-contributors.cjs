@@ -10,9 +10,9 @@ async function getContributors() {
       owner: 'wicg',
       repo: 'webmonetization',
       headers: {
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
-    },
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    }
   )
   const contributors = JSON.stringify(data)
   fs.writeFileSync('src/data/contributors.json', contributors)

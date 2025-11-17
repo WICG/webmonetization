@@ -20,4 +20,3 @@ jobs:
         run: bun install
       - name: Check formatting and linting
         run: bun run check
-
