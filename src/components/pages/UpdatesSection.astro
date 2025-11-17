@@ -197,79 +197,102 @@ const { updates, heading } = Astro.props
   const updates = Array.from(document.querySelectorAll('.update-slide'))
   const numberOfUpdates = carouselDots.length
   let currentIndex = 0
-  const preferedScrollBehaviour: ScrollBehavior = matchMedia(
+  const preferedScrollBehaviour: 'auto' | 'smooth' = matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches
     ? 'auto'
     : 'smooth'
+
+  function updateTabBehaviour(index: number) {
+    carouselCTAs.forEach((link, i) => {
+      if (link instanceof HTMLAnchorElement) {
+        link.tabIndex = i === index ? 0 : -1
+      }
+    })
+  }
+
+  function updateDots(index: number) {
+    carouselDots.forEach((dot, i) =>
+      dot.classList.toggle('active', i === index)
+    )
+  }
+
+  function updateAccessibilityTree(index: number) {
+    updates.forEach((item, i) => {
+      item.ariaHidden = index === i ? null : true
+    })
+    carouselDots.forEach((dot, i) => {
+      const selected = i === index
+
+      dot.setAttribute('aria-selected', selected.toString())
+      dot.setAttribute('tabindex', selected ? '0' : '-1')
+    })
+  }
+
+  function beforeScroll(indexToGo: number) {
+    updateDots(indexToGo)
+    updateTabBehaviour(indexToGo)
+    updateAccessibilityTree(indexToGo)
+  }
+
+  function scrollToUpdate(index: number) {
+    beforeScroll(index)
+    updates[index].scrollIntoView({
+      behavior: preferedScrollBehaviour,
+      inline: 'start',
+      block: 'nearest',
+    })
+  }
+
+  function navigateByArrow(direction: 'left' | 'right') {
+    setCurrentIndex(direction)
+    scrollToUpdate(currentIndex)
+  }
+
+  function navigateByDot(index: number) {
+    scrollToUpdate(index)
+  }
+
+  function setCurrentIndex(direction: 'left' | 'right') {
+    let indexToGo
+    if (direction === 'left') {
+      indexToGo =
+        currentIndex - 1 < 0 ? numberOfUpdates - 1 : currentIndex - 1
+    } else {
+      indexToGo = currentIndex >= numberOfUpdates - 1 ? 0 : currentIndex + 1
+    }
+
+    currentIndex = indexToGo
+  }
+
+  function handleKeyNavigation(e: KeyboardEvent) {
+    switch (e.key) {
+      case 'ArrowRight':
+        setCurrentIndex('right')
+        break
+      case 'ArrowLeft':
+        setCurrentIndex('left')
+        break
+      case 'End':
+        currentIndex = numberOfUpdates - 1
+        break
+      case 'Home':
+        currentIndex = 0
+        break
+      default:
+        return
+    }
+
+    e.preventDefault()
+    navigateByDot(currentIndex)
+    carouselDots[currentIndex].focus()
+  }
 
   if (updatesList instanceof HTMLElement) {
     let width = updatesList.clientWidth
     let touchStartX = 0
     let touchEndX = 0
     const swipeThreshold = 50
-
-    function updateTabBehaviour(index: number) {
-      carouselCTAs.forEach((link, i) => {
-        if (link instanceof HTMLAnchorElement) {
-          link.tabIndex = i === index ? 0 : -1
-        }
-      })
-    }
-
-    function updateDots(index: number) {
-      carouselDots.forEach((dot, i) =>
-        dot.classList.toggle('active', i === index)
-      )
-    }
-
-    function updateAccessibilityTree(index: number) {
-      updates.forEach((item, i) => {
-        item.ariaHidden = index === i ? null : true
-      })
-      carouselDots.forEach((dot, i) => {
-        const selected = i === index
-
-        dot.setAttribute('aria-selected', selected.toString())
-        dot.setAttribute('tabindex', selected ? '0' : '-1')
-      })
-    }
-
-    function beforeScroll(indexToGo: number) {
-      updateDots(indexToGo)
-      updateTabBehaviour(indexToGo)
-      updateAccessibilityTree(indexToGo)
-    }
-
-    function scrollToUpdate(index: number) {
-      beforeScroll(index)
-      updates[index].scrollIntoView({
-        behavior: preferedScrollBehaviour,
-        inline: 'start',
-        block: 'nearest',
-      })
-    }
-
-    function navigateByArrow(direction: 'left' | 'right') {
-      setCurrentIndex(direction)
-      scrollToUpdate(currentIndex)
-    }
-
-    function navigateByDot(index: number) {
-      scrollToUpdate(index)
-    }
-
-    function setCurrentIndex(direction: 'left' | 'right') {
-      let indexToGo
-      if (direction === 'left') {
-        indexToGo =
-          currentIndex - 1 < 0 ? numberOfUpdates - 1 : currentIndex - 1
-      } else {
-        indexToGo = currentIndex >= numberOfUpdates - 1 ? 0 : currentIndex + 1
-      }
-
-      currentIndex = indexToGo
-    }
 
     window.addEventListener('resize', () => {
       width = updatesList.clientWidth
@@ -306,29 +329,6 @@ const { updates, heading } = Astro.props
         }
       }
     })
-
-    function handleKeyNavigation(e: KeyboardEvent) {
-      switch (e.key) {
-        case 'ArrowRight':
-          setCurrentIndex('right')
-          break
-        case 'ArrowLeft':
-          setCurrentIndex('left')
-          break
-        case 'End':
-          currentIndex = numberOfUpdates - 1
-          break
-        case 'Home':
-          currentIndex = 0
-          break
-        default:
-          return
-      }
-
-      e.preventDefault()
-      navigateByDot(currentIndex)
-      carouselDots[currentIndex].focus()
-    }
 
     carouselControls?.addEventListener('focusin', () => {
       carouselControls.addEventListener('keydown', handleKeyNavigation)

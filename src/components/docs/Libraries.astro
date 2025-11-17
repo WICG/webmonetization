@@ -2,7 +2,7 @@
 import githubIcon from '@assets/icon-github.svg';
 const { plugins } = Astro.props;
 
-const findStartWith = (array: any[], arg: string) => {
+const findStartWith = (array: string[], arg: string) => {
   return (
     array.find((value: string) => {
       return value.startsWith(arg)
@@ -20,7 +20,7 @@ const findStartWith = (array: any[], arg: string) => {
     </tr>
   </thead>
   <tbody>
-    {plugins.map((plugin: {name: string, desc: string, version: String[], cta: { href: string }}) => (
+    {plugins.map((plugin: {name: string, desc: string, version: string[], cta: { href: string }}) => (
       <tr>
         <td>
           <strong>{plugin.name}</strong>

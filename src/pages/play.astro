@@ -336,7 +336,7 @@ const t = useTranslations(lang)
   function createLog(
     div: HTMLDivElement,
     type: string,
-    event?: MonetizationEvent
+    event?: globalThis.MonetizationEvent
   ) {
     const log = document.createElement('li')
 
@@ -370,7 +370,7 @@ const t = useTranslations(lang)
     div.prepend(log)
   }
 
-  function onMonetizationListener(event: MonetizationEvent) {
+  function onMonetizationListener(event: globalThis.MonetizationEvent) {
     const linkEventLog = getLinkEventLog(event)
     if (!linkEventLog) return
 

@@ -1,4 +1,5 @@
 /** @type {MonetizationEvent} event */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function verifyPayment(event) {
   // Legacy receivers don't support returning incoming payment URLs
   if (!event.incomingPayment) {
