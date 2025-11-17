@@ -5,19 +5,29 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write .",
+    "lint": "eslint --max-warnings=0 --fix .",
+    "check": "prettier --check . && eslint --max-warnings=0 ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/starlight": "^0.34.4",
     "@interledger/docs-design-system": "^0.8.0",
     "astro": "5.11.0",
-    "prettier": "^3.6.2",
     "remark-mermaidjs": "^7.0.0",
     "respec": "^35.4.2",
     "sharp": "^0.34.2",
     "starlight-fullview-mode": "^0.2.3",
     "starlight-links-validator": "^0.17.0",
     "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-astro": "^0.34.0",
+    "prettier": "^3.6.2"
   }
 }

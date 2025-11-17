@@ -41,10 +41,43 @@ All commands are run from the root of the project, from a terminal:
 | `bun run start`           | Starts local dev server at `localhost:1100`      |
 | `bun run build`           | Build your production site to `./dist/`          |
 | `bun run preview`         | Preview your build locally before deploying      |
+| `bun run format`          | Format all files with Prettier                   |
+| `bun run lint`            | Lint and auto-fix issues with ESLint             |
+| `bun run check`           | Check formatting and linting without modifying   |
 | `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `bun run astro -- --help` | Get help using the Astro CLI                     |
 
 You can substitute the bun commands with your chosen package manager's commands.
+
+## Code Quality
+
+This project uses ESLint and Prettier to maintain consistent code style. Before submitting changes, ensure your code is properly formatted and passes linting checks.
+
+### Formatting
+
+Format all files:
+
+```sh
+bun run format
+```
+
+### Linting
+
+Lint and auto-fix issues:
+
+```sh
+bun run lint
+```
+
+### Check Formatting and Linting
+
+Check that all files are properly formatted and pass linting without modifying files:
+
+```sh
+bun run check
+```
+
+**Note:** The CI pipeline will automatically check formatting and linting on pull requests. Make sure to run `bun run format` and `bun run lint` before submitting your PR to avoid CI failures.
 
 ## Specification Development
 

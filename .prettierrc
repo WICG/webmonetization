@@ -3,3 +3,9 @@ tabWidth: 2
 jsxSingleQuote: true
 bracketSpacing: true
 singleQuote: true
+trailingComma: none
+embeddedLanguageFormatting: off
+overrides:
+  - files: '*.md,*.mdx'
+    options:
+      proseWrap: preserve

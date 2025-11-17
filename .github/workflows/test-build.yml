@@ -17,5 +17,7 @@ jobs:
 
       - name: Install dependencies
         run: bun install
+      - name: Check formatting and linting
+        run: bun run check
       - name: Test build website
         run: bun run build
