@@ -32,3 +32,21 @@ Export a static HTML version of the specification when your changes are done wit
 In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. We only archive major versions of the specification. For example, a copy of the [2021-03-17 draft report](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [src/pages/specification/versions/](https://github.com/WICG/webmonetization/tree/main/src/pages/specification/versions).
 
 Prettier is disabled on `src/pages/specification` as it conflicts with the code format style used by W3C specifications. There is [no way](https://github.com/prettier/prettier/issues/5246) to configure Prettier to follow the [W3C recommendation](https://github.com/validator/validator/wiki/Markup-%C2%BB-Void-elements) of not using trailing slashes on void elements.
+
+## Code Quality
+
+We use ESLint to keep the codebase consistent. Before submitting a pull request, please make sure your changes pass linting:
+
+```sh
+bun run lint
+```
+
+If ESLint finds issues that can be automatically fixed, you can run:
+
+```sh
+bun run lint:fix
+```
+
+This will fix most formatting and style issues automatically. Any remaining issues will need to be fixed manually.
+
+Note that some files in `public/interactive-examples/` may have warnings for unused variables. These are intentional and can be ignored - they're example files that demonstrate different usage patterns.
