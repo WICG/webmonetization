@@ -43,85 +43,92 @@ After you install the extension, a page appears to guide you through the configu
 
 <Steps>
   1. Get a Web Monetization-compatible [wallet](/wallets).
-  <br />
-  <img
-    src='/img/docs/extension/onboarding-1.png'
-    alt='An image of the onboarding screen showing the four steps to configure the extension'
-    style='max-width:300px'
-    class='img-outline'
-  />
-  :::note You may experience a delay before you can fund your wallet while your
-  provider performs necessary regulatory checks. ::: 2. Find and copy your
-  wallet address (Interledger) or payment pointer (GateHub). You'll need it for
-  Step 4.
-  <br />
-  <img
-    src='/img/docs/extension/onboarding-2.png'
-    alt='Interledger Wallet dashboard displaying a wallet address'
-    style='max-width:400px'
-    class='img-outline'
-  />
-  <Tabs>
-    <TabItem label='Example wallet address'>
-      ``` https://wallet.example.com/alice ```
-    </TabItem>
-    <TabItem label='Example payment pointer'>
-      ``` $wallet.example.com/alice ```
-    </TabItem>
-  </Tabs>
+
+     <img
+       src='/img/docs/extension/onboarding-1.png'
+       alt='An image of the onboarding screen showing the four steps to configure the extension'
+       style='max-width:300px'
+       class='img-outline'
+     />
+
+     :::note
+     You may experience a delay before you can fund your wallet while your provider performs necessary regulatory checks.
+     :::
+
+  2. Find and copy your wallet address (Interledger) or payment pointer (GateHub). You'll need it for Step 4.
+
+     <img
+       src='/img/docs/extension/onboarding-2.png'
+       alt='Interledger Wallet dashboard displaying a wallet address'
+       style='max-width:400px'
+       class='img-outline'
+     />
+
+     <Tabs>
+       <TabItem label='Example wallet address'>
+         ``` https://wallet.example.com/alice ```
+       </TabItem>
+       <TabItem label='Example payment pointer'>
+         ``` $wallet.example.com/alice ```
+       </TabItem>
+     </Tabs>
+
   3. Pin the extension to your toolbar (optional).
-  <br />
-  <img
-    src='/img/docs/extension/onboarding-3.png'
-    alt='An example of where to find the pin to toolbar option for the extension'
-    style='max-width:300px'
-    class='img-outline'
-  />
+
+     <img
+       src='/img/docs/extension/onboarding-3.png'
+       alt='An example of where to find the pin to toolbar option for the extension'
+       style='max-width:300px'
+       class='img-outline'
+     />
+
   4. Enter the wallet address or payment pointer you found in Step 2.
-  <br />
-  <img
-    src='/img/docs/extension/onboarding-4a.png'
-    alt='Set up screen with fields for wallet address/payment pointer and amount and a renew monthly toggle (default is off).'
-    style='max-width:300px'
-    class='img-outline'
-  />
-  5. Enter the amount the extension will have permission to send and select
-  whether the amount should renew monthly. You can always [change these
-  settings](#adjust-your-budget) later. :::note The amount and renewal frequency
-  is specific to the extension you're setting up. If you install the extension
-  on a different browser and connect to the same wallet, that extension will
-  have a separate budget. Payments made from one budget don't affect the balance
-  of the other. ::: 6. Click **Connect**, then click **Agree** to allow the
-  extension to connect to your wallet account.
-  <br />
-  <img
-    src='/img/docs/extension/onboarding-4b.png'
-    alt='Consent screen for allowing the extension to connect to your wallet with agree and decline buttons'
-    style='max-width:300px'
-    class='img-outline'
-  />
-  :::note If your wallet provider's website opens in your browser, proceed to
-  the next step. If you receive a connection error, review the instructions for
-  [resolving the error](#resolve-a-key-addition-failure). ::: 7. Sign in to your
-  wallet account if you haven't already, then confirm the connection and budget
-  amount. For example:
-  <br />
-  <img
-    src='/img/docs/extension/example-grant.png'
-    alt='Example budget confirmation screen with accept and decline buttons'
-    style='max-width:400px'
-    class='img-outline'
-  />
-  8. A success screen appears when the connection is successful. You can close
-  the tab.
-  <br />
-  <img
-    src='/img/docs/extension/connection-success.png'
-    alt='Web page displaying a connection successful screen'
-    style='max-width:400px'
-    class='img-outline'
-  />
-  You're now ready to set up continuous payments.
+
+     <img
+       src='/img/docs/extension/onboarding-4a.png'
+       alt='Set up screen with fields for wallet address/payment pointer and amount and a renew monthly toggle (default is off).'
+       style='max-width:300px'
+       class='img-outline'
+     />
+
+  5. Enter the amount the extension will have permission to send and select whether the amount should renew monthly. You can always [change these settings](#adjust-your-budget) later.
+
+     :::note
+     The amount and renewal frequency is specific to the extension you're setting up. If you install the extension on a different browser and connect to the same wallet, that extension will have a separate budget. Payments made from one budget don't affect the balance of the other.
+     :::
+
+  6. Click **Connect**, then click **Agree** to allow the extension to connect to your wallet account.
+
+     <img
+       src='/img/docs/extension/onboarding-4b.png'
+       alt='Consent screen for allowing the extension to connect to your wallet with agree and decline buttons'
+       style='max-width:300px'
+       class='img-outline'
+     />
+
+     :::note
+     If your wallet provider's website opens in your browser, proceed to the next step. If you receive a connection error, review the instructions for [resolving the error](#resolve-a-key-addition-failure).
+     :::
+
+  7. Sign in to your wallet account if you haven't already, then confirm the connection and budget amount. For example:
+
+     <img
+       src='/img/docs/extension/example-grant.png'
+       alt='Example budget confirmation screen with accept and decline buttons'
+       style='max-width:400px'
+       class='img-outline'
+     />
+
+  8. A success screen appears when the connection is successful. You can close the tab.
+
+     <img
+       src='/img/docs/extension/connection-success.png'
+       alt='Web page displaying a connection successful screen'
+       style='max-width:400px'
+       class='img-outline'
+     />
+
+     You're now ready to set up continuous payments.
 </Steps>
 
 ## Set up continuous payments
@@ -168,24 +175,23 @@ Payments continue for as long as a web monetized page is active and in view. Con
 You can make a one-time payment to a page instead of -- or in addition to -- continuous payments. The amount of the one-time payment is deducted from your budget.
 
 <Steps>
-  1. Ensure the address shown above the amount field is the page you intend to
-  pay.
-  <br />
-  <img
-    src='/img/docs/extension/otp-send-now.png'
-    alt='Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active'
-    style='max-width:300px'
-    class='img-outline'
-  />
-  2. Enter an amount. Be sure your balance can cover the amount, otherwise the
-  payment will fail. Click **Send now**.
-  <br />
-  <img
-    src='/img/docs/extension/otp-success.png'
-    alt='Extension showing an available balance of four dollars, with a success message indicating one dollar was sent'
-    style='max-width:300px'
-    class='img-outline'
-  />
+  1. Ensure the address shown above the amount field is the page you intend to pay.
+
+     <img
+       src='/img/docs/extension/otp-send-now.png'
+       alt='Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active'
+       style='max-width:300px'
+       class='img-outline'
+     />
+
+  2. Enter an amount. Be sure your balance can cover the amount, otherwise the payment will fail. Click **Send now**.
+
+     <img
+       src='/img/docs/extension/otp-success.png'
+       alt='Extension showing an available balance of four dollars, with a success message indicating one dollar was sent'
+       style='max-width:300px'
+       class='img-outline'
+     />
 </Steps>
 
 ## Adjust your budget
