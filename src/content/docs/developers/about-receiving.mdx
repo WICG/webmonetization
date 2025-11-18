@@ -106,15 +106,42 @@ The examples below are simplified representations of the Open Payments API calls
     </Disclosure>
 
 4.  The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `authServer` URL. The request contains the access permissions the agent is requesting.
+
     <Disclosure toggleText="Example request" client:load>
 
-```http
-POST /auth/ HTTP/1.1
-Accept: application/json
-Content-Type: application/json
-Host: wallet.example
-{
-    "access_token": {
+    ```http
+    POST /auth/ HTTP/1.1
+    Accept: application/json
+    Content-Type: application/json
+    Host: wallet.example
+    {
+        "access_token": {
+            "access": [
+                {
+                    "type": "incoming-payment",
+                    "actions": ["create", "read"],
+                    "identifier": "https://wallet.example/alice"
+                }
+            ]
+        },
+        "client": "https://cloudninewallet.example/visitor"
+    }
+    ```
+
+    :::note
+    The `client` in the request above is your visitor's wallet address. This URL is only used by the agent and the wallets, and isn't available to the website.
+    :::
+
+    </Disclosure>
+5.  The response to the agent contains an access token that the agent needs to make its next request.
+
+    <Disclosure toggleText="Example response" client:load>
+
+    ```http wrap
+    {
+        "access_token": {
+        "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
+        "manage": "https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
         "access": [
             {
                 "type": "incoming-payment",
@@ -122,34 +149,11 @@ Host: wallet.example
                 "identifier": "https://wallet.example/alice"
             }
         ]
-    },
-    "client": "https://cloudninewallet.example/visitor"
-}
-```
-
-:::note
-The `client` in the request above is your visitor's wallet address. This URL is only used by the agent and the wallets, and isn't available to the website.
-:::
-
-</Disclosure>
-5.  The response to the agent contains an access token that the agent needs to make its next request.
-    <Disclosure toggleText="Example response" client:load>
-```http wrap
-{
-    "access_token": {
-    "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
-    "manage": "https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
-    "access": [
-        {
-            "type": "incoming-payment",
-            "actions": ["create", "read"],
-            "identifier": "https://wallet.example/alice"
         }
-    ]
     }
-}
-```
-</Disclosure>
+    ```
+
+    </Disclosure>
 6.  The agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `resourceServer` URL. The purpose of this call is to request the information needed by your visitor's wallet provider so their provider correctly addresses the payment to you.
     <Disclosure toggleText='Example request' client:load>
       ```http wrap POST /alice/incoming-payments HTTP/1.1 Accept:
