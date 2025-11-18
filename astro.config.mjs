@@ -288,7 +288,7 @@ export default defineConfig({
     '/docs/resources/libraries': '/developers/libraries',
     '/docs/resources/op-wallets': '/wallets',
     '/docs/resources/get-involved': '/resources/get-involved',
-    '/install': '/supporters'
+    '/install': '/supporters',
   },
   server: {
     port: 1100,

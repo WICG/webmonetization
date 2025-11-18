@@ -1,12 +1,12 @@
 # Set up probabilistic revenue sharing
 
-Each monetization `<link>` element only supports a single wallet address as the `href` value. 
+Each monetization `<link>` element only supports a single wallet address as the `href` value.
 
 You can add multiple monetization links to your page, but there's no guarantee that your site visitor's Web Monetization extension can support paying to multiple addresses at once.
 
 As an alternative to adding multiple links, you can set up probablistic revenue sharing.
 
-In this example, you'll enter the number of times that you want one of the wallet addresses to be chosen at random. The default is 10,000 which equals 10,000 page loads by web monetized visitors. The chance of an address being chosen is based on its assigned weight. 
+In this example, you'll enter the number of times that you want one of the wallet addresses to be chosen at random. The default is 10,000 which equals 10,000 page loads by web monetized visitors. The chance of an address being chosen is based on its assigned weight.
 
 Alice's address has a weight of 50 out of 100 (defined in the `script.js` file). This means her address has a 50% chance of being chosen. Alice's share of the page's total revenue will approach 50% as more web monetized visitors access the page.
 
@@ -26,11 +26,11 @@ Only the web monetized site visitors can choose when and how much to pay. A page
 
 ## ← index.html
 
-Unlike our other Web Monetization examples, this index file doesn't contain a monetization `<link>` element. The wallet addresses are instead contained within the `script.js` file. 
+Unlike our other Web Monetization examples, this index file doesn't contain a monetization `<link>` element. The wallet addresses are instead contained within the `script.js` file.
 
 ## ← script.js
 
-Allocates weights to the four wallet addresses contained within the file. The `pickPointer` function chooses one at random, based on their respective weights (also defined in this file). 
+Allocates weights to the four wallet addresses contained within the file. The `pickPointer` function chooses one at random, based on their respective weights (also defined in this file).
 
 The `simulate` function outputs the result based on the number of attempts entered in the Simulate field on the web page.
 

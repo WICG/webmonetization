@@ -41,7 +41,7 @@ All commands are run from the root of the project, from a terminal:
 | `bun run start`           | Starts local dev server at `localhost:1100`      |
 | `bun run build`           | Build your production site to `./dist/`          |
 | `bun run preview`         | Preview your build locally before deploying      |
-| `bun run lint`            | Check code for linting errors                   |
+| `bun run lint`            | Check code for linting errors                    |
 | `bun run lint:fix`        | Automatically fix linting errors where possible  |
 | `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `bun run astro -- --help` | Get help using the Astro CLI                     |

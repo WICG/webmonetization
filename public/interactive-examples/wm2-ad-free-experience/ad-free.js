@@ -1,31 +1,31 @@
 const adCode =
-  '<div style="border:1px solid #f00;color:red;margin:20px">This is an ad! Buy my product!</div>';
+  '<div style="border:1px solid #f00;color:red;margin:20px">This is an ad! Buy my product!</div>'
 
 function showAds() {
-  document.getElementById("ad").innerHTML = adCode;
+  document.getElementById('ad').innerHTML = adCode
 }
 
 function removeAds() {
-  document.getElementById("ad").remove();
+  document.getElementById('ad').remove()
 }
 
-let hasPaid = false;
+let hasPaid = false
 if (window.MonetizationEvent) {
-  const link = document.querySelector('link[rel="monetization"]');
-  link.addEventListener("monetization", () => {
-    hasPaid = true;
-    removeAds();
-  });
+  const link = document.querySelector('link[rel="monetization"]')
+  link.addEventListener('monetization', () => {
+    hasPaid = true
+    removeAds()
+  })
 }
 
-window.addEventListener("load", () => {
+window.addEventListener('load', () => {
   if (!window.MonetizationEvent) {
-    showAds();
+    showAds()
   } else {
     setTimeout(() => {
       if (!hasPaid) {
-        showAds();
+        showAds()
       }
-    }, 3000);
+    }, 3000)
   }
-});
+})

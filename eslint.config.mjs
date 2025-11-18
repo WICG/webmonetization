@@ -70,4 +70,3 @@ export default [
   ...eslintPluginAstro.configs.recommended,
   prettierConfig,
 ]
-
