@@ -41,14 +41,19 @@ All commands are run from the root of the project, from a terminal:
 | `bun run start`           | Starts local dev server at `localhost:1100`      |
 | `bun run build`           | Build your production site to `./dist/`          |
 | `bun run preview`         | Preview your build locally before deploying      |
+| `bun run format`          | Fix linting and formatting issues                |
 | `bun run lint`            | Check code for linting errors                    |
-| `bun run lint:fix`        | Automatically fix linting errors where possible  |
 | `bun run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `bun run astro -- --help` | Get help using the Astro CLI                     |
 
 You can substitute the bun commands with your chosen package manager's commands.
 
-Before submitting a PR, make sure your code passes linting by running `bun run lint`. If there are any issues that can be automatically fixed, use `bun run lint:fix`.
+### Code Formatting
+
+This project uses [Biome](https://biomejs.dev/), [Prettier](https://prettier.io/), and [ESLint](https://eslint.org/) for code formatting and linting. Before submitting a pull request, please ensure your code passes linting:
+
+1. **Fix issues**: Run `bun run format` to automatically fix linting and formatting issues
+2. **Check before pushing**: Run `bun run lint` to verify everything passes (CI will also run this)
 
 ## Specification Development
 
