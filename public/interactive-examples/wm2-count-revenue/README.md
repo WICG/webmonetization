@@ -4,7 +4,6 @@ You can use Web Monetization to show your visitors exactly how much they've cont
 
 For web monetized visitors, the counter increases by one cent every ~20 seconds.
 
-
 # Web Monetization
 
 Web Monetization is an easier way for site visitors to financially contribute to creators.

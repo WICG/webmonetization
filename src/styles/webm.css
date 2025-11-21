@@ -34,9 +34,11 @@
   --font-weight-bold: 700;
 
   --font-caption: var(--font-weight-regular) 0.75rem/1rem var(--font-base);
-  --font-small-regular: var(--font-weight-regular) 0.875rem/1.25rem var(--font-base);
+  --font-small-regular: var(--font-weight-regular) 0.875rem/1.25rem
+    var(--font-base);
   --font-small-bold: var(--font-weight-bold) 0.875rem/1.25rem var(--font-base);
-  --font-standard-regular: var(--font-weight-regular) 1rem/1.5rem var(--font-base);
+  --font-standard-regular: var(--font-weight-regular) 1rem/1.5rem
+    var(--font-base);
   --font-standard-bold: var(--font-weight-bold) 1rem/1.5rem var(--font-base);
   --font-h6: var(--font-weight-bold) 1.125rem/1.625rem var(--font-base);
   --font-h5: var(--font-weight-regular) 1.25rem/1.75rem var(--font-base);
@@ -47,56 +49,56 @@
   --font-display-2: var(--font-weight-medium) 3.75rem/4.375rem var(--font-base);
   --font-display-1: var(--font-weight-bold) 4.5rem/5rem var(--font-base);
 
-  --color-green-50: #DBE9E7;
-  --color-green-100: #ABE4DF;
-  --color-green-300: #56B7B5;
-  --color-green-600: #27797A;
-  --color-green-800: #204D4F;
+  --color-green-50: #dbe9e7;
+  --color-green-100: #abe4df;
+  --color-green-300: #56b7b5;
+  --color-green-600: #27797a;
+  --color-green-800: #204d4f;
 
-  --color-mint-50: #F2FBF9;
-  --color-mint-100: #D4F3EB;
-  --color-mint-300: #98E1D0;
-  --color-mint-600: #4AB7A5;
-  --color-mint-800: #247D71;
+  --color-mint-50: #f2fbf9;
+  --color-mint-100: #d4f3eb;
+  --color-mint-300: #98e1d0;
+  --color-mint-600: #4ab7a5;
+  --color-mint-800: #247d71;
 
-  --color-blue-50: #F6F8FA;
-  --color-blue-100: #D0DDED;
-  --color-blue-300: #A3BEDC;
-  --color-blue-600: #5A77B6;
+  --color-blue-50: #f6f8fa;
+  --color-blue-100: #d0dded;
+  --color-blue-300: #a3bedc;
+  --color-blue-600: #5a77b6;
   --color-blue-800: #455588;
 
-  --color-orange-50: #FFF6ED;
-  --color-orange-100: #FFD3A8;
-  --color-orange-300: #FF9852;
-  --color-orange-600: #EF4C07;
-  --color-orange-800: #9D2D0F;
+  --color-orange-50: #fff6ed;
+  --color-orange-100: #ffd3a8;
+  --color-orange-300: #ff9852;
+  --color-orange-600: #ef4c07;
+  --color-orange-800: #9d2d0f;
 
-  --color-pink-50: #FEF1F5;
-  --color-pink-100: #FEE5EE;
-  --color-pink-300: #FFC8DC;
-  --color-pink-600: #FF6698;
-  --color-pink-800: #EB174A;
+  --color-pink-50: #fef1f5;
+  --color-pink-100: #fee5ee;
+  --color-pink-300: #ffc8dc;
+  --color-pink-600: #ff6698;
+  --color-pink-800: #eb174a;
 
-  --color-red-50: #FFF1F2;
-  --color-red-100: #FEE5EE;
-  --color-red-300: #FF7A7F;
-  --color-red-600: #E51D25;
-  --color-red-800: #A01419;
+  --color-red-50: #fff1f2;
+  --color-red-100: #fee5ee;
+  --color-red-300: #ff7a7f;
+  --color-red-600: #e51d25;
+  --color-red-800: #a01419;
 
-  --color-purple-50: #F3F4FA;
-  --color-purple-100: #A7A6D3;
-  --color-purple-300: #7469A8;
-  --color-purple-600: #5B5380;
-  --color-purple-800: #2D2A3C;
+  --color-purple-50: #f3f4fa;
+  --color-purple-100: #a7a6d3;
+  --color-purple-300: #7469a8;
+  --color-purple-600: #5b5380;
+  --color-purple-800: #2d2a3c;
 
-  --color-silver-50: #F7F7F7;
-  --color-silver-100: #EFEFEF;
-  --color-silver-200: #DFDFDF;
-  --color-silver-300: #C9C9C9;
-  --color-silver-400: #ADADAD;
+  --color-silver-50: #f7f7f7;
+  --color-silver-100: #efefef;
+  --color-silver-200: #dfdfdf;
+  --color-silver-300: #c9c9c9;
+  --color-silver-400: #adadad;
   --color-silver-500: #999999;
   --color-silver-600: #888888;
-  --color-silver-700: #7B7B7B;
+  --color-silver-700: #7b7b7b;
   --color-silver-800: #676767;
   --color-silver-900: #545454;
   --color-silver-950: #363636;
@@ -104,9 +106,8 @@
   --color-black: #000;
   --color-white: #fff;
 
-  --gradient-3-start: #009877; 
-  --gradient-3-stop: #50D098; 
-
+  --gradient-3-start: #009877;
+  --gradient-3-stop: #50d098;
 
   --default-font-color: var(--color-silver-950);
   --inactive-font-color: var(--color-silver-800);
@@ -139,7 +140,7 @@
 
   --border-color: var(--color-silver-200);
 
-  --background-color: #F6F8FA;
+  --background-color: #f6f8fa;
 
   /* Tools styling colors */
   --button-tools-primary-color: var(--color-green-300);
@@ -164,21 +165,24 @@
   --sl-color-gray-5: hsl(222, 11%, 23%);
   --sl-color-gray-6: hsl(222, 13%, 16%);
   --sl-color-black: hsl(223, 13%, 10%);
-  --sl-shadow-sm: 0px 1px 1px hsla(0, 0%, 0%, 0.06),
-    0px 2px 1px hsla(0, 0%, 0%, 0.06);
+  --sl-shadow-sm:
+    0px 1px 1px hsla(0, 0%, 0%, 0.06), 0px 2px 1px hsla(0, 0%, 0%, 0.06);
 
   --sl-color-red-high: hsl(339, 80%, 30%);
   --sl-color-green-high: hsl(101, 80%, 22%);
 
-  --sl-font-system: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+  --sl-font-system:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --sl-font-system-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+  --sl-font-system-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
   --__sl-font: var(--sl-font, ''), var(--sl-font-system);
   --__sl-font-mono: var(--sl-font-mono, ''), var(--sl-font-system-mono);
 
-  --font-base: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+  --font-base:
+    'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
@@ -260,31 +264,38 @@ p.small-bold {
   font: var(--font-small-bold);
 }
 
-p.bold, a.bold {
+p.bold,
+a.bold {
   font: var(--font-standard-bold);
 }
 
-h1, .font-h1 {
+h1,
+.font-h1 {
   font: var(--font-h1);
 }
 
-h2, .font-h2 {
+h2,
+.font-h2 {
   font: var(--font-h2);
 }
 
-h3, .font-h3 {
+h3,
+.font-h3 {
   font: var(--font-h3);
 }
 
-h4, .font-h4 {
+h4,
+.font-h4 {
   font: var(--font-h4);
 }
 
-h5, .font-h5 {
+h5,
+.font-h5 {
   font: var(--font-h5);
 }
 
-h6, .font-h6 {
+h6,
+.font-h6 {
   font: var(--font-h6);
 }
 
@@ -381,7 +392,8 @@ input:not([type='submit']):not([type='file']):focus {
   color: var(--button-primary-color);
 }
 
-.primary.btn:hover, .primary.btn:focus {
+.primary.btn:hover,
+.primary.btn:focus {
   background-color: var(--button-primary-bg-focus);
   color: var(--button-primary-color);
 }
@@ -391,7 +403,8 @@ input:not([type='submit']):not([type='file']):focus {
   border: 1px solid var(--button-secondary-border);
 }
 
-.secondary.btn:hover, .secondary.btn:focus {
+.secondary.btn:hover,
+.secondary.btn:focus {
   color: var(--button-secondary-color-focus);
   border: 1px solid var(--button-secondary-border-focus);
 }
@@ -403,7 +416,8 @@ input:not([type='submit']):not([type='file']):focus {
   background-color: transparent;
 }
 
-.ghost.btn:hover, .ghost.btn:focus-visible {
+.ghost.btn:hover,
+.ghost.btn:focus-visible {
   color: var(--button-hover-color);
   background-color: var(--surface-hover-color);
 }
@@ -509,7 +523,7 @@ tbody tr:last-of-type td:last-child {
 /* Tools page styling */
 
 body.home-page {
-  background-image: url("../assets/hero-gradient-background.svg");
+  background-image: url('../assets/hero-gradient-background.svg');
 }
 
 .tools-style input:not([type='submit']):not([type='file']) {

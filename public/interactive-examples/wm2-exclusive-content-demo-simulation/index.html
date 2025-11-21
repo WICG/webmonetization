@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Exclusive Content Demo</title>
@@ -29,9 +29,7 @@
       </div>
 
       <div>
-        <h4>
-          Example 1: Simple text
-        </h4>
+        <h4>Example 1: Simple text</h4>
         <p>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
@@ -68,9 +66,7 @@
       </div>
       <br />
       <div>
-        <h4>
-          Example 2: HTML
-        </h4>
+        <h4>Example 2: HTML</h4>
         <pre><code>
 &lt;h5&gt;
   This is HTML
@@ -112,9 +108,7 @@
         </div>
       </div>
       <div>
-        <h4>
-          Example 3: Multimedia Link
-        </h4>
+        <h4>Example 3: Multimedia Link</h4>
         <pre><code>
 &lt;iframe 
   src="https://archive.org/embed/subprime-attention-crisis" 
@@ -151,87 +145,87 @@
     </footer>
 
     <script>
-      const WORKER = "https://webmonetization.org/api/exclusive-content";
+      const WORKER = 'https://webmonetization.org/api/exclusive-content'
 
       function exclusiveContent() {
-        const { data, paymentPointer } = gatherExclusive();
+        const { data, paymentPointer } = gatherExclusive()
 
         if (document.monetization !== undefined) {
-          setMeta(paymentPointer);
+          setMeta(paymentPointer)
 
-          document.monetization.addEventListener("monetizationpending", () => {
+          document.monetization.addEventListener('monetizationpending', () => {
             if (data.length) {
               document
-                .querySelectorAll(".exclusiveMessage")
-                .forEach(element => {
+                .querySelectorAll('.exclusiveMessage')
+                .forEach((element) => {
                   element.innerHTML =
-                    "<p>⸻ ⏰ Waiting for Web Monetization to start to unlock this content. ⸻</p>";
-                });
+                    '<p>⸻ ⏰ Waiting for Web Monetization to start to unlock this content. ⸻</p>'
+                })
             }
-          });
+          })
 
-          document.monetization.addEventListener("monetizationstart", () => {
+          document.monetization.addEventListener('monetizationstart', () => {
             if (data.length) {
               document
-                .querySelectorAll(".exclusiveMessage")
-                .forEach(element => {
+                .querySelectorAll('.exclusiveMessage')
+                .forEach((element) => {
                   element.innerHTML =
-                    "<p>⸻ ⏰ Waiting for Web Monetization receipt verification to unlock this content. ⸻</p>";
-                });
+                    '<p>⸻ ⏰ Waiting for Web Monetization receipt verification to unlock this content. ⸻</p>'
+                })
             }
-          });
+          })
 
           document.monetization.addEventListener(
-            "monetizationprogress",
-            event => {
+            'monetizationprogress',
+            (event) => {
               if (data.length) {
-                unlockExclusiveContent(data.pop());
+                unlockExclusiveContent(data.pop())
               }
-            }
-          );
+            },
+          )
         } else {
-          document.querySelectorAll(".exclusiveMessage").forEach(element => {
+          document.querySelectorAll('.exclusiveMessage').forEach((element) => {
             element.innerHTML =
-              "<p>⸻ 🔒 This content is exclusive for users with Web Monetization enabled. ⸻</p>";
-          });
+              '<p>⸻ 🔒 This content is exclusive for users with Web Monetization enabled. ⸻</p>'
+          })
         }
       }
 
       function gatherExclusive() {
-        const data = [];
-        const pointers = [];
-        document.querySelectorAll(".exclusive").forEach(element => {
+        const data = []
+        const pointers = []
+        document.querySelectorAll('.exclusive').forEach((element) => {
           data.push({
-            id: element.getAttribute("id"),
-            paymentPointer: element.getAttribute("paymentpointer"),
-            cypherText: element.getAttribute("cyphertext"),
-            cypherVerifier: element.getAttribute("cypherverifier"),
-            initVector: element.getAttribute("initvector"),
-            nonce: element.getAttribute("nonce"),
-            plainText: element.getAttribute("plaintext")
-          });
-          pointers.push(element.getAttribute("proxypaymentpointer"));
-        });
+            id: element.getAttribute('id'),
+            paymentPointer: element.getAttribute('paymentpointer'),
+            cypherText: element.getAttribute('cyphertext'),
+            cypherVerifier: element.getAttribute('cypherverifier'),
+            initVector: element.getAttribute('initvector'),
+            nonce: element.getAttribute('nonce'),
+            plainText: element.getAttribute('plaintext'),
+          })
+          pointers.push(element.getAttribute('proxypaymentpointer'))
+        })
         const paymentPointer =
-          pointers[Math.floor(Math.random() * pointers.length)];
-        return { data, paymentPointer };
+          pointers[Math.floor(Math.random() * pointers.length)]
+        return { data, paymentPointer }
       }
 
       function setMeta(proxyPaymentPointer) {
-        const meta = document.createElement("meta");
-        meta.name = "monetization";
-        meta.content = proxyPaymentPointer;
-        document.getElementsByTagName("head")[0].appendChild(meta);
+        const meta = document.createElement('meta')
+        meta.name = 'monetization'
+        meta.content = proxyPaymentPointer
+        document.getElementsByTagName('head')[0].appendChild(meta)
       }
 
       function unlockExclusiveContent(data) {
-        const element = document.querySelector(`#${data.id}`);
-        element.querySelector(".exclusiveMessage").innerHTML =
-          "<p>⸻ 🔓 Enjoy your exclusive content! ⸻</p>";
-        element.querySelector(".exclusiveContent").innerHTML = data.plainText;
+        const element = document.querySelector(`#${data.id}`)
+        element.querySelector('.exclusiveMessage').innerHTML =
+          '<p>⸻ 🔓 Enjoy your exclusive content! ⸻</p>'
+        element.querySelector('.exclusiveContent').innerHTML = data.plainText
       }
 
-      exclusiveContent();
+      exclusiveContent()
     </script>
   </body>
 </html>

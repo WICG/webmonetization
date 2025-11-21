@@ -1,6 +1,6 @@
 # Show indicator and exclusive content
 
-You can use Web Monetization to show an indicator to your visitors while they wait up to three seconds for Web Monetization to initialize. 
+You can use Web Monetization to show an indicator to your visitors while they wait up to three seconds for Web Monetization to initialize.
 
 Non-web monetized users will be presented with a message that says exclusive content is available if they become web monetized. The exclusive content will remain hidden.
 
