@@ -147,6 +147,11 @@ const toURL = (url: string) => {
     transition: box-shadow 0.2s ease-in-out;
   }
 
+  html[data-theme='dark'] a {
+    background-color: var(--sl-color-white);
+    --shadow-color: rgba(128, 123, 123, 0.7);
+  }
+
   .docs img {
     width: 3rem;
     height: 3rem;
