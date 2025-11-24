@@ -17,13 +17,15 @@ Create a banner that appears when your visitors don't have the Web Monetization 
 Customize the settings, then generate a script to place on your site. The script will automatically web monetize your site. 
 
 ```js wrap title="Example"
-<script id="wmt-init-script" 
-    type="module" 
-    src="https://cdn.webmonetization.org/tools/init.js?wa=example.com/alice&types=banner">
+<script id="wmt-banner-init-script"
+    type="module"
+    src="https://tools-cdn.webmonetization.org/banner.js"
+    data-wallet-address="https://wallet.example.com/alice"
+    data-tag="version1">
 </script>
 ```
 
-Generating the script saves your configuration to our server. Load your existing banner configuration by clicking **Import** and entering your wallet address. Any changes you make are saved and will appear on your site.
+Generating the script saves your configuration to our server. Load your existing banner configuration by clicking **Continue** and entering your wallet address. Any changes you make are saved and will appear on your site.
 
 <LinkButton href="https://webmonetization.org/tools/banner" target="_blank" icon="external">Banner tool</LinkButton>
 
@@ -31,12 +33,14 @@ Generating the script saves your configuration to our server. Load your existing
 
 Create a widget that lets your visitors send you a one-time payment. The widget appears to all visitors, even those with an active Web Monetization extension. 
 
-Customize the settings, then generate a script. Place the script just before the closing tag on your site or within a script-type element if you're using a site management tool like WordPress.
+Customize the settings, then generate a script. Place the script just before the closing `</body>`tag on your site or in a script-type element if you're using a site management tool like WordPress.
 
 ```js wrap title="Example"
-<script id="wmt-init-script" 
+<script id="wmt-widget-init-script" 
     type="module" 
-    src="https://cdn.webmonetization.org/tools/init.js?wa=example.com/alice&types=widget">
+    src="https://tools-cdn.webmonetization.org/widget.js" 
+    data-wallet-address="https://example.com/alice"
+    data-tag="version1">
 </script>
 ```
 
@@ -44,7 +48,7 @@ Customize the settings, then generate a script. Place the script just before the
 If you're using multiple wallet addresses to monetize your site, payments through the widget are only delivered to the address entered during configuration.
 :::
 
-Generating the script saves your configuration to our server. Load an existing widget configuration by clicking **Import** and entering your wallet address. Any changes you make are saved and will appear on your site.
+Generating the script saves your configuration to our server. Load an existing widget configuration by clicking **Continue** and entering your wallet address. Any changes you make are saved and will appear on your site.
 
 <LinkButton href="https://webmonetization.org/tools/widget" target="_blank" icon="external">Widget tool</LinkButton>
 
