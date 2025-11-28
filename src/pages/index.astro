@@ -30,35 +30,33 @@ const t = useTranslations(lang)
   homePage={true}
 >
   <HeroWrapper>
-    <div class='hero-content'>
-      <div class='heading-wrapper'>
+    <div class="hero-content">
+      <div class="heading-wrapper">
         <h1>Revolutionizing the digital content economy</h1>
-        <p class='heroTagline'>
+        <p class="heroTagline">
           Web Monetization connects publishers, creators and their audiences,
           turning engagement into revenue. No friction, no barriers, no limits.
         </p>
-        <a
-          class='btn primary flexible hero-btn'
-          href='#start'
+        <a class="btn primary flexible hero-btn" href="#start"
           >Get started today</a
         >
       </div>
-      <div class='hero-img'>
+      <div class="hero-img">
         <img
           src={hero.src}
-          alt=''
-          loading='eager'
+          alt=""
+          loading="eager"
           width={hero.width}
           height={hero.height}
         />
       </div>
     </div>
   </HeroWrapper>
-  <section class='section' id="start">
-    <div class='contentWrapper'>
-      <div class='wallet-info'>
-        <div class='wallet-content'>
-          <h2 class='font-h3'>From one-time payments to pay-as-you-browse</h2>
+  <section class="section" id="start">
+    <div class="contentWrapper">
+      <div class="wallet-info">
+        <div class="wallet-content">
+          <h2 class="font-h3">From one-time payments to pay-as-you-browse</h2>
           <p>
             Web Monetization gives publishers more revenue options and audiences
             more ways to sustain the content they love. Support can take many
@@ -73,45 +71,45 @@ const t = useTranslations(lang)
             enables real-time wallet-to-wallet transfers through its
             free-to-use, frictionless model.
           </p>
-          <p class='font-h5'>No friction, no barriers, no limits.</p>
-          <h2 class='font-h3'>Compatible wallets</h2>
+          <p class="font-h5">No friction, no barriers, no limits.</p>
+          <h2 class="font-h3">Compatible wallets</h2>
         </div>
         {
           wallets.length > 0 && (
-            <div class='cards'>
-              <WalletList cards={wallets} ctaText='Set up a wallet' />
+            <div class="cards">
+              <WalletList cards={wallets} ctaText="Set up a wallet" />
             </div>
           )
         }
         <a
-          href='https://github.com/WICG/webmonetization/pulls'
-          target='_blank'
-          rel='noreferrer noopener'
-          data-umami-event='Home page link - GitHub PR'
-          class='bold'>Do you know other wallets? Make a PR</a
+          href="https://github.com/WICG/webmonetization/pulls"
+          target="_blank"
+          rel="noreferrer noopener"
+          data-umami-event="Home page link - GitHub PR"
+          class="bold">Do you know other wallets? Make a PR</a
         >
       </div>
     </div>
   </section>
-  <section class='section audienceSection'>
-    <div class='contentWrapper audience-grid'>
-      <article class='audience-card publisher'>
+  <section class="section audienceSection">
+    <div class="contentWrapper audience-grid">
+      <article class="audience-card publisher">
         <div>
           <h2>I'm a publisher</h2>
-          <p class='audience-desc font-h6'>and I want to get monetized</p>
+          <p class="audience-desc font-h6">and I want to get monetized</p>
           <PillTag pills={publisherTags} />
         </div>
-        <div class='media-cta'>
+        <div class="media-cta">
           <img
-            class='inactive audience-img'
-            alt=''
+            class="inactive audience-img"
+            alt=""
             src={publisherInactive.src}
             width={publisherInactive.width}
             height={publisherInactive.height}
           />
           <video
-            class='active audience-video'
-            preload='metadata'
+            class="active audience-video"
+            preload="metadata"
             poster={publisherPoster.src}
             width={publisherPoster.width}
             height={publisherPoster.height}
@@ -120,37 +118,37 @@ const t = useTranslations(lang)
             muted
             playsinline
           >
-            <source src={publisherActive} type='video/mp4' />
+            <source src={publisherActive} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <a
-            class='btn primary flexible'
-            href='/publishers'
-            data-umami-event='Home page link - Publishers'
+            class="btn primary flexible"
+            href="/publishers"
+            data-umami-event="Home page link - Publishers"
             >Start earning today</a
           >
         </div>
       </article>
-      <div class='divider vertical'></div>
-      <article class='audience-card supporter'>
+      <div class="divider vertical"></div>
+      <article class="audience-card supporter">
         <div>
           <h2>I'm a supporter</h2>
-          <p class='audience-desc font-h6'>
+          <p class="audience-desc font-h6">
             and I want to sustain the work that matters to me
           </p>
           <PillTag pills={supporterTags} />
         </div>
-        <div class='media-cta'>
+        <div class="media-cta">
           <img
-            class='inactive audience-img'
-            alt=''
+            class="inactive audience-img"
+            alt=""
             src={supporterInactive.src}
             width={supporterInactive.width}
             height={supporterInactive.height}
           />
           <video
-            class='active audience-video'
-            preload='metadata'
+            class="active audience-video"
+            preload="metadata"
             poster={supporterPoster.src}
             width={supporterPoster.width}
             height={supporterPoster.height}
@@ -159,42 +157,42 @@ const t = useTranslations(lang)
             muted
             playsinline
           >
-            <source src={supporterActive} type='video/mp4' />
+            <source src={supporterActive} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
           <a
-            class='btn primary flexible'
-            href='/supporters'
-            data-umami-event='Home page link - Supporters'
+            class="btn primary flexible"
+            href="/supporters"
+            data-umami-event="Home page link - Supporters"
             >Support on your terms</a
           >
         </div>
       </article>
     </div>
-    <div class='contentWrapper'>
-      <div class='divider horizontal'></div>
-      <article class='audience-card developer'>
-        <div class='dev-wrapper'>
+    <div class="contentWrapper">
+      <div class="divider horizontal"></div>
+      <article class="audience-card developer">
+        <div class="dev-wrapper">
           <h2>I'm a developer</h2>
-          <p class='audience-desc font-h6'>and I want to pay the web forward</p>
+          <p class="audience-desc font-h6">and I want to pay the web forward</p>
           <PillTag pills={developerTags} />
           <a
-            class='btn primary flexible'
-            href='/developers'
-            data-umami-event='Home page link - Developers'>Join the community</a
+            class="btn primary flexible"
+            href="/developers"
+            data-umami-event="Home page link - Developers">Join the community</a
           >
         </div>
-        <div class='developer-images'>
+        <div class="developer-images">
           <img
-            class='inactive audience-img'
-            alt=''
+            class="inactive audience-img"
+            alt=""
             src={developerInactive.src}
             width={developerInactive.width}
             height={developerInactive.height}
           />
           <video
-            class='active audience-video'
-            preload='metadata'
+            class="active audience-video"
+            preload="metadata"
             poster={developerPoster.src}
             width={developerPoster.width}
             height={developerPoster.height}
@@ -202,9 +200,9 @@ const t = useTranslations(lang)
             loop
             muted
             playsinline
-            aria-hidden='true'
+            aria-hidden="true"
           >
-            <source src={developerActive} type='video/mp4' />
+            <source src={developerActive} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -213,7 +211,7 @@ const t = useTranslations(lang)
   </section>
   {
     updates && updates.length > 0 && (
-      <UpdatesSection updates={updates} heading='Important Updates' />
+      <UpdatesSection updates={updates} heading="Important Updates" />
     )
   }
 </Base>

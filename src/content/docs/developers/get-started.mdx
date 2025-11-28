@@ -12,11 +12,12 @@ import Wallet from '/src/partials/wallet-prereq.mdx'
 
 ## Step 1 - Get your wallet address
 
-Get your wallet address from your wallet provider. 
+Get your wallet address from your wallet provider.
 
 ```http title="Example"
 https://wallet.example.com/alice
 ```
+
 Some wallet providers refer to their wallet addresses as _payment pointers_. Payment pointers begin with `$` instead of `https://`.
 
 ```http title="Example"
@@ -42,7 +43,7 @@ If you have a payment pointer, visit <LinkOut href='https://paymentpointers.org/
    ```
 
 2. Add the `<link>` to the `<head>` section of your page.
-   ```html title="Example" wrap
+   ````html title="Example" wrap
     <html>
       <head>
         <title>My Site</title>
@@ -50,7 +51,8 @@ If you have a payment pointer, visit <LinkOut href='https://paymentpointers.org/
       </head>
     </html>
     ```
-</Steps>
+   </Steps>
+   ````
 
 Congratulations! Your page is now web monetized. Add the `<link>` to any page of your site you want to monetize.
 

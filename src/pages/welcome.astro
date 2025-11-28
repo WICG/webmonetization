@@ -1,22 +1,18 @@
 ---
-import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import Base from "../layouts/Base.astro";
-import wmLogo from '@assets/wm-logo--animated.svg';
+import { getLangFromUrl, useTranslations } from '../i18n/utils'
+import Base from '../layouts/Base.astro'
+import wmLogo from '@assets/wm-logo--animated.svg'
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-const title = `Welcome | ${t("site.title")}`;
-const description = t("site.description");
+const lang = getLangFromUrl(Astro.url)
+const t = useTranslations(lang)
+const title = `Welcome | ${t('site.title')}`
+const description = t('site.description')
 ---
 
 <Base title={title} description={description}>
-  <section class='section'>
-    <div class='contentWrapper heroContent'>
-      <img
-        alt='Loading'
-        class='heroLogo'
-        src={wmLogo.src}
-      />
+  <section class="section">
+    <div class="contentWrapper heroContent">
+      <img alt="Loading" class="heroLogo" src={wmLogo.src} />
       <h2 class="heroHeading">Please wait ...</h2>
       <p>Do not close this tab.</p>
     </div>
@@ -62,16 +58,16 @@ const description = t("site.description");
     REJECTED = 'grant_rejected',
     INVALID = 'grant_invalid',
     KEY_SUCCESS = 'key_add_success',
-    KEY_ERROR = 'key_add_error',
+    KEY_ERROR = 'key_add_error'
   }
 
   type Intent = 'connect' | 'reconnect' | 'funds' | 'update_budget'
 
   const DEFAULT_ERROR_MESSAGE = function (_version: string, intent: Intent) {
-    if(intent === 'funds') {
+    if (intent === 'funds') {
       return 'Something went wrong. Please try adding funds again.'
     }
-    if(intent === 'update_budget') {
+    if (intent === 'update_budget') {
       return 'Something went wrong. Please try updating your budget again.'
     }
     return 'Something went wrong. Please try reconnecting your wallet.'
@@ -85,31 +81,31 @@ const description = t("site.description");
 
   const ERROR_MESSAGES = {
     continuation_failed(_version: string, intent: Intent): string {
-      if(intent === 'funds') {
+      if (intent === 'funds') {
         return 'An error occurred. Please try adding funds again.'
       }
-      if(intent === 'update_budget') {
+      if (intent === 'update_budget') {
         return 'An error occurred. Please try updating your budget again.'
       }
       return 'An error occurred. Please try reconnecting the wallet.'
     },
     hash_failed(_version: string, intent: Intent): string {
-      if(intent === 'funds') {
+      if (intent === 'funds') {
         return 'An error occurred. Please try adding funds again.'
       }
-      if(intent === 'update_budget') {
+      if (intent === 'update_budget') {
         return 'An error occurred. Please try updating your budget again.'
       }
       return 'An error occurred. Please try reconnecting the wallet.'
-    },
+    }
   }
 
   const MESSAGES = {
     grant_success(_version: string, intent: Intent): string {
-      if(intent === 'funds') {
+      if (intent === 'funds') {
         return 'You have successfully added more funds.'
       }
-      if(intent === 'update_budget') {
+      if (intent === 'update_budget') {
         return 'You have successfully updated your budget.'
       }
       return 'Your wallet is now successfully connected to the extension.'
@@ -118,10 +114,10 @@ const description = t("site.description");
       return 'Your wallet is now successfully reconnected to the extension.'
     },
     grant_rejected(_version: string, intent: Intent): string {
-      if(intent === 'funds') {
+      if (intent === 'funds') {
         return 'No funds were added.'
       }
-      if(intent === 'update_budget') {
+      if (intent === 'update_budget') {
         return 'Your budget was not updated.'
       }
       return 'Your request was successfully rejected.'
@@ -130,10 +126,10 @@ const description = t("site.description");
       return 'Something went wrong with your request. Please try reconnecting your wallet.'
     },
     grant_invalid(_version: string, intent: Intent): string {
-      if(intent === 'funds') {
+      if (intent === 'funds') {
         return 'Something went wrong with your request. Please try adding funds again.'
       }
-      if(intent === 'update_budget') {
+      if (intent === 'update_budget') {
         return 'Something went wrong with your request. Please try updating your budget again.'
       }
       return 'Something went wrong with your request. Please try reconnecting your wallet.'
@@ -144,7 +140,9 @@ const description = t("site.description");
   const heroContent = document.querySelector('.heroContent') as HTMLDivElement
   const heroInfo = heroContent.querySelector('p') as HTMLParagraphElement
   const heroLogo = document.querySelector('.heroLogo') as HTMLImageElement
-  const heroHeading = document.querySelector('.heroHeading') as HTMLHeadingElement
+  const heroHeading = document.querySelector(
+    '.heroHeading'
+  ) as HTMLHeadingElement
   const result = searchParams.get('result') as SuccessParam
   const errorCode = searchParams.get('errorCode') as ErrorCode
   const version = searchParams.get('version') ?? 'default'

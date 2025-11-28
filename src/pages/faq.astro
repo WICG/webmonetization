@@ -8,21 +8,21 @@ const t = useTranslations(lang)
 ---
 
 <Base title={t('pages.faq.title')} description={t('pages.faq.description')}>
-  <section class='section'>
-    <div class='contentWrapper faq-hero'>
+  <section class="section">
+    <div class="contentWrapper faq-hero">
       <h2>Frequently asked <br /><span>Questions</span></h2>
-      <img src={FaqHeroImg.src} width='594' height='589' />
+      <img src={FaqHeroImg.src} width="594" height="589" />
     </div>
   </section>
 
-  <section class='section'>
-    <div class='contentWrapper faq-categories'>
+  <section class="section">
+    <div class="contentWrapper faq-categories">
       {
         faqContent.map((category) => (
-          <div class='faq-category'>
+          <div class="faq-category">
             <h3>{category.title}</h3>
             {category.questions.map((item) => (
-              <details class='faq-item'>
+              <details class="faq-item">
                 <summary>{item.question}</summary>
                 <div>
                   <div>

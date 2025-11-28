@@ -1,14 +1,20 @@
 ---
-import type { Props } from '@astrojs/starlight/props';
-import Search from "@astrojs/starlight/components/Search.astro";
-import ThemeSelect from "@astrojs/starlight/components/ThemeSelect.astro";
-import SocialIcons from "@astrojs/starlight/components/SocialIcons.astro";
-import LanguageSelect from "@astrojs/starlight/components/LanguageSelect.astro";
+import type { Props } from '@astrojs/starlight/props'
+import Search from '@astrojs/starlight/components/Search.astro'
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro'
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro'
+import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro'
 import wmLogo from '@assets/wm-logo.svg'
 ---
+
 <div class="header sl-flex">
   <a href="/" class="site-title">
-    <img src={wmLogo.src} alt="Web Monetization logo" width={wmLogo.width} height={wmLogo.height} />
+    <img
+      src={wmLogo.src}
+      alt="Web Monetization logo"
+      width={wmLogo.width}
+      height={wmLogo.height}
+    />
     <span>Web Monetization</span>
   </a>
   <div class="secondary-wrap">
@@ -22,7 +28,7 @@ import wmLogo from '@assets/wm-logo.svg'
 </div>
 
 <style>
-  .header { 
+  .header {
     gap: var(--sl-nav-gap);
     align-items: center;
     height: 100%;
@@ -57,6 +63,6 @@ import wmLogo from '@assets/wm-logo.svg'
   }
 
   .selects {
-    gap: var(--space-s)
+    gap: var(--space-s);
   }
 </style>

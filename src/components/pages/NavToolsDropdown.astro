@@ -10,8 +10,8 @@ const isActive = (path: string): boolean =>
   normalize(currentPath) === normalize(path)
 ---
 
-<div class='tools-dropdown'>
-  <ul class='tools-list'>
+<div class="tools-dropdown">
+  <ul class="tools-list">
     {
       toolsSubmenu.map((menuItem) => (
         <li>
@@ -20,23 +20,23 @@ const isActive = (path: string): boolean =>
             class:list={[{ active: isActive(menuItem.path) }, 'tool-link']}
           >
             <>
-              <div class='tool-icon-container'>
+              <div class="tool-icon-container">
                 <img
                   width={menuItem.image.width}
                   height={menuItem.image.height}
-                  class='tool-icon default-image'
-                  alt=''
+                  class="tool-icon default-image"
+                  alt=""
                   src={menuItem.image.src}
                 />
                 <img
                   width={menuItem.image.width}
                   height={menuItem.image.height}
-                  class='tool-icon hovered-image'
-                  alt=''
+                  class="tool-icon hovered-image"
+                  alt=""
                   src={menuItem.imageInteractive.src}
                 />
               </div>
-              <div class='tool-label'>{t(menuItem.translationKey)}</div>
+              <div class="tool-label">{t(menuItem.translationKey)}</div>
             </>
           </a>
         </li>
