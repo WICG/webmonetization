@@ -445,12 +445,20 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
   }
 
   const handleMainToggle = () => {
-    menuOpen ? closeMenu() : openMenu()
+    if (menuOpen) {
+      closeMenu()
+    } else {
+      openMenu()
+    }
   }
 
   const handleSubmenuToggle = (event: MouseEvent) => {
     event.stopPropagation()
-    submenuOpen ? closeSubmenu() : openSubmenu()
+    if (submenuOpen) {
+      closeSubmenu()
+    } else {
+      openSubmenu()
+    }
   }
 
   const handleClickOutside = (event: MouseEvent) => {

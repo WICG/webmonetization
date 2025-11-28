@@ -4,7 +4,6 @@ import Default from '@astrojs/starlight/components/PageSidebar.astro'
 const removeOverview = ['resources/glossary']
 const { id, toc } = Astro.locals.starlightRoute
 const noOverview = removeOverview.includes(id)
-console.log(id)
 if (noOverview && toc) {
   Astro.locals.starlightRoute.toc = {
     ...toc,

@@ -26,5 +26,11 @@ export default defineConfig([
       'astro/no-set-text-directive': 'error'
     }
   },
+  {
+    files: ['**/*.cjs'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off'
+    }
+  },
   eslintConfigPrettier
 ])

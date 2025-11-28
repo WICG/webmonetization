@@ -1,4 +1,5 @@
 /** @type {MonetizationEvent} event */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function verifyPayment(event) {
   // Legacy receivers don't support returning incoming payment URLs
   if (!event.incomingPayment) {
@@ -19,6 +20,7 @@ async function verifyPayment(event) {
     // The incoming payment was fetched successfully
     const { receivedAmount } = await response.json()
     const { amount, assetCode, assetScale } = receivedAmount
+    // eslint-disable-next-line no-console
     console.log(`Received ${assetCode}${amount / 10 ** assetScale}.`)
     return receivedAmount
   }
