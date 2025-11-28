@@ -41,13 +41,13 @@ const wallets: FaqCategory = {
         'A wallet address is a digital account identifier linked to your wallet, similar to an email address for money. You use it to send or request payments.',
         'Some wallet providers call it a wallet address, while others call it a payment pointer.',
         'Wallet addresses usually start with https://</br>Payment pointers usually start with $</br>',
-        'Not all digital wallets support Web Monetization. For a full list of supported providers, please see <a href="/wallets/" target="_blank" rel="noopener noreferrer" data-umami-event="FAQ page - WebMo docs">our documentation</a>.',
+        'Not all digital wallets support Web Monetization. For a full list of supported providers, please see <a href="/wallets/" target="_blank" rel="noopener noreferrer">our documentation</a>.',
       ],
     },
     {
       question: 'Which wallets can I use?',
       answer: [
-        'Several wallet providers support Web Monetization today. You can find more details <a href="/wallets/" target="_blank" rel="noopener noreferrer data-umami-event="FAQ page - WebMo docs">here</a>.',
+        'Several wallet providers support Web Monetization today. You can find more details <a href="/wallets/" target="_blank" rel="noopener noreferrer">here</a>.',
       ],
     },
   ],
@@ -65,13 +65,13 @@ const supporters: FaqCategory = {
     {
       question: 'How and where can I get the extension?',
       answer: [
-        'The Web Monetization extension is available as a browser extension. Visit <a href="/supporters/" target="_blank" rel="noopener noreferrer" data-umami-event="FAQ page - Supporters">The supporter’s page</a> for the full list of browsers and links to the extension. ',
+        'The Web Monetization extension is available as a browser extension. Visit <a href="/supporters/" target="_blank" rel="noopener noreferrer">The supporter’s page</a> for the full list of browsers and links to the extension. ',
       ],
     },
     {
       question: 'Which browsers are supported?',
       answer: [
-        'The extension works with chromium based browsers (Chrome, Edge, Opera, etc.) and Firefox. The full list can be found <a href="/supporters#supported-browsers" target="_blank" rel="noopener noreferrer" data-umami-event="FAQ page - Supporters">here</a>.',
+        'The extension works with chromium based browsers (Chrome, Edge, Opera, etc.) and Firefox. The full list can be found <a href="/supporters#supported-browsers" target="_blank" rel="noopener noreferrer">here</a>.',
       ],
     },
     {
@@ -101,7 +101,7 @@ const supporters: FaqCategory = {
     {
       question: 'Why does the extension ask for so many invasive permissions?',
       answer: [
-        'The extension checks every page you visit, each time you visit, for Web Monetization. That’s why the extension needs permission to access your browser tabs and certain types of data. You can view the full list of permissions and why they are needed <a href="https://github.com/interledger/web-monetization-extension/blob/main/docs/PERMISSIONS.md" target="_blank" rel="noopener noreferrer" data-umami-event="FAQ page - Github">here</a>.',
+        'The extension checks every page you visit, each time you visit, for Web Monetization. That’s why the extension needs permission to access your browser tabs and certain types of data. You can view the full list of permissions and why they are needed <a href="https://github.com/interledger/web-monetization-extension/blob/main/docs/PERMISSIONS.md" target="_blank" rel="noopener noreferrer">here</a>.',
       ],
     },
   ],
@@ -113,13 +113,13 @@ const publishers: FaqCategory = {
     {
       question: 'How can I monetize my website with Web Monetization?',
       answer: [
-        'Add a Web Monetization <a href="/developers/link-element-webpage/" target="_blank" rel="noopener noreferrer" data-umami-event="FAQ page - WebMo docs">&lt;link&gt; tag</a> to your site that contains your wallet address, and make sure you have a wallet account that supports Web Monetization.',
+        'Add a Web Monetization <a href="/developers/link-element-webpage/" target="_blank" rel="noopener noreferrer">&lt;link&gt; tag</a> to your site that contains your wallet address, and make sure you have a wallet account that supports Web Monetization.',
       ],
     },
     {
       question: 'Can I split the income between multiple recipients?',
       answer: [
-        'Yes, you can split Web Monetization income between multiple recipients. This is done using revenue sharing. You can use <a href="/tools/prob-revshare/" target="_blank" rel="noopener noreferrer" data-umami-event="FAQ page - Tools Revshare">The probabilistic Revenue Share tool</a> to share your earnings between multiple recipients.',
+        'Yes, you can split Web Monetization income between multiple recipients. This is done using revenue sharing. You can use <a href="/tools/prob-revshare/" target="_blank" rel="noopener noreferrer">The probabilistic Revenue Share tool</a> to share your earnings between multiple recipients.',
       ],
     },
     {
@@ -137,7 +137,7 @@ const developers: FaqCategory = {
     {
       question: 'How can I contribute to the standard?',
       answer: [
-        'Web Monetization is being developed as part of a W3C Community Group. You can join discussions, share feedback, or contribute on <a href="https://github.com/WICG/webmonetization" target="_blank" rel="noopener noreferrer" data-umami-event="FAQ page - Github">GitHub</a>.',
+        'Web Monetization is being developed as part of a W3C Community Group. You can join discussions, share feedback, or contribute on <a href="https://github.com/WICG/webmonetization" target="_blank" rel="noopener noreferrer">GitHub</a>.',
       ],
     },
   ],
