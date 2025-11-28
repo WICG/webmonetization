@@ -18,6 +18,7 @@ const isActive = (path: string): boolean =>
           <a
             href={menuItem.path}
             class:list={[{ active: isActive(menuItem.path) }, 'tool-link']}
+            data-umami-event={`Nav link - ${menuItem.path.split('/')[1]}`}
           >
             <>
               <div class='tool-icon-container'>
