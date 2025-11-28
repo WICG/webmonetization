@@ -70,6 +70,7 @@ const { updates, heading } = Astro.props
             role='tab'
             aria-labelledby={`carousel-heading-${i}`}
             aria-controls={`carousel-item-${i}`}
+            data-umami-event={`Homepage - Update carousel dot ${i + 1}`}
           />
         ))
       }
