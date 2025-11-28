@@ -1,5 +1,14 @@
-semi: false
-tabWidth: 2
-jsxSingleQuote: true
-bracketSpacing: true
-singleQuote: true
+{
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "plugins": ["prettier-plugin-astro"],
+  "overrides": [
+    {
+      "files": "**/*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}
