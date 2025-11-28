@@ -33,7 +33,6 @@ const { content } = Astro.props
           <a
             href={content.primaryCta.href}
             class='btn primary flexible'
-            data-umami-event={content.primaryCta.event}
             >{content.primaryCta.text}</a
           >
           {
@@ -41,7 +40,6 @@ const { content } = Astro.props
               <a
                 href={content.secondaryCta.href}
                 class='btn secondary flexible'
-                data-umami-event={content.secondaryCta.event}
               >
                 {content.secondaryCta.text}
               </a>

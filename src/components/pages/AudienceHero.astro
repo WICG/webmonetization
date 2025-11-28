@@ -45,14 +45,13 @@ import PillTag from './PillTag.astro'
       <a
         href={content.primaryCta.href}
         class='btn primary'
-        data-umami-event={content.primaryCta.event}>{content.primaryCta.text}</a
+        >{content.primaryCta.text}</a
       >
       {
         content.secondaryCta && (
           <a
             href={content.secondaryCta.href}
             class='btn secondary'
-            data-umami-event={content.secondaryCta.event}
           >
             {content.secondaryCta.text}
             {content.secondaryCta.icon && <content.secondaryCta.icon />}
