@@ -1,36 +1,37 @@
 ---
-import desktopIcon from '@assets/components/browsercompat/icon-desktop.svg';
-import phoneIcon from '@assets/components/browsercompat/icon-phone.svg';
-import checkIcon from '@assets/components/browsercompat/icon-check.svg';
-import cancelIcon from '@assets/components/browsercompat/icon-cancel.svg';
-import extensionIcon from '@assets/components/browsercompat/icon-extension.svg';
+import desktopIcon from '@assets/components/browsercompat/icon-desktop.svg'
+import phoneIcon from '@assets/components/browsercompat/icon-phone.svg'
+import checkIcon from '@assets/components/browsercompat/icon-check.svg'
+import cancelIcon from '@assets/components/browsercompat/icon-cancel.svg'
+import extensionIcon from '@assets/components/browsercompat/icon-extension.svg'
 
-const { json } = Astro.props;
+const { json } = Astro.props
 
 const compatData = json.api
 ---
+
 <div class="browserCompat">
   <table>
     <thead>
       <tr class="platforms">
         <td></td>
-        <th class="desktop" colspan='6' title='desktop'>
+        <th class="desktop" colspan="6" title="desktop">
           <img
             src={desktopIcon.src}
             width={desktopIcon.width}
             height={desktopIcon.height}
-            alt=''
+            alt=""
           />
-          <span class='visually-hidden'>desktop</span>
+          <span class="visually-hidden">desktop</span>
         </th>
-        <th class="mobile" colspan='7' title='mobile'>
+        <th class="mobile" colspan="7" title="mobile">
           <img
             src={phoneIcon.src}
-            alt=''
+            alt=""
             width={phoneIcon.width}
             height={phoneIcon.height}
           />
-          <span class='visually-hidden'>mobile</span>
+          <span class="visually-hidden">mobile</span>
         </th>
       </tr>
       <tr class="browsers">
@@ -77,62 +78,65 @@ const compatData = json.api
       </tr>
     </thead>
     <tbody>
-      {Object.keys(compatData).map((key) => (
-        <tr>
-          <th class="feature" scope='row'>
-            <div>
-              <code>{key}</code>
-            </div>
-          </th>
-          {Object.keys(compatData[key].__compat.support).map((platform) => (
-            (platform !== "status") && (
-              <td>
-                {compatData[key].__compat.support[platform]
-                  .version_added && (
-                  <img
-                    src={checkIcon.src}
-                    alt=''
-                    class="iconGreen"
-                    width={checkIcon.width}
-                    height={checkIcon.height}
-                  />
-                )}
-                {!compatData[key].__compat.support[platform]
-                  .version_added && (
-                  <img
-                    src={cancelIcon.src}
-                    alt=''
-                    class="iconRed"
-                    width={cancelIcon.width}
-                    height={cancelIcon.height}
-                  />
-                )}
-                <span>
-                  {compatData[key].__compat.support[platform]
-                    .version_added === true && 'Yes'}
-                  {compatData[key].__compat.support[platform]
-                    .version_added === false && 'No'}
-                  {compatData[key].__compat.support[platform]
-                    .version_added !== false &&
-                    compatData[key].__compat.support[platform]
-                      .version_added !== true &&
-                    compatData[key].__compat.support[platform]
-                      .version_added}
-                </span>
-                {compatData[key].__compat.support[platform].notes && (
-                  <img
-                    src={extensionIcon.src}
-                    alt=''
-                    class="iconGreen"
-                    width={extensionIcon.width}
-                    height={extensionIcon.height}
-                  />
-                )}
-              </td>
-            )
-          ))}
-        </tr>
-      ))}
+      {
+        Object.keys(compatData).map((key) => (
+          <tr>
+            <th class="feature" scope="row">
+              <div>
+                <code>{key}</code>
+              </div>
+            </th>
+            {Object.keys(compatData[key].__compat.support).map(
+              (platform) =>
+                platform !== 'status' && (
+                  <td>
+                    {compatData[key].__compat.support[platform]
+                      .version_added && (
+                      <img
+                        src={checkIcon.src}
+                        alt=""
+                        class="iconGreen"
+                        width={checkIcon.width}
+                        height={checkIcon.height}
+                      />
+                    )}
+                    {!compatData[key].__compat.support[platform]
+                      .version_added && (
+                      <img
+                        src={cancelIcon.src}
+                        alt=""
+                        class="iconRed"
+                        width={cancelIcon.width}
+                        height={cancelIcon.height}
+                      />
+                    )}
+                    <span>
+                      {compatData[key].__compat.support[platform]
+                        .version_added === true && 'Yes'}
+                      {compatData[key].__compat.support[platform]
+                        .version_added === false && 'No'}
+                      {compatData[key].__compat.support[platform]
+                        .version_added !== false &&
+                        compatData[key].__compat.support[platform]
+                          .version_added !== true &&
+                        compatData[key].__compat.support[platform]
+                          .version_added}
+                    </span>
+                    {compatData[key].__compat.support[platform].notes && (
+                      <img
+                        src={extensionIcon.src}
+                        alt=""
+                        class="iconGreen"
+                        width={extensionIcon.width}
+                        height={extensionIcon.height}
+                      />
+                    )}
+                  </td>
+                )
+            )}
+          </tr>
+        ))
+      }
     </tbody>
   </table>
 </div>
@@ -142,7 +146,7 @@ const compatData = json.api
     <dt>
       <img
         src={checkIcon.src}
-        alt=''
+        alt=""
         class="iconGreen"
         width={checkIcon.width}
         height={checkIcon.height}
@@ -154,7 +158,7 @@ const compatData = json.api
     <dt>
       <img
         src={cancelIcon.src}
-        alt=''
+        alt=""
         class="iconRed"
         width={cancelIcon.width}
         height={cancelIcon.height}
@@ -166,7 +170,7 @@ const compatData = json.api
     <dt>
       <img
         src={extensionIcon.src}
-        alt=''
+        alt=""
         class="iconGreen"
         width={extensionIcon.width}
         height={extensionIcon.height}
@@ -177,150 +181,150 @@ const compatData = json.api
 </dl>
 
 <style>
-.browserCompat {
-  border-radius: var(--moderate-rounding);
-  box-shadow: var(--sl-shadow-sm);
-  overflow-x: auto;
-}
+  .browserCompat {
+    border-radius: var(--moderate-rounding);
+    box-shadow: var(--sl-shadow-sm);
+    overflow-x: auto;
+  }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 0;
-  width: 100%;
-}
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0;
+    width: 100%;
+  }
 
-th {
-  background: inherit;
-  padding: 0.25rem 0.75rem;
-  width: 2rem;
-  text-align: center;
-  vertical-align: bottom;
-}
+  th {
+    background: inherit;
+    padding: 0.25rem 0.75rem;
+    width: 2rem;
+    text-align: center;
+    vertical-align: bottom;
+  }
 
-th,
-td {
-  border: 1px solid var(--sl-color-hairline-light);
-  font-size: 0.75rem;
-}
+  th,
+  td {
+    border: 1px solid var(--sl-color-hairline-light);
+    font-size: 0.75rem;
+  }
 
-th code {
-  white-space: nowrap;
-}
+  th code {
+    white-space: nowrap;
+  }
 
-tbody th {
-  vertical-align: middle;
-}
+  tbody th {
+    vertical-align: middle;
+  }
 
-tbody td {
-  text-align: center;
-  padding: 0.25rem 0;
-  vertical-align: top;
-}
+  tbody td {
+    text-align: center;
+    padding: 0.25rem 0;
+    vertical-align: top;
+  }
 
-tbody td img {
-  margin-inline: auto;
-}
+  tbody td img {
+    margin-inline: auto;
+  }
 
-.platforms {
-  height: 2em;
-}
+  .platforms {
+    height: 2em;
+  }
 
-.platforms th {
-  vertical-align: revert;
-}
+  .platforms th {
+    vertical-align: revert;
+  }
 
-.platforms th img {
-  margin-inline: auto;
-}
+  .platforms th img {
+    margin-inline: auto;
+  }
 
-.browserLabel {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  white-space: nowrap;
-  line-height: 1;
-  position: relative;
-  padding-block-start: 0.5rem;
-  margin-inline-start: 2px;
-}
+  .browserLabel {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    white-space: nowrap;
+    line-height: 1;
+    position: relative;
+    padding-block-start: 0.5rem;
+    margin-inline-start: 2px;
+  }
 
-.browser::after {
-  height: 1.25em;
-  width: 1.25em;
-  display: block;
-}
+  .browser::after {
+    height: 1.25em;
+    width: 1.25em;
+    display: block;
+  }
 
-.browserChrome::after {
-  content: url(../../assets/components/browsercompat/browser-chrome.svg);
-}
+  .browserChrome::after {
+    content: url(../../assets/components/browsercompat/browser-chrome.svg);
+  }
 
-.browserEdge::after {
-  content: url(../../assets/components/browsercompat/browser-edge.svg);
-}
+  .browserEdge::after {
+    content: url(../../assets/components/browsercompat/browser-edge.svg);
+  }
 
-.browserFirefox::after {
-  content: url(../../assets/components/browsercompat/browser-firefox.svg);
-}
+  .browserFirefox::after {
+    content: url(../../assets/components/browsercompat/browser-firefox.svg);
+  }
 
-.browserIe::after {
-  content: url(../../assets/components/browsercompat/browser-ie.svg);
-}
+  .browserIe::after {
+    content: url(../../assets/components/browsercompat/browser-ie.svg);
+  }
 
-.browserOpera::after {
-  content: url(../../assets/components/browsercompat/browser-opera.svg);
-}
+  .browserOpera::after {
+    content: url(../../assets/components/browsercompat/browser-opera.svg);
+  }
 
-.browserPuma::after {
-  content: url(../../assets/components/browsercompat/browser-puma.svg);
-}
+  .browserPuma::after {
+    content: url(../../assets/components/browsercompat/browser-puma.svg);
+  }
 
-.browserSafari::after {
-  content: url(../../assets/components/browsercompat/browser-safari.svg);
-}
+  .browserSafari::after {
+    content: url(../../assets/components/browsercompat/browser-safari.svg);
+  }
 
-.browserSamsung::after {
-  content: url(../../assets/components/browsercompat/browser-samsung.svg);
-}
+  .browserSamsung::after {
+    content: url(../../assets/components/browsercompat/browser-samsung.svg);
+  }
 
-.browserWebview::after {
-  content: url(../../assets/components/browsercompat/browser-webview.svg);
-}
+  .browserWebview::after {
+    content: url(../../assets/components/browsercompat/browser-webview.svg);
+  }
 
-.feature div {
-  align-items: baseline;
-  display: inline-flex;
-  width: 100%;
-}
+  .feature div {
+    align-items: baseline;
+    display: inline-flex;
+    width: 100%;
+  }
 
-.legend {
-  display: flex;
-  flex-wrap: wrap;
-}
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-.legendItem {
-  align-items: center;
-  display: flex;
-  font-size: 0.75rem;
-  margin-block-start: 0;
-  margin-inline-end: var(--space-s);
-}
+  .legendItem {
+    align-items: center;
+    display: flex;
+    font-size: 0.75rem;
+    margin-block-start: 0;
+    margin-inline-end: var(--space-s);
+  }
 
-.legendItem dd {
-  padding-inline-start: var(--spacing-2xs);
-}
+  .legendItem dd {
+    padding-inline-start: var(--spacing-2xs);
+  }
 
-.legendItem.legendItem.legendItem,
-.legendItem.legendItem.legendItem dd {
-  margin-block-start: 0;
-}
+  .legendItem.legendItem.legendItem,
+  .legendItem.legendItem.legendItem dd {
+    margin-block-start: 0;
+  }
 
-.iconGreen {
-  filter: invert(20%) sepia(98%) saturate(2364%) hue-rotate(143deg)
-    brightness(92%) contrast(102%);
-}
+  .iconGreen {
+    filter: invert(20%) sepia(98%) saturate(2364%) hue-rotate(143deg)
+      brightness(92%) contrast(102%);
+  }
 
-.iconRed {
-  filter: invert(6%) sepia(98%) saturate(7375%) hue-rotate(340deg)
-    brightness(120%) contrast(100%);
-}
+  .iconRed {
+    filter: invert(6%) sepia(98%) saturate(7375%) hue-rotate(340deg)
+      brightness(120%) contrast(100%);
+  }
 </style>

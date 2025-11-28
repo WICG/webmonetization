@@ -20,7 +20,7 @@ Interledger Foundation offers an open source [Web Monetization browser extension
 
 ### Open Payments
 
-<LinkOut href='https://openpayments.dev'>Open Payments</LinkOut> is an open
+<LinkOut href="https://openpayments.dev">Open Payments</LinkOut> is an open
 standard for implementation by wallet providers. When implemented, third-party
 applications, like the Web Monetization extension, can set up payments to and
 from users' wallet accounts.
@@ -35,7 +35,7 @@ Wallet providers who support Open Payments issues each of their customers' accou
 
 ### Payment pointer
 
-A payment pointer is similar to a [wallet address](#wallet-address). Where a wallet address begins with `https://`, a payment pointer begins with `$`. For example, `$wallet.example.com/alice`. 
+A payment pointer is similar to a [wallet address](#wallet-address). Where a wallet address begins with `https://`, a payment pointer begins with `$`. For example, `$wallet.example.com/alice`.
 
 Most payment pointers can be converted to wallet addresses by simply replacing the `$` with `https://`. For example, `https://wallet.example.com/alice`.
 
@@ -43,7 +43,7 @@ Most payment pointers can be converted to wallet addresses by simply replacing t
 Whether a wallet provider chooses to call their payment addresses _payment pointers_ or _wallet addresses_ is up to the provider. In places where the documentation only refers to wallet address, it's likely that the same information applies to payment pointers.
 :::
 
-If you're setting up Interledger Foundation's Web Monetization extension, you can enter either a wallet address (`https://`) or a payment pointer (`$`). 
+If you're setting up Interledger Foundation's Web Monetization extension, you can enter either a wallet address (`https://`) or a payment pointer (`$`).
 
 If you have a payment pointer and are monetizing your own content, the monetization `<link>` element doesn't support the `$` in the `href` value. You must change the `$` to `https://`.
 

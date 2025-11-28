@@ -1,4 +1,4 @@
-import type { ImageMetadata } from "astro"
+import type { ImageMetadata } from 'astro'
 
 export interface CTA {
   text: string
@@ -22,29 +22,29 @@ export interface UpdateContent {
 }
 
 export interface HeroContent {
-  heroTitle: string,
-  posterImage: ImageMetadata,
-  videoSrc: string,
-  primaryCta: CTA,
+  heroTitle: string
+  posterImage: ImageMetadata
+  videoSrc: string
+  primaryCta: CTA
   secondaryCta?: CTA
 }
 
 export type Pills = Array<{ text: string }>
 
 export interface ContentSection {
-  image: ImageMetadata,
+  image: ImageMetadata
   imgMetaData: {
-    position: "right" | "left",
-    padding?: string,
-  },
-  title: string,
-  primaryCta: CTA,
+    position: 'right' | 'left'
+    padding?: string
+  }
+  title: string
+  primaryCta: CTA
   secondaryCta?: CTA
 }
 
 export interface HowItWorks {
   heading: string
-  imageHorizontal: ImageMetadata,
-  imageVertical: ImageMetadata,
-  alt: string,
+  imageHorizontal: ImageMetadata
+  imageVertical: ImageMetadata
+  alt: string
 }

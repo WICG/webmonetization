@@ -11,9 +11,9 @@ const { cards, ctaText } = Astro.props
 
 {
   cards.map((card) => (
-    <div class='card'>
+    <div class="card">
       <img
-        class='cardLogo'
+        class="cardLogo"
         src={card.image.src}
         alt={card.name}
         width={card.image.width}
@@ -21,10 +21,10 @@ const { cards, ctaText } = Astro.props
       />
       <a
         href={card.link}
-        class='btn secondary flexible'
+        class="btn secondary flexible"
         data-umami-event={`WalletList - ${card.name}`}
-        target='_blank'
-        rel='noreferrer noopener'
+        target="_blank"
+        rel="noreferrer noopener"
       >
         {ctaText}
         <WalletIcon />
