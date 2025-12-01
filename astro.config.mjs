@@ -96,6 +96,10 @@ export default defineConfig({
               label: 'Learn about receiving payments',
               link: '/developers/about-receiving',
             },
+            {
+              label: 'WordPress plugin',
+              link: '/developers/wordpress',
+            },
           ],
         },
         {
