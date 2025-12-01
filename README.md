@@ -72,8 +72,8 @@ Static image assets should be placed in the `public/img/docs` directory. When re
 ![A lovely description of your beautiful image](/img/your-beautiful-image.png)
 ```
 
-⭐ Make your image accessible by including helpful alt text that describes the image.
-⭐ Ensure your file name is descriptive. A file name of `img01.png` isn't helpful.
+⭐ Make your image accessible by including helpful alt text that describes the image. <br>
+⭐ Ensure your file name is descriptive. A file name of `img01.png` isn't helpful. <br>
 ⭐ Use hyphens instead of underscores in file names to keep our naming conventions consistent.
 
 #### Components
