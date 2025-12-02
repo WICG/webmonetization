@@ -106,6 +106,7 @@ The examples below are simplified representations of the Open Payments API calls
     </Disclosure>
 
 4.  The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `authServer` URL. The request contains the access permissions the agent is requesting.
+    {/* prettier-ignore */}
     <Disclosure toggleText="Example request" client:load>
     ```http
     POST /auth/ HTTP/1.1
@@ -130,20 +131,21 @@ The examples below are simplified representations of the Open Payments API calls
     :::note
     The `client` in the request above is your visitor's wallet address. This URL is only used by the agent and the wallets, and isn't available to the website.
     :::
+
 5.  The response to the agent contains an access token that the agent needs to make its next request.
     <Disclosure toggleText="Example response" client:load>
     ```http wrap
     {
         "access_token": {
-        "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
-        "manage": "https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
-        "access": [
-            {
-                "type": "incoming-payment",
-                "actions": ["create", "read"],
-                "identifier": "https://wallet.example/alice"
-            }
-        ]
+            "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
+            "manage": "https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
+            "access": [
+                {
+                    "type": "incoming-payment",
+                    "actions": ["create", "read"],
+                    "identifier": "https://wallet.example/alice"
+                }
+            ]
         }
     }
     ```
@@ -183,8 +185,8 @@ The examples below are simplified representations of the Open Payments API calls
     Authorization: {{ GNAP outgoingPaymentGrant.accessToken.value }}
     Host: cloudninewallet.example
     {
-    "walletAddress": "https://wallet.example/alice",
-    "quoteId": "https://wallet.example/quotes/ab03296b-0c8b-4776-b94e-7ee27d868d4d",
+        "walletAddress": "https://wallet.example/alice",
+        "quoteId": "https://wallet.example/quotes/ab03296b-0c8b-4776-b94e-7ee27d868d4d"
     }
     ```
     </Disclosure>
