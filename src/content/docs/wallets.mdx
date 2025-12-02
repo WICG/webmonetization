@@ -82,37 +82,39 @@ The Interledger test wallet provides a great way to test Web Monetization withou
   Users of GateHub will have a _payment pointer_. Note that in GateHub your
   payment pointer is not the same thing as your wallet name. To locate your
   payment pointer:
+{/* prettier-ignore */}
   <Steps>
-    1. Select your wallet, then click **Advanced**.
-    2. Scroll down to **Interledger Settings**.
-    3. Click the **Payment pointer** button.
-    4. Copy your payment pointer.
+1. Select your wallet, then click **Advanced**.
+2. Scroll down to **Interledger Settings**.
+3. Click the **Payment pointer** button.
+4. Copy your payment pointer.
   </Steps>
 
-  <img
-    src="/img/docs/gatehub/advanced-wallet-settings.png"
-    alt=""
-    class="img-outline"
-    style="max-width:600px"
-  />
+<img
+  src="/img/docs/gatehub/advanced-wallet-settings.png"
+  alt=""
+  class="img-outline"
+  style="max-width:600px"
+/>
 
-  <img
-    src="/img/docs/gatehub/advanced-interledger-settings.png"
-    alt=""
-    class="img-outline"
-    style="max-width:450px"
-  />
+<img
+  src="/img/docs/gatehub/advanced-interledger-settings.png"
+  alt=""
+  class="img-outline"
+  style="max-width:450px"
+/>
 
-  <img
-    src="/img/docs/gatehub/payment-pointer.png"
-    alt=""
-    class="img-outline"
-    style="max-width:600px"
-  />
+<img
+  src="/img/docs/gatehub/payment-pointer.png"
+  alt=""
+  class="img-outline"
+  style="max-width:600px"
+/>
 
-  :::note
-  If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
-  :::
+:::note
+If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
+:::
+
 </details>
 
 <details>
@@ -120,23 +122,25 @@ The Interledger test wallet provides a great way to test Web Monetization withou
   Users of the Chimoney App will have a _wallet address_. After completing your
   KYC verification on the Chimoney App, your account is automatically issued an
   Interledger Wallet Address. To locate your wallet address:
+{/* prettier-ignore */}
   <Steps>
-    1. Open the Chimoney App and navigate to the **Account** tab.
-    2. Click on **Interledger Wallet Address**.
-    3. Copy your wallet address. It will look like `https://ilp.chimoney.com/username` or `https://ilp.chimoney.com/123456`.
+1. Open the Chimoney App and navigate to the **Account** tab.
+2. Click on **Interledger Wallet Address**.
+3. Copy your wallet address. It will look like `https://ilp.chimoney.com/username` or `https://ilp.chimoney.com/123456`.
   </Steps>
 
-  <img
-    src="/img/docs/chimoney/chimoney-wallet-address.png"
-    alt="Chimoney App Account tab showing the Interledger Wallet Address option"
-    class="img-outline"
-    style="max-width:600px"
-  />
+<img
+  src="/img/docs/chimoney/chimoney-wallet-address.png"
+  alt="Chimoney App Account tab showing the Interledger Wallet Address option"
+  class="img-outline"
+  style="max-width:600px"
+/>
 
-  :::note
-  You can use this wallet address in both the Web Monetization extension and on your website. The `https://` prefix is already included.
-  :::
-  For detailed setup instructions, visit the{' '}
+:::note
+You can use this wallet address in both the Web Monetization extension and on your website. The `https://` prefix is already included.
+:::
+For detailed setup instructions, visit the{' '}
+
   <LinkOut href="https://chimoney.io/blogs/how-to-get-started-with-web-monetization-using-chimoney/">
     Chimoney Web Monetization Guide
   </LinkOut>
