@@ -9,3 +9,6 @@ dist
 
 # Don't disagree with W3C style on the spec
 src/pages/specification
+
+# MDX files with Disclosure components that require specific indentation
+src/content/docs/developers/about-receiving.mdx
