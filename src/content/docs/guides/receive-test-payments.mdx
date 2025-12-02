@@ -28,34 +28,30 @@ If your browser extension is connected to a wallet that uses real money and you 
 1. Enable continuous payments within the extension if they aren't already. Check your settings by selecting the cog icon, then the **Rate** tab.
 2. Go to the <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut>.
 3. Enter your wallet account's payment pointer into the field and select **Add monetization link**.
+    :::note[Forgot your payment pointer?]
+    Open the extension and select the cog icon. Then, select the **Wallet** tab and copy your payment pointer from the **Connected wallet address** field.
+    :::
 4. Remain on the Playground page, with the window active, long enough for a few events to appear on the page. The time it takes for events to appear depends on the rate you have set up in the extension.
+    <Card title="Example">
+      If your rate is €0.60 <abbr title="euros">EUR</abbr> an hour, then it will
+      take 5-6 minutes for three events to appear.
+    </Card>
 5. Select **Disable** to stop the payments.
 6. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">Interledger test wallet</LinkOut> and select **Transactions** from the left menu. A completed outgoing payment appears for each event, as well as a single pending incoming payment with a zero amount.
+    <Card title="Outgoing payment amounts">
+      To mimic how a real wallet provider could act, the Interledger test network
+      deducts a 0.01 fee from each outgoing payment. If your rate is €0.60{' '}
+      <abbr title="euros">EUR</abbr> an hour, each Playground event will show €0.01
+      EUR while each outgoing payment in your transaction list will show a debit of
+      €0.02.
+    </Card>
 7. Wait 10 minutes, then refresh the page. The pending incoming transaction will show as completed and reflect the amount deposited into your wallet.
+    <Card title="Example">
+      If your rate is €0.60 <abbr title="euros">EUR</abbr> an hour and you waited
+      for three Playground events, your incoming payment will be approximately
+      €0.03.
+    </Card>
 </Steps>
-
-:::note[Forgot your payment pointer?]
-Open the extension and select the cog icon. Then, select the **Wallet** tab and copy your payment pointer from the **Connected wallet address** field.
-:::
-
-<Card title="Example">
-  If your rate is €0.60 <abbr title="euros">EUR</abbr> an hour, then it will
-  take 5-6 minutes for three events to appear.
-</Card>
-
-<Card title="Outgoing payment amounts">
-  To mimic how a real wallet provider could act, the Interledger test network
-  deducts a 0.01 fee from each outgoing payment. If your rate is €0.60{' '}
-  <abbr title="euros">EUR</abbr> an hour, each Playground event will show €0.01
-  EUR while each outgoing payment in your transaction list will show a debit of
-  €0.02.
-</Card>
-
-<Card title="Example">
-  If your rate is €0.60 <abbr title="euros">EUR</abbr> an hour and you waited
-  for three Playground events, your incoming payment will be approximately
-  €0.03.
-</Card>
 
 ## Receive a one-time payment
 
@@ -63,17 +59,15 @@ Open the extension and select the cog icon. Then, select the **Wallet** tab and 
 <Steps>
 1. Go to the <LinkOut href="https://webmonetization.org/play/">Web Monetization Playground</LinkOut>.
 2. Enter your wallet account's payment pointer into the field and select **Add monetization link**.
+    :::note[Forgot your payment pointer?]
+    Open the extension and select the cog icon. Then, select the **Wallet** tab and copy your payment pointer from the **Connected wallet address** field.
+    :::
 3. Open the extension, enter a one-time payment amount, then click **Send now**. A new event will appear in the Playground almost immediately.
 4. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">Interledger test wallet</LinkOut> and select **Transactions** from the left menu. A completed outgoing and incoming payment will appear.
+    <Card title="Incoming payment amount">
+      To mimic how a real wallet provider could act, the Interledger test network
+      might show a 0.01 fee deducted from each outgoing payment. If you made a
+      one-time payment of €1.00 <abbr title="euros">EUR</abbr>, for example, the
+      completed incoming payment might be for €0.99.
+    </Card>
 </Steps>
-
-:::note[Forgot your payment pointer?]
-Open the extension and select the cog icon. Then, select the **Wallet** tab and copy your payment pointer from the **Connected wallet address** field.
-:::
-
-<Card title="Incoming payment amount">
-  To mimic how a real wallet provider could act, the Interledger test network
-  might show a 0.01 fee deducted from each outgoing payment. If you made a
-  one-time payment of €1.00 <abbr title="euros">EUR</abbr>, for example, the
-  completed incoming payment might be for €0.99.
-</Card>
