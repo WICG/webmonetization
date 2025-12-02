@@ -36,13 +36,13 @@ Some wallet providers will use the term _wallet address_ while others use the te
 {/* prettier-ignore */}
 <Tabs>
   <TabItem label="Example wallet address">
-    ```
-    https://wallet.example.com/alice
+    ``` 
+    https://wallet.example.com/alice 
     ```
   </TabItem>
   <TabItem label="Example payment pointer">
-    ```
-    $wallet.example.com/alice
+    ``` 
+    $wallet.example.com/alice 
     ```
   </TabItem>
 </Tabs>
@@ -87,34 +87,38 @@ The Interledger test wallet provides a great way to test Web Monetization withou
   Users of GateHub will have a _payment pointer_. Note that in GateHub your
   payment pointer is not the same thing as your wallet name. To locate your
   payment pointer:
-{/* prettier-ignore */}
   <Steps>
-1. Select your wallet, then click **Advanced**.
-2. Scroll down to **Interledger Settings**.
-3. Click the **Payment pointer** button.
-4. Copy your payment pointer.
+    <ol>
+      <li>
+        Select your wallet, then click **Advanced**.
+        <img
+          src='/img/docs/gatehub/advanced-wallet-settings.png'
+          alt=''
+          class='img-outline'
+          style='max-width:600px'
+        />
+      </li>
+      <li>Scroll down to **Interledger Settings**.</li>
+      <li>
+        Click the **Payment pointer** button.
+        <img
+          src='/img/docs/gatehub/advanced-interledger-settings.png'
+          alt=''
+          class='img-outline'
+          style='max-width:450px'
+        />
+      </li>
+      <li>
+        Copy your payment pointer.
+        <img
+          src='/img/docs/gatehub/payment-pointer.png'
+          alt=''
+          class='img-outline'
+          style='max-width:600px'
+        />
+      </li>
+    </ol>
   </Steps>
-
-<img
-  src="/img/docs/gatehub/advanced-wallet-settings.png"
-  alt=""
-  class="img-outline"
-  style="max-width:600px"
-/>
-
-<img
-  src="/img/docs/gatehub/advanced-interledger-settings.png"
-  alt=""
-  class="img-outline"
-  style="max-width:450px"
-/>
-
-<img
-  src="/img/docs/gatehub/payment-pointer.png"
-  alt=""
-  class="img-outline"
-  style="max-width:600px"
-/>
 
 :::note
 If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
@@ -127,27 +131,33 @@ If you're setting up the extension, you can enter your payment pointer as it's s
   Users of the Chimoney App will have a _wallet address_. After completing your
   KYC verification on the Chimoney App, your account is automatically issued an
   Interledger Wallet Address. To locate your wallet address:
-{/* prettier-ignore */}
   <Steps>
-1. Open the Chimoney App and navigate to the **Account** tab.
-2. Click on **Interledger Wallet Address**.
-3. Copy your wallet address. It will look like `https://ilp.chimoney.com/username` or `https://ilp.chimoney.com/123456`.
+    <ol>
+      <li>Open the Chimoney App and navigate to the **Account** tab.</li>
+      <li>
+        Click on **Interledger Wallet Address**.
+        <img
+          src="/img/docs/chimoney/chimoney-wallet-address.png"
+          alt="Chimoney App Account tab showing the Interledger Wallet Address option"
+          class="img-outline"
+          style="max-width:600px"
+        />
+      </li>
+      <li>
+        Copy your wallet address. It will look like
+        `https://ilp.chimoney.com/username` or
+        `https://ilp.chimoney.com/123456`.
+      </li>
+    </ol>
   </Steps>
 
-<img
-  src="/img/docs/chimoney/chimoney-wallet-address.png"
-  alt="Chimoney App Account tab showing the Interledger Wallet Address option"
-  class="img-outline"
-  style="max-width:600px"
-/>
-
 :::note
-You can use this wallet address in both the Web Monetization extension and on your website. The `https://` prefix is already included.
+You can use this wallet address in both the Web Monetization extension
+and on your website. The `https://` prefix is already included.
 :::
-For detailed setup instructions, visit the{' '}
 
-  <LinkOut href="https://chimoney.io/blogs/how-to-get-started-with-web-monetization-using-chimoney/">
-    Chimoney Web Monetization Guide
-  </LinkOut>
-  .
+For detailed setup instructions, visit the <LinkOut href="https://chimoney.io/blogs/how-to-get-started-with-web-monetization-using-chimoney/">
+Chimoney Web Monetization Guide</LinkOut>
+.
+
 </details>

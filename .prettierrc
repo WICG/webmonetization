@@ -9,6 +9,12 @@
       "options": {
         "parser": "astro"
       }
+    },
+    {
+      "files": "**/*.mdx",
+      "options": {
+        "proseWrap": "preserve"
+      }
     }
   ]
 }
