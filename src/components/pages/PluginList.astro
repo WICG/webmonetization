@@ -8,51 +8,54 @@ interface Props {
 }
 const { cards, fullListText } = Astro.props
 const lang = getLangFromUrl(Astro.url)
-const libraryUrl = lang === 'en' ? '/developers/libraries/' : `/${lang}/developers/libraries/`
+const libraryUrl =
+  lang === 'en' ? '/developers/libraries/' : `/${lang}/developers/libraries/`
 
 const cardList: Plugin[] = [...cards.slice(0, 3)]
 ---
 
-<ul class='cards'>
+<ul class="cards">
   {
     cardList.map((card) => (
-      <li class='card'>
+      <li class="card">
         {card.image && (
-          <div class='image'>
-            <img
-              class='cardLogo'
-              src={card.image.src}
-              alt=''
-              width={card.image.width}
-              height={card.image.height}
-            />
-          </div>
-          <div class="decorative-line" aria-hidden="true"></div>
+          <>
+            <div class="image">
+              <img
+                class="cardLogo"
+                src={card.image.src}
+                alt=""
+                width={card.image.width}
+                height={card.image.height}
+              />
+            </div>
+            <div class="decorative-line" aria-hidden="true" />
+          </>
         )}
         {card.name && <h3>{card.name}</h3>}
-        <div class='cardContent'>
-          <p class='desc'>{card.desc}</p>
+        <div class="cardContent">
+          <p class="desc">{card.desc}</p>
           <a
             href={card.cta.href}
-            class='btn flexible secondary'
+            class="btn flexible secondary"
             data-umami-event={card.cta.event}
-            target='_blank'
-            rel='noreferrer noopener'
-        >
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             {card.cta.text}
-        </a>
+          </a>
         </div>
       </li>
     ))
   }
-  <li class='card'>
-    <div class='cardContent'>
+  <li class="card">
+    <div class="cardContent">
       <a
         href={libraryUrl}
-        class='btn flexible primary'
-        data-umami-event='Developers page - Full plugin list'
-        target='_blank'
-        rel='noreferrer noopener'
+        class="btn flexible primary"
+        data-umami-event="Developers page - Full plugin list"
+        target="_blank"
+        rel="noreferrer noopener"
       >
         {fullListText}
       </a>
@@ -105,22 +108,22 @@ const cardList: Plugin[] = [...cards.slice(0, 3)]
   }
 
   .decorative-line {
-      width: 100%;
-      height: 4px;
-      background-image: url(../../assets/bg-lines.svg);
-      background-repeat: no-repeat;
-      background-size: 100% 4px;
-    }
+    width: 100%;
+    height: 4px;
+    background-image: url(../../assets/bg-lines.svg);
+    background-repeat: no-repeat;
+    background-size: 100% 4px;
+  }
 
   .card h3 {
     font: var(--font-h2);
     color: var(--heading-container);
     width: 100%;
-}
+  }
 
-    .card .desc {
-        color: var(--button-secondary-color);
-    }
+  .card .desc {
+    color: var(--button-secondary-color);
+  }
 
   .card a {
     max-height: max-content;
@@ -159,7 +162,7 @@ const cardList: Plugin[] = [...cards.slice(0, 3)]
     }
 
     .card h3 {
-        font: var(--font-h3);
+      font: var(--font-h3);
     }
 
     .card a {

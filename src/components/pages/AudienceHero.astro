@@ -16,14 +16,14 @@ import PillTag from './PillTag.astro'
 ---
 
 <HeroWrapper>
-  <div class='hero-content'>
-    <div class='hero-header'>
-      <h1 class='hero-title' set:html={content.heroTitle} />
+  <div class="hero-content">
+    <div class="hero-header">
+      <h1 class="hero-title" set:html={content.heroTitle} />
     </div>
-    <div class='hero-image'>
+    <div class="hero-image">
       <video
-        class='active audience-video'
-        preload='auto'
+        class="active audience-video"
+        preload="auto"
         poster={content.posterImage.src}
         width={content.posterImage.width}
         height={content.posterImage.height}
@@ -31,27 +31,27 @@ import PillTag from './PillTag.astro'
         loop
         muted
         playsinline
-        aria-hidden='true'
+        aria-hidden="true"
       >
-        <source src={content.videoSrc} type='video/mp4' />
+        <source src={content.videoSrc} type="video/mp4" />
         {t('media.video.unsupported')}
       </video>
     </div>
     <slot />
-    <div class='hero-tags'>
+    <div class="hero-tags">
       <PillTag pills={pills} />
     </div>
-    <div class='hero-ctas'>
+    <div class="hero-ctas">
       <a
         href={content.primaryCta.href}
-        class='btn primary'
+        class="btn primary"
         data-umami-event={content.primaryCta.event}>{content.primaryCta.text}</a
       >
       {
         content.secondaryCta && (
           <a
             href={content.secondaryCta.href}
-            class='btn secondary'
+            class="btn secondary"
             data-umami-event={content.secondaryCta.event}
           >
             {content.secondaryCta.text}

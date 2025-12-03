@@ -5,43 +5,51 @@ next:
   label: Compatible digital wallets
 ---
 
-import { LinkButton } from '@astrojs/starlight/components';
-import { LinkOut } from "@interledger/docs-design-system";
+import { LinkButton } from '@astrojs/starlight/components'
+import { LinkOut } from '@interledger/docs-design-system'
 
 The <LinkOut href="https://webmonetization.org/tools">publisher tools</LinkOut> page provides a collection of easy-to-customize components that you can use to promote Web Monetization and encourage your visitors to support you.
 
 ## Banner
 
-Create a banner that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner automatically includes a link for your visitor to download the extension from their browser's store. 
+Create a banner that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner automatically includes a link for your visitor to download the extension from their browser's store.
 
-Customize the settings, then generate a script to place on your site. The script will automatically web monetize your site. 
+Customize the settings, then generate a script to place on your site. The script will automatically web monetize your site.
 
 ```js wrap title="Example"
-<script id="wmt-banner-init-script"
-    type="module"
-    src="https://tools-cdn.webmonetization.org/banner.js"
-    data-wallet-address="https://wallet.example.com/alice"
-    data-tag="version1">
-</script>
+<script
+  id="wmt-banner-init-script"
+  type="module"
+  src="https://tools-cdn.webmonetization.org/banner.js"
+  data-wallet-address="https://wallet.example.com/alice"
+  data-tag="version1"
+></script>
 ```
 
 Generating the script saves your configuration to our server. Load your existing banner configuration by clicking **Continue** and entering your wallet address. Any changes you make are saved and will appear on your site.
 
-<LinkButton href="https://webmonetization.org/tools/banner" target="_blank" icon="external">Banner tool</LinkButton>
+<LinkButton
+  href="https://webmonetization.org/tools/banner"
+  target="_blank"
+  icon="external"
+>
+  Banner tool
+</LinkButton>
 
-## Widget 
+## Widget
 
-Create a widget that lets your visitors send you a one-time payment. The widget appears to all visitors, even those with an active Web Monetization extension. 
+Create a widget that lets your visitors send you a one-time payment. The widget appears to all visitors, even those with an active Web Monetization extension.
 
 Customize the settings, then generate a script. Place the script just before the closing `</body>`tag on your site or in a script-type element if you're using a site management tool like WordPress.
 
 ```js wrap title="Example"
-<script id="wmt-widget-init-script" 
-    type="module" 
-    src="https://tools-cdn.webmonetization.org/widget.js" 
-    data-wallet-address="https://example.com/alice"
-    data-tag="version1">
-</script>
+<script
+  id="wmt-widget-init-script"
+  type="module"
+  src="https://tools-cdn.webmonetization.org/widget.js"
+  data-wallet-address="https://example.com/alice"
+  data-tag="version1"
+></script>
 ```
 
 :::note
@@ -50,17 +58,29 @@ If you're using multiple wallet addresses to monetize your site, payments throug
 
 Generating the script saves your configuration to our server. Load an existing widget configuration by clicking **Continue** and entering your wallet address. Any changes you make are saved and will appear on your site.
 
-<LinkButton href="https://webmonetization.org/tools/widget" target="_blank" icon="external">Widget tool</LinkButton>
+<LinkButton
+  href="https://webmonetization.org/tools/widget"
+  target="_blank"
+  icon="external"
+>
+  Widget tool
+</LinkButton>
 
 ## Link tag generator
 
 Use our link tag generator to create your Web Monetization link tag. Enter your wallet address into the field and click **Generate**. Then, copy the tag and add it to your HTML pages.
 
-<LinkButton href="https://webmonetization.org/tools/link-tag" target="_blank" icon="external">Link tag generator</LinkButton>
+<LinkButton
+  href="https://webmonetization.org/tools/link-tag"
+  target="_blank"
+  icon="external"
+>
+  Link tag generator
+</LinkButton>
 
 ## Probabilistic revshare generator
 
-Probabilistic revenue sharing (revshare) is a way to share a portion of a web monetized page's earnings between multiple recipients. Each time the page loads, a recipient is chosen at random from a list of predefined wallet addresses. 
+Probabilistic revenue sharing (revshare) is a way to share a portion of a web monetized page's earnings between multiple recipients. Each time the page loads, a recipient is chosen at random from a list of predefined wallet addresses.
 
 Enter each recipient's wallet address and assign it a weight. The probability of one recipient being chosen over the others is based on their assigned weight. The percentage field calculates automatically and reflects the total revenue a recipient should receive over time.
 
@@ -70,4 +90,10 @@ When you're finished, copy the link tag to your HTML page.
 We host your link tag on webmonetization.org. If you'd rather host your own script, check out the [revshare tutorial](/tutorials/revenue-sharing).
 :::
 
-<LinkButton href="https://webmonetization.org/tools/prob-revshare" target="_blank" icon="external">Revshare generator</LinkButton>
+<LinkButton
+  href="https://webmonetization.org/tools/prob-revshare"
+  target="_blank"
+  icon="external"
+>
+  Revshare generator
+</LinkButton>

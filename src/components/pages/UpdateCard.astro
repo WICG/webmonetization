@@ -13,32 +13,32 @@ const { blog, ctaButtonClass, h3Class, imgClass, index } = Astro.props
 ---
 
 <div
-  class='blog-card'
+  class="blog-card"
   id=`carousel-item-${index}`
-  role='tabpanel'
-  aria-roledescription='slide'
+  role="tabpanel"
+  aria-roledescription="slide"
   aria-labelledby={`carousel-heading-${index}`}
 >
   <div class={`blog-img ${imgClass}`}>
     <img
       src={blog.image.src}
-      alt=''
+      alt=""
       width={blog.image.width}
       height={blog.image.height}
     />
   </div>
-  <div class='blog-content'>
+  <div class="blog-content">
     {
       blog.titleLink ? (
         <h3 class={`blog-title ${h3Class}`} id={`carousel-heading-${index}`}>
           <a
             href={blog.titleLink}
-            target='_blank'
-            rel='noreferrer noopener'
+            target="_blank"
+            rel="noreferrer noopener"
             data-umami-event={blog.titleEvent}
           >
             {blog.title}
-            <ExternalLink class='external' />
+            <ExternalLink class="external" />
           </a>
         </h3>
       ) : (
@@ -49,27 +49,27 @@ const { blog, ctaButtonClass, h3Class, imgClass, index } = Astro.props
     }
     {
       blog.subtitles && (
-        <p class='bold blog-subtitles'>
+        <p class="bold blog-subtitles">
           {Object.values(blog.subtitles).map((subtitle, i, arr) => {
             return (
               <>
                 <span>{subtitle}</span>
-                {i < arr.length - 1 && <span class='dot' />}
+                {i < arr.length - 1 && <span class="dot" />}
               </>
             )
           })}
         </p>
       )
     }
-    <div class='blog-paragraphs'>
+    <div class="blog-paragraphs">
       {blog.paragraphs.map((p) => <p>{p}</p>)}
     </div>
     <a
       href={blog.cta.href}
       class={`btn ${ctaButtonClass} flexible carousel-cta`}
       data-umami-event={blog.cta.event}
-      target='_blank'
-      rel='noreferrer noopener'
+      target="_blank"
+      rel="noreferrer noopener"
     >
       {blog.cta.text}
     </a>

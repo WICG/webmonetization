@@ -12,46 +12,46 @@ const t = useTranslations(lang)
   description={t('pages.play.description')}
   toolsStyling={true}
 >
-  <section class='section'>
-    <div class='contentWrapper'>
+  <section class="section">
+    <div class="contentWrapper">
       <ToolsHeader
-        headingText='Web Monetization Playground'
-        pageTitle='Playground'
-        backButtonText='Go back'
+        headingText="Web Monetization Playground"
+        pageTitle="Playground"
+        backButtonText="Go back"
       />
-      <p class='text'>
+      <p class="text">
         The Web Monetization Playground is an interactive environment that shows
         how Web Monetization works under the hood. Add a wallet address or
         payment pointer and watch events and payment flows unfold in real time.
       </p>
-      <div class='form-wrapper'>
-        <form id='walletAddressForm'>
-          <div class='form-field'>
-            <label for='walletAddressUrl'>Wallet address/Payment pointer</label>
+      <div class="form-wrapper">
+        <form id="walletAddressForm">
+          <div class="form-field">
+            <label for="walletAddressUrl">Wallet address/Payment pointer</label>
             <input
-              type='text'
-              id='walletAddressUrl'
-              name='walletAddressUrl'
-              placeholder='https://walletprovider.com/myWallet'
+              type="text"
+              id="walletAddressUrl"
+              name="walletAddressUrl"
+              placeholder="https://walletprovider.com/myWallet"
               required
             />
           </div>
           <button
-            class='btn tools-primary-btn'
-            type='submit'
-            data-umami-event='Play page - Add WebMo link'
+            class="btn tools-primary-btn"
+            type="submit"
+            data-umami-event="Play page - Add WebMo link"
             disabled
           >
             Add monetization link
           </button>
-          <p id='notice'>
+          <p id="notice">
             Checking if your browser supports Web Monetization...
           </p>
         </form>
       </div>
     </div>
-    <div class='contentWrapper'>
-      <div id='link-events' class='link-events'></div>
+    <div class="contentWrapper">
+      <div id="link-events" class="link-events"></div>
     </div>
   </section>
 </Base>
