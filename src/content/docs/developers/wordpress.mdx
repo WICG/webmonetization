@@ -36,7 +36,7 @@ In addition to web monetizing your entire site, you can monetize parts of your s
 
 You can allow users with the Author role to enter their own wallet address in their profile. 
 
-When a web monetized visitor accesses an author's post, then the author receives the payment as long as your [wallet field behavior setting](#set-wallet-field-behavior) allows it and no other address takes a higher priority.
+When a web monetized visitor accesses an author's post, the author receives the payment if your [wallet field behavior setting](#set-wallet-field-behavior) allows it and no other address takes a higher priority.
 
 1. Select **Enable Authors**.<br /><img src='/img/docs/wordpress/enable-authors.png' alt='The enable authors option selected with a link to the users page' style='max-width:90%' class='img-outline'/>
 2. Click **Save Changes** at the bottom of the page. Authors can now enter their own wallet address in their profile. As an administrator, you can also add a wallet address to an author's profile.
@@ -49,7 +49,7 @@ You can also turn off Web Monetization for an author from the Users page and in 
 
 <img src='/img/docs/wordpress/disable-user-wm.png' alt='The disable web monetization link shown for a user when hovering over the username on the users page' style='max-height:90px' class='img-outline' />
 
-<img src='/img/docs/wordpress/user-wa.png' alt='Web Monetization settings within a user profile. The option to exclude the user from monetization and a field for the wallet address are shown' style='max-width:100%' class='img-outline' />
+<img src='/img/docs/wordpress/user-wa.png' alt='Web Monetization settings in a user profile. The option to exclude the user from monetization and a field for the wallet address are shown' style='max-width:100%' class='img-outline' />
 
 ### Monetize post types
 
@@ -79,7 +79,7 @@ To use this option, your WordPress instance must either be:
 Click **Add New Country Wallet**, enter the country code and wallet address, then click **Verify Wallet Address**.
 
 :::note[Country codes]
-You must use the two character country code defined in the ISO 3166 international standard. A list of codes is provided on the <LinkOut href="https://www.iban.com/country-codes">IBAN website</LinkOut>.
+You must use the two-character country code defined in the ISO 3166 international standard. A list of codes is provided on the <LinkOut href="https://www.iban.com/country-codes">IBAN website</LinkOut>.
 :::
 
 <img src='/img/docs/wordpress/country-wa-add.png' alt='The option to enable country-specific wallet addresses is selected and the table shows an unverified wallet address assigned to country code GB' style='max-width:100%' class='img-outline' />
@@ -96,7 +96,7 @@ To use the banner's default settings, select **Enable the banner**, then click *
 
 You can customize the banner from the plugin's **Banner** tab, even if you aren't ready to enable it. Make your changes, then click **Publish Banner Changes**. The banner won't appear until you enable it from the **General** tab.
 
-<img src='/img/docs/wordpress/banner-config.png' alt='The banner settings page shows an example of what the banner will look like, as well as configuration options such as position, font, border style, and fields to edit the title and text' style='max-width:100%' class='img-outline' />
+<img src='/img/docs/wordpress/banner-config.png' alt='The banner settings page shows an example of what the banner will look like and configuration options such as position, font, border style, and fields to edit the title and text' style='max-width:100%' class='img-outline' />
 
 :::note[Tracking]
 The banner's extension download link includes analytics parameters (UTM tags) to track aggregate click sources. No personal data is transmitted.
@@ -135,7 +135,5 @@ With this option, only the wallet address in one field will receive payments. Th
 ### Use all wallet fields
 
 With this option, all wallet addresses in all related fields will receive payments. The payments are split equally between all addresses. 
-
-<p><mark>Diagram TBD</mark></p>
 
 For example, let's say there's one wallet address defined for the site. There's a different address defined for all post types that are pages. A third address is defined in a page itself. All three addresses receive an equal split of the payment when a web monetized visitor accesses the page.
