@@ -34,3 +34,5 @@ pnpm-debug.log*
 
 # lock file
 bun.lockb
+bun.lock
+package-lock.json
