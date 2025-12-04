@@ -86,19 +86,19 @@ export default defineConfig({
           items: [
             {
               label: 'Overview',
-              link: '/developers/overview',
+              link: '/publishers/overview',
             },
             {
               label: 'Get started',
-              link: '/developers/get-started',
+              link: '/publishers/get-started',
             },
             {
               label: 'Learn about receiving payments',
-              link: '/developers/about-receiving',
+              link: '/publishers/about-receiving',
             },
             {
               label: 'WordPress plugin',
-              link: '/developers/wordpress',
+              link: '/publishers/wordpress',
             },
           ],
         },
@@ -263,7 +263,8 @@ export default defineConfig({
     '/docs/api': '/developers/interfaces',
     '/docs/explainer': '/docs',
     '/docs/intro/sending-payments': '/supporters/about-sending',
-    '/docs/intro/receiving-payments': '/developers/about-receiving',
+    '/developers/about-receiving': '/publishers/about-receiving',
+    '/docs/intro/receiving-payments': '/publishers/about-receiving',
     '/docs/intro/web-monetization-flow': '/docs',
     '/docs/intro/web-monetization-extension': '/supporters/get-started',
     '/docs/references/html': '/developers/link-element',
@@ -281,7 +282,8 @@ export default defineConfig({
     '/docs/references/permissions-policy-monetization':
       '/developers/permissions-policy',
     '/docs/references/deprecations': '/docs',
-    '/docs/guides/monetize-page': '/developers/get-started',
+    '/developers/get-started': '/publishers/get-started',
+    '/docs/guides/monetize-page': '/publishers/get-started',
     '/docs/guides/remove-ads': '/tutorials/remove-content',
     '/docs/guides/provide-exclusive-content': '/tutorials/show-content',
     '/docs/guides/set-up-probabilistic-revenue-sharing':

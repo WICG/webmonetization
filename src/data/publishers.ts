@@ -41,7 +41,7 @@ export const walletConnectionContent: ContentSection = {
     },
     secondaryCta: {
         text: "See the documentation",
-        href: "/developers/overview/",
+        href: "/publishers/overview/",
         event: "Publishers page - Developer docs"
     }
 }
@@ -76,7 +76,7 @@ export const wordPressPluginContent: ContentSection = {
     },
     secondaryCta: {
         text: "See the documentation",
-        href: "/developers/overview/",
+        href: "/publishers/overview/",
         event: "Publishers page - Developer docs"
     }
 }
