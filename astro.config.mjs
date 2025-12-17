@@ -209,12 +209,30 @@ export default defineConfig({
               ],
             },
             {
-              label: 'Libraries',
-              link: '/developers/libraries',
+              label: 'Publisher tools',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Banner tool',
+                  link: '/developers/banner-tool'
+                },
+                {
+                  label: 'Widget tool',
+                  link: '/developers/widget-tool'
+                },
+                {
+                  label: 'Link tag generator',
+                  link: '/developers/link-tag-tool'
+                },
+                {
+                  label: 'Probabalistic revshare generator',
+                  link: '/developers/revshare-tool'
+                }, 
+              ],
             },
             {
-              label: 'Publisher tools',
-              link: '/developers/tools',
+              label: 'Libraries',
+              link: '/developers/libraries',
             },
             {
               label: 'Web Monetization Specification',
