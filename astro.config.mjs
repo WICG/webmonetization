@@ -100,6 +100,28 @@ export default defineConfig({
               label: 'WordPress plugin',
               link: '/publishers/wordpress',
             },
+            {
+              label: 'Publisher tools',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Banner tool',
+                  link: '/publishers/banner-tool'
+                },
+                {
+                  label: 'Widget tool',
+                  link: '/publishers/widget-tool'
+                },
+                {
+                  label: 'Link tag generator',
+                  link: '/publishers/link-tag-tool'
+                },
+                {
+                  label: 'Probabalistic revshare generator',
+                  link: '/publishers/revshare-tool'
+                }, 
+              ],
+            },
           ],
         },
         {
@@ -209,28 +231,6 @@ export default defineConfig({
               ],
             },
             {
-              label: 'Publisher tools',
-              collapsed: true,
-              items: [
-                {
-                  label: 'Banner tool',
-                  link: '/developers/banner-tool'
-                },
-                {
-                  label: 'Widget tool',
-                  link: '/developers/widget-tool'
-                },
-                {
-                  label: 'Link tag generator',
-                  link: '/developers/link-tag-tool'
-                },
-                {
-                  label: 'Probabalistic revshare generator',
-                  link: '/developers/revshare-tool'
-                }, 
-              ],
-            },
-            {
               label: 'Libraries',
               link: '/developers/libraries',
             },
@@ -282,6 +282,7 @@ export default defineConfig({
     '/docs/explainer': '/docs',
     '/docs/intro/sending-payments': '/supporters/about-sending',
     '/developers/about-receiving': '/publishers/about-receiving',
+    '/developers/tools': '/publishers/banner-tool',
     '/docs/intro/receiving-payments': '/publishers/about-receiving',
     '/docs/intro/web-monetization-flow': '/docs',
     '/docs/intro/web-monetization-extension': '/supporters/get-started',

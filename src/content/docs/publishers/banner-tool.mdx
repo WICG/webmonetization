@@ -23,7 +23,7 @@ All pages that include the banner script are automatically web monetized with yo
 2. Expand the *Content* drop-down menu. Enter a title for the banner or choose from the suggested options.<br /><img src="/img/docs/pubtools/banner-title.png" alt="Panel showing suggested titles and a field to enter a custom title" style="max-width: 60%" class='img-outline' />
 3. Enter the message to show to your visitors or use the default text. We suggest changing the message so that it's tailored specifically to your audience.<br /><img src="/img/docs/pubtools/banner-message.png" alt="Panel with a checkbox to mark the message as visible and a blank field to enter a custom message" style="max-width: 60%" class='img-outline' />
 4. Review your changes in the preview panel.<br /><img src="/img/docs/pubtools/banner-content-preview.png" alt="Preview panel showing how the banner will appear with a custom title and message" style="max-width: 60%" class='img-outline' />
-5. Click **Done** to save your changes.
+5. Click **Done** to collapse the Content section.
 
 ### Change the banner's appearance
 
@@ -33,14 +33,10 @@ All pages that include the banner script are automatically web monetized with yo
 4. Select whether the banner should slide or fade-in to view. You can also disable animation.<br /><img src="/img/docs/pubtools/banner-animation.png" alt="Panel with the animated option selected and a drop-down menu expanded showing the slide and fade-in options" style="max-width: 60%" class='img-outline' />
 5. Select whether to show the Web Monetization thumbnail in your banner.<br /><img src="/img/docs/pubtools/banner-thumbnail.png" alt="Panel with the visible option selected and a preview of the Web Monetization thumbnail" style="max-width: 60%" class='img-outline' />
 6. Review your changes in the preview panel. Click **Preview** to try out your selected animation.<br /><img src="/img/docs/pubtools/banner-appearance-preview.png" alt="Preview panel showing how the banner will appear with pill-rounded corners and a top position" style="max-width: 60%" class='img-outline' />
-5. Click **Done** to save your changes.
 
 ### Generate your script
 
 1. Click **Save and generate script**.<br /><img src="/img/docs/pubtools/tools-save-buttons.png" alt="The save edits only and the save and generate script buttons side by side" style="max-width: 45%" class='img-outline' />
-    :::note[Save edits only]
-    Click **Save edits only** if you aren't ready to generate your script. Your configurations are saved on webmonetization.org.
-    :::
 2. Add the script to your site. 
     ```js wrap title="Example script"
     <script id="wmt-banner-init-script"
@@ -50,16 +46,14 @@ All pages that include the banner script are automatically web monetized with yo
         data-tag="version1">
     </script>
     ```
-3. Go to your site and check that the banner appears correctly. If you have the Web Monetization extension installed, you'll need to disable it first.
+3. Go to your site and check that the banner appears correctly. If you have the Web Monetization extension installed, you might need to disable it for the banner to appear.
 
 ## Change an existing banner configuration
 
 1. Enter your wallet address.<br /><img src="/img/docs/pubtools/tools-connect-wallet.png" alt="Blank wallet address field and continue button" style="max-width: 50%" class='img-outline' />
-2. Click **Continue**. If the confirmation prompt appears, you must first confirm your ownership of the wallet address. A list of your saved configurations appears.
-3. Select the configuration you want to change, then click **Override**.<br /><img src="/img/docs/pubtools/tools-change-config.png" alt="Panel listing previously saved configurations with the first configuration selected and the Override button active" style="max-width: 50%" class='img-outline' /> 
-4. Click **X** in the upper-right corner to close the window.
-5. Make your changes, then click **Save edits only**.
-6. Refresh a page on your site that uses the configuration's script to verify your changes are live.
+2. Click **Continue**. If the confirmation prompt appears, you must first confirm your ownership of the wallet address.
+3. Make your changes, then click **Save edits only**. Your [script](#generate-your-script) remains the same. There's no need to update your site's code.
+4. Refresh a page on your site that uses the configuration's script to verify your changes are live.
 
 ## Connect banner to a new wallet address
 
