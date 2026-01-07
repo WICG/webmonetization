@@ -15,13 +15,25 @@ export default defineConfig([
   eslintPluginAstro.configs.recommended,
   globalIgnores(['dist', '.astro', 'node_modules', 'public', '**/*.min.js']),
   {
+    files: ['**/*.{js,mjs,cjs}'],
+    rules: {
+      'no-console': 'error'
+    }
+  },
+  {
+    files: ['**/*.{ts,tsx,mts,cts}'],
     rules: {
       'no-console': 'error',
       '@typescript-eslint/no-unused-vars': [
         'error',
         { argsIgnorePattern: '^_' }
       ],
-      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-explicit-any': 'error'
+    }
+  },
+  {
+    files: ['**/*.astro'],
+    rules: {
       'astro/no-set-text-directive': 'error'
     }
   },
