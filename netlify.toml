@@ -1,0 +1,6 @@
+[build]
+  command = "npm ci --include=optional && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NPM_FLAGS = "--include=optional"
