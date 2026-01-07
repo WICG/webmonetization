@@ -1,0 +1,28 @@
+---
+title: Probabalistic revshare generator
+---
+
+import { LinkButton } from '@astrojs/starlight/components';
+import { LinkOut } from "@interledger/docs-design-system";
+
+Probabilistic revenue sharing (revshare) is a way to share a portion of a web monetized page's earnings between multiple recipients. 
+
+The <LinkOut href="https://webmonetization.org/tools/prob-revshare">probabalistic revshare generator</LinkOut> allows you to define a list of recipient wallet addresses and set their weights. The probability of one recipient's wallet address being chosen over the others each time the page loads is based on weight.
+
+## Create a new revshare configuration
+
+The revshare generator creates a link tag with a URL that's hosted on webmonetization.org. If you'd rather use a script that you host yourself, check out the [revshare tutorial](/tutorials/revenue-sharing).
+
+1. Enter the first two recipients' wallet addresses. Each address is assigned a weight of 1 by default. A Web Monetization link tag is generated automatically.<br /><img src="/img/docs/pubtools/revshare-two.png" alt="Revshare generator with two wallet addresses, each assigned a weight of 1, meaning each should receive 50% of payments" class='img-outline' style="max-width: 90%" />
+2. Click **Add recipient** if you have more wallet addresses to add.
+3. Adjust the weights as needed. The percentage field calculates automatically and reflects the percentage of total revenue a recipient should receive over time. A new Web Monetization link tag is created each time you make a change.<br /><img src="/img/docs/pubtools/revshare-three.png" alt="Revshare generator with three wallet addresses, with weights 2, 1, and 1. The address with 2 will receive 50% of payments while the other addresses will each receive 25%." class='img-outline' style="max-width: 90%" />
+4. When you're finished, copy the link tag and place it on your HTML page.
+
+## Change an existing revshare configuration
+
+1. Click **Import**.<br /><img src="/img/docs/pubtools/revshare-blank.png" alt="Revshare generator with no information filled in and the import button in the bottom right corner" class='img-outline' style="max-width: 90%" />
+2. Enter the Web Monetization link tag that references your revshare configuration.<br /><img src="/img/docs/pubtools/revshare-import.png" alt="Import existing revshare config screen with a test link tag entered and the import revshare button active" style="max-width:50%" class='img-outline' />
+3. Click **Import revshare**, then make your changes. Each change you make will result in a new link tag.<br /><img src="/img/docs/pubtools/revshare-three.png" alt="Revshare generator with three wallet addresses, with weights 2, 1, and 1. The address with 2 will receive 50% of payments while the other addresses will each receive 25%." class='img-outline' style="max-width: 90%" />
+4. When you're finished, copy the new link tag and place it on your HTML page.
+
+<LinkButton href="https://webmonetization.org/tools/prob-revshare" target="_blank" icon="external">Revshare generator</LinkButton>

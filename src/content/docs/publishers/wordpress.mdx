@@ -1,0 +1,139 @@
+---
+title: WordPress plugin
+---
+
+import { LinkOut, LargeImg } from '@interledger/docs-design-system'
+
+The Interledger Foundation's <LinkOut href="https://wordpress.org/plugins/interledger-web-monetization-integration/">Web Monetization Integration plugin</LinkOut> allows you to monetize your WordPress site. All you need is a wallet address to get started.
+
+## Install and activate the plugin
+
+Before you begin, you must have a wallet address from a [Web Monetization-compatible wallet](/wallets). 
+
+Your WordPress instance must also be on:
+
+* WordPress 6.8 or higher
+* PHP 7.4 or higher
+
+Search for the plugin using keyword **Interledger** in the plugin store. After the plugin is installed, click **Activate**. Web Monetization now appears as an option in your admin dashboard's navigation menu. 
+
+You can also download and install the <LinkOut href="https://wordpress.org/plugins/interledger-web-monetization-integration/">plugin's zip file</LinkOut> into your WordPress instance.
+
+## Enable Web Monetization
+
+1. Select Web Monetization from your dashboard's navigation menu.
+2. Select **Enable Web Monetization globally**.
+3. Enter one or more wallet addresses in the provided field. If you enter more than one, each address must be separated by a space. Payments will be split equally between all addresses.<br /><img src='/img/docs/wordpress/enter-global-wa.png' alt='The enter your wallet address field shown under the General tab of the plugin configuration. One address is entered and the verify wallet address button is available.' style='max-width:90%' class='img-outline'/>
+4. Click **Verify Wallet Address**.
+5. If wallet verification fails, check that you entered your address correctly and that your wallet provider supports Web Monetization.
+6. Click **Save Changes** at the bottom of the page.
+
+## Configure the plugin
+
+In addition to web monetizing your entire site, you can monetize parts of your site based on roles, posts, and post types.
+
+### Monetize authors
+
+You can allow users with the Author role to enter their own wallet address in their profile. 
+
+When a web monetized visitor accesses an author's post, the author receives the payment if your [wallet field behavior setting](#set-wallet-field-behavior) allows it and no other address takes a higher priority.
+
+1. Select **Enable Authors**.<br /><img src='/img/docs/wordpress/enable-authors.png' alt='The enable authors option selected with a link to the users page' style='max-width:90%' class='img-outline'/>
+2. Click **Save Changes** at the bottom of the page. Authors can now enter their own wallet address in their profile. As an administrator, you can also add a wallet address to an author's profile.
+
+:::note
+This option also allows users with other roles to add their own wallet address, but their address will be ignored.
+:::
+
+You can also turn off Web Monetization for an author from the Users page and in their profile. Any wallet address already entered into the author's profile will be saved and available if Web Monetization is re-enabled.
+
+<img src='/img/docs/wordpress/disable-user-wm.png' alt='The disable web monetization link shown for a user when hovering over the username on the users page' style='max-height:90px' class='img-outline' />
+
+<img src='/img/docs/wordpress/user-wa.png' alt='Web Monetization settings in a user profile. The option to exclude the user from monetization and a field for the wallet address are shown' style='max-width:100%' class='img-outline' />
+
+### Monetize post types
+
+WordPress offers two post types by default: post and page. You could have additional, custom post types depending on your WordPress setup.
+
+When you monetize a post type, then all posts of that type will have the defined wallet address assigned to them. This address will receive payments as long as your [wallet field behavior setting](#set-wallet-field-behavior) allows it and no other address takes a higher priority.
+
+<img src='/img/docs/wordpress/wm-post-type.png' alt='The set up web monetization per post type table with an option to select post and page and enter a wallet address for each' style='max-width:100%' class='img-outline'/>
+
+### Monetize individual posts
+
+You can monetize individual posts by adding a wallet address to the post itself. 
+
+Both the visual editor and the code editor contain a Page panel. Select the panel and scroll down to the Web Monetization section. From there, you can enter a wallet address or even exclude the post from being monetized.
+
+<img src='/img/docs/wordpress/monetize-single-post1.png' alt='The code editor screen with the web monetization section highlighted. The section contains a field for a wallet address and a checkbox to disable web monetization for the post.' style='max-width:100%' class='img-outline'/>
+
+### Enable country-specific wallet addresses
+
+If you enable country-specific wallet addresses, then you can set a different wallet address to be paid based on your web monetized visitor's country.
+
+To use this option, your WordPress instance must either be:
+
+* Behind Cloudflare
+* Running the third-party <LinkOut href="https://wordpress.org/plugins/geoip-detect/">Geolocation IP Detection plugin</LinkOut>.
+
+Click **Add New Country Wallet**, enter the country code and wallet address, then click **Verify Wallet Address**.
+
+:::note[Country codes]
+You must use the two-character country code defined in the ISO 3166 international standard. A list of codes is provided on the <LinkOut href="https://www.iban.com/country-codes">IBAN website</LinkOut>.
+:::
+
+<img src='/img/docs/wordpress/country-wa-add.png' alt='The option to enable country-specific wallet addresses is selected and the table shows an unverified wallet address assigned to country code GB' style='max-width:100%' class='img-outline' />
+
+Country-specific wallet addresses will only override the wallet addresses set at the site level.
+
+## Add and customize a banner
+
+Let your non-web monetized visitors know how to support you by adding a banner to your site. It appears to visitors who don't have the Web Monetization extension installed or turned on. The banner includes a link for your visitor to download the extension from their browser's store.
+
+To use the banner's default settings, select **Enable the banner**, then click **Save Changes** at the bottom of the page.
+
+<img src='/img/docs/wordpress/enable-banner.png' alt='The option to enable the banner is selected and a link to the banner settings page is available' style='max-width:90%' class='img-outline' />
+
+You can customize the banner from the plugin's **Banner** tab, even if you aren't ready to enable it. Make your changes, then click **Publish Banner Changes**. The banner won't appear until you enable it from the **General** tab.
+
+<img src='/img/docs/wordpress/banner-config.png' alt='The banner settings page shows an example of what the banner will look like and configuration options such as position, font, border style, and fields to edit the title and text' style='max-width:100%' class='img-outline' />
+
+:::note[Tracking]
+The banner's extension download link includes analytics parameters (UTM tags) to track aggregate click sources. No personal data is transmitted.
+:::
+
+## Set wallet field behavior
+
+Since the plugin allows you to enter wallet addresses in multiple places, you must decide which of these addresses should receive Web Monetization payments. 
+
+Remember, you can enter wallet addresses: 
+
+* Globally, in the plugin
+* Per author, in their profile
+* Per post type, in the plugin
+* Per individual post, in each post
+
+You have two options: use *one* wallet field or *all* wallet fields. 
+
+<img src='/img/docs/wordpress/set-wallet-behavior.png' alt='The set wallet behavior section with an option for using one wallet field and an option for using all wallet fields' style='max-width:100%' class='img-outline'/>
+
+### Use one wallet field
+
+With this option, only the wallet address in one field will receive payments. The following order is used to determine the wallet.
+
+1. Individual post/page (highest priority)
+2. Post type
+3. Author
+4. Site
+
+<LargeImg
+  src="/img/docs/wordpress/one-wallet-priorities.png"
+  alt="Flow diagram showing the priority of the paid wallet when the one wallet field is selected"
+  hasBorder={false}
+/>
+
+### Use all wallet fields
+
+With this option, all wallet addresses in all related fields will receive payments. The payments are split equally between all addresses. 
+
+For example, let's say there's one wallet address defined for the site. There's a different address defined for all post types that are pages. A third address is defined in a page itself. All three addresses receive an equal split of the payment when a web monetized visitor accesses the page.

@@ -18,49 +18,49 @@ export default defineConfig({
             defer: true,
             'data-website-id': '3b8cb97a-2a94-43c2-85e7-277c92c9cf48',
             src: 'https://ilf-site-analytics.netlify.app/script.js',
-            'data-domains': 'webmonetization.org'
-          }
-        }
+            'data-domains': 'webmonetization.org',
+          },
+        },
       ],
       customCss: [
         './node_modules/@interledger/docs-design-system/src/styles/teal-theme.css',
-        './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css'
+        './node_modules/@interledger/docs-design-system/src/styles/ilf-docs.css',
       ],
       plugins: [
         starlightLinksValidator({
           errorOnFallbackPages: false,
-          exclude: ['/prob-revshare']
+          exclude: ['/prob-revshare'],
         }),
-        starlightFullViewMode()
+        starlightFullViewMode(),
       ],
       expressiveCode: {
         styleOverrides: {
           borderColor: 'transparent',
-          borderRadius: 'var(--moderate-rounding)'
-        }
+          borderRadius: 'var(--moderate-rounding)',
+        },
       },
       defaultLocale: 'root',
       locales: {
         root: {
           label: 'English',
-          lang: 'en'
-        }
+          lang: 'en',
+        },
       },
       components: {
         Header: './src/components/docs/Header.astro',
-        PageSidebar: './src/components/docs/PageSidebar.astro'
+        PageSidebar: './src/components/docs/PageSidebar.astro',
       },
       social: [
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/WICG/webmonetization'
-        }
+          href: 'https://github.com/WICG/webmonetization',
+        },
       ],
       sidebar: [
         {
           label: 'Overview',
-          link: '/docs/'
+          link: '/docs/',
         },
         {
           label: 'For content consumers',
@@ -68,17 +68,17 @@ export default defineConfig({
           items: [
             {
               label: 'Overview',
-              link: 'supporters/overview'
+              link: 'supporters/overview',
             },
             {
               label: 'Get started with the extension',
-              link: 'supporters/get-started'
+              link: 'supporters/get-started',
             },
             {
               label: 'Learn about sending payments',
-              link: '/supporters/about-sending'
-            }
-          ]
+              link: '/supporters/about-sending',
+            },
+          ],
         },
         {
           label: 'For content owners',
@@ -86,17 +86,43 @@ export default defineConfig({
           items: [
             {
               label: 'Overview',
-              link: '/developers/overview'
+              link: '/publishers/overview',
             },
             {
               label: 'Get started',
-              link: '/developers/get-started'
+              link: '/publishers/get-started',
             },
             {
               label: 'Learn about receiving payments',
-              link: '/developers/about-receiving'
-            }
-          ]
+              link: '/publishers/about-receiving',
+            },
+            {
+              label: 'WordPress plugin',
+              link: '/publishers/wordpress',
+            },
+            {
+              label: 'Publisher tools',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Banner tool',
+                  link: '/publishers/banner-tool'
+                },
+                {
+                  label: 'Widget tool',
+                  link: '/publishers/widget-tool'
+                },
+                {
+                  label: 'Link tag generator',
+                  link: '/publishers/link-tag-tool'
+                },
+                {
+                  label: 'Probabalistic revshare generator',
+                  link: '/publishers/revshare-tool'
+                }, 
+              ],
+            },
+          ],
         },
         {
           label: 'For developers',
@@ -108,17 +134,17 @@ export default defineConfig({
               items: [
                 {
                   label: 'Webpage (HTML)',
-                  link: '/developers/link-element-webpage'
+                  link: '/developers/link-element-webpage',
                 },
                 {
                   label: 'Feed (RSS, Atom, JSON Feed)',
-                  link: '/developers/rss-atom-jsonfeed'
+                  link: '/developers/rss-atom-jsonfeed',
                 },
                 {
                   label: 'Social (Activity Streams)',
-                  link: '/developers/activity-streams'
-                }
-              ]
+                  link: '/developers/activity-streams',
+                },
+              ],
             },
             {
               label: 'Guides',
@@ -130,35 +156,35 @@ export default defineConfig({
                   items: [
                     {
                       label: 'Sign up for a test wallet account',
-                      link: '/guides/test-wallet-sign-up'
+                      link: '/guides/test-wallet-sign-up',
                     },
                     {
                       label: 'Send test payments',
-                      link: '/guides/send-test-payments'
+                      link: '/guides/send-test-payments',
                     },
                     {
                       label: 'Receive test payments',
-                      link: '/guides/receive-test-payments'
-                    }
-                  ]
+                      link: '/guides/receive-test-payments',
+                    },
+                  ],
                 },
                 {
                   label: 'Show content to paying visitors',
-                  link: '/tutorials/show-content'
+                  link: '/tutorials/show-content',
                 },
                 {
                   label: 'Remove content for paying visitors',
-                  link: '/tutorials/remove-content'
+                  link: '/tutorials/remove-content',
                 },
                 {
                   label: "Show visitors how much they've contributed",
-                  link: '/tutorials/contribution-counter'
+                  link: '/tutorials/contribution-counter',
                 },
                 {
                   label: 'Set up probabilistic revenue sharing',
-                  link: '/tutorials/revenue-sharing'
-                }
-              ]
+                  link: '/tutorials/revenue-sharing',
+                },
+              ],
             },
             {
               label: 'API docs',
@@ -170,9 +196,9 @@ export default defineConfig({
                   items: [
                     {
                       label: 'Monetization <link> element',
-                      link: '/developers/link-element'
-                    }
-                  ]
+                      link: '/developers/link-element',
+                    },
+                  ],
                 },
                 {
                   label: 'Web Monetization API',
@@ -180,13 +206,13 @@ export default defineConfig({
                   items: [
                     {
                       label: 'Monetization interfaces',
-                      link: '/developers/interfaces'
+                      link: '/developers/interfaces',
                     },
                     {
                       label: 'Monetization events',
-                      link: '/developers/events'
-                    }
-                  ]
+                      link: '/developers/events',
+                    },
+                  ],
                 },
                 {
                   label: 'HTTP Headers',
@@ -194,23 +220,19 @@ export default defineConfig({
                   items: [
                     {
                       label: 'Content Security Policy (CSP)',
-                      link: '/developers/csp'
+                      link: '/developers/csp',
                     },
                     {
                       label: 'Permissions Policy',
-                      link: '/developers/permissions-policy'
-                    }
-                  ]
-                }
-              ]
+                      link: '/developers/permissions-policy',
+                    },
+                  ],
+                },
+              ],
             },
             {
               label: 'Libraries',
-              link: '/developers/libraries'
-            },
-            {
-              label: 'Publisher tools',
-              link: '/developers/tools'
+              link: '/developers/libraries',
             },
             {
               label: 'Web Monetization Specification',
@@ -218,14 +240,14 @@ export default defineConfig({
               attrs: {
                 target: '_blank',
                 rel: 'noopener noreferrer',
-                'data-icon': 'external'
-              }
-            }
-          ]
+                'data-icon': 'external',
+              },
+            },
+          ],
         },
         {
           label: 'Compatible digital wallets',
-          link: '/wallets'
+          link: '/wallets',
         },
         {
           label: 'Resources',
@@ -233,7 +255,7 @@ export default defineConfig({
           items: [
             {
               label: 'Glossary',
-              link: '/resources/glossary'
+              link: '/resources/glossary',
             },
             {
               label: 'Publisher tools',
@@ -241,17 +263,17 @@ export default defineConfig({
               attrs: {
                 target: '_blank',
                 rel: 'noopener noreferrer',
-                'data-icon': 'external'
-              }
+                'data-icon': 'external',
+              },
             },
             {
               label: 'Get involved',
-              link: '/resources/get-involved'
-            }
-          ]
-        }
-      ]
-    })
+              link: '/resources/get-involved',
+            },
+          ],
+        },
+      ],
+    }),
   ],
   redirects: {
     '/link-tag': '/tools/link-tag',
@@ -259,7 +281,9 @@ export default defineConfig({
     '/docs/api': '/developers/interfaces',
     '/docs/explainer': '/docs',
     '/docs/intro/sending-payments': '/supporters/about-sending',
-    '/docs/intro/receiving-payments': '/developers/about-receiving',
+    '/developers/about-receiving': '/publishers/about-receiving',
+    '/developers/tools': '/publishers/banner-tool',
+    '/docs/intro/receiving-payments': '/publishers/about-receiving',
     '/docs/intro/web-monetization-flow': '/docs',
     '/docs/intro/web-monetization-extension': '/supporters/get-started',
     '/docs/references/html': '/developers/link-element',
@@ -277,7 +301,8 @@ export default defineConfig({
     '/docs/references/permissions-policy-monetization':
       '/developers/permissions-policy',
     '/docs/references/deprecations': '/docs',
-    '/docs/guides/monetize-page': '/developers/get-started',
+    '/developers/get-started': '/publishers/get-started',
+    '/docs/guides/monetize-page': '/publishers/get-started',
     '/docs/guides/remove-ads': '/tutorials/remove-content',
     '/docs/guides/provide-exclusive-content': '/tutorials/show-content',
     '/docs/guides/set-up-probabilistic-revenue-sharing':
@@ -291,6 +316,6 @@ export default defineConfig({
     '/install': '/supporters'
   },
   server: {
-    port: 1100
-  }
+    port: 1100,
+  },
 })
