@@ -4,7 +4,7 @@ export interface CTA {
   text: string
   href: string
   event: string
-  icon?: ((_props: astroHTML.JSX.SVGAttributes) => unknown) & ImageMetadata
+  icon?: ((_props: astroHTML.JSX.SVGAttributes) => any) & ImageMetadata
 }
 
 export interface UpdateContent {
