@@ -12,5 +12,5 @@ src/pages/specification
 
 # MDX files with components that require specific indentation
 # Prettier collapses nested list items with JSX components onto single lines
-src/content/docs/developers/about-receiving.mdx
-src/content/docs/publishers/overview.mdx
+# src/content/docs/developers/about-receiving.mdx
+# src/content/docs/publishers/overview.mdx
