@@ -8,10 +8,9 @@ import eslintPluginAstro from 'eslint-plugin-astro'
 export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts}'],
-    plugins: { js },
-    extends: ['js/recommended'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } }
   },
+  js.configs.recommended,
   tseslint.configs.recommended,
   eslintPluginAstro.configs.recommended,
   globalIgnores(['dist', '.astro', 'node_modules', 'public', '**/*.min.js']),
