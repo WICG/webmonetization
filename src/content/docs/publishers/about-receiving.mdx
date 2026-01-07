@@ -76,44 +76,75 @@ The examples below are simplified representations of the Open Payments API calls
 :::
 
 <Steps>
-1. The Web Monetization agent locates your [monetization link](/developers/link-element) and extracts your wallet address (the `href` value).
-    <Disclosure toggleText="Example monetization link" client:load>
-    ```html
-    <link rel="monetization" href="https://wallet.example/alice">
-    ```
-    </Disclosure>
-2. The agent issues a <LinkOut href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address/"><Badge text="GET" variant="note" size="small" /></LinkOut> request to the URL.
-    <Disclosure toggleText="Example request" client:load>
-    ```http
-    GET /alice HTTP/1.1
-    Accept: application/json
-    Host: wallet.example
-    ```
-    </Disclosure>
-3. The response from your wallet provider to the agent contains information such as the currency your account is denominated in and the URLs of your wallet provider's authorization and resource servers.
-    <Disclosure toggleText="Example response" client:load>
-    ```http
-    HTTP/1.1 200 Success
-    Content-Type: application/json
+  <ol>
+    <li>
+      The Web Monetization agent locates your [monetization link](/developers/link-element) and extracts your wallet address (the `href` value).
+      <Disclosure toggleText="Example monetization link" client:load>
+        ```html
+        <link rel="monetization" href="https://wallet.example/alice">
+        ```
+      </Disclosure>
+    </li>
+    <li>
+      The agent issues a <LinkOut href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address/"><Badge text="GET" variant="note" size="small" /></LinkOut> request to the URL.
+      <Disclosure toggleText="Example request" client:load>
+        ```http
+        GET /alice HTTP/1.1
+        Accept: application/json
+        Host: wallet.example
+        ```
+      </Disclosure>
+    </li>
+    <li>
+      The response from your wallet provider to the agent contains information such as the currency your account is denominated in and the URLs of your wallet provider's authorization and resource servers.
+      <Disclosure toggleText="Example response" client:load>
+        ```http
+        HTTP/1.1 200 Success
+        Content-Type: application/json
 
-    {
-        "assetCode": "USD",
-        "assetScale": 2,
-        "authServer": "https://wallet.example/auth",
-        "resourceServer": "https://wallet.example/resource"
-    }
-    ```
-    </Disclosure>
-
-4.  The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `authServer` URL. The request contains the access permissions the agent is requesting.
-    <Disclosure toggleText="Example request" client:load>
-    ```http
-    POST /auth/ HTTP/1.1
-    Accept: application/json
-    Content-Type: application/json
-    Host: wallet.example
-    {
-        "access_token": {
+        {
+            "assetCode": "USD",
+            "assetScale": 2,
+            "authServer": "https://wallet.example/auth",
+            "resourceServer": "https://wallet.example/resource"
+        }
+        ```
+      </Disclosure>
+    </li>
+    <li>
+      The agent issues a <LinkOut href="https://openpayments.dev/apis/auth-server/operations/post-request/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `authServer` URL. The request contains the access permissions the agent is requesting.
+      <Disclosure toggleText="Example request" client:load>
+        ```http
+        POST /auth/ HTTP/1.1
+        Accept: application/json
+        Content-Type: application/json
+        Host: wallet.example
+        {
+            "access_token": {
+                "access": [
+                    {
+                        "type": "incoming-payment",
+                        "actions": ["create", "read"],
+                        "identifier": "https://wallet.example/alice"
+                    }
+                ]
+            },
+            "client": "https://cloudninewallet.example/visitor"
+        }
+        ```
+        :::note
+        The `client` in the request above is your visitor's wallet address. This URL is only used by the agent and the wallets, and isn't available to the website.
+        :::
+      </Disclosure>
+    </li>
+    <li>
+      The response to the agent contains an access token that the agent needs to make its next request.
+      <Disclosure toggleText="Example response" client:load>
+        ```http wrap
+        {
+            "access_token": {
+            "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
+            "manage": "https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
             "access": [
                 {
                     "type": "incoming-payment",
@@ -121,98 +152,86 @@ The examples below are simplified representations of the Open Payments API calls
                     "identifier": "https://wallet.example/alice"
                 }
             ]
-        },
-        "client": "https://cloudninewallet.example/visitor"
-    }
-    ```
-
-    :::note
-    The `client` in the request above is your visitor's wallet address. This URL is only used by the agent and the wallets, and isn't available to the website.
-    :::
-    </Disclosure>
-5.  The response to the agent contains an access token that the agent needs to make its next request.
-    <Disclosure toggleText="Example response" client:load>
-    ```http wrap
-    {
-        "access_token": {
-        "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
-        "manage": "https://wallet.example/auth/token/dd17a202-9982-4ed9-ae31-564947fb6379",
-        "access": [
-            {
-                "type": "incoming-payment",
-                "actions": ["create", "read"],
-                "identifier": "https://wallet.example/alice"
             }
-        ]
         }
-    }
-    ```
-    </Disclosure>
-6.  The agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `resourceServer` URL. The purpose of this call is to request the information needed by your visitor's wallet provider so their provider correctly addresses the payment to you.
-    <Disclosure toggleText="Example request" client:load>
-    ```http wrap
-    POST /alice/incoming-payments HTTP/1.1
-    Accept: application/json
-    Content-Type: application/json
-    Authorization: OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0
-    Host: wallet.example
-    ```
-    </Disclosure>
-7.  The response to the agent contains unique payment details that will be used to address the payment to your payment account.
-    <Disclosure toggleText="Example response" client:load>
-    ```http wrap
-    {
-        "id": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+        ```
+      </Disclosure>
+    </li>
+    <li>
+      The agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-incoming-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your wallet provider's `resourceServer` URL. The purpose of this call is to request the information needed by your visitor's wallet provider so their provider correctly addresses the payment to you.
+      <Disclosure toggleText="Example request" client:load>
+        ```http wrap
+        POST /alice/incoming-payments HTTP/1.1
+        Accept: application/json
+        Content-Type: application/json
+        Authorization: OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0
+        Host: wallet.example
+        ```
+      </Disclosure>
+    </li>
+    <li>
+      The response to the agent contains unique payment details that will be used to address the payment to your payment account.
+      <Disclosure toggleText="Example response" client:load>
+        ```http wrap
+        {
+            "id": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+            "walletAddress": "https://wallet.example/alice",
+            "receivedAmount": {
+                "value": "0",
+                "assetCode": "USD",
+                "assetScale": 2
+            },
+            "completed": false,
+            "createdAt": "2022-03-12T23:20:50.52Z"
+        }
+        ```
+      </Disclosure>
+    </li>
+    <li>
+      At this point, the agent has finished communicating with your wallet provider. Now, the agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your visitor's wallet provider. The purpose of this call is to give your visitor's wallet provider what it needs to send the payment.
+      <Disclosure toggleText="Example request" client:load>
+        ```http wrap
+        POST /visitor/outgoing-payment HTTP/1.1
+        Accept: application/json
+        Content-Type: application/json
+        Authorization: {{ GNAP outgoingPaymentGrant.accessToken.value }}
+        Host: cloudninewallet.example
+        {
         "walletAddress": "https://wallet.example/alice",
-        "receivedAmount": {
-            "value": "0",
-            "assetCode": "USD",
-            "assetScale": 2
-        },
-        "completed": false,
-        "createdAt": "2022-03-12T23:20:50.52Z"
-    }
-    ```
-    </Disclosure>
-8.  At this point, the agent has finished communicating with your wallet provider. Now, the agent issues a <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/"><Badge text="POST" variant="success" size="small" /></LinkOut> request to your visitor's wallet provider. The purpose of this call is to give your visitor's wallet provider what it needs to send the payment.
-    <Disclosure toggleText="Example request" client:load>
-    ```http wrap
-    POST /visitor/outgoing-payment HTTP/1.1
-    Accept: application/json
-    Content-Type: application/json
-    Authorization: {{ GNAP outgoingPaymentGrant.accessToken.value }}
-    Host: cloudninewallet.example
-    {
-    "walletAddress": "https://wallet.example/alice",
-    "quoteId": "https://wallet.example/quotes/ab03296b-0c8b-4776-b94e-7ee27d868d4d",
-    }
-    ```
-    </Disclosure>
-9.  The <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/#responses">response</LinkOut> from your visitor's wallet provider indicates whether the outgoing payment was created on their side. A payment could fail if the visitor has insufficient funds, for example. The following example indicates the outgoing payment was successfully created.
-    <Disclosure toggleText="Example response" client:load>
-    ```http wrap
-    {
-        "id": "https://cloudninewallet.example/visitor/outgoing-payments/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf",
-        "walletAddress": "https://cloudninewallet.example/visitor/",
-        "receiver": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
-        "receiveAmount": {
-            "value": "2",
-            "assetCode": "USD",
-            "assetScale": 2
-        },
-        "debitAmount": {
-            "value": "2",
-            "assetCode": "USD",
-            "assetScale": 2
-        },
-        "sentAmount": {
-            "value": "0",
-            "assetCode": "USD",
-            "assetScale": 2
-        },
-        "createdAt": "2022-03-12T23:20:55.52Z",
-        "updatedAt": "2022-03-12T23:20:55.52Z"
-    }
-    ```
-    </Disclosure>
+        "quoteId": "https://wallet.example/quotes/ab03296b-0c8b-4776-b94e-7ee27d868d4d",
+        }
+        ```
+      </Disclosure>
+    </li>
+    <li>
+      The <LinkOut href="https://openpayments.dev/apis/resource-server/operations/create-outgoing-payment/#responses">response</LinkOut> from your visitor's wallet provider indicates whether the outgoing payment was created on their side. A payment could fail if the visitor has insufficient funds, for example. The following example indicates the outgoing payment was successfully created.
+      <Disclosure toggleText="Example response" client:load>
+        ```http wrap
+        {
+            "id": "https://cloudninewallet.example/visitor/outgoing-payments/8c68d3cc-0a0f-4216-98b4-4fa44a6c88cf",
+            "walletAddress": "https://cloudninewallet.example/visitor/",
+            "receiver": "https://wallet.example/alice/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+            "receiveAmount": {
+                "value": "2",
+                "assetCode": "USD",
+                "assetScale": 2
+            },
+            "debitAmount": {
+                "value": "2",
+                "assetCode": "USD",
+                "assetScale": 2
+            },
+            "sentAmount": {
+                "value": "0",
+                "assetCode": "USD",
+                "assetScale": 2
+            },
+            "createdAt": "2022-03-12T23:20:55.52Z",
+            "updatedAt": "2022-03-12T23:20:55.52Z"
+        }
+        ```
+      </Disclosure>
+    </li>
+
+  </ol>
 </Steps>
