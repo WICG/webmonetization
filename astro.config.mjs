@@ -17,7 +17,7 @@ export default defineConfig({
           attrs: {
             defer: true,
             'data-website-id': '3b8cb97a-2a94-43c2-85e7-277c92c9cf48',
-            src: 'https://ilf-site-analytics.netlify.app/script.js',
+            src: 'https://uwa.interledger.org/script.js',
             'data-domains': 'webmonetization.org',
           },
         },
