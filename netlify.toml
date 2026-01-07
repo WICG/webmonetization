@@ -1,6 +1,6 @@
 [build]
-  command = "npm ci --include=optional && npm run build"
+  command = "rm -rf node_modules package-lock.json && npm install && npm run build"
   publish = "dist"
 
 [build.environment]
-  NPM_FLAGS = "--include=optional"
+  NODE_VERSION = "20"
