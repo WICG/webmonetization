@@ -12,14 +12,14 @@ const lang = getLangFromUrl(Astro.url)
 const toolsUrl = lang === 'en' ? '/developers' : `/${lang}/developers`
 ---
 
-<div class='header'>
+<div class="header">
   <a
-    class='btn ghost'
-    id='back-btn'
+    class="btn ghost"
+    id="back-btn"
     href={toolsUrl}
     data-umami-event={`${pageTitle} page link - Tools`}
   >
-    <Arrow class='arrow' />
+    <Arrow class="arrow" />
     {backButtonText}
   </a>
   <h1>{headingText}</h1>

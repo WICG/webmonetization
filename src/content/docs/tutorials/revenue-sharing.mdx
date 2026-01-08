@@ -8,7 +8,7 @@ import Disclaimer from '/src/partials/glitch.mdx'
 
 Probabilistic revenue sharing is a way to share a portion of a web monetized page’s earnings between multiple recipients. In Web Monetization, this works by having a random wallet address inserted into your page each time a web monetized visitor loads the page. You have several possible recipients, with their chance of being chosen based on their assigned weight. The visitor pays to the chosen recipient until the page is reloaded or closed.
 
-In this tutorial, you'll define a list of recipients and their weights and create a script that  chooses a recipient to pay, based on their weight, each time a web monetized visitor loads your page.
+In this tutorial, you'll define a list of recipients and their weights and create a script that chooses a recipient to pay, based on their weight, each time a web monetized visitor loads your page.
 
 ### Before you begin
 
@@ -45,13 +45,13 @@ For simplicity, the total amount of the assigned weights equal 100.
       'https://wallet.example.com/alice': 50,
       'https://wallet.example.com/bob': 40,
       'https://wallet.example.com/connie': 9.5,
-      'https://wallet.example.com/dave': 0.5,
+      'https://wallet.example.com/dave': 0.5
     }
 
     function pickPointer() {
       const sum = Object.values(pointers).reduce(
         (sum, weight) => sum + weight,
-        0,
+        0
       )
       let choice = Math.random() * sum
 
@@ -81,7 +81,7 @@ This example shows how the random choices will approach the correct percentages 
 The example doesn’t require you to have Web Monetization enabled in your browser and no real payments are occurring.
 
 <iframe
-  src='/interactive-examples/wm2-probablistic-revenue-share/index.html'
-  title='wm2-probablistic-revenue-share'
-  style='height:100%;width:100%;border:0;min-height:420px'
+  src="/interactive-examples/wm2-probablistic-revenue-share/index.html"
+  title="wm2-probablistic-revenue-share"
+  style="height:100%;width:100%;border:0;min-height:420px"
 ></iframe>

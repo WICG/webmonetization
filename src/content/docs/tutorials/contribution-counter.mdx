@@ -33,25 +33,25 @@ Use the `monetization` event to show a web monetized visitor how much they've se
   <link rel="monetization" href="https://wallet.example.com/alice" />
 
   <script>
-    let total = 0;
+    let total = 0
 
     if (window.MonetizationEvent) {
-      const link = document.querySelector('link[rel="monetization"]');
-      const contribution = document.getElementById('contribution');
+      const link = document.querySelector('link[rel="monetization"]')
+      const contribution = document.getElementById('contribution')
 
       link.addEventListener('monetization', (event) => {
         const {
-          amountSent: { value, currency },
-        } = event;
-        console.log(`Browser sent ${currency} ${value}.`);
+          amountSent: { value, currency }
+        } = event
+        console.log(`Browser sent ${currency} ${value}.`)
 
-        total += Number(value);
+        total += Number(value)
 
         contribution.innerText = new Intl.NumberFormat('en-US', {
           style: 'currency',
-          currency,
-        }).format(total);
-      });
+          currency
+        }).format(total)
+      })
     }
   </script>
 </head>
@@ -93,8 +93,8 @@ Lastly, we tell the text on your page to update with the new total. The total sh
 ```javascript
 contribution.innerText = new Intl.NumberFormat('en-US', {
   style: 'currency',
-  currency,
-}).format(total);
+  currency
+}).format(total)
 ```
 
 The formatted version of the amount gets written to the `contribution` span on the page.
@@ -115,7 +115,7 @@ This example simulates showing a visitor how much they've sent you based off how
 <Disclaimer />
 
 <iframe
-  src='/interactive-examples/wm2-count-revenue/index.html'
-  title='wm2-count-revenue'
-  style='height:100%;width:100%;border:0;min-height:420px'
+  src="/interactive-examples/wm2-count-revenue/index.html"
+  title="wm2-count-revenue"
+  style="height:100%;width:100%;border:0;min-height:420px"
 ></iframe>

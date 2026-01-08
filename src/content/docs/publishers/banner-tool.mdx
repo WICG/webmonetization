@@ -2,16 +2,21 @@
 title: Banner tool
 ---
 
-import { LinkButton } from '@astrojs/starlight/components';
-import { LinkOut } from "@interledger/docs-design-system";
+import { LinkButton } from '@astrojs/starlight/components'
+import { LinkOut } from '@interledger/docs-design-system'
 import Connect from '/src/partials/tools-connect-wallet.mdx'
 import Change from '/src/partials/tools-change-wallet.mdx'
 
-<LinkOut href="https://webmonetization.org/tools/banner">Create a banner</LinkOut> that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner includes a link to download the extension from your visitor's browser store. 
+<LinkOut href="https://webmonetization.org/tools/banner">
+  Create a banner
+</LinkOut>
+that appears when your visitors don't have the Web Monetization extension or
+have the extension turned off. The banner includes a link to download the
+extension from your visitor's browser store.
 
 All pages that include the banner script are automatically web monetized with your wallet address. This means you can exclude the [monetization link tag](/developers/link-element) from your site's code unless you want your pages monetized with additional wallet addresses.
 
-## Create a new banner 
+## Create a new banner
 
 ### Connect your wallet
 
@@ -20,7 +25,7 @@ All pages that include the banner script are automatically web monetized with yo
 ### Change the banner's contents
 
 1. Optionally change the label of a configuration by selecting the pencil icon and typing over the default.<br /><img src="/img/docs/pubtools/tools-preset-labels.png" alt="Screen with three tabs, all with default labels, and a pencil icon appearing next to the first label" style="max-width: 60%" class='img-outline' />
-2. Expand the *Content* drop-down menu. Enter a title for the banner or choose from the suggested options.<br /><img src="/img/docs/pubtools/banner-title.png" alt="Panel showing suggested titles and a field to enter a custom title" style="max-width: 60%" class='img-outline' />
+2. Expand the _Content_ drop-down menu. Enter a title for the banner or choose from the suggested options.<br /><img src="/img/docs/pubtools/banner-title.png" alt="Panel showing suggested titles and a field to enter a custom title" style="max-width: 60%" class='img-outline' />
 3. Enter the message to show to your visitors or use the default text. We suggest changing the message so that it's tailored specifically to your audience.<br /><img src="/img/docs/pubtools/banner-message.png" alt="Panel with a checkbox to mark the message as visible and a blank field to enter a custom message" style="max-width: 60%" class='img-outline' />
 4. Review your changes in the preview panel.<br /><img src="/img/docs/pubtools/banner-content-preview.png" alt="Preview panel showing how the banner will appear with a custom title and message" style="max-width: 60%" class='img-outline' />
 5. Click **Done** to collapse the Content section.
@@ -37,15 +42,16 @@ All pages that include the banner script are automatically web monetized with yo
 ### Generate your script
 
 1. Click **Save and generate script**.<br /><img src="/img/docs/pubtools/tools-save-buttons.png" alt="The save edits only and the save and generate script buttons side by side" style="max-width: 45%" class='img-outline' />
-2. Add the script to your site. 
-    ```js wrap title="Example script"
-    <script id="wmt-banner-init-script"
-        type="module"
-        src="https://tools-cdn.webmonetization.org/banner.js"
-        data-wallet-address="https://sandbox.ilp.link/rabeb"
-        data-tag="version1">
-    </script>
-    ```
+2. Add the script to your site.
+   ```js wrap title="Example script"
+   <script
+     id="wmt-banner-init-script"
+     type="module"
+     src="https://tools-cdn.webmonetization.org/banner.js"
+     data-wallet-address="https://sandbox.ilp.link/rabeb"
+     data-tag="version1"
+   ></script>
+   ```
 3. Go to your site and check that the banner appears correctly. If you have the Web Monetization extension installed, you might need to disable it for the banner to appear.
 
 ## Change an existing banner configuration
@@ -59,6 +65,12 @@ All pages that include the banner script are automatically web monetized with yo
 
 <Change />
 
-All pages that include the script are now web monetized with the new wallet address. 
+All pages that include the script are now web monetized with the new wallet address.
 
-<LinkButton href="https://webmonetization.org/tools/banner" target="_blank" icon="external">Banner tool</LinkButton>
+<LinkButton
+  href="https://webmonetization.org/tools/banner"
+  target="_blank"
+  icon="external"
+>
+  Banner tool
+</LinkButton>

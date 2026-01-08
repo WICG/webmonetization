@@ -15,33 +15,33 @@ const t = useTranslations(lang)
 const { updates, heading } = Astro.props
 ---
 
-<section class='section'>
-  <div class='contentWrapper'>
-    <h2 class='updates-heading' id='updates-heading'>{heading}</h2>
+<section class="section">
+  <div class="contentWrapper">
+    <h2 class="updates-heading" id="updates-heading">{heading}</h2>
     <div
-      class='updates-carousel'
-      id='updates-carousel'
-      role='region'
-      aria-roledescription='carousel'
-      aria-labelledby='updates-heading'
+      class="updates-carousel"
+      id="updates-carousel"
+      role="region"
+      aria-roledescription="carousel"
+      aria-labelledby="updates-heading"
     >
       <button
-        class='carousel-button btn flexible'
-        id='prev-button'
+        class="carousel-button btn flexible"
+        id="prev-button"
         aria-label={t('aria.nav.back')}
-        aria-controls='updates-list'
+        aria-controls="updates-list"
       >
-        <ChevronArrow class='button-arrow' id='prev-button-arrow' />
+        <ChevronArrow class="button-arrow" id="prev-button-arrow" />
       </button>
-      <div class='updates-list' id='updates-list' aria-live='polite'>
+      <div class="updates-list" id="updates-list" aria-live="polite">
         {
           updates.map((update: UpdateContent, i: number) => (
-            <div class='update-slide'>
+            <div class="update-slide">
               <UpdateCard
                 blog={update}
-                ctaButtonClass='secondary'
-                h3Class='update-title'
-                imgClass=''
+                ctaButtonClass="secondary"
+                h3Class="update-title"
+                imgClass=""
                 index={i}
               />
             </div>
@@ -49,25 +49,25 @@ const { updates, heading } = Astro.props
         }
       </div>
       <button
-        class='carousel-button btn flexible'
-        id='next-button'
+        class="carousel-button btn flexible"
+        id="next-button"
         aria-label={t('aria.nav.next')}
-        aria-controls='updates-list'
+        aria-controls="updates-list"
       >
-        <ChevronArrow class='button-arrow' id='next-button-arrow' />
+        <ChevronArrow class="button-arrow" id="next-button-arrow" />
       </button>
     </div>
     <div
-      class='updates-dots'
-      id='updates-dots'
-      role='tablist'
-      aria-label='Carousel controls'
+      class="updates-dots"
+      id="updates-dots"
+      role="tablist"
+      aria-label="Carousel controls"
     >
       {
         updates.map((_: UpdateContent, i: number) => (
           <button
             class:list={['dot', i === 0 && 'active']}
-            role='tab'
+            role="tab"
             aria-labelledby={`carousel-heading-${i}`}
             aria-controls={`carousel-item-${i}`}
           />
@@ -246,7 +246,7 @@ const { updates, heading } = Astro.props
       updates[index].scrollIntoView({
         behavior: preferedScrollBehaviour,
         inline: 'start',
-        block: 'nearest',
+        block: 'nearest'
       })
     }
 
@@ -276,7 +276,7 @@ const { updates, heading } = Astro.props
 
       updatesList.scrollTo({
         left: currentIndex * width,
-        behavior: 'auto',
+        behavior: 'auto'
       })
     })
 
