@@ -35,7 +35,6 @@ const { blog, ctaButtonClass, h3Class, imgClass, index } = Astro.props
             href={blog.titleLink}
             target='_blank'
             rel='noreferrer noopener'
-            data-umami-event={blog.titleEvent}
           >
             {blog.title}
             <ExternalLink class='external' />
@@ -67,7 +66,6 @@ const { blog, ctaButtonClass, h3Class, imgClass, index } = Astro.props
     <a
       href={blog.cta.href}
       class={`btn ${ctaButtonClass} flexible carousel-cta`}
-      data-umami-event={blog.cta.event}
       target='_blank'
       rel='noreferrer noopener'
     >

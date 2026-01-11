@@ -47,21 +47,18 @@ export const ui = {
     'footer.copyright.html': `
       the Contributors to the Web Monetization Specification, published by the
       <a href="https://www.w3.org/community/wicg/"
-        data-umami-event="Footer - Web Platform Incubator Community Group"
         rel="noopener noreferrer"
         target="_blank">
         Web Platform Incubator Community Group
       </a>
       under the
       <a href="https://www.w3.org/community/about/process/cla/"
-        data-umami-event="Footer - W3C Community CLA"
         rel="noopener noreferrer"
         target="_blank">
         W3C Community Contributor License Agreement (CLA)
       </a>.
       A human-readable
       <a href="https://www.w3.org/community/about/process/cla-deed/"
-        data-umami-event="Footer - Summary CLA"
         rel="noopener noreferrer"
         target="_blank">
         summary
