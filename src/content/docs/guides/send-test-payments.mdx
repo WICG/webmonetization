@@ -2,7 +2,7 @@
 title: Send test payments
 ---
 
-import { Steps, Icon } from '@astrojs/starlight/components'
+import { Icon } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 
 Use Interledger Foundation's Web Monetization browser extension to send payments to a web monetized site without using real money.
@@ -13,21 +13,20 @@ You must have a [funded test wallet account](/guides/test-wallet-sign-up) on Int
 
 ## Install the extension
 
-{/* prettier-ignore */}
-<Steps>
-1. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>.
-2. Download and install Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension).
-3. Enter the payment pointer associated with your test wallet. For example, `$ilp.interledger-test.dev/mytestwallet`. Then, enter a budget amount and click **Connect**.
-4. Click **Agree** to allow the extension to connect to your wallet.
-5. Click **Accept** on the Interledger request screen.
-</Steps>
-
-<img
-  src="/img/docs/extension/connection-setup.png"
-  alt="Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button"
-  style="max-width:300px"
-  class="img-outline"
-/>
+<ol>
+  <li>Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>.</li>
+  <li>Download and install Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension).</li>
+  <li>Enter the payment pointer associated with your test wallet. For example, `$ilp.interledger-test.dev/mytestwallet`. Then, enter a budget amount and click **Connect**.
+    <img
+      src="/img/docs/extension/connection-setup.png"
+      alt="Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button"
+      style="max-width:300px"
+      class="img-outline"
+    />
+  </li>
+  <li>Click **Agree** to allow the extension to connect to your wallet.</li>
+  <li>Click **Accept** on the Interledger request screen.</li>
+</ol>
 
 ## Configure continuous payments (optional)
 
@@ -35,11 +34,10 @@ By default, the extension sends continuous payments at a rate of $0.60 <abbr tit
 
 To change the rate of pay:
 
-{/* prettier-ignore */}
-<Steps>
-1. Click the **Settings** icon in the upper-right of the extension.
-2. Select the *Rate* tab, then enter the amount to send, per hour, to web monetized sites. Your changes are automatically saved.
-</Steps>
+<ol>
+  <li>Click the **Settings** icon in the upper-right of the extension.</li>
+  <li>Select the *Rate* tab, then enter the amount to send, per hour, to web monetized sites. Your changes are automatically saved.</li>
+</ol>
 
 <img
   src="/img/docs/extension/rate-tab.png"
@@ -67,14 +65,13 @@ If your extension is using <abbr title="US dollars">USD</abbr> with the default 
 
 ## Send a one-time payment
 
-{/* prettier-ignore */}
-<Steps>
-1. Visit <LinkOut href="https://sidvishnoi.com/test/wm/" withIcon={false}>https://sidvishnoi.com/test/wm/</LinkOut>.
-2. Check that the extension shows a green circle. If not, try refreshing the page.
-3. Open the extension and enter an amount to send.
-4. Click **Send now**. Your payment will appear immediately on the test site, within the *Monetization events* section.
-5. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut> and select **Transactions** to see the payment you just sent.
-</Steps>
+<ol>
+  <li>Visit <LinkOut href="https://sidvishnoi.com/test/wm/" withIcon={false}>https://sidvishnoi.com/test/wm/</LinkOut>.</li>
+  <li>Check that the extension shows a green circle. If not, try refreshing the page.</li>
+  <li>Open the extension and enter an amount to send.</li>
+  <li>Click **Send now**. Your payment will appear immediately on the test site, within the *Monetization events* section.</li>
+  <li>Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut> and select **Transactions** to see the payment you just sent.</li>
+</ol>
 
 <img
   src="/img/docs/extension/enabled-monetized.png"
