@@ -27,6 +27,10 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --include=optional
+      - name: Install Rollup native binary
+        run: |
+          ROLLUP_VERSION=$(node -p "require('./package-lock.json').packages['node_modules/rollup'].optionalDependencies['@rollup/rollup-linux-x64-gnu']")
+          npm install --no-save "@rollup/rollup-linux-x64-gnu@${ROLLUP_VERSION}"
       - name: Test build website
         run: npm run build
 
