@@ -2,7 +2,7 @@
 title: Send test payments
 ---
 
-import { Icon } from '@astrojs/starlight/components'
+import { Steps, Icon } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 
 Use Interledger Foundation's Web Monetization browser extension to send payments to a web monetized site without using real money.
@@ -13,20 +13,24 @@ You must have a [funded test wallet account](/guides/test-wallet-sign-up) on Int
 
 ## Install the extension
 
-<ol>
-  <li>Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>.</li>
-  <li>Download and install Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension).</li>
-  <li>Enter the payment pointer associated with your test wallet. For example, `$ilp.interledger-test.dev/mytestwallet`. Then, enter a budget amount and click **Connect**.
-    <img
-      src="/img/docs/extension/connection-setup.png"
-      alt="Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button"
-      style="max-width:300px"
-      class="img-outline"
-    />
-  </li>
-  <li>Click **Agree** to allow the extension to connect to your wallet.</li>
-  <li>Click **Accept** on the Interledger request screen.</li>
-</ol>
+{/* prettier-ignore */}
+<Steps>
+  <ol>
+    <li>Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>.</li>
+    <li>Download and install Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension).</li>
+    <li>
+      Enter the payment pointer associated with your test wallet. For example, `$ilp.interledger-test.dev/mytestwallet`. Then, enter a budget amount and click **Connect**.
+      <img
+        src="/img/docs/extension/connection-setup.png"
+        alt="Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button"
+        style="max-width:300px"
+        class="img-outline"
+      />
+    </li>
+    <li>Click **Agree** to allow the extension to connect to your wallet.</li>
+    <li>Click **Accept** on the Interledger request screen.</li>
+  </ol>
+</Steps>
 
 ## Configure continuous payments (optional)
 
@@ -34,17 +38,22 @@ By default, the extension sends continuous payments at a rate of $0.60 <abbr tit
 
 To change the rate of pay:
 
-<ol>
-  <li>Click the **Settings** icon in the upper-right of the extension.</li>
-  <li>Select the *Rate* tab, then enter the amount to send, per hour, to web monetized sites. Your changes are automatically saved.</li>
-</ol>
-
-<img
-  src="/img/docs/extension/rate-tab.png"
-  alt="Rate tab with rate of pay per hour field and continuous payment toggle"
-  style="max-width:300px"
-  class="img-outline"
-/>
+{/* prettier-ignore */}
+<Steps>
+  <ol>
+    <li>Click the **Settings** icon in the upper-right of the extension.</li>
+    <li>
+      Select the *Rate* tab, then enter the amount to send, per hour, to web
+      monetized sites. Your changes are automatically saved.
+      <img
+        src="/img/docs/extension/rate-tab.png"
+        alt="Rate tab with rate of pay per hour field and continuous payment toggle"
+        style="max-width:300px"
+        class="img-outline"
+      />
+    </li>
+  </ol>
+</Steps>
 
 ## Send continuous payments
 
@@ -65,30 +74,38 @@ If your extension is using <abbr title="US dollars">USD</abbr> with the default 
 
 ## Send a one-time payment
 
-<ol>
-  <li>Visit <LinkOut href="https://sidvishnoi.com/test/wm/" withIcon={false}>https://sidvishnoi.com/test/wm/</LinkOut>.</li>
-  <li>Check that the extension shows a green circle. If not, try refreshing the page.</li>
-  <li>Open the extension and enter an amount to send.</li>
-  <li>Click **Send now**. Your payment will appear immediately on the test site, within the *Monetization events* section.</li>
-  <li>Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut> and select **Transactions** to see the payment you just sent.</li>
-</ol>
-
-<img
-  src="/img/docs/extension/enabled-monetized.png"
-  style="float:left;padding-right:20px"
-/>
-<img src="/img/docs/extension/disabled-monetized.png" />
-
-<img
-  src="/img/docs/extension/otp-send-now.png"
-  alt="Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active"
-  style="max-width:250px"
-  class="img-outline"
-/>
-
-<img
-  src="/img/docs/testwallet/testwallet-sid-otp-event.png"
-  alt="Monetization events section showing two payments of MXN 0.21 and a one-time payment of 19.92"
-  style="max-width:250px"
-  class="img-outline"
-/>
+{/* prettier-ignore */}
+<Steps>
+  <ol>
+    <li>Visit <LinkOut href="https://sidvishnoi.com/test/wm/" withIcon={false}>https://sidvishnoi.com/test/wm/</LinkOut>.</li>
+    <li>
+      Check that the extension shows a green circle. If not, try refreshing the
+      page.
+      <img
+        src="/img/docs/extension/enabled-monetized.png"
+        style="float:left;padding-right:20px"
+      />
+      <img src="/img/docs/extension/disabled-monetized.png" />
+    </li>
+    <li>
+      Open the extension and enter an amount to send.
+      <img
+        src="/img/docs/extension/otp-send-now.png"
+        alt="Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active"
+        style="max-width:250px"
+        class="img-outline"
+      />
+    </li>
+    <li>
+      Click **Send now**. Your payment will appear immediately on the test site,
+      within the *Monetization events* section.
+      <img
+        src="/img/docs/testwallet/testwallet-sid-otp-event.png"
+        alt="Monetization events section showing two payments of MXN 0.21 and a one-time payment of 19.92"
+        style="max-width:250px"
+        class="img-outline"
+      />
+    </li>
+    <li>Sign in to your{' '}<LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>{' '}and select **Transactions** to see the payment you just sent.</li>
+  </ol>
+</Steps>
