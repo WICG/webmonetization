@@ -23,9 +23,8 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --include=optional
 
       - name: Run lint (Prettier + ESLint)
         run: npm run lint
-
 
