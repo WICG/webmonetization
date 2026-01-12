@@ -7,21 +7,23 @@ import { LinkOut } from '@interledger/docs-design-system'
 
 Use our <LinkOut href="https://webmonetization.org/tools/link-tag">link tag generator</LinkOut> to create your Web Monetization link tag.
 
+{/* prettier-ignore */}
 1. Enter your payment pointer or wallet address into the field.<br /><img src="/img/docs/pubtools/link-tag-generator.png" alt="Link tag generator with an empty wallet address field" class='img-outline' style="max-width: 90%"/>
+    <Tabs>
+        <TabItem label="Example payment pointer">
+            ```
+            $ilp.link/my-wallet
 
-   <Tabs>
-     <TabItem label="Example payment pointer">
-       ``` 
-       $ilp.link/my-wallet
-       ```
-     </TabItem>
-     <TabItem label="Example wallet address">
-       ``` 
-       https://ilp.link/my-wallet 
-       ```
-     </TabItem>
-   </Tabs>
+            ```
+        </TabItem>
+        <TabItem label="Example wallet address">
+            ```
+            https://ilp.link/my-wallet
 
+            ```
+        </TabItem>
+
+    </Tabs>
 2. Click **Generate Link Tag**.
 3. Copy the tag and add it to your HTML pages.<br /><img src="/img/docs/pubtools/link-tag-generated.png" alt="Link tag generator with a test wallet address in the field and a full Web Monetization link tag using the address" class='img-outline' style="max-width: 90%" />
 
