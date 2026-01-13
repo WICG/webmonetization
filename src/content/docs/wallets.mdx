@@ -2,8 +2,8 @@
 title: Web Monetization-compatible wallets
 lastUpdated: 2025-10-27
 banner:
-    content: |
-        More wallet providers coming soon!
+  content: |
+    More wallet providers coming soon!
 ---
 
 import { Steps, Tabs, TabItem } from '@astrojs/starlight/components'
@@ -15,11 +15,11 @@ Be sure to select a wallet that's available in your **region** and supports your
 
 ## Wallet providers
 
-| Provider  | Available in | Supported currencies |
-| -------- | ------------ | -------------------- |
-| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, Canada, EU, South Africa | $ <abbr title="US dollars">USD</abbr>, $ <abbr title="Canadian dollars">CAD</abbr>, € <abbr title="euros">EUR</abbr>, R <abbr title="South African rand">ZAR</abbr> |
-| <LinkOut href="https://gatehub.net">GateHub*</LinkOut> | USA, EU | $ <abbr title="US dollars">USD</abbr>, € <abbr title="euros">EUR</abbr> |
-| <LinkOut href="https://chimoney.app/">Chimoney App</LinkOut> | <LinkOut href="https://chimoney.app/supported-countries">Global (100+ countries)</LinkOut> | $ <abbr title="US dollars">USD</abbr> |
+| Provider                                                              | Available in                                                                               | Supported currencies                                                                                                                                                |
+| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, Canada, EU, South Africa                                                              | $ <abbr title="US dollars">USD</abbr>, $ <abbr title="Canadian dollars">CAD</abbr>, € <abbr title="euros">EUR</abbr>, R <abbr title="South African rand">ZAR</abbr> |
+| <LinkOut href="https://gatehub.net">GateHub\*</LinkOut>               | USA, EU                                                                                    | $ <abbr title="US dollars">USD</abbr>, € <abbr title="euros">EUR</abbr>                                                                                             |
+| <LinkOut href="https://chimoney.app/">Chimoney App</LinkOut>          | <LinkOut href="https://chimoney.app/supported-countries">Global (100+ countries)</LinkOut> | $ <abbr title="US dollars">USD</abbr>                                                                                                                               |
 
 <sup>* Select *Hosted* wallet during setup</sup>
 
@@ -31,19 +31,20 @@ When choosing a wallet provider for Web Monetization, be sure to select one that
 
 ### Wallet addresses and payment pointers
 
-Some wallet providers will use the term *wallet address* while others use the term *payment pointer*. Wallet addresses contain `https://` while payment pointers contain `$`.
+Some wallet providers will use the term _wallet address_ while others use the term _payment pointer_. Wallet addresses contain `https://` while payment pointers contain `$`.
 
+{/* prettier-ignore */}
 <Tabs>
-    <TabItem label='Example wallet address'>
+  <TabItem label="Example wallet address">
     ``` 
-    https://wallet.example.com/alice
+    https://wallet.example.com/alice 
     ```
-    </TabItem>
-    <TabItem label='Example payment pointer'>
+  </TabItem>
+  <TabItem label="Example payment pointer">
+    ``` 
+    $wallet.example.com/alice 
     ```
-    $wallet.example.com/alice
-    ```
-    </TabItem>
+  </TabItem>
 </Tabs>
 
 ## Limitations
@@ -52,7 +53,7 @@ Some wallet providers will use the term *wallet address* while others use the te
 
 For now, users of the Interledger Wallet can only send and receive from other Interledger Wallet users who are in the same region and using the same currency.
 
-### GateHub 
+### GateHub
 
 For now, users of the GateHub wallet can only send and receive from other GateHub wallet users.
 
@@ -69,36 +70,94 @@ The Interledger test wallet provides a great way to test Web Monetization withou
 ## Where is my wallet address or payment pointer?
 
 <details>
-<summary>Interledger Wallet</summary>
-    Users of the Interledger Wallet will have a _wallet address_. It appears on the _Home_ screen after signing in. Although `https://` isn't shown in the field, it is added to your address when you click the copy button.
-    <img src="/img/docs/interledger/interledger-wallet-dashboard.png" alt="User's wallet address highlighted on the Interledger Wallet home screen" class="img-outline" style="max-width:600px"/>
+  <summary>Interledger Wallet</summary>
+  Users of the Interledger Wallet will have a _wallet address_. It appears on
+  the _Home_ screen after signing in. Although `https://` isn't shown in the
+  field, it is added to your address when you click the copy button.
+  <img
+    src="/img/docs/interledger/interledger-wallet-dashboard.png"
+    alt="User's wallet address highlighted on the Interledger Wallet home screen"
+    class="img-outline"
+    style="max-width:600px"
+  />
 </details>
 
 <details>
-<summary>GateHub</summary>
-    Users of GateHub will have a _payment pointer_. Note that in GateHub your payment pointer is not the same thing as your wallet name. To locate your payment pointer:
-    <Steps>
-    1. Select your wallet, then click **Advanced**.<br /><img src="/img/docs/gatehub/advanced-wallet-settings.png" alt="" class="img-outline" style="max-width:600px" />
-    2. Scroll down to **Interledger Settings**.
-    3. Click the **Payment pointer** button.<br /><img src="/img/docs/gatehub/advanced-interledger-settings.png" alt="" class="img-outline" style="max-width:450px" />
-    4. Copy your payment pointer.<br /><img src="/img/docs/gatehub/payment-pointer.png" alt="" class="img-outline" style="max-width:600px" />
-        :::note
-        If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
-        :::
-    </Steps>
+  <summary>GateHub</summary>
+  Users of GateHub will have a _payment pointer_. Note that in GateHub your
+  payment pointer is not the same thing as your wallet name. To locate your
+  payment pointer:
+  <Steps>
+    <ol>
+      <li>
+        Select your wallet, then click **Advanced**.
+        <img
+          src='/img/docs/gatehub/advanced-wallet-settings.png'
+          alt=''
+          class='img-outline'
+          style='max-width:600px'
+        />
+      </li>
+      <li>Scroll down to **Interledger Settings**.</li>
+      <li>
+        Click the **Payment pointer** button.
+        <img
+          src='/img/docs/gatehub/advanced-interledger-settings.png'
+          alt=''
+          class='img-outline'
+          style='max-width:450px'
+        />
+      </li>
+      <li>
+        Copy your payment pointer.
+        <img
+          src='/img/docs/gatehub/payment-pointer.png'
+          alt=''
+          class='img-outline'
+          style='max-width:600px'
+        />
+      </li>
+    </ol>
+  </Steps>
+
+:::note
+If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
+:::
+
 </details>
 
 <details>
-<summary>Chimoney App</summary>
-    Users of the Chimoney App will have a _wallet address_. After completing your KYC verification on the Chimoney App, your account is automatically issued an Interledger Wallet Address. To locate your wallet address:
-    <Steps>
-    1. Open the Chimoney App and navigate to the **Account** tab.
-    2. Click on **Interledger Wallet Address**.<br /><img src="/img/docs/chimoney/chimoney-wallet-address.png" alt="Chimoney App Account tab showing the Interledger Wallet Address option" class="img-outline" style="max-width:600px" />
-    3. Copy your wallet address. It will look like `https://ilp.chimoney.com/username` or `https://ilp.chimoney.com/123456`.
-        :::note
-        You can use this wallet address in both the Web Monetization extension and on your website. The `https://` prefix is already included.
-        :::
-    </Steps>
-    
-    For detailed setup instructions, visit the <LinkOut href="https://chimoney.io/blogs/how-to-get-started-with-web-monetization-using-chimoney/">Chimoney Web Monetization Guide</LinkOut>.
+  <summary>Chimoney App</summary>
+  Users of the Chimoney App will have a _wallet address_. After completing your
+  KYC verification on the Chimoney App, your account is automatically issued an
+  Interledger Wallet Address. To locate your wallet address:
+  <Steps>
+    <ol>
+      <li>Open the Chimoney App and navigate to the **Account** tab.</li>
+      <li>
+        Click on **Interledger Wallet Address**.
+        <img
+          src="/img/docs/chimoney/chimoney-wallet-address.png"
+          alt="Chimoney App Account tab showing the Interledger Wallet Address option"
+          class="img-outline"
+          style="max-width:600px"
+        />
+      </li>
+      <li>
+        Copy your wallet address. It will look like
+        `https://ilp.chimoney.com/username` or
+        `https://ilp.chimoney.com/123456`.
+      </li>
+    </ol>
+  </Steps>
+
+:::note
+You can use this wallet address in both the Web Monetization extension
+and on your website. The `https://` prefix is already included.
+:::
+
+For detailed setup instructions, visit the <LinkOut href="https://chimoney.io/blogs/how-to-get-started-with-web-monetization-using-chimoney/">
+Chimoney Web Monetization Guide</LinkOut>
+.
+
 </details>

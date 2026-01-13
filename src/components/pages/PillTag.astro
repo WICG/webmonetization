@@ -8,11 +8,11 @@ interface Props {
 const { pills } = Astro.props
 ---
 
-<ul class='pills'>
+<ul class="pills">
   {
     pills.map((pill) => (
-      <li class='pill-tag'>
-        <Star class='bullet-point' />
+      <li class="pill-tag">
+        <Star class="bullet-point" />
         <p>{pill.text}</p>
       </li>
     ))

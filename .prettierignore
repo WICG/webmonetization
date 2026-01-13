@@ -1,2 +1,11 @@
+# Shared ignores from paymentpointers.org
+.github
+.astro
+node_modules
+public
+dist
+**/*.min.css
+**/*.min.js
+
 # Don't disagree with W3C style on the spec
 src/pages/specification

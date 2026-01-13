@@ -23,7 +23,7 @@ const URLS = {
   firefox: `https://addons.mozilla.org/en-US/firefox/addon/web-monetization-extension/`,
   safari: `https://apps.apple.com/app/web-monetization/id6754325288`,
   edge: `https://microsoftedge.microsoft.com/addons/detail/web-monetization/imjgemgmeoioefpmfefmffbboogighjl`,
-  github: `https://github.com/interledger/web-monetization-extension/releases/latest`,
+  github: `https://github.com/interledger/web-monetization-extension/releases/latest`
 }
 
 const toURL = (url: string) => {
@@ -40,7 +40,7 @@ const toURL = (url: string) => {
 
 <ul class={variant}>
   <li>
-    <div class='container'>
+    <div class="container">
       <a href={toURL(URLS.chrome)} title={t('media.title.extension.chrome')}>
         <img
           src={chromeWebstore.src}
@@ -52,7 +52,7 @@ const toURL = (url: string) => {
     </div>
   </li>
   <li>
-    <div class='container'>
+    <div class="container">
       <a href={toURL(URLS.firefox)} title={t('media.title.extension.firefox')}>
         <img
           src={fxBrowserIcon.src}
@@ -64,7 +64,7 @@ const toURL = (url: string) => {
     </div>
   </li>
   <li>
-    <div class='container'>
+    <div class="container">
       <a href={toURL(URLS.safari)} title={t('media.title.extension.safari')}>
         <img
           src={safariIcon.src}
@@ -76,7 +76,7 @@ const toURL = (url: string) => {
     </div>
   </li>
   <li>
-    <div class='container'>
+    <div class="container">
       <a href={toURL(URLS.edge)} title={t('media.title.extension.edge')}>
         <img
           src={microsoftEdge.src}
@@ -90,7 +90,7 @@ const toURL = (url: string) => {
   {
     includeGitHub && (
       <li>
-        <div class='container'>
+        <div class="container">
           <a
             href={toURL(URLS.github)}
             title={t('media.title.extension.github')}

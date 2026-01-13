@@ -1,7 +1,7 @@
 export const showDefaultLang = false
 export const languages = {
   en: 'English',
-  es: 'Español',
+  es: 'Español'
 }
 
 export const defaultLang = 'en'
@@ -21,9 +21,11 @@ export const ui = {
     'pages.developers.description':
       'Help shape the future of the web with the Web Monetization API and Open Payments.',
     'pages.play.title': 'Playground',
-    'pages.play.description': 'The Web Monetization Playground is an interactive environment that shows how Web Monetization works under the hood',
-    'pages.faq.title': 'FAQ’s | Web Monetization', 
-    'pages.faq.description': 'Welcome to the Web Monetization FAQ, your go-to resource for understanding how Web Monetization works, how to get started, and how to make the most of it.', 
+    'pages.play.description':
+      'The Web Monetization Playground is an interactive environment that shows how Web Monetization works under the hood',
+    'pages.faq.title': 'FAQ’s | Web Monetization',
+    'pages.faq.description':
+      'Welcome to the Web Monetization FAQ, your go-to resource for understanding how Web Monetization works, how to get started, and how to make the most of it.',
     'nav.tools': 'Tools',
     'nav.technical': 'Technical',
     'nav.documentation': 'Documentation',
@@ -75,13 +77,13 @@ export const ui = {
     'media.title.extension.edge': 'Edge Add-ons',
     'media.title.extension.github': 'Latest release on GitHub',
     'aria.nav.back': 'Previous',
-    'aria.nav.next': 'Next',
+    'aria.nav.next': 'Next'
   },
   es: {
     'site.title': 'Web Monetization',
     'site.description':
       'The Web Monetization API allows websites to automatically and passively receive payments from Web Monetization-enabled visitors.',
     'nav.documentation': 'Documentación',
-    'nav.specification': 'Especificación',
-  },
+    'nav.specification': 'Especificación'
+  }
 } as const

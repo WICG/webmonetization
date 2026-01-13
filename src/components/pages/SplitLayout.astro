@@ -8,31 +8,31 @@ interface Props {
 const { content } = Astro.props
 ---
 
-<section class='section'>
-  <div class='contentWrapper'>
+<section class="section">
+  <div class="contentWrapper">
     <div class:list={['layout', content.imgMetaData.position]}>
-      <div class='header'>
+      <div class="header">
         <h2>{content.title}</h2>
       </div>
       <div
-        class='image'
+        class="image"
         style={content.imgMetaData.padding
           ? `padding:${content.imgMetaData.padding}`
           : undefined}
       >
         <img
           src={content.image.src}
-          alt=''
+          alt=""
           width={content.image.width}
           height={content.image.height}
         />
       </div>
-      <div class='text'>
+      <div class="text">
         <slot />
-        <div class='ctas'>
+        <div class="ctas">
           <a
             href={content.primaryCta.href}
-            class='btn primary flexible'
+            class="btn primary flexible"
             data-umami-event={content.primaryCta.event}
             >{content.primaryCta.text}</a
           >
@@ -40,7 +40,7 @@ const { content } = Astro.props
             content.secondaryCta && (
               <a
                 href={content.secondaryCta.href}
-                class='btn secondary flexible'
+                class="btn secondary flexible"
                 data-umami-event={content.secondaryCta.event}
               >
                 {content.secondaryCta.text}

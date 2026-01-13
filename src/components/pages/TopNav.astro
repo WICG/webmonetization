@@ -23,66 +23,68 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
 ---
 
 <header>
-  <nav class='site-nav contentWrapper collapsed' id='siteNav'>
-    <a href={homePageUrl} class='site-title'>
+  <nav class="site-nav contentWrapper collapsed" id="siteNav">
+    <a href={homePageUrl} class="site-title">
       <img
         src={wmLogo.src}
-        alt='Web Monetization logo'
+        alt="Web Monetization logo"
         width={wmLogo.width}
         height={wmLogo.height}
-        loading='lazy'
+        loading="lazy"
       />
-      <span class='mobile-only'>Web Monetization</span>
+      <span class="mobile-only">Web Monetization</span>
     </a>
     <button
-      id='menuToggle'
-      class='menu-toggle ghost btn'
-      aria-controls='nav-menu'
-      aria-expanded='false'
+      id="menuToggle"
+      class="menu-toggle ghost btn"
+      aria-controls="nav-menu"
+      aria-expanded="false"
       aria-label={t('nav.toggle_menu')}
       title={t('nav.toggle_menu')}
-      type='button'
+      type="button"
     >
-      <HamburgerMenu class='menu-icon icon--hamburger' />
-      <CloseMenu class='menu-icon icon--close' />
+      <HamburgerMenu class="menu-icon icon--hamburger" />
+      <CloseMenu class="menu-icon icon--close" />
     </button>
-    <ul id='navMenu' class='nav-menu collapsed'>
-      <li class='nav-group nav-group--tools nav-link__tools' id='tools-wrapper'>
-        <p class='mobile-only menu-label'>{t('nav.tools')}</p>
+    <ul id="navMenu" class="nav-menu collapsed">
+      <li class="nav-group nav-group--tools nav-link__tools" id="tools-wrapper">
+        <p class="mobile-only menu-label">{t('nav.tools')}</p>
         <button
-          id='toolsToggle'
+          id="toolsToggle"
           class:list={[{ active: isToolsActive }, 'tools-toggle']}
-          aria-expanded='false'
+          aria-expanded="false"
           aria-label={t('nav.tools_menu')}
           title={t('nav.tools_menu')}
-          type='button'
+          type="button"
         >
           {t('nav.tools')}
-          <ChevronArrow class='tools-arrow-icon' />
+          <ChevronArrow class="tools-arrow-icon" />
         </button>
         <NavToolsDropdown />
       </li>
-      <li class='nav-group nav-group--technical'>
-        <p class='mobile-only menu-label'>{t('nav.technical')}</p>
-        <ul class='nav-inline' aria-labelledby='nav-technical-label'>
-          <li class='nav-link__docs'>
-            <a href={docsUrl} data-umami-event='Landing page - WebMo docs'
+      <li class="nav-group nav-group--technical">
+        <p class="mobile-only menu-label">{t('nav.technical')}</p>
+        <ul class="nav-inline" aria-labelledby="nav-technical-label">
+          <li class="nav-link__docs">
+            <a href={docsUrl} data-umami-event="Landing page - WebMo docs"
               >{t('nav.documentation')}</a
             >
           </li>
-          <li class='nav-link__spec'>
-            <a href='/specification' data-umami-event='Landing page - WebMo specs'
+          <li class="nav-link__spec">
+            <a
+              href="/specification"
+              data-umami-event="Landing page - WebMo specs"
               >{t('nav.specification')}</a
             >
           </li>
         </ul>
       </li>
     </ul>
-    <div class='mobile-only menu-footer'>
+    <div class="mobile-only menu-footer">
       <p>{t('nav.footer')}</p>
       <img
         src={interledgerLogo.src}
-        alt='Interledger logo'
+        alt="Interledger logo"
         width={interledgerLogo.width}
         height={interledgerLogo.height}
       />
@@ -443,12 +445,20 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
   }
 
   const handleMainToggle = () => {
-    menuOpen ? closeMenu() : openMenu()
+    if (menuOpen) {
+      closeMenu()
+    } else {
+      openMenu()
+    }
   }
 
   const handleSubmenuToggle = (event: MouseEvent) => {
     event.stopPropagation()
-    submenuOpen ? closeSubmenu() : openSubmenu()
+    if (submenuOpen) {
+      closeSubmenu()
+    } else {
+      openSubmenu()
+    }
   }
 
   const handleClickOutside = (event: MouseEvent) => {

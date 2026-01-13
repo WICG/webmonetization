@@ -11,9 +11,9 @@ import incomingPayment from '/src/data/browser-compat-data/incomingPayment.json'
 import paymentPointer from '/src/data/browser-compat-data/paymentPointer.json'
 
 <Badge
-  text='Web Monetization API'
-  variant='tip'
-  style='position: relative; top:-30px;'
+  text="Web Monetization API"
+  variant="tip"
+  style="position: relative; top:-30px;"
 />
 
 One responsibility of the [Web Monetization agent](/resources/glossary/#web-monetization-agent) is to instrument payments. The agent does this by calling the Open Payments APIs, which are APIs implemented by wallet providers.
@@ -24,7 +24,7 @@ Each time the agent receives a `201 outgoing payment created` response from the 
 
 ### Specification
 
-<Specification anchor='events' />
+<Specification anchor="events" />
 
 ## Event listeners
 
@@ -106,7 +106,7 @@ In this example, you have multiple link elements (not shown). You're listening f
 
 #### Specification
 
-<Specification anchor='amountsent-attribute' />
+<Specification anchor="amountsent-attribute" />
 
 ### incomingPayment
 
@@ -140,8 +140,8 @@ async function verifyPayment(event) {
     mode: 'same-origin',
     cache: 'no-cache',
     headers: {
-      'Content-Type': 'application/json',
-    },
+      'Content-Type': 'application/json'
+    }
   })
 
   if (response.ok) {
@@ -162,7 +162,7 @@ async function verifyPayment(event) {
 
 #### Specification
 
-<Specification anchor='incomingpayment-attribute' />
+<Specification anchor="incomingpayment-attribute" />
 
 ### paymentPointer
 
@@ -195,7 +195,7 @@ As of v3, both payment pointers and Open Payments wallet addresses are returned 
 
 #### Specification
 
-<Specification anchor='paymentpointer-attribute' />
+<Specification anchor="paymentpointer-attribute" />
 
 ## Example use cases
 
