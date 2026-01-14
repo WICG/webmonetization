@@ -6,6 +6,7 @@ import { LinkButton } from '@astrojs/starlight/components'
 import { LinkOut } from '@interledger/docs-design-system'
 import Connect from '/src/partials/tools-connect-wallet.mdx'
 import Change from '/src/partials/tools-change-wallet.mdx'
+import CSP from '/src/partials/csp.mdx'
 
 Add a <LinkOut href="https://webmonetization.org/tools/widget">payment widget</LinkOut> to your site so visitors can send you a one-time payment. The widget appears to all visitors, even those with an active Web Monetization extension.
 
@@ -20,9 +21,9 @@ Add a <LinkOut href="https://webmonetization.org/tools/widget">payment widget</L
 
 <Connect />
 
-### Change the widget's contents
+### Change the widget's contents (optional)
 
-1. Optionally change the label of a configuration by selecting the pencil icon and typing over the default.<br /><img src="/img/docs/pubtools/tools-preset-labels.png" alt="Screen with three tabs, all with default labels, and a pencil icon appearing next to the first label" style="max-width: 60%" class='img-outline' />
+1. Change the label of a configuration by selecting the pencil icon and typing over the default.<br /><img src="/img/docs/pubtools/tools-preset-labels.png" alt="Screen with three tabs, all with default labels, and a pencil icon appearing next to the first label" style="max-width: 60%" class='img-outline' />
 2. Expand the _Content_ drop-down menu. Enter a title for the widget or choose from the suggested options.<br /><img src="/img/docs/pubtools/widget-title.png" alt="Panel showing suggested titles and a field to enter a custom title" style="max-width: 60%" class='img-outline' />
 3. Enter the message to show to your visitors or use the default text. We suggest changing the message so that it's tailored specifically to your audience.<br /><img src="/img/docs/pubtools/widget-message.png" alt="Panel with a checkbox to mark the message as visible and a blank field to enter a custom message" style="max-width: 60%" class='img-outline' />
 4. Review your changes in the preview panel.<br /><img src="/img/docs/pubtools/widget-content-preview.png" alt="Preview panel showing how the widget will appear with a custom title and message" style="max-width: 60%" class='img-outline' />
@@ -78,3 +79,7 @@ All payments through the widget will now be directed to the new wallet address.
 >
   Widget tool
 </LinkButton>
+
+## Content Security Policy (CSP) requirements
+
+<CSP />

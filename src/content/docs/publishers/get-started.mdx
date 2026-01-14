@@ -3,7 +3,6 @@ title: Get started
 ---
 
 import { LinkOut } from '@interledger/docs-design-system'
-import { Steps } from '@astrojs/starlight/components'
 import Wallet from '/src/partials/wallet-prereq.mdx'
 
 ## Prerequisites
@@ -28,31 +27,23 @@ If you have a payment pointer, visit <LinkOut href='https://paymentpointers.org/
 
 ## Step 2 - Web monetize your page
 
-<Steps>
-  <ol>
-    <li>
-      Create your Web Monetization link tag using the format below. Add your wallet address as the `href` value.
-      ```http
-      <link rel="monetization" href="your_url">
-      ```
-      For example:
-      ```http
-      <link rel="monetization" href="https://wallet.example.com/alice">
-      ```
-    </li>
-    <li>
-      Add the `<link>` to the `<head>` section of your page.
-      ```html title="Example" wrap
-      <html>
-        <head>
-          <title>My Site</title>
-          <link rel="monetization" href="https://wallet.example.com/alice" />
-        </head>
-      </html>
-      ```
-    </li>
-  </ol>
-</Steps>
+1. Create your Web Monetization link tag using the format below. Add your wallet address as the `href` value.
+   ```http
+   <link rel="monetization" href="your_url">
+   ```
+   For example:
+   ```http
+   <link rel="monetization" href="https://wallet.example.com/alice">
+   ```
+2. Add the `<link>` to the `<head>` section of your page.
+   ```html title="Example" wrap
+   <html>
+     <head>
+       <title>My Site</title>
+       <link rel="monetization" href="https://wallet.example.com/alice" />
+     </head>
+   </html>
+   ```
 
 Congratulations! Your page is now web monetized. Add the `<link>` to any page of your site you want to monetize.
 

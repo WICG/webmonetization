@@ -2,7 +2,7 @@
 title: Send test payments
 ---
 
-import { Steps, Icon } from '@astrojs/starlight/components'
+import { Icon } from '@astrojs/starlight/components'
 import { LinkOut, StylishHeader } from '@interledger/docs-design-system'
 
 Use Interledger Foundation's Web Monetization browser extension to send payments to a web monetized site without using real money.
@@ -13,24 +13,17 @@ You must have a [funded test wallet account](/guides/test-wallet-sign-up) on Int
 
 ## Install the extension
 
-{/* prettier-ignore */}
-<Steps>
-  <ol>
-    <li>Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>.</li>
-    <li>Download and install Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension).</li>
-    <li>
-      Enter the payment pointer associated with your test wallet. For example, `$ilp.interledger-test.dev/mytestwallet`. Then, enter a budget amount and click **Connect**.
-      <img
-        src="/img/docs/extension/connection-setup.png"
-        alt="Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button"
-        style="max-width:300px"
-        class="img-outline"
-      />
-    </li>
-    <li>Click **Agree** to allow the extension to connect to your wallet.</li>
-    <li>Click **Accept** on the Interledger request screen.</li>
-  </ol>
-</Steps>
+1. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>.
+2. Download and install Interledger Foundation's [Web Monetization browser extension](/supporters/get-started#install-the-extension).
+3. Enter the payment pointer associated with your test wallet. For example, `$ilp.interledger-test.dev/mytestwallet`. Then, enter a budget amount and click **Connect**.
+   <img
+     src="/img/docs/extension/connection-setup.png"
+     alt="Extension setup screen with wallet address and amount fields, renew monthly toggle, and connect button"
+     style="max-width:300px"
+     class="img-outline"
+   />
+4. Click **Agree** to allow the extension to connect to your wallet.
+5. Click **Accept** on the Interledger request screen.
 
 ## Configure continuous payments (optional)
 
@@ -38,22 +31,14 @@ By default, the extension sends continuous payments at a rate of $0.60 <abbr tit
 
 To change the rate of pay:
 
-{/* prettier-ignore */}
-<Steps>
-  <ol>
-    <li>Click the **Settings** icon in the upper-right of the extension.</li>
-    <li>
-      Select the *Rate* tab, then enter the amount to send, per hour, to web
-      monetized sites. Your changes are automatically saved.
-      <img
-        src="/img/docs/extension/rate-tab.png"
-        alt="Rate tab with rate of pay per hour field and continuous payment toggle"
-        style="max-width:300px"
-        class="img-outline"
-      />
-    </li>
-  </ol>
-</Steps>
+1. Click the **Settings** icon in the upper-right of the extension.
+2. Select the _Rate_ tab, then enter the amount to send, per hour, to web monetized sites. Your changes are automatically saved.
+   <img
+     src="/img/docs/extension/rate-tab.png"
+     alt="Rate tab with rate of pay per hour field and continuous payment toggle"
+     style="max-width:300px"
+     class="img-outline"
+   />
 
 ## Send continuous payments
 
@@ -63,49 +48,36 @@ This page's test wallet receives all payments in Mexican pesos (MX$) regardless 
 
 Check the status of the extension.
 
-| Icon                                                                             | Status                                                              |
-| -------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| ![Active extension with green circle](/img/docs/extension/enabled-monetized.png) | The extension is sending continuous payments.                       |
-| ![Active extension with red circle](/img/docs/extension/enabled-unmonetized.png) | The extension is not sending continuous payments. Refresh the page. |
+| Icon                                                                             | Status                                                             |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| ![Active extension with green circle](/img/docs/extension/enabled-monetized.png) | The extension is sending continuous payments.                      |
+| ![Active extension with red circle](/img/docs/extension/enabled-unmonetized.png) | The extension isn't sending continuous payments. Refresh the page. |
 
-Each payment appears within the _Monetization events_ section on the test site.<br /><img src='/img/docs/testwallet/testwallet-sid-continuous-events.png' alt='Monetization events section showing two payments of MXN 0.21' style='max-width:250px' class='img-outline'/>
+Each payment appears in the _Monetization events_ section on the test site.<br /><img src='/img/docs/testwallet/testwallet-sid-continuous-events.png' alt='Monetization events section showing two payments of MXN 0.21' style='max-width:250px' class='img-outline'/>
 
 If your extension is using <abbr title="US dollars">USD</abbr> with the default rate of $0.60 an hour, a new event appears on the site about every two minutes as long as the window is active. Continuous payments stop when the window is inactive. Keep the window active until a few payment events appear. Then, sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut> and select **Transactions** to see the payments you've sent.
 
 ## Send a one-time payment
 
-{/* prettier-ignore */}
-<Steps>
-  <ol>
-    <li>Visit <LinkOut href="https://sidvishnoi.com/test/wm/" withIcon={false}>https://sidvishnoi.com/test/wm/</LinkOut>.</li>
-    <li>
-      Check that the extension shows a green circle. If not, try refreshing the
-      page.
-      <img
-        src="/img/docs/extension/enabled-monetized.png"
-        style="float:left;padding-right:20px"
-      />
-      <img src="/img/docs/extension/disabled-monetized.png" />
-    </li>
-    <li>
-      Open the extension and enter an amount to send.
-      <img
-        src="/img/docs/extension/otp-send-now.png"
-        alt="Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active"
-        style="max-width:250px"
-        class="img-outline"
-      />
-    </li>
-    <li>
-      Click **Send now**. Your payment will appear immediately on the test site,
-      within the *Monetization events* section.
-      <img
-        src="/img/docs/testwallet/testwallet-sid-otp-event.png"
-        alt="Monetization events section showing two payments of MXN 0.21 and a one-time payment of 19.92"
-        style="max-width:250px"
-        class="img-outline"
-      />
-    </li>
-    <li>Sign in to your{' '}<LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut>{' '}and select **Transactions** to see the payment you just sent.</li>
-  </ol>
-</Steps>
+1. Visit <LinkOut href="https://sidvishnoi.com/test/wm/" withIcon={false}>https://sidvishnoi.com/test/wm/</LinkOut>.
+2. Check that the extension shows a green circle. If not, try refreshing the page.
+   <img
+     src="/img/docs/extension/enabled-monetized.png"
+     style="float:left;padding-right:20px"
+   />
+   <img src="/img/docs/extension/disabled-monetized.png" />
+3. Open the extension and enter an amount to send.
+   <img
+     src="/img/docs/extension/otp-send-now.png"
+     alt="Extension showing an available balance of five dollars, with one dollar in the amount field and send now button active"
+     style="max-width:250px"
+     class="img-outline"
+   />
+4. Click **Send now**. Your payment will appear immediately on the test site, in the _Monetization events_ section.
+   <img
+     src="/img/docs/testwallet/testwallet-sid-otp-event.png"
+     alt="Monetization events section showing two payments of MXN 0.21 and a one-time payment of 19.92"
+     style="max-width:250px"
+     class="img-outline"
+   />
+5. Sign in to your <LinkOut href="https://wallet.interledger-test.dev/">wallet account</LinkOut> and select **Transactions** to see the payment you just sent.
