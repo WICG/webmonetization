@@ -4,7 +4,7 @@ title: Monetization events
 
 import { LinkOut, Hidden, Tooltip } from '@interledger/docs-design-system'
 import Specification from '/src/components/docs/Specification.astro'
-import { Tabs, TabItem, Steps, Badge } from '@astrojs/starlight/components'
+import { Tabs, TabItem, Badge } from '@astrojs/starlight/components'
 import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import amountSent from '/src/data/browser-compat-data/amountSent.json'
 import incomingPayment from '/src/data/browser-compat-data/incomingPayment.json'
@@ -40,14 +40,12 @@ By adding an event listener to the relevant monetization `<link>` element (or on
 
 ### High-level flow
 
-<Steps>
 1. You add an event listener to a monetization `<link>`.
 2. The site visitor accesses your page.
 3. The site visitor's Web Monetization agent calls the Open Payments APIs to begin setting up the payment. More information about these API calls can be found [here](/publishers/about-receiving#a-deeper-dive-into-payments).
 4. The Web Monetization agent receives a `201 (outgoing payment created)` response from the site visitor's wallet provider.
 5. The Web Monetization agent fires a `monetization` event.
 6. Your event listener calls its defined function.
-</Steps>
 
 ## Event properties
 
