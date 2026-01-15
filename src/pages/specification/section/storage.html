@@ -1,0 +1,178 @@
+<section id="storage">
+    <h2>Storage</h2>
+
+    <p>This section defines the browser storage requirements for persisting Web Monetization user data and session state.</p>
+
+    <p>The browser MUST securely store an instance of {{Storage}} to maintain Web Monetization state across page loads and browser restarts. This storage MUST be:</p>
+
+    <ul>
+        <li>Persistent across browser sessions</li>
+        <li>Encrypted when stored on disk</li>
+    </ul>
+
+    <p class="note">
+        Implementations MUST use secure storage mechanisms such as the browser's credential store, encrypted
+        local storage, or platform-specific secure storage APIs.
+        Private keys and access tokens are particularly sensitive and require the highest level of protection.
+    </p>
+
+    <section data-dfn-for="Storage">
+        <h3>Storage</h3>
+
+        <p>The {{Storage}} dictionary represents the complete user state for Web Monetization, containing wallet information, authentication credentials, active grants, and payment preferences.</p>
+
+            <pre class="idl">
+            dictionary Storage {
+                // Wallet Information
+                WalletAddressDetails? wallet;
+
+                // Authentication Keys
+                AuthKeys? keys;
+
+                // Active Grant Information
+                Grant? grant;
+
+                // Payment Limit
+                DOMString? maxRateOfPay;
+            };
+            </pre>
+
+            <dl>
+                <dt><dfn>wallet</dfn></dt>
+                <dd>Contains the user's wallet address information and server endpoints.
+                  <br><span class="note">Set when user wallet is connected.</span>
+                </dd>
+
+                <dt><dfn>keys</dfn></dt>
+                <dd>Contains the cryptographic key pair used for HTTP message signatures.
+                  <br><span class="note">Set when user wallet is connected.</span>
+                </dd>
+
+                <dt><dfn>grant</dfn></dt>
+                <dd>Contains the active grant tokens and management URLs.
+                  <br><span class="note">Set when a grant request is successfully completed and approved.</span>
+                </dd>
+
+                <dt><dfn>maxRateOfPay</dfn></dt>
+                <dd>
+                  The user's configured Web Monetization spending budget, expressed as a non-negative integer string in
+                  [=scaled amount=] units per month of the user wallet asset.
+                  The user agent uses this value to compute the payment amount and delay for streaming payments.
+                  <br><span class="note">
+                    Configured by the user during wallet connection.
+                  </span>
+                  <div class="note">
+                    <p>
+                      Example: if the user sets a monthly spending budget of <code>10.00</code> USD and the wallet asset scale is 2,
+                      then <code>10.00 * Math.pow(10, 2) = 1000</code>, so {{Storage/maxRateOfPay}} is stored as <code>"1000"</code>.
+                    </p>
+                  </div>
+                  <p class="note">
+                    The user's wallet enforces spending limits and renewal via the outgoing payment grant.
+                    The user agent's role is to pace outgoing payment attempts based on the configured monthly budget.
+                    For pacing calculations, a "month" is treated as a fixed 30-day period.
+                  </p>
+                </dd>
+            </dl>
+        </section>
+
+       <section>
+        <h3>Storage operations</h3>
+
+        <div class="algorithm">
+            <p>To <dfn>get storage</dfn>:</p>
+            <ol>
+                <li>Let |storage| be the {{Storage}} instance from secure browser storage.</li>
+                <li>If no stored storage exists, return a new {{Storage}} with all properties set to null.</li>
+                <li>Return |storage|.</li>
+            </ol>
+        </div>
+
+        <div class="algorithm">
+            <p>To <dfn>store wallet credentials</dfn>, given |walletAddressDetails:WalletAddressDetails|:</p>
+            <ol>
+                <li>Let |storage| be the result of [=get storage=].</li>
+                <li>Set |storage|'s {{Storage/wallet}} to |walletAddressDetails|.</li>
+                <li>[=Persist storage=] with |storage|.</li>
+            </ol>
+        </div>
+
+        <div class="algorithm">
+            <p>To <dfn>store grant credentials</dfn>, given |grant:Grant|:</p>
+            <ol>
+                <li>Let |storage| be the result of [=get storage=].</li>
+                <li>Set |storage|'s {{Storage/grant}} to |grant|.</li>
+                <li>[=Persist storage=] with |storage|.</li>
+            </ol>
+        </div>
+
+        <div class="algorithm">
+          <p>To <dfn>store max rate of pay</dfn>, given |maxRateOfPay:DOMString|:</p>
+          <ol>
+            <li>Let |storage| be the result of [=get storage=].</li>
+            <li>Set |storage|'s {{Storage/maxRateOfPay}} to |maxRateOfPay|.</li>
+            <li>[=Persist storage=] with |storage|.</li>
+          </ol>
+        </div>
+
+        <div class="algorithm">
+            <p>To <dfn>update grant access token</dfn>, given |accessToken:DOMString|:</p>
+            <ol>
+                <li>Let |storage| be the result of [=get storage=].</li>
+                <li>If |storage|'s {{Storage/grant}} is null, return.</li>
+                <li>Set |storage|'s {{Storage/grant}}'s {{Grant/access_token}} to |accessToken|.</li>
+                <li>[=Persist storage=] with |storage|.</li>
+            </ol>
+            <p class="note">This algorithm updates only the access token within an existing grant,
+              preserving other grant properties. Used during token rotation when the authorization
+              server issues a new access token. When |accessToken| is the empty string, the grant is
+              invalidated but wallet information is preserved for reconnection.</p>
+        </div>
+
+        <div class="algorithm">
+            <p>To <dfn>store auth keys</dfn>, given |authKeys:AuthKeys|:</p>
+            <ol>
+                <li>Let |storage| be the result of [=get storage=].</li>
+                <li>Set |storage|'s {{Storage/keys}} to |authKeys|.</li>
+                <li>[=Persist storage=] with |storage|.</li>
+            </ol>
+        </div>
+
+        <div class="algorithm">
+            <p>To <dfn>get auth keys</dfn>:</p>
+            <ol>
+                <li>Let |storage| be the result of [=get storage=].</li>
+                <li>If |storage|'s {{Storage/keys}} is null, return null.</li>
+                <li>Return |storage|'s {{Storage/keys}}.</li>
+            </ol>
+        </div>
+
+  <div class="algorithm">
+    <p>To <dfn>get user wallet</dfn>:</p>
+    <ol>
+      <li>Let |storage| be the result of [=get storage=].</li>
+      <li>If |storage|'s {{Storage/wallet}} is null, return null.</li>
+      <li>Return |storage|'s {{Storage/wallet}}.</li>
+    </ol>
+  </div>
+
+        <div class="algorithm">
+          <p>To <dfn>clear wallet data</dfn>:</p>
+          <ol>
+            <li>Let |storage| be the result of [=get storage=].</li>
+            <li>Set |storage|'s {{Storage/grant}} to null.</li>
+            <li>Set |storage|'s {{Storage/keys}} to null.</li>
+            <li>Set |storage|'s {{Storage/wallet}} to null.</li>
+            <li>[=Persist storage=] with |storage|.</li>
+          </ol>
+          <p class="note">Removes all wallet-related state (grant tokens, authentication keys, wallet address details). Budget limits MAY be retained; implementations can also clear {{Storage/maxRateOfPay}} if the user requests a full reset.</p>
+        </div>
+
+        <div class="algorithm">
+            <p>To <dfn>persist storage</dfn>, given |storage:Storage|:</p>
+            <ol>
+                <li>Store |storage| in secure browser storage.</li>
+            </ol>
+        </div>
+    </section>
+</section>

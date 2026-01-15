@@ -1,0 +1,158 @@
+<section id="wallet-setup">
+  <h2>Wallet setup</h2>
+  <p>This section specifies how the user can set their [=wallet address=] for Web Monetization in the user agent.</p>
+
+  <section>
+  <h3>Terms</h3>
+  <dl>
+    <dt><dfn>Web Monetization page</dfn></dt>
+    <dd>
+      Refers to the browser's UI for managing Web Monetization settings, accessible via a browser specific URI.
+      <span class="note">In Chromium based browser the page can be located at `chrome://webmonetization`.</span>
+    </dd>
+    <dt><dfn data-lt="setup page">Web Monetization setup page</dfn></dt>
+    <dd>
+      Refers to the browser's UI for setting up Web Monetization on the [=Web Monetization page=]. The UI lets user specify the [=wallet address=], and the budget.
+      <span class="note">An example of such a UI could be an "Add a Wallet" button that opens a dialog for entering this information, with an "Add" button that starts the wallet connection process when clicked.</span>
+    </dd>
+    <dt><dfn>Interactive grant</dfn></dt>
+    <dd>
+      Open Payments requires outgoing payment [=grant=] requests to be interactive. When a grant request is interactive, it means explicit interaction by an individual (typically the client’s end user) is a required step in the delegation process.
+    </dd>
+    <dd>
+      After the grant request is made, the client must poll for a Grant Continuation request so the [=AS=] knows to issue an access token.
+    </dd>
+    <dt><dfn>Redirect URI</dfn></dt>
+    <dd>
+      The redirect URI is an URL the user is redirected to in order to accept or decline the outgoing payment grant ([=interactive grant=]) when conneting their [=wallet=] to the browser.
+    </dd>
+  </dl>
+  </section>
+
+  <!-- Authentication keys details live under the Authentication section; this page references the keypair generation step below. -->
+
+  <section class="algorithm">
+  <h3>Connecting a wallet</h3>
+
+  <p>The user can initiate the wallet setup from the [=setup page=].</p>
+  <p>
+    The [=setup page=] UI allows the user to enter: (1) a [=wallet address=]; (2) a spending budget; and
+    (3) a renewal monthly flag.
+  </p>
+
+  <p>For every new wallet connection, the browser MUST generate a fresh key pair by
+  running the [=generate an Ed25519 key pair=] algorithm, replacing any previously stored key pair, and MUST display
+  the newly generated [=encoded public key JWK=] (representing the [=Ed25519 public key=]) so the user can copy or
+  upload it to their wallet provider. This key generation and public key
+  exposure happen before invoking the algorithm below; if no key pair exists at invocation time the algorithm fails.</p>
+
+  <p>To <b><em>process the wallet setup</em></b>, given a string |walletAddress:DOMString|
+    (the [=wallet address=] provided by the user),
+    a number |budget:number| (a spending budget requested from the wallet for outgoing payments, expressed in the wallet asset), and
+    a boolean |renewMonthly:boolean| (whether the budget is renewed monthly by the wallet):</p>
+  <ol>
+    <li>If the result of the [=get auth keys=] algorithm is null, return failure.</li>
+    <li>Let |walletAddressDetails:WalletAddressDetails| be the result of the [=send a wallet address request=] algorithm on |walletAddress|.</li>
+    <li>
+      Let |assetScale:long| be |walletAddressDetails|'s {{WalletAddressDetails/assetScale}}.
+    </li>
+    <li>
+      Let |maxRateOfPay:long long| be <code>Math.round(|budget| * Math.pow(10, |assetScale|))</code>.
+      <p class="note">
+        This converts the user-entered monthly budget in the wallet asset into a [=scaled amount=] integer.
+        The resulting value is stored as {{Storage/maxRateOfPay}} and used to compute the payment amount and delay.
+      </p>
+    </li>
+    <li>
+      Run the [=store max rate of pay=] algorithm with |maxRateOfPay| serialized as a string.
+    </li>
+    <li>
+      Let |interval:DOMString| be an <a href="https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals">ISO 8601 repeating interval</a>
+      if |renewMonthly| is `true`.
+      <span class="note">
+        The starting date for the repeating interval needs to be the users current date (ISO String).
+      </span>
+      <aside class="example" title="ISO 8601 Repeating interval - monthly renewal">
+        <pre class="text">
+          R/2025-01-28T02:12:16.254Z/P1M
+        </pre>
+      </aside>
+    </li>
+    <li>
+      Let |pendingGrant:PendingGrant| ({{PendingGrant}}) be the result of the [=send an outgoing payment and quote grant request=] algorithm with |walletAddressDetails|, |budget| and |interval|.
+      <p class="note">
+        Since we ask for access to outgoing payments, the user will have to interact with the grant (approve or decline). Currently in Open Payments, only the grants that request access to outgoing payments are interactive.
+      </p>
+    </li>
+    <li>
+      Let |continueUri:DOMString| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/uri}} property at which the client instance can make <a data-cite="opas/operations/post-continue#">continuation requests</a>.
+    </li>
+    <li>
+      Let |continueAccessToken:DOMString| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/access_token}}.{{AccessToken/value}} property.
+    </li>
+    <li>
+      (TODO: Look into browsing/navigation context, instead of specifying "open in a new tab") Open the |pendingGrant|'s {{PendingGrant/interact}}.{{PendingInteract/redirect}} property ([=Redirect URI=]) in a new tab to redirect the user to their wallet's [=IdP=], where the user can accept or decline the grant.
+    </li>
+    <li>
+      Let |wait:number| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/wait}} property.
+      <div class="note">
+        <p>We cannot use the {{PendingInteract/finish}} redirect method as browser's internal URLs can not be opened from an external source.
+          In the Open Payments scenario, the [=AS=] will have to redirect the user to the internal browser page for Web Monetization to continue the flow.</p>
+        <p>Since we cannot use Open Payments' redirect {{PendingInteract/finish}} method,
+          we will have to check every |wait| seconds (<a href="https://en.wikipedia.org/wiki/Polling_(computer_science)">polling</a>)
+          to retrieve information about the grant (whether user accepted or rejected the grant).</p>
+      </div>
+    </li>
+    <li>Let |finalizedGrant| be `null`.</li>
+    <li>
+      <p>Start polling to get the information about the grant state every |wait| seconds.</p>
+      <ol>
+        <li>Let |interval:number| be result of |wait| multiplied by 1000, as |wait| is defined in seconds.</li>
+        <li>
+          Let |intervalId| be the result of calling {{ WindowOrWorkerGlobalScope/setInterval() }} with |interval| and the following steps as callback:
+        </li>
+        <li>Let |grant| be the result of running the [=send a continue grant request=] algorithm given |continueUri| and |continueAccessToken|.
+          <ol>
+            <li>If |grant| is failure (not an [=ok status=]), call {{ WindowOrWorkerGlobalScope/clearInterval(id)|clearInterval(intervalId) }}.</li>
+            <li>If |grant| is of type {{ PendingGrant }}, continue polling.</li>
+            <li>If |grant| is of type {{ Grant }}, {{ WindowOrWorkerGlobalScope/clearInterval(id)|clearInterval(intervalId) }} and set |finalizedGrant| to |grant|.</li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li>If |finalizedGrant| is null:
+      <ol>
+        <li>Run the [=clear wallet data=] algorithm.</li>
+        <li>Return failure.</li>
+      </ol>
+    </li>
+    <li>Run the [=store wallet credentials=] algorithm with |walletAddressDetails|.</li>
+    <li>Run the [=store grant credentials=] algorithm with |finalizedGrant|.</li>
+  </ol>
+  </section>
+
+  <section class="algorithm" id="disconnecting-a-wallet">
+  <h3>Disconnecting a wallet</h3>
+  <p>The user can disconnect their previously connected [=wallet=] via the [=setup page=] using a UI control
+    (e.g. a "Disconnect Wallet" button) that requires explicit user confirmation (such as a confirmation dialog).</p>
+
+  <p>Disconnecting a wallet revokes the active grant (if any) and clears state from {{Storage}}.</p>
+
+  <p>To <b><em>disconnect a wallet</em></b>:</p>
+  <ol>
+    <li>Let |storage:Storage| be the result of the [=get storage=] algorithm.</li>
+    <li>If |storage|'s {{Storage/grant}} is not null, then:
+      <ol>
+        <li>Let |grant:Grant| be |storage|'s {{Storage/grant}}.</li>
+        <li>Let |continueUri:DOMString| be |grant|'s {{Grant/continue}}.{{Continue/uri}}.</li>
+        <li>Let |continueAccessToken:DOMString| be |grant|'s {{Grant/continue}}.{{Continue/access_token}}.{{ContinueAccessToken/value}}.</li>
+        <li>Run the [=send a cancel grant request=] algorithm with |continueUri| and |continueAccessToken|.</li>
+        <li class="note">Failure to cancel (e.g. network error) SHOULD surface a non-blocking warning to the user;
+          the browser MAY still proceed with local cleanup.</li>
+      </ol>
+    </li>
+    <li>Run the [=clear wallet data=] algorithm.</li>
+    <li class="note">All grant data, authentication keys, and wallet details are removed.
+      Reconnecting will generate a new key pair requiring re-registration of the public key.</li>
+  </ol>
+</section>

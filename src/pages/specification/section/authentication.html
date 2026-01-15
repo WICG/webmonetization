@@ -1,0 +1,333 @@
+<section id="authentication">
+  <h2>Authentication</h2>
+  <p>This section defines the key material and requirements for generating and managing cryptographic keys used to
+    create HTTP message signatures for Open Payments.</p>
+
+  <p>All authenticated Open Payments protocol operations initiated by the user agent and sent to either
+    the user's wallet provider or a website's wallet provider
+    (e.g. grant requests, quote creation, outgoing payment creation) MUST be signed.</p>
+
+  <p>The validity of signatures is established because the user, during setup or an authorization procedure,
+    registers the [=encoded public key JWK=] with their wallet provider. The wallet provider then uses
+    that public key to verify subsequent signed requests (for example, grant creation, quote requests,
+    and outgoing payment creation).</p>
+
+  <p class="note" title="Privacy">
+    Reusing a single long-lived signing key across
+    multiple origins or wallet providers can enable cross-site tracking.
+    Future revisions may define per-session or per-origin derived authentication
+    keys to further reduce tracking surfaces. See the <a href="https://docs.google.com/document/d/1s9aXcLoBdLe9y_8JispFK7NVERxUhxn0orqgzZBrcBo/edit?tab=t.0#heading=h.z0cxd4l694ag">
+    directed identity proposal</a> for background.
+  </p>
+
+  <p>User agents MUST use an [=Ed25519 key pair=] to sign HTTP requests that
+    require proof-of-possession as described in this specification.</p>
+
+  <p>A generated key pair is persisted in {{Storage}}.</p>
+
+  <p class="note">The user agent SHOULD display the [=encoded public key JWK=] on its [=setup page=] to help
+      the user register it with their wallet provider.</p>
+
+  <p class="note">
+    Regenerating the key pair invalidates the association the user previously
+    made between their public key and their wallet. The user would have to
+    re-upload or re-register the new public key and repeat any interactive
+    authorization flows.
+  </p>
+
+  <section>
+    <h3 id="ed25519-key-pair">Ed25519 key pair</h3>
+    <p>The <dfn data-lt="key id|kid">Ed25519 key id</dfn> (<code>kid</code>) is an opaque identifier that MUST be
+      unique among the active signing keys for a single wallet address.</p>
+
+    <p>An <dfn data-lt="Ed25519 key pair|auth key pair|authentication key pair|key pair">Ed25519 key pair</dfn> is
+      the ordered pair of a [=private key=] (seed) and its corresponding [=public key=] as defined
+      in [[RFC8032]]. It is identified by a [=key id=].</p>
+    <p>
+      The <dfn data-lt="private key|Ed25519 private key|auth private key">Ed25519
+      private key</dfn> is the 32‑octet seed. It is
+      conceptually an opaque 32‑element octet array (e.g.
+      <code>std::array&lt;uint8_t, 32&gt;</code>) and SHOULD be stored and persisted
+      only in that seed form. Any expanded form needed for signing MAY be
+      derived transiently in memory and SHOULD be zeroized after use. The seed MUST
+      remain local to the user agent and MUST NOT be exposed to web content or
+      transmitted.
+    </p>
+    <p>
+      The <dfn data-lt="public key|Ed25519 public key|auth public key">Ed25519
+      public key</dfn> is the 32-octet encoded public group element. In other words,
+      it is the canonical public key bytes produced from the corresponding [=private key=].
+      The public key is represented as a [=public key JWK=].
+    </p>
+  </section>
+
+  <section id="public-key-representations">
+    <h3>Public key representations</h3>
+    <p>
+      A <dfn data-lt="public key JWK|JWK public key">public key JWK</dfn> is a [[[RFC7517]]] with <a data-cite="RFC8037#section-2">OKP</a> key type.
+    </p>
+
+    <aside class="example" title="Public key JWK object">
+      <pre class="json">
+        {
+          "kid": "randomly-generated-uuid",
+          "x": "base64-url-encoded-public-key",
+          "alg": "EdDSA",
+          "kty": "OKP",
+          "crv": "Ed25519"
+        }
+      </pre>
+    </aside>
+
+    <p>
+      An <dfn data-lt="encoded public key JWK|base64-encoded public key JWK">encoded public key JWK</dfn> is the base64 encoding (per [[RFC4648]])
+      of the UTF-8 JSON serialization of a [=public key JWK=]. This representation is what user agents persist and display.
+    </p>
+    <aside class="example" title="Encoded public key JWK">
+      <pre class="sh">eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImJhc2U2NC11cmwtZW5jb2RlZC1wdWJsaWMta2V5Iiwia2lkIjoicmFuZG9tLWdlbmVyYXRlZC1zdHJpbmcifQ</pre>
+    </aside>
+
+    <div class="note" title="Public key discovery">
+      <p>The [=encoded public key JWK=] is intended to be shared with the user's wallet provider so the wallet
+      can validate signatures on Open Payments requests.</p>
+
+      <p>A wallet provider exposes the registered signing public key(s) via
+      an endpoint such as
+      <a href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address-keys/"><code>wallet-address/{address}/keys</code></a> endpoint.
+      This allows verifiers to retrieve the current public key material associated with a wallet address.</p>
+    </div>
+  </section>
+
+  <section id="public-key-jwk-construction">
+    <h3>Constructing the encoded public key JWK</h3>
+    <p>
+      This algorithm constructs the [=encoded public key JWK=] representing a [=public key=]
+      given the raw 32‑octet public key bytes and a [=key id=].
+    </p>
+    <div class="algorithm">
+      To <dfn data-lt="construct an encoded public key JWK">construct an encoded public key JWK</dfn>,
+      given |rawPublicKeyBytes:byte sequence| (32 octets) and |keyId:DOMString| (the [=key id=]):
+      <ol>
+        <li>Let |x:DOMString| be |rawPublicKeyBytes| base64url encoded (no padding) per [[RFC4648]].</li>
+        <li>
+          Let |jwk| be a new JSON object.
+          <ol>
+            <li>Set |jwk|.kty to <code>"OKP"</code>.</li>
+            <li>Set |jwk|.crv to <code>"Ed25519"</code>.</li>
+            <li>Set |jwk|.alg to <code>"EdDSA"</code>.</li>
+            <li>Set |jwk|.x to |x|.</li>
+            <li>Set |jwk|.kid to |keyId|.</li>
+          </ol>
+        </li>
+        <li>Let |json:DOMString| be the UTF-8 JSON serialization of |jwk|.</li>
+        <li>Let |encodedPublicKeyJwk:DOMString| be |json| base64 encoded per [[RFC4648]].</li>
+        <li>Return |encodedPublicKeyJwk|.</li>
+      </ol>
+    </div>
+    <p class="note">The `x` parameter MUST omit base64 padding characters (`=`).</p>
+    <p class="note">Member order in JSON is not significant; implementations MUST accept any ordering when parsing.</p>
+  </section>
+
+  <section data-dfn-for="AuthKeys">
+    <h3>The `AuthKeys` dictionary</h3>
+    <p>The {{AuthKeys}} dictionary stores the [=Ed25519 key pair=] used for HTTP message signatures.</p>
+    <pre class="idl">
+    typedef Uint8Array PrivateKeySeed; // 32-octet Ed25519 seed
+
+    dictionary AuthKeys {
+      required DOMString keyId;
+      required DOMString publicKey;
+      required PrivateKeySeed privateKey;
+    };
+    </pre>
+    <dl>
+      <dt><dfn>keyId</dfn></dt>
+      <dd>The <strong>[=key id=]</strong> associated with the key pair, unique per user agent instance.</dd>
+      <dt><dfn>publicKey</dfn></dt>
+      <dd>The [=encoded public key JWK=].</dd>
+      <dt><dfn>privateKey</dfn></dt>
+      <dd>
+        Contains the 32‑octet [=private key=] seed as a <code>PrivateKeySeed</code>
+        (a <code>Uint8Array</code> length 32).
+      </dd>
+    </dl>
+  </section>
+
+  <section id="keypair-generation">
+    <h3>Generating an Ed25519 key pair</h3>
+    <p>
+      This algorithm creates a fresh Ed25519 key pair and persists it
+      as {{Storage/keys}} in {{Storage}}.
+    </p>
+    <div class="algorithm">
+      To <dfn data-lt="generate an Ed25519 key pair|produce HTTP signatures">generate an Ed25519 key pair</dfn>:
+      <ol>
+        <li>Let |keyId:DOMString| be a newly generated UUID v4 ([[RFC9562]]).</li>
+        <li>Generate a new [=Ed25519 private key=] and corresponding [=Ed25519 public key=] per [[RFC8032]].</li>
+        <li>Let |rawPublicKeyBytes| be the raw public key bytes.</li>
+        <li>Let |encodedPublicKeyJwk:DOMString| be the result of running the [=construct an encoded public key JWK=] algorithm
+          given |rawPublicKeyBytes| and |keyId|.</li>
+        <li>Let |privateKeySeed:PrivateKeySeed| be the 32-octet seed bytes.</li>
+        <li>
+          Let |authKeys:AuthKeys| be a new {{AuthKeys}} instance with the following members:
+          <ul>
+            <li>{{AuthKeys/keyId}} field set to |keyId|</li>
+            <li>{{AuthKeys/privateKey}} field set to |privateKeySeed|</li>
+            <li>{{AuthKeys/publicKey}} field set to |encodedPublicKeyJwk|</li>
+          </ul>
+        </li>
+        <li>
+          Run the [=store auth keys=] algorithm with |authKeys|, overwriting
+          any existing value.
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h3>HTTP message signatures</h3>
+    <p>User agents MUST create HTTP message signatures for authenticated Open Payments requests using the Ed25519 key pair.
+      The following algorithm defines signature construction.</p>
+    <div class="algorithm">
+      To <dfn>generate an HTTP message signature</dfn>, given an HTTP <var data-type="request">request</var>
+      and an optional GNAP authorization |accessToken:DOMString|:
+      <ol>
+        <li>Let |authKeys:AuthKeys?| be the result of the [=get auth keys=] algorithm.</li>
+        <li>If |authKeys| is null, then fail.</li>
+        <li>If <var>request</var>'s [=request/body=] is not `null`, then:
+          <ol>
+            <li>
+              <p>Handle the `Content-Type` header as follows:</p>
+              <ol>
+                <li>Let <var>mediaType</var> be the result of [=header list/extract a MIME type=] from <var>request</var>'s headers.</li>
+                <li>If <var>mediaType</var> is not null, [=header list/append=] `Content-Type`
+                   header name with value <var>mediaType</var>.</li>
+              </ol>
+            </li>
+            <li>
+              <p>Set the `Content-Digest` header as follows:</p>
+              <ol>
+                <li>Let |digestValue| be the result of computing a `sha-512` digest over the exact octets
+                  that will be transmitted as <var>request</var>'s body.</li>
+                <li>[=Set a structured header=] with headerName `Content-Digest`, key `sha-512`, and |digestValue| as value.</li>
+              </ol>
+              <div class="note">The value is serialized as a structured byte sequence (base64-encoded)
+                and wrapped in colons per [[RFC9651]].</div>
+            </li>
+            <li>
+              <p>Handle the `Content-Length` header as follows:</p>
+              <ol>
+                <li>Let <var>length</var> be the byte length of the transmitted body.</li>
+                <li>If the environment permits setting `Content-Length`,
+                  [=header list/append=] `Content-Length` header name with value <var>length</var>.
+                </li>
+              </ol>
+              <div class="note">
+              <p>
+                In implementations where the request is sent using the [=fetch=] mechanism, the `Content-Length`
+                header is treated as a [=forbidden request-header=], and manually setting it is not allowed.
+                Attempting to do so results in a `net::ERR_INVALID_ARGUMENT` error.
+                The {{WindowOrWorkerGlobalScope/fetch()}} automatically computes and appends it before sending
+                the request.
+              </p>
+              <p>That said, since `Content-Length` is part of the signature, its value MUST still be computed and
+                included in the signature input.</p>
+            </li>
+          </ol>
+        </li>
+        <li>Let |algorithm:DOMString| be `ed25519`.</li>
+        <li>Let |privateKey| be |authKeys|'s {{AuthKeys/privateKey}}.</li>
+        <li>Let |keyId:DOMString| be |authKeys|'s {{AuthKeys/keyId}}.</li>
+        <li>Let |createdTimestamp:integer| be the current UNIX timestamp in whole seconds.
+          <span class="note">Sub-second precision is not included.</span></li>
+        <li>
+          <p>Construct the <a data-cite="RFC9421#section-1.1-7.19">|signature base|</a> as described in <a data-cite="RFC9421#name-creating-the-signature-base"></a>:</p>
+          <ol>
+            <li>Let |components| be an ordered <a data-cite="RFC8941#inner-list">inner list of string values
+              with parameters</a> to describe the <a data-cite="RFC9421#section-1.1-7.17">covered components</a>
+              for the signature.</li>
+            <li>Let |components| initial value be `<<"@method", "@target-uri">>`.</li>
+            <li>If |accessToken| is given, then:
+              <ol>
+                <li>[=header list/Append=] an `Authorization` header whose value is the concatenation of
+                  the literal string `GNAP`, a single U+0020 SPACE character, and |accessToken|
+                  (that is, `GNAP` + " " + |accessToken|).</li>
+                <li>Append `"authorization"` to |components|.</li>
+              </ol>
+            </li>
+            <li>If <var>request</var>'s body is not `null`, append `"content-length"` and `"content-digest"`; if a `Content-Type` header will be sent, also append `"content-type"`.</li>
+            <li>Header field names in |components| MUST be lowercase.</li>
+            <li>Set |components|'s <a data-cite="RFC8941#param">parameters</a> to include
+              `keyid`=|keyId| and `created`=|createdTimestamp|. Implementations MAY include `expires` and `nonce` when available.
+              <span class="note">The `alg`=`"ed25519"` parameter may also be included but not required.</span></li>
+            <li>Let |signatureBase:byte sequence| be the serialization of |components| <a data-cite="RFC9421#name-creating-the-signature-base"></a>
+              (the covered components list; this corresponds to the |signature base| defined by [[RFC9421]]).</li>
+          </ol>
+
+          <aside class="example" title="Signature base (illustrative)">
+            <pre>
+              @method: POST
+              @target-uri: https://example.com/
+              authorization: GNAP 123454321
+              content-length: 18
+              content-digest: sha-512=:X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=:
+              content-type: application/json
+              @signature-params: ("@method" "@target-uri" "authorization" "content-length" "content-digest" "content-type");keyid="eddsa_key_1";created=1704722601</pre>
+            <p class="note">This block is illustrative only. The actual signature base is the RFC9421 serialization of the covered components list and parameters.</p>
+          </aside>
+        </li>
+        <li>
+          Compute the signature |signatureValue|:
+          <ol>
+              <li>Use the Ed25519 |privateKey| to sign |signatureBase| directly</li>
+              <li>Let |signatureValue| be the resulting signature byte sequence.</li>
+          </ol>
+        </li>
+        <li>
+          <p>Set the `Signature-Input` header as follows:</p>
+          <ol>
+            <li>Let |signatureInputValue:DOMString| be the serialization of |components| per [[RFC9421]] for a `Signature-Input` field value.</li>
+            <li>Append a `Signature-Input` header with value <code>sig1=</code> followed by |signatureInputValue|. If a `sig1` item already exists, its value MUST be replaced.</li>
+          </ol>
+        </li>
+        <li>
+          <p>Set the `Signature` header as follows:</p>
+          <ol>
+            <li>[=Set a structured header=] with headerName `Signature`, key `sig1`, and |signatureValue| as value.</li>
+          </ol>
+        </li>
+
+        <aside class="example" title="Signed HTTP request (illustrative)">
+          <pre>
+            POST / HTTP/1.1
+            Host: example.com
+            Content-Type: application/json
+            Content-Length: 18
+            Authorization: GNAP 123454321
+            Signature-Input: sig1=("@method" "@target-uri" "authorization" "content-length" "content-digest" "content-type");keyid="eddsa_key_1";created=1704722601
+            Signature: sig1=:EiCdZMbyXj6pN59g+mh3mY/Q6DlSBrCL7CJM4OZ550+d2MZhfdDKrOJU/ugeRdwd1KYyd1wA/VA7J2fi9YehCA==:
+
+            {
+              "hello":"world"
+            }
+          </pre>
+        </aside>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      To <dfn>set a structured header</dfn>, given a string |headerName|, a string |key|, and |value:byte sequence| for a |request:Request|:
+      <ol>
+        <li>Let |headerValue:structured field dictionary| be a <a data-cite="RFC9651#dictionary">structured field dictionary</a> with a single key |key| and corresponding value |value|.</li>
+        <li>Let |header| be a [=tuple=] of |headerName| and |headerValue|.</li>
+        <li>[=header list/Set a structured field value=] given |header| in the [=request/header list=] of the |request|. The |headerValue| MUST be <a data-cite="RFC9651#name-serializing-a-dictionary">serialized</a> as described in [[RFC9651]].</li>
+      </ol>
+
+      <aside class="example" title="Set as structured header">
+        With |headerName|=`Content-Digest`, |key|=`sha-512`, |value|=`aByteSequence`:
+        <pre class="http">Content-Digest: sha-512=:X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=:</pre>
+        Note that |value| is <a data-cite="RFC9651#name-serializing-a-byte-sequence">serialized as a byte sequence</a> (base64-encoded) and wrapped between `:` (colon).
+      </aside>
+    </div>
+  </section>
+</section>

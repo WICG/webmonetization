@@ -1,0 +1,849 @@
+<section id="algorithms">
+  <h2>Algorithms</h2>
+
+  <section>
+    <h3>Wallet address server</h3>
+    <section>
+      <h4>Wallet address request</h4>
+      <p>The send a wallet address request, refer to the <a data-cite="opwa/operations/get-wallet-address#">Open Payments get wallet address request</a>.</p>
+      <div class="algorithm">
+        When asked to <dfn>send a wallet address request</dfn>, given a <var data-type="DOMString">walletAddress</var> perform the following steps.
+        <ol>
+          <li>
+            Let |walletAddressUrl:URL| be the result of running [=URL parser=] with |walletAddress|.
+          </li>
+          <li>
+            If |walletAddressUrl| [=url/scheme=] is not `https`, return failure.
+          </li>
+          <li>
+            <p>Let |request| be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/URL=]</dt>
+              <dd>|walletAddressUrl|</dd>
+              <dt>[=request/method=]</dt>
+              <dd>"GET"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>null</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>a list containing a single header with name set to `Accept` and value set to `application/json`.</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Let |details| be null.
+          </li>
+          <li>
+            Perform a [=fetch request=] with |request| and with |processResponseConsumeBody|
+            set to the following steps, given a [=response=] |response| and |response|'s [=response/body=] |responseBody|:
+            <ol>
+              <li>
+                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|:
+              </li>
+              <li>
+                Convert |json| to a {{ WalletAddressDetails }},
+                |walletAddressDetails: WalletAddressDetails|, and
+                include |walletAddressUrl| as the
+                {{WalletAddressDetails/url}} property.
+              </li>
+              <li>
+                If one of the previous two steps threw an exception, return failure.
+              </li>
+              <li>
+                Set |details| to |walletAddressDetails|.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Return |details|.
+          </li>
+        </ol>
+      </div>
+    </section>
+  </section>
+
+  <section>
+    <h3>Authorization server (AS)</h3>
+    <section>
+      <h4>Outgoing payment and quote grant request</h4>
+      <p>The send an outgoing payment and quote grant requests refers to the <a data-cite="opas/operations/post-continue#">Open Payments grant request</a></p>
+      <div class="algorithm">
+        When asked to <dfn>send an outgoing payment and quote grant request</dfn>,
+        given <a>|walletAddressDetails:WalletAddressDetails|</a>, |budget:number|
+        and |interval:DOMString| perform the following steps.
+        <ol>
+          <li>
+            Let |authServer:URL| be the result of running [=URL parser=]
+            with |walletAddressDetails|'s {{WalletAddressDetails/authServer}} property.
+          </li>
+          <li>
+            <p>Construct a {{ GrantRequest }} |grantRequest: GrantRequest| as follows:</p>
+            <ol>
+              <li>
+                Set |grantRequest|'s {{GrantRequest/client}} to |walletAddressDetails|'s {{WalletAddressDetails/id}} property.
+              </li>
+              <li>
+                Set |grantRequest|'s {{GrantRequest/interact}} to a new {{ Interact }} with {{Interact/start}} set to `["redirect"]`.
+              </li>
+              <li>
+                Let |quoteAccess| be a new {{ Access }} object with:
+                <ul>
+                  <li>{{Access/type}} set to `"quote"`</li>
+                  <li>{{Access/actions}} set to `["create"]`</li>
+                </ul>
+              </li>
+              <li>
+                Let |assetScale| be |walletAddressDetails|'s {{WalletAddressDetails/assetScale}} property.
+              </li>
+              <li>
+                Let |scaledValue| be <code>Math.floor(parseFloat(|budget|) * Math.pow(10, |assetScale|))</code>.
+              </li>
+              <li>
+                Let |debitAmount| be a new {{ Amount }} object with:
+                  <ul>
+                    <li>{{Amount/value}} set to the result of calling {{Number/toString()}} on |scaledValue|</li>
+                    <li>{{Amount/assetScale}} set to |assetScale|</li>
+                    <li>{{Amount/assetCode}} set to |walletAddressDetails|'s {{WalletAddressDetails/assetCode}} property</li>
+                  </ul>
+              </li>
+              <li>
+                Let |accessLimits| be a new {{ AccessLimits }} object with:
+                <ul>
+                  <li>{{AccessLimits/debitAmount}} set to |debitAmount|</li>
+                  <li>{{AccessLimits/interval}} set to |interval|</li>
+                </ul>
+              </li>
+              <li>
+                Let |paymentAccess| be a new {{ Access }} object with:
+                <ul>
+                  <li>{{Access/type}} set to `"outgoing-payment"`</li>
+                  <li>{{Access/actions}} set to `["create", "read"]`</li>
+                  <li>{{Access/identifier}} set to <var>walletAddressDetails</var>'s {{WalletAddressDetails/id}} property</li>
+                  <li>{{Access/limits}} set to |accessLimits|</li>
+                </ul>
+              </li>
+              <li>
+                Set |grantRequest|'s {{GrantRequest/access_token}} to a new {{ RequestAccessToken }} with:
+                <ul>
+                  <li>{{RequestAccessToken/access}} set to a list containing |quoteAccess| and |paymentAccess|</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <p>Let <var>request</var> be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/URL=]</dt>
+              <dd>|authServer|</dd>
+              <dt>[=request/method=]</dt>
+              <dd>"POST"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>the result of running [=serialize a JavaScript value to a JSON string=] on |grantRequest|</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>a list containing a single header with name set to `Content-Type` and value set to `application/json`.</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Run the [=generate an HTTP message signature=] algorithm on |request|.
+          </li>
+          <li>
+            Let |grant| be null.
+          </li>
+          <li>
+            Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to
+            the following steps, given a [=response=] and |response|'s [=request/body=] |responseBody|:
+            <ol>
+              <li>
+                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
+              </li>
+              <li>
+                Convert |json| to a {{ PendingGrant }}, |grantResponse:PendingGrant|.
+              </li>
+              <li>
+                If one of the previous two steps threw an exception, return failure.
+              </li>
+              <li>
+                Set |grant| to |grantResponse|.
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+
+      <aside class="example" title="Grant request JSON payload">
+        <p>This payload has the type {{GrantRequest}}.</p>
+        <pre class="json">
+        {
+          "access_token": {
+            "access": [
+              {
+                "type": "quote",
+                "actions": ["create"]
+              },
+              {
+                "type": "outgoing-payment",
+                "actions": ["create", "read"],
+                "identifier": "https://wallet.example/user",
+                "limits": {
+                  "debitAmount": {
+                    "value": "1500",
+                    "assetScale": 2, // wallet address asset scale
+                    "assetCode": "USD" // wallet address assset code
+                  }
+                }
+              }
+            ]
+          },
+          "client": "https://wallet.example/user"
+          "interact": {
+            "start": ["redirect"]
+          },
+        }
+        </pre>
+      </aside>
+      <aside class="example" title="Pending grant response JSON payload">
+        <pre class="json">
+        {
+          "interact": {
+            "redirect": "https://auth.wallet.example/4CF492MLVMSW9MKMXKHQ",
+            "finish": "4105340a-05eb-4290-8739-f9e2b463bfa7"
+          },
+          "continue": {
+            "access_token": {
+              "value": "33OMUKMKSKU80UPRY5NM"
+            },
+            "uri": "https://auth.wallet.example/continue/4CF492MLVMSW9MKMXKHQ",
+            "wait": 30
+          }
+        }
+        </pre>
+      </aside>
+    </section>
+
+    <section>
+      <h4>Incoming payment grant request</h4>
+      <p>The incoming payment grant request refers to
+        the <a data-cite="opas/operations/post-request#">Open Payments grant request</a>.
+        This request is non-interactive: implementations MUST NOT include an {{GrantRequest.interact}} and
+        the authorization server will return a {{Grant}} directly if successful.</p>
+      <div class="algorithm">
+        When asked to <dfn>send an incoming payment grant request</dfn>, given |websiteWalletAddressDetails:WalletAddressDetails|
+        perform the following steps.
+        <ol>
+          <li>
+            Let |userWalletDetails:WalletAddressDetails?| be the result of [=get user wallet=].
+          </li>
+          <li>If |userWalletDetails| is null, then return failure.</li>
+          <li>
+            Let |authServer:URL| be the result of running [=URL parser=] with |websiteWalletAddressDetails|'s {{WalletAddressDetails/authServer}} property.
+          </li>
+          <li>
+            <p>Construct a {{ GrantRequest }} |grantRequest: GrantRequest| as follows:</p>
+            <ol>
+              <li>
+                Set |grantRequest|'s {{GrantRequest/client}} to |userWalletDetails|.{{WalletAddressDetails/id}}.
+              </li>
+              <li>
+                Let |incomingPaymentAccess| be a new {{ Access }} object with:
+                <ul>
+                  <li>{{Access/type}} set to `"incoming-payment"`</li>
+                  <li>{{Access/actions}} set to `["create"]`</li>
+                  <li>{{Access/identifier}} set to |websiteWalletAddressDetails|'s {{WalletAddressDetails/id}} property</li>
+                </ul>
+              </li>
+              <li>
+                Set |grantRequest|'s {{GrantRequest/access_token}} to a new {{ RequestAccessToken }} with:
+                <ul>
+                  <li>{{RequestAccessToken/access}} set to a list containing |incomingPaymentAccess|</li>
+                </ul>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <p>Let <var>request</var> be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/URL=]</dt>
+              <dd><var>authServer</var>
+              <dt>[=request/method=]</dt>
+              <dd>"POST"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>the result of running [=serialize a JavaScript value to a JSON string=] on |grantRequest|</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>a list containing a single header with name set to `Content-Type` and value set to `application/json`.</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Run the [=generate an HTTP message signature=] algorithm on |request|.
+          </li>
+          <li>Let |grant| be null.</li>
+          <li>
+            Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
+            given a [=response=] and |response|'s [=request/body=] |responseBody|:
+            <ol>
+              <li>
+                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
+              </li>
+              <li>
+                Convert |json| to a {{ Grant }}, |grantResponse:Grant|.
+              </li>
+              <li>
+                If one of the previous two steps threw an exception, return failure.
+              </li>
+              <li>
+                Set |grant| to |grantResponse|.
+              </li>
+            </ol>
+          </li>
+          <li>Return |grant|.</li>
+        </ol>
+      </div>
+
+      <p class="note">The access token returned in the {{Grant}} is used to authorize the subsequent
+        <a href="#create-incoming-payment">create incoming payment</a> request.</p>
+
+      <aside class="example" title="Incoming payment grant request JSON payload">
+        <p>This payload has the type {{GrantRequest}}.</p>
+        <pre class="json">
+        {
+          "access_token": {
+            "access": [
+              {
+                "type": "incoming-payment",
+                "actions": ["create"],
+                "identifier": "https://wallet.example/website"
+              }
+            ]
+          },
+          "client": "https://wallet.example/sender"
+        }
+        </pre>
+      </aside>
+      <aside class="example" title="Grant response JSON payload">
+        <pre class="json">
+        {
+          "access_token": {
+            "value": "OS9M2PMHKUR64TB8N6BW7OZB8CDFONP219RP1LT0",
+            "manage": "https://auth.wallet.example/token/PRY5NM33OM4TB8N6BW7OZB8CDFONP219RP1L",
+            "expires_in": 3600
+          },
+          "access": [
+            {
+              "type": "incoming-payment",
+              "actions": ["create"],
+              "identifier": "https://wallet.example/website"
+            }
+          ]
+        }
+        </pre>
+      </aside>
+    </section>
+
+    <section>
+      <h4>Continue grant request</h4>
+      <p>The send a continue grant request, refers to the <a data-cite="opas/operations/post-continue#">Open Payments grant request</a></p>
+      <div class="algorithm">
+        When asked to <dfn>send a continue grant request</dfn>, given |continueUri:DOMString|, |accessToken:DOMString|, perform the following steps.
+        <ol>
+          <li>
+            Let |uri:URL| be the result of running [=URL parser=] with |continueUri|.
+          </li>
+          <li>
+              If |uri| [=url/scheme=] is not `https`, return failure.
+          </li>
+          <li>
+            <p>Let |request| be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/URL=]</dt>
+              <dd>|uri|</dd>
+              <dt>[=request/method=]</dt>
+              <dd>"POST"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>a list containing a single header with name set to `Content-Type` and value set to `application/json`.</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Run the [=generate an HTTP message signature=] algorithm on |request| with |accessToken|.
+          </li>
+          <li>Let |grant| be null.</li>
+          <li>
+            Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
+            given a [=response=] |response| with [=response/body=] |responseBody|:
+            <ol>
+              <li>
+                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
+              </li>
+              <li>
+                Convert |json| to a {{ PendingGrant }} or {{ Grant }}, |grantResponse|.
+                <p class="note">
+                    The continuation request can return either a {{ PendingGrant }} or a {{ Grant }}.
+                </p>
+              </li>
+              <li>
+                If one of the previous two steps threw an exception, return failure.
+              </li>
+              <li>Set |grant| to |grantResponse|.</li>
+            </ol>
+          </li>
+          <li>Return |grant|.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h4>Cancel grant request</h4>
+      <p>The cancel grant request, refers to the <a data-cite="opas/operations/delete-continue#">Open Payments cancel grant request</a>.</p>
+      <div class="algorithm">
+        When asked to <dfn>send a cancel grant request</dfn>, given |continueUri|, |accessToken| perform the following steps.
+        <ol>
+          <li>
+            Let |uri| be the result of running [=URL parser=] with |continueUri|.
+          </li>
+          <li>
+            If |uri| [=url/scheme=] is not `https`, return failure.
+          </li>
+          <li>
+            <p>Let |request| be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/url=]</dt>
+              <dd>|uri|</dd>
+              <dt>[=request/method=]</dt>
+              <dd>"DELETE"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>a list containing a single header with name set to `Content-Type` and value set to `application/json`.</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Run the [=generate an HTTP message signature=] algorithm on |request| with |accessToken|.
+          </li>
+          <li>
+            Perform a [=fetch request=] with |request|, given a [=response=]:
+            <ol>
+              <li>
+                If {{"NetworkError"}} is thrown, notify the user that the browser could not cancel the grant.
+              </li>
+              <li>
+                If the [=status=] is `204`, the grant was successfully canceled and the storage can be cleared.
+                <p class="note">
+                  When clearing the storage all user data should be removed. The only properties
+                  that should not be cleared are: {{Storage/privateKey}}, {{Storage/publicKey}}, {{Storage/kid}}.
+                </p>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h4>Rotate access token</h4>
+      <p>The rotate access token request refers to the <a data-cite="opas/operations/post-token#">Open Payments rotate access token</a>.</p>
+      <div class="algorithm">
+        When asked to <dfn>send a rotate access token request</dfn>, given {{Grant}} |userWalletGrant:Grant| perform the following steps.
+        <ol>
+          <li>
+            Let |manageUrl:URL| be the result of running [=URL parser=] with
+            |userWalletGrant|.{{Grant/access_token}}.{{AccessToken/manage}}.
+          </li>
+          <li>
+            <p>Let |request| be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/URL=]</dt>
+              <dd>|manageUrl|</dd>
+              <dt>[=request/method=]</dt>
+              <dd>"POST"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>null</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>an empty list</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Run the [=generate an HTTP message signature=] algorithm on |request|
+            with |userWalletGrant|.{{Grant/access_token}}.{{AccessToken/value}}.
+          </li>
+          <li>
+            Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
+            given a [=response=] |response| and |response|'s [=response/body=] |responseBody|:
+            <ol>
+              <li>
+                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
+              </li>
+              <li>
+                If |json| does not have an `access_token` property that is an object, return failure.
+              </li>
+              <li>
+                Convert |json|.access_token to an {{ AccessToken }}, |rotatedAccessToken|.
+              </li>
+              <li>
+                If the previous step failed, return failure.
+              </li>
+              <li>
+                Return |rotatedAccessToken|.
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </div>
+      <aside class="note">
+        <p>
+          The response contains an <code>access_token</code> object with both {{AccessToken/value}} and {{AccessToken/manage}} properties,
+          allowing the browser to use the new token value and its management URL for future operations.
+        </p>
+        <p>
+          When a token rotation succeeds, the browser should update the {{Storage/grant}}'s {{Grant/access_token}} in persistent storage
+          (including both the token value and management URL) and retry the operation that originally failed
+          with the {{OutgoingPaymentResult/"token-invalid"}} result.
+        </p>
+        <p>
+          If token rotation fails, the browser should clear the stored credentials and terminate all active monetization sessions,
+          as the grant is no longer valid.
+        </p>
+      </aside>
+    </section>
+  </section>
+
+  <section>
+    <h3>Resource server operations (RS)</h3>
+    <section>
+      <h4>Create incoming payment</h4>
+      <p>The create incoming payment request refers
+        to the <a data-cite="oprs/operations/create-incoming-payment#">Open Payments create incoming payment</a>.</p>
+      <div class="algorithm">
+        When asked to <dfn>send a create incoming payment request</dfn>,
+        given |websiteWalletAddressDetails:WalletAddressDetails|,
+        |incomingPaymentGrant:Grant|, perform the following steps.
+        <ol>
+          <li>
+            Let |resourceServer:URL| be the result of running [=URL parser=] with
+            |websiteWalletAddressDetails|'s {{WalletAddressDetails/resourceServer}} property.
+          </li>
+          <li>
+            Let |incomingPaymentsUrl:URL| be the result of running [=URL parser=] with the string formed by
+            concatenating |resourceServer| and "/incoming-payments".
+          </li>
+          <li>
+            Let |expiresAt:DOMString| be the current date-time plus 10 minutes, formatted as an ISO 8601 string.
+            <p class="note">The `expiresAt` field is set to the current date plus 10 minutes.
+              We assume users typically spend about 5 minutes on a website, making it unnecessary to keep the session active longer.
+              Ideally, the browser should terminate the session when the user navigates away from the site.
+              However, if that doesn’t happen for any reason, the expiration date will ensure the session is ended.
+              If the session expires before the user leaves the website, the browser should reinitialize the session.
+            </p>
+          </li>
+          <li>
+            <p>Let |body| be a new JavaScript object constructed as follows:</p>
+            <ul>
+              <li>Set |body|.walletAddress to |websiteWalletAddressDetails|'s {{WalletAddressDetails/id}}.</li>
+              <li>Set |body|.expiresAt to |expiresAt|.</li>
+            </ul>
+            <p class="note">`incomingAmount` is not set, as the amount is not fixed
+              and the same incoming payment is reused for the session duration.</p>
+          </li>
+          <li>
+            <p>Let |request| be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/URL=]</dt>
+              <dd>|incomingPaymentsUrl|</dd>
+              <dt>[=request/method=]</dt>
+              <dd>"POST"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>the result of running [=serialize a JavaScript value to a JSON string=] on |body|</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>a list containing a single header with name set to <code>Content-Type</code> and value set to <code>application/json</code>.</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Run the [=generate an HTTP message signature=] algorithm on |request| with |incomingPaymentGrant|.{{Grant/access_token}}.{{AccessToken/value}}.
+          </li>
+          <li>
+            Let |incomingPaymentId:DOMString| be null.
+          </li>
+          <li>
+            Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
+            given a [=response=] and |response|'s [=request/body=] |responseBody|:
+            <ol>
+              <li>
+                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
+              </li>
+              <li>
+                If |json| does not have an <code>id</code> property whose value is a string, return failure.
+              </li>
+              <li>
+                Set |incomingPaymentId| to |json|.id.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Return |incomingPaymentId|.
+          </li>
+        </ol>
+      </div>
+
+      <aside class="example" title="Create incoming payment JSON payload">
+        <p>This payload is sent to the resource server.</p>
+        <pre class="json">
+        {
+          "walletAddress": "https://wallet.example/website",
+          "expiresAt": "2025-10-01T12:10:00Z"
+        }
+        </pre>
+      </aside>
+      <aside class="example" title="Incoming payment response JSON payload">
+        <pre class="json">
+        {
+          "id": "https://rs.wallet.example/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+          "walletAddress": "https://wallet.example/website",
+          "incomingAmount": {
+            "value": "2500",
+            "assetCode": "USD",
+            "assetScale": 2
+          },
+          "receivedAmount": {
+            "value": "0",
+            "assetCode": "USD",
+            "assetScale": 2
+          },
+          "completed": false,
+          "createdAt": "2025-10-01T12:00:00Z",
+          "methods": [
+            {
+              "type": "ilp",
+              "ilpAddress": "g.example.abcd1234",
+              "sharedSecret": "czVjcmV0Ig=="
+            }
+          ]
+        }
+        </pre>
+      </aside>
+    </section>
+
+    <section>
+      <h4>Create outgoing payment</h4>
+      <p>The create outgoing payment request refers to the <a data-cite="oprs/operations/create-outgoing-payment#">Open Payments create outgoing payment</a>.</p>
+      <div class="algorithm">
+        When asked to <dfn>send a create outgoing payment request</dfn>,
+        given |userWalletAddressDetails:WalletAddressDetails|,
+        |incomingPaymentId:DOMString|,
+        |debitAmountValue:DOMString|,
+        and |outgoingPaymentGrant:Grant|, perform the following steps.
+        <ol>
+          <li>
+            Let |resourceServer:URL| be the result of running [=URL parser=] with
+            |userWalletAddressDetails|'s {{WalletAddressDetails/resourceServer}} property.
+          </li>
+          <li>
+            Let |outgoingPaymentsUrl:URL| be the result of running [=URL parser=] with the string formed by
+            concatenating |resourceServer| and "/outgoing-payments".
+          </li>
+          <li>
+            <p>Let |body| be a new JavaScript object constructed as follows:</p>
+            <ul>
+              <li>Set |body|.walletAddress to |userWalletAddressDetails|'s {{WalletAddressDetails/id}}.</li>
+              <li>Set |body|.incomingPayment to |incomingPaymentId|.</li>
+              <li>
+                Set |body|.debitAmount to a new object with:
+                <ul>
+                  <li>{{Amount/value}} set to |debitAmountValue|</li>
+                  <li>{{Amount/assetCode}} set to |userWalletAddressDetails|'s {{WalletAddressDetails/assetCode}}</li>
+                  <li>{{Amount/assetScale}} set to |userWalletAddressDetails|'s {{WalletAddressDetails/assetScale}}</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>Let |request| be a new [=request=] as follows:</p>
+            <dl>
+              <dt>[=request/URL=]</dt>
+              <dd>|outgoingPaymentsUrl|</dd>
+              <dt>[=request/method=]</dt>
+              <dd>"POST"</dd>
+              <dt>[=request/body=]</dt>
+              <dd>the result of running [=serialize a JavaScript value to a JSON string=] on |body|</dd>
+              <dt>[=request/redirect mode=]</dt>
+              <dd>"follow"</dd>
+              <dt>[=request/client=]</dt>
+              <dd>null</dd>
+              <dt>{{RequestInit/window}}</dt>
+              <dd>null</dd>
+              <dt>[=request/service-workers mode=]</dt>
+              <dd>"none"</dd>
+              <dt>[=request/destination=]</dt>
+              <dd>"monetization"</dd>
+              <dt>[=request/header list=]</dt>
+              <dd>a list containing a single header with name set to <code>Content-Type</code> and value set to <code>application/json</code>.</dd>
+              <dt>[=request/mode=]</dt>
+              <dd>"cors"</dd>
+            </dl>
+          </li>
+          <li>
+            Run the [=generate an HTTP message signature=] algorithm on |request|
+            with |outgoingPaymentGrant|.{{Grant/access_token}}.{{AccessToken/value}}.
+          </li>
+          <li>
+            Let |result:OutgoingPaymentResult| be {{OutgoingPaymentResult/"error"}}.
+          </li>
+          <li>
+            Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
+            given a [=response=] |response| and |response|'s [=response/body=] |responseBody|:
+            <ol>
+              <li>
+                If |response|'s [=status=] is `201`, then set |result| to {{OutgoingPaymentResult/"success"}}.
+              </li>
+              <li>
+                If |response|'s [=status=] is `403`, then set |result| to {{OutgoingPaymentResult/"token-invalid"}}.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Return |result|.
+          </li>
+        </ol>
+      </div>
+
+      <aside class="example" title="Create outgoing payment JSON payload">
+        <pre class="json">
+        {
+          "walletAddress": "https://wallet.example/sender",
+          "incomingPayment": "https://rs.wallet.example/incoming-payments/08394f02-7b7b-45e2-b645-51d04e7c330c",
+          "debitAmount": {
+            "value": "1500",
+            "assetCode": "USD",
+            "assetScale": 2
+          }
+        }
+        </pre>
+      </aside>
+    </section>
+  </section>
+
+  <section>
+    <h3>Helper algorithms</h3>
+    <section>
+      <h4>Fetch request</h4>
+      <div class="algorithm">
+        To perform a <dfn>fetch request</dfn> given a [=request=] request and
+        an algorithm |processResponseConsumeBody|, execute the following steps:
+        <ol>
+          <li>
+            [=Queue a global task=] on the [=networking task source=] to [=fetch=] |request|
+            with [=fetch/processResponseEndOfBody=] set to |processResponseConsumeBody|.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h4>Extract JSON from fetch response</h4>
+      <div class="algorithm">
+        <p>To <dfn>extract the JSON fetch response</dfn> a [=response=] response:
+        <ol>
+          <li>
+            If |response| is a [=network error=] or its [=status=] is not an [=ok status=], throw a new {{"NetworkError"}}.
+          </li>
+          <li>
+            Let |mimeType| be the result of [=header list/extract a MIME type=] from |response|'s [=header list=].
+          </li>
+          <li>
+            If |mimeType| is failure or is not a [=JSON MIME type=], throw a new {{"NetworkError"}}.
+          </li>
+          <li>
+            Let |json| be the result of [=parse JSON bytes to an infra value=] passing |responseBody|.
+          </li>
+          <li>
+            If |json| is a parsing exception, throw a new {{"NetworkError"}}.
+          </li>
+          <li>
+            Return |json|.
+          </li>
+        </ol>
+      </div>
+    </section>
+  </section>
+
+</section>

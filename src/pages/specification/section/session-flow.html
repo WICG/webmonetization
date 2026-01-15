@@ -1,0 +1,374 @@
+<section id="session-flow">
+  <h2>Session flow</h2>
+
+  <p>
+    This section describes the payment session flow that occurs when a user visits a [=web monetized website=].
+    The session flow involves establishing a payment session, managing ongoing payments, and handling session lifecycle events.
+  </p>
+
+  <section>
+    <h3>Session lifecycle</h3>
+    <p>
+      This section defines when sessions are created and ended. It specifies the triggers that invoke the
+        [[[#session-initiation]]] and [[[#session-termination]]] algorithms defined later in this section.
+      </p>
+
+    <p>
+      When a {{Document}} becomes [=Document/fully active=], the user agent MUST
+      [=initiate document-wide sessions=].
+      If a {{Document}} becomes not [=Document/fully active=], the user agent MUST
+      [=end sessions for document=] for it and all of its [=child navigables=].
+    </p>
+
+    <p>
+      When the user starts interacting with a [=media element=], the user agent SHOULD
+      [=initiate media-scoped sessions=] given that element; when the user stops interacting, the user agent
+      SHOULD [=end sessions scoped to=] that element.
+    </p>
+
+    <p>
+      If any of the conditions defined in the
+      <a href="https://webmonetization.org/specification/#link-type-monetization">link fetch and processing timing</a>
+      cause a monetization link element to be reprocessed, the user agent MUST [=end session=] for the session
+      associated with that element (if any) and then [=initiate a session=] for that element.
+    </p>
+
+    <p>
+      The user agent maintains an [=active sessions list=] to track all currently running monetization sessions.
+      Each session in this list corresponds to a monetization link element and contains the information needed
+      to distribute payments to the website's wallet.
+    </p>
+
+    <dl>
+      <dt><dfn>active sessions list</dfn></dt>
+      <dd>
+        A user agent maintained ordered list of {{Session}} records created by [=initiate a session=].
+      </dd>
+      <dt><dfn>current session iterator</dfn></dt>
+      <dd>
+        A user agent maintained iterator that points to the next {{Session}} in the [=active sessions list=] to be processed for payment.
+        This iterator is used to implement round-robin session processing,
+        ensuring fair distribution of payment attempts across all active sessions.
+        When the [=active sessions list=] is empty, the iterator is set to a special <dfn>end iterator</dfn> value
+        that represents a position past the last element in the list.
+      </dd>
+    </dl>
+  </section>
+
+  <section>
+    <h3>Session initiation</h3>
+    <p>
+      This section defines the algorithms for initiating payment sessions at various scopes—document-wide,
+      media-scoped, or for individual monetization link elements. Session initiation discovers website wallet details,
+      negotiates authorization, creates an incoming payment, and registers a session record in the [=active sessions list=].
+    </p>
+
+    <div class="algorithm">
+      <p>To <dfn>initiate document-wide sessions</dfn> given a |document:Document|, run these steps:</p>
+      <ol>
+        <li>If the result of [=get user wallet=] is null, then return.</li>
+        <li>[=initiate sessions scoped to=] the [^head^] element of |document|.</li>
+        <li>For each [=child navigable=] of |document|, recursively [=initiate document-wide sessions=].</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>initiate media-scoped sessions</dfn> given a |media:HTMLElement|, run these steps:</p>
+      <ol>
+        <li>If the result of [=get user wallet=] is null, then return.</li>
+        <li>[=initiate sessions scoped to=] |media|.</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>initiate sessions scoped to</dfn> the |root:HTMLElement|, run these steps:</p>
+      <ol>
+        <li>Let |document:Document| be the {{Node/ownerDocument}} of |root|.</li>
+        <li>If [=document monetization disabled=] given |document|, then return.</li>
+        <li>Let |linkElements:NodeList| be all [^link^] elements with `rel="monetization"` that are descendants of |root|.</li>
+        <li>For each |linkElement:HTMLLinkElement| in |linkElements|, [=initiate a session=] given |linkElement|.</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>initiate a session</dfn>, given |linkElement:HTMLLinkElement|, perform the following steps:</p>
+      <ol>
+        <li>If |linkElement| has [^link/disabled^] attribute, then return.</li>
+        <li>
+          Let |websiteWalletAddress:DOMString| be the value of the {{HTMLLinkElement/href}} of |linkElement|.
+        </li>
+        <li>
+          If [=wallet monetization restricted=] given |document| and |websiteWalletAddress|, then return.
+        </li>
+        <li>
+          Let |websiteWalletDetails:WalletAddressDetails?| be the result of [=send a wallet address request=] with |websiteWalletAddress|.
+        </li>
+        <li>
+          If |websiteWalletDetails| is null, fire an `error` event on |linkElement| and return.
+        </li>
+        <li>
+          Fire a `load` event on |linkElement|.
+        </li>
+        <li>
+          Let |incomingPaymentGrant:Grant?| be the result of [=send an incoming payment grant request=] with |websiteWalletDetails|.
+        </li>
+        <li>
+          If |incomingPaymentGrant| is null, return.
+        </li>
+        <li>
+          Let |incomingPaymentId:DOMString?| be the result of [=send a create incoming payment request=] with |websiteWalletDetails|, and |incomingPaymentGrant|.
+        </li>
+        <li>
+          If |incomingPaymentId| is null, return.
+        </li>
+        <li>
+          Let |continueUri:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/uri}}.
+        </li>
+        <li>
+          Let |accessToken:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/access_token}}.{{ContinueAccessToken/value}}.
+        </li>
+        <li>
+          [=Send a cancel grant request=] with |continueUri| and |accessToken|.
+          <p class="note">The incoming payment grant is no longer needed after the payment bucket has been created. Canceling it ensures proper cleanup and revokes the authorization. Implementations should handle cancellation failures gracefully but can proceed with the session even if cancellation fails, as the grant will expire naturally.</p>
+        </li>
+        <li>
+          Let |session:Session| be a new {{Session}} with:
+          <ul>
+            <li>{{Session/linkElement}} set to |linkElement|</li>
+            <li>{{Session/walletDetails}} set to |websiteWalletDetails|</li>
+            <li>{{Session/incomingPaymentId}} set to |incomingPaymentId|</li>
+          </ul>
+        </li>
+        <li>
+          Append |session| to the [=active sessions list=].
+        </li>
+        <li>
+          If this is the first active session:
+          <ol>
+            <li>Set the [=current session iterator=] to point to |session|.</li>
+            <li>[=Schedule payment streaming tick=].</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+
+    <aside class="note" title="Session initiation summary">
+      <p>The main [=initiate a session=] algorithm performs these key steps:</p>
+      <ol>
+        <li><strong>Preconditions:</strong> Verify user wallet exists and monetization is permitted</li>
+        <li><strong>Discovery:</strong> Request website wallet address details,
+          firing `load` event on success or `error` event on failure</li>
+        <li><strong>Authorization:</strong> Obtain an incoming payment grant to create payments on the website's wallet</li>
+        <li><strong>Payment setup:</strong> Create an incoming payment (payment bucket) on the website's wallet resource server</li>
+        <li><strong>Cleanup:</strong> Cancel the temporary incoming payment grant (no longer needed)</li>
+        <li><strong>Registration:</strong> Add the session to the active sessions list and
+          start the payment streaming loop if this is not yet started</li>
+      </ol>
+    </aside>
+  </section>
+
+  <section>
+    <h3>Session termination</h3>
+    <p>
+      This section defines the algorithms for ending payment sessions at various scopes—document-wide,
+      media-scoped, or for individual monetization link elements. Session termination removes session records
+      from the [=active sessions list=] and cancels scheduled payment work.
+    </p>
+
+    <div class="algorithm">
+      <p>To <dfn>end sessions for document</dfn>, given a |document:Document|, run these steps:</p>
+      <ol>
+        <li>[=End sessions scoped to=] the [^head^] element of |document|.</li>
+        <li>For each [=child navigable=] of |document|, recursively [=end sessions for document=].</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>end sessions scoped to</dfn> the |root:HTMLElement|, run these steps:</p>
+      <ol>
+        <li>Let |linkElements:NodeList| be all [^link^] elements with `rel="monetization"` that are descendants of |root|.</li>
+        <li>For each |linkElement:HTMLLinkElement| in |linkElements|:
+          <ol>
+            <li>Let |session:Session| be the session record in the [=active sessions list=] whose {{HTMLLinkElement}} is |linkElement|, or null if none exists.</li>
+            <li>If |session| is not null, [=end session=] given |session|.</li>
+          </ol>
+        </li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>end session</dfn>, given a session record |session:Session|, run these steps:</p>
+      <ol>
+        <li>If |session| is the only session in the [=active sessions list=]:
+          <ol>
+            <li>Remove |session| from the [=active sessions list=].</li>
+            <li>Set the [=current session iterator=] to the [=end iterator=].</li>
+          </ol>
+        </li>
+        <li>Otherwise:
+          <ol>
+            <li>If the [=current session iterator=] points to |session|, [=select next session for payment=].</li>
+            <li>Remove |session| from the [=active sessions list=].</li>
+          </ol>
+        </li>
+        <li>The user agent MUST cancel any scheduled payment work for |session|.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <h3>Payment streaming</h3>
+    <p>
+      Once a session is established, the browser manages the ongoing payment stream according to the configured budget and rate limits.
+    </p>
+
+    <div class="algorithm">
+      <p>To <dfn>schedule payment streaming tick</dfn>, run these steps:</p>
+      <ol>
+        <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
+        <li>If |userWallet| is null, then return.</li>
+        <li>If the [=active sessions list=] is empty, then return.</li>
+        <li>Let |session:Session| be the session pointed to by the [=current session iterator=].</li>
+        <li>[=Select next session for payment=].</li>
+        <li>Let (|paymentAmount:long long|, |delay:DOMHighResTimeStamp|) be the result of [=compute payment amount and delay=].</li>
+        <li>If |paymentAmount| is 0, then return.</li>
+        <li>Let |amount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
+          {{PaymentCurrencyAmount/value}} set to |paymentAmount| serialized as a string.</li>
+        <li>Schedule a task that, after |delay| has elapsed, will [=process session for payment=] given |session| and |amount|.</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>select next session for payment</dfn>, run these steps:</p>
+      <ol>
+        <li>If the [=active sessions list=] is empty, then set the [=current session iterator=] to the [=end iterator=].</li>
+        <li>Otherwise, if the [=current session iterator=] is not at the [=end iterator=],
+          then advance the [=current session iterator=] to the next session in the [=active sessions list=].</li>
+        <li>If the [=current session iterator=] is at the [=end iterator=],
+          then set the [=current session iterator=] to point to the first session in the [=active sessions list=].</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>process session for payment</dfn>, given |session:Session| and |amount:PaymentCurrencyAmount|, run these steps:</p>
+      <ol>
+        <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
+        <li>If |userWallet| is null, then return.</li>
+        <li>If |session| is not in the [=active sessions list=], then return.</li>
+        <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
+        <li>Let |userWalletGrant:Grant| be |userWallet|'s {{UserWallet/outgoingPaymentGrant}}.</li>
+        <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
+          with |userWallet|'s {{UserWallet/walletAddressDetails}}, |session|'s {{Session/incomingPaymentId}},
+          |amountValue|, and |userWalletGrant|.</li>
+        <li>If |result| is {{OutgoingPaymentResult/"token-invalid"}}:
+          <ol>
+            <li>Let |rotatedAccessToken:AccessToken| be the result of [=send a rotate access token request=]
+              with |userWalletGrant|.</li>
+            <li>If |rotatedAccessToken| is failure:
+              <ol>
+                <li>[=Revoke user wallet credentials=].</li>
+                <li>Return.</li>
+              </ol>
+            </li>
+            <li>Set |userWalletGrant|'s {{Grant/access_token}} to |rotatedAccessToken|.</li>
+            <li>Run [=update grant access token=] with |rotatedAccessToken|.</li>
+            <li>Set |result| to the result of [=send a create outgoing payment request=]
+              with |userWallet|'s {{UserWallet/walletAddressDetails}}, |session|'s {{Session/incomingPaymentId}},
+              |amountValue|, and |userWalletGrant|.</li>
+          </ol>
+        </li>
+        <li>If |result| is {{OutgoingPaymentResult/"success"}}:
+          <ol>
+            <li>[=Fire monetization event=] given |session|, |amount|, and |userWallet|.</li>
+            <li>[=Schedule payment streaming tick=].</li>
+            <li>Return.</li>
+          </ol>
+        </li>
+        <li>[=Revoke user wallet credentials=].</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>fire monetization event</dfn>, given |session:Session|, |amount:PaymentCurrencyAmount|, and |userWallet:UserWallet|, run these steps:</p>
+      <ol>
+        <li>Let |assetScale:long| be |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetScale}}.</li>
+        <li>Let |assetCode:DOMString| be |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetCode}}.</li>
+        <li>Let |decimalAmount:DOMString| be the result of [=convert scaled amount to decimal=] given |amount|.{{PaymentCurrencyAmount/value}} and |assetScale|.</li>
+        <li>Fire a [=monetization event=] on |session|.{{Session/linkElement}} with:
+          <ul>
+            <li>{{MonetizationEvent/amountSent}}.{{MonetizationCurrencyAmount/currency}} set to |assetCode|</li>
+            <li>{{MonetizationEvent/amountSent}}.{{MonetizationCurrencyAmount/value}} set to |decimalAmount|</li>
+            <li>{{MonetizationEvent/paymentPointer}} set to |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}</li>
+            <li>{{MonetizationEvent/incomingPayment}} set to |session|.{{Session/incomingPaymentId}}</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>compute payment amount and delay</dfn>, run these steps:</p>
+      <ol>
+        <li>Let |storage:Storage| be the result of [=get storage=].</li>
+        <li>
+          Let |maxRateOfPayPerMonth:long long| be the result of parsing
+          |storage|.{{Storage/maxRateOfPay}} as a non-negative integer.
+        </li>
+        <li>
+          If |maxRateOfPayPerMonth| is 0, then return the tuple (0, 1000).
+          <p class="note">A monthly budget of 0 disables payment attempts.</p>
+        </li>
+        <li>Let |secondsInMonth:double| be `30 * 24 * 60 * 60`.</li>
+        <li class="note">A "month" is treated as a fixed 30-day period for payment pacing calculations.</li>
+        <li>Let |defaultPaymentAmountPerSecond:double| be `|maxRateOfPayPerMonth| / |secondsInMonth|`.</li>
+        <li>Let |minSendableAmount:long long| be 1.</li>
+        <li>Let |paymentAmount:long long| be 0.</li>
+        <li>Let |paymentDelay:DOMHighResTimeStamp| be 1000.</li>
+        <li>If |defaultPaymentAmountPerSecond| is greater than or equal to |minSendableAmount|,
+          then set |paymentAmount| to `Math.floor(|defaultPaymentAmountPerSecond|)`.</li>
+        <li>
+          Otherwise:
+          <ol>
+            <li>Set |paymentAmount| to |minSendableAmount|.</li>
+            <li>Set |paymentDelay| to `Math.ceil(1000 * (|paymentAmount| / |defaultPaymentAmountPerSecond|))`.</li>
+            <li class="note">When using the minimum sendable amount, |defaultPaymentAmountPerSecond| is less than 1, so this computation yields a delay greater than 1000ms (ensuring the long-run average spend does not exceed {{Storage/maxRateOfPay}}).</li>
+          </ol>
+        </li>
+        <li>Return the tuple (|paymentAmount|, |paymentDelay|).</li>
+      </ol>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>convert scaled amount to decimal</dfn>, given |scaledAmount:long long| and |assetScale:long|, run these steps:</p>
+      <ol>
+        <li>Let |divisor:double| be `Math.pow(10, |assetScale|)`.</li>
+        <li>Let |decimalValue:double| be |scaledAmount| divided by |divisor|.</li>
+        <li>Return a string representation of |decimalValue| formatted with |assetScale| decimal places.</li>
+      </ol>
+      <p class="note">For example, `convert scaled amount to decimal(100, 2)` returns `"1.00"`.</p>
+    </div>
+
+    <div class="algorithm">
+      <p>To <dfn>revoke user wallet credentials</dfn>, run these steps:</p>
+      <ol>
+        <li>Run [=update grant access token=] with the empty string.</li>
+        <li>For each |session| in the [=active sessions list=]:
+          <ol>
+            <li>Remove |session| from the [=active sessions list=].</li>
+          </ol>
+        </li>
+        <li>Set the [=current session iterator=] to the [=end iterator=].</li>
+      </ol>
+      <aside class="note">
+        <p>
+          Revoking credentials clears the access token but preserves other user wallet information
+          (wallet address, auth keys). This allows the user interface to display a "Reconnect" prompt
+          rather than requiring the user to set up their wallet again from scratch.
+        </p>
+        <p>
+          All active monetization sessions are terminated since payments can no longer be made.
+        </p>
+      </aside>
+    </div>
+
+  </section>
+</section>

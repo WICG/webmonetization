@@ -1,0 +1,60 @@
+<section id="monetization-status">
+  <h2>Monetization status</h2>
+
+  <p>
+    User agents SHOULD provide controls to disable Web Monetization completely and on a per-[=origin=]
+    basis via a wallet management interface. User agents SHOULD provide a user interface that allows
+    users to view and adjust these preferences.
+  </p>
+
+  <p>
+    A website can disable Web Monetization for itself and/or its subdocuments by setting
+    the <a href="https://webmonetization.org/specification/#permissions-policy">`monetization`</a>
+    [=policy-controlled feature=].
+  </p>
+
+  <p>
+    A website can also restrict Web Monetization to <a>wallet addresses</a> of certain [=origin=]s
+    by using the <a href="https://webmonetization.org/specification/#content-security-policy">`monetization-src`</a>
+    directive in the [=content security policy=].
+  </p>
+
+  <section id="monetization-is-disabled">
+    <h3>Document monetization restrictions</h3>
+
+    <p>
+      <dfn data-lt="document monetization disabled">Document monetization disabled</dfn>
+      given a |document:Document| if either of the following conditions apply:
+    </p>
+
+    <ul>
+      <li>
+        The user preferences specify that Web Monetization is either completely disabled or disabled specifically
+        for the [=Document/origin=] of the |document|.
+      </li>
+      <li>
+        The |document| is not [=allowed to use=]
+        the <a href="https://webmonetization.org/developers/permissions-policy-monetization/">`monetization`</a>
+        [=policy-controlled feature=].
+      </li>
+    </ul>
+  </section>
+
+  <section id="monetization-is-disabled-for-wallet">
+    <h3>Wallet address restrictions</h3>
+
+    <p>
+      <dfn data-lt="wallet monetization restricted">Wallet monetization restricted</dfn>
+      given a |document:Document| and a [=wallet address=] |walletAddress:DOMString|
+      if the <a href="https://webmonetization.org/developers/csp-monetization-src/">`monetization-src`</a> directive
+      in the [=content security policy=] of the |document| restricts the |walletAddress|'s [=origin=].
+    </p>
+  </section>
+
+  <p class="note">
+    These mechanisms provide multiple layers of control over Web Monetization: the user controls whether
+    monetization is enabled in their browser, the website can control whether monetization is allowed
+    via permissions policy, and the website can restrict which wallet addresses are allowed
+    via content security policy. All three mechanisms work together to ensure monetization only occurs when all parties consent.
+  </p>
+</section>
