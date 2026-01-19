@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web Monetization flows</title>
+  <script defer class="remove" src="https://www.w3.org/Tools/respec/respec-w3c"></script>
+  <script class="remove">
+    var respecConfig = {
+      edDraftURI: 'https://webmonetization.org/specification/flows/',
+      latestVersion: 'https://webmonetization.org/specification/flows/',
+      github: {
+        repoURL: 'wicg/webmonetization',
+        branch: 'main',
+      },
+      editors: [
+        {
+          name: "Alexander Surkov",
+          mailto: "asurkov@igalia.com",
+          company: "Igalia",
+          companyURL: "https://igalia.com/",
+          w3cid: "51089",
+        },
+        {
+          name: "Luke Warlow",
+          mailto: "lwarlow@igalia.com",
+          company: "Igalia",
+          companyURL: "https://igalia.com/",
+          w3cid: "51089",
+        },
+        {
+          name: "Radu Popa",
+          mailto: "radu@interledger.foundation",
+          company: "Interledger",
+          companyURL: "https://interledger.org/",
+        },
+        {
+          name: "Sid Vishnoi",
+          mailto: "sid@interledger.foundation",
+          company: "Interledger",
+          companyURL: "https://interledger.org/",
+          w3cid: "115494",
+        },
+      ],
+      authors: [
+        {
+          name: "Alexander Surkov",
+          mailto: "asurkov@igalia.com",
+          company: "Igalia",
+          companyURL: "https://igalia.com/",
+          w3cid: "51089",
+        },
+      ],
+      shortName: "web-monetization-flows",
+      specStatus: "CG-DRAFT",
+      group: "wicg",
+      localBiblio: {
+        openpayments: {
+          title: "Open Payments",
+          href: "https://openpayments.dev/",
+        },
+        opwa: {
+          title: "Open Payments Wallet Address Server",
+          href: "https://openpayments.dev/apis/wallet-address-server/",
+        },
+        opas: {
+          title: "Open Payments Auth Server",
+          href: "https://openpayments.dev/apis/auth-server/",
+        },
+        oprs: {
+          title: "Open Payments Resource Server",
+          href: "https://openpayments.dev/apis/resource-server/",
+        },
+        GNAP: {
+          title: "GNAP",
+          href: "https://datatracker.ietf.org/doc/html/draft-ietf-gnap-core-protocol",
+        },
+        Extension: {
+          title: "Web Monetization Extension",
+          href: "https://github.com/interledger/web-monetization-extension"
+        }
+      },
+      xref: [
+        "csp",
+        "dom",
+        "ecmascript",
+        "encoding",
+        "fetch",
+        "html",
+        "infra",
+        "mimesniff",
+        "permissions-policy",
+        "request",
+        "url",
+        "webcryptoapi",
+        "webidl"
+      ],
+    };
+  </script>
+</head>
+<body>
+<section id="abstract">
+  <p>This specification defines a user wallet integraction and the flow of a Web Monetization (<abbr title="Web Monetization">WM</abbr>) payment session in a browser.</p>
+</section>
+<section id="sotd">
+  <p>This is a work-in-progress draft and expected to be integrated with the <a href="https://webmonetization.org/specification/">web monetization specification</a>.</p>
+</section>
+<div data-include="section/introduction.html" data-include-replace="true"></div>
+<div data-include="section/terms.html" data-include-replace="true"></div>
+<div data-include="section/storage.html" data-include-replace="true"></div>
+<div data-include="section/authentication.html" data-include-replace="true"></div>
+<div data-include="section/wallet-setup.html" data-include-replace="true"></div>
+<div data-include="section/status.html" data-include-replace="true"></div>
+<div data-include="section/session-flow.html" data-include-replace="true"></div>
+<div data-include="section/algorithms.html" data-include-replace="true"></div>
+<div data-include="section/dictionaries.html" data-include-replace="true"></div>
+<section id="conformance"></section>
+</body>
+</html>

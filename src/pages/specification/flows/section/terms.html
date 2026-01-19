@@ -1,0 +1,69 @@
+<section id="terms">
+    <h2>Terms</h2>
+
+    <dl>
+        <dt><dfn>GNAP</dfn> (Grant Negotitation and Authorization Protocol)</dt>
+        <dd>
+            GNAP defines a mechanism for delegating authorization to a piece of software (client), and conveying the results and artifacts of that delegation to the software. This delegation can include access to a set of APIs as well as subject information passed directly to the software. For more information, refer to [[[RFC9635]]].
+        </dd>
+
+        <dt><dfn>AS</dfn> (Authorization Server)</dt>
+        <dd>
+            A server that grants delegated authorization and privileges, via [=GNAP=], to a particular instance of client software in the form of access tokens, allowing the client to call the Open Payments APIs. We’ve provided an opinionated version of a GNAP authorization server via the auth service, meaning that we’ve made certain decisions regarding the implementation and configuration of the server that may limit customization but ensure consistency and adherence to preferred practices.
+        </dd>
+
+        <dt><dfn>RS</dfn> (Resource Server)</dt>
+        <dd>A server that hosts and manages access to protected Open Payments resources for incoming payments, quotes, and outgoing payments.</dd>
+
+        <dt><dfn>Grants</dfn></dt>
+        <dd>
+            A delegation of authorization from a resource owner to a client, allowing the client to access protected resources or perform actions on the owner’s behalf. In Rafiki, this process is managed by the authorization server, which issues grants as access tokens. These grants permit clients to interact with Open Payments APIs to, for example, create payments and retrieve account information, based on the permissions granted by the resource owner.
+        </dd>
+        <dt><dfn>Web monetized website</dfn></dt>
+        <dd>Describes a page/site that has implemented Web Monetization.</dd>
+        <dd>
+            Web Monetization is configured at the page level. A web monetized page is a page that contains a well-formed <a href="https://webmonetization.org/specification/#link-type-monetization">monetization `link` element</a>. For an entire site to be web monetized, each page of the site must have a `link` element.
+        </dd>
+
+        <dt><dfn>ASE</dfn> (Account Servicing Entity)</dt>
+        <dd>
+            An entity that provides and maintains a payment account for a payer and/or payee. An ASE is a regulated entity within the country or countries it operates. Examples include digital wallets, banks, crypto wallets, and mobile money providers. The ASE can provide Open Payments-enabled accounts for its customers.
+        </dd>
+
+        <dt><dfn>IdP</dfn> (Identity provider)</dt>
+        <dd>A system or service that stores and manages user identity information, authentication, and consent.</dd>
+
+        <dt><dfn>Web Monetization provider</dfn></dt>
+        <dd>
+            An entity or collection of entities that together enable Web Monetization payments to be sent on behalf of an individual when the individual visits a web monetized page. At minimum, a Web Monetization provider is an [=ASE=] that supplies a funded Open Payments-enabled account from which to send payments.
+        </dd>
+
+        <dt><dfn>Web Monetization receiver</dfn></dt>
+        <dd>
+            An entity or collection of entities that together enable Web Monetization payments to be received and held on behalf of an individual. At minimum, a Web Monetization receiver is an [=ASE=] that supplies an Open Payments-enabled account capable of receiving payments.
+        </dd>
+
+        <dt><dfn>Wallet</dfn></dt>
+        <dd>An account within the [=web monetization provider=] or [=web monetization receiver=].</dd>
+
+        <dt><dfn>Wallet address</dfn></dt>
+        <dd>
+            A secure, unique URL that identifies an Open Payments-enabled account. It acts as an entry point to the Open Payments APIs, facilitating interactions like sending and receiving payments.
+        </dd>
+        <dd>
+            A wallet address is publicly shareable and used to interact with the underlying payment account without compromising its security. Wallet address URLs are treated as case-insensitive, meaning that both lowercase and uppercase variations of the same address will be recognized as identical.
+        </dd>
+
+        <dt><dfn>Asset code</dfn></dt>
+        <dd>A string representing the currency of the [=wallet=].</dd>
+
+        <dt><dfn>Asset scale</dfn></dt>
+        <dd>An integer that defines the scale (number of decimal places) for the currency of the [=wallet=].</dd>
+
+        <dt><dfn>Scaled amount</dfn></dt>
+        <dd>
+            An integer amount expressed in a [=wallet=]'s scaled units.
+            One scaled unit corresponds to <code>1 / Math.pow(10, assetScale)</code> of the asset, so a scaled amount equals the decimal amount multiplied by <code>Math.pow(10, assetScale)</code>.
+        </dd>
+    </dl>
+</section>

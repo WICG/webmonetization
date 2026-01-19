@@ -1,0 +1,332 @@
+<section id="dictionaries">
+    <h2>Dictionaries</h2>
+
+    <section>
+        <h3>Wallet Address Dictionaries</h3>
+
+        <section data-dfn-for="WalletAddressDetails">
+            <h4>The `WalletAddressDetails` dictionary</h4>
+
+            <p>The {{WalletAddressDetails}} dictionary corresponds to the response of <a data-cite="opwa/operations/get-wallet-address#">get wallet address request</a>.</p>
+
+            <pre class="idl">
+                dictionary WalletAddressDetails {
+                    required DOMString url;
+                    required DOMString id;
+                    required DOMString authServer;
+                    required DOMString resourceServer;
+                    required DOMString assetCode;
+                    required unsigned short assetScale;
+                    DOMString publicName;
+                };
+            </pre>
+            <dl>
+                <dt><dfn>`url`</dfn></dt>
+                <dd>
+                    The original URL that the wallet address information was
+                    requested at. <span class="note">Keeping a reference to this URL
+                    is useful as users may use proxied wallet addresses.</span>
+                </dd>
+
+                <dt><dfn>`id`</dfn></dt>
+                <dd>The wallet address identifier.</dd>
+
+                <dt><dfn>`authServer`</dfn></dt>
+                <dd>corresponds to the endpoint for the [=AS=] APIs.</dd>
+
+                <dt><dfn>`resourceServer`</dfn></dt>
+                <dd>corresponds to the endpoint for the [=RS=] APIs.</dd>
+
+                <dt><dfn>`assetCode`</dfn></dt>
+                <dd>corresponds to [=asset code=].</dd>
+
+                <dt><dfn>`assetScale`</dfn></dt>
+                <dd>corresponds to [=asset scale=].</dd>
+
+                <dt><dfn>`publicName`</dfn></dt>
+                <dd>The public name associated with the wallet address, if available.</dd>
+            </dl>
+        </section>
+    </section>
+
+    <section>
+      <h3>Grant Dictionaries</h3>
+      <p>These dictionaries define the structure for grant requests and responses used in the Open Payments authorization flow.</p>
+
+      <h4>The `Grant` dictionary</h4>
+      <p>The {{Grant}} dictionary represents a completed and authorized grant with access tokens.</p>
+      <pre class="idl">
+        dictionary Grant {
+          required AccessToken access_token;
+          required Continue continue;
+        };
+      </pre>
+      <dl data-dfn-for="Grant">
+        <dt><dfn>`access_token`</dfn></dt>
+        <dd>The access token granted for making authorized requests to the resource server.</dd>
+        <dt><dfn>`continue`</dfn></dt>
+        <dd>The continuation information for managing the granted access token.</dd>
+      </dl>
+
+      <section data-dfn-for="GrantRequest">
+        <h4>The `GrantRequest` dictionary</h4>
+        <p>The {{GrantRequest}} dictionary represents an authorization grant request sent to the authorization server.</p>
+        <pre class="idl">
+          dictionary GrantRequest {
+            required RequestAccessToken access_token;
+            required DOMString client;
+            required Interact interact;
+          };
+        </pre>
+        <dl>
+          <dt><dfn>`access_token`</dfn></dt>
+          <dd>The {{RequestAccessToken}} object describing the access being requested.</dd>
+          <dt><dfn>`client`</dfn></dt>
+          <dd>An identifier for the requesting client (typically the <code>WalletAddressDetails/id</code> value).</dd>
+          <dt><dfn>`interact`</dfn></dt>
+          <dd>An {{Interact}} dictionary defining required interaction start methods.</dd>
+        </dl>
+      </section>
+
+      <h4>The `RequestAccessToken` dictionary</h4>
+      <p>The {{RequestAccessToken}} dictionary represents the access token request structure used in grant requests.</p>
+      <pre class="idl">
+        dictionary RequestAccessToken {
+          required sequence&ltAccess&gt access;
+        };
+      </pre>
+      <dl data-dfn-for="RequestAccessToken">
+        <dt><dfn>`access`</dfn></dt>
+        <dd>A sequence of {{Access}} objects defining the permissions being requested.</dd>
+      </dl>
+
+      <h4>The `AccessToken` dictionary</h4>
+      <p>The {{AccessToken}} dictionary represents an access token returned from a successful grant request.</p>
+      <pre class="idl">
+        dictionary AccessToken : RequestAccessToken {
+          required DOMString value;
+          required DOMString manage;
+          required unsigned short expires_in;
+        };
+      </pre>
+      <dl data-dfn-for="AccessToken">
+        <dt><dfn>`value`</dfn></dt>
+        <dd>The access token value used for authenticating requests to the resource server.</dd>
+        <dt><dfn>`manage`</dfn></dt>
+        <dd>The management URL for this access token, used for token operations like refresh or revocation.</dd>
+        <dt><dfn>`expires_in`</dfn></dt>
+        <dd>The lifetime of the access token in seconds.</dd>
+      </dl>
+
+      <h4>The `ContinueAccessToken` dictionary</h4>
+      <p>The {{ContinueAccessToken}} dictionary represents the access token used for continuation requests.</p>
+      <pre class="idl">
+        dictionary ContinueAccessToken {
+          required DOMString value;
+        };
+      </pre>
+      <dl data-dfn-for="ContinueAccessToken">
+        <dt><dfn>`value`</dfn></dt>
+        <dd>The access token value for authenticating continuation requests.</dd>
+      </dl>
+
+      <h4>The `Continue` dictionary</h4>
+      <p>The {{Continue}} dictionary represents continuation information returned from grant requests.</p>
+      <pre class="idl">
+        dictionary Continue {
+          required ContinueAccessToken access_token;
+          required DOMString uri;
+          unsigned short wait; // `wait` is only defined when receiving a pending grant
+        };
+      </pre>
+      <dl data-dfn-for="Continue">
+        <dt><dfn>`access_token`</dfn></dt>
+        <dd>The access token to use for continuation requests.</dd>
+        <dt><dfn>`uri`</dfn></dt>
+        <dd>The URI to send continuation requests to.</dd>
+        <dt><dfn>`wait`</dfn></dt>
+        <dd>The amount of time in integer seconds the client instance SHOULD <a data-cite="GNAP#section-3.1-2.4.1">wait</a> after receiving this continuation handle and calling the URI.</dd>
+      </dl>
+
+      <section data-dfn-for="Interact">
+          <h4>The `Interact` dictionary</h4>
+          <p>The {{Interact}} dictionary specifies how user interaction SHOULD be initiated for a pending grant.</p>
+          <pre class="idl">
+            dictionary Interact {
+              required sequence&ltInteractionMethod&gt start;
+            };
+          </pre>
+          <dl>
+            <dt><dfn>`start`</dfn></dt>
+            <dd>A sequence of {{InteractionMethod}} values indicating supported interaction methods (e.g. <code>"redirect"</code>).</dd>
+          </dl>
+      </section>
+
+      <h4>The `PendingInteract` dictionary</h4>
+      <p>The {{PendingInteract}} dictionary represents interaction information for pending grants.</p>
+      <pre class="idl">
+        dictionary PendingInteract {
+          required DOMString redirect;
+          required DOMString finish;
+        };
+      </pre>
+      <dl data-dfn-for="PendingInteract">
+        <dt><dfn>`redirect`</dfn></dt>
+        <dd>The URL to redirect the user to for grant authorization.</dd>
+        <dt><dfn>`finish`</dfn></dt>
+        <dd>The interaction finish nonce used to verify the completion of the authorization flow.</dd>
+      </dl>
+
+      <h4>The `PendingGrant` dictionary</h4>
+      <p>The {{PendingGrant}} dictionary represents a grant request that requires user interaction for completion.</p>
+      <pre class="idl">
+        dictionary PendingGrant {
+          required PendingInteract interact;
+          required Continue continue;
+        };
+      </pre>
+      <dl data-dfn-for="PendingGrant">
+        <dt><dfn>`interact`</dfn></dt>
+        <dd>The interaction information needed to complete the grant authorization.</dd>
+        <dt><dfn>`continue`</dfn></dt>
+        <dd>The continuation information for polling or continuing the grant request.</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h3>Supporting Dictionaries</h3>
+      <p>These supporting dictionaries and enums define reusable value objects and enumerations referenced by the grant-related dictionaries above.
+      </p>
+
+      <h4>The `Amount` dictionary</h4>
+      <p>The {{Amount}} dictionary represents a monetary quantity denominated in the wallet address's
+        asset. The numeric value is expressed as a string of the minor units determined by
+        {{Amount/assetScale}}.</p>
+
+      <pre class="idl">
+        dictionary Amount {
+          required DOMString value;
+          required DOMString assetCode;
+          required unsigned short assetScale;
+        };
+      </pre>
+      <dl data-dfn-for="Amount">
+        <dt><dfn>`value`</dfn></dt>
+        <dd>Stringified non‑negative integer of minor units. Scaled by `Math.pow(10, assetScale)`).</dd>
+        <dt><dfn>`assetCode`</dfn></dt>
+        <dd>The ISO code or other identifier for the asset (e.g. <code>"USD"</code>).</dd>
+        <dt><dfn>`assetScale`</dfn></dt>
+        <dd>Number of fractional decimal places; defines the power-of-ten scale for <code>value</code>.</dd>
+      </dl>
+
+      <h4>The `AccessLimits` dictionary</h4>
+      <p>The {{AccessLimits}} dictionary constrains how an access token may be used. Implementations MUST
+        use only one of {{AccessLimits/debitAmount}} or {{AccessLimits/receiveAmount}} per limits object.
+        If both are supplied the request is invalid.</p>
+      <pre class="idl">
+        dictionary AccessLimits {
+          DOMString receiver;
+          DOMString interval;
+          required Amount debitAmount; // only one of the amounts should be used
+          required Amount receiveAmount;
+        };
+      </pre>
+      <dl data-dfn-for="AccessLimits">
+        <dt><dfn>`receiver`</dfn></dt>
+        <dd>A receiver (destination) address or identifier the access is limited to (optional).</dd>
+        <dt><dfn>`interval`</dfn></dt>
+        <dd>
+          Time window that bounds the applicable spend or receive total. Uses an
+          <a href="https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals">ISO 8601 repeating
+          interval</a> of the form <code>R/<em>start-date-time</em>/<em>period</em></code>. The period (e.g.
+          <code>P1M</code>) defines the recurrence length; omit fractional repetitions.
+          <pre class="example" title="ISO 8601 repeating interval - monthly renewal">R/2025-01-28T02:12:16.254Z/P1M</pre>
+        </dd>
+        <dt><dfn>`debitAmount`</dfn></dt>
+        <dd>Maximum amount that may be debited (spent) under this authorization.</dd>
+        <dt><dfn>`receiveAmount`</dfn></dt>
+        <dd>Maximum amount that may be received under this authorization.</dd>
+      </dl>
+
+      <h4>The `Access` dictionary</h4>
+      <p>The {{Access}} dictionary specifies a single requested permission scope. Multiple {{Access}}
+      entries MAY appear in a {{RequestAccessToken/access}} list.</p>
+      <pre class="idl">
+        dictionary Access {
+          required AccessType type;
+          required sequence&ltAccessAction&gt actions;
+          DOMString identifier;
+          AccessLimits limits; // required only when type is equal to "outgoing-payment"
+        };
+      </pre>
+      <dl data-dfn-for="Access">
+        <dt><dfn>`type`</dfn></dt>
+        <dd>The resource or operation category (e.g. <code>"outgoing-payment"</code>).</dd>
+        <dt><dfn>`actions`</dfn></dt>
+        <dd>Sequence of allowed actions for this access (e.g. <code>["create","read"]</code>).</dd>
+        <dt><dfn>`identifier`</dfn></dt>
+        <dd>Target identifier (such as a wallet address id) the access applies to (optional).</dd>
+        <dt><dfn>`limits`</dfn></dt>
+        <dd>Constraints applied when {{Access/type}} is <code>"outgoing-payment"</code>; otherwise omitted.</dd>
+      </dl>
+
+      <h4>Enums</h4>
+      <pre class="idl">
+        enum AccessType {
+          "outgoing-payment",
+          "incoming-payment",
+          "quote"
+        };
+
+        enum AccessAction {
+          "create",
+          "read",
+          "read-all",
+          "complete",
+          "list",
+          "list-all"
+        };
+
+        enum InteractionMethod {
+          "redirect"
+        };
+
+        // Result of attempting to create an outgoing payment.
+        enum OutgoingPaymentResult {
+          "success",       // HTTP 201 Created
+          "token-invalid", // HTTP 403 (Access Forbidden)
+          "error"          // Any other failure (4xx/5xx/network)
+        };
+      </pre>
+  </section>
+
+  <section>
+    <h3>Session Dictionaries</h3>
+    <p>These dictionaries define internal session records used by the user agent to track active monetization sessions.</p>
+
+    <section data-dfn-for="Session">
+      <h4>The `Session` dictionary</h4>
+      <p>
+        The {{Session}} dictionary represents an active monetization session. This is an internal user agent
+        structure maintained in the [=active sessions list=] and is not exposed to JavaScript.
+      </p>
+      <pre class="idl">
+        dictionary Session {
+          required HTMLLinkElement linkElement;
+          required WalletAddressDetails walletDetails;
+          required DOMString incomingPaymentId;
+        };
+      </pre>
+      <dl>
+        <dt><dfn>`linkElement`</dfn></dt>
+        <dd>The {{HTMLLinkElement}} with <code>rel="monetization"</code> that initiated this session.</dd>
+
+        <dt><dfn>`walletDetails`</dfn></dt>
+        <dd>The {{WalletAddressDetails}} obtained from the wallet address discovery request.</dd>
+
+        <dt><dfn>`incomingPaymentId`</dfn></dt>
+        <dd>The incoming payment identifier (payment bucket URI) created for receiving funds during this session.</dd>
+      </dl>
+    </section>
+  </section>
+</section>
