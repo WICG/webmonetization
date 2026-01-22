@@ -76,12 +76,12 @@ export const wordPressPluginContent: ContentSection = {
   title: 'Add Web Monetization to WordPress. Fast, Free, Private.',
   primaryCta: {
     text: 'Get the WordPress plugin',
-    href: '',
+    href: 'https://wordpress.org/plugins/interledger-web-monetization-integration/',
     event: 'Publishers page - WP plugin'
   },
   secondaryCta: {
     text: 'See the documentation',
-    href: '/publishers/overview/',
+    href: '/publishers/wordpress/',
     event: 'Publishers page - Developer docs'
   }
 }
