@@ -1,4 +1,7 @@
 import { defineConfig } from 'astro/config'
+import path from 'node:path'
+import { symlink } from 'node:fs/promises'
+import { fileURLToPath } from 'node:url'
 import starlight from '@astrojs/starlight'
 import starlightLinksValidator from 'starlight-links-validator'
 import starlightFullViewMode from 'starlight-fullview-mode'
@@ -273,7 +276,8 @@ export default defineConfig({
           ]
         }
       ]
-    })
+    }),
+    specSymlink()
   ],
   redirects: {
     '/link-tag': '/tools/link-tag',
@@ -319,3 +323,34 @@ export default defineConfig({
     port: 1100
   }
 })
+
+/**
+ * Create a symlink to the WM spec folder build time (to /public/specification),
+ * so that it works on Linux/Mac as well as Windows.
+ *
+ * Ideally, we wanted a relative symlink public/specification ->
+ * ../specification, but that caused platform compatibility issues. So we create
+ * absolute symlinks at build time, and ignore them from git.
+ *
+ * @returns {import('astro').AstroIntegration}
+ */
+function specSymlink() {
+  return {
+    name: 'spec-symlink',
+    hooks: {
+      'astro:config:done': async ({ config, logger }) => {
+        const { publicDir, root } = config
+        const isWindows = process.platform === 'win32'
+        const target = path.join(fileURLToPath(root), 'specification')
+        const link = path.join(fileURLToPath(publicDir), 'specification')
+        try {
+          await symlink(target, link, isWindows ? 'junction' : 'dir')
+          logger.info(`Created symlink from ${link} to ${target}`)
+        } catch (error) {
+          if (error.code === 'EEXIST') return
+          throw error
+        }
+      }
+    }
+  }
+}
