@@ -350,6 +350,31 @@ function specSymlink() {
           if (error.code === 'EEXIST') return
           throw error
         }
+      },
+      'astro:server:setup': ({ server }) => {
+        // rewrite to index.html during dev
+        server.middlewares.use((req, res, next) => {
+          const base = '/specification'
+          if (!req.url?.startsWith(base)) {
+            next()
+            return
+          }
+
+          if (!req.url.endsWith('/') && !req.url.includes('.')) {
+            res.statusCode = 302
+            res.setHeader('Location', req.url + '/')
+            res.end()
+            return
+          }
+
+          const { pathname } = new URL(req.url, `http://${req.headers.host}`)
+          if (pathname === `${base}/`) {
+            req.url = `${base}/index.html`
+          } else if (pathname === `${base}/flows/`) {
+            req.url = `${base}/flows/index.html`
+          }
+          next()
+        })
       }
     }
   }
