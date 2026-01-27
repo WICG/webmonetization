@@ -1,5 +1,4 @@
 ---
-import type { Props } from '@astrojs/starlight/props'
 import Search from '@astrojs/starlight/components/Search.astro'
 import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro'
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro'
@@ -18,7 +17,7 @@ import wmLogo from '@assets/wm-logo.svg'
     <span>Web Monetization</span>
   </a>
   <div class="secondary-wrap">
-    <Search {...Astro.props} />
+    <Search />
     <SocialIcons {...Astro.props} />
     <div class="sl-hidden md:sl-flex selects">
       <ThemeSelect {...Astro.props} />
