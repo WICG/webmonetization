@@ -36,3 +36,6 @@ pnpm-debug.log*
 bun.lockb
 bun.lock
 package-lock.json
+
+# Dynamically generated custom files
+public/specification
