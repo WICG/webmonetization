@@ -24,5 +24,9 @@ jobs:
         run: |
           ROLLUP_VERSION=$(node -p "require('./package-lock.json').packages['node_modules/rollup'].optionalDependencies['@rollup/rollup-linux-x64-gnu']")
           npm install --no-save "@rollup/rollup-linux-x64-gnu@${ROLLUP_VERSION}"
+      - name: Install Pagefind native binary
+        run: |
+          PAGEFIND_VERSION=$(node -p "require('./package-lock.json').packages['node_modules/pagefind'].optionalDependencies['@pagefind/linux-x64']")
+          npm install --no-save "@pagefind/linux-x64@${PAGEFIND_VERSION}"
       - name: Test build website
         run: npm run build
