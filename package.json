@@ -21,10 +21,12 @@
     "starlight-links-validator": "^0.19.2",
     "typescript": "^5.9.3"
   },
+  "optionalDependencies": {
+    "@pagefind/linux-x64": "1.4.0",
+    "@rollup/rollup-linux-x64-gnu": "4.53.3"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "@pagefind/linux-x64": "1.4.0",
-    "@rollup/rollup-linux-x64-gnu": "4.53.3",
     "@typescript-eslint/parser": "^8.54.0",
     "astro-eslint-parser": "^1.2.2",
     "eslint": "^9.39.2",
