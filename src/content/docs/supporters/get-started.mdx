@@ -9,7 +9,8 @@ import ExtensionLinks from '/src/components/ExtensionLinks.astro'
 Interledger Foundation's Web Monetization browser extension lets you support your favorite web monetized sites directly from your web browser in a quick, non-intrusive, and privacy-preserving way.
 
 <details>
-<summary>About web monetized sites</summary>
+  <summary>About web monetized sites</summary>
+
 You can only use the extension to send payments to web monetized sites. Interledger Foundation encourages content owners and publishers to tell their audience they're web monetized via a banner or some other method.
 
 If you're interested in web monetizing your own content, the [get started](/publishers/get-started) page for developers is a good place to start.
@@ -17,7 +18,8 @@ If you're interested in web monetizing your own content, the [get started](/publ
 </details>
 
 <details>
-<summary>About Web Monetization payments</summary>
+  <summary>About Web Monetization payments</summary>
+
 To make Web Monetization payments, you only need a digital wallet account from a Web Monetization-compatible [wallet provider](/wallets). There's no site-by-site account or subscription required.
 
 A web monetized site can't pull payments from your wallet. When you link the browser extension to your wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#set-up-continuous-payments).
@@ -272,7 +274,7 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 ## FAQ
 
 <details>
-<summary>I get an error from my wallet provider when linking the extension to my wallet. Why?</summary>
+  <summary>I get an error from my wallet provider when linking the extension to my wallet. Why?</summary>
 
 It's hard to say without a specific error message. Two common scenarios are:
 
@@ -284,7 +286,7 @@ Click **Connect** and try linking your extension again.
 </details>
 
 <details>
-<summary>I know the page I'm visiting is web monetized, but the extension says its not. Why?</summary>
+  <summary>I know the page I'm visiting is web monetized, but the extension says its not. Why?</summary>
 
 The most common reason is that your wallet provider and the content owner or publisher's wallet provider are unable to transact with one another. Your extension will display an exclamation mark in an orange circle. Open the extension to read the messaging.
 
@@ -293,14 +295,14 @@ Visit the [Web Monetization-enabled wallets](/wallets) page for a list of compat
 </details>
 
 <details>
-<summary>Why is the balance in the extension not immediately updating on payments?</summary>
+  <summary>Why is the balance in the extension not immediately updating on payments?</summary>
 
 After the extension shows a message that a payment succeeded, the extension's balance may not immediately update to show the new, lower balance. This is a known issue that we're working on. You can track its progress in <LinkOut href="https://github.com/interledger/web-monetization-extension/issues/737">GitHub issue #737</LinkOut>.
 
 </details>
 
 <details>
-<summary>How is the balance shown in my wallet related to the balance shown in my extension?</summary>
+  <summary>How is the balance shown in my wallet related to the balance shown in my extension?</summary>
 
 - Wallet balance - Your available balance; the amount you have available to spend on Web Monetization or anything else you can use your wallet balance on.
 - Extension balance - The amount you've given the extension permission to spend.
