@@ -256,7 +256,7 @@
         <li>If |userWallet| is null, then return.</li>
         <li>If |session| is not in the [=active sessions list=], then return.</li>
         <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
-        <li>Let |userWalletGrant:Grant| be |userWallet|'s {{UserWallet/outgoingPaymentGrant}}.</li>
+        <li>Let |userWalletGrant:Grant| be |userWallet|'s {{Storage/grant}}.</li>
         <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
           with |userWallet|'s {{UserWallet/walletAddressDetails}}, |session|'s {{Session/incomingPaymentId}},
           |amountValue|, and |userWalletGrant|.</li>
@@ -294,12 +294,12 @@
         <li>Let |assetScale:long| be |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetScale}}.</li>
         <li>Let |assetCode:DOMString| be |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetCode}}.</li>
         <li>Let |decimalAmount:DOMString| be the result of [=convert scaled amount to decimal=] given |amount|.{{PaymentCurrencyAmount/value}} and |assetScale|.</li>
-        <li>Fire a [=monetization event=] on |session|.{{Session/linkElement}} with:
+        <li>Fire a <dfn data-dfn-type="interface" data-cite="WebMonetization/#dom-monetizationevent">`MonetizationEvent`</dfn> on |session|.{{Session/linkElement}} with:
           <ul>
-            <li>{{MonetizationEvent/amountSent}}.{{MonetizationCurrencyAmount/currency}} set to |assetCode|</li>
-            <li>{{MonetizationEvent/amountSent}}.{{MonetizationCurrencyAmount/value}} set to |decimalAmount|</li>
-            <li>{{MonetizationEvent/paymentPointer}} set to |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}</li>
-            <li>{{MonetizationEvent/incomingPayment}} set to |session|.{{Session/incomingPaymentId}}</li>
+            <li><a data-cite="WebMonetization/#dom-monetizationevent-amountsent">{{MonetizationEvent/amountSent}}</a>.<a data-cite="WebMonetization/#dom-monetizationcurrencyamount-currency">{{MonetizationCurrencyAmount/currency}}</a> set to |assetCode|</li>
+            <li><a data-cite="WebMonetization/#dom-monetizationevent-amountsent">{{MonetizationEvent/amountSent}}</a>.<a data-cite="WebMonetization/#dom-monetizationcurrencyamount-value">{{MonetizationCurrencyAmount/value}}</a> set to |decimalAmount|</li>
+            <li><a data-cite="WebMonetization/#dom-monetizationevent-paymentpointer">{{MonetizationEvent/paymentPointer}}</a> set to |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}</li>
+            <li><a data-cite="WebMonetization/#dom-monetizationevent-incomingpayment">{{MonetizationEvent/incomingPayment}}</a> set to |session|.{{Session/incomingPaymentId}}</li>
           </ul>
         </li>
       </ol>
