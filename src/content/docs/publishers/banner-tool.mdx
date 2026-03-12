@@ -4,7 +4,6 @@ title: Banner tool
 
 import { LinkButton } from '@astrojs/starlight/components'
 import { LinkOut } from '@interledger/docs-design-system'
-import Connect from '/src/content/docs/partials/tools-connect-wallet.mdx'
 import Change from '/src/content/docs/partials/tools-change-wallet.mdx'
 import CSP from '/src/content/docs/partials/csp.mdx'
 
@@ -17,10 +16,6 @@ All pages that include the banner script are automatically web monetized with yo
 If your website uses Content Security Policy (CSP) headers, there are certain [directives](#content-security-policy-csp-requirements) you must add to support the publisher tools embed script.
 
 ## Create a new banner
-
-### Connect your wallet
-
-<Connect />
 
 ### Change the banner's contents (optional)
 
@@ -42,17 +37,23 @@ If your website uses Content Security Policy (CSP) headers, there are certain [d
 ### Generate your script
 
 1. Click **Save and generate script**.<br /><img src="/img/docs/pubtools/tools-save-buttons.png" alt="The save edits only and the save and generate script buttons side by side" style="max-width: 45%" class='img-outline' />
-2. Add the script to your site.
+   :::note[Save edits only]
+   Click **Save edits only** if you aren't ready to generate your script. Your configurations are saved on webmonetization.org.
+   :::
+2. Click **Continue**. A wallet confirmation prompt appears.<br /><img src="/img/docs/pubtools/tools-wallet-confirmation-prompt.png" alt="Confirmation prompt showing wallet address and confirm button" style="max-width: 50%" class='img-outline' />
+3. Click **Confirm**. You're directed to your wallet provider to sign in and confirm your ownership of the wallet address. After confirmation, you'll return to the Banner tool page.
+4. Copy the script that appears in the overlaid screen.
    ```js wrap title="Example script"
    <script
      id="wmt-banner-init-script"
      type="module"
      src="https://tools-cdn.webmonetization.org/banner.js"
-     data-wallet-address="https://sandbox.ilp.link/rabeb"
+     data-wallet-address="https://walletprovider.com/MyWallet"
      data-tag="version1"
    ></script>
    ```
-3. Go to your site and check that the banner appears correctly. If you have the Web Monetization extension installed, you might need to disable the extension for the banner to appear.
+5. Add the script to your site.
+6. Go to your site and check that the banner appears correctly. If you have the Web Monetization extension installed, you might need to disable the extension for the banner to appear.
 
 ## Change an existing banner configuration
 
