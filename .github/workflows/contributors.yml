@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code with Git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install and setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 18
+          node-version-file: .nvmrc
 
       - name: Capture current date
         run: echo "NOW=$(date +'%Y%m%d')" >> $GITHUB_ENV
