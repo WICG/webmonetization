@@ -100,16 +100,16 @@ export default defineConfig({
               link: '/publishers/about-receiving'
             },
             {
-              label: 'WordPress plugin',
-              link: '/publishers/wordpress'
-            },
-            {
               label: 'Publisher tools',
               collapsed: true,
               items: [
                 {
                   label: 'Banner tool',
                   link: '/publishers/banner-tool'
+                },
+                {
+                  label: 'Offerwall tool',
+                  link: '/publishers/offerwall-tool'
                 },
                 {
                   label: 'Widget tool',
@@ -122,6 +122,10 @@ export default defineConfig({
                 {
                   label: 'Probabalistic revshare generator',
                   link: '/publishers/revshare-tool'
+                },
+                {
+                  label: 'WordPress plugin',
+                  link: '/publishers/wordpress'
                 }
               ]
             }
