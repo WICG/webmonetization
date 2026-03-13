@@ -13,7 +13,7 @@ jobs:
     name: Rebuild Static
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v6
       - run: brew install tidy-html5
       - run: yarn
       - run: ./src/pages/specification/respec.sh
