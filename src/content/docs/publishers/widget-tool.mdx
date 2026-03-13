@@ -4,7 +4,6 @@ title: Widget tool
 
 import { LinkButton } from '@astrojs/starlight/components'
 import { LinkOut } from '@interledger/docs-design-system'
-import Change from '/src/content/docs/partials/tools-change-wallet.mdx'
 import CSP from '/src/content/docs/partials/csp.mdx'
 
 Add a <LinkOut href="https://webmonetization.org/tools/widget">payment widget</LinkOut> to your site so visitors can send you a one-time payment. The widget appears to all visitors, even those with an active Web Monetization extension.
@@ -64,12 +63,6 @@ You're now ready to accept one-time payments. Remember that if your site is mone
 2. Click **Continue**. If the confirmation prompt appears, you must first confirm your ownership of the wallet address.
 3. Make your changes, then click **Save edits only**. Your [script](#generate-your-script) remains the same. There's no need to update your site's code.
 4. Refresh a page on your site that uses the configuration's script to verify your changes are live.
-
-## Connect widget to a new wallet address
-
-<Change />
-
-All payments through the widget will now be directed to the new wallet address.
 
 ## Content Security Policy (CSP) requirements
 
