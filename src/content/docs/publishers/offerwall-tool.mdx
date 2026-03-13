@@ -51,26 +51,24 @@ This page describes how to use the <LinkOut href="https://webmonetization.org/to
 
 ## Add Web Monetization as a custom Offerwall choice
 
-1. In Google Ad Manager, select the _Privacy & Messaging_ tab.
-2. Select _Offerwall_ from the list of Monetization options.
-3. <LinkOut href="https://support.google.com/admanager/answer/11897778">
-     Create an Offerwall message
-   </LinkOut>
-   .
-4. Turn on _Custom choice_ in the _User choices_ section.
-5. <LinkOut href="https://support.google.com/admanager/answer/13566866">
-     Set up a "custom choice" user choice
-   </LinkOut>
-   .
-6. Enter a title and subtitle for the Web Monetization choice. We recommend using _Web Monetization_ as the title and _Support us with micropayments_ as the subtitle.<br />
-   <img
-     src="/img/docs/pubtools/offerwall-choice-list.png"
-     alt="Example user choice screen that includes Web Monetization as an option"
-     style="max-width: 60%"
-     class="img-outline"
-   />
-7. Publish your Offerwall.
-8. Go to your site and check that the Offerwall appears correctly. If your Offerwall doesn't appear at all, check that you've enabled the custom choice within Ad Manager with the correct implementation.
+You must sign in to your Google Ad Manager account to complete these steps.
+
+1. Select the _Privacy & Messaging_ tab.
+2. Find the Monetization section.
+3. Find the Offerwall message type card and click **Create**.<br /><img src="/img/docs/pubtools/offerwall-pm-dashboard.png" alt="Ad Manager dashboard with the Privacy & Messaging tab, Monetization section, and Offerwall Create button highlighted" class='img-outline' />
+4. Under _Your sites_, click **Select sites**.<br /><img src="/img/docs/pubtools/offerwall-select-sites.png" alt="Offerwall message creation screen with Select sites button highlighted" class='img-outline' />
+5. Choose the sites where you want your Offerwall to appear, then click **Confirm**.
+6. Under _User choices_, locate the _Custom choice_ option and click **Set up**.<br /><img src="/img/docs/pubtools/offerwall-choice-off.png" alt="Offerwall message creation screen with the Custom choice option highlighted" class='img-outline' />
+   :::note
+   If you already have an offerwall message, click **Manage**, then click **Create Message**.
+   :::
+7. Implement the Offerwall Custom Choice API. More information can be found in <LinkOut href="https://developers.google.com/funding-choices/offerwall-custom-choice-docs">Google's help documentation</LinkOut>.<br /><img src="/img/docs/pubtools/offerwall-custom-s1.png" alt="Custom choice setup screen with a button linking to the Offerwall Custom Choice API" style="max-width: 80%" class='img-outline' />
+8. Return to the _Custom choice_ screen after you've implemented the API. Select the confirmation checkbox and click **Next**.<br /><img src="/img/docs/pubtools/offerwall-custom-s2.png" alt="Custom choice setup screen with a checkbox indicating you've implemented the API selected and the Next button active" style="max-width: 80%" class='img-outline' />
+9. Enter a title for your custom choice and click **Next**. We recommend using _Web Monetization_.<br /><img src="/img/docs/pubtools/offerwall-custom-s3.png" style="max-width: 80%" alt="Custom choice setup screen with recommended title entered in the field and the Next button active" class='img-outline' />
+10. Enter a subtitle for your custom choice and click **Next**. We recommend using _Support us with micropayments_.<br /><img src="/img/docs/pubtools/offerwall-custom-s4.png" alt="Custom choice setup screen with recommended subtitle entered in the field and the Next button active" style="max-width: 80%" class='img-outline' />
+11. Click **Confirm**.<br /><img src="/img/docs/pubtools/offerwall-custom-s5.png" alt="Custom choice setup screen with Confirm button active" style="max-width: 80%" class='img-outline' /><br />The _Offerwall Message_ screen appears. Your Web Monetization choice now appears in the preview area.<br /><img src="/img/docs/pubtools/offerwall-message-preview.png" alt="Offerwall preview screen with Web Monetization appearing as a choice" style="max-width: 60%" class='img-outline' />
+12. If you're not ready to publish this version of your Offerwall, click **Save draft**. Otherwise, click **Publish**.
+13. Go to your site and check that the Offerwall appears correctly. If your Offerwall doesn't appear at all, check your implementation of the Offerwall Custom Choice API.
 
 :::note[Test the Web Monetization choice]{icon="puzzle"}
 To test that the correct screen appears for each [scenario](#states), visit your site with the extension:
