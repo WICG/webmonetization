@@ -4,9 +4,7 @@ title: Banner tool
 
 import { LinkButton } from '@astrojs/starlight/components'
 import { LinkOut } from '@interledger/docs-design-system'
-import Connect from '/src/partials/tools-connect-wallet.mdx'
-import Change from '/src/partials/tools-change-wallet.mdx'
-import CSP from '/src/partials/csp.mdx'
+import CSP from '/src/content/docs/partials/csp.mdx'
 
 Create a <LinkOut href="https://webmonetization.org/tools/banner">banner</LinkOut> that appears when your visitors don't have the Web Monetization extension or have the extension turned off. The banner includes a link to download the extension from your visitor's browser store.
 
@@ -17,10 +15,6 @@ All pages that include the banner script are automatically web monetized with yo
 If your website uses Content Security Policy (CSP) headers, there are certain [directives](#content-security-policy-csp-requirements) you must add to support the publisher tools embed script.
 
 ## Create a new banner
-
-### Connect your wallet
-
-<Connect />
 
 ### Change the banner's contents (optional)
 
@@ -42,17 +36,23 @@ If your website uses Content Security Policy (CSP) headers, there are certain [d
 ### Generate your script
 
 1. Click **Save and generate script**.<br /><img src="/img/docs/pubtools/tools-save-buttons.png" alt="The save edits only and the save and generate script buttons side by side" style="max-width: 45%" class='img-outline' />
-2. Add the script to your site.
+   :::note[Save edits only]
+   Click **Save edits only** if you aren't ready to generate your script. Your configurations are saved on webmonetization.org.
+   :::
+   A wallet confirmation prompt appears.<br /><img src="/img/docs/pubtools/tools-wallet-confirmation-prompt.png" alt="Confirmation prompt showing wallet address and confirm button" style="max-width: 50%" class='img-outline' />
+2. Click **Confirm**. You're directed to your wallet provider to sign in and confirm your ownership of the wallet address. After confirmation, you'll return to the Banner tool page.
+3. Copy the script that appears in the overlaid screen.
    ```js wrap title="Example script"
    <script
      id="wmt-banner-init-script"
      type="module"
      src="https://tools-cdn.webmonetization.org/banner.js"
-     data-wallet-address="https://sandbox.ilp.link/rabeb"
+     data-wallet-address="https://walletprovider.com/MyWallet"
      data-tag="version1"
    ></script>
    ```
-3. Go to your site and check that the banner appears correctly. If you have the Web Monetization extension installed, you might need to disable the extension for the banner to appear.
+4. Add the script to your site.
+5. Go to your site and check that the banner appears correctly. If you have the Web Monetization extension installed, you might need to disable the extension for the banner to appear.
 
 ## Change an existing banner configuration
 
@@ -60,12 +60,6 @@ If your website uses Content Security Policy (CSP) headers, there are certain [d
 2. Click **Continue**. If the confirmation prompt appears, you must first confirm your ownership of the wallet address.
 3. Make your changes, then click **Save edits only**. Your [script](#generate-your-script) remains the same. There's no need to update your site's code.
 4. Refresh a page on your site that uses the configuration's script to verify your changes are live.
-
-## Connect banner to a new wallet address
-
-<Change />
-
-All pages that include the script are now web monetized with the new wallet address.
 
 ## Content Security Policy (CSP) requirements
 

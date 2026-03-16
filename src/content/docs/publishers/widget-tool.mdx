@@ -4,23 +4,17 @@ title: Widget tool
 
 import { LinkButton } from '@astrojs/starlight/components'
 import { LinkOut } from '@interledger/docs-design-system'
-import Connect from '/src/partials/tools-connect-wallet.mdx'
-import Change from '/src/partials/tools-change-wallet.mdx'
-import CSP from '/src/partials/csp.mdx'
+import CSP from '/src/content/docs/partials/csp.mdx'
 
 Add a <LinkOut href="https://webmonetization.org/tools/widget">payment widget</LinkOut> to your site so visitors can send you a one-time payment. The widget appears to all visitors, even those with an active Web Monetization extension.
 
 ### Before you begin
 
 - Your visitor must have a wallet address with a [compatible wallet](/wallets) to send a payment using the widget.
-- If your site is monetized with multiple wallet addresses, only the address connected to the widget will receive one-time payments. You can [change the address](#connect-widget-to-a-new-wallet-address) connected to the widget at any time.
+- If your site is monetized with multiple wallet addresses, only the address connected to the widget will receive one-time payments.
 - If your website uses Content Security Policy (CSP) headers, there are certain [directives](#content-security-policy-csp-requirements) you must add to support the publisher tools embed script.
 
 ## Create a new widget
-
-### Connect your wallet
-
-<Connect />
 
 ### Change the widget's contents (optional)
 
@@ -46,17 +40,20 @@ Add a <LinkOut href="https://webmonetization.org/tools/widget">payment widget</L
    :::note[Save edits only]
    Click **Save edits only** if you aren't ready to generate your script. Your configurations are saved on webmonetization.org.
    :::
-2. Add the script to your site. We recommend placing it just before the closing `</body>` tag. If you're using a site management tool like WordPress, you'll place the code in a script-type element.
+   A wallet confirmation prompt appears.<br /><img src="/img/docs/pubtools/tools-wallet-confirmation-prompt.png" alt="Confirmation prompt showing wallet address and confirm button" style="max-width: 50%" class='img-outline' />
+2. Click **Confirm**. You're directed to your wallet provider to sign in and confirm your ownership of the wallet address. After confirmation, you'll return to the Widget tool page.
+3. Copy the script that appears in the overlaid screen.
    ```js wrap title="Example script"
    <script
      id="wmt-widget-init-script"
      type="module"
      src="https://tools-cdn.webmonetization.org/widget.js"
-     data-wallet-address="https://sandbox.ilp.link/rabeb"
+     data-wallet-address="https://walletprovider.com/MyWallet"
      data-tag="version1"
    ></script>
    ```
-3. Go to your site and check that the widget appears correctly.
+4. Add the script to your site. We recommend placing it just before the closing `</body>` tag. If you're using a site management tool like WordPress, you'll place the code in a script-type element.
+5. Go to your site and check that the widget appears correctly.
 
 You're now ready to accept one-time payments. Remember that if your site is monetized with multiple wallet addresses that only the address connected to the widget receives one-time payments.
 
@@ -66,12 +63,6 @@ You're now ready to accept one-time payments. Remember that if your site is mone
 2. Click **Continue**. If the confirmation prompt appears, you must first confirm your ownership of the wallet address.
 3. Make your changes, then click **Save edits only**. Your [script](#generate-your-script) remains the same. There's no need to update your site's code.
 4. Refresh a page on your site that uses the configuration's script to verify your changes are live.
-
-## Connect widget to a new wallet address
-
-<Change />
-
-All payments through the widget will now be directed to the new wallet address.
 
 ## Content Security Policy (CSP) requirements
 

@@ -1,0 +1,107 @@
+---
+title: Offerwall tool
+---
+
+import { LinkButton } from '@astrojs/starlight/components'
+import { LinkOut } from '@interledger/docs-design-system'
+
+Google's Offerwall is a monetization tool that gives publishers more ways to earn beyond traditional advertisements. For example, a visitor could choose between watching a short ad or providing their email address before accessing content.
+
+This page describes how to use the <LinkOut href="https://webmonetization.org/tools/offerwall">Offerwall tool</LinkOut> and Google Ad Manager to add Web Monetization to your Offerwall.
+
+### Before you begin
+
+- You must have a Google Ad Manager account.
+- You can only add one custom user choice to a Google Offerwall.
+
+## Set up the custom choice screen
+
+### Change the custom choice screen's appearance
+
+1. Enter your wallet address.<br /><img src="/img/docs/pubtools/tools-connect-wallet.png" alt="Blank wallet address field and continue button" style="max-width: 50%" class='img-outline' />
+2. Click **Continue**.
+3. Change the label of a configuration by selecting the pencil icon and typing over the default.<br /><img src="/img/docs/pubtools/offerwall-preset-labels.png" alt="Screen with three tabs, all with default labels, and a pencil icon appearing next to the first label" style="max-width: 60%" class='img-outline' />
+4. Select the font to use on the screen.<br /><img src="/img/docs/pubtools/offerwall-font.png" alt="Panel showing the font family drop-down menu" style="max-width: 60%" class='img-outline' />
+5. Select the colors to use for the background, body text, theme, and headline text.<br /><img src="/img/docs/pubtools/offerwall-colors.png" alt="Panel showing background, body text, theme, and headline text color previews. Selecting a preview opens a menu with a paint can icon and a set of preselected colors to choose from" style="max-width: 60%" class='img-outline' />Click the paint can icon to enter a hex value or use the color picker.<br /><img src="/img/docs/pubtools/offerwall-color-picker.png" alt="The color picker tool with a field for the hex value at the bottom" style="max-width: 60%" class='img-outline' />
+6. Select the screen's corner radius.<br /><img src="/img/docs/pubtools/offerwall-corner.png" alt="Panel showing container corner radius options of no, light, and pill rounding" style="max-width: 60%" class='img-outline' />
+7. Review your changes in the preview panel. The preview shows what a visitor will see if they don't have the Web Monetization extension. <br />**Visitor without extension**<a id="states"></a><img src="/img/docs/pubtools/offerwall-appearance-preview.png" alt="Preview panel showing how the screen will appear with the default colors and light corner rounding" style="max-width: 45%" class='img-outline' />Different screens will appear if the visitor has the extension enabled or disabled. The appearance settings you selected above also apply to these screens.<p>
+   **Visitor with extension enabled**<br /><img src="/img/docs/pubtools/offerwall-extension-enabled.png" alt="A confirmation screen stating 'you're all set' with a close button" style="max-width: 45%" class='img-outline' /><br />
+   **Visitor with extension disabled**<br /><img src="/img/docs/pubtools/offerwall-extension-disabled.png" alt="A stylized error screen that instructs the visitor to use their Web Monetization extension" style="max-width: 45%" class='img-outline' /></p>
+
+### Generate your script
+
+1. Click **Save and generate script**.<br /><img src="/img/docs/pubtools/tools-save-buttons.png" alt="The save edits only and the save and generate script buttons side by side" style="max-width: 45%" class='img-outline' />
+   :::note[Save edits only]
+   Click **Save edits only** if you aren't ready to generate your script. Your configurations are saved on webmonetization.org.
+   :::
+   A wallet confirmation prompt appears.<br /><img src="/img/docs/pubtools/tools-wallet-confirmation-prompt.png" alt="Confirmation prompt showing wallet address and confirm button" style="max-width: 50%" class='img-outline' />
+2. Click **Confirm**. You're directed to your wallet provider to sign in and confirm your ownership of the wallet address. After confirmation, you'll return to the Offerwall tool page.
+3. Copy the script that appears in the overlaid screen.
+   ```js wrap title="Example script"
+   <script
+     id="wmt-offerwall-init-script"
+     type="module"
+     src="https://tools-cdn.webmonetization.org/offerwall.js"
+     data-wallet-address="https://walletprovider.com/MyWallet"
+     data-tag="version1"
+   ></script>
+   ```
+4. Add the script to the `<body>` of each page you want to offer Web Monetization.
+
+## Add Web Monetization as a custom Offerwall choice
+
+You must sign in to your Google Ad Manager account to complete these steps.
+
+1. Select the _Privacy & Messaging_ tab.
+2. Find the Monetization section.
+3. Find the Offerwall message type card and click **Create**.<br /><img src="/img/docs/pubtools/offerwall-pm-dashboard.png" alt="Ad Manager dashboard with the Privacy & Messaging tab, Monetization section, and Offerwall Create button highlighted" class='img-outline' />
+4. Under _Your sites_, click **Select sites**.<br /><img src="/img/docs/pubtools/offerwall-select-sites.png" alt="Offerwall message creation screen with Select sites button highlighted" class='img-outline' />
+5. Choose the sites where you want your Offerwall to appear, then click **Confirm**.
+6. Under _User choices_, locate the _Custom choice_ option and click **Set up**.
+   :::tip[]{icon="comment-alt"}
+   If you already have an offerwall message, click **Manage**, then click **Create Message**.
+   :::
+   <img
+     src="/img/docs/pubtools/offerwall-choice-off.png"
+     alt="Offerwall message creation screen with the Custom choice option highlighted"
+     class="img-outline"
+   />
+7. Select the confirmation box that states, _I confirm that I have implemented the Offerwall Custom Choice API_, then click **Next**.
+   :::note[Offerwall Custom Choice API]
+   Don't implement the Offerwall API in Google Ad Manager. Just [generate your script](#generate-your-script) and add it to your website. The script implements the API for you.
+   :::
+   <img
+     src="/img/docs/pubtools/offerwall-custom-s2.png"
+     alt="Custom choice setup screen with a checkbox indicating you've implemented the API selected and the Next button active"
+     style="max-width: 80%"
+     class="img-outline"
+   />
+8. Enter a title for your custom choice and click **Next**. We recommend using _Web Monetization_.<br /><img src="/img/docs/pubtools/offerwall-custom-s3.png" style="max-width: 80%" alt="Custom choice setup screen with recommended title entered in the field and the Next button active" class='img-outline' />
+9. Enter a subtitle for your custom choice and click **Next**. We recommend using _Support us with micropayments_.<br /><img src="/img/docs/pubtools/offerwall-custom-s4.png" alt="Custom choice setup screen with recommended subtitle entered in the field and the Next button active" style="max-width: 80%" class='img-outline' />
+10. Click **Confirm**.<br /><img src="/img/docs/pubtools/offerwall-custom-s5.png" alt="Custom choice setup screen with Confirm button active" style="max-width: 80%" class='img-outline' /><br />The _Offerwall Message_ screen appears. Your Web Monetization choice displays in the preview area.<br /><img src="/img/docs/pubtools/offerwall-message-preview.png" alt="Offerwall preview screen with Web Monetization appearing as a choice" style="max-width: 60%" class='img-outline' />
+11. If you're not ready to publish this version of your Offerwall, click **Save draft**. Otherwise, click **Publish**.
+12. Go to your site and check that the Offerwall appears correctly. If your Offerwall doesn't appear at all, check your implementation of the Offerwall Custom Choice API.
+
+:::note[Test the Web Monetization choice]{icon="puzzle"}
+To test that the correct screen appears for each [scenario](#states), visit your site with the extension:
+
+- Uninstalled
+- Installed but disabled
+- Installed and enabled
+
+We recommend testing in incognito/private windows. This ensures your local data is removed between tests and the screens appear when expected.
+:::
+
+## Change an existing appearance configuration
+
+1. Go to the <LinkOut href="https://webmonetization.org/tools/offerwall">Offerwall tool</LinkOut>, enter your wallet address, then click **Continue**.
+2. Make your changes, then click **Save edits only**. Your [script](#generate-your-script) remains the same. There's no need to update your site's code.
+3. Refresh a page on your site that uses the configuration's script to verify your changes are live.
+
+<LinkButton
+  href="https://webmonetization.org/tools/offerwall"
+  target="_blank"
+  icon="external"
+>
+  Offerwall tool
+</LinkButton>
