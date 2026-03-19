@@ -3,10 +3,10 @@ title: Set up probabilistic revenue sharing
 ---
 
 import { LinkOut } from '@interledger/docs-design-system'
-import Wallet from '/src/partials/wallet-prereq.mdx'
-import Disclaimer from '/src/partials/glitch.mdx'
+import Wallet from '/src/content/docs/partials/_wallet-prereq.mdx'
+import Disclaimer from '/src/content/docs/partials/_glitch.mdx'
 
-Probabilistic revenue sharing is a way to share a portion of a web monetized page’s earnings between multiple recipients. In Web Monetization, this works by having a random wallet address inserted into your page each time a web monetized visitor loads the page. You have several possible recipients, with their chance of being chosen based on their assigned weight. The visitor pays to the chosen recipient until the page is reloaded or closed.
+Probabilistic revenue sharing is a way to share a portion of a web monetized page's earnings between multiple recipients. In Web Monetization, this works by having a random wallet address inserted into your page each time a web monetized visitor loads the page. You have several possible recipients, with their chance of being chosen based on their assigned weight. The visitor pays to the chosen recipient until the page is reloaded or closed.
 
 In this tutorial, you'll define a list of recipients and their weights and create a script that chooses a recipient to pay, based on their weight, each time a web monetized visitor loads your page.
 
