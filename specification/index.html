@@ -574,10 +574,20 @@
           <dfn>currency</dfn> member
         </h2>
         <p>
-          The currency of the MonetizationCurrencyAmount. See the definition of
-          the `currency` member of {{PaymentCurrencyAmount}} in
+          The currency of the MonetizationCurrencyAmount. The default is an
+          ISO 4217 three-letter alphabetic code; see the definition of the
+          `currency` member of {{PaymentCurrencyAmount}} in
           [[payment-request]] for details.
         </p>
+        <aside class="note" title="">
+          <p>
+            This member’s definition is left as a generic string to maximize
+            flexibility; for example, if a new currency representation
+            standard emerges to supplement or replace ISO 4217. This also
+            permits Web Monetization implementors to support the numeric
+            ISO 4217 codes (as string equivalents) where needed.
+          </p>
+        </aside>
       </section>
       <section>
         <h2>
@@ -585,7 +595,7 @@
         </h2>
         <p>
           The amount of the MonetizationAmount. See the definition of the
-          `value` member in of {{PaymentCurrencyAmount}} in [[payment-request]]
+          `value` member of {{PaymentCurrencyAmount}} in [[payment-request]]
           for details.
         </p>
       </section>
