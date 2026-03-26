@@ -1,0 +1,18 @@
+<section id="interfaces">
+  <h2>The <code>monetization</code> namespace</h2>
+
+  <p>
+    The <dfn>monetization</dfn> namespace is the entry point for the
+    Web Monetization Extensions API. It exposes events that allow
+    extensions to observe monetization session state changes within
+    documents.
+  </p>
+
+  <pre class="idl">
+    [Exposed=Window]
+    namespace monetization {
+      readonly attribute EventHandler onStarted;
+      readonly attribute EventHandler onStopped;
+    };
+  </pre>
+</section>

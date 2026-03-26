@@ -1,0 +1,38 @@
+<section id="types">
+  <h2>Types</h2>
+
+  <section data-dfn-for="MonetizationInfo">
+    <h3><dfn>MonetizationInfo</dfn></h3>
+
+    <p>
+      Describes the document where a monetization state change occurred.
+    </p>
+
+    <pre class="idl">
+      dictionary MonetizationInfo {
+        required long tabId;
+        required long frameId;
+        required DOMString url;
+      };
+    </pre>
+
+    <h4>Properties</h4>
+    <dl>
+      <dt><dfn>tabId</dfn></dt>
+      <dd>
+        The identifier of the tab containing the monetized document.
+      </dd>
+
+      <dt><dfn>frameId</dfn></dt>
+      <dd>
+        The identifier of the frame within the tab.
+        <code>0</code> denotes the top-level (main) frame.
+      </dd>
+
+      <dt><dfn>url</dfn></dt>
+      <dd>
+        The URL of the monetized document.
+      </dd>
+    </dl>
+  </section>
+</section>

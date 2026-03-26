@@ -1,0 +1,80 @@
+<section id="events">
+  <h2>Events</h2>
+
+  <p>
+    Events in this namespace are scoped to a
+    <a data-cite="HTML/document-sequences.html#navigable">document</a>,
+    identified by its tab and frame. Each event callback receives a
+    {{MonetizationInfo}} dictionary describing the affected document.
+  </p>
+
+  <section data-dfn-for="monetization">
+    <h3><dfn>onStarted</dfn></h3>
+
+    <pre>monetization.onStarted.addListener(
+  callback: function,
+)</pre>
+
+    <p>
+      Fired when the first [[WebMonetization]] session becomes active
+      in a document. Subsequent sessions starting in the same document
+      do <em>not</em> re-fire this event.
+    </p>
+
+    <h4>Parameters</h4>
+    <dl>
+      <dt><code>callback</code></dt>
+      <dd>
+        <p>The <code>callback</code> parameter looks like:</p>
+        <pre>(info: {{MonetizationInfo}}) =&gt; void</pre>
+        <dl>
+          <dt><code>info</code></dt>
+          <dd>The {{MonetizationInfo}} for the document where
+            monetization started.</dd>
+        </dl>
+      </dd>
+    </dl>
+  </section>
+
+  <section data-dfn-for="monetization">
+    <h3><dfn>onStopped</dfn></h3>
+
+    <pre>monetization.onStopped.addListener(
+  callback: function,
+)</pre>
+
+    <p>
+      Fired when the last [[WebMonetization]] session in a document
+      has ended. This occurs when the tab is closed, the document
+      navigates away, or all sessions are explicitly stopped.
+    </p>
+
+    <h4>Parameters</h4>
+    <dl>
+      <dt><code>callback</code></dt>
+      <dd>
+        <p>The <code>callback</code> parameter looks like:</p>
+        <pre>(info: {{MonetizationInfo}}) =&gt; void</pre>
+        <dl>
+          <dt><code>info</code></dt>
+          <dd>The {{MonetizationInfo}} for the document where
+            monetization stopped.</dd>
+        </dl>
+      </dd>
+    </dl>
+  </section>
+
+  <section>
+    <h3>Event ordering</h3>
+
+    <p>
+      For a given document, an {{monetization/onStarted}} event is always
+      delivered before any corresponding {{monetization/onStopped}} event.
+      If a document has multiple concurrent sessions, intermediate
+      session starts and stops do not produce additional events.
+      Only the transition from zero to one active session
+      ({{monetization/onStarted}}) and from one to zero active sessions
+      ({{monetization/onStopped}}) fire events.
+    </p>
+  </section>
+</section>
