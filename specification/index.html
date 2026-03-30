@@ -244,7 +244,7 @@
           <dfn>Payment session</dfn>
         </dt>
         <dd>
-          An session between a [=monetization provider=] and [=monetization
+          A session between a [=monetization provider=] and [=monetization
           receiver=] initiated by the [=user agent=] at the [=monetization
           receiver=]. One or more payments can be initiated by the
           [=monetization provider=] in a single session.
@@ -268,7 +268,7 @@
         <li>Users retain control of if, when, and how payments are made to the
         site. For example, micropayments of a predetermined monetary value
         could be "streamed" to the site over time. Alternatively, the user
-        could make one or many discreet "one-off" payment(s) of any arbitrary
+        could make one or many discrete "one-off" payment(s) of any arbitrary
         monetary amount, even while micropayments are simultaneously being
         streamed.
         </li>
@@ -293,8 +293,8 @@
         </p>
       </aside>
       <p>
-        The monetization keyword indicates a [=payment pointer=] used to
-        monetize the document.
+        The <code data-x="rel-monetization">monetization</code> keyword
+        indicates a [=payment pointer=] used to monetize the document.
       </p>
       <p>
         The <code data-x="rel-monetization">monetization</code> keyword may be
@@ -314,7 +314,7 @@
         <p>
           The appropriate times to <span data-x=
           "fetch and process the linked resource">fetch and process</span> this
-          type of link is:
+          type of link are:
         </p>
         <ul>
           <li>
@@ -327,7 +327,7 @@
           <li>
             <p>
               When the <span>external resource link</span>'s <code>link</code>
-              element <span>becomes browsing-context connected</span>.
+              element <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#browsing-context-connected"><span>becomes browsing-context connected</span></a>.
             </p>
           </li>
           <li>
@@ -452,14 +452,14 @@
         <ol>
           <li>
             <p>
-              If |response|'s status is not an OK status, the set |success| to
+              If |response|'s status is not an OK status, then set |success| to
               false.
             </p>
           </li>
           <li>
             <p>
               Otherwise, if <var>response</var>'s <span data-x=
-              "Content-Type">Content-Type metadata</span> is not a
+              "Content-Type">Content-Type metadata</span> is not
               <code>application/json</code>, then set <var>success</var> to
               false.
             </p>
@@ -490,8 +490,9 @@
         </ol>
       </div>
       <p>
-        If a "monetization" <code>link</code> <span>becomes browsing-context
-        disconnected</span>, a user agent MUST stop the [=payment session=].
+        If a "monetization" <code>link</code> <span>becomes
+        <a href="https://html.spec.whatwg.org/multipage/infrastructure.html#browsing-context-connected">browsing-context disconnected</a></span>,
+        a user agent MUST stop the [=payment session=].
       </p>
     </section>
     <section>
@@ -542,7 +543,7 @@
         Task sources
       </h2>
       <p>
-        The following [=task source=] is defined by this specifications.
+        The following [=task source=] is defined by this specification.
       </p>
       <dl>
         <dt>
@@ -639,7 +640,7 @@
         </p>
         <p>
           As such the {{MonetizationEvent}} no longer represents an amount
-          received, it represents an amount sent and returns a URL as the
+          received; it represents an amount sent and returns a URL as the
           {{MonetizationEvent/incomingPayment}} attribute that can be used to
           determine the amount received.
         </p>
@@ -742,9 +743,9 @@
         <p>
           The <a href=
           "https://html.spec.whatwg.org/#attr-iframe-allow">allow</a>
-          attributes only take effect when the content navigable of the iframe
-          is navigated. Adding or removing the monetization attribute has no
-          effect on an already-loaded document.
+          attribute only takes effect when the navigable content of the
+          [^iframe^] is navigated. Adding or removing the monetization
+          attribute has no effect on an already-loaded document.
         </p>
       </aside>
     </section>
@@ -800,10 +801,10 @@
             directive for request" on |request|.
             </li>
             <li>If the result of executing "Should fetch directive execute" on
-            |name|, `monetization-src` and |policy| is "No", return "Allowed".
+            |name|, `monetization-src`, and |policy| is "No", return "Allowed".
             </li>
             <li>If the result of executing "Does request match source list?" on
-            |request|, this directive's value, and |policy|, is "Does Not
+            |request|, this directive's value, and |policy| is "Does Not
             Match", return "Blocked".
             </li>
             <li>Return "Allowed".
@@ -826,11 +827,11 @@
             directive for request" on |request|.
             </li>
             <li>If the result of executing "Should fetch directive execute" on
-            |name|, `monetization-src` and |policy| is "No", return "Allowed".
+            |name|, `monetization-src`, and |policy| is "No", return "Allowed".
             </li>
             <li>If the result of executing "Does response to request match
             source list?" on |response|, |request|, this directive's value, and
-            |policy|, is "Does Not Match", return "Blocked".
+            |policy| is "Does Not Match", return "Blocked".
             </li>
             <li>Return "Allowed".
             </li>
@@ -886,8 +887,8 @@
         Relation to Web Payments
       </h2>
       <p>
-        Unlike [[[Payment-Request]]] and the [[[Payment-Handler]]], which only
-        supports "one-off" payments, Web Monetization provides a [=payment
+        Unlike the [[[Payment-Request]]] and the [[[Payment-Handler]]], which only
+        support "one-off" payments, Web Monetization provides a [=payment
         session=] that supports both continuous payments and "one-off"
         payments.
       </p>
