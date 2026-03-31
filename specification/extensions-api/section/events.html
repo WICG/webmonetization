@@ -2,8 +2,7 @@
   <h2>Events</h2>
 
   <p>
-    Events in this namespace are scoped to a
-    <a data-cite="HTML/document-sequences.html#navigable">document</a>,
+    Events in this namespace are scoped to a {{ Document }},
     identified by its tab and frame. Each event callback receives a
     {{MonetizationInfo}} dictionary describing the affected document.
   </p>
@@ -11,7 +10,7 @@
   <section data-dfn-for="monetization">
     <h3><dfn>onStarted</dfn></h3>
 
-    <pre>monetization.onStarted.addListener(
+    <pre class="example">browser.monetization.onStarted.addListener(
   callback: function,
 )</pre>
 
@@ -39,7 +38,7 @@
   <section data-dfn-for="monetization">
     <h3><dfn>onStopped</dfn></h3>
 
-    <pre>monetization.onStopped.addListener(
+    <pre>browser.monetization.onStopped.addListener(
   callback: function,
 )</pre>
 
