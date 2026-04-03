@@ -376,6 +376,8 @@ function specSymlink() {
             req.url = `${base}/index.html`
           } else if (pathname === `${base}/flows/`) {
             req.url = `${base}/flows/index.html`
+          } else if (pathname === `${base}/extensions-api/`) {
+            req.url = `${base}/extensions-api/index.html`
           }
           next()
         })

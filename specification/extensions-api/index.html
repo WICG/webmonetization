@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Web Monetization Extensions API</title>
+  <script defer class="remove" src="https://www.w3.org/Tools/respec/respec-w3c"></script>
+  <script class="remove">
+    var respecConfig = {
+      edDraftURI: 'https://webmonetization.org/specification/extensions-api/',
+      latestVersion: 'https://webmonetization.org/specification/extensions-api/',
+      github: {
+        repoURL: 'wicg/webmonetization',
+        branch: 'main',
+      },
+      editors: [
+        {
+          name: "Alexander Surkov",
+          mailto: "asurkov@igalia.com",
+          company: "Igalia",
+          companyURL: "https://igalia.com/",
+          w3cid: "51089",
+        },
+        {
+          name: "Sid Vishnoi",
+          mailto: "sid@interledger.foundation",
+          company: "Interledger",
+          companyURL: "https://interledger.org/",
+          w3cid: "115494",
+        },
+      ],
+      authors: [
+        {
+          name: "Alexander Surkov",
+          mailto: "asurkov@igalia.com",
+          company: "Igalia",
+          companyURL: "https://igalia.com/",
+          w3cid: "51089",
+        },
+        {
+          name: "Sid Vishnoi",
+          mailto: "sid@interledger.foundation",
+          company: "Interledger",
+          companyURL: "https://interledger.org/",
+          w3cid: "115494",
+        },
+      ],
+      shortName: "web-monetization-extensions-api",
+      specStatus: "CG-DRAFT",
+      group: "wicg",
+      localBiblio: {
+        openpayments: {
+          title: "Open Payments",
+          href: "https://openpayments.dev/",
+        },
+        WebMonetization: {
+          title: "Web Monetization",
+          href: "https://webmonetization.org/specification/"
+        },
+        WebMonetizationFlows: {
+          title: "Web Monetization Flows",
+          href: "https://webmonetization.org/specification/flows/"
+        },
+      },
+      xref: [
+        "dom",
+        "html",
+        "infra",
+        "webidl"
+      ],
+    };
+  </script>
+</head>
+<body>
+<section id="abstract">
+  <p>
+    This specification defines a browser extension API for managing a browser's
+    headless [[WebMonetization]] implementation, as described in
+    [[WebMonetizationFlows]]. It enables extensions to build monetization
+    management UIs and apply user-tailored customization on top of the
+    browser-provided payment engine.
+  </p>
+</section>
+<section id="sotd">
+  <p>This is a work-in-progress draft.</p>
+</section>
+<div data-include="section/introduction.html" data-include-replace="true"></div>
+<div data-include="section/interfaces.html" data-include-replace="true"></div>
+<div data-include="section/types.html" data-include-replace="true"></div>
+<div data-include="section/events.html" data-include-replace="true"></div>
+<section id="conformance"></section>
+</body>
+</html>
