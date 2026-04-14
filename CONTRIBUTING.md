@@ -25,9 +25,9 @@ If you are interested in making changes to the specification, set up this reposi
 
 The source file for the specification document is at [specification/index.html](./specification/index.html). This is the raw ReSpec version that editors should make changes to. Documentation for ReSpec can be accessed on the [respec.org](https://respec.org/docs/).
 
-Preview changes with `npx serve ./specification/` (or [any other static HTTP file server](https://gist.github.com/willurd/5720255)) and opening http://localhost:3000/index.html .
+Preview changes with `npx serve ./specification/` (or [any other static HTTP file server](https://gist.github.com/willurd/5720255)) and opening http://localhost:3000/index.html.
 
-Similar to the main specification, there are also [WM flows](./specification/flows/) and [browser extension API](./specification/extensions-api/) implementation specifications.
+Similar to the main specification, there are also [Web Monetization flows](./specification/flows/) and the [browser extension API](./specification/extensions-api/) implementation specifications.
 
 In general, Community Group Draft Reports do not follow the same strict conventions as more mature specifications. We only archive major versions of the specification. For example, a copy of the [2021-03-17 draft report](./specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in [specification/versions/](./specification/versions).
 
