@@ -41,7 +41,7 @@ const toURL = (url: string) => {
 <ul class={variant}>
   <li>
     <div class="container">
-      <a href={toURL(URLS.chrome)} title={t('media.title.extension.chrome')}>
+      <a href={toURL(URLS.chrome)} title={t('media.title.extension.chrome')} data-umami-event="Extension - Chrome">
         <img
           src={chromeWebstore.src}
           alt={t('media.title.extension.chrome')}
@@ -53,7 +53,7 @@ const toURL = (url: string) => {
   </li>
   <li>
     <div class="container">
-      <a href={toURL(URLS.firefox)} title={t('media.title.extension.firefox')}>
+      <a href={toURL(URLS.firefox)} title={t('media.title.extension.firefox')} data-umami-event="Extension - Firefox">
         <img
           src={fxBrowserIcon.src}
           alt={t('media.title.extension.firefox')}
@@ -65,7 +65,7 @@ const toURL = (url: string) => {
   </li>
   <li>
     <div class="container">
-      <a href={toURL(URLS.safari)} title={t('media.title.extension.safari')}>
+      <a href={toURL(URLS.safari)} title={t('media.title.extension.safari')} data-umami-event="Extension - Safari">
         <img
           src={safariIcon.src}
           alt={t('media.title.extension.safari')}
@@ -77,7 +77,7 @@ const toURL = (url: string) => {
   </li>
   <li>
     <div class="container">
-      <a href={toURL(URLS.edge)} title={t('media.title.extension.edge')}>
+      <a href={toURL(URLS.edge)} title={t('media.title.extension.edge')} data-umami-event="Extension - Edge">
         <img
           src={microsoftEdge.src}
           alt={t('media.title.extension.edge')}
@@ -94,6 +94,7 @@ const toURL = (url: string) => {
           <a
             href={toURL(URLS.github)}
             title={t('media.title.extension.github')}
+            data-umami-event="Extension - GitHub"
           >
             <img
               alt={t('media.title.extension.github')}
