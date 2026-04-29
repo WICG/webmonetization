@@ -41,7 +41,10 @@ const findStartWith = (array: string[], arg: string) => {
               {findStartWith(plugin.version, '1.') ? '✅' : '❌'}
             </td>
             <td class="cellCenter">
-              <a href={plugin.cta.href}>
+              <a
+                href={plugin.cta.href}
+                data-umami-event={`Docs - ${plugin.name} GitHub`}
+              >
                 <svg
                   role="img"
                   class="icon--github"
