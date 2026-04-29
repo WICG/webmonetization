@@ -6,7 +6,7 @@ The website is the home of the proposed Web Monetization standard currently incu
 
 You can read the [docs](https://webmonetization.org/docs/), or read the proposed [specification](https://webmonetization.org/specification).
 
-# Contribute
+## Contribute
 
 The Web Monetization website is built with [Starlight](https://starlight.astro.build/), a documentation framework based on [Astro](https://astro.build/).
 
@@ -14,6 +14,10 @@ The Web Monetization website is built with [Starlight](https://starlight.astro.b
 - [Content](#content)
 - [Localization/Internationalization](#localizationinternationalization)
 - [Reviews and Approvals](#reviews-and-approvals)
+
+## Specification Development
+
+Please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md#specification-development).
 
 ## Get Set Up
 
@@ -47,10 +51,6 @@ All commands are run from the root of the project, from a terminal:
 | `bun run format`          | Format code and fix linting issues automatically           |
 
 You can substitute the bun commands with your chosen package manager's commands.
-
-## Specification Development
-
-Please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md#specification-development).
 
 ## Content
 

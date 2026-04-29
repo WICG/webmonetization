@@ -34,7 +34,10 @@ export default defineConfig({
           errorOnFallbackPages: false,
           exclude: ['/prob-revshare']
         }),
-        starlightFullViewMode()
+        starlightFullViewMode({
+          leftSidebarEnabled: true,
+          rightSidebarEnabled: true
+        })
       ],
       expressiveCode: {
         styleOverrides: {
