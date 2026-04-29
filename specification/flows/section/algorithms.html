@@ -76,7 +76,7 @@
     <h3>Authorization server (AS)</h3>
     <section>
       <h4>Outgoing payment and quote grant request</h4>
-      <p>The send an outgoing payment and quote grant requests refers to the <a data-cite="opas/operations/post-continue#">Open Payments grant request</a></p>
+      <p>The send an outgoing payment and quote grant requests refers to the <a data-cite="opas/operations/post-continue#">Open Payments grant request</a>.</p>
       <div class="algorithm">
         When asked to <dfn>send an outgoing payment and quote grant request</dfn>,
         given <a>|walletAddressDetails:WalletAddressDetails|</a>, |budget:number|
@@ -374,7 +374,7 @@
 
     <section>
       <h4>Continue grant request</h4>
-      <p>The send a continue grant request, refers to the <a data-cite="opas/operations/post-continue#">Open Payments grant request</a></p>
+      <p>The send a continue grant request, refers to the <a data-cite="opas/operations/post-continue#">Open Payments grant request</a>.</p>
       <div class="algorithm">
         When asked to <dfn>send a continue grant request</dfn>, given |continueUri:DOMString|, |accessToken:DOMString|, perform the following steps.
         <ol>
@@ -441,7 +441,7 @@
       <h4>Cancel grant request</h4>
       <p>The cancel grant request, refers to the <a data-cite="opas/operations/delete-continue#">Open Payments cancel grant request</a>.</p>
       <div class="algorithm">
-        When asked to <dfn>send a cancel grant request</dfn>, given |continueUri|, |accessToken| perform the following steps.
+        When asked to <dfn>send a cancel grant request</dfn>, given |continueUri|, |accessToken|, perform the following steps.
         <ol>
           <li>
             Let |uri| be the result of running [=URL parser=] with |continueUri|.
@@ -500,7 +500,7 @@
       <h4>Rotate access token</h4>
       <p>The rotate access token request refers to the <a data-cite="opas/operations/post-token#">Open Payments rotate access token</a>.</p>
       <div class="algorithm">
-        When asked to <dfn>send a rotate access token request</dfn>, given {{Grant}} |userWalletGrant:Grant| perform the following steps.
+        When asked to <dfn>send a rotate access token request</dfn>, given {{Grant}} |userWalletGrant:Grant|, perform the following steps.
         <ol>
           <li>
             Let |manageUrl:URL| be the result of running [=URL parser=] with
@@ -807,7 +807,7 @@
     <section>
       <h4>Fetch request</h4>
       <div class="algorithm">
-        To perform a <dfn>fetch request</dfn> given a [=request=] request and
+        To perform a <dfn>fetch request</dfn> given a [=request=] |request| and
         an algorithm |processResponseConsumeBody|, execute the following steps:
         <ol>
           <li>
