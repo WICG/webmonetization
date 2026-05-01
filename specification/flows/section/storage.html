@@ -95,6 +95,12 @@
                 <li>Set |storage|'s {{Storage/wallet}} to |walletAddressDetails|.</li>
                 <li>[=Persist storage=] with |storage|.</li>
             </ol>
+            <p class="note">
+              Each invocation of this algorithm establishes a new wallet connection. Implementations
+              that track per-connection payment history SHOULD associate sessions and payments with
+              the credential record created during this connection, so that balance computations are
+              scoped to the active connection only.
+            </p>
         </div>
 
         <div class="algorithm">
@@ -166,6 +172,12 @@
             <li>[=Persist storage=] with |storage|.</li>
           </ol>
           <p class="note">Removes all wallet-related state (grant tokens, authentication keys, wallet address details). Budget limits MAY be retained; implementations can also clear {{Storage/maxRateOfPay}} if the user requests a full reset.</p>
+          <p class="note">
+            Implementations that track payment history SHOULD treat each wallet connection as an
+            independent scope. When a user disconnects and later reconnects (even to the same wallet address),
+            the new connection starts with a fresh spending balance. Previous connection data MAY be
+            retained for historical display but MUST NOT affect the active connection's balance computation.
+          </p>
         </div>
 
         <div class="algorithm">

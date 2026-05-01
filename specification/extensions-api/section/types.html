@@ -1,18 +1,91 @@
 <section id="types">
   <h2>Types</h2>
 
-  <section data-dfn-for="MonetizationInfo">
-    <h3><dfn>MonetizationInfo</dfn></h3>
+  <p class="note">
+    Type names defined here are scoped under the
+    <a>monetization</a> namespace. Implementations expose them as
+    namespace-scoped dictionaries on <code>chrome.monetization</code>
+    (for example, {{monetization/Wallet}} corresponds to
+    <code>chrome.monetization.Wallet</code>).
+  </p>
+
+  <section data-dfn-for="monetization/Wallet">
+    <h3><dfn data-dfn-for="monetization">Wallet</dfn></h3>
 
     <p>
-      Describes the document where a monetization state change occurred.
+      Describes the connected user wallet, including its current
+      budget balance. Currency amounts follow
+      {{CurrencyAmount}} conventions defined in [[WebMonetization]].
     </p>
 
     <pre class="idl">
-      dictionary MonetizationInfo {
+      dictionary Wallet {
+        required DOMString address;
+        required DOMString name;
+        required DOMString currency;
+        required DOMString initial;
+        required DOMString remaining;
+        DOMString? renewDate;
+        required boolean needsReconnect;
+      };
+    </pre>
+
+    <h4>Properties</h4>
+    <dl>
+      <dt><dfn>address</dfn></dt>
+      <dd>
+        The wallet address URL.
+      </dd>
+
+      <dt><dfn>name</dfn></dt>
+      <dd>
+        A human-readable name for the wallet.
+      </dd>
+
+      <dt><dfn>currency</dfn></dt>
+      <dd>
+        An ISO 4217 currency code (e.g. <code>"USD"</code>).
+      </dd>
+
+      <dt><dfn>initial</dfn></dt>
+      <dd>
+        A decimal string representing the total budget for the current
+        billing period (e.g. <code>"10.00"</code>).
+      </dd>
+
+      <dt><dfn>remaining</dfn></dt>
+      <dd>
+        A decimal string representing the remaining budget for the
+        current billing period (e.g. <code>"7.50"</code>).
+      </dd>
+
+      <dt><dfn>renewDate</dfn></dt>
+      <dd>
+        An ISO 8601 date string indicating when the budget next renews.
+        Absent when the budget does not renew monthly.
+      </dd>
+
+      <dt><dfn>needsReconnect</dfn></dt>
+      <dd>
+        <code>true</code> when the stored access token is invalid and the
+        wallet must be reconnected.
+      </dd>
+    </dl>
+  </section>
+
+  <section data-dfn-for="monetization/Session">
+    <h3><dfn data-dfn-for="monetization">Session</dfn></h3>
+
+    <p>
+      Identifies a monetization session and the document it belongs to.
+    </p>
+
+    <pre class="idl">
+      dictionary Session {
         required long tabId;
         required long frameId;
-        required DOMString url;
+        required long sessionId;
+        required DOMString walletAddress;
       };
     </pre>
 
@@ -29,9 +102,14 @@
         <code>0</code> denotes the top-level (main) frame.
       </dd>
 
-      <dt><dfn>url</dfn></dt>
+      <dt><dfn>sessionId</dfn></dt>
       <dd>
-        The URL of the monetized document.
+        The identifier of the monetization session.
+      </dd>
+
+      <dt><dfn>walletAddress</dfn></dt>
+      <dd>
+        The wallet address being paid by this session.
       </dd>
     </dl>
   </section>
