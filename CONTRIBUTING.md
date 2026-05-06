@@ -5,8 +5,8 @@ Thank you for contributing to the Web Monetization specification. Your contribut
 ## Before you begin
 
 - Have you read the [Code of Conduct](https://www.w3.org/policies/code-of-conduct/)?
-- Join the Community Group and agree to the [W3C Community Contributor License Agreement (CLA)](http://www.w3.org/community/about/agreements/cla/)
 - Check out the [existing issues](https://github.com/WICG/webmonetization/issues) and see if we [accept contributions](#types-of-contributions) for your type of issue
+- (Optional) Join the Community Group and agree to the [W3C Community Contributor License Agreement (CLA)](http://www.w3.org/community/about/agreements/cla/)
 
 
 ## Types of contributions
