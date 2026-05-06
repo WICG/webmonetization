@@ -1,4 +1,4 @@
-# Contributing to this repository 
+# Contributing to this repository
 
 Thank you for contributing to the Web Monetization specification. Your contributions help shape emerging web standards.
 
@@ -7,7 +7,6 @@ Thank you for contributing to the Web Monetization specification. Your contribut
 - Have you read the [Code of Conduct](https://www.w3.org/policies/code-of-conduct/)?
 - Check out the [existing issues](https://github.com/WICG/webmonetization/issues) and see if we [accept contributions](#types-of-contributions) for your type of issue
 - (Optional) Join the Community Group and agree to the [W3C Community Contributor License Agreement (CLA)](http://www.w3.org/community/about/agreements/cla/)
-
 
 ## Types of contributions
 
@@ -41,7 +40,6 @@ When reporting an issue, please include:
 Feel free to fork the repository and create a pull request for changes you think you can contribute — whether small fixes or larger spec changes.
 
 The team will review your pull request as soon as possible.
-
 
 ## Working in this repository
 
