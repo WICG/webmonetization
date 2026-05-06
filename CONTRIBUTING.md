@@ -55,17 +55,12 @@ You don't need a full development setup to contribute to the spec.
 
 Preview changes with `npx serve ./specification/` (or [any other static HTTP file server](https://gist.github.com/willurd/5720255)) and opening http://localhost:3000/index.html.
 
-### Website development
-
-For website development, [see here](https://github.com/WICG/webmonetization#get-set-up)
-
 #### Related specifications
 
 This repository also includes:
 
 - Web Monetization flows → [`specification/flows/`](./specification/flows/)
 - Browser extension API → [`specification/extensions-api/`](./specification/extensions-api/)
-
 
 #### Formatting
 
@@ -75,6 +70,9 @@ Prettier is disabled for files under `specification/*`. W3C specifications follo
 
 This is a Community Group Draft, so iteration is expected. We only snapshot major versions of the specification — for example, the [2021-03-17 draft](./specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in `specification/versions/`.
 
+### Website development
+
+For website development, [see here](https://github.com/WICG/webmonetization#get-set-up)
 
 ## Submitting Pull Requests
 
