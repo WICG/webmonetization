@@ -4,9 +4,9 @@
   <p class="note">
     Type names defined here are scoped under the
     <a>monetization</a> namespace. Implementations expose them as
-    namespace-scoped dictionaries on <code>chrome.monetization</code>
+    namespace-scoped dictionaries on `chrome.monetization`
     (for example, {{monetization/Wallet}} corresponds to
-    <code>chrome.monetization.Wallet</code>).
+    `chrome.monetization.Wallet`).
   </p>
 
   <section data-dfn-for="monetization/Wallet">
@@ -14,19 +14,22 @@
 
     <p>
       Describes the connected user wallet, including its current
-      budget balance. Currency amounts follow
-      {{CurrencyAmount}} conventions defined in [[WebMonetization]].
+      budget balance.
     </p>
 
     <pre class="idl">
+      enum ReconnectReason {
+        "unauthorized"
+      };
+
       dictionary Wallet {
         required DOMString address;
         required DOMString name;
         required DOMString currency;
-        required DOMString initial;
-        required DOMString remaining;
+        required DOMString initialBalance;
+        required DOMString remainingBalance;
         DOMString? renewDate;
-        required boolean needsReconnect;
+        ReconnectReason? reconnectReason;
       };
     </pre>
 
@@ -34,7 +37,12 @@
     <dl>
       <dt><dfn>address</dfn></dt>
       <dd>
-        The wallet address URL.
+        The canonical wallet address URL, as returned in the `id`
+        field of the Open Payments wallet address resource. This is
+        the resolved address (e.g.
+        `"https://ilp.example.com/123456/usd"`), which may differ
+        from the URL the user originally entered (such as a
+        `.well-known/pay` shortcut).
       </dd>
 
       <dt><dfn>name</dfn></dt>
@@ -44,19 +52,19 @@
 
       <dt><dfn>currency</dfn></dt>
       <dd>
-        An ISO 4217 currency code (e.g. <code>"USD"</code>).
+        An ISO 4217 currency code (e.g. `"USD"`).
       </dd>
 
-      <dt><dfn>initial</dfn></dt>
+      <dt><dfn>initialBalance</dfn></dt>
       <dd>
-        A decimal string representing the total budget for the current
-        billing period (e.g. <code>"10.00"</code>).
+        A decimal string representing the total budget allocated for
+        the current billing period (e.g. `"10.00"`).
       </dd>
 
-      <dt><dfn>remaining</dfn></dt>
+      <dt><dfn>remainingBalance</dfn></dt>
       <dd>
-        A decimal string representing the remaining budget for the
-        current billing period (e.g. <code>"7.50"</code>).
+        A decimal string representing the budget remaining for the
+        current billing period (e.g. `"7.50"`).
       </dd>
 
       <dt><dfn>renewDate</dfn></dt>
@@ -65,12 +73,28 @@
         Absent when the budget does not renew monthly.
       </dd>
 
-      <dt><dfn>needsReconnect</dfn></dt>
+      <dt><dfn>reconnectReason</dfn></dt>
       <dd>
-        <code>true</code> when the stored access token is invalid and the
-        wallet must be reconnected.
+        When present, indicates that the wallet must be reconnected
+        before it can be used, and conveys the reason. When absent,
+        the wallet is usable. Possible values:
+        <dl>
+          <dt>`"unauthorized"`</dt>
+          <dd>
+            The stored access token is no longer valid (for example,
+            it has expired or been revoked).
+          </dd>
+        </dl>
       </dd>
     </dl>
+
+    <p class="note">
+      The {{Wallet/currency}}, {{Wallet/initialBalance}}, and
+      {{Wallet/remainingBalance}} members use the same conventions as the
+      `currency` and `value` members of the {{PaymentCurrencyAmount}}
+      dictionary defined in [[payment-request]] (and the
+      `MonetizationCurrencyAmount` interface in [[WebMonetization]]).
+    </p>
   </section>
 
   <section data-dfn-for="monetization/Session">
@@ -99,7 +123,7 @@
       <dt><dfn>frameId</dfn></dt>
       <dd>
         The identifier of the frame within the tab.
-        <code>0</code> denotes the top-level (main) frame.
+        `0` denotes the top-level (main) frame.
       </dd>
 
       <dt><dfn>sessionId</dfn></dt>
