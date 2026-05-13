@@ -1,6 +1,5 @@
 import type { UpdateContent } from '../types/shared'
 import interledgerWallet from '@assets/logo-wallet-interledger-wallet.svg'
-import chimoneyWallet from '@assets/logo-wallet-chimoney.svg'
 import gateHubWallet from '@assets/logo-wallet-gatehub.svg'
 import wmLaunch from '@assets/wm-launch-feature.svg'
 import wmSummit from '@assets/wm-summit.png'
@@ -17,11 +16,6 @@ export const wallets: Wallet[] = [
     name: 'Interledger Wallet',
     image: interledgerWallet,
     link: 'https://interledger.app/'
-  },
-  {
-    name: 'Chimoney',
-    image: chimoneyWallet,
-    link: 'https://chimoney.app/?ref=webmonetization.org'
   },
   {
     name: 'GateHub',
