@@ -1,18 +1,115 @@
 <section id="types">
   <h2>Types</h2>
 
-  <section data-dfn-for="MonetizationInfo">
-    <h3><dfn>MonetizationInfo</dfn></h3>
+  <p class="note">
+    Type names defined here are scoped under the
+    <a>monetization</a> namespace. Implementations expose them as
+    namespace-scoped dictionaries on `chrome.monetization`
+    (for example, {{monetization/Wallet}} corresponds to
+    `chrome.monetization.Wallet`).
+  </p>
+
+  <section data-dfn-for="monetization/Wallet">
+    <h3><dfn data-dfn-for="monetization">Wallet</dfn></h3>
 
     <p>
-      Describes the document where a monetization state change occurred.
+      Describes the connected user wallet, including its current
+      budget balance.
     </p>
 
     <pre class="idl">
-      dictionary MonetizationInfo {
+      enum ReconnectReason {
+        "unauthorized"
+      };
+
+      dictionary Wallet {
+        required DOMString address;
+        required DOMString name;
+        required DOMString currency;
+        required DOMString initialBalance;
+        required DOMString remainingBalance;
+        DOMString? renewDate;
+        ReconnectReason? reconnectReason;
+      };
+    </pre>
+
+    <h4>Properties</h4>
+    <dl>
+      <dt><dfn>address</dfn></dt>
+      <dd>
+        The canonical wallet address URL, as returned in the `id`
+        field of the Open Payments wallet address resource. This is
+        the resolved address (e.g.
+        `"https://ilp.example.com/123456/usd"`), which may differ
+        from the URL the user originally entered (such as a
+        `.well-known/pay` shortcut).
+      </dd>
+
+      <dt><dfn>name</dfn></dt>
+      <dd>
+        A human-readable name for the wallet.
+      </dd>
+
+      <dt><dfn>currency</dfn></dt>
+      <dd>
+        An ISO 4217 currency code (e.g. `"USD"`).
+      </dd>
+
+      <dt><dfn>initialBalance</dfn></dt>
+      <dd>
+        A decimal string representing the total budget allocated for
+        the current billing period (e.g. `"10.00"`).
+      </dd>
+
+      <dt><dfn>remainingBalance</dfn></dt>
+      <dd>
+        A decimal string representing the budget remaining for the
+        current billing period (e.g. `"7.50"`).
+      </dd>
+
+      <dt><dfn>renewDate</dfn></dt>
+      <dd>
+        An ISO 8601 date string indicating when the budget next renews.
+        Absent when the budget does not renew monthly.
+      </dd>
+
+      <dt><dfn>reconnectReason</dfn></dt>
+      <dd>
+        When present, indicates that the wallet must be reconnected
+        before it can be used, and conveys the reason. When absent,
+        the wallet is usable. Possible values:
+        <dl>
+          <dt>`"unauthorized"`</dt>
+          <dd>
+            The stored access token is no longer valid (for example,
+            it has expired or been revoked).
+          </dd>
+        </dl>
+      </dd>
+    </dl>
+
+    <p class="note">
+      The {{Wallet/currency}}, {{Wallet/initialBalance}}, and
+      {{Wallet/remainingBalance}} members use the same conventions as the
+      `currency` and `value` members of the {{PaymentCurrencyAmount}}
+      dictionary defined in [[payment-request]] (and the
+      `MonetizationCurrencyAmount` interface in [[WebMonetization]]).
+    </p>
+  </section>
+
+  <section data-dfn-for="monetization/Session">
+    <h3><dfn data-dfn-for="monetization">Session</dfn></h3>
+
+    <p>
+      Identifies a monetization session and the document it belongs to.
+    </p>
+
+    <pre class="idl">
+      dictionary Session {
         required long tabId;
         required long frameId;
-        required DOMString url;
+        required long sessionId;
+        required DOMString walletAddress;
       };
     </pre>
 
@@ -26,12 +123,17 @@
       <dt><dfn>frameId</dfn></dt>
       <dd>
         The identifier of the frame within the tab.
-        <code>0</code> denotes the top-level (main) frame.
+        `0` denotes the top-level (main) frame.
       </dd>
 
-      <dt><dfn>url</dfn></dt>
+      <dt><dfn>sessionId</dfn></dt>
       <dd>
-        The URL of the monetized document.
+        The identifier of the monetization session.
+      </dd>
+
+      <dt><dfn>walletAddress</dfn></dt>
+      <dd>
+        The wallet address being paid by this session.
       </dd>
     </dl>
   </section>
