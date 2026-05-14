@@ -8,7 +8,7 @@
     (e.g. grant requests, quote creation, outgoing payment creation) MUST be signed.</p>
 
   <p>The validity of signatures is established because the user, during setup or an authorization procedure,
-    registers the [=encoded public key JWK=] with their wallet provider. The wallet provider then uses
+    registers the [=encoded public key JWK=] (JSON Web Key) with their wallet provider. The wallet provider then uses
     that public key to verify subsequent signed requests (for example, grant creation, quote requests,
     and outgoing payment creation).</p>
 
@@ -119,8 +119,8 @@
             <li>Set |jwk|.kid to |keyId|.</li>
           </ol>
         </li>
-        <li>Let |json:DOMString| be the UTF-8 JSON serialization of |jwk|.</li>
-        <li>Let |encodedPublicKeyJwk:DOMString| be |json| base64 encoded per [[RFC4648]].</li>
+        <li>Let |jsonJwk:DOMString| be the UTF-8 JSON serialization of |jwk|.</li>
+        <li>Let |encodedPublicKeyJwk:DOMString| be |jsonJwk| base64 encoded per [[RFC4648]].</li>
         <li>Return |encodedPublicKeyJwk|.</li>
       </ol>
     </div>
@@ -324,7 +324,7 @@
       </ol>
 
       <aside class="example" title="Set as structured header">
-        With |headerName|=`Content-Digest`, |key|=`sha-512`, |value|=`aByteSequence`:
+        With |headerName|=`Content-Digest`, |key|=`sha-512`, |value|=:`aByteSequence`:
         <pre class="http">Content-Digest: sha-512=:X48E9qOokqqrvdts8nOJRJN3OWDUoyWxBf7kbu9DBPE=:</pre>
         Note that |value| is <a data-cite="RFC9651#name-serializing-a-byte-sequence">serialized as a byte sequence</a> (base64-encoded) and wrapped between `:` (colon).
       </aside>
