@@ -6,6 +6,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "format:spec": "tidy -config tidyconfig.txt -m specification/index.html",
     "format": "prettier --write '**/*.{js,mjs,ts,tsx,json,md,mdx,astro}' && eslint --max-warnings=0 --fix .",
     "lint": "prettier --check '**/*.{js,mjs,ts,tsx,json,md,mdx,astro}' && eslint --max-warnings=0 ."
   },
