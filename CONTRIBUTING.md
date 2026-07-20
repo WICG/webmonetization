@@ -64,6 +64,8 @@ This repository also includes:
 
 Prettier is disabled for files under `specification/*`. W3C specifications follow a formatting style that conflicts with Prettier (for example, void elements without trailing slashes), and there is currently no clean way to align the two.
 
+We are using [tidy](https://www.html-tidy.org/) for the specification instead. Make sure to install an up to date version, as for example macOS ships with an old version. Also make sure that the newly installed version is added to your `$PATH` before `/usr/bin`.
+
 #### Versioning
 
 This is a Community Group Draft, so iteration is expected. We only snapshot major versions of the specification — for example, the [2021-03-17 draft](./specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in `specification/versions/`.
