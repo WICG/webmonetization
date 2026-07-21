@@ -11,7 +11,7 @@
       var respecConfig = {
         edDraftURI: 'https://webmonetization.org/specification',
         latestVersion: 'https://webmonetization.org/specification',
-        publishDate: "2025-03-13",
+        publishDate: "2026-07-21",
         github: {
           repoURL: 'wicg/webmonetization',
           branch: 'main',
@@ -202,7 +202,7 @@
         </h3>
         <p>
           The following example shows how to monetize various types of media
-          using different [=payment pointers=].
+          using different [=wallet addresses=].
         </p>
         <aside class="example">
           <pre class="html" data-include-format="text" data-include=
@@ -236,10 +236,10 @@
         </dt>
         <dd>
           The party receiving payments on behalf of the website, whose details
-          are provided by a [=payment pointer=].
+          are provided by a [=wallet address=].
         </dd>
         <dt>
-          <dfn>Payment Pointer</dfn>:
+          <dfn>Wallet address</dfn>:
         </dt>
         <dd>
           A [=URL=] to an <a data-cite=
@@ -300,8 +300,8 @@
         </p>
       </aside>
       <p>
-        The <code data-x="rel-monetization">monetization</code> keyword
-        indicates a [=payment pointer=] used to monetize the document.
+        The monetization keyword indicates a [=wallet address=] used to
+        monetize the document.
       </p>
       <p>
         The <code data-x="rel-monetization">monetization</code> keyword may be
@@ -605,29 +605,37 @@
         [SecureContext, Exposed=Window]
         interface MonetizationEvent : Event {
           constructor(DOMString type, MonetizationEventInit eventInitDict);
+          readonly attribute MonetizationCurrencyAmount amountSent;
+          readonly attribute USVString? incomingPayment;
+          readonly attribute USVString walletAddress;
+
+          // Following are deprecated
           readonly attribute DOMString? amount;
           readonly attribute DOMString? assetCode;
           readonly attribute octet? assetScale;
           readonly attribute DOMString? receipt;
-          readonly attribute MonetizationCurrencyAmount amountSent;
           readonly attribute USVString paymentPointer;
-          readonly attribute USVString? incomingPayment;
         };
 
         dictionary MonetizationEventInit : EventInit {
+          required PaymentCurrencyAmount amountSent;
+          required USVString? incomingPayment;
+          required USVString walletAddress;
+
+          // Following are deprecated
           required DOMString? amount;
           required DOMString? assetCode;
           required octet? assetScale;
           required DOMString? receipt;
-          required PaymentCurrencyAmount amountSent;
           required USVString paymentPointer;
-          required USVString? incomingPayment;
         };
       </pre>
       <div class="warning">
         <p>
-          The `amount`, `assetCode`, `assetScale` and `receipt` attributes are
-          deprecated.
+          The {{MonetizationEvent/amount}}, {{MonetizationEvent/assetCode}},
+          {{MonetizationEvent/assetScale}},
+          {{MonetizationEvent/paymentPointer}} and
+          {{MonetizationEvent/receipt}} attributes are deprecated.
         </p>
         <p>
           All [=monetization receivers=] should be migrating from generating a
@@ -701,10 +709,10 @@
       </section>
       <section>
         <h2>
-          <dfn>paymentPointer</dfn> attribute
+          <dfn>paymentPointer</dfn> attribute (deprecated)
         </h2>
         <p>
-          A [=URL=] representing the [=payment pointer=] that has been
+          A [=URL=] representing the [=wallet address=] that has been
           monetized. When getting, returns the value it was initialized with.
         </p>
       </section>
@@ -715,6 +723,15 @@
         <p>
           A [=URL=] representing an incoming payment at the [=monetization
           receiver=]. When getting, returns the value it was initialized with.
+        </p>
+      </section>
+      <section>
+        <h2>
+          <dfn>walletAddress</dfn> attribute
+        </h2>
+        <p>
+          A [=URL=] representing the [=wallet address=] that has been
+          monetized. When getting, returns the value it was initialized with.
         </p>
       </section>
     </section>
@@ -757,8 +774,8 @@
         </h3>
         <p>
           The monetization-src directive restricts the URLs from which a
-          [=payment pointer=] is loaded. The syntax for the directive's name
-          and value is described by the following ABNF:
+          [=wallet address=] is loaded. The syntax for the directive's name and
+          value is described by the following ABNF:
         </p>
         <pre class="abnf">
           directive-name  = "monetization-src"
@@ -776,7 +793,7 @@
             URL provided do not match monetization-src's source list:
           </p>
           <pre class="html">
-            &lt;link rel="monetization" href="https://example.org/payment-pointer"&gt;
+            &lt;link rel="monetization" href="https://example.org/wallet-address"&gt;
           </pre>
         </aside>
         <section data-cite="CSP">
@@ -845,17 +862,17 @@
         or start monetization of a particular site if they wish to do so).
       </p>
       <p>
-        As [=payment pointers=] are generally provided as a service, a
+        As [=wallet addresses=] are generally provided as a service, a
         <abbr title="Cross Site Scripting">XSS</abbr> attack could inject
-        malicious [=payment pointers=] into a page that uses the same service.
+        malicious [=wallet addresses=] into a page that uses the same service.
         To mitigate such an attack, it is RECOMMENDED that developers:
       </p>
       <ul>
-        <li>host a [=payment pointer=] on their own servers and proxy
+        <li>host a [=wallet address=] on their own servers and proxy
         [[open-payments]] requests on the server as needed.
         </li>
         <li>Set the `monetization-src` CSP directive to restrict requests to
-        origins they control and trust to host [=payment pointers=].
+        origins they control and trust to host [=wallet addresses=].
         </li>
       </ul>
     </section>
@@ -870,10 +887,10 @@
         the URL of the web page the user is currently browsing.
       </p>
       <p>
-        Further, the user agent gets the payment information from the [=payment
-        pointer=] to establish the [=payment session=]. This also ensures the
+        Further, the user agent gets the payment information from the [=wallet
+        address=] to establish the [=payment session=]. This also ensures the
         [=monetization provider=] doesn't have access to a user's browsing
-        history or to the [=payment pointer=].
+        history or to the [=wallet address=].
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
@@ -881,8 +898,8 @@
         Relation to Web Payments
       </h2>
       <p>
-        Unlike the [[[Payment-Request]]] and the [[[Payment-Handler]]], which
-        only support "one-off" payments, Web Monetization provides a [=payment
+        Unlike [[[Payment-Request]]] and the [[[Payment-Handler]]], which only
+        supports "one-off" payments, Web Monetization provides a [=payment
         session=] that supports both continuous payments and "one-off"
         payments.
       </p>
