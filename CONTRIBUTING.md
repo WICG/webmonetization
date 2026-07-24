@@ -106,4 +106,4 @@ If you are submitting on behalf of someone else and didn't contribute directly, 
 - Please respond to feedback promptly and make any necessary changes
 - Once approved, your changes will be merged into the main branch
 
-Thank you for contributing to Web Monetization! Join the conversation on [Slack](https://communityinviter.com/apps/interledger/interledger-working-groups-slack) to connect with other contributors and stay up to date on developments.
+Thank you for contributing to Web Monetization! Join the conversation on [Slack](https://join.slack.com/t/interledger/shared_invite/zt-44g089zrn-XdSIiHF~cs8Oo_MBmSfECA) to connect with other contributors and stay up to date on developments.
