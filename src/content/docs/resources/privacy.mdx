@@ -1,0 +1,97 @@
+---
+title: Privacy
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+
+This page describes the data that Web Monetization sites and tools collect, where the data is stored, who can access it, and how long it's retained.
+
+| Site or tool                            | Analytics service                                      | Retention period |
+| --------------------------------------- | ------------------------------------------------------ | ---------------- |
+| webmonetization.org                     | <LinkOut href="https://umami.is/">Umami</LinkOut>      | No fixed period  |
+| [Publisher tools](#publisher-tools)     | <LinkOut href="https://umami.is/">Umami</LinkOut>      | No fixed period  |
+| [Playground](#playground)               | <LinkOut href="https://umami.is/">Umami</LinkOut>      | No fixed period  |
+| [Browser extension](#browser-extension) | <LinkOut href="https://posthog.com/">PostHog</LinkOut> | One year         |
+| [WordPress plugin](#wordpress-plugin)   | None by default                                        | Not applicable   |
+
+## webmonetization.org
+
+webmonetization.org, including this documentation, uses <LinkOut href="https://umami.is/">Umami</LinkOut> for analytics. The Interledger Foundation hosts and operates the analytics setup. Only the foundation's internal team and Umami, as the analytics processor, have access to the data.
+
+We collect:
+
+- Page views and navigation events
+- Referrer URLs
+- Browser and device types
+- Country-level locations
+
+Umami retains analytics data without a fixed deletion period. For more information, refer to the <LinkOut href="https://docs.umami.is/docs/faq#8-how-long-is-data-retained">Umami FAQ</LinkOut>.
+
+### Publisher tools
+
+The same analytics practices apply when you use these tools:
+
+- <LinkOut href="https://webmonetization.org/tools/link-tag">Link tag</LinkOut>
+- <LinkOut href="https://webmonetization.org/tools/prob-revshare">
+    Probabilistic revenue share
+  </LinkOut>
+- <LinkOut href="https://webmonetization.org/tools/banner">Banner</LinkOut>
+- <LinkOut href="https://webmonetization.org/tools/widget">Widget</LinkOut>
+- <LinkOut href="https://webmonetization.org/tools/paywall">
+    Pay per article
+  </LinkOut>
+- <LinkOut href="https://webmonetization.org/tools/offerwall">
+    Offerwall
+  </LinkOut>
+
+While you configure a tool, we also collect:
+
+- The wallet address or payment pointer you enter
+- Configuration events
+- Page views and traffic on the tools pages
+
+If you use a hosted configuration, the wallet address you enter is stored on configuration infrastructure that the Interledger Foundation owns and operates.
+
+Data collection only occurs while you use the tools pages on webmonetization.org. The markup and scripts that the tools generate don't collect data from your site's visitors.
+
+:::note[Offerwall]
+The offerwall tool integrates with Google Ad Manager, which has its own privacy practices. This page only covers data collected by Web Monetization tools and the Interledger Foundation.
+:::
+
+### Playground
+
+The [playground](/play) uses Umami to collect page view data. No other data is collected.
+
+## Browser extension
+
+The Web Monetization browser extension for Chrome, Firefox, Safari, and Edge uses <LinkOut href="https://posthog.com/">PostHog</LinkOut> for analytics.
+
+We collect:
+
+- The wallet address you enter
+- Anonymous usage events, such as clicks and interactions
+- IP addresses
+- Languages
+- Browser versions
+
+The Interledger Foundation's internal team and PostHog, as the analytics processor, have access to the data. PostHog retains the data for one year.
+
+The extension passes your wallet address to your payment provider at the time of payment. To detect a publisher's wallet address, the extension reads the monetization `<link>` element on the pages you visit. The extension doesn't collect data about a publisher site's visitors, and the sites you visit don't receive your name, email address, or IP address as part of Web Monetization payments.
+
+To learn why the extension requests broad browser permissions, refer to the extension's <LinkOut href="https://github.com/interledger/web-monetization-extension/blob/main/docs/PERMISSIONS.md">permissions documentation</LinkOut> and [Get started with the extension](/supporters/get-started).
+
+## WordPress plugin
+
+The <LinkOut href="https://wordpress.org/plugins/interledger-web-monetization-integration/">Interledger Web Monetization Integration</LinkOut> plugin adds Web Monetization markup to your WordPress site.
+
+By default, the plugin:
+
+- Doesn't collect or store visitor data
+- Doesn't set cookies
+- Doesn't make external requests for analytics
+
+The extension download links in the plugin's banner include campaign tracking parameters that allow us to track aggregate click sources. No personal data is transmitted through the links.
+
+The plugin's optional country targeting feature requires the GeoIP Detection plugin and follows that plugin's behavior. WordPress.org collects standard directory listing and installation telemetry according to its own policies.
+
+For the plugin listing's privacy section, refer to the <LinkOut href="https://wordpress.org/plugins/interledger-web-monetization-integration/">WordPress.org plugin page</LinkOut>.
