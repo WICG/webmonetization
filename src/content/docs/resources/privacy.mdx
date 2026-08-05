@@ -6,17 +6,9 @@ import { LinkOut } from '@interledger/docs-design-system'
 
 This page describes the data that Web Monetization sites and tools collect, where the data is stored, who can access it, and how long it's retained.
 
-| Site or tool                            | Analytics service                                      | Retention period |
-| --------------------------------------- | ------------------------------------------------------ | ---------------- |
-| webmonetization.org                     | <LinkOut href="https://umami.is/">Umami</LinkOut>      | No fixed period  |
-| [Publisher tools](#publisher-tools)     | Umami                                                  | No fixed period  |
-| [Playground](#playground)               | Umami                                                  | No fixed period  |
-| [Browser extension](#browser-extension) | <LinkOut href="https://posthog.com/">PostHog</LinkOut> | One year         |
-| [WordPress plugin](#wordpress-plugin)   | None by default                                        | Not applicable   |
-
 ## webmonetization.org
 
-webmonetization.org, including this documentation, uses <LinkOut href="https://umami.is/">Umami</LinkOut> for analytics. The Interledger Foundation hosts and operates the analytics setup. Only the foundation's internal team and Umami, as the analytics processor, have access to the data.
+webmonetization.org, including this documentation, uses self-hosted <LinkOut href="https://umami.is/">Umami</LinkOut> for analytics. The Interledger Foundation hosts and operates the analytics setup. Only the foundation's internal team has access to the data.
 
 We collect:
 
@@ -25,34 +17,23 @@ We collect:
 - Browser and device types
 - Country-level locations
 
-Umami retains analytics data without a fixed deletion period. For more information, refer to the <LinkOut href="https://docs.umami.is/docs/faq#8-how-long-is-data-retained">Umami FAQ</LinkOut>.
+Umami uses IP addresses to determine a general location, then discards them. We don't store IP addresses.
+
+We retain analytics data without a fixed deletion period.
 
 ### Publisher tools
 
-The same analytics practices apply when you use these tools:
+The same analytics practices apply across the <LinkOut href="https://webmonetization.org/tools/">publisher tools</LinkOut> site at `/tools`, including the tools pages and related configuration flows.
 
-- <LinkOut href="https://webmonetization.org/tools/link-tag">Link tag</LinkOut>
-- <LinkOut href="https://webmonetization.org/tools/prob-revshare">
-    Probabilistic revenue share
-  </LinkOut>
-- <LinkOut href="https://webmonetization.org/tools/banner">Banner</LinkOut>
-- <LinkOut href="https://webmonetization.org/tools/widget">Widget</LinkOut>
-- <LinkOut href="https://webmonetization.org/tools/paywall">
-    Pay per article
-  </LinkOut>
-- <LinkOut href="https://webmonetization.org/tools/offerwall">
-    Offerwall
-  </LinkOut>
+While you configure a tool, analytics also records:
 
-While you configure a tool, we also collect:
-
-- The wallet address or payment pointer you enter
+- The wallet provider associated with the address you enter (not the full wallet address)
 - Configuration events
 - Page views and traffic on the tools pages
 
-If you use a hosted configuration, the wallet address you enter is stored on configuration infrastructure that the Interledger Foundation owns and operates.
+When you save a hosted configuration, we store that configuration keyed to your wallet address. Configuration data is currently stored in an Amazon Web Services (AWS) S3 bucket that the Interledger Foundation owns and operates. We plan to move this storage to Cloudflare KV. AWS and Cloudflare privacy policies may also apply to data stored on their services.
 
-Data collection only occurs while you use the tools pages on webmonetization.org. The markup and scripts that the tools generate don't collect data from your site's visitors.
+When you embed a tool's scripts on your website, we collect analytics about visitors who encounter those embeds. Using the same self-hosted Umami setup, we learn which site (domain) the script was added to and whether visitors interacted with the embedded tool.
 
 :::note[Offerwall]
 The offerwall tool integrates with Google Ad Manager, which has its own privacy practices. This page only covers data collected by Web Monetization tools and the Interledger Foundation.
@@ -68,15 +49,15 @@ The Web Monetization browser extension for Chrome, Firefox, Safari, and Edge use
 
 We collect:
 
-- The wallet address you enter
-- Anonymous usage events, such as clicks and interactions
-- IP addresses
+- Anonymous usage events, such as clicks and interactions, tied to a non-identifiable and persistent session ID
 - Languages
-- Browser versions
+- Version of the browser that the extension is installed on
+
+We use IP addresses to determine location information, then discard them. We don't store IP addresses. We don't collect your wallet address or wallet provider in analytics.
 
 The Interledger Foundation's internal team and PostHog, as the analytics processor, have access to the data. PostHog retains the data for one year.
 
-The extension passes your wallet address to your payment provider at the time of payment. To detect a publisher's wallet address, the extension reads the monetization `<link>` element on the pages you visit. The extension doesn't collect data about a publisher site's visitors, and the sites you visit don't receive your name, email address, or IP address as part of Web Monetization payments.
+The extension passes your wallet address to your payment provider at the time of payment. To detect a publisher's wallet address, the extension reads the monetization `<link>` element on the pages you visit. The extension doesn't collect data about a publisher site's visitors, and the sites you visit don't receive your name, email address, wallet address, or IP address as part of Web Monetization payments. The site's wallet provider knows your wallet address, as the sending party, and may or may not disclose it to the wallet user.
 
 To learn why the extension requests broad browser permissions, refer to the extension's <LinkOut href="https://github.com/interledger/web-monetization-extension/blob/main/docs/PERMISSIONS.md">permissions documentation</LinkOut> and [Get started with the extension](/supporters/get-started).
 

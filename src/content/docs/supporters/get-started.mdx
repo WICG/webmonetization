@@ -24,7 +24,7 @@ To make Web Monetization payments, you only need a digital wallet account from a
 
 A web monetized site can't pull payments from your wallet. When you link the browser extension to your wallet, you're giving the extension permission to send payments on your behalf. These payments are automatically and continuously sent to each web monetized site you visit. You can also globally [disable continuous payments](#set-up-continuous-payments).
 
-The sites you pay aren't provided with any of your personally identifiable information, such as your name, email address, or IP address.
+The sites you pay aren't provided with any of your personally identifiable information, such as your name, email address, wallet address, or IP address.
 
 </details>
 
@@ -36,7 +36,7 @@ The sites you pay aren't provided with any of your personally identifiable infor
 />
 
 :::note[Permissions and privacy]
-The extension asks for permission to access your browser tabs and your data for all websites so it can check each page you visit for Web Monetization. It stores the wallet address you enter and uses it to send payments. It also collects anonymous usage analytics through PostHog, including usage events, IP address, language, and browser version. The extension reads the monetization link tag on pages you visit to find the publisher wallet address. It doesn't collect visitor data from publisher sites, and sites you pay don't receive your name, email address, or IP address from the extension. For full details, refer to [Privacy](/resources/privacy).
+The extension asks for permission to access your browser tabs and your data for all websites so it can check each page you visit for Web Monetization. It stores the wallet address you enter so it can send payments. It also collects anonymous usage analytics through PostHog, including usage events tied to a non-identifiable session ID, language, and browser version. IP addresses are used to determine location, then discarded. Analytics doesn't include your wallet address or wallet provider. The extension reads the monetization `<link>` element on pages you visit to find the publisher wallet address. It doesn't collect visitor data from publisher sites, and sites you pay don't receive your name, email address, wallet address, or IP address from the extension. For full details, refer to [Privacy](/resources/privacy).
 :::
 
 ## Configure the extension
