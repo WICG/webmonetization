@@ -1,0 +1,91 @@
+---
+title: Pay-per-article tool
+---
+
+import { LinkButton } from '@astrojs/starlight/components'
+import { LinkOut } from '@interledger/docs-design-system'
+import CSP from '/src/content/docs/partials/_csp.mdx'
+
+Use the <LinkOut href="https://webmonetization.org/tools/paywall">Pay per Article tool</LinkOut> to allow your visitors to make a one-time payment to unlock a single article or page on your site.
+
+The content remains accessible to paying visitors even if they leave the page or close their browser. However, they may be asked to enter their wallet address so that the tool can confirm access rights.
+
+### Before you begin
+
+- Your visitor must have a wallet address with a [compatible wallet](/wallets) to make a payment.
+- If your site is monetized with multiple wallet addresses, only the address connected to the paywall will receive the payment.
+- If your website uses Content Security Policy (CSP) headers, there are certain [directives](#content-security-policy-csp-requirements) you must add to support the publisher tools embed script.
+
+## Create your paywall
+
+1. Enter your wallet address.<br /><img src="/img/docs/pubtools/tools-connect-wallet.png" alt="Blank wallet address field and continue button" style="max-width: 50%" class='img-outline' />
+2. Click **Continue**.
+3. Set the one-time payment price of your content. This price will be shown on all pages using the paywall.<br /><img src="/img/docs/pubtools/paywall-price.png" alt="Amount field showing a default amount of $2 USD" style="max-width: 60%" class='img-outline' />
+4. Select how much of a page should remain visible when the paywall appears.<img src="/img/docs/pubtools/paywall-placement.png" alt="Selection bar showing options for 25, 50, 75, and 100% coverage" style="max-width: 60%" class='img-outline' />
+5. Enter the number of seconds, from `0` to `15`, to wait before showing the paywall.
+6. Expand the _Content_ section, then enter a title for the paywall or choose from the suggested options.<img src="/img/docs/pubtools/paywall-titles.png" alt="Panel showing suggested titles and a field to enter a custom title" style="max-width: 60%" class='img-outline' />
+7. Enter a subtitle, use the default, or delete the text entirely if you don't want a subtitle to appear.
+8. Enter the text to display on the payment button, then click **Done**.<img src="/img/docs/pubtools/paywall-button-label.png" alt="Pay button label field showing unlock article as the default text" style="max-width: 60%" class='img-outline' />
+9. Expand the _Appearance_ section, then select the font and font size to use on the paywall.<img src="/img/docs/pubtools/paywall-font.png" alt="Panel showing the font family drop-down menu and a size slider" style="max-width: 60%" class='img-outline' />
+10. Select the colors to use for the background, text, and theme.<img src="/img/docs/pubtools/paywall-colors.png" alt="Panel showing background, text, and theme color previews. Selecting a preview opens a menu with a paint can icon and a set of preselected colors to choose from" style="max-width: 60%" class='img-outline' />Click the paint can icon to enter a hex value or use the color picker. <img src="/img/docs/pubtools/paywall-color-picker.png" alt="The color picker tool with a field for the hex value at the bottom" style="max-width: 60%" class='img-outline' />
+11. Select the payment button's corner radius.<img src="/img/docs/pubtools/paywall-corner.png" alt="Panel showing paywall button corner radius options of no, light, and pill rounding" style="max-width: 60%" class='img-outline' />
+12. Review your changes in the preview panel. <img src="/img/docs/pubtools/paywall-appearance-preview.png" alt="Preview panel showing how the paywall will appear to non-paying visitors" style="max-width: 60%" class='img-outline' />
+
+### Generate your script
+
+1. Click **Save and generate script**.<br /><img src="/img/docs/pubtools/tools-save-buttons.png" alt="The save edits only and the save and generate script buttons side by side" style="max-width: 45%" class='img-outline' />
+   :::note[Save edits only]
+   Click **Save edits only** if you aren't ready to generate your script. Your configurations are saved on webmonetization.org.
+   :::
+   A wallet confirmation prompt appears.<br /><img src="/img/docs/pubtools/tools-wallet-confirmation-prompt.png" alt="Confirmation prompt showing wallet address and confirm button" style="max-width: 50%" class='img-outline' />
+2. Click **Confirm**. You're directed to your wallet provider to sign in and confirm your ownership of the wallet address. After confirmation, you'll return to the Pay per Article tool page.
+3. Copy the script that appears in the overlaid screen.
+   ```js wrap title="Example script"
+   <script
+     id="wmt-paywall-init-script"
+     type="module"
+     src="https://tools-cdn.webmonetization.org/paywall.js"
+     data-wallet-address="https://walletprovider.com/MyWallet"
+     data-tag="version1"
+   ></script>
+   ```
+4. Add the script to the `<body>` of each page you want to lock.
+5. Go to your site and check that the paywall appears correctly.
+
+## Set a different price per page
+
+By default, each page that shows the paywall displays the amount entered during setup.
+
+If you want a page to request a different amount, you can add the `data-price` attribute to that page's script.
+
+```js ins={5} wrap title="Example script"
+<script
+  id="wmt-paywall-init-script"
+  type="module"
+  src="https://tools-cdn.webmonetization.org/paywall.js"
+  data-price="1.57"
+  data-wallet-address="https://walletprovider.com/MyWallet"
+  data-tag="version1"
+></script>
+```
+
+The price is fixed when the page loads, so a malicious actor cannot change the price.
+
+## Change your paywall configuration
+
+1. Enter your wallet address.<br /><img src="/img/docs/pubtools/tools-connect-wallet.png" alt="Blank wallet address field and continue button" style="max-width: 50%" class='img-outline' />
+2. Click **Continue**. If the confirmation prompt appears, you must first confirm your ownership of the wallet address.
+3. Make your changes, then click **Save edits only**. Your [script](#generate-your-script) remains the same. There's no need to update your site's code.
+4. Refresh a page on your site that uses the paywall script to verify your changes are live.
+
+## Content Security Policy (CSP) requirements
+
+<CSP />
+
+<LinkButton
+  href="https://webmonetization.org/tools/paywall"
+  target="_blank"
+  icon="external"
+>
+  Pay per Article tool
+</LinkButton>

@@ -115,6 +115,10 @@ export default defineConfig({
                   link: '/publishers/offerwall-tool'
                 },
                 {
+                  label: 'Pay per Article tool',
+                  link: '/publishers/paywall-tool'
+                },
+                {
                   label: 'Widget tool',
                   link: '/publishers/widget-tool'
                 },
