@@ -1,0 +1,9 @@
+char-encoding: utf8
+indent: yes
+indent-spaces: 2
+wrap: 80
+tidy-mark: no
+custom-tags: yes
+drop-empty-elements: no
+hide-comments: no
+show-body-only: yes

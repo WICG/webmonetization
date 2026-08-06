@@ -92,7 +92,7 @@
       <p>The {{RequestAccessToken}} dictionary represents the access token request structure used in grant requests.</p>
       <pre class="idl">
         dictionary RequestAccessToken {
-          required sequence&ltAccess&gt access;
+          required sequence&lt;Access&gt; access;
         };
       </pre>
       <dl data-dfn-for="RequestAccessToken">
@@ -153,7 +153,7 @@
           <p>The {{Interact}} dictionary specifies how user interaction SHOULD be initiated for a pending grant.</p>
           <pre class="idl">
             dictionary Interact {
-              required sequence&ltInteractionMethod&gt start;
+              required sequence&lt;InteractionMethod&gt; start;
             };
           </pre>
           <dl>
@@ -297,7 +297,7 @@
       <pre class="idl">
         dictionary Access {
           required AccessType type;
-          required sequence&ltAccessAction&gt actions;
+          required sequence&lt;AccessAction&gt; actions;
           DOMString identifier;
           AccessLimits limits; // required only when type is equal to "outgoing-payment"
         };
