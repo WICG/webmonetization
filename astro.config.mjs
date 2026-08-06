@@ -272,6 +272,10 @@ export default defineConfig({
               link: '/resources/glossary'
             },
             {
+              label: 'Privacy',
+              link: '/resources/privacy'
+            },
+            {
               label: 'Publisher tools',
               link: 'https://webmonetization.org/tools/',
               attrs: {
