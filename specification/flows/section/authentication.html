@@ -91,9 +91,8 @@
       <p>The [=encoded public key JWK=] is intended to be shared with the user's wallet provider so the wallet
       can validate signatures on Open Payments requests.</p>
 
-      <p>A wallet provider exposes the registered signing public key(s) via
-      an endpoint such as
-      <a href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address-keys/"><code>wallet-address/{address}/keys</code></a> endpoint.
+      <p>A wallet provider exposes the registered signing public key(s) via a
+      <a href="https://openpayments.dev/apis/wallet-address-server/operations/get-wallet-address-keys/"><code>{address}/jwks.json</code></a> endpoint.
       This allows verifiers to retrieve the current public key material associated with a wallet address.</p>
     </div>
   </section>
