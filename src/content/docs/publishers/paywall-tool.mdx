@@ -13,7 +13,7 @@ The content remains accessible to paying visitors even if they leave the page or
 ### Before you begin
 
 - Your visitor must have a wallet address with a [compatible wallet](/wallets) to make a payment.
-- If your site is monetized with multiple wallet addresses, only the address connected to the paywall will receive the payment.
+- Only the address connected to the paywall will receive the payment, even if your site is monetized with multiple wallet addresses.
 - If your website uses Content Security Policy (CSP) headers, there are certain [directives](#content-security-policy-csp-requirements) you must add to support the publisher tools embed script.
 
 ## Create your paywall
@@ -58,7 +58,7 @@ By default, each page that shows the paywall displays the amount entered during 
 
 If you want a page to request a different amount, you can add the `data-price` attribute to that page's script.
 
-```js ins={5} wrap title="Example script"
+```js ins={5} wrap title="Pay per Article script with custom price"
 <script
   id="wmt-paywall-init-script"
   type="module"
