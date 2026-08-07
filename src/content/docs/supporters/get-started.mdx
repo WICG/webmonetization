@@ -43,7 +43,7 @@ The extension asks for permission to access your browser tabs and your data for 
 
 After you install the extension, a page appears to guide you through the configuration steps.
 
-1. Get a Web Monetization-compatible [wallet](/wallets). You may experience a delay before you can fund your wallet while your provider performs necessary regulatory checks.
+1. Get a Web Monetization-compatible [wallet](/wallets). You could experience a delay before you can fund your wallet while your provider performs necessary regulatory checks.
    <img
      src="/img/docs/extension/onboarding-1.png"
      alt="An image of the onboarding screen showing the four steps to configure the extension"
@@ -114,7 +114,7 @@ Payments continue for as long as a web monetized page is active and in view. Con
 - Minimize your browser
 - Change the focus away from the tab/switch to a different tab
 - Close the tab or browser
-- Spend all of your budget
+- Spend all your budget
 
 ### Change your continuous payment settings
 
@@ -135,6 +135,33 @@ Payments continue for as long as a web monetized page is active and in view. Con
 3. Enter the amount the extension will send, per hour, to web monetized
    sites. Alternatively, select the **Continuous payment** toggle to turn
    continuous payments on or off for all web monetized pages.
+
+### Add a custom payment rate
+
+Set a custom payment rate for a specific website. A rate of zero means no payments will be made. The highest rate allowed is $1 USD or its equivalent in your currency.
+
+1. Visit the site, then open the extension.
+2. Click the **Settings** icon in the upper-right.
+   <img
+     src="/img/docs/extension/settings-icon.png"
+     alt="Extension showing a cog icon in the upper-right"
+     style="max-width:300px"
+     class="img-outline"
+   />
+3. Select the _Rate_ tab, then click **Add custom rate**.
+   <img
+     src="/img/docs/extension/rate-tab.png"
+     alt="Rate tab with rate of pay per hour field, continuous payment toggle, and add custom rate button"
+     style="max-width:300px"
+     class="img-outline"
+   />
+4. Enter the new rate. The change takes effect immediately. If you change your mind, click the trash can icon next to the domain name to delete the custom rate.
+   <img
+     src="/img/docs/extension/rate-tab-custom-rate.png"
+     alt="Rate tab with custom rate for site test.sidvishnoi.com set to $0.65 per hour"
+     style="max-width:300px"
+     class="img-outline"
+   />
 
 ## Make a one-time payment
 
@@ -188,6 +215,91 @@ If you choose to add more funds, the amount you enter will become your new renew
 4. Select the **Monthly** toggle to turn monthly budget renewals of your budget on or off.
 5. Click **Submit changes**. A new tab opens to your wallet provider.
 6. Sign in to your wallet account if needed, then confirm the new budget.
+
+## Change your analytics data collection settings
+
+At any time, you can opt in or out of sharing usage and analytics data with the Interledger Foundation. You can read more about usage data sharing in the _Analytics_ section of our data policy.
+
+1. Click the **Settings** icon in the upper-right of the extension.
+
+   <img
+     src="/img/docs/extension/settings-icon.png"
+     alt="Extension showing a cog icon in the upper-right"
+     style="max-width:300px"
+     class="img-outline"
+   />
+
+2. Select the _Settings_ tab and expand the _Data Collection_ panel.
+
+   <img
+     src="/img/docs/extension/settings-tab-data.png"
+     alt="Settings tab showing data collection of usage data and analytics is disabled"
+     style="max-width:300px"
+     class="img-outline"
+   />
+
+3. Use the toggle to enable or disable collection of usage data and analytics. Click the data policy link to review our _Analytics_ policy.
+
+## Change your custom rate settings
+
+### Add a new custom rate for a site
+
+If you're already on the site whose rate you want to set, you can do so from the extension's _Rate_ tab. See [Add a custom payment rate](#add-a-custom-payment-rate) for more information.
+
+1. Click the **Settings** icon in the upper-right of the extension.
+   <img
+     src="/img/docs/extension/settings-icon.png"
+     alt="Extension showing a cog icon in the upper-right"
+     style="max-width:300px"
+     class="img-outline"
+   />
+2. Select the _Settings_ tab, then expand the _Custom rates by site_ panel.
+
+   <img
+     src="/img/docs/extension/settings-tab-rates.png"
+     alt="Settings tab with the custom rates by site panel expanded and the add a site button available"
+     style="max-width:300px"
+     class="img-outline"
+   />
+
+3. Click **Add a site**.
+
+4. Enter the site's domain in the field. The field also accepts subdomains.
+
+   <img
+     src="/img/docs/extension/settings-tab-add-domain.png"
+     alt="Settings tab with site sidvishnoi.com added to the domain field, a custom rate set to $0.60, and the Save button active"
+     style="max-width:300px"
+     class="img-outline"
+   />
+
+5. Enter the rate at which to pay the site. A rate of zero means no payments will be made. The highest rate allowed is $1 USD or its equivalent in your currency.
+
+6. Click **Save**.
+
+### Change or delete an existing site's custom rate
+
+If you're already on the site whose rate you want to change, you can do so from the extension's _Rate_ tab. See [Add a custom payment rate](#add-a-custom-payment-rate) for more information.
+
+1. Click the **Settings** icon in the upper-right of the extension.
+
+   <img
+     src="/img/docs/extension/settings-icon.png"
+     alt="Extension showing a cog icon in the upper-right"
+     style="max-width:300px"
+     class="img-outline"
+   />
+
+2. Select the _Settings_ tab, then expand the _Custom rates by site_ panel.
+
+   <img
+     src="/img/docs/extension/settings-tab-domain-added.png"
+     alt="Settings tab with expanded custom rates by site panel expanded, showing site test.sidvishnoi.com with a custom rate of $0.00"
+     style="max-width:300px"
+     class="img-outline"
+   />
+
+3. Increase or decrease the site's custom rate. The change takes effect immediately. You can also choose to delete the custom rate by clicking the trash can icon to the right of the rate field.
 
 ## Disconnect the extension from your wallet
 
@@ -281,7 +393,7 @@ When the **Continuous payment** toggle is on, the extension icon appears in colo
 It's hard to say without a specific error message. Two common scenarios are:
 
 - You waited too long to accept the connection. Your wallet provider might only give you a short window to accept the connection to keep your account safe.
-- You accepted the connection too quickly--within a few seconds. Your wallet provider may do this as a security measure against bots or to ensure you've read the contents of the screen. Interledger Wallet, for example, enforces a minimum five second wait.
+- You accepted the connection too quickly--within a few seconds. Your wallet provider could do this as a security measure against bots or to ensure you've read the contents of the screen. Interledger Wallet, for example, enforces a minimum five second wait.
 
 Click **Connect** and try linking your extension again.
 
