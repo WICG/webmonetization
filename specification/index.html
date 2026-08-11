@@ -742,6 +742,27 @@
           monetization attribute has no effect on an already-loaded document.
         </p>
       </aside>
+      <aside class="example">
+        <p>
+          Given a page embedding the following [^iframe^], monetization is
+          allowed for the embedded <a>document</a>:
+        </p>
+        <pre class="html">
+          &lt;iframe src="https://example.com/" allow="monetization"&gt;&lt;/iframe&gt;
+        </pre>
+      </aside>
+      <aside class="example">
+        <p>
+          Given a page with the following Permission Policy:
+        </p>
+        <pre class="http">
+          Permissions-Policy: monetization=(self "https://example.com")
+        </pre>
+        <p>
+          Monetization is allowed for the page itself and for any embedded
+          content from `https://example.com`.
+        </p>
+      </aside>
     </section>
     <section data-cite="CSP">
       <h2>
