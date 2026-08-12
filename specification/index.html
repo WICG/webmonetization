@@ -510,9 +510,7 @@
           Extensions to `GlobalEventHandlers` interface
         </h3>
         <p>
-          The <code><dfn data-cite=
-          "html/webappapis.html#globaleventhandlers">GlobalEventHandlers</dfn></code>
-          interface is defined in [[HTML]].
+          The {{GlobalEventHandlers}} interface is defined in [[HTML]].
         </p>
         <pre class="idl">
           partial interface mixin GlobalEventHandlers {
@@ -525,9 +523,11 @@
           </dt>
           <dd>
             <p>
-              The attribute must be an [=event handler IDL attribute=] and [=event handler content attribute=] for
-              the {{monetization}} event supported by all [=element=]s, {{Document}} objects, and {{Window}} objects. The user agent
-          uses it to notify that some [^link^] has been [=monetized=].
+              The attribute must be an [=event handler IDL attribute=] and
+              [=event handler content attribute=] for the {{monetization}}
+              event supported by all [=element=]s, {{Document}} objects, and
+              {{Window}} objects. The user agent uses it to notify that some
+              [^link^] has been [=monetized=].
             </p>
           </dd>
         </dl>
@@ -555,8 +555,10 @@
             <ol>
               <li>If |target| is not connected, return.
               </li>
-              <li>[=Fire an event=] named `"monetization"` that uses the {{MonetizationEvent}} interface at |target|, with
-              its attributes initialized with |eventInitDict|, and {{Event/bubbles}} initialized to true.
+              <li>[=Fire an event=] named `"monetization"` that uses the
+              {{MonetizationEvent}} interface at |target|, with its attributes
+              initialized with |eventInitDict|, and {{Event/bubbles}}
+              initialized to true.
               </li>
             </ol>
           </li>
