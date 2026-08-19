@@ -1,0 +1,46 @@
+---
+// src/components/CustomCard.astro
+import { Icon } from '@astrojs/starlight/components'
+const { title, iconName, iconColor } = Astro.props
+---
+
+<div class="card">
+  <p class="title">
+    <!-- The icon and title are now wrapped inside a flex container -->
+    <Icon name={iconName} color={iconColor} size="1.5rem" />
+    <span>{title}</span>
+  </p>
+  <div class="body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* Style the outer wrapping box */
+  .card {
+    /* Adds a thin solid border using Starlight's default gray border color */
+    border: 1px solid var(--sl-color-gray-5);
+
+    /* Adds rounded corners to match the Starlight design language */
+    border-radius: 0.5rem;
+
+    /* Adds inner spacing so the text doesn't touch the border */
+    padding: 1.25rem;
+
+    /* Adds space below the card so it doesn't glue to content beneath it */
+    margin-bottom: 1rem;
+
+    /* Optional: Adds a subtle background color if you want a boxed container look */
+    background-color: #fcfcfc;
+  }
+
+  /* Keeps the title layout clean and on one line */
+  .title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: var(--sl-text-h4);
+  }
+</style>

@@ -54,7 +54,8 @@ export default defineConfig({
       },
       components: {
         Header: './src/components/docs/Header.astro',
-        PageSidebar: './src/components/docs/PageSidebar.astro'
+        PageSidebar: './src/components/docs/PageSidebar.astro',
+        CustomCard: './src/components/docs/CustomCard.astro'
       },
       social: [
         {
