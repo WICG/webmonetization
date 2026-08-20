@@ -35,7 +35,7 @@ const t = useTranslations(lang)
         <h1>Revolutionizing the digital content economy</h1>
         <p class="heroTagline">
           Web Monetization connects publishers, creators and their audiences,
-          turning engagement into revenue. No friction, no barriers, no limits.
+          turning engagement into revenue.
         </p>
         <a
           class="btn primary flexible hero-btn"
@@ -55,10 +55,45 @@ const t = useTranslations(lang)
       </div>
     </div>
   </HeroWrapper>
+  <section class="section">
+    <div class="contentWrapper">
+      <div class="textbox-info announcement">
+        <div class="textbox-content">
+          <h2 class="font-h3">A Community-led Model</h2>
+          <p>
+            The Web Monetization tools for Publishers, Supporters and Developers
+            are no longer being proactively developed by the Interledger
+            Foundation in terms of new features or integrations. We are
+            maintaining all existing tools and they will remain open source and
+            available to use.
+          </p>
+          <p>
+            The Web Monetization extension itself will continue to exist as a
+            wallet agnostic browser extension that allows users to support Web
+            Monetized websites while the native browser implementation continues
+            to be developed.
+          </p>
+          <p>
+            We are moving to a community-led model and welcome code
+            contributions, including the development of new features. All code
+            will be reviewed by the Interledger Foundation. For more
+            information, review our <a
+              href="https://webmonetization.org/resources/get-involved/"
+              >Contribution Guidelines</a
+            >.
+          </p>
+          <p>
+            The Web Monetization standard will continue to be actively stewarded
+            by the foundation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
   <section class="section" id="start">
     <div class="contentWrapper">
-      <div class="wallet-info">
-        <div class="wallet-content">
+      <div class="textbox-info">
+        <div class="textbox-content">
           <h2 class="font-h3">From one-time payments to pay-as-you-browse</h2>
           <p>
             Web Monetization gives publishers more revenue options and audiences
@@ -74,7 +109,6 @@ const t = useTranslations(lang)
             enables real-time wallet-to-wallet transfers through its
             free-to-use, frictionless model.
           </p>
-          <p class="font-h5">No friction, no barriers, no limits.</p>
           <h2 class="font-h3">Compatible wallets</h2>
         </div>
         {
@@ -266,7 +300,7 @@ const t = useTranslations(lang)
     font: var(--font-h5);
   }
 
-  .wallet-info {
+  .textbox-info {
     margin-inline: var(--spacing-md);
     padding: var(--spacing-md);
     background: var(--color-white);
@@ -276,18 +310,22 @@ const t = useTranslations(lang)
     gap: var(--spacing-2xl);
   }
 
-  .wallet-info .wallet-content {
+  .textbox-info .textbox-content {
     display: flex;
     gap: var(--spacing-md);
     flex-direction: column;
     align-items: flex-start;
   }
 
+  .announcement {
+    color: var(--color-purple-300);
+  }
+
   p.font-h5 {
     color: var(--helper-text-default);
   }
 
-  .wallet-info a svg {
+  .textbox-info a svg {
     width: 1.25rem;
     height: 1.25rem;
     fill: currentColor;
@@ -456,7 +494,7 @@ const t = useTranslations(lang)
       margin-bottom: var(--spacing-2xs);
     }
 
-    .wallet-info .wallet-content {
+    .textbox-info .textbox-content {
       flex: 1 1 auto;
     }
 
