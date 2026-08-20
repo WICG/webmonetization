@@ -28,6 +28,17 @@ The sites you pay aren't provided with any of your personally identifiable infor
 
 </details>
 
+<details>
+  <summary>Permissions and privacy</summary>
+  
+The extension asks for permission to access your browser tabs and your data for all websites so it can check each page you visit for Web Monetization. 
+    
+It stores the wallet address you enter so it can send payments. It also collects anonymous usage analytics through PostHog, including usage events tied to a non-identifiable session ID, language, and browser version. IP addresses are used to determine location, then discarded. Analytics doesn't include your wallet address or wallet provider.
+
+The extension reads the monetization `<link>` element on pages you visit to find the publisher wallet address. It doesn't collect visitor data from publisher sites, and sites you pay don't receive your name, email address, wallet address, or IP address from the extension. For full details, refer to [Privacy](/resources/privacy).
+
+</details>
+
 ## Install the extension
 
 <ExtensionLinks
@@ -35,28 +46,21 @@ The sites you pay aren't provided with any of your personally identifiable infor
   variant="docs"
 />
 
-:::note[Permissions and privacy]
-The extension asks for permission to access your browser tabs and your data for all websites so it can check each page you visit for Web Monetization. It stores the wallet address you enter so it can send payments. It also collects anonymous usage analytics through PostHog, including usage events tied to a non-identifiable session ID, language, and browser version. IP addresses are used to determine location, then discarded. Analytics doesn't include your wallet address or wallet provider. The extension reads the monetization `<link>` element on pages you visit to find the publisher wallet address. It doesn't collect visitor data from publisher sites, and sites you pay don't receive your name, email address, wallet address, or IP address from the extension. For full details, refer to [Privacy](/resources/privacy).
-:::
-
 ## Configure the extension
 
 After you install the extension, a page appears to guide you through the configuration steps.
 
-1. Get a Web Monetization-compatible [wallet](/wallets). You could experience a delay before you can fund your wallet while your provider performs necessary regulatory checks.
-   <img
-     src="/img/docs/extension/onboarding-1.png"
-     alt="An image of the onboarding screen showing the four steps to configure the extension"
-     style="max-width:300px"
-     class="img-outline"
-   />
-2. Find and copy your wallet address (Interledger) or payment pointer (GateHub). You'll need it for Step 4. Wallet addresses follow the format of `https://wallet.example.com/alice`. Payment pointers follow the format of `$wallet.example.com/alice`.
-   <img
-     src="/img/docs/extension/onboarding-2.png"
-     alt="Interledger Wallet dashboard displaying a wallet address"
-     style="max-width:400px"
-     class="img-outline"
-   />
+1. Get a Web Monetization-compatible [wallet](/wallets).
+   :::note
+   You might experience a delay before you can fund your wallet while your provider performs necessary regulatory checks.
+   :::
+2. Find and copy your wallet address or payment pointer. You'll need it for Step 4.
+
+   | Type            | Example                            |
+   | --------------- | ---------------------------------- |
+   | Wallet address  | `https://wallet.example.com/alice` |
+   | Payment pointer | `$wallet.example.com/alice`        |
+
 3. Pin the extension to your toolbar (optional).
    <img
      src="/img/docs/extension/onboarding-3.png"
@@ -351,20 +355,6 @@ You'll receive an error if the extension is unable to add the key. For example:
 
 When this happens, you must copy the key that appears in the extension and manually add it to your wallet account. The steps for adding the key to your account will vary between wallet providers.
 
-<StylishHeader>Interledger Wallet</StylishHeader>
-
-Follow these steps if your wallet provider is <LinkOut href="https://interledger.app">Interledger Wallet</LinkOut>.
-
-1. Sign in to your Interledger Wallet.
-2. Select **Settings** from the left menu.
-3. Select **Keys**.
-4. Click **Add a public key**.
-5. Enter a nickname for the key, then paste the key into the public key field.
-6. Click **Save**.
-7. Go back to your extension and try connecting again.
-
-Contact Interledger Wallet at support@interledger.app if you need additional help.
-
 ## Extension states
 
 When the **Continuous payment** toggle is on, the extension icon appears in color. When the toggle is off, the icon appears in gray. Whether a page is web monetized **does not** affect the color of the icon.
@@ -405,13 +395,6 @@ Click **Connect** and try linking your extension again.
 The most common reason is that your wallet provider and the content owner or publisher's wallet provider are unable to transact with one another. Your extension will display an exclamation mark in an orange circle. Open the extension to read the messaging.
 
 Visit the [Web Monetization-enabled wallets](/wallets) page for a list of compatible wallet providers.
-
-</details>
-
-<details>
-  <summary>Why is the balance in the extension not immediately updating on payments?</summary>
-
-After the extension shows a message that a payment succeeded, the extension's balance may not immediately update to show the new, lower balance. This is a known issue that we're working on. You can track its progress in <LinkOut href="https://github.com/interledger/web-monetization-extension/issues/737">GitHub issue #737</LinkOut>.
 
 </details>
 

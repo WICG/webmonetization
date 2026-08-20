@@ -1,9 +1,6 @@
 ---
 title: Web Monetization-compatible wallets
-lastUpdated: 2026-06-17
-banner:
-  content: |
-    More wallet providers coming soon!
+lastUpdated: 2026-08-20
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components'
@@ -11,101 +8,70 @@ import { LinkOut } from '@interledger/docs-design-system'
 
 You must have an account with a compatible wallet provider to send or receive Web Monetization payments. It can take up to 24 hours for a wallet provider to confirm your identity when setting up a new account.
 
-Be sure to select a wallet that's available in your **region** and supports your preferred **currency**. See the [Limitations](#limitations) section for additional details.
+Be sure to select a wallet that's available in your **region** and supports your preferred **currency**.
 
 ## Wallet providers
 
-| Provider                                                              | Available in          | Supported currencies                                                                                                   |
-| --------------------------------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| <LinkOut href="https://interledger.app/">Interledger Wallet</LinkOut> | USA, EU, South Africa | $ <abbr title="US dollars">USD</abbr>, € <abbr title="euros">EUR</abbr>, R <abbr title="South African rand">ZAR</abbr> |
-| <LinkOut href="https://gatehub.net">GateHub\*</LinkOut>               | USA, EU               | $ <abbr title="US dollars">USD</abbr>, € <abbr title="euros">EUR</abbr>                                                |
+| Provider                                                | Available in | Supported currencies                                                    |
+| ------------------------------------------------------- | ------------ | ----------------------------------------------------------------------- |
+| <LinkOut href="https://gatehub.net">GateHub\*</LinkOut> | USA, EU      | $ <abbr title="US dollars">USD</abbr>, € <abbr title="euros">EUR</abbr> |
 
 <sup>* Select *Hosted* wallet during setup</sup>
 
-Some wallet providers will allow you to select your own wallet address. A wallet address will look like this: `https://interledger.app/<your_username>`.
-
-### Supported currencies
-
-When choosing a wallet provider for Web Monetization, be sure to select one that supports your preferred currency. Wallet providers may support different currencies, including cryptocurrencies.
-
-### Wallet addresses and payment pointers
-
-Some wallet providers will use the term _wallet address_ while others use the term _payment pointer_. Wallet addresses contain `https://` while payment pointers contain `$`.
-
-<Tabs>
-  <TabItem label="Example wallet address">
-    ``` https://wallet.example.com/alice ```
-  </TabItem>
-  <TabItem label="Example payment pointer">
-    ``` $wallet.example.com/alice ```
-  </TabItem>
-</Tabs>
-
-## Limitations
-
-### Interledger Wallet
-
-For now, users of the Interledger Wallet can only send and receive from other Interledger Wallet users who are in the same region and using the same currency.
-
-### GateHub
-
-For now, users of the GateHub wallet can only send and receive from other GateHub wallet users.
-
 ## Interledger test wallet
 
-The Interledger test wallet provides a great way to test Web Monetization without using real money. The test wallet is an open source app developed and maintained by the [Interledger Foundation](https://interledger.org).
+The Interledger test wallet provides a great way to test Web Monetization without using real money. The test wallet is an open source app developed and maintained by the Interledger Foundation. [Create an account on the Interledger test network](/guides/test-wallet-sign-up) to get started.
 
-[Create an account on the Interledger test network](/guides/test-wallet-sign-up) to test Web Monetization without real money.
+## GateHub
 
-## Where's my wallet address or payment pointer?
+:::note
+GateHub wallet users can only send and receive from other GateHub wallet users.
+:::
 
 <details>
-  <summary>Interledger Wallet</summary>
 
-Users of the Interledger Wallet will have a _wallet address_. It appears on
-the _Home_ screen after signing in. Although `https://` isn't shown in the
-field, it's added to your address when you click the copy button.
+<summary>GateHub payment addresses</summary>
 
-  <img
-    src="/img/docs/interledger/interledger-wallet-dashboard.png"
-    alt="User's wallet address highlighted on the Interledger Wallet home screen"
-    class="img-outline"
-    style="max-width: min(100%, 600px)"
-  />
+GateHub payment addresses are both wallet addresses and payment pointers. This means your address can begin with `https://` or with `$`. **The two are interchangeable.**
+
+GateHub's UI displays your payment address in both formats. For example, your address appears as a _payment pointer_ in the **Interledger Settings** section of the **Advanced** screen.
+
+<img
+  src="/img/docs/gatehub/advanced-interledger-settings02.png"
+  alt="Interledger settings section showing the full addresses of the user's two payment pointers"
+  class="img-outline"
+  style="max-width: min(100%, 600px)"
+/>
+
+The **Edit payment pointer** screen uses the label _Wallet Address_ for your payment pointer.
+
+<img
+  src="/img/docs/gatehub/edit-pp.png"
+  alt="Edit payment pointer screen with a wallet address label"
+  class="img-outline"
+  style="max-width: min(100%, 500px)"
+/>
+
+In some areas of their UI, you'll find your address labeled as a payment pointer, but the address will begin with `https://` instead of `$`.
+
+<img
+  src="/img/docs/gatehub/pp-with-https.png"
+  alt="Example of a payment pointer beginning with https://"
+  class="img-outline"
+  style="max-width: min(100%, 300px)"
+/>
+
 </details>
 
 <details>
-  <summary>GateHub</summary>
 
-Users of GateHub will have a _payment pointer_. Note that in GateHub your
-payment pointer is different from your wallet name. To locate your
-payment pointer:
+<summary>Find your payment address</summary>
 
-1. Select your wallet, then click **Advanced**.
-   <img
-     src="/img/docs/gatehub/advanced-wallet-settings.png"
-     alt="Advanced option highlighted on the user's wallet screen"
-     class="img-outline"
-     style="max-width: min(100%, 600px)"
-   />
-2. Scroll down to **Interledger Settings**.
-3. Click the **Payment pointer** button.
-   <img
-     src="/img/docs/gatehub/advanced-interledger-settings.png"
-     alt="Interledger Settings section showing the Interledger payment pointer button. The user's payment pointer itself is hidden."
-     class="img-outline"
-     style="max-width: min(100%, 450px)"
-   />
-4. Copy your payment pointer.
-   <img
-     src="/img/docs/gatehub/payment-pointer.png"
-     alt="Interledger settings section showing the user's payment pointer"
-     class="img-outline"
-     style="max-width: min(100%, 600px)"
-   />
-
-:::note
-If you're setting up the extension, you can enter your payment pointer as it's shown. If you're adding Web Monetization to your website, you must change `$` to `https://`. For example, `https://ilp.gatehub.net/150012576/USD`.
-:::
+    1. Select your wallet, then click **Advanced**.
+    2. Scroll down to **Interledger Settings**.
+        <img src="/img/docs/gatehub/advanced-interledger-settings01.png" alt="Interledger Settings section showing the Interledger button and text that reads 2 payment pointers." class="img-outline" style="max-width: min(100%, 500px)"/>
+    3. Click the **Interledger** button.
+    4. Copy your payment address.
+        <img src="/img/docs/gatehub/advanced-interledger-settings02.png" alt="Interledger settings section showing the full addresses of the user's two payment pointers" class="img-outline" style="max-width: min(100%, 600px)"/>
 
 </details>
