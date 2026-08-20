@@ -30,8 +30,12 @@ const { title, iconName, iconColor } = Astro.props
     /* Adds space below the card so it doesn't glue to content beneath it */
     margin-bottom: 1rem;
 
-    /* Optional: Adds a subtle background color if you want a boxed container look */
     background-color: #fcfcfc;
+  }
+
+  html[data-theme='dark'] .card {
+    color: #fff;
+    background-color: #171d4f;
   }
 
   /* Keeps the title layout clean and on one line */
