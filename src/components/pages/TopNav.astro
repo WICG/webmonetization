@@ -223,7 +223,10 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
       position: fixed;
       justify-content: space-between;
       overflow: auto;
-      padding: var(--padding-lg);
+      padding-top: calc(var(--padding-2xs) + var(--spacing-md));
+      padding-bottom: calc(var(--padding-2xs) + 0);
+      padding-right: calc(var(--padding-xs) + var(--spacing-md));
+      padding-left: calc(var(--padding-md) + var(--spacing-md));
     }
 
     .site-nav.expanded a.site-title {
@@ -338,6 +341,10 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
       justify-content: center;
       align-items: center;
       padding-top: var(--padding-2xl);
+      padding-bottom: var(--padding-2xl);
+      /* We need to pull the footer left as we have different paddings
+         on the left and right of the menu. Otherwise it will not be centered. */
+      margin-left: calc((var(--padding-md) - var(--padding-sm)) * -1);
       width: 100%;
       border-top: 1px solid var(--color-silver-200);
     }
