@@ -265,12 +265,6 @@ const t = useTranslations(lang)
 
     const walletAddressUrl = toWalletAddressUrl(walletAddress)
 
-    if (addressAlreadyAdded(walletAddressUrl)) {
-      input.setCustomValidity(`${walletAddress} already exists in the page.`)
-      input.reportValidity()
-      return false
-    }
-
     await createLinkEventLog(walletAddressUrl)
     createLinkTag(walletAddressUrl)
 
@@ -292,13 +286,5 @@ const t = useTranslations(lang)
     } catch {
       return false
     }
-  }
-
-  function addressAlreadyAdded(walletAddressUrl: string) {
-    // current implementation of playground doesn't support adding same link tag twice
-    // BUG: it should be allowed
-    return !!document.querySelector(
-      `[data-wallet-address='${walletAddressUrl}']`
-    )
   }
 </script>
