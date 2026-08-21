@@ -12,7 +12,7 @@ p.text {
   gap: var(--spacing-md);
   font: var(--font-small-regular);
 
-  div[data-wallet-address] {
+  div[data-id] {
     padding: var(--padding-md);
     background-color: var(--color-mint-50);
     border-radius: var(--moderate-rounding);
@@ -144,7 +144,7 @@ p.text {
   }
   .link-events {
     grid-template-columns: minmax(16.5rem, 1fr);
-    div[data-wallet-address] {
+    div[data-id] {
       & .log-header {
         flex-wrap: wrap;
       }
