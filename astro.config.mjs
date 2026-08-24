@@ -54,7 +54,8 @@ export default defineConfig({
       },
       components: {
         Header: './src/components/docs/Header.astro',
-        PageSidebar: './src/components/docs/PageSidebar.astro'
+        PageSidebar: './src/components/docs/PageSidebar.astro',
+        CustomCard: './src/components/docs/CustomCard.astro'
       },
       social: [
         {
@@ -113,6 +114,10 @@ export default defineConfig({
                 {
                   label: 'Offerwall tool',
                   link: '/publishers/offerwall-tool'
+                },
+                {
+                  label: 'Pay per Article tool',
+                  link: '/publishers/paywall-tool'
                 },
                 {
                   label: 'Widget tool',
@@ -266,6 +271,10 @@ export default defineConfig({
             {
               label: 'Glossary',
               link: '/resources/glossary'
+            },
+            {
+              label: 'Privacy',
+              link: '/resources/privacy'
             },
             {
               label: 'Publisher tools',

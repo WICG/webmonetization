@@ -5,3 +5,4 @@ wrap: 80
 tidy-mark: no
 custom-tags: yes
 drop-empty-elements: no
+hide-comments: no

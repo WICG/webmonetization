@@ -3,16 +3,40 @@
 
   <p>
     The <dfn>monetization</dfn> namespace is the entry point for the
-    Web Monetization Extensions API. It exposes events that allow
-    extensions to observe monetization session state changes within
-    documents.
+    Web Monetization Extensions API. It exposes methods for querying
+    wallet state and budget balance, and events that allow extensions
+    to observe monetization session lifecycle and payment activity.
+  </p>
+
+  <p class="note">
+    The full <code>chrome.monetization</code> API includes additional
+    methods for wallet connection management and session history that
+    are available only to the browser's built-in WebUI. This
+    specification covers the subset exposed to privileged browser
+    extensions.
   </p>
 
   <pre class="idl">
     [Exposed=Window]
     namespace monetization {
+      Promise&lt;Wallet?&gt; getWallet();
+
       readonly attribute EventHandler onStarted;
       readonly attribute EventHandler onStopped;
+      readonly attribute EventHandler onPayment;
     };
   </pre>
+
+  <section data-dfn-for="monetization">
+    <h3>Methods</h3>
+
+    <section>
+      <h4><dfn>getWallet()</dfn></h4>
+      <p>
+        Returns the connected user wallet, including its current
+        budget balance. Resolves with <code>null</code> if no wallet
+        is connected.
+      </p>
+    </section>
+  </section>
 </section>
