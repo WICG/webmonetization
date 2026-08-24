@@ -2,9 +2,10 @@
   <h2>Events</h2>
 
   <p>
-    Events in this namespace are scoped to a {{ Document }},
-    identified by its tab and frame. Each event callback receives a
-    {{MonetizationInfo}} dictionary describing the affected document.
+    Events in this namespace are scoped to a [[WebMonetization]]
+    session. Each event callback receives a
+    {{monetization/Session}} dictionary identifying the affected
+    session and the document it belongs to.
   </p>
 
   <section data-dfn-for="monetization">
@@ -15,9 +16,7 @@
 )</pre>
 
     <p>
-      Fired when the first [[WebMonetization]] session becomes active
-      in a document. Subsequent sessions starting in the same document
-      do <em>not</em> re-fire this event.
+      Fired when a [[WebMonetization]] session starts in a document.
     </p>
 
     <h4>Parameters</h4>
@@ -25,11 +24,11 @@
       <dt><code>callback</code></dt>
       <dd>
         <p>The <code>callback</code> parameter looks like:</p>
-        <pre>(info: {{MonetizationInfo}}) =&gt; void</pre>
+        <pre>(session: {{monetization/Session}}) =&gt; void</pre>
         <dl>
-          <dt><code>info</code></dt>
-          <dd>The {{MonetizationInfo}} for the document where
-            monetization started.</dd>
+          <dt><code>session</code></dt>
+          <dd>The {{monetization/Session}} for the session that
+            started.</dd>
         </dl>
       </dd>
     </dl>
@@ -38,14 +37,14 @@
   <section data-dfn-for="monetization">
     <h3><dfn>onStopped</dfn></h3>
 
-    <pre>browser.monetization.onStopped.addListener(
+    <pre class="example">browser.monetization.onStopped.addListener(
   callback: function,
 )</pre>
 
     <p>
-      Fired when the last [[WebMonetization]] session in a document
-      has ended. This occurs when the tab is closed, the document
-      navigates away, or all sessions are explicitly stopped.
+      Fired when a [[WebMonetization]] session ends. This occurs when
+      the tab is closed, the document navigates away, or the session
+      is explicitly stopped.
     </p>
 
     <h4>Parameters</h4>
@@ -53,11 +52,11 @@
       <dt><code>callback</code></dt>
       <dd>
         <p>The <code>callback</code> parameter looks like:</p>
-        <pre>(info: {{MonetizationInfo}}) =&gt; void</pre>
+        <pre>(session: {{monetization/Session}}) =&gt; void</pre>
         <dl>
-          <dt><code>info</code></dt>
-          <dd>The {{MonetizationInfo}} for the document where
-            monetization stopped.</dd>
+          <dt><code>session</code></dt>
+          <dd>The {{monetization/Session}} for the session that
+            stopped.</dd>
         </dl>
       </dd>
     </dl>
@@ -67,13 +66,40 @@
     <h3>Event ordering</h3>
 
     <p>
-      For a given document, an {{monetization/onStarted}} event is always
-      delivered before any corresponding {{monetization/onStopped}} event.
-      If a document has multiple concurrent sessions, intermediate
-      session starts and stops do not produce additional events.
-      Only the transition from zero to one active session
-      ({{monetization/onStarted}}) and from one to zero active sessions
-      ({{monetization/onStopped}}) fire events.
+      For a given session, an {{monetization/onStarted}} event is
+      always delivered before the corresponding
+      {{monetization/onStopped}} event. A document with multiple
+      concurrent sessions receives a separate
+      {{monetization/onStarted}} and {{monetization/onStopped}} pair
+      for each session.
     </p>
+  </section>
+
+  <section data-dfn-for="monetization">
+    <h3><dfn>onPayment</dfn></h3>
+
+    <pre class="example">browser.monetization.onPayment.addListener(
+  callback: function,
+)</pre>
+
+    <p>
+      Fired when a payment is sent for a monetization session. The
+      updated budget balance can be retrieved via
+      {{monetization/getWallet()}}.
+    </p>
+
+    <h4>Parameters</h4>
+    <dl>
+      <dt><code>callback</code></dt>
+      <dd>
+        <p>The <code>callback</code> parameter looks like:</p>
+        <pre>(session: {{monetization/Session}}) =&gt; void</pre>
+        <dl>
+          <dt><code>session</code></dt>
+          <dd>The {{monetization/Session}} for the session that
+            triggered the payment.</dd>
+        </dl>
+      </dd>
+    </dl>
   </section>
 </section>

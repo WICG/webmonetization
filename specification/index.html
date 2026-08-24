@@ -103,15 +103,14 @@
         <p>
           For the most accurate reflection of the APIs that have been
           implemented by providers see the <a href=
-          "https://webmonetization.org/developers/link-element/">
-          API documentation</a>.
+          "https://webmonetization.org/developers/link-element/">API
+          documentation</a>.
         </p>
       </div>
       <aside class="note">
         This document does not currently cover the details of user wallet
         integration and the flow of a Web Monetization payment session in a
-        browser; for that, see the <a href=
-        "/specification/flows/">Web
+        browser; for that, see the <a href="/specification/flows/">Web
         Monetization flows</a> draft specification, which is expected to be
         integrated into this specification at some point in the future.
       </aside>
@@ -498,52 +497,73 @@
         </ol>
       </div>
       <p>
-        If a "monetization" <code>link</code> is no longer [=browsing-context connected=],
-        a user agent MUST stop the [=payment session=].
+        If a "monetization" <code>link</code> is no longer [=browsing-context
+        connected=], a user agent MUST stop the [=payment session=].
       </p>
     </section>
     <section>
       <h2>
-        `onmonetization` event handler
+        Events
       </h2>
-      <p>
-        The `onmonetization` event handler is an [=event handler content
-        attribute=] that can be applied to any [=element=]. The user agent uses
-        it to notify that some [^link^] has been [=monetized=].
-      </p>
-    </section>
-    <section id="events">
-      <h2>
-        monetization event
-      </h2>
-      <p>
-        When the [=payment session=] has sent a |payment| with a non-zero
-        amount, perform the following steps:
-      </p>
-      <ol class="algorithm">
-        <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} associated
-        with the [=payment session=].
-        </li>
-        <li>If |target| is `null`, then return.
-        </li>
-        <li>Let |eventInitDict:MonetizationEventInit| be a
-        {{MonetizationEventInit}} dictionary, whose members are initialized to
-        match |payment|'s details.
-        </li>
-        <li>Let |event:MonetizationEvent| be a newly constructed
-        {{MonetizationEvent}} initialized with |eventInitDict|.
-        </li>
-        <li>[=Queue a task=] on the [=monetization task source=] to perform the
-        following steps:
-          <ol>
-            <li>If |target| is not connected, return.
-            </li>
-            <li>[=Fire an event=] named `"monetization"` at |target|, with
-            {{Event/bubbles}} initialized to true.
-            </li>
-          </ol>
-        </li>
-      </ol>
+      <section data-dfn-for="GlobalEventHandlers">
+        <h3>
+          Extensions to `GlobalEventHandlers` interface
+        </h3>
+        <p>
+          The {{GlobalEventHandlers}} interface is defined in [[HTML]].
+        </p>
+        <pre class="idl">
+          partial interface mixin GlobalEventHandlers {
+            attribute EventHandler onmonetization;
+          };
+        </pre>
+        <dl>
+          <dt>
+            <dfn>onmonetization</dfn>
+          </dt>
+          <dd>
+            <p>
+              The attribute must be an [=event handler IDL attribute=] and
+              [=event handler content attribute=] for the {{monetization}}
+              event supported by all [=element=]s, {{Document}} objects, and
+              {{Window}} objects. The user agent uses it to notify that some
+              [^link^] has been [=monetized=].
+            </p>
+          </dd>
+        </dl>
+      </section>
+      <section id="events">
+        <h3>
+          <code><dfn data-dfn-type="event">monetization</dfn></code> event
+        </h3>
+        <p>
+          When the [=payment session=] has sent a |payment| with a non-zero
+          amount, perform the following steps:
+        </p>
+        <ol class="algorithm">
+          <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}}
+          associated with the [=payment session=].
+          </li>
+          <li>If |target| is `null`, then return.
+          </li>
+          <li>Let |eventInitDict:MonetizationEventInit| be a
+          {{MonetizationEventInit}} dictionary, whose members are initialized
+          to match |payment|'s details.
+          </li>
+          <li>[=Queue a task=] on the [=monetization task source=] to perform
+          the following steps:
+            <ol>
+              <li>If |target| is not connected, return.
+              </li>
+              <li>[=Fire an event=] named `"monetization"` that uses the
+              {{MonetizationEvent}} interface at |target|, with its attributes
+              initialized with |eventInitDict|, and {{Event/bubbles}}
+              initialized to true.
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </section>
     </section>
     <section>
       <h2>
@@ -748,11 +768,9 @@
       </aside>
       <aside class="note">
         <p>
-          The <a href=
-          "https://html.spec.whatwg.org/#attr-iframe-allow">allow</a>
-          attribute only takes effect when the navigable content of the
-          [^iframe^] is navigated. Adding or removing the monetization
-          attribute has no effect on an already-loaded document.
+          The [^iframe/allow^] attribute only takes effect when the navigable
+          content of the [^iframe^] is navigated. Adding or removing the
+          monetization attribute has no effect on an already-loaded document.
         </p>
       </aside>
     </section>
@@ -858,10 +876,10 @@
         or start monetization of a particular site if they wish to do so).
       </p>
       <p>
-        As [=payment pointers=] are generally provided as a service (e.g.,
-        Uphold), a <abbr title="Cross Site Scripting">XSS</abbr> attack could
-        inject malicious [=payment pointers=] into a page that uses the same
-        service. To mitigate such an attack, it is RECOMMENDED that developers:
+        As [=payment pointers=] are generally provided as a service, a
+        <abbr title="Cross Site Scripting">XSS</abbr> attack could inject
+        malicious [=payment pointers=] into a page that uses the same service.
+        To mitigate such an attack, it is RECOMMENDED that developers:
       </p>
       <ul>
         <li>host a [=payment pointer=] on their own servers and proxy
@@ -894,8 +912,8 @@
         Relation to Web Payments
       </h2>
       <p>
-        Unlike the [[[Payment-Request]]] and the [[[Payment-Handler]]], which only
-        support "one-off" payments, Web Monetization provides a [=payment
+        Unlike the [[[Payment-Request]]] and the [[[Payment-Handler]]], which
+        only support "one-off" payments, Web Monetization provides a [=payment
         session=] that supports both continuous payments and "one-off"
         payments.
       </p>
