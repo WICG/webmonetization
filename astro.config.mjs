@@ -46,9 +46,11 @@ The Web Monetization tools for publishers, supporters, and developers are no lon
 
 Key terminology notes:
 
-- A wallet address is the HTTPS URL identifying where a user's monetization-enabled digital wallet lives — not a cryptocurrency wallet, and formerly called a "payment pointer"
+- A wallet address is the HTTPS URL identifying where a user's Web Monetization-enabled digital wallet lives — not a cryptocurrency wallet
+- A payment pointer is a separate identifier format some wallet providers still use, but it is not itself a wallet address — see the glossary for the format difference and how to convert a payment pointer to a wallet address
 - Publishers (or content owners) are the sites receiving payments; supporters are the people sending them via the browser extension
-- Continuous payments are the small, ongoing payment stream that runs while a monetized page is open, as opposed to a one-off checkout transaction
+- Continuous payments are the small, ongoing payment stream sent while a monetized page is the active, visible tab — not just open in the background
+- A one-time payment is a separate, single-payment mode that a supporter can send instead of, or in addition to, continuous payments
 - Probabilistic revenue share splits a payment stream across multiple wallet addresses (e.g. a creator and a platform) using randomized selection, not literal payment splitting
 - Web Monetization is a browser-facing API; it does not itself move payments between wallets. A Web Monetization-enabled wallet uses Open Payments (an API for authorizing and initiating payments between wallets) and the Interledger Protocol (ILP, the underlying routing protocol) to execute payments. This documentation does not cover the Open Payments API or ILP protocol internals — see the Open Payments and Interledger Protocol documentation for those`,
           customSets: [
@@ -74,7 +76,7 @@ Key terminology notes:
               label: 'Guides and tutorials',
               paths: ['guides/**', 'tutorials/**'],
               description:
-                'Step-by-step guides for testing Web Monetization and tutorials for implementing common patterns, such as showing or hiding content for paying visitors and setting up probabilistic revenue sharing'
+                'Step-by-step guides for testing Web Monetization using the Interledger test wallet (wallet.interledger-test.dev), and tutorials for implementing common patterns, such as showing or hiding content for paying visitors, displaying a contribution counter, and setting up probabilistic revenue sharing'
             },
             {
               label: 'Resources',
@@ -100,6 +102,12 @@ Key terminology notes:
               url: 'https://openpayments.dev',
               description:
                 'Documentation for the Open Payments API that Web Monetization-enabled wallets use under the hood to execute payments'
+            },
+            {
+              label: 'Interledger test wallet',
+              url: 'https://wallet.interledger-test.dev',
+              description:
+                'A test wallet from the Interledger Foundation for experimenting with sending and receiving Web Monetization payments without using real money'
             }
           ]
         })
