@@ -1,14 +1,14 @@
-# Contributing to this repository
+# Contributing to This Repository
 
 Thank you for contributing to the Web Monetization specification. Your contributions help shape emerging web standards.
 
-## Before you begin
+## Before You Begin
 
 - Have you read the [Code of Conduct](https://www.w3.org/policies/code-of-conduct/)?
 - Check out the [existing issues](https://github.com/WICG/webmonetization/issues) and see if we [accept contributions](#types-of-contributions) for your type of issue
 - (Optional) Join the Community Group and agree to the [W3C Community Contributor License Agreement (CLA)](http://www.w3.org/community/about/agreements/cla/)
 
-## Types of contributions
+## Types of Contributions
 
 You can contribute to the Web Monetization specification in several ways.
 
@@ -18,7 +18,7 @@ Discussions are where we have conversations about the specification and the broa
 
 If you have questions, new ideas, or want to explore something before opening an issue — [join the discussion](https://github.com/WICG/webmonetization/discussions).
 
-### Proposals & feature requests
+### Proposals & Feature Requests
 
 If you have an idea for improving the specification or introducing new functionality, open an issue describing your proposal. Please search existing issues first to avoid duplicates, and be clear about the problem you're solving and why it matters.
 
@@ -41,7 +41,7 @@ Feel free to fork the repository and create a pull request for changes you think
 
 The team will review your pull request as soon as possible.
 
-## Working in this repository
+## Working in This Repository
 
 ### Specification development
 
@@ -70,7 +70,7 @@ We are using [tidy](https://www.html-tidy.org/) for the specification instead. M
 
 This is a Community Group Draft, so iteration is expected. We only snapshot major versions of the specification — for example, the [2021-03-17 draft](./specification/versions/CG-DRAFT-web-monetization-20210317.html) currently lives in `specification/versions/`.
 
-### Website development
+### Website Development
 
 For website development, [see here](https://github.com/WICG/webmonetization#get-set-up)
 
