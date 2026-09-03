@@ -11,16 +11,16 @@
     "lint": "prettier --check '**/*.{js,mjs,ts,tsx,json,md,mdx,astro}' && eslint --max-warnings=0 ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@astrojs/starlight": "^0.39.2",
-    "@interledger/docs-design-system": "^0.13.0",
-    "astro": "~6.3.8",
-    "remark-mermaidjs": "^7.0.0",
-    "respec": "^35.6.1",
-    "sharp": "^0.34.5",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/markdown-remark": "^7.3.0",
+    "@astrojs/starlight": "^0.42.0",
+    "@interledger/docs-design-system": "^0.14.0",
+    "astro": "~7.2.10",
+    "respec": "^37.3.5",
+    "sharp": "^0.35.4",
     "starlight-fullview-mode": "^0.2.6",
-    "starlight-links-validator": "^0.24.0",
-    "starlight-llms-txt": "^0.9.0",
+    "starlight-links-validator": "^0.26.0",
+    "starlight-llms-txt": "^0.11.0",
     "typescript": "^6.0.3"
   },
   "optionalDependencies": {
@@ -29,14 +29,20 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@typescript-eslint/parser": "^8.60.0",
-    "astro-eslint-parser": "^1.4.0",
-    "eslint": "^10.4.0",
+    "@typescript-eslint/parser": "^8.69.0",
+    "astro-eslint-parser": "^3.1.0",
+    "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-astro": "^1.7.0",
-    "globals": "^17.6.0",
-    "prettier": "^3.8.3",
+    "eslint-plugin-astro": "^3.1.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6",
     "prettier-plugin-astro": "0.14.1",
-    "typescript-eslint": "^8.60.0"
+    "typescript-eslint": "^8.69.0"
+  },
+  "overrides": {
+    "eslint-plugin-jsx-a11y": {
+      "eslint": "$eslint"
+    }
   }
 }
