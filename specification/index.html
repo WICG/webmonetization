@@ -764,6 +764,27 @@
           monetization attribute has no effect on an already-loaded document.
         </p>
       </aside>
+      <aside class="example">
+        <p>
+          Given a page embedding the following [^iframe^], monetization is
+          allowed for the embedded <a>document</a>:
+        </p>
+        <pre class="html">
+          &lt;iframe src="https://example.com/" allow="monetization"&gt;&lt;/iframe&gt;
+        </pre>
+      </aside>
+      <aside class="example">
+        <p>
+          Given a page with the following Permission Policy:
+        </p>
+        <pre class="http">
+          Permissions-Policy: monetization=(self "https://example.com")
+        </pre>
+        <p>
+          Monetization is allowed for the page itself and for any embedded
+          content from `https://example.com`.
+        </p>
+      </aside>
     </section>
     <section data-cite="CSP">
       <h2>
@@ -794,8 +815,8 @@
             Content-Security-Policy: monetization-src https://example.com/
           </pre>
           <p>
-            Fetches for the following code will return a network errors, as the
-            URL provided do not match monetization-src's source list:
+            Fetches for the following code will return a network error, as the
+            URL provided does not match monetization-src's source list:
           </p>
           <pre class="html">
             &lt;link rel="monetization" href="https://example.org/payment-pointer"&gt;
@@ -851,6 +872,31 @@
             </li>
             <li>Return "Allowed".
             </li>
+          </ol>
+        </section>
+        <section data-cite="CSP">
+          <h4>
+            Get fetch directive fallback list
+          </h4>
+          <p>
+            This spec patches the [[CSP]] specification's <a data-cite="CSP#directive-fallback-list">directive fallback list</a>
+          </p>
+          <p>
+            Given a string |directiveName|:
+          </p>
+          <ol>
+            <li>Switch on |directiveName|:
+              <dl>
+                ...
+                <ins>
+                <dt>`monetization-src`</dt>
+                <dd>
+                  `<< "monetization-src", "default-src" >>`
+                </dd>
+                </ins>
+              </dl>
+            </li>
+            <li>Return `<< >>`.</li>
           </ol>
         </section>
       </section>
