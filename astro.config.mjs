@@ -132,6 +132,7 @@ Key terminology notes:
         PageTitle: './src/components/docs/PageTitle.astro',
         LastUpdated: './src/components/docs/LastUpdated.astro'
       },
+      lastUpdated: true,
       social: [
         {
           icon: 'github',
