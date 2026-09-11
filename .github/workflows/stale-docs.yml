@@ -1,0 +1,18 @@
+name: Stale docs check
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'  # 9am on the 1st of every month
+  workflow_dispatch:      # allows manual trigger from the Actions tab
+
+jobs:
+  check-stale-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run stale docs check
+        run: bash .github/scripts/check-stale-docs.sh

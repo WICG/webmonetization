@@ -128,7 +128,9 @@ Key terminology notes:
       components: {
         Header: './src/components/docs/Header.astro',
         PageSidebar: './src/components/docs/PageSidebar.astro',
-        CustomCard: './src/components/docs/CustomCard.astro'
+        CustomCard: './src/components/docs/CustomCard.astro',
+        PageTitle: './src/components/docs/PageTitle.astro',
+        LastUpdated: './src/components/docs/LastUpdated.astro'
       },
       social: [
         {
