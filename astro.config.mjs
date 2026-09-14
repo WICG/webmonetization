@@ -3,6 +3,7 @@ import path from 'node:path'
 import { symlink } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import starlight from '@astrojs/starlight'
+import { unified } from '@astrojs/markdown-remark'
 import starlightLinksValidator from 'starlight-links-validator'
 import starlightFullViewMode from 'starlight-fullview-mode'
 import starlightLlmsTxt from 'starlight-llms-txt'
@@ -10,6 +11,9 @@ import starlightLlmsTxt from 'starlight-llms-txt'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://webmonetization.org',
+  markdown: {
+    processor: unified()
+  },
   integrations: [
     starlight({
       title: 'Web Monetization',
