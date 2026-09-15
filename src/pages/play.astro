@@ -87,7 +87,7 @@ const t = useTranslations(lang)
     }, 500)
   }
 
-  function createLinkTag(href: string) {
+  function createLinkTag(href: string, id: string) {
     const link = document.createElement('link')
 
     link.rel = 'monetization'
@@ -95,12 +95,12 @@ const t = useTranslations(lang)
     link.addEventListener('monetization', onMonetizationListener)
     link.addEventListener('load', onLoadListener)
     link.addEventListener('error', onErrorListener)
-    link.dataset.walletAddress = href
+    link.dataset.id = id
 
     document.head.append(link)
   }
 
-  async function createLinkEventLog(href: string) {
+  async function createLinkEventLog(href: string, id: string) {
     const header = document.createElement('div')
     header.classList.add('log-header')
 
@@ -119,11 +119,14 @@ const t = useTranslations(lang)
         <span class="switch-slider"></span>
       </span>`
 
-    switchButton.addEventListener('click', () => {
+    const switchCheckbox = switchButton.querySelector(
+      'input[type="checkbox"]'
+    ) as HTMLInputElement
+    switchCheckbox.addEventListener('change', () => {
       const link = document.querySelector(
-        `link[rel='monetization'][href='${href}']`
+        `link[rel='monetization'][data-id='${id}']`
       ) as HTMLLinkElement
-      link.disabled = !link.disabled
+      link.disabled = !switchCheckbox.checked
     })
 
     const removeButton = document.createElement('button')
@@ -131,11 +134,11 @@ const t = useTranslations(lang)
     removeButton.classList.add('btn', 'tools-secondary-btn')
     removeButton.addEventListener('click', () => {
       const link = document.querySelector(
-        `link[rel='monetization'][href='${href}']`
+        `link[rel='monetization'][data-id='${id}']`
       ) as HTMLLinkElement
       link.remove()
       const eventLog = document.querySelector(
-        `#link-events div[data-wallet-address='${href}']`
+        `#link-events div[data-id='${id}']`
       ) as HTMLDivElement
       eventLog.remove()
     })
@@ -145,7 +148,7 @@ const t = useTranslations(lang)
     clearButton.classList.add('btn', 'tools-secondary-btn')
     clearButton.addEventListener('click', () => {
       const ul = document.querySelector(
-        `#link-events div[data-wallet-address='${href}'] ul.events`
+        `#link-events div[data-id='${id}'] ul.events`
       ) as HTMLDivElement
       ul.innerHTML = ''
     })
@@ -157,7 +160,7 @@ const t = useTranslations(lang)
     footer.append(removeButton)
 
     const eventLog = document.createElement('div')
-    eventLog.dataset.walletAddress = href
+    eventLog.dataset.id = id
 
     const events = document.createElement('ul')
     events.classList.add('events')
@@ -174,7 +177,7 @@ const t = useTranslations(lang)
     if (!event.target.isConnected) return null
 
     return document.querySelector(
-      `#link-events div[data-wallet-address='${event.target.dataset.walletAddress}'] ul.events`
+      `#link-events div[data-id='${event.target.dataset.id}'] ul.events`
     ) as HTMLDivElement
   }
 
@@ -264,26 +267,23 @@ const t = useTranslations(lang)
     }
 
     const walletAddressUrl = toWalletAddressUrl(walletAddress)
+    const id = crypto.randomUUID()
 
-    if (addressAlreadyAdded(walletAddressUrl)) {
-      input.setCustomValidity(`${walletAddress} already exists in the page.`)
-      input.reportValidity()
-      return false
-    }
-
-    await createLinkEventLog(walletAddressUrl)
-    createLinkTag(walletAddressUrl)
+    await createLinkEventLog(walletAddressUrl, id)
+    createLinkTag(walletAddressUrl, id)
 
     form.reset()
   })
 
   async function addTagsFromURL() {
     const walletAddressUrls = new URLSearchParams(location.search).getAll('wa')
-    const urlsToAdd = new Set(walletAddressUrls.filter(isWalletAddressUrl))
-    for (const url of urlsToAdd) {
-      await createLinkEventLog(url)
+    const urlsToAdd = walletAddressUrls
+      .filter(isWalletAddressUrl)
+      .map((url) => ({ url, id: crypto.randomUUID() }))
+    for (const { url, id } of urlsToAdd) {
+      await createLinkEventLog(url, id)
     }
-    urlsToAdd.forEach(createLinkTag)
+    urlsToAdd.forEach(({ url, id }) => createLinkTag(url, id))
   }
 
   function isWalletAddressUrl(s: string): boolean {
@@ -292,13 +292,5 @@ const t = useTranslations(lang)
     } catch {
       return false
     }
-  }
-
-  function addressAlreadyAdded(walletAddressUrl: string) {
-    // current implementation of playground doesn't support adding same link tag twice
-    // BUG: it should be allowed
-    return !!document.querySelector(
-      `[data-wallet-address='${walletAddressUrl}']`
-    )
   }
 </script>

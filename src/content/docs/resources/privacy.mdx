@@ -1,0 +1,78 @@
+---
+title: Privacy
+---
+
+import { LinkOut } from '@interledger/docs-design-system'
+
+This page describes the data that Web Monetization sites and tools collect, where the data is stored, who can access it, and how long it's retained.
+
+## webmonetization.org
+
+webmonetization.org, including this documentation, uses self-hosted <LinkOut href="https://umami.is/">Umami</LinkOut> for analytics. The Interledger Foundation hosts and operates the analytics setup. Only the foundation's internal team has access to the data.
+
+We collect:
+
+- Page views and navigation events
+- Referrer URLs
+- Browser and device types
+- Country-level locations
+
+Umami uses IP addresses to determine a general location, then discards them. We don't store IP addresses.
+
+We retain analytics data without a fixed deletion period.
+
+### Publisher tools
+
+The same analytics practices apply across the <LinkOut href="https://webmonetization.org/tools/">publisher tools</LinkOut> site at `/tools`, including the tools pages and related configuration flows.
+
+While you configure a tool, analytics also records:
+
+- The wallet provider associated with the address you enter (not the full wallet address)
+- Configuration events
+- Page views and traffic on the tools pages
+
+When you save a hosted configuration, we store that configuration keyed to your wallet address. Configuration data is currently stored in an Amazon Web Services (AWS) S3 bucket that the Interledger Foundation owns and operates. We plan to move this storage to Cloudflare KV. AWS and Cloudflare privacy policies may also apply to data stored on their services.
+
+When you embed a tool's scripts on your website, we collect analytics about visitors who encounter those embeds. Using the same self-hosted Umami setup, we learn which site (domain) the script was added to and whether visitors interacted with the embedded tool.
+
+:::note[Offerwall]
+The offerwall tool integrates with Google Ad Manager, which has its own privacy practices. This page only covers data collected by Web Monetization tools and the Interledger Foundation.
+:::
+
+### Playground
+
+The <LinkOut href="https://webmonetization.org/play/">playground</LinkOut> uses Umami to collect page view data. No other data is collected.
+
+## Browser extension
+
+The Web Monetization browser extension for Chrome, Firefox, Safari, and Edge uses <LinkOut href="https://posthog.com/">PostHog</LinkOut> for analytics.
+
+We collect:
+
+- Anonymous usage events, such as clicks and interactions, tied to a non-identifiable and persistent session ID
+- Languages
+- Version of the browser that the extension is installed on
+
+We use IP addresses to determine location information, then discard them. We don't store IP addresses. We don't collect your wallet address or wallet provider in analytics.
+
+The Interledger Foundation's internal team and PostHog, as the analytics processor, have access to the data. PostHog retains the data for one year.
+
+The extension passes your wallet address to your payment provider at the time of payment. To detect a publisher's wallet address, the extension reads the monetization `<link>` element on the pages you visit. The extension doesn't collect data about a publisher site's visitors, and the sites you visit don't receive your name, email address, wallet address, or IP address as part of Web Monetization payments. The site's wallet provider knows your wallet address, as the sending party, and may or may not disclose it to the wallet user.
+
+To learn why the extension requests broad browser permissions, refer to the extension's <LinkOut href="https://github.com/interledger/web-monetization-extension/blob/main/docs/PERMISSIONS.md">permissions documentation</LinkOut> and [Get started with the extension](/supporters/get-started).
+
+## WordPress plugin
+
+The <LinkOut href="https://wordpress.org/plugins/interledger-web-monetization-integration/">Interledger Web Monetization Integration</LinkOut> plugin adds Web Monetization markup to your WordPress site.
+
+By default, the plugin:
+
+- Doesn't collect or store visitor data
+- Doesn't set cookies
+- Doesn't make external requests for analytics
+
+The extension download links in the plugin's banner include campaign tracking parameters that allow us to track aggregate click sources. No personal data is transmitted through the links.
+
+The plugin's optional country targeting feature requires the GeoIP Detection plugin and follows that plugin's behavior. WordPress.org collects standard directory listing and installation telemetry according to its own policies.
+
+For the plugin listing's privacy section, refer to the <LinkOut href="https://wordpress.org/plugins/interledger-web-monetization-integration/">WordPress.org plugin page</LinkOut>.

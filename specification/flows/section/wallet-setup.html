@@ -8,7 +8,7 @@
     <dt><dfn>Web Monetization page</dfn></dt>
     <dd>
       Refers to the browser's UI for managing Web Monetization settings, accessible via a browser specific URI.
-      <span class="note">In Chromium based browser the page can be located at `chrome://webmonetization`.</span>
+      <span class="note">In Chromium based browsers, the page can be located at `chrome://webmonetization`.</span>
     </dd>
     <dt><dfn data-lt="setup page">Web Monetization setup page</dfn></dt>
     <dd>
@@ -44,7 +44,7 @@
   running the [=generate an Ed25519 key pair=] algorithm, replacing any previously stored key pair, and MUST display
   the newly generated [=encoded public key JWK=] (representing the [=Ed25519 public key=]) so the user can copy or
   upload it to their wallet provider. This key generation and public key
-  exposure happen before invoking the algorithm below; if no key pair exists at invocation time the algorithm fails.</p>
+  exposure happen before invoking the algorithm below; if no key pair exists at invocation time, the algorithm fails.</p>
 
   <p>To <b><em>process the wallet setup</em></b>, given a string |walletAddress:DOMString|
     (the [=wallet address=] provided by the user),
@@ -70,7 +70,7 @@
       Let |interval:DOMString| be an <a href="https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals">ISO 8601 repeating interval</a>
       if |renewMonthly| is `true`.
       <span class="note">
-        The starting date for the repeating interval needs to be the users current date (ISO String).
+        The starting date for the repeating interval needs to be the user's current date (ISO String).
       </span>
       <aside class="example" title="ISO 8601 Repeating interval - monthly renewal">
         <pre class="text">

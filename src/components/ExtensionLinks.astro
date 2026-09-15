@@ -28,8 +28,8 @@ const URLS = {
 
 const toURL = (url: string) => {
   const result = new URL(url)
-  if (utm && !utm.utm_source) {
-    result.searchParams.set('utm_source', Astro.site!.hostname)
+  if (utm && !utm.utm_source && Astro.site) {
+    result.searchParams.set('utm_source', Astro.site.hostname)
   }
   for (const [k, v] of Object.entries(utm || {})) {
     result.searchParams.set(k, v)
