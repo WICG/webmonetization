@@ -300,7 +300,7 @@
         </p>
       </aside>
       <p>
-        The <code>[=monetization=]</code> keyword indicates a [=wallet
+        The `monetization` keyword indicates a [=wallet
         address=] used to monetize the document. It indicates that some aspect
         of the document is [=monetized=].
       </p>
@@ -309,7 +309,7 @@
         keyword creates an [=external resource link=]. This keyword is <a data-cite="html#body-ok">body-ok</a>.
       </p>
       <p>
-        A user agent MUST NOT delay the load event for this link type.
+        A user agent MUST NOT <a data-cite="html#delay-the-load-event">delay the load event</a> for this link type.
       </p>
       <p>
         The default type for resources given by the `monetization` keyword is
@@ -373,13 +373,13 @@
       </ul>
       <p>
         The linked resource fetch setup steps for this type of linked resource,
-        given a [^link^] element <var>element</var> and [=request=]
+        given a [^link^] element |element:HTMLLinkElement| and [=request=]
         <var>request</var>, are:
       </p>
       <ol>
         <li>
           <p>
-            If <var>element</var>'s [^link/disabled^] attribute is set, stop
+            If |element|'s [^link/disabled^] attribute is set, stop
             all previous [=payment sessions=] initiated by |element|'s
             [=external resource link=], then return false.
           </p>
@@ -387,19 +387,13 @@
         <li>
           <!-- detached element / non-fully active elements -->
           <p>
-            If <var>element</var> cannot navigate, return false.
+            If |element| cannot navigate, return false.
           </p>
         </li>
         <li>
           <p>
-            If <var>element</var>'s [=Node/node document|node document=] is not
+            If |element|'s [=Node/node document|node document=] is not
             [=allowed to use=] the "monetization" feature, return false.
-          </p>
-        </li>
-        <li>
-          <p>
-            Let <var>context</var> be <var>element</var>'s [=Node/node
-            document|node document=]'s [=browsing context=].
           </p>
         </li>
         <li>
@@ -421,7 +415,7 @@
         <li>
           <p>
             Set <var>request</var>'s [=request/credentials mode=] to the [=CORS
-            settings attribute credentials mode=] for <var>element</var>'s
+            settings attribute credentials mode=] for |element|'s
             [^link/crossorigin^] content attribute.
           </p>
         </li>
@@ -433,7 +427,7 @@
       </ol>
       <p>
         To process this type of linked resource given a [^link^] element
-        <var>element</var>, boolean <var>success</var>, and [=response=]
+        |element|, boolean <var>success</var>, and [=response=]
         <var>response</var>:
       </p>
       <ol>
