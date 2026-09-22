@@ -36,7 +36,7 @@ By adding an event listener to the relevant monetization `<link>` element (or on
 
 - Information about the [amount and currency](#amountsent) of a sent (not received) payment
 - A URL representing an [incoming payment](#incomingpayment) that can be used to determine the amount received, similar to a receipt
-- The URL representing the [wallet address or payment pointer](#paymentpointer) that an incoming payment request was sent to
+- The URL representing the [wallet address](#walletaddress) that an incoming payment request was sent to
 
 ### High-level flow
 
@@ -162,26 +162,39 @@ async function verifyPayment(event) {
 
 <Specification anchor="incomingpayment-attribute" />
 
-### paymentPointer
+### walletAddress
 
-The `paymentPointer` property returns the URL that represents the wallet address or payment pointer that the payment was sent to. In most cases, the value will be the same as the `href` URL in the monetization `<link>`.
+The `walletAddress` property returns the URL that represents the wallet address that the payment was sent to. In most cases, the value will be the same as the `href` URL in the monetization `<link>`.
 
-:::note[Property name]
-Earlier versions of the Web Monetization specification only used Interledger's Simple Payment Setup Protocol (SPSP), which calls for payment pointers. This is why the property was named `paymentPointer`.
+:::note[Property naming history]
+Earlier versions of the Web Monetization specification only used Interledger's Simple Payment Setup Protocol (SPSP), which calls for payment pointers. This is why the property was originally named `paymentPointer`.
 
-As of v3, both payment pointers and Open Payments wallet addresses are returned by this property. GitHub issue <LinkOut href="https://github.com/WICG/webmonetization/issues/439">439</LinkOut> is created for discussing a change to the property name.
+As of the September 2026 spec update, `paymentPointer` is deprecated in favor of `walletAddress`. Both properties return the same value, but `walletAddress` should be used going forward.
 :::
 
-#### Example using `paymentPointer`
+#### Example using `walletAddress`
 
 ```js
 <link rel="monetization" href="https://wallet.example.com/alice">
 <script>
-  const link = document.querySelector("link[rel=‘monetization’]");
-  link.addEventListener("monetization", (event) => {
-  console.log(event.paymentPointer)})
+  const link = document.querySelector('link[rel="monetization"]');
+  link.addEventListener('monetization', (event) => {
+    console.log(event.walletAddress)
+  });
 </script>
 ```
+
+#### Specification
+
+<Specification anchor="walletaddress-attribute" />
+
+### paymentPointer
+
+:::caution[Deprecated]
+`paymentPointer` is <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#deprecated_and_obsolete">deprecated</LinkOut>. Use [`walletAddress`](#walletaddress) instead.
+:::
+
+The `paymentPointer` property returns the same URL as [`walletAddress`](#walletaddress). It's retained for backward compatibility only and shouldn't be used in new integrations.
 
 <Hidden>
 
@@ -207,7 +220,7 @@ Program your website to remove ads or provide access to exclusive content to you
 
 In this use case, you'll query the URL returned by `incomingPayment` to track the `receivedAmount`. If appropriate, you can ensure the amount is increasing after each `monetization` event to verify that a new payment was received.
 
-### paymentPointer
+### walletAddress
 
 This section describes two use cases: one for vanity payment addresses and one for probabilistic revenue sharing.
 
@@ -225,7 +238,7 @@ That's hard to remember. Fortunately, your wallet provider offers vanity address
 https://wallet.example.com/bob
 ```
 
-You add the vanity address as the `href` value in the monetization `<link>`. Then, you set up an event listener for `paymentPointer`. The value that's returned will be:
+You add the vanity address as the `href` value in the monetization `<link>`. Then, you set up an event listener for `walletAddress`. The value that's returned will be:
 
 ```
 https://wallet.example.com/GK9D420BL42M
@@ -233,7 +246,7 @@ https://wallet.example.com/GK9D420BL42M
 
 #### Probabilistic revenue sharing
 
-For this use case, let's assume you are familiar with [probabilistic revenue sharing](/tutorials/revenue-sharing), which is iteself an advanced use case.
+For this use case, let's assume you are familiar with [probabilistic revenue sharing](/tutorials/revenue-sharing), which is itself an advanced use case.
 
 When you use our <LinkOut href="https://webmonetization.org/prob-revshare/">Probabilistic Revshare Generator</LinkOut>, you enter multiple wallet addresses and assign each one a weight. When finished, the generator creates a unique URL.
 
@@ -243,4 +256,4 @@ For example, after entering five wallet addresses and weights, the generator cre
 https://webmonetization.org/api/revshare/pay/W1siJGFsaWNlLndhbGxldC5jb20iLDUwLCIkYWxpY2"
 ```
 
-You add the generated URL as the `href` value in the monetization `<link>`. Then, you set up an event listener for `paymentPointer`. The value that's returned will be which one of the five wallet addresses that the payment was sent to.
+You add the generated URL as the `href` value in the monetization `<link>`. Then, you set up an event listener for `walletAddress`. The value that's returned will be which one of the five wallet addresses that the payment was sent to.
