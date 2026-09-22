@@ -1,0 +1,31 @@
+name: Check Specification Format
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "specification/**"
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Install tidy
+        run: sudo apt-get update && sudo apt-get install -y tidy
+
+      - name: Check spec formatting
+        run: |
+          npm run format:spec || true
+          if ! git diff --exit-code --quiet specification/index.html; then
+            echo "::error::specification/index.html is not formatted correctly. Run 'bun format:spec' locally and commit the changes."
+            git diff specification/index.html
+            exit 1
+          fi
