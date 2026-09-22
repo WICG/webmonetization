@@ -305,16 +305,15 @@
         of the document is [=monetized=].
       </p>
       <p>
-        The <code>monetization</code> keyword may be used with [^link^]
-        elements. This keyword creates an [=external resource link=]. This
-        keyword is body-ok.
+        The `monetization` keyword may be used with [^link^] elements. This
+        keyword creates an [=external resource link=]. This keyword is body-ok.
       </p>
       <p>
         A user agent MUST NOT delay the load event for this link type.
       </p>
       <p>
-        The default type for resources given by the <code>monetization</code>
-        keyword is <code>application/json</code>.
+        The default type for resources given by the `monetization` keyword is
+        `application/json`.
       </p>
       <p>
         The appropriate times to fetch and process this type of link are:
@@ -410,14 +409,13 @@
         </li>
         <li>
           <p>
-            Set <var>request</var>'s [=request/destination=] to "<code data-x=
-            "">monetization</code>".
+            Set <var>request</var>'s [=request/destination=] to
+            "`monetization`".
           </p>
         </li>
         <li>
           <p>
-            Set <var>request</var>'s [=request/mode=] to "<code data-x=
-            "">cors</code>".
+            Set <var>request</var>'s [=request/mode=] to "`cors`".
           </p>
         </li>
         <li>
@@ -454,8 +452,7 @@
         <li>
           <p>
             Otherwise, if <var>response</var>'s Content-Type metadata is not
-            <code>application/json</code>, then set <var>success</var> to
-            false.
+            `application/json`, then set <var>success</var> to false.
           </p>
         </li>
         <li>Let |json| be the result of [=parse JSON bytes to an Infra value=]
@@ -682,9 +679,9 @@
           <dfn>assetScale</dfn> attribute (deprecated)
         </h3>
         <p>
-          The scale of the amount. For example, USD would have an
-          <code>assetScale</code> of <code>2</code> when denominated in cents.
-          When getting, returns the value it was initialized with.
+          The scale of the amount. For example, USD would have an `assetScale`
+          of `2` when denominated in cents. When getting, returns the value it
+          was initialized with.
         </p>
       </section>
       <div class="note" title="MonetizationCurrencyAmount">
