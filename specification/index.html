@@ -598,9 +598,9 @@
           };
       </pre>
       <section>
-        <h2>
+        <h3>
           <dfn>currency</dfn> member
-        </h2>
+        </h3>
         <p>
           The currency of the MonetizationCurrencyAmount. The default is an
           ISO 4217 three-letter alphabetic code; see the definition of the
@@ -609,9 +609,9 @@
         </p>
       </section>
       <section>
-        <h2>
+        <h3>
           <dfn>value</dfn> member
-        </h2>
+        </h3>
         <p>
           The amount of the MonetizationAmount. See the definition of the
           `value` member of {{PaymentCurrencyAmount}} in [[payment-request]]
@@ -672,9 +672,9 @@
         </p>
       </div>
       <section>
-        <h2>
+        <h3>
           <dfn>amount</dfn> attribute (deprecated)
-        </h2>
+        </h3>
         <p>
           The amount <em>received</em> as reflected in the receipt from the
           [=monetization receiver=]. When getting, returns the value it was
@@ -682,9 +682,9 @@
         </p>
       </section>
       <section>
-        <h2>
+        <h3>
           <dfn>assetCode</dfn> attribute (deprecated)
-        </h2>
+        </h3>
         <p>
           The three letter asset code identifying the amount's units (e.g.,
           "USD" for US dollars). When getting, returns the value it was
@@ -692,9 +692,9 @@
         </p>
       </section>
       <section>
-        <h2>
+        <h3>
           <dfn>assetScale</dfn> attribute (deprecated)
-        </h2>
+        </h3>
         <p>
           The scale of the amount. For example, USD would have an
           <code>assetScale</code> of <code>2</code> when denominated in cents.
@@ -708,9 +708,9 @@
         guidance on processing and display of these attributes.
       </div>
       <section>
-        <h2>
+        <h3>
           <dfn>amountSent</dfn> attribute
-        </h2>
+        </h3>
         <p>
           The amount <em>sent</em>. This should be processed in the same way as
           a {{PaymentCurrencyAmount}} dictionary as defined in
@@ -719,9 +719,9 @@
         </p>
       </section>
       <section>
-        <h2>
+        <h3>
           <dfn>receipt</dfn> attribute (deprecated)
-        </h2>
+        </h3>
         <p>
           `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
           receiver=] to the [=monetization provider=] as proof of the total
@@ -730,27 +730,27 @@
         </p>
       </section>
       <section>
-        <h2>
+        <h3>
           <dfn>paymentPointer</dfn> attribute (deprecated)
-        </h2>
+        </h3>
         <p>
           A [=URL=] representing the [=wallet address=] that has been
           monetized. When getting, returns the value it was initialized with.
         </p>
       </section>
       <section>
-        <h2>
+        <h3>
           <dfn>incomingPayment</dfn> attribute
-        </h2>
+        </h3>
         <p>
           A [=URL=] representing an incoming payment at the [=monetization
           receiver=]. When getting, returns the value it was initialized with.
         </p>
       </section>
       <section>
-        <h2>
+        <h3>
           <dfn>walletAddress</dfn> attribute
-        </h2>
+        </h3>
         <p>
           A [=URL=] representing the [=wallet address=] that has been
           monetized. When getting, returns the value it was initialized with.
