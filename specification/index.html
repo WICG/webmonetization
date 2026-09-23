@@ -673,6 +673,35 @@
       </div>
       <section>
         <h3>
+          <dfn>amountSent</dfn> attribute
+        </h3>
+        <p>
+          The amount <em>sent</em>. This should be processed in the same way as
+          a {{PaymentCurrencyAmount}} dictionary as defined in
+          [[payment-request]]. When getting, returns the value it was
+          initialized with.
+        </p>
+      </section>
+      <section>
+        <h3>
+          <dfn>incomingPayment</dfn> attribute
+        </h3>
+        <p>
+          A [=URL=] representing an incoming payment at the [=monetization
+          receiver=]. When getting, returns the value it was initialized with.
+        </p>
+      </section>
+      <section>
+        <h3>
+          <dfn>walletAddress</dfn> attribute
+        </h3>
+        <p>
+          A [=URL=] representing the [=wallet address=] that has been
+          monetized. When getting, returns the value it was initialized with.
+        </p>
+      </section>
+      <section>
+        <h3>
           <dfn>amount</dfn> attribute (deprecated)
         </h3>
         <p>
@@ -709,17 +738,6 @@
       </div>
       <section>
         <h3>
-          <dfn>amountSent</dfn> attribute
-        </h3>
-        <p>
-          The amount <em>sent</em>. This should be processed in the same way as
-          a {{PaymentCurrencyAmount}} dictionary as defined in
-          [[payment-request]]. When getting, returns the value it was
-          initialized with.
-        </p>
-      </section>
-      <section>
-        <h3>
           <dfn>receipt</dfn> attribute (deprecated)
         </h3>
         <p>
@@ -732,24 +750,6 @@
       <section>
         <h3>
           <dfn>paymentPointer</dfn> attribute (deprecated)
-        </h3>
-        <p>
-          A [=URL=] representing the [=wallet address=] that has been
-          monetized. When getting, returns the value it was initialized with.
-        </p>
-      </section>
-      <section>
-        <h3>
-          <dfn>incomingPayment</dfn> attribute
-        </h3>
-        <p>
-          A [=URL=] representing an incoming payment at the [=monetization
-          receiver=]. When getting, returns the value it was initialized with.
-        </p>
-      </section>
-      <section>
-        <h3>
-          <dfn>walletAddress</dfn> attribute
         </h3>
         <p>
           A [=URL=] representing the [=wallet address=] that has been
