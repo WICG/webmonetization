@@ -77,7 +77,7 @@
         group: 'wicg',
         xref: {
           profile: 'web-platform',
-          specs: ['ECMAScript', 'payment-request'],
+          specs: ['ECMAScript', 'payment-request', 'permissions'],
         },
         localBiblio: {
           Interledger: {
@@ -577,9 +577,13 @@
             sessions=], set |success| to false.
           </p>
         </li>
-        <li>If |success| is true, start a new [=payment session=], set
-        |element| as the session's [=payment session/link=], and set the new
-        session as |element|'s [=associated payment session=].
+        <li>Let |state| be the result of [=get the current permission state=]
+        with `"monetization"`.
+        </li>
+        <li>If |success| is true and |state| is {{PermissionState/"granted"}},
+        start a new [=payment session=], set |element| as the session's
+        [=payment session/link=], and set the new session as |element|'s
+        [=associated payment session=].
         </li>
         <li>[=Queue an element task=] on the [=networking task source=] given
         |element| and the following steps:
@@ -822,6 +826,33 @@
           it was initialized with.
         </p>
       </section>
+    </section>
+    <section id="permissions">
+      <h2>
+        Permissions integration
+      </h2>
+      <p>
+        Web Monetization is a [=powerful feature=] that is identified by the
+        [=powerful feature/name=] "monetization". Its permission-related
+        algorithms are defined as follows:
+      </p>
+      <dl>
+        <dt>
+          [=powerful feature/permission revocation algorithm=]
+        </dt>
+        <dd>
+          To revoke the "monetization" permission, the UA must:
+          <ol>
+            <li>Stop all [=payment sessions=] established by a [=Document=]
+            matching the relevant [=Document/origin=].
+            </li>
+          </ol>
+        </dd>
+      </dl>
+      <p>
+        The [=permission state=] does not depend on a connected wallet. The
+        user agent may skip the prompt if no wallet is connected.
+      </p>
     </section>
     <section id="permissions-policy" data-cite="permissions-policy">
       <h2>
@@ -1104,6 +1135,15 @@
         The user agent does not send data about the user to the [=monetization
         receiver=]. To set up a [=payment session=], it fetches the [=wallet
         address=] instead.
+      </p>
+      <p>
+        To avoid increasing the fingerprinting surface, the `"load"` event is
+        fired independently of the [=permission state=]. Otherwise it could
+        indicate whether the user has connected a wallet or not. For the same
+        reason the [=permission state=] remains {{PermissionState/"prompt"}}
+        when no wallet is connected, to not allow for distinction between users
+        who have not granted permission yet and users who have not set up their
+        wallet.
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
