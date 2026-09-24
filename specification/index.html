@@ -498,8 +498,12 @@
           <li>Let |state| be the result of [=get the current permission state=]
           with `"monetization"`.
           </li>
+          <li>Let |rate| be `"monetization"`'s [=powerful feature/extra
+          permission data=] for |element|'s [=relevant settings object=].
+          </li>
           <li>If |success| is true and |state| is
-          {{PermissionState/"granted"}}, establish a new [=payment session=].
+          {{PermissionState/"granted"}}, establish a new [=payment session=]
+          using |rate|.
           </li>
         </ol>
       </div>
@@ -771,9 +775,42 @@
       <p>
         Web Monetization is a [=powerful feature=] that is identified by the
         [=powerful feature/name=] "monetization". Its permission-related
-        algorithms are defined as follows:
+        algorithms and types are defined as follows:
       </p>
       <dl>
+        <dt>
+          [=powerful feature/extra permission data type=]
+        </dt>
+        <dd>
+          A <dfn>rate</dfn>, which is either null or a positive number
+          representing the maximum amount to pay per hour in the [=wallet
+          address=]'s asset currency and asset scale. Null means the user agent
+          uses its default rate.
+          <pre class="idl">
+            dictionary MonetizationPermissionStorage {
+              float rate = null;
+            };
+          </pre>
+        </dd>
+        <dt>
+          [=powerful feature/extra permission data constraints=]
+        </dt>
+        <dd>
+          If not null, the [=rate=] MUST be greater than zero.
+        </dd>
+        <dt>
+          [=powerful feature/permission query algorithm=]
+        </dt>
+        <dd>
+          To query the "monetization" permission with a
+          {{PermissionDescriptor}} |permissionDesc| and a {{PermissionStatus}}
+          |status|, the UA must:
+          <ol>
+            <li>Set |status|'s {{PermissionStatus/state}} to |permissionDesc|'s
+            [=permission state=].
+            </li>
+          </ol>
+        </dd>
         <dt>
           [=powerful feature/permission revocation algorithm=]
         </dt>
@@ -783,12 +820,28 @@
             <li>Stop all [=payment sessions=] established by a [=Document=]
             matching the relevant [=Document/origin=].
             </li>
+            <li>Set the "monetization"'s [=powerful feature/extra permission
+            data type=] to null.
+            </li>
           </ol>
         </dd>
       </dl>
       <p>
         The [=permission state=] does not depend on a connected wallet. The
-        user agent may skip the prompt if no wallet is connected.
+        user agent may skip the prompt if no wallet is connected. When
+        disconnecting a wallet, the "monetization"'s [=powerful feature/extra
+        permission data type=] must be cleared.
+      </p>
+      <p>
+        The user agent may let the user choose a [=rate=] for an origin, for
+        example in the permission prompt or in site settings.
+      </p>
+      <p class="note">
+        Choosing a rate indicates that the user intends it to be
+        "monetization"'s [=powerful feature/extra permission data=] for that
+        origin. The rate is never exposed to script: the [=powerful
+        feature/permission query algorithm=] only sets
+        {{PermissionStatus/state}}.
       </p>
     </section>
     <section id="permissions-policy" data-cite="permissions-policy">
