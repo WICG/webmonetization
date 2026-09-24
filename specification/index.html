@@ -300,204 +300,183 @@
         </p>
       </aside>
       <p>
-        The monetization keyword indicates a [=wallet address=] used to
-        monetize the document.
+        The `monetization` keyword indicates a [=wallet address=] used to
+        monetize the document. It indicates that some aspect of the document is
+        [=monetized=].
       </p>
       <p>
-        The <code data-x="rel-monetization">monetization</code> keyword may be
-        used with <code>link</code> elements. This keyword creates an
-        <span data-x="external resource link">external resource link</span>.
+        The `monetization` keyword may be used with [^link^] elements. This
+        keyword creates an [=external resource link=]. This keyword is
+        <a data-cite="html#body-ok">body-ok</a>.
       </p>
       <p>
-        The <code data-x="rel-monetization">monetization</code> keyword
-        indicates that some aspect of the document is monetized.
+        A user agent MUST NOT <a data-cite="html#delay-the-load-event">delay
+        the load event</a> for this link type.
       </p>
-      <div>
-        <p>
-          The default type for resources given by the <code data-x=
-          "rel-monetization">monetization</code> keyword is
-          <code>application/json</code>.
-        </p>
-        <p>
-          The appropriate times to <span data-x=
-          "fetch and process the linked resource">fetch and process</span> this
-          type of link are:
-        </p>
-        <ul>
-          <li>
-            <p>
-              When the <span>external resource link</span> is created on a
-              <code>link</code> element that is already <span>browsing-context
-              connected</span>.
-            </p>
-          </li><!-- e.g. rel="" changed, href="" set... -->
-          <li>
-            <p>
-              When the <span>external resource link</span>'s <code>link</code>
-              element becomes [=browsing-context connected=].
-            </p>
-          </li>
-          <li>
-            <p>
-              When the <code data-x="attr-link-href">href</code> attribute of
-              the <code>link</code> element of an <span>external resource
-              link</span> that is already <span>browsing-context
-              connected</span> is changed.
-            </p>
-          </li>
-          <li>
-            <p>
-              When the <code data-x="attr-link-disabled">disabled</code>
-              attribute of the <code>link</code> element of an <span>external
-              resource link</span> that is already <span>browsing-context
-              connected</span> is set, changed, or removed.
-            </p>
-          </li>
-          <li>
-            <p>
-              When the <code data-x="attr-link-crossorigin">crossorigin</code>
-              attribute of the <code>link</code> element of an <span data-x=
-              "external resource link">external resource link</span> that is
-              already <span>browsing-context connected</span> is set, changed,
-              or removed.
-            </p>
-          </li>
-          <li>
-            <p>
-              When the <code data-x="attr-link-type">type</code> attribute of
-              the <code>link</code> element of an <span>external resource
-              link</span> that is already <span>browsing-context
-              connected</span> is set or changed to a value that does not or no
-              longer matches the <span data-x="Content-Type">Content-Type
-              metadata</span> of the previous obtained external resource, if
-              any.
-            </p>
-          </li>
-          <li>
-            <p>
-              When the <code data-x="attr-link-type">type</code> attribute of
-              the <code>link</code> element of an <span>external resource
-              link</span> that is already <span>browsing-context
-              connected</span>, but was previously not obtained due to the
-              <code data-x="attr-link-type">type</code> attribute specifying an
-              unsupported type, is set, removed, or changed.
-            </p>
-          </li>
-        </ul>
-        <p>
-          A user agent MUST NOT <span>delay the load event</span> for this link
-          type.
-        </p>
-        <p>
-          The <span>linked resource fetch setup steps</span> for this type of
-          linked resource, given a <code>link</code> element <var>element</var>
-          and <span data-x="concept-request">request</span> <var>request</var>,
-          are:
-        </p>
-        <ol>
-          <li>
-            <!-- detached element / non-fully active elements -->
-            <p>
-              If <var>element</var> <span>cannot navigate</span>, then return
-              false.
-            </p>
-          </li>
-          <li>
-            <p>
-              If <var>element</var>'s <span>node document</span> is not
-              [=allowed to use=] the "monetization" feature, return false.
-            </p>
-          </li>
-          <li>
-            <p>
-              Let <var>context</var> be <var>element</var>'s <span>node
-              document</span>'s <span data-x="concept-document-bc">browsing
-              context</span>.
-            </p>
-          </li>
-          <li>
-            <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-initiator">initiator</span> to "`document`".
-            </p>
-          </li>
-          <li>
-            <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-destination">destination</span> to
-              "<code data-x="">monetization</code>".
-            </p>
-          </li>
-          <li>
-            <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-mode">mode</span> to "<code data-x=
-              "">cors</code>".
-            </p>
-          </li>
-          <li>
-            <p>
-              Set <var>request</var>'s <span data-x=
-              "concept-request-credentials-mode">credentials mode</span> to the
-              <span>CORS settings attribute credentials mode</span> for
-              <var>element</var>'s <code data-x=
-              "attr-link-crossorigin">crossorigin</code> content attribute.
-            </p>
-          </li>
-          <li>
-            <p>
-              Return true.
-            </p>
-          </li>
-        </ol>
-        <p>
-          To <span data-x="process the linked resource">process this type of
-          linked resource</span> given a <code>link</code> element
-          <var>element</var>, boolean <var>success</var>, and <span data-x=
-          "concept-response">response</span> <var>response</var>:
-        </p>
-        <ol>
-          <li>
-            <p>
-              If |response|'s status is not an OK status, then set |success| to
-              false.
-            </p>
-          </li>
-          <li>
-            <p>
-              Otherwise, if <var>response</var>'s <span data-x=
-              "Content-Type">Content-Type metadata</span> is not
-              <code>application/json</code>, then set <var>success</var> to
-              false.
-            </p>
-          </li>
-          <li>Let |json| be the result of [=parse JSON bytes to an Infra
-          value=] passing |response|'s [=Response/body=].
-          </li>
-          <li>If |json| is an exception, then set <var>success</var> to false.
-          </li>
-          <li>
-            <p>
-              If the user agent has exhausted the number of allowed [=payment
-              sessions=], set |success| to false.
-            </p>
-          </li>
-          <li>Otherwise, establish a new [=payment session=].
-          </li>
-          <li>[=Queue an element task=] on the [=networking task source=] given
-          |element| and the following steps:
-            <ol>
-              <li>If |success| is true, [=fire an event=] named `"load"` at
-              |element|.
-              </li>
-              <li>Otherwise, [=fire an event=] named `"error"` at |element|.
-              </li>
-            </ol>
-          </li>
-        </ol>
-      </div>
       <p>
-        If a "monetization" <code>link</code> is no longer [=browsing-context
+        The default type for resources given by the `monetization` keyword is
+        `application/json`.
+      </p>
+      <p>
+        The appropriate times to fetch and process this type of link are:
+      </p>
+      <ul>
+        <li>
+          <p>
+            When the [=external resource link=] is created on a [^link^]
+            element that is already [=browsing-context connected=].
+          </p>
+        </li><!-- e.g. rel="" changed, href="" set... -->
+        <li>
+          <p>
+            When the [=external resource link=]'s [^link^] element becomes
+            [=browsing-context connected=].
+          </p>
+        </li>
+        <li>
+          <p>
+            When the [^link/href^] attribute of the [^link^] element of an
+            [=external resource link=] that is already [=browsing-context
+            connected=] is changed.
+          </p>
+        </li>
+        <li>
+          <p>
+            When the [^link/disabled^] attribute of the [^link^] element of an
+            [=external resource link=] that is already [=browsing-context
+            connected=] is set, changed, or removed.
+          </p>
+        </li>
+        <li>
+          <p>
+            When the [^link/crossorigin^] attribute of the [^link^] element of
+            an [=external resource link=] that is already [=browsing-context
+            connected=] is set, changed, or removed.
+          </p>
+        </li>
+        <li>
+          <p>
+            When the [^link/type^] attribute of the [^link^] element of an
+            [=external resource link=] that is already [=browsing-context
+            connected=] is set or changed to a value that does not or no longer
+            matches the Content-Type metadata of the previous obtained external
+            resource, if any.
+          </p>
+        </li>
+        <li>
+          <p>
+            When the [^link/type^] attribute of the [^link^] element of an
+            [=external resource link=] that is already [=browsing-context
+            connected=], but was previously not obtained due to the
+            [^link/type^] attribute specifying an unsupported type, is set,
+            removed, or changed.
+          </p>
+        </li>
+      </ul>
+      <p>
+        The linked resource fetch setup steps for this type of linked resource,
+        given a [^link^] element |element:HTMLLinkElement| and [=request=]
+        <var>request</var>, are:
+      </p>
+      <ol>
+        <li>
+          <p>
+            If |element|'s [^link/disabled^] attribute is set, stop all
+            previous [=payment sessions=] initiated by |element|'s [=external
+            resource link=], then return false.
+          </p>
+        </li>
+        <li>
+          <!-- detached element / non-fully active elements -->
+          <p>
+            If |element| cannot navigate, return false.
+          </p>
+        </li>
+        <li>
+          <p>
+            If |element|'s [=Node/node document|node document=] is not
+            [=allowed to use=] the "monetization" feature, return false.
+          </p>
+        </li>
+        <li>
+          <p>
+            Set <var>request</var>'s [=request/initiator=] to "`document`".
+          </p>
+        </li>
+        <li>
+          <p>
+            Set <var>request</var>'s [=request/destination=] to
+            "`monetization`".
+          </p>
+        </li>
+        <li>
+          <p>
+            Set <var>request</var>'s [=request/mode=] to "`cors`".
+          </p>
+        </li>
+        <li>
+          <p>
+            Set <var>request</var>'s [=request/credentials mode=] to the [=CORS
+            settings attribute credentials mode=] for |element|'s
+            [^link/crossorigin^] content attribute.
+          </p>
+        </li>
+        <li>
+          <p>
+            Return true.
+          </p>
+        </li>
+      </ol>
+      <p>
+        To process this type of linked resource given a [^link^] element
+        |element|, boolean <var>success</var>, and [=response=]
+        <var>response</var>:
+      </p>
+      <ol>
+        <li>
+          <p>
+            Stop all previous [=payment sessions=] initiated by |element|'s
+            [=external resource link=].
+          </p>
+        </li>
+        <li>
+          <p>
+            If |response|'s status is not an OK status, then set |success| to
+            false.
+          </p>
+        </li>
+        <li>
+          <p>
+            Otherwise, if <var>response</var>'s Content-Type metadata is not
+            `application/json`, then set <var>success</var> to false.
+          </p>
+        </li>
+        <li>Let |json| be the result of [=parse JSON bytes to an Infra value=]
+        passing |response|'s [=Response/body=].
+        </li>
+        <li>If |json| is an exception, then set <var>success</var> to false.
+        </li>
+        <li>
+          <p>
+            If the user agent has exhausted the number of allowed [=payment
+            sessions=], set |success| to false.
+          </p>
+        </li>
+        <li>Otherwise, start a new [=payment session=].
+        </li>
+        <li>[=Queue an element task=] on the [=networking task source=] given
+        |element| and the following steps:
+          <ol>
+            <li>If |success| is true, [=fire an event=] named `"load"` at
+            |element|.
+            </li>
+            <li>Otherwise, [=fire an event=] named `"error"` at |element|.
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p>
+        If a "monetization" [^link^] is no longer [=browsing-context
         connected=], a user agent MUST stop the [=payment session=].
       </p>
     </section>
@@ -725,9 +704,9 @@
           <dfn>assetScale</dfn> attribute (deprecated)
         </h3>
         <p>
-          The scale of the amount. For example, USD would have an
-          <code>assetScale</code> of <code>2</code> when denominated in cents.
-          When getting, returns the value it was initialized with.
+          The scale of the amount. For example, USD would have an `assetScale`
+          of `2` when denominated in cents. When getting, returns the value it
+          was initialized with.
         </p>
       </section>
       <div class="note" title="MonetizationCurrencyAmount">
