@@ -824,8 +824,15 @@
             [=payment sessions=] established by a [=Document=] matching the
             relevant [=Document/origin=].
             </li>
-            <li>Set the "monetization"'s [=powerful feature/extra permission
-            data type=] to null.
+            <li>If |state| is not {{PermissionState/"granted"}}, set the
+            `"monetization"`'s [=powerful feature/extra permission data type=]
+            to null.
+            </li>
+            <li>Let |rate| be `"monetization"`'s [=powerful feature/extra
+            permission data=] for |element|'s [=relevant settings object=].
+            </li>
+            <li>Adjust all [=payment sessions=] established by a [=Document=]
+            matching the relevant [=Document/origin=] to use the new |rate|.
             </li>
           </ol>
         </dd>
