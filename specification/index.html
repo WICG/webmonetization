@@ -1053,8 +1053,8 @@
         history or to the [=wallet address=].
       </p>
       <p>
-        To avoid increasing the fingerprinting surface, the `"load"` event is
-        fired independently of the [=permission state=]. Otherwise it could
+        To avoid increasing the fingerprinting surface, the `"load"` event MUST
+        be fired independently of the [=permission state=]. Otherwise it could
         indicate whether the user has connected a wallet or not. For the same
         reason the [=permission state=] remains {{PermissionState/"prompt"}}
         when no wallet is connected, to not allow for distinction between users
