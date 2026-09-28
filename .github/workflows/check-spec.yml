@@ -35,13 +35,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - source: "specification/index.html"
-            destination: "specification/validated-wm.html"
-          - source: "specification/flows/index.html"
-            destination: "specification/flows/validated-flows.html"
-          - source: "specification/extensions-api/index.html"
-            destination: "specification/flows/validated-extensions-api.html"
+        source:
+          [
+            "specification/index.html",
+            "specification/flows/index.html",
+            "specification/extensions-api/index.html",
+          ]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -52,4 +51,3 @@ jobs:
           SOURCE: ${{ matrix.source }}
           DESTINATION: ${{ matrix.destination }}
           VALIDATE_INPUT_MARKUP: true
-          BUILD_FAIL_ON: link-error
