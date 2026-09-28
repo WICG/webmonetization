@@ -57,7 +57,7 @@
         group: 'wicg',
         xref: {
           profile: 'web-platform',
-          specs: ['payment-request'],
+          specs: ['ECMAScript', 'payment-request'],
         },
         localBiblio: {
           Interledger: {
@@ -625,13 +625,13 @@
           for details.
         </p>
       </section>
-      <section data-dfn-for="">
+      <section>
         <h3>
           Creating a `MonetizationCurrencyAmount`
         </h3>
         <p>
           To <dfn>create a monetization currency amount</dfn>, given a
-          {{PaymentCurrencyAmount}} |paymentAmount| and a [=realm=] |realm|,
+          {{PaymentCurrencyAmount}} |paymentAmount| and a [=ECMAScript/realm=] |realm|,
           run the following steps:
         </p>
         <ol class="algorithm">
