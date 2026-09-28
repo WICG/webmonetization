@@ -784,11 +784,11 @@
         <dd>
           A <dfn>rate</dfn>, which is either null or a positive number
           representing the maximum amount to pay per hour in the [=wallet
-          address=]'s asset currency and asset scale. Null means the user agent
-          uses its default rate.
+          address=]'s currency minor unit. Null means the user agent uses its
+          default rate.
           <pre class="idl">
             dictionary MonetizationPermissionStorage {
-              float rate = null;
+              unsigned long long rate = null;
             };
           </pre>
         </dd>
