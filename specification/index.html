@@ -817,8 +817,12 @@
         <dd>
           To revoke the "monetization" permission, the UA must:
           <ol>
-            <li>Stop all [=payment sessions=] established by a [=Document=]
-            matching the relevant [=Document/origin=].
+            <li>Let |state| be the result of [=get the current permission
+            state=] with `"monetization"`.
+            </li>
+            <li>If |state| is not {{PermissionState/"granted"}}, stop all
+            [=payment sessions=] established by a [=Document=] matching the
+            relevant [=Document/origin=].
             </li>
             <li>Set the "monetization"'s [=powerful feature/extra permission
             data type=] to null.
