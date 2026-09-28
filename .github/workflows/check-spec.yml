@@ -1,4 +1,4 @@
-name: Check Specification Format
+name: Check Specification
 
 on:
   pull_request:
@@ -29,3 +29,22 @@ jobs:
             git diff specification/index.html
             exit 1
           fi
+
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        source:
+          - "specification/index.html"
+          - "specification/flows/index.html"
+          - "specification/extensions-api/index.html"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Validate spec
+        uses: w3c/spec-prod@v2
+        with:
+          SOURCE: ${{ matrix.source }}
+          VALIDATE_INPUT_MARKUP: true
