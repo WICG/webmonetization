@@ -55,7 +55,10 @@
         shortName: 'web-monetization',
         specStatus: 'CG-DRAFT',
         group: 'wicg',
-        xref: 'web-platform',
+        xref: {
+          profile: 'web-platform',
+          specs: ['payment-request'],
+        },
         localBiblio: {
           Interledger: {
             title: 'Interledger Protocol',
@@ -588,7 +591,7 @@
       </h2>
       <p>
         The `MonetizationCurrencyAmount` interface maps directly to the
-        {{PaymentCurrencyAmount}} dictionary as defined in [[payment-request]].
+        {{PaymentCurrencyAmount}} dictionary.
       </p>
       <pre class="idl">
           [SecureContext, Exposed=Window]
@@ -640,7 +643,7 @@
         };
 
         dictionary MonetizationEventInit : EventInit {
-          required MonetizationCurrencyAmount amountSent;
+          required PaymentCurrencyAmount amountSent;
           required USVString? incomingPayment;
           required USVString walletAddress;
 
@@ -652,6 +655,23 @@
           required USVString paymentPointer;
         };
       </pre>
+      <p>
+        The [=event constructing steps=] for {{MonetizationEvent}}, given
+        |event| and |eventInitDict|, are:
+      </p>
+      <ol class="algorithm">
+        <li>Let |amount| be a new {{MonetizationCurrencyAmount}} in |event|'s
+        [=relevant realm=].
+        </li>
+        <li>Set |amount|'s {{MonetizationCurrencyAmount/currency}} to
+        |eventInitDict|["amountSent"]["currency"].
+        </li>
+        <li>Set |amount|'s {{MonetizationCurrencyAmount/value}} to
+        |eventInitDict|["amountSent"]["value"].
+        </li>
+        <li>Set |event|'s {{MonetizationEvent/amountSent}} to |amount|.
+        </li>
+      </ol>
       <div class="warning">
         <p>
           The {{MonetizationEvent/amount}}, {{MonetizationEvent/assetCode}},
@@ -676,10 +696,8 @@
           <dfn>amountSent</dfn> attribute
         </h3>
         <p>
-          The amount <em>sent</em>. This SHOULD be processed in the same way as
-          a {{PaymentCurrencyAmount}} dictionary as defined in
-          [[payment-request]]. When getting, returns the value it was
-          initialized with.
+          The amount <em>sent</em>. When getting, returns the
+          {{MonetizationCurrencyAmount}} set by the event constructing steps.
         </p>
       </section>
       <section>
@@ -730,12 +748,6 @@
           When getting, returns the value it was initialized with.
         </p>
       </section>
-      <div class="note" title="MonetizationCurrencyAmount">
-        The members of the `MonetizationCurrencyAmount` interface map directly
-        to the `value` and `currency` attributes of a {{PaymentCurrencyAmount}}
-        dictionary. See the documentation of {{PaymentCurrencyAmount}} for
-        guidance on processing and display of these attributes.
-      </div>
       <section>
         <h3>
           <dfn>receipt</dfn> attribute (deprecated)
