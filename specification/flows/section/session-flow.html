@@ -317,8 +317,9 @@
           If |maxRateOfPayPerMonth| is 0, then return the tuple (0, 1000).
           <p class="note">A monthly budget of 0 disables payment attempts.</p>
         </li>
-        <li>Let |secondsInMonth:double| be `30 * 24 * 60 * 60`.</li>
-        <li class="note">A "month" is treated as a fixed 30-day period for payment pacing calculations.</li>
+        <li>Let |secondsInMonth:double| be `30 * 24 * 60 * 60`.
+          <p class="note">A "month" is treated as a fixed 30-day period for payment pacing calculations.</p>
+        </li>
         <li>Let |defaultPaymentAmountPerSecond:double| be `|maxRateOfPayPerMonth| / |secondsInMonth|`.</li>
         <li>Let |minSendableAmount:long long| be 1.</li>
         <li>Let |paymentAmount:long long| be 0.</li>
@@ -329,8 +330,9 @@
           Otherwise:
           <ol>
             <li>Set |paymentAmount| to |minSendableAmount|.</li>
-            <li>Set |paymentDelay| to `Math.ceil(1000 * (|paymentAmount| / |defaultPaymentAmountPerSecond|))`.</li>
-            <li class="note">When using the minimum sendable amount, |defaultPaymentAmountPerSecond| is less than 1, so this computation yields a delay greater than 1000ms (ensuring the long-run average spend does not exceed {{Storage/maxRateOfPay}}).</li>
+            <li>Set |paymentDelay| to `Math.ceil(1000 * (|paymentAmount| / |defaultPaymentAmountPerSecond|))`.
+              <p class="note">When using the minimum sendable amount, |defaultPaymentAmountPerSecond| is less than 1, so this computation yields a delay greater than 1000ms (ensuring the long-run average spend does not exceed {{Storage/maxRateOfPay}}).</p>
+            </li>
           </ol>
         </li>
         <li>Return the tuple (|paymentAmount|, |paymentDelay|).</li>

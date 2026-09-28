@@ -146,13 +146,15 @@
         <li>Let |grant:Grant| be |storage|'s {{Storage/grant}}.</li>
         <li>Let |continueUri:DOMString| be |grant|'s {{Grant/continue}}.{{Continue/uri}}.</li>
         <li>Let |continueAccessToken:DOMString| be |grant|'s {{Grant/continue}}.{{Continue/access_token}}.{{ContinueAccessToken/value}}.</li>
-        <li>Run the [=send a cancel grant request=] algorithm with |continueUri| and |continueAccessToken|.</li>
-        <li class="note">Failure to cancel (e.g. network error) SHOULD surface a non-blocking warning to the user;
-          the browser MAY still proceed with local cleanup.</li>
+        <li>Run the [=send a cancel grant request=] algorithm with |continueUri| and |continueAccessToken|.
+          <p class="note">Failure to cancel (e.g. network error) SHOULD surface a non-blocking warning to the user;
+            the browser MAY still proceed with local cleanup.</p>
+        </li>
       </ol>
     </li>
-    <li>Run the [=clear wallet data=] algorithm.</li>
-    <li class="note">All grant data, authentication keys, and wallet details are removed.
-      Reconnecting will generate a new key pair requiring re-registration of the public key.</li>
+    <li>Run the [=clear wallet data=] algorithm.
+      <p class="note">All grant data, authentication keys, and wallet details are removed.
+        Reconnecting will generate a new key pair requiring re-registration of the public key.</p>
+    </li>
   </ol>
 </section>

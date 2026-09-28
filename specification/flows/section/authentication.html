@@ -295,23 +295,22 @@
             <li>[=Set a structured header=] with headerName `Signature`, key `sig1`, and |signatureValue| as value.</li>
           </ol>
         </li>
-
-        <aside class="example" title="Signed HTTP request (illustrative)">
-          <pre>
-            POST / HTTP/1.1
-            Host: example.com
-            Content-Type: application/json
-            Content-Length: 18
-            Authorization: GNAP 123454321
-            Signature-Input: sig1=("@method" "@target-uri" "authorization" "content-length" "content-digest" "content-type");keyid="eddsa_key_1";created=1704722601
-            Signature: sig1=:EiCdZMbyXj6pN59g+mh3mY/Q6DlSBrCL7CJM4OZ550+d2MZhfdDKrOJU/ugeRdwd1KYyd1wA/VA7J2fi9YehCA==:
-
-            {
-              "hello":"world"
-            }
-          </pre>
-        </aside>
       </ol>
+      <aside class="example" title="Signed HTTP request (illustrative)">
+        <pre>
+          POST / HTTP/1.1
+          Host: example.com
+          Content-Type: application/json
+          Content-Length: 18
+          Authorization: GNAP 123454321
+          Signature-Input: sig1=("@method" "@target-uri" "authorization" "content-length" "content-digest" "content-type");keyid="eddsa_key_1";created=1704722601
+          Signature: sig1=:EiCdZMbyXj6pN59g+mh3mY/Q6DlSBrCL7CJM4OZ550+d2MZhfdDKrOJU/ugeRdwd1KYyd1wA/VA7J2fi9YehCA==:
+
+          {
+            "hello":"world"
+          }
+        </pre>
+      </aside>
     </div>
 
     <div class="algorithm">
