@@ -187,7 +187,7 @@
           the request.
         </p>
         <p>
-          A more sophisticated implementation should track the `receivedAmount`
+          A more sophisticated implementation SHOULD track the `receivedAmount`
           property and ensure it is increasing after each {{MonetizationEvent}}
           to verify that a new payment has been received.
         </p>
@@ -304,7 +304,7 @@
         monetize the document.
       </p>
       <p>
-        The <code data-x="rel-monetization">monetization</code> keyword may be
+        The <code data-x="rel-monetization">monetization</code> keyword MAY be
         used with <code>link</code> elements. This keyword creates an
         <span data-x="external resource link">external resource link</span>.
       </p>
@@ -523,7 +523,7 @@
           </dt>
           <dd>
             <p>
-              The attribute must be an [=event handler IDL attribute=] and
+              The attribute MUST be an [=event handler IDL attribute=] and
               [=event handler content attribute=] for the {{monetization}}
               event supported by all [=element=]s, {{Document}} objects, and
               {{Window}} objects. The user agent uses it to notify that some
@@ -676,7 +676,7 @@
           <dfn>amountSent</dfn> attribute
         </h3>
         <p>
-          The amount <em>sent</em>. This should be processed in the same way as
+          The amount <em>sent</em>. This SHOULD be processed in the same way as
           a {{PaymentCurrencyAmount}} dictionary as defined in
           [[payment-request]]. When getting, returns the value it was
           initialized with.
