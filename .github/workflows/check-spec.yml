@@ -1,0 +1,56 @@
+name: Check Specification
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "specification/**"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Install tidy
+        run: sudo apt-get update && sudo apt-get install -y tidy
+
+      - name: Check spec formatting
+        run: |
+          npm run format:spec || true
+          if ! git diff --exit-code --quiet specification/index.html; then
+            echo "::error::specification/index.html is not formatted correctly. Run 'bun format:spec' locally and commit the changes."
+            git diff specification/index.html
+            exit 1
+          fi
+
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - source: "specification/index.html"
+            destination: "specification/validated-wm.html"
+          - source: "specification/flows/index.html"
+            destination: "specification/flows/validated-flows.html"
+          - source: "specification/extensions-api/index.html"
+            destination: "specification/flows/validated-extensions-api.html"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Validate spec
+        uses: w3c/spec-prod@v2
+        with:
+          SOURCE: ${{ matrix.source }}
+          DESTINATION: ${{ matrix.destination }}
+          VALIDATE_INPUT_MARKUP: true
+          VALIDATE_LINKS: true
+          BUILD_FAIL_ON: link-error
