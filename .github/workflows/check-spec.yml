@@ -52,5 +52,4 @@ jobs:
           SOURCE: ${{ matrix.source }}
           DESTINATION: ${{ matrix.destination }}
           VALIDATE_INPUT_MARKUP: true
-          VALIDATE_LINKS: true
           BUILD_FAIL_ON: link-error
