@@ -558,14 +558,19 @@
             <ol>
               <li>If |target| is not connected, return.
               </li>
-              <li>[=Fire an event=] named `"monetization"` that uses the
-              {{MonetizationEvent}} interface at |target|, with its
-              {{MonetizationEvent/amountSent}} attribute initialized to the
-              result of [=create a monetization currency amount|creating a
-              monetization currency amount=] given
-              |eventInitDict|["amountSent"] and |target|'s [=relevant realm=],
-              its other attributes initialized with |eventInitDict|, and
-              {{Event/bubbles}} initialized to true.
+              <li>Let |amountSent:MonetizationCurrencyAmount| be the result of
+              [=create a monetization currency amount|creating a monetization
+              currency amount=] given |payment|'s amount and |target|'s
+              [=relevant realm=].
+              </li>
+              <li>[=Fire an event=] named `"monetization"` at |target| using
+              {{MonetizationEvent}}, with its {{MonetizationEvent/amountSent}}
+              attribute initialized to |amountSent|,
+              {{MonetizationEvent/incomingPayment}} attribute initialized to
+              |payment|'s incoming payment URL, it's
+              {{MonetizationEvent/walletAddress}} attribute initialized to
+              |payment|'s wallet address, the deprecated attributes likewise,
+              and its {{Event/bubbles}} attribute initialized to true.
               </li>
             </ol>
           </li>
@@ -717,7 +722,7 @@
         </h3>
         <p>
           The amount <em>sent</em>. When getting, returns the
-          {{MonetizationCurrencyAmount}} set by the event constructing steps.
+          {{MonetizationCurrencyAmount}} it was initialized to.
         </p>
       </section>
       <section>
