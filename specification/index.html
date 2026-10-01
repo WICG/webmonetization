@@ -226,8 +226,10 @@
           <dfn>Monetized</dfn>:
         </dt>
         <dd>
-          A document, [^link^] element, or [=wallet address=] is monetized when
-          it is set up to receive payments through [=monetization=].
+          A [^link^] element is monetized when it has the `monetization`
+          keyword; its linked resource is then a [=wallet address=]. A
+          [=document=] is monetized when it contains a monetized [^link^]
+          element.
         </dd>
         <dt>
           <dfn data-lt="provider">Monetization provider</dfn>:
@@ -703,8 +705,8 @@
           <dfn>walletAddress</dfn> attribute
         </h3>
         <p>
-          A [=URL=] representing the [=wallet address=] that has been
-          [=monetized=]. When getting, returns the value it was initialized
+          A [=URL=] representing the [=wallet address=] the payment was
+          initiated for. When getting, returns the value it was initialized
           with.
         </p>
       </section>
@@ -760,8 +762,8 @@
           <dfn>paymentPointer</dfn> attribute (deprecated)
         </h3>
         <p>
-          A [=URL=] representing the [=wallet address=] that has been
-          [=monetized=]. When getting, returns the value it was initialized
+          A [=URL=] representing the [=wallet address=] the payment was
+          initiated for. When getting, returns the value it was initialized
           with.
         </p>
       </section>
@@ -778,9 +780,10 @@
       <aside class="note">
         <p>
           A <a>document</a>'s [=Document/permissions policy=] determines
-          whether [^link^] elements are [=monetized=] - particularly in
-          third-party content, such as an [^iframe^]. When disabled,
-          monetization is disabled and related events won't be dispatched.
+          whether the user agent starts [=payment sessions=] for [^link^]
+          elements - particularly in third-party content, such as an
+          [^iframe^]. When disabled, monetization is disabled and related
+          events won't be dispatched.
         </p>
       </aside>
       <aside class="note">
