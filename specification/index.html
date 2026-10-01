@@ -236,11 +236,19 @@
       </h2>
       <dl>
         <dt>
-          <dfn data-lt="monetized">Monetization</dfn>:
+          <dfn>Monetization</dfn>:
         </dt>
         <dd>
           Payments made by a user to a website, facilitated through a
           [=monetization provider=].
+        </dd>
+        <dt>
+          <dfn>Monetized</dfn>:
+        </dt>
+        <dd>
+          A [^link^] element is monetized when it has the `monetization`
+          keyword; its `href` then gives a [=wallet address=]. A [=document=]
+          is monetized when it contains a monetized [^link^] element.
         </dd>
         <dt>
           <dfn data-lt="provider">Monetization provider</dfn>:
@@ -330,7 +338,7 @@
       </p>
       <p>
         The <code data-x="rel-monetization">monetization</code> keyword
-        indicates that some aspect of the document is monetized.
+        indicates that some aspect of the document is [=monetized=].
       </p>
       <div>
         <p>
@@ -546,8 +554,8 @@
               The attribute MUST be an [=event handler IDL attribute=] and
               [=event handler content attribute=] for the {{monetization}}
               event supported by all [=element=]s, {{Document}} objects, and
-              {{Window}} objects. The user agent uses it to notify that some
-              [^link^] has been [=monetized=].
+              {{Window}} objects. The user agent uses it to notify that a
+              payment has been initiated for a [=monetized=] [^link^].
             </p>
           </dd>
         </dl>
@@ -716,8 +724,9 @@
           <dfn>walletAddress</dfn> attribute
         </h3>
         <p>
-          A [=URL=] representing the [=wallet address=] that has been
-          monetized. When getting, returns the value it was initialized with.
+          A [=URL=] representing the [=wallet address=] the payment was
+          initiated for. When getting, returns the value it was initialized
+          with.
         </p>
       </section>
       <section>
@@ -772,8 +781,9 @@
           <dfn>paymentPointer</dfn> attribute (deprecated)
         </h3>
         <p>
-          A [=URL=] representing the [=wallet address=] that has been
-          monetized. When getting, returns the value it was initialized with.
+          A [=URL=] representing the [=wallet address=] the payment was
+          initiated for. When getting, returns the value it was initialized
+          with.
         </p>
       </section>
     </section>
@@ -789,9 +799,10 @@
       <aside class="note">
         <p>
           A <a>document</a>'s [=Document/permissions policy=] determines
-          whether [^link^] elements are monetized - particularly in third-party
-          content, such as an [^iframe^]. When disabled, monetization is
-          disabled and related events won't be dispatched.
+          whether the user agent starts [=payment sessions=] for [^link^]
+          elements - particularly in third-party content, such as an
+          [^iframe^]. When disabled, monetization is disabled and related
+          events won't be dispatched.
         </p>
       </aside>
       <aside class="note">
