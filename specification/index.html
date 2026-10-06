@@ -75,7 +75,10 @@
         shortName: 'web-monetization',
         specStatus: 'CG-DRAFT',
         group: 'wicg',
-        xref: 'web-platform',
+        xref: {
+          profile: 'web-platform',
+          specs: ['ECMAScript', 'payment-request'],
+        },
         localBiblio: {
           Interledger: {
             title: 'Interledger Protocol',
@@ -574,19 +577,24 @@
           </li>
           <li>If |target| is `null`, then return.
           </li>
-          <li>Let |eventInitDict:MonetizationEventInit| be a
-          {{MonetizationEventInit}} dictionary, whose members are initialized
-          to match |payment|'s details.
-          </li>
           <li>[=Queue a task=] on the [=monetization task source=] to perform
           the following steps:
             <ol>
               <li>If |target| is not connected, return.
               </li>
-              <li>[=Fire an event=] named `"monetization"` that uses the
-              {{MonetizationEvent}} interface at |target|, with its attributes
-              initialized with |eventInitDict|, and {{Event/bubbles}}
-              initialized to true.
+              <li>Let |amountSent:MonetizationCurrencyAmount| be the result of
+              [=create a monetization currency amount|creating a monetization
+              currency amount=] given |payment|'s amount and |target|'s
+              [=relevant realm=].
+              </li>
+              <li>[=Fire an event=] named `"monetization"` at |target| using
+              {{MonetizationEvent}}, with its {{MonetizationEvent/amountSent}}
+              attribute initialized to |amountSent|, its
+              {{MonetizationEvent/incomingPayment}} attribute initialized to
+              |payment|'s incoming payment URL, its
+              {{MonetizationEvent/walletAddress}} attribute initialized to
+              |payment|'s wallet address, the deprecated attributes likewise,
+              and its {{Event/bubbles}} attribute initialized to true.
               </li>
             </ol>
           </li>
@@ -616,7 +624,7 @@
       </h2>
       <p>
         The `MonetizationCurrencyAmount` interface maps directly to the
-        {{PaymentCurrencyAmount}} dictionary as defined in [[payment-request]].
+        {{PaymentCurrencyAmount}} dictionary.
       </p>
       <pre class="idl">
           [SecureContext, Exposed=Window]
@@ -646,6 +654,28 @@
           for details.
         </p>
       </section>
+      <section>
+        <h3>
+          Creating a `MonetizationCurrencyAmount`
+        </h3>
+        <p>
+          To <dfn>create a monetization currency amount</dfn>, given a
+          {{PaymentCurrencyAmount}} |paymentAmount| and a [=ECMAScript/realm=]
+          |realm|, run the following steps:
+        </p>
+        <ol class="algorithm">
+          <li>Let |amount| be a new {{MonetizationCurrencyAmount}} in |realm|.
+          </li>
+          <li>Set |amount|'s {{MonetizationCurrencyAmount/currency}} to
+          |paymentAmount|["currency"].
+          </li>
+          <li>Set |amount|'s {{MonetizationCurrencyAmount/value}} to
+          |paymentAmount|["value"].
+          </li>
+          <li>Return |amount|.
+          </li>
+        </ol>
+      </section>
     </section>
     <section data-dfn-for="MonetizationEvent">
       <h2>
@@ -668,7 +698,7 @@
         };
 
         dictionary MonetizationEventInit : EventInit {
-          required MonetizationCurrencyAmount amountSent;
+          required PaymentCurrencyAmount amountSent;
           required USVString? incomingPayment;
           required USVString walletAddress;
 
@@ -680,6 +710,17 @@
           required USVString paymentPointer;
         };
       </pre>
+      <p>
+        The [=event constructing steps=] for {{MonetizationEvent}}, given
+        |event| and |eventInitDict|, are:
+      </p>
+      <ol class="algorithm">
+        <li>Set |event|'s {{MonetizationEvent/amountSent}} to the result of
+        [=create a monetization currency amount|creating a monetization
+        currency amount=] given |eventInitDict|["amountSent"] and |event|'s
+        [=relevant realm=].
+        </li>
+      </ol>
       <div class="warning">
         <p>
           The {{MonetizationEvent/amount}}, {{MonetizationEvent/assetCode}},
@@ -704,10 +745,8 @@
           <dfn>amountSent</dfn> attribute
         </h3>
         <p>
-          The amount <em>sent</em>. This SHOULD be processed in the same way as
-          a {{PaymentCurrencyAmount}} dictionary as defined in
-          [[payment-request]]. When getting, returns the value it was
-          initialized with.
+          The amount <em>sent</em>. When getting, returns the
+          {{MonetizationCurrencyAmount}} it was initialized to.
         </p>
       </section>
       <section>
@@ -759,12 +798,6 @@
           When getting, returns the value it was initialized with.
         </p>
       </section>
-      <div class="note" title="MonetizationCurrencyAmount">
-        The members of the `MonetizationCurrencyAmount` interface map directly
-        to the `value` and `currency` attributes of a {{PaymentCurrencyAmount}}
-        dictionary. See the documentation of {{PaymentCurrencyAmount}} for
-        guidance on processing and display of these attributes.
-      </div>
       <section>
         <h3>
           <dfn>receipt</dfn> attribute (deprecated)
