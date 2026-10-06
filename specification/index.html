@@ -549,10 +549,6 @@
           </li>
           <li>If |target| is `null`, then return.
           </li>
-          <li>Let |eventInitDict:MonetizationEventInit| be a
-          {{MonetizationEventInit}} dictionary, whose members are initialized
-          to match |payment|'s details.
-          </li>
           <li>[=Queue a task=] on the [=monetization task source=] to perform
           the following steps:
             <ol>
@@ -565,9 +561,9 @@
               </li>
               <li>[=Fire an event=] named `"monetization"` at |target| using
               {{MonetizationEvent}}, with its {{MonetizationEvent/amountSent}}
-              attribute initialized to |amountSent|,
+              attribute initialized to |amountSent|, its
               {{MonetizationEvent/incomingPayment}} attribute initialized to
-              |payment|'s incoming payment URL, it's
+              |payment|'s incoming payment URL, its
               {{MonetizationEvent/walletAddress}} attribute initialized to
               |payment|'s wallet address, the deprecated attributes likewise,
               and its {{Event/bubbles}} attribute initialized to true.
