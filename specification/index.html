@@ -349,7 +349,13 @@
         `application/json`.
       </p>
       <p>
-        The appropriate times to fetch and process this type of link are:
+        A [^link^] element with this link type has an <dfn>associated payment
+        session</dfn>, a [=payment session=] or null. It is initially null.
+      </p>
+      <p>
+        The appropriate times to <a data-cite=
+        "html#fetch-and-process-the-linked-resource">fetch and process</a> this
+        type of link are:
       </p>
       <ul>
         <li>
@@ -405,22 +411,29 @@
         </li>
       </ul>
       <p>
-        The linked resource fetch setup steps for this type of linked resource,
-        given a [^link^] element |element:HTMLLinkElement| and [=request=]
-        <var>request</var>, are:
+        The <a data-cite="html#fetch-and-process-the-linked-resource">fetch and
+        process the linked resource</a> algorithm for this type, given a
+        [^link^] element |element|, is as follows:
+      </p>
+      <ol>
+        <li>Stop |element|'s [=associated payment session=], if any, and set it
+        to null.
+        </li>
+        <li>Run the <a data-cite=
+        "html#default-fetch-and-process-the-linked-resource">default fetch and
+        process the linked resource</a> given |element|.
+        </li>
+      </ol>
+      <p>
+        The <a data-cite="html#linked-resource-fetch-setup-steps">linked
+        resource fetch setup steps</a> for this type of linked resource, given
+        a [^link^] element |element:HTMLLinkElement| and [=request=] |request|,
+        are:
       </p>
       <ol>
         <li>
           <p>
-            If |element|'s [^link/disabled^] attribute is set, stop all
-            previous [=payment sessions=] initiated by |element|'s [=external
-            resource link=], then return false.
-          </p>
-        </li>
-        <li>
-          <!-- detached element / non-fully active elements -->
-          <p>
-            If |element| cannot navigate, return false.
+            If |element|'s [^link/disabled^] attribute is set, return false.
           </p>
         </li>
         <li>
@@ -431,25 +444,24 @@
         </li>
         <li>
           <p>
-            Set <var>request</var>'s [=request/initiator=] to "`document`".
+            Set |request|'s [=request/initiator=] to "`document`".
           </p>
         </li>
         <li>
           <p>
-            Set <var>request</var>'s [=request/destination=] to
-            "`monetization`".
+            Set |request|'s [=request/destination=] to "`monetization`".
           </p>
         </li>
         <li>
           <p>
-            Set <var>request</var>'s [=request/mode=] to "`cors`".
+            Set |request|'s [=request/mode=] to "`cors`".
           </p>
         </li>
         <li>
           <p>
-            Set <var>request</var>'s [=request/credentials mode=] to the [=CORS
-            settings attribute credentials mode=] for |element|'s
-            [^link/crossorigin^] content attribute.
+            Set |request|'s [=request/credentials mode=] to the [=CORS settings
+            attribute credentials mode=] for |element|'s [^link/crossorigin^]
+            content attribute.
           </p>
         </li>
         <li>
@@ -459,16 +471,19 @@
         </li>
       </ol>
       <p>
-        To process this type of linked resource given a [^link^] element
-        |element|, boolean <var>success</var>, and [=response=]
-        <var>response</var>:
+        To <a data-cite="html#process-the-linked-resource">process this type of
+        linked resource</a> given a [^link^] element |element|, boolean
+        |success|, and [=response=] |response|:
       </p>
       <ol>
         <li>
           <p>
-            Stop all previous [=payment sessions=] initiated by |element|'s
-            [=external resource link=].
+            If, since the resource in question was fetched, it has become
+            appropriate to fetch it again, return.
           </p>
+        </li>
+        <li>If |element| no longer creates a `monetization` [=external resource
+        link=], or is not [=browsing-context connected=], return.
         </li>
         <li>
           <p>
@@ -478,14 +493,14 @@
         </li>
         <li>
           <p>
-            Otherwise, if <var>response</var>'s Content-Type metadata is not
-            `application/json`, then set <var>success</var> to false.
+            Otherwise, if |response|'s Content-Type metadata is not
+            `application/json`, then set |success| to false.
           </p>
         </li>
         <li>Let |json| be the result of [=parse JSON bytes to an Infra value=]
         passing |response|'s [=Response/body=].
         </li>
-        <li>If |json| is an exception, then set <var>success</var> to false.
+        <li>If |json| is an exception, then set |success| to false.
         </li>
         <li>
           <p>
@@ -493,7 +508,8 @@
             sessions=], set |success| to false.
           </p>
         </li>
-        <li>Otherwise, start a new [=payment session=].
+        <li>Otherwise, start a new [=payment session=] and set it as
+        |element|'s [=associated payment session=].
         </li>
         <li>[=Queue an element task=] on the [=networking task source=] given
         |element| and the following steps:
@@ -507,8 +523,10 @@
         </li>
       </ol>
       <p>
-        If a "monetization" [^link^] is no longer [=browsing-context
-        connected=], a user agent MUST stop the [=payment session=].
+        When a [^link^] element stops creating a "monetization" [=external
+        resource link=], or stops being [=browsing-context connected=], a user
+        agent MUST stop its [=associated payment session=], if any, and set it
+        to null.
       </p>
     </section>
     <section>
