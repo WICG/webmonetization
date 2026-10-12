@@ -1068,17 +1068,46 @@
         Privacy considerations
       </h2>
       <p>
-        Web Monetization is designed to be privacy-preserving: The user agent
-        does not send any data to the [=monetization provider=]. Instead, it
-        requests data from the [=monetization provider=] without ever revealing
-        the URL of the web page the user is currently browsing.
+        Besides the website, two parties take part in [=monetization=]: the
+        [=monetization provider=], which pays on behalf of the user, and the
+        [=monetization receiver=], which is paid on behalf of the website. The
+        user agent shares with each party only the data it needs to make or
+        receive a payment.
       </p>
       <p>
-        Further, the user agent gets the payment information from the [=wallet
-        address=] to establish the [=payment session=]. This also ensures the
-        [=monetization provider=] doesn't have access to a user's browsing
-        history or to the [=wallet address=].
+        The [=monetization provider=] only receives what it needs to send a
+        payment: the amount, and the [=wallet address=] to pay. The user agent
+        does not send the URL of the document, or of any other page the user
+        visits, to the [=monetization provider=].
       </p>
+      <aside class="note">
+        <p>
+          A [=wallet address=] can identify the website or person it belongs
+          to. A [=monetization provider=] that sees which [=wallet addresses=]
+          a user pays, and when, can therefore infer some of the websites the
+          user visits.
+        </p>
+      </aside>
+      <p>
+        The user agent does not send data about the user to the [=monetization
+        receiver=]. To set up a [=payment session=], it fetches the [=wallet
+        address=] instead. As with any other cross-origin resource the document
+        loads, that request can reveal the origin of the document and, if the
+        document's referrer policy allows it, the document's URL. The receiver
+        does not learn about other pages the user visits beyond the documents
+        that use its [=wallet addresses=].
+      </p>
+      <aside class="note">
+        <p>
+          In the payment flow described in the <a href=
+          "/specification/flows/">Web Monetization flows</a> draft
+          specification, the user agent identifies itself to the [=monetization
+          receiver=] with the user's own [=wallet address=] when requesting
+          permission to create an incoming payment. This lets the receiver link
+          [=payment sessions=] from the same user, including across different
+          websites that it serves.
+        </p>
+      </aside>
     </section>
     <section id="relation-to-other-technologies" class="informative">
       <h2>
