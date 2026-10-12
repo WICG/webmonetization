@@ -287,6 +287,17 @@
           receiver=]. One or more payments can be initiated by the
           [=monetization provider=] in a single session.
         </dd>
+        <dt>
+          <dfn data-lt="initiated|initiate">Initiated payment</dfn>
+        </dt>
+        <dd>
+          A payment that the [=monetization provider=] has started towards the
+          [=monetization receiver=] within a [=payment session=] (e.g., by
+          creating an outgoing payment via [[open-payments]]). The underlying
+          payment layers can complete a payment asynchronously, so an initiated
+          payment is not a guarantee that the [=monetization receiver=] has
+          received the amount.
+        </dd>
       </dl>
     </section>
     <section id="goals" class="informative">
@@ -555,7 +566,7 @@
               [=event handler content attribute=] for the {{monetization}}
               event supported by all [=element=]s, {{Document}} objects, and
               {{Window}} objects. The user agent uses it to notify that a
-              payment has been initiated for a [=monetized=] [^link^].
+              payment has been [=initiated=] for a [=monetized=] [^link^].
             </p>
           </dd>
         </dl>
@@ -565,8 +576,8 @@
           <code><dfn data-dfn-type="event">monetization</dfn></code> event
         </h3>
         <p>
-          When the [=payment session=] has sent a |payment| with a non-zero
-          amount, perform the following steps:
+          When the [=payment session=] has [=initiated=] a |payment| with a
+          non-zero amount, perform the following steps:
         </p>
         <ol class="algorithm">
           <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}}
