@@ -11,7 +11,7 @@
       var respecConfig = {
         edDraftURI: 'https://webmonetization.org/specification/',
         latestVersion: 'https://webmonetization.org/specification/',
-        publishDate: "2026-09-15",
+        publishDate: "2026-10-12",
         github: {
           repoURL: 'wicg/webmonetization',
           branch: 'main',
@@ -508,7 +508,7 @@
             sessions=], set |success| to false.
           </p>
         </li>
-        <li>Otherwise, start a new [=payment session=] and set it as
+        <li>If |success| is true, start a new [=payment session=] and set it as
         |element|'s [=associated payment session=].
         </li>
         <li>[=Queue an element task=] on the [=networking task source=] given
