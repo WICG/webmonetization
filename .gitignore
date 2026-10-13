@@ -32,10 +32,9 @@ pnpm-debug.log*
 !.yarn/sdks
 !.yarn/versions
 
-# lock file
+# Bun lock files, as we previously used bun
 bun.lockb
 bun.lock
-package-lock.json
 
 # Dynamically generated custom files
 public/specification

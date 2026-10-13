@@ -25,7 +25,7 @@ jobs:
         run: |
           npm run format:spec || true
           if ! git diff --exit-code --quiet specification/index.html; then
-            echo "::error::specification/index.html is not formatted correctly. Run 'bun format:spec' locally and commit the changes."
+            echo "::error::specification/index.html is not formatted correctly. Run 'npm run format:spec' locally and commit the changes."
             git diff specification/index.html
             exit 1
           fi
