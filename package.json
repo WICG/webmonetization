@@ -1,6 +1,13 @@
 {
   "license": "Apache-2.0",
   "type": "module",
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "version": ">=11.10.0",
+      "onFail": "error"
+    }
+  },
   "scripts": {
     "start": "astro dev",
     "build": "astro build",
