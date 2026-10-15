@@ -60,10 +60,10 @@ const {
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
   </head>
 
-  <body {...homePage ? { class: 'home-page' } : {}}>
+  <body {...(homePage ? { class: 'home-page' } : {})}>
     <TopNav />
 
-    <main {...toolsStyling ? { class: 'tools-style' } : {}}>
+    <main {...(toolsStyling ? { class: 'tools-style' } : {})}>
       <slot />
     </main>
 

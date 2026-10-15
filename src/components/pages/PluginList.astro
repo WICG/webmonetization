@@ -15,39 +15,37 @@ const cardList: Plugin[] = [...cards.slice(0, 3)]
 ---
 
 <ul class="cards">
-  {
-    cardList.map((card) => (
-      <li class="card">
-        {card.image && (
-          <>
-            <div class="image">
-              <img
-                class="cardLogo"
-                src={card.image.src}
-                alt=""
-                width={card.image.width}
-                height={card.image.height}
-              />
-            </div>
-            <div class="decorative-line" aria-hidden="true" />
-          </>
-        )}
-        {card.name && <h3>{card.name}</h3>}
-        <div class="cardContent">
-          <p class="desc">{card.desc}</p>
-          <a
-            href={card.cta.href}
-            class="btn flexible secondary"
-            data-umami-event={card.cta.event}
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            {card.cta.text}
-          </a>
-        </div>
-      </li>
-    ))
-  }
+  {cardList.map((card) => (
+    <li class="card">
+      {card.image && (
+        <>
+          <div class="image">
+            <img
+              class="cardLogo"
+              src={card.image.src}
+              alt=""
+              width={card.image.width}
+              height={card.image.height}
+            />
+          </div>
+          <div class="decorative-line" aria-hidden="true" />
+        </>
+      )}
+      {card.name && <h3>{card.name}</h3>}
+      <div class="cardContent">
+        <p class="desc">{card.desc}</p>
+        <a
+          href={card.cta.href}
+          class="btn flexible secondary"
+          data-umami-event={card.cta.event}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {card.cta.text}
+        </a>
+      </div>
+    </li>
+  ))}
   <li class="card">
     <div class="cardContent">
       <a

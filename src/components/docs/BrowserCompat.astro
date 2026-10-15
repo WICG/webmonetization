@@ -78,65 +78,61 @@ const compatData = json.api
       </tr>
     </thead>
     <tbody>
-      {
-        Object.keys(compatData).map((key) => (
-          <tr>
-            <th class="feature" scope="row">
-              <div>
-                <code>{key}</code>
-              </div>
-            </th>
-            {Object.keys(compatData[key].__compat.support).map(
-              (platform) =>
-                platform !== 'status' && (
-                  <td>
+      {Object.keys(compatData).map((key) => (
+        <tr>
+          <th class="feature" scope="row">
+            <div>
+              <code>{key}</code>
+            </div>
+          </th>
+          {Object.keys(compatData[key].__compat.support).map(
+            (platform) =>
+              platform !== 'status' && (
+                <td>
+                  {compatData[key].__compat.support[platform].version_added && (
+                    <img
+                      src={checkIcon.src}
+                      alt=""
+                      class="iconGreen"
+                      width={checkIcon.width}
+                      height={checkIcon.height}
+                    />
+                  )}
+                  {!compatData[key].__compat.support[platform]
+                    .version_added && (
+                    <img
+                      src={cancelIcon.src}
+                      alt=""
+                      class="iconRed"
+                      width={cancelIcon.width}
+                      height={cancelIcon.height}
+                    />
+                  )}
+                  <span>
                     {compatData[key].__compat.support[platform]
-                      .version_added && (
-                      <img
-                        src={checkIcon.src}
-                        alt=""
-                        class="iconGreen"
-                        width={checkIcon.width}
-                        height={checkIcon.height}
-                      />
-                    )}
-                    {!compatData[key].__compat.support[platform]
-                      .version_added && (
-                      <img
-                        src={cancelIcon.src}
-                        alt=""
-                        class="iconRed"
-                        width={cancelIcon.width}
-                        height={cancelIcon.height}
-                      />
-                    )}
-                    <span>
-                      {compatData[key].__compat.support[platform]
-                        .version_added === true && 'Yes'}
-                      {compatData[key].__compat.support[platform]
-                        .version_added === false && 'No'}
-                      {compatData[key].__compat.support[platform]
-                        .version_added !== false &&
-                        compatData[key].__compat.support[platform]
-                          .version_added !== true &&
-                        compatData[key].__compat.support[platform]
-                          .version_added}
-                    </span>
-                    {compatData[key].__compat.support[platform].notes && (
-                      <img
-                        src={extensionIcon.src}
-                        alt=""
-                        class="iconGreen"
-                        width={extensionIcon.width}
-                        height={extensionIcon.height}
-                      />
-                    )}
-                  </td>
-                )
-            )}
-          </tr>
-        ))
-      }
+                      .version_added === true && 'Yes'}
+                    {compatData[key].__compat.support[platform]
+                      .version_added === false && 'No'}
+                    {compatData[key].__compat.support[platform]
+                      .version_added !== false &&
+                      compatData[key].__compat.support[platform]
+                        .version_added !== true &&
+                      compatData[key].__compat.support[platform].version_added}
+                  </span>
+                  {compatData[key].__compat.support[platform].notes && (
+                    <img
+                      src={extensionIcon.src}
+                      alt=""
+                      class="iconGreen"
+                      width={extensionIcon.width}
+                      height={extensionIcon.height}
+                    />
+                  )}
+                </td>
+              )
+          )}
+        </tr>
+      ))}
     </tbody>
   </table>
 </div>
