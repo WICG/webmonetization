@@ -20,19 +20,11 @@ Please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md#specification-developmen
 
 ## Get Set Up
 
-We use [Bun](https://bun.sh/) in this repository, but you could theoretically use the package manager of your choice.
-
-### Install Bun
-
-```sh
-curl -fsSL https://bun.sh/install | bash
-```
-
 ### Install dependencies
 
 ```sh
 cd webmonetization
-bun install
+npm install
 ```
 
 ### Other commands
@@ -41,15 +33,13 @@ All commands are run from the root of the project, from a terminal:
 
 | Command                   | Action                                                     |
 | :------------------------ | :--------------------------------------------------------- |
-| `bun run start`           | Starts local dev server at `localhost:1100`                |
-| `bun run build`           | Build your production site to `./dist/`                    |
-| `bun run preview`         | Preview your build locally before deploying                |
-| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check`           |
-| `bun run astro -- --help` | Get help using the Astro CLI                               |
-| `bun run lint`            | Check code formatting and quality with Prettier and ESLint |
-| `bun run format`          | Format code and fix linting issues automatically           |
-
-You can substitute the bun commands with your chosen package manager's commands.
+| `npm run start`           | Starts local dev server at `localhost:1100`                |
+| `npm run build`           | Build your production site to `./dist/`                    |
+| `npm run preview`         | Preview your build locally before deploying                |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check`           |
+| `npm run astro -- --help` | Get help using the Astro CLI                               |
+| `npm run lint`            | Check code formatting and quality with Prettier and ESLint |
+| `npm run format`          | Format code and fix linting issues automatically           |
 
 ## Content
 
