@@ -1073,16 +1073,33 @@
         Privacy considerations
       </h2>
       <p>
-        Web Monetization is designed to be privacy-preserving: The user agent
-        does not send any data to the [=monetization provider=]. Instead, it
-        requests data from the [=monetization provider=] without ever revealing
-        the URL of the web page the user is currently browsing.
+        Web Monetization is designed to be privacy-preserving: the user agent
+        only shares data with the [=monetization provider=] and the
+        [=monetization receiver=] as they need it.
       </p>
       <p>
-        Further, the user agent gets the payment information from the [=wallet
-        address=] to establish the [=payment session=]. This also ensures the
-        [=monetization provider=] doesn't have access to a user's browsing
-        history or to the [=wallet address=].
+        The [=monetization provider=] only receives what it needs to send a
+        payment: the amount, and the [=wallet address=] to pay. The user agent
+        does not send the URL of the document, or of any other page the user
+        visits, to the [=monetization provider=].
+      </p>
+      <aside class="note">
+        <p>
+          If the [=monetization provider=] and the [=monetization receiver=]
+          are the same entity, it knows both the user sending a payment and
+          the owner of the [=wallet address=] receiving it. It still does not
+          learn which website the user visited.
+        </p>
+        <p>
+          A website could also set up a unique [=wallet address=] for each
+          visitor. Payments to that [=wallet address=] can then be linked to
+          that individual visitor.
+        </p>
+      </aside>
+      <p>
+        The user agent does not send data about the user to the [=monetization
+        receiver=]. To set up a [=payment session=], it fetches the [=wallet
+        address=] instead.
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
