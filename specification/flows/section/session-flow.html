@@ -2,23 +2,12 @@
   <h2>Session flow</h2>
 
   <p>
-    This section describes the payment session flow that occurs when a user visits a [=web monetized website=].
+    This section describes the payment session flow that occurs when a user visits a <a data-cite="WebMonetization/#dfn-monetized">monetized</a> document.
     The session flow involves establishing a payment session, managing ongoing payments, and handling session lifecycle events.
   </p>
 
   <section>
     <h3>Session lifecycle</h3>
-    <p>
-      This section defines when sessions are created and ended. It specifies the triggers that invoke the
-        [[[#session-initiation]]] and [[[#session-termination]]] algorithms defined later in this section.
-      </p>
-
-    <p>
-      When a {{Document}} becomes [=Document/fully active=], the user agent MUST
-      [=initiate document-wide sessions=].
-      If a {{Document}} becomes not [=Document/fully active=], the user agent MUST
-      [=end sessions for document=] for it and all of its [=child navigables=].
-    </p>
 
     <p>
       When the user starts interacting with a [=media element=], the user agent SHOULD
@@ -27,22 +16,15 @@
     </p>
 
     <p>
-      If any of the conditions defined in the
-      <a href="https://webmonetization.org/specification/#link-type-monetization">link fetch and processing timing</a>
-      cause a monetization link element to be reprocessed, the user agent MUST [=end session=] for the session
-      associated with that element (if any) and then [=initiate a session=] for that element.
-    </p>
-
-    <p>
       The user agent maintains an [=active sessions list=] to track all currently running monetization sessions.
       Each session in this list corresponds to a monetization link element and contains the information needed
-      to distribute payments to the website's wallet.
+      to initiate payments.
     </p>
 
     <dl>
       <dt><dfn>active sessions list</dfn></dt>
       <dd>
-        A user agent maintained ordered list of {{Session}} records created by [=initiate a session=].
+        A user agent maintained ordered list of {{Session}} records created by [=start a session=].
       </dd>
       <dt><dfn>current session iterator</dfn></dt>
       <dd>
@@ -58,26 +40,18 @@
   <section>
     <h3>Session initiation</h3>
     <p>
-      This section defines the algorithms for initiating payment sessions at various scopes—document-wide,
-      media-scoped, or for individual monetization link elements. Session initiation discovers website wallet details,
+      This section defines the algorithms for initiating payment sessions. Session initiation discovers website wallet details,
       negotiates authorization, creates an incoming payment, and registers a session record in the [=active sessions list=].
     </p>
 
-    <div class="algorithm">
-      <p>To <dfn>initiate document-wide sessions</dfn> given a |document:Document|, run these steps:</p>
-      <ol>
-        <li>If the result of [=get user wallet=] is null, then return.</li>
-        <li>[=initiate sessions scoped to=] the [^head^] element of |document|.</li>
-        <li>For each [=child navigable=] of |document|, recursively [=initiate document-wide sessions=].</li>
-      </ol>
-    </div>
+
+    <p class="issue">
+      Media-scoped sessions are still to be fully specified in the main spec.
+      See <a href="https://github.com/WICG/webmonetization/issues/657">GitHub issue #657</a>.
+    </p>
 
     <div class="algorithm">
-      <p>To <dfn>initiate media-scoped sessions</dfn> given a |media:HTMLElement|, run these steps:</p>
-      <ol>
-        <li>If the result of [=get user wallet=] is null, then return.</li>
-        <li>[=initiate sessions scoped to=] |media|.</li>
-      </ol>
+      <p>To <dfn>initiate media-scoped sessions</dfn> given a |media:HTMLElement|, run [=initiate sessions scoped to=] |media|.</p>
     </div>
 
     <div class="algorithm">
@@ -86,31 +60,33 @@
         <li>Let |document:Document| be the {{Node/ownerDocument}} of |root|.</li>
         <li>If [=document monetization disabled=] given |document|, then return.</li>
         <li>Let |linkElements:NodeList| be all [^link^] elements with `rel="monetization"` that are descendants of |root|.</li>
-        <li>For each |linkElement:HTMLLinkElement| in |linkElements|, [=initiate a session=] given |linkElement|.</li>
+        <li>For each |linkElement:HTMLLinkElement| in |linkElements|, [=start a session=] given |linkElement|.</li>
       </ol>
     </div>
 
     <div class="algorithm">
-      <p>To <dfn>initiate a session</dfn>, given |linkElement:HTMLLinkElement|, perform the following steps:</p>
+      <p>To <dfn>start a session</dfn>, given |linkElement:HTMLLinkElement|, perform the following steps:</p>
       <ol>
-        <li>If |linkElement| has [^link/disabled^] attribute, then return.</li>
         <li>
-          Let |websiteWalletAddress:DOMString| be the value of the {{HTMLLinkElement/href}} of |linkElement|.
+          If the result of [=get user wallet=] is null, then return.
         </li>
         <li>
-          If [=wallet monetization restricted=] given |document| and |websiteWalletAddress|, then return.
+          Let |websiteWalletAddress:DOMString| be the value of the {{HTMLLinkElement/href}} of |linkElement|.
         </li>
         <li>
           Let |websiteWalletDetails:WalletAddressDetails?| be the result of [=send a wallet address request=] with |websiteWalletAddress|.
         </li>
         <li>
-          If |websiteWalletDetails| is null, fire an `error` event on |linkElement| and return.
+          If |websiteWalletDetails| is null, return.
         </li>
         <li>
-          Fire a `load` event on |linkElement|.
+          Let |authKeys:AuthKeys?| be the result of [=get auth keys=].
         </li>
         <li>
-          Let |incomingPaymentGrant:Grant?| be the result of [=send an incoming payment grant request=] with |websiteWalletDetails|.
+          If |authKeys| is null, return.
+        </li>
+        <li>
+          Let |incomingPaymentGrant:Grant?| be the result of [=send an incoming payment grant request=] with |websiteWalletDetails| and |authKeys|.
         </li>
         <li>
           If |incomingPaymentGrant| is null, return.
@@ -153,11 +129,10 @@
     </div>
 
     <aside class="note" title="Session initiation summary">
-      <p>The main [=initiate a session=] algorithm performs these key steps:</p>
+      <p>The main [=start a session=] algorithm performs these key steps:</p>
       <ol>
-        <li><strong>Preconditions:</strong> Verify user wallet exists and monetization is permitted</li>
-        <li><strong>Discovery:</strong> Request website wallet address details,
-          firing `load` event on success or `error` event on failure</li>
+        <li><strong>Precondition:</strong> Verify user wallet is connected</li>
+        <li><strong>Discovery:</strong> Request website wallet address details</li>
         <li><strong>Authorization:</strong> Obtain an incoming payment grant to create payments on the website's wallet</li>
         <li><strong>Payment setup:</strong> Create an incoming payment (payment bucket) on the website's wallet resource server</li>
         <li><strong>Cleanup:</strong> Cancel the temporary incoming payment grant (no longer needed)</li>
@@ -170,18 +145,9 @@
   <section>
     <h3>Session termination</h3>
     <p>
-      This section defines the algorithms for ending payment sessions at various scopes—document-wide,
-      media-scoped, or for individual monetization link elements. Session termination removes session records
+      This section defines the algorithms for ending payment sessions. Session termination removes session records
       from the [=active sessions list=] and cancels scheduled payment work.
     </p>
-
-    <div class="algorithm">
-      <p>To <dfn>end sessions for document</dfn>, given a |document:Document|, run these steps:</p>
-      <ol>
-        <li>[=End sessions scoped to=] the [^head^] element of |document|.</li>
-        <li>For each [=child navigable=] of |document|, recursively [=end sessions for document=].</li>
-      </ol>
-    </div>
 
     <div class="algorithm">
       <p>To <dfn>end sessions scoped to</dfn> the |root:HTMLElement|, run these steps:</p>
@@ -298,7 +264,7 @@
           <ul>
             <li><a data-cite="WebMonetization/#dom-monetizationevent-amountsent">{{MonetizationEvent/amountSent}}</a>.<a data-cite="WebMonetization/#dom-monetizationcurrencyamount-currency">{{MonetizationCurrencyAmount/currency}}</a> set to |assetCode|</li>
             <li><a data-cite="WebMonetization/#dom-monetizationevent-amountsent">{{MonetizationEvent/amountSent}}</a>.<a data-cite="WebMonetization/#dom-monetizationcurrencyamount-value">{{MonetizationCurrencyAmount/value}}</a> set to |decimalAmount|</li>
-            <li><a data-cite="WebMonetization/#dom-monetizationevent-paymentpointer">{{MonetizationEvent/paymentPointer}}</a> set to |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}</li>
+            <li><a data-cite="WebMonetization/#dom-monetizationevent-walletaddress">{{MonetizationEvent/walletAddress}}</a> set to |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}</li>
             <li><a data-cite="WebMonetization/#dom-monetizationevent-incomingpayment">{{MonetizationEvent/incomingPayment}}</a> set to |session|.{{Session/incomingPaymentId}}</li>
           </ul>
         </li>
