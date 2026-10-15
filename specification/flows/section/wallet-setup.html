@@ -91,7 +91,19 @@
       Let |continueAccessToken:DOMString| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/access_token}}.{{AccessToken/value}} property.
     </li>
     <li>
-      (TODO: Look into browsing/navigation context, instead of specifying "open in a new tab") Open the |pendingGrant|'s {{PendingGrant/interact}}.{{PendingInteract/redirect}} property ([=Redirect URI=]) in a new tab to redirect the user to their wallet's [=IdP=], where the user can accept or decline the grant.
+      Let |redirectUrl:URL| be the result of [=URL parser|parsing=] |pendingGrant|'s
+      {{PendingGrant/interact}}.{{PendingInteract/redirect}} property ([=Redirect URI=]).
+      If |redirectUrl| is failure, return failure.
+    </li>
+    <li>
+      Run the
+      [=create a fresh top-level traversable|creating a fresh top-level traversable=] algorithm given
+      |redirectUrl|, to redirect the user to their wallet's [=IdP=], where the user can accept
+      or decline the grant.
+      <p class="note">
+        Whether the [=traversable navigable=] is presented as a new tab, a new window or a
+        popup-style window is [=implementation-defined=].
+      </p>
     </li>
     <li>
       Let |wait:number| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/wait}} property.

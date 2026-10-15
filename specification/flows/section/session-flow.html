@@ -2,7 +2,7 @@
   <h2>Session flow</h2>
 
   <p>
-    This section describes the payment session flow that occurs when a user visits a [=web monetized website=].
+    This section describes the payment session flow that occurs when a user visits a <a data-cite="WebMonetization/#dfn-monetized">monetized</a> document.
     The session flow involves establishing a payment session, managing ongoing payments, and handling session lifecycle events.
   </p>
 
@@ -24,13 +24,6 @@
       When the user starts interacting with a [=media element=], the user agent SHOULD
       [=initiate media-scoped sessions=] given that element; when the user stops interacting, the user agent
       SHOULD [=end sessions scoped to=] that element.
-    </p>
-
-    <p>
-      If any of the conditions defined in the
-      <a href="https://webmonetization.org/specification/#link-type-monetization">link fetch and processing timing</a>
-      cause a monetization link element to be reprocessed, the user agent MUST [=end session=] for the session
-      associated with that element (if any) and then [=initiate a session=] for that element.
     </p>
 
     <p>

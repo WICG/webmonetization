@@ -7,18 +7,6 @@
     users to view and adjust these preferences.
   </p>
 
-  <p>
-    A website can disable Web Monetization for itself and/or its subdocuments by setting
-    the <a href="https://webmonetization.org/specification/#permissions-policy">`monetization`</a>
-    [=policy-controlled feature=].
-  </p>
-
-  <p>
-    A website can also restrict Web Monetization to <a>wallet addresses</a> of certain [=origin=]s
-    by using the <a href="https://webmonetization.org/specification/#content-security-policy">`monetization-src`</a>
-    directive in the [=content security policy=].
-  </p>
-
   <section id="monetization-is-disabled">
     <h3>Document monetization restrictions</h3>
 
@@ -34,7 +22,7 @@
       </li>
       <li>
         The |document| is not [=allowed to use=]
-        the <a href="https://webmonetization.org/developers/permissions-policy-monetization/">`monetization`</a>
+        the <a data-cite="WebMonetization/#dfn-monetization-1">`monetization`</a>
         [=policy-controlled feature=].
       </li>
     </ul>
@@ -46,7 +34,7 @@
     <p>
       <dfn data-lt="wallet monetization restricted">Wallet monetization restricted</dfn> happens
       given a |document:Document| and a [=wallet address=] |walletAddress:DOMString|
-      if the <a href="https://webmonetization.org/developers/csp-monetization-src/">`monetization-src`</a> directive
+      if the <a data-cite="WebMonetization/#monetization-src-directive">`monetization-src`</a> directive
       in the [=content security policy=] of the |document| restricts the |walletAddress|'s [=origin=].
     </p>
   </section>
