@@ -89,13 +89,13 @@ function start() {
   const wmWidget = createWmWidget();
   const icon = createWmIcon();
 
-  window.addEventListener("load", (event) => {
+  window.addEventListener("load", () => {
     document.body.appendChild(wmWidget);
     document.body.appendChild(icon);
   });
 
   if (isWm()) {
-    window.addEventListener("load", (event) => {
+    window.addEventListener("load", () => {
       setInterval(emitWm, 1000)
     });
   }

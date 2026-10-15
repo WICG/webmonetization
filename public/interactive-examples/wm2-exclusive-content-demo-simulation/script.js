@@ -11,12 +11,12 @@ let decryption;
 if (document.monetization !== undefined) {
   setMeta();
 
-  document.monetization.addEventListener("monetizationpending", event => {
+  document.monetization.addEventListener("monetizationpending", () => {
     document.getElementById("ecm").innerHTML =
       "<p>⸻ ⏰ Waiting for Web Monetization to start to unlock this content. ⸻</p>";
   });
 
-  document.monetization.addEventListener("monetizationstart", event => {
+  document.monetization.addEventListener("monetizationstart", () => {
     decryption = setInterval(function() {
       decryptExclusiveContent(data);
     }, 3000);
@@ -24,7 +24,7 @@ if (document.monetization !== undefined) {
       "<p>⸻ ⏰ Waiting for Web Monetization receipt verification to unlock this content. ⸻</p>";
   });
 
-  document.monetization.addEventListener("monetizationstop", event => {
+  document.monetization.addEventListener("monetizationstop", () => {
     removeContentDiv();
     document.getElementById("ecm").innerHTML =
       "<p>⸻ 🔒 This content is exclusive for users with Web Monetization enabled. ⸻</p>";
