@@ -14,7 +14,7 @@ export default defineConfig([
   tseslint.configs.recommended,
   eslintPluginAstro.configs.recommended,
   eslintPluginAstro.configs['flat/jsx-a11y-recommended'],
-  globalIgnores(['dist', '.astro', 'node_modules', 'public', '**/*.min.js']),
+  globalIgnores(['dist', '**/.astro', 'node_modules', 'public', '**/*.min.js']),
   {
     files: ['**/*.{js,mjs,cjs}'],
     rules: {

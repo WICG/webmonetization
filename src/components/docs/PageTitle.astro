@@ -15,14 +15,14 @@ if (lastUpdated instanceof Date) {
 const label = locale === 'es' ? 'Última revisión' : 'Last reviewed'
 ---
 
-<Default {...Astro.props}><slot /></Default>
-{
-  formattedDate && (
-    <p class="last-updated-top">
-      {label}: {formattedDate}
-    </p>
-  )
-}
+<Default {...Astro.props}>
+  <slot />
+</Default>
+{formattedDate && (
+  <p class="last-updated-top">
+    {label}: {formattedDate}
+  </p>
+)}
 
 <style>
   .last-updated-top {
