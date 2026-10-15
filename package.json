@@ -22,6 +22,7 @@
     "@rollup/rollup-linux-x64-gnu": "4.53.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.10",
     "@astrojs/markdown-remark": "^7.3.0",
     "@astrojs/starlight": "^0.42.0",
     "@eslint/js": "^10.0.1",
