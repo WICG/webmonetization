@@ -334,14 +334,6 @@
           accepted, it will eventually be moved into HTML itself.
         </p>
       </aside>
-      <aside class="note" title="Multiple monetization links">
-        <p>
-          Although a single HTML document can have multiple [^link^] elements
-          with the "monetization" link type, the user agent might restrict the
-          number of concurrent [=payment sessions=] it can simultaneously
-          support.
-        </p>
-      </aside>
       <p>
         The `monetization` keyword indicates a [=wallet address=] used to
         monetize the document. It indicates that some aspect of the document is
@@ -355,6 +347,10 @@
       <p>
         A user agent MUST NOT <a data-cite="html#delay-the-load-event">delay
         the load event</a> for this link type.
+      </p>
+      <p>
+        A user agent MAY restrict the number of concurrent [=payment sessions=]
+        it simultaneously supports.
       </p>
       <p>
         The default type for resources given by the `monetization` keyword is
