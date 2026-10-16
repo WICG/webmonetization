@@ -18,7 +18,7 @@ function wmStateTransition() {
 }
 
 function observeWm() {
-  const headObserver = new MutationObserver(mutations => {
+  const headObserver = new MutationObserver(() => {
     const wmTag = getWmTag();
     const state = document.monetization.state;
 
