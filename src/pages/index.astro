@@ -41,8 +41,9 @@ const t = useTranslations(lang)
           class="btn primary flexible hero-btn"
           href="#start"
           data-umami-event="Home page link - Get started today"
-          >Get started today</a
         >
+          Get started today
+        </a>
       </div>
       <div class="hero-img">
         <img
@@ -77,10 +78,11 @@ const t = useTranslations(lang)
             We are moving to a community-led model and welcome code
             contributions, including the development of new features. All code
             will be reviewed by the Interledger Foundation. For more
-            information, review our <a
-              href="https://webmonetization.org/resources/get-involved/"
-              >Contribution Guidelines</a
-            >.
+            information, review our{' '}
+            <a href="https://webmonetization.org/resources/get-involved/">
+              Contribution Guidelines
+            </a>
+            .
           </p>
           <p>
             The Web Monetization standard will continue to be actively stewarded
@@ -111,20 +113,20 @@ const t = useTranslations(lang)
           </p>
           <h2 class="font-h3">Compatible wallets</h2>
         </div>
-        {
-          wallets.length > 0 && (
-            <div class="cards">
-              <WalletList cards={wallets} ctaText="Set up a wallet" />
-            </div>
-          )
-        }
+        {wallets.length > 0 && (
+          <div class="cards">
+            <WalletList cards={wallets} ctaText="Set up a wallet" />
+          </div>
+        )}
         <a
           href="https://github.com/WICG/webmonetization/pulls"
           target="_blank"
           rel="noreferrer noopener"
           data-umami-event="Home page link - GitHub PR"
-          class="bold">Do you know other wallets? Make a PR</a
+          class="bold"
         >
+          Do you know other wallets? Make a PR
+        </a>
       </div>
     </div>
   </section>
@@ -162,8 +164,9 @@ const t = useTranslations(lang)
             class="btn primary flexible"
             href="/publishers"
             data-umami-event="Home page link - Publishers"
-            >Start earning today</a
           >
+            Start earning today
+          </a>
         </div>
       </article>
       <div class="divider vertical"></div>
@@ -201,8 +204,9 @@ const t = useTranslations(lang)
             class="btn primary flexible"
             href="/supporters"
             data-umami-event="Home page link - Supporters"
-            >Support on your terms</a
           >
+            Support on your terms
+          </a>
         </div>
       </article>
     </div>
@@ -216,8 +220,10 @@ const t = useTranslations(lang)
           <a
             class="btn primary flexible"
             href="/developers"
-            data-umami-event="Home page link - Developers">Join the community</a
+            data-umami-event="Home page link - Developers"
           >
+            Join the community
+          </a>
         </div>
         <div class="developer-images">
           <img
@@ -246,11 +252,9 @@ const t = useTranslations(lang)
       </article>
     </div>
   </section>
-  {
-    updates && updates.length > 0 && (
-      <UpdatesSection updates={updates} heading="Important Updates" />
-    )
-  }
+  {updates && updates.length > 0 && (
+    <UpdatesSection updates={updates} heading="Important Updates" />
+  )}
 </Base>
 
 <style>
