@@ -325,11 +325,6 @@
         </p>
       </aside>
       <p>
-        A single HTML document can have multiple [^link^] elements with the
-        "monetization" link type. A user agent MAY restrict the number of
-        concurrent [=payment sessions=] it simultaneously supports.
-      </p>
-      <p>
         The `monetization` keyword indicates a [=wallet address=] used to
         monetize the document. It indicates that some aspect of the document is
         [=monetized=].
@@ -342,6 +337,10 @@
       <p>
         A user agent MUST NOT <a data-cite="html#delay-the-load-event">delay
         the load event</a> for this link type.
+      </p>
+      <p>
+        A user agent MAY restrict the number of concurrent [=payment sessions=]
+        it simultaneously supports.
       </p>
       <p>
         The default type for resources given by the `monetization` keyword is
