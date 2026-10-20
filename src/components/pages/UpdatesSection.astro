@@ -17,7 +17,9 @@ const { updates, heading } = Astro.props
 
 <section class="section">
   <div class="contentWrapper">
-    <h2 class="updates-heading" id="updates-heading">{heading}</h2>
+    <h2 class="updates-heading" id="updates-heading">
+      {heading}
+    </h2>
     <div
       class="updates-carousel"
       id="updates-carousel"
@@ -34,19 +36,17 @@ const { updates, heading } = Astro.props
         <ChevronArrow class="button-arrow" id="prev-button-arrow" />
       </button>
       <div class="updates-list" id="updates-list" aria-live="polite">
-        {
-          updates.map((update: UpdateContent, i: number) => (
-            <div class="update-slide">
-              <UpdateCard
-                blog={update}
-                ctaButtonClass="secondary"
-                h3Class="update-title"
-                imgClass=""
-                index={i}
-              />
-            </div>
-          ))
-        }
+        {updates.map((update: UpdateContent, i: number) => (
+          <div class="update-slide">
+            <UpdateCard
+              blog={update}
+              ctaButtonClass="secondary"
+              h3Class="update-title"
+              imgClass=""
+              index={i}
+            />
+          </div>
+        ))}
       </div>
       <button
         class="carousel-button btn flexible"
@@ -63,16 +63,14 @@ const { updates, heading } = Astro.props
       role="tablist"
       aria-label="Carousel controls"
     >
-      {
-        updates.map((_: UpdateContent, i: number) => (
-          <button
-            class:list={['dot', i === 0 && 'active']}
-            role="tab"
-            aria-labelledby={`carousel-heading-${i}`}
-            aria-controls={`carousel-item-${i}`}
-          />
-        ))
-      }
+      {updates.map((_: UpdateContent, i: number) => (
+        <button
+          class:list={['dot', i === 0 && 'active']}
+          role="tab"
+          aria-labelledby={`carousel-heading-${i}`}
+          aria-controls={`carousel-item-${i}`}
+        />
+      ))}
     </div>
   </div>
 </section>
@@ -225,7 +223,7 @@ const { updates, heading } = Astro.props
 
     function updateAccessibilityTree(index: number) {
       updates.forEach((item, i) => {
-        item.ariaHidden = index === i ? null : true
+        item.ariaHidden = index === i ? null : 'true'
       })
       carouselDots.forEach((dot, i) => {
         const selected = i === index

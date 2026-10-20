@@ -66,16 +66,17 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
         <p class="mobile-only menu-label">{t('nav.technical')}</p>
         <ul class="nav-inline" aria-labelledby="nav-technical-label">
           <li class="nav-link__docs">
-            <a href={docsUrl} data-umami-event="Landing page - WebMo docs"
-              >{t('nav.documentation')}</a
-            >
+            <a href={docsUrl} data-umami-event="Landing page - WebMo docs">
+              {t('nav.documentation')}
+            </a>
           </li>
           <li class="nav-link__spec">
             <a
               href="/specification"
               data-umami-event="Landing page - WebMo specs"
-              >{t('nav.specification')}</a
             >
+              {t('nav.specification')}
+            </a>
           </li>
         </ul>
       </li>
@@ -399,7 +400,9 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
   const navBar = document.getElementById('siteNav')
   const menuToggleButton = document.getElementById('menuToggle')
   const navMenu = document.getElementById('navMenu')
-  const toolsButton = document.querySelector('#tools-wrapper > button')
+  const toolsButton = document.querySelector<HTMLButtonElement>(
+    '#tools-wrapper > button'
+  )
   const toolsDropdown = document.querySelector('#tools-wrapper .tools-dropdown')
   const isWide = window.matchMedia('(min-width: 768px)')
   const arrow = toolsButton?.querySelector('.tools-arrow-icon')

@@ -8,6 +8,7 @@ export function getLangFromUrl(url: URL) {
 
 export function useTranslations(lang: keyof typeof ui) {
   return function t(key: keyof (typeof ui)[typeof defaultLang]) {
-    return ui[lang][key] || ui[defaultLang][key]
+    const translations: Partial<Record<typeof key, string>> = ui[lang]
+    return translations[key] || ui[defaultLang][key]
   }
 }
