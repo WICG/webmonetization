@@ -16,9 +16,11 @@ const { content } = Astro.props
       </div>
       <div
         class="image"
-        style={content.imgMetaData.padding
-          ? `padding:${content.imgMetaData.padding}`
-          : undefined}
+        style={
+          content.imgMetaData.padding
+            ? `padding:${content.imgMetaData.padding}`
+            : undefined
+        }
       >
         <img
           src={content.image.src}
@@ -34,19 +36,18 @@ const { content } = Astro.props
             href={content.primaryCta.href}
             class="btn primary flexible"
             data-umami-event={content.primaryCta.event}
-            >{content.primaryCta.text}</a
           >
-          {
-            content.secondaryCta && (
-              <a
-                href={content.secondaryCta.href}
-                class="btn secondary flexible"
-                data-umami-event={content.secondaryCta.event}
-              >
-                {content.secondaryCta.text}
-              </a>
-            )
-          }
+            {content.primaryCta.text}
+          </a>
+          {content.secondaryCta && (
+            <a
+              href={content.secondaryCta.href}
+              class="btn secondary flexible"
+              data-umami-event={content.secondaryCta.event}
+            >
+              {content.secondaryCta.text}
+            </a>
+          )}
         </div>
       </div>
     </div>

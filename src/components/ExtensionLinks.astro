@@ -103,26 +103,24 @@ const toURL = (url: string) => {
       </a>
     </div>
   </li>
-  {
-    includeGitHub && (
-      <li>
-        <div class="container">
-          <a
-            href={toURL(URLS.github)}
-            title={t('media.title.extension.github')}
-            data-umami-event="Extension - GitHub"
-          >
-            <img
-              alt={t('media.title.extension.github')}
-              src={githubIcon.src}
-              width={githubIcon.width}
-              height={githubIcon.height}
-            />
-          </a>
-        </div>
-      </li>
-    )
-  }
+  {includeGitHub && (
+    <li>
+      <div class="container">
+        <a
+          href={toURL(URLS.github)}
+          title={t('media.title.extension.github')}
+          data-umami-event="Extension - GitHub"
+        >
+          <img
+            alt={t('media.title.extension.github')}
+            src={githubIcon.src}
+            width={githubIcon.width}
+            height={githubIcon.height}
+          />
+        </a>
+      </div>
+    </li>
+  )}
 </ul>
 
 <style>
