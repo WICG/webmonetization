@@ -2,10 +2,6 @@ function getWmTag() {
   return document.querySelector('link[rel="monetization"]');
 }
 
-function uuid() {
-  return "fc23b14d-70e4-4d55-b0a0-dd86f70ce402";
-}
-
 function emitWm() {
   const wmTag = getWmTag();
   if (!wmTag) {
@@ -20,7 +16,7 @@ function emitWm() {
     currency: "USD",
     value: (Math.random() * 0.00001).toFixed(9).toString(),
   };
-  wmEvent.incomingPayment = `${paymentPointer}incoming-payments/${uuid()}`;
+  wmEvent.incomingPayment = `${paymentPointer}incoming-payments/${crypto.randomUUID()}`;
   setTimeout(()=> {wmTag.dispatchEvent(wmEvent)}, 1000);
 }
 

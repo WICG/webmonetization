@@ -2,11 +2,6 @@ function getWmTag() {
   return document.head.querySelector('meta[name="monetization"]');
 }
 
-function uuid() {
-  // TODO: make the uuid random
-  return "fc23b14d-70e4-4d55-b0a0-dd86f70ce402";
-}
-
 function wmStateTransition() {
   const wmTag = getWmTag();
   const state = document.monetization.state;
@@ -43,7 +38,7 @@ function initWm() {
 }
 
 function pendingWm() {
-  document.monetization._requestId = uuid();
+  document.monetization._requestId = crypto.randomUUID();
   emitWm("pending", "pending");
   document.monetization._startWmTimer = setTimeout(startWm, 700);
 }
