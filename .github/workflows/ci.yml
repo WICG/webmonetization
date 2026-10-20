@@ -33,3 +33,6 @@ jobs:
 
       - name: Run lint (Prettier + ESLint)
         run: npm run lint
+
+      - name: Run Astro check
+        run: npm run check
