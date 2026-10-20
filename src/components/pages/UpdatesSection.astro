@@ -225,7 +225,7 @@ const { updates, heading } = Astro.props
 
     function updateAccessibilityTree(index: number) {
       updates.forEach((item, i) => {
-        item.ariaHidden = index === i ? null : true
+        item.ariaHidden = index === i ? null : 'true'
       })
       carouselDots.forEach((dot, i) => {
         const selected = i === index
