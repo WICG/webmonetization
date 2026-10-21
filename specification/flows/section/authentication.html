@@ -12,14 +12,6 @@
     that public key to verify subsequent signed requests (for example, grant creation, quote requests,
     and outgoing payment creation).</p>
 
-  <p class="note" title="Privacy">
-    Reusing a single long-lived signing key across
-    multiple origins or wallet providers can enable cross-site tracking.
-    Future revisions may define per-session or per-origin derived authentication
-    keys to further reduce tracking surfaces. See the <a href="https://docs.google.com/document/d/1s9aXcLoBdLe9y_8JispFK7NVERxUhxn0orqgzZBrcBo/edit?tab=t.0#heading=h.z0cxd4l694ag">
-    directed identity proposal</a> for background.
-  </p>
-
   <p>User agents MUST use an [=Ed25519 key pair=] to sign HTTP requests that
     require proof-of-possession as described in this specification.</p>
 
@@ -84,7 +76,7 @@
       of the UTF-8 JSON serialization of a [=public key JWK=]. This representation is what user agents persist and display.
     </p>
     <aside class="example" title="Encoded public key JWK">
-      <pre class="sh">eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwieCI6ImJhc2U2NC11cmwtZW5jb2RlZC1wdWJsaWMta2V5Iiwia2lkIjoicmFuZG9tLWdlbmVyYXRlZC1zdHJpbmcifQ</pre>
+      <pre class="sh">eyJrdHkiOiJPS1AiLCJjcnYiOiJFZDI1NTE5IiwiYWxnIjoiRWREU0EiLCJ4IjoiYmFzZTY0LXVybC1lbmNvZGVkLXB1YmxpYy1rZXkiLCJraWQiOiJyYW5kb21seS1nZW5lcmF0ZWQtdXVpZCJ9</pre>
     </aside>
 
     <div class="note" title="Public key discovery">

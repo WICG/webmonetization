@@ -90,7 +90,7 @@
             <p>Construct a {{ GrantRequest }} |grantRequest: GrantRequest| as follows:</p>
             <ol>
               <li>
-                Set |grantRequest|'s {{GrantRequest/client}} to |walletAddressDetails|'s {{WalletAddressDetails/id}} property.
+                Set |grantRequest|'s {{GrantRequest/client}} to a new {{ Client }} object with {{Client/walletAddress}} set to |walletAddressDetails|'s {{WalletAddressDetails/id}} property.
               </li>
               <li>
                 Set |grantRequest|'s {{GrantRequest/interact}} to a new {{ Interact }} with {{Interact/start}} set to `["redirect"]`.
@@ -216,10 +216,12 @@
               }
             ]
           },
-          "client": "https://wallet.example/user"
+          "client": {
+            "walletAddress": "https://wallet.example/user"
+          },
           "interact": {
             "start": ["redirect"]
-          },
+          }
         }
         </pre>
       </aside>
@@ -249,21 +251,42 @@
         This request is non-interactive: implementations MUST NOT include an {{GrantRequest.interact}} and
         the authorization server will return a {{Grant}} directly if successful.</p>
       <div class="algorithm">
-        When asked to <dfn>send an incoming payment grant request</dfn>, given |websiteWalletAddressDetails:WalletAddressDetails|
+        When asked to <dfn>send an incoming payment grant request</dfn>, given |websiteWalletAddressDetails:WalletAddressDetails| and |authKeys:AuthKeys|,
         perform the following steps.
         <ol>
           <li>
-            Let |userWalletDetails:WalletAddressDetails?| be the result of [=get user wallet=].
-          </li>
-          <li>If |userWalletDetails| is null, then return failure.</li>
-          <li>
             Let |authServer:URL| be the result of running [=URL parser=] with |websiteWalletAddressDetails|'s {{WalletAddressDetails/authServer}} property.
+          </li>
+          <li>
+            Let |publicKeyBytes:byte sequence| be the result of [=forgiving-base64 decode|forgiving-base64 decoding=] with |authKeys|'s {{AuthKeys/publicKey}} property.
+          </li>
+          <li>
+            If |publicKeyBytes| is failure, then return failure.
+          </li>
+          <li>
+            Let |decodedPublicKey| be the result of [=parse JSON bytes to an infra value|parsing JSON bytes to an infra value=] with |publicKeyBytes|.
+          </li>
+          <li data-cite="infra">
+            If |decodedPublicKey| is a parsing exception or is not a [=map=], then return failure.
+          </li>
+          <li data-cite="infra">
+            [=list/For each=] |member| of « "alg", "crv", "kid", "kty", "x" »: if |decodedPublicKey|[|member|] does not [=map/exist=] or is not a [=string=], then return failure.
           </li>
           <li>
             <p>Construct a {{ GrantRequest }} |grantRequest: GrantRequest| as follows:</p>
             <ol>
               <li>
-                Set |grantRequest|'s {{GrantRequest/client}} to |userWalletDetails|.{{WalletAddressDetails/id}}.
+                Let |jwk:ClientJwk| be a new {{ ClientJwk }} object with:
+                <ul>
+                  <li>{{ClientJwk/alg}} set to |decodedPublicKey|["alg"]</li>
+                  <li>{{ClientJwk/crv}} set to |decodedPublicKey|["crv"]</li>
+                  <li>{{ClientJwk/kid}} set to |decodedPublicKey|["kid"]</li>
+                  <li>{{ClientJwk/kty}} set to |decodedPublicKey|["kty"]</li>
+                  <li>{{ClientJwk/x}} set to |decodedPublicKey|["x"]</li>
+                </ul>
+              </li>
+              <li>
+                Set |grantRequest|'s {{GrantRequest/client}} to a new {{ Client }} object with {{Client/jwk}} set to |jwk|.
               </li>
               <li>
                 Let |incomingPaymentAccess| be a new {{ Access }} object with:
@@ -348,7 +371,15 @@
               }
             ]
           },
-          "client": "https://wallet.example/sender"
+          "client": {
+            "jwk": {
+              "kid": "randomly-generated-uuid",
+              "alg": "EdDSA",
+              "crv": "Ed25519",
+              "kty": "OKP",
+              "x": "base64-url-encoded-public-key"
+            }
+          }
         }
         </pre>
       </aside>

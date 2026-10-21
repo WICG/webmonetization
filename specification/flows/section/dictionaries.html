@@ -74,7 +74,7 @@
         <pre class="idl">
           dictionary GrantRequest {
             required RequestAccessToken access_token;
-            required DOMString client;
+            required Client client;
             required Interact interact;
           };
         </pre>
@@ -82,7 +82,7 @@
           <dt><dfn>`access_token`</dfn></dt>
           <dd>The {{RequestAccessToken}} object describing the access being requested.</dd>
           <dt><dfn>`client`</dfn></dt>
-          <dd>An identifier for the requesting client (typically the <code>WalletAddressDetails/id</code> value).</dd>
+          <dd>The {{Client}} object representing the requesting client.</dd>
           <dt><dfn>`interact`</dfn></dt>
           <dd>An {{Interact}} dictionary defining required interaction start methods.</dd>
         </dl>
@@ -191,6 +191,49 @@
         <dt><dfn>`continue`</dfn></dt>
         <dd>The continuation information for polling or continuing the grant request.</dd>
       </dl>
+
+      <h4>The `ClientJwk` dictionary</h4>
+      <p>The {{ClientJwk}} dictionary represents the client's JWK.</p>
+      <pre class="idl">
+        dictionary ClientJwk {
+          required DOMString alg;
+          required DOMString crv;
+          required DOMString kid;
+          required DOMString kty;
+          required DOMString x;
+          DOMString use;
+        };
+      </pre>
+      <dl data-dfn-for="ClientJwk">
+        <dt><dfn>`alg`</dfn></dt>
+        <dd>The cryptographic signing algorithm used with the key.</dd>
+        <dt><dfn>`crv`</dfn></dt>
+        <dd>The cryptographic curve used with the key.</dd>
+        <dt><dfn>`kid`</dfn></dt>
+        <dd>A unique identifier for the key.</dd>
+        <dt><dfn>`kty`</dfn></dt>
+        <dd>The key type identifying the cryptographic algorithm family.</dd>
+        <dt><dfn>`x`</dfn></dt>
+        <dd>The base64 url-encoded public key.</dd>
+        <dt><dfn>`use`</dfn></dt>
+        <dd>The intended use of the key. </dd>
+      </dl>
+
+      <h4>The `Client` dictionary</h4>
+      <p>The {{Client}} dictionary represents the client's identity.</p>
+      <pre class="idl">
+        dictionary Client {
+          ClientJwk jwk;
+          DOMString walletAddress;
+        };
+      </pre>
+      <dl data-dfn-for="Client">
+        <dt><dfn>`jwk`</dfn></dt>
+        <dd>The {{ClientJwk}} object describing the directed identity public key.</dd>
+        <dt><dfn>`walletAddress`</dfn></dt>
+        <dd>The wallet address of the client instance.</dd>
+      </dl>
+      <p>A {{Client}} MUST have exactly one of {{Client/jwk}} or {{Client/walletAddress}} [=map/exist|present=].</p>
     </section>
 
     <section>
