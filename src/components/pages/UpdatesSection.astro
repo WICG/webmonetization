@@ -268,8 +268,8 @@ const { updates, heading } = Astro.props
         focusedElement !== null &&
         updates[previousIndex].contains(focusedElement)
       scrollToUpdate(currentIndex)
-      if (focusWasInSlide && focusedElement) {
-        focusEquivalentControl(focusedElement, updates[currentIndex])
+      if (focusWasInSlide) {
+        focusEquivalentControl(focusedElement!, updates[currentIndex])
       }
     }
 
