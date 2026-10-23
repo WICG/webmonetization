@@ -80,12 +80,12 @@ You're now ready to accept one-time payments. Remember that if your site is mone
 
 When a one-time payment completes successfully, the widget fires a `wm-widget-monetization` event from the `wm-payment-widget` element. The event bubbles and is composed, so you can listen for it on `document`:
 
-:::js wrap
+```js wrap
 document.addEventListener('wm-widget-monetization', (event) => {
   const { amountSent, incomingPayment, walletAddress } = event.detail
   console.log('Payment completed:', amountSent, incomingPayment, walletAddress)
 })
-:::
+```
 
 The event detail mirrors the [`MonetizationEvent`](https://webmonetization.org/specification/#monetizationevent-interface) data shape:
 
