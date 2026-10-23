@@ -8,29 +8,6 @@ import CSP from '/src/content/docs/partials/_csp.mdx'
 
 Add a <LinkOut href="https://webmonetization.org/tools/widget">payment widget</LinkOut> to your site so visitors can send you a one-time payment. The widget appears to all visitors, even those with an active Web Monetization extension.
 
-## Listen for the widget monetization event
-
-When a one-time payment completes successfully, the widget fires a `wm-widget-monetization` event from the `wm-payment-widget` element. The event bubbles and is composed, so you can listen for it on `document`:
-
-```js
-document.addEventListener('wm-widget-monetization', (event) => {
-  const { amountSent, incomingPayment, walletAddress } = event.detail
-  console.log('Payment completed:', amountSent, incomingPayment, walletAddress)
-})
-```
-
-The event detail mirrors the standard [`MonetizationEvent`](https://wicg.github.io/webmonetization/#monetizationevent) data shape:
-
-- `amountSent` — the amount the visitor chose to pay, in their wallet's currency
-- `incomingPayment` — the incoming payment URL, so your server can verify the payment
-- `walletAddress` — the receiver's wallet address
-
-> **Note on the event name:** This event is named `wm-widget-monetization` (not `monetization`), because the browser's native Web Monetization implementation uses `monetization` for streaming payments. The data structure, however, matches the standard `MonetizationEvent`.
-
-> **Security note:** This event is **untrusted** — any script on the page can dispatch it. Use it for UI feedback (e.g., showing a thank-you message), but do not treat it as proof of payment. For verification, always use the `incomingPayment` URL on your server.
-
-The event is not fired in the widget builder's preview mode, and it is not fired when a payment fails.
-
 ### Before you begin
 
 - Your visitor must have a wallet address with a [compatible wallet](/wallets) to send a payment using the widget.
@@ -98,3 +75,26 @@ You're now ready to accept one-time payments. Remember that if your site is mone
 >
   Widget tool
 </LinkButton>
+
+## Listen for the widget monetization event
+
+When a one-time payment completes successfully, the widget fires a `wm-widget-monetization` event from the `wm-payment-widget` element. The event bubbles and is composed, so you can listen for it on `document`:
+
+```js
+document.addEventListener('wm-widget-monetization', (event) => {
+  const { amountSent, incomingPayment, walletAddress } = event.detail
+  console.log('Payment completed:', amountSent, incomingPayment, walletAddress)
+})
+```
+
+The event detail mirrors the [`MonetizationEvent`](https://webmonetization.org/specification/#monetizationevent-interface) data shape:
+
+- `amountSent` — the amount the visitor chose to pay, in their wallet's currency
+- `incomingPayment` — the incoming payment URL, so your server can verify the payment
+- `walletAddress` — the receiver's wallet address
+
+> **Note on the event name:** This event is named `wm-widget-monetization` (not `monetization`), because the Web Monetization implementation uses `monetization` for streaming payments. The data structure, however, matches the `MonetizationEvent`.
+
+> **Security note:** This event is **untrusted** — any script on the page can dispatch it. Use it for UI feedback (e.g., showing a thank-you message), but do not treat it as proof of payment. For verification, always use the `incomingPayment` URL on your server.
+
+The event is not fired in the widget builder's preview mode, and it is not fired when a payment fails.
