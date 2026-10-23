@@ -192,7 +192,6 @@ const { updates, heading } = Astro.props
   const carouselDots = document.querySelectorAll<HTMLButtonElement>(
     '#updates-dots button.dot'
   )
-  const carouselCTAs = document.querySelectorAll('a.carousel-cta')
   const updates = Array.from(
     document.querySelectorAll<HTMLElement>('.update-slide')
   )
@@ -210,14 +209,6 @@ const { updates, heading } = Astro.props
     let touchEndX = 0
     const swipeThreshold = 50
 
-    function updateTabBehaviour(index: number) {
-      carouselCTAs.forEach((link, i) => {
-        if (link instanceof HTMLAnchorElement) {
-          link.tabIndex = i === index ? 0 : -1
-        }
-      })
-    }
-
     function updateDots(index: number) {
       carouselDots.forEach((dot, i) =>
         dot.classList.toggle('active', i === index)
@@ -226,13 +217,7 @@ const { updates, heading } = Astro.props
 
     function updateAccessibilityTree(index: number) {
       updates.forEach((item, i) => {
-        const isActive = i === index
-        if (isActive) {
-          item.removeAttribute('aria-hidden')
-        } else {
-          item.setAttribute('aria-hidden', 'true')
-        }
-        item.inert = !isActive
+        item.inert = i !== index
       })
       carouselDots.forEach((dot, i) => {
         const selected = i === index
@@ -244,7 +229,6 @@ const { updates, heading } = Astro.props
 
     function beforeScroll(indexToGo: number) {
       updateDots(indexToGo)
-      updateTabBehaviour(indexToGo)
       updateAccessibilityTree(indexToGo)
     }
 
@@ -276,12 +260,15 @@ const { updates, heading } = Astro.props
     function navigateByArrow(direction: 'left' | 'right') {
       const previousIndex = currentIndex
       setCurrentIndex(direction)
-      const focusedElement = document.activeElement
+      const focusedElement =
+        document.activeElement instanceof HTMLElement
+          ? document.activeElement
+          : null
       const focusWasInSlide =
-        focusedElement instanceof HTMLElement &&
+        focusedElement !== null &&
         updates[previousIndex].contains(focusedElement)
       scrollToUpdate(currentIndex)
-      if (focusWasInSlide && focusedElement instanceof HTMLElement) {
+      if (focusWasInSlide && focusedElement) {
         focusEquivalentControl(focusedElement, updates[currentIndex])
       }
     }
@@ -316,6 +303,8 @@ const { updates, heading } = Astro.props
     nextButton?.addEventListener('click', () => navigateByArrow('right'))
     updatesContainer?.addEventListener('keydown', (event) => {
       if (event.defaultPrevented) return
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey)
+        return
       if (event.key === 'ArrowLeft') {
         event.preventDefault()
         navigateByArrow('left')
@@ -346,6 +335,7 @@ const { updates, heading } = Astro.props
     })
 
     function handleKeyNavigation(e: KeyboardEvent) {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
       switch (e.key) {
         case 'ArrowRight':
           setCurrentIndex('right')
@@ -374,7 +364,6 @@ const { updates, heading } = Astro.props
       dot.addEventListener('click', () => navigateByDot(i))
     })
 
-    updateTabBehaviour(0)
     updateAccessibilityTree(0)
   }
 </script>
