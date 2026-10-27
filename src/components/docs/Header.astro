@@ -3,16 +3,16 @@ import Search from '@astrojs/starlight/components/Search.astro'
 import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro'
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro'
 import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro'
-import wmLogo from '@assets/wm-logo.svg'
+const wmLogoSrc = '/favicon.svg'
 ---
 
 <div class="header sl-flex">
   <a href="/" class="site-title" data-umami-event="Docs - Home">
     <img
-      src={wmLogo.src}
+      src={wmLogoSrc}
       alt="Web Monetization logo"
-      width={wmLogo.width}
-      height={wmLogo.height}
+      width={159}
+      height={159}
     />
     <span>Web Monetization</span>
   </a>
