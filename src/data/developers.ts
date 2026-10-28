@@ -21,7 +21,6 @@ export interface Plugin {
     text?: string
   }
   desc: string
-  version: string[]
 }
 
 export const heroContent: HeroContent = {
@@ -88,8 +87,7 @@ export const plugins: Plugin[] = [
       text: 'Find out more',
       event: 'Developers page - Astro Monetization plugin'
     },
-    desc: 'This Astro component simplifies the process of adding monetization links to your Astro sites.',
-    version: ['2.0']
+    desc: 'This Astro component simplifies the process of adding monetization links to your Astro sites.'
   },
   {
     name: 'react-monetize',
@@ -99,8 +97,7 @@ export const plugins: Plugin[] = [
       text: 'Find out more',
       event: 'Developers page - react-monetize plugin'
     },
-    desc: 'Helpers and hooks to speed up your integration with Web Monetization API',
-    version: ['1.0', '2.0']
+    desc: 'Helpers and hooks to speed up your integration with Web Monetization API'
   },
   {
     name: 'Monetize 11ty',
@@ -110,87 +107,6 @@ export const plugins: Plugin[] = [
       text: 'Find out more',
       event: 'Developers page - Monetize 11ty plugin'
     },
-    desc: 'An Eleventy plugin to monetize posts and site content by creating exclusive content areas',
-    version: ['1.0', '2.0']
-  },
-  {
-    name: 'Hugo Web Monetization Component',
-    cta: {
-      href: 'https://github.com/sabinebertram/hugo-webmonetization-component'
-    },
-    desc: 'Theme component that enables Web Monetization on your entire Hugo website',
-    version: ['1.0']
-  },
-  {
-    name: 'gridsome-plugin-monetization',
-    cta: {
-      href: 'https://github.com/Sergix/gridsome-plugin-monetization'
-    },
-    desc: 'Web Monetization plugin for Gridsome',
-    version: ['1.0']
-  },
-  {
-    name: 'gatsby-plugin-monetization',
-    cta: {
-      href: 'https://github.com/mrmuhammadali/gatsby-plugin-monetization'
-    },
-    desc: 'A Gatsby plugin for react-monetize to speed up your integration with Web Monetization',
-    version: ['1.0']
-  },
-  {
-    name: 'ngx-monetization',
-    cta: {
-      href: 'https://github.com/CDDelta/ngx-monetization'
-    },
-    desc: 'Web Monetization API for Angular',
-    version: ['1.0']
-  },
-  {
-    name: 'Vuepress Plugin Web-Monetization',
-    cta: {
-      href: 'https://github.com/spekulatius/vuepress-plugin-web-monetization'
-    },
-    desc: 'Adds a Web Monetization meta tag to your VuePress website',
-    version: ['1.0']
-  },
-  {
-    name: 'Tessy',
-    cta: {
-      href: 'https://github.com/VladimirMikulic/tessy'
-    },
-    desc: 'Advanced Web Monetization testing library with powerful declarative API',
-    version: ['1.0']
-  },
-  {
-    name: 'svelte-monetization',
-    cta: {
-      href: 'https://github.com/sorxrob/svelte-monetization'
-    },
-    desc: 'A minimal and lightweight wrapper for the Web Monetization API',
-    version: ['1.0']
-  },
-  {
-    name: 'Moodle Webmonetization Module',
-    cta: {
-      href: 'https://github.com/andrewhancox/moodle-local_webmonetization'
-    },
-    desc: 'A plugin for adding a web monetization meta tag to your Moodle site',
-    version: ['1.0']
-  },
-  {
-    name: 'Jekyll + Webmonetization',
-    cta: {
-      href: 'https://github.com/philnash/jekyll-web_monetization'
-    },
-    desc: 'A Jekyll plugin for adding a Web Monetization meta tag to your site',
-    version: ['1.0']
-  },
-  {
-    name: 'Pipe Web Monetization',
-    cta: {
-      href: 'https://www.pipewebmonetization.com/'
-    },
-    desc: 'Web monetize your WordPress website and access your revenue via an analytics dashboard',
-    version: ['1.0']
+    desc: 'An Eleventy plugin to monetize posts and site content by creating exclusive content areas'
   }
 ]
