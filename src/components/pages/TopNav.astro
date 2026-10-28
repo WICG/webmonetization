@@ -4,9 +4,10 @@ import NavToolsDropdown from './NavToolsDropdown.astro'
 import HamburgerMenu from '@assets/hamburger-menu.svg'
 import CloseMenu from '@assets/close-menu.svg'
 import ChevronArrow from '@assets/arrow-chevron.svg'
-import wmLogo from '@assets/wm-logo.svg'
 import interledgerLogo from '@assets/interledger-logo.png'
 import { toolsSubmenu } from '../../data/nav'
+
+const wmLogoSrc = '/favicon.svg'
 
 const lang = getLangFromUrl(Astro.url)
 const t = useTranslations(lang)
@@ -26,10 +27,10 @@ const isToolsActive = toolsSubmenu.some((menuItem) => {
   <nav class="site-nav contentWrapper collapsed" id="siteNav">
     <a href={homePageUrl} class="site-title" data-umami-event="Nav - Home">
       <img
-        src={wmLogo.src}
+        src={wmLogoSrc}
         alt="Web Monetization logo"
-        width={wmLogo.width}
-        height={wmLogo.height}
+        width={159}
+        height={159}
         loading="lazy"
       />
       <span class="mobile-only">Web Monetization</span>
