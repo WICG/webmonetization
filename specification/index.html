@@ -88,10 +88,7 @@
             title: 'STREAM',
             href: 'https://interledger.org/developers/rfcs/stream-protocol/',
           },
-          Receipt: {
-            title: 'STREAM Receipt',
-            href: 'https://interledger.org/developers/rfcs/stream-receipts/',
-          },
+
           'open-payments': {
             title: 'Open Payments',
             href: 'https://openpayments.dev/',
@@ -616,8 +613,8 @@
               {{MonetizationEvent/incomingPayment}} attribute initialized to
               |payment|'s incoming payment URL, its
               {{MonetizationEvent/walletAddress}} attribute initialized to
-              |payment|'s wallet address, the deprecated attributes likewise,
-              and its {{Event/bubbles}} attribute initialized to true.
+              |payment|'s wallet address, and its {{Event/bubbles}} attribute
+              initialized to true.
               </li>
             </ol>
           </li>
@@ -711,26 +708,12 @@
           readonly attribute MonetizationCurrencyAmount amountSent;
           readonly attribute USVString? incomingPayment;
           readonly attribute USVString walletAddress;
-
-          // Following are deprecated
-          readonly attribute DOMString? amount;
-          readonly attribute DOMString? assetCode;
-          readonly attribute octet? assetScale;
-          readonly attribute DOMString? receipt;
-          readonly attribute USVString paymentPointer;
         };
 
         dictionary MonetizationEventInit : EventInit {
           required PaymentCurrencyAmount amountSent;
           required USVString? incomingPayment;
           required USVString walletAddress;
-
-          // Following are deprecated
-          required DOMString? amount;
-          required DOMString? assetCode;
-          required octet? assetScale;
-          required DOMString? receipt;
-          required USVString paymentPointer;
         };
       </pre>
       <p>
@@ -744,25 +727,6 @@
         [=relevant realm=].
         </li>
       </ol>
-      <div class="warning">
-        <p>
-          The {{MonetizationEvent/amount}}, {{MonetizationEvent/assetCode}},
-          {{MonetizationEvent/assetScale}},
-          {{MonetizationEvent/paymentPointer}} and
-          {{MonetizationEvent/receipt}} attributes are deprecated.
-        </p>
-        <p>
-          All [=monetization receivers=] should be migrating from generating a
-          [[[Receipt]]] to supporting incoming payments via [[open-payments]]
-          and will no longer be returning receipts to the browser.
-        </p>
-        <p>
-          As such the {{MonetizationEvent}} no longer represents an amount
-          received; it represents an amount sent and returns a URL as the
-          {{MonetizationEvent/incomingPayment}} attribute that can be used to
-          determine the amount received.
-        </p>
-      </div>
       <section>
         <h3>
           <dfn>amountSent</dfn> attribute
@@ -784,57 +748,6 @@
       <section>
         <h3>
           <dfn>walletAddress</dfn> attribute
-        </h3>
-        <p>
-          A [=URL=] representing the [=wallet address=] the payment was
-          initiated for. When getting, returns the value it was initialized
-          with.
-        </p>
-      </section>
-      <section>
-        <h3>
-          <dfn>amount</dfn> attribute (deprecated)
-        </h3>
-        <p>
-          The amount <em>received</em> as reflected in the receipt from the
-          [=monetization receiver=]. When getting, returns the value it was
-          initialized with.
-        </p>
-      </section>
-      <section>
-        <h3>
-          <dfn>assetCode</dfn> attribute (deprecated)
-        </h3>
-        <p>
-          The three letter asset code identifying the amount's units (e.g.,
-          "USD" for US dollars). When getting, returns the value it was
-          initialized with.
-        </p>
-      </section>
-      <section>
-        <h3>
-          <dfn>assetScale</dfn> attribute (deprecated)
-        </h3>
-        <p>
-          The scale of the amount. For example, USD would have an `assetScale`
-          of `2` when denominated in cents. When getting, returns the value it
-          was initialized with.
-        </p>
-      </section>
-      <section>
-        <h3>
-          <dfn>receipt</dfn> attribute (deprecated)
-        </h3>
-        <p>
-          `null` or a base64-encoded [[[Receipt]]] issued by the [=monetization
-          receiver=] to the [=monetization provider=] as proof of the total
-          amount received in the [=payment session=]. When getting, returns the
-          value it was initialized with.
-        </p>
-      </section>
-      <section>
-        <h3>
-          <dfn>paymentPointer</dfn> attribute (deprecated)
         </h3>
         <p>
           A [=URL=] representing the [=wallet address=] the payment was
