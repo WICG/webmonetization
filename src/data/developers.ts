@@ -80,12 +80,10 @@ export const developerTags: Pills = [
 
 export const plugins: Plugin[] = [
   {
-    name: 'Astro Monetization',
+    name: 'Astro',
     image: astroPlugin,
     cta: {
-      href: 'https://github.com/devcer/astro-monetization',
-      text: 'Find out more',
-      event: 'Developers page - Astro Monetization plugin'
+      href: 'https://github.com/devcer/astro-monetization'
     },
     desc: 'This Astro component simplifies the process of adding monetization links to your Astro sites.'
   },
@@ -93,20 +91,23 @@ export const plugins: Plugin[] = [
     name: 'react-monetize',
     image: reactPlugin,
     cta: {
-      href: 'https://github.com/guidovizoso/react-monetize',
-      text: 'Find out more',
-      event: 'Developers page - react-monetize plugin'
+      href: 'https://github.com/guidovizoso/react-monetize'
     },
     desc: 'Helpers and hooks to speed up your integration with Web Monetization API'
   },
   {
-    name: 'Monetize 11ty',
+    name: '11ty',
     image: evelentyPlugin,
     cta: {
-      href: 'https://github.com/devcer/eleventy-plugin-monetization',
-      text: 'Find out more',
-      event: 'Developers page - Monetize 11ty plugin'
+      href: 'https://github.com/devcer/eleventy-plugin-monetization'
     },
     desc: 'An Eleventy plugin to monetize posts and site content by creating exclusive content areas'
+  },
+  {
+    name: 'VuePress',
+    cta: {
+      href: 'https://github.com/spekulatius/vuepress-plugin-web-monetization'
+    },
+    desc: 'Adds a Web Monetization link tag to your VuePress website'
   }
 ]
