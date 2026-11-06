@@ -12,7 +12,7 @@
     <p>
       When the user starts interacting with a [=media element=], the user agent SHOULD
       [=initiate media-scoped sessions=] given that element; when the user stops interacting, the user agent
-      SHOULD [=end sessions scoped to=] that element.
+      SHOULD [=stop sessions scoped to=] that element.
     </p>
 
     <p>
@@ -69,6 +69,12 @@
       <ol>
         <li>
           If the result of [=get user wallet=] is null, then return.
+        </li>
+        <li>
+          Let |document:Document| be the {{Node/ownerDocument}} of |linkElement|.
+        </li>
+        <li>
+          If [=document monetization disabled=] given |document|, then return.
         </li>
         <li>
           Let |websiteWalletAddress:DOMString| be the value of the {{HTMLLinkElement/href}} of |linkElement|.
@@ -131,7 +137,7 @@
     <aside class="note" title="Session initiation summary">
       <p>The main [=start a session=] algorithm performs these key steps:</p>
       <ol>
-        <li><strong>Precondition:</strong> Verify user wallet is connected</li>
+        <li><strong>Precondition:</strong> Verify user wallet is connected and monetization is not disabled</li>
         <li><strong>Discovery:</strong> Request website wallet address details</li>
         <li><strong>Authorization:</strong> Obtain an incoming payment grant to create payments on the website's wallet</li>
         <li><strong>Payment setup:</strong> Create an incoming payment (payment bucket) on the website's wallet resource server</li>
@@ -145,25 +151,25 @@
   <section>
     <h3>Session termination</h3>
     <p>
-      This section defines the algorithms for ending payment sessions. Session termination removes session records
+      This section defines the algorithms for stopping payment sessions. Session termination removes session records
       from the [=active sessions list=] and cancels scheduled payment work.
     </p>
 
     <div class="algorithm">
-      <p>To <dfn>end sessions scoped to</dfn> the |root:HTMLElement|, run these steps:</p>
+      <p>To <dfn>stop sessions scoped to</dfn> the |root:HTMLElement|, run these steps:</p>
       <ol>
         <li>Let |linkElements:NodeList| be all [^link^] elements with `rel="monetization"` that are descendants of |root|.</li>
         <li>For each |linkElement:HTMLLinkElement| in |linkElements|:
           <ol>
             <li>Let |session:Session| be the session record in the [=active sessions list=] whose {{HTMLLinkElement}} is |linkElement|, or null if none exists.</li>
-            <li>If |session| is not null, [=end session=] given |session|.</li>
+            <li>If |session| is not null, [=stop session=] given |session|.</li>
           </ol>
         </li>
       </ol>
     </div>
 
     <div class="algorithm">
-      <p>To <dfn>end session</dfn>, given a session record |session:Session|, run these steps:</p>
+      <p>To <dfn>stop session</dfn>, given a session record |session:Session|, run these steps:</p>
       <ol>
         <li>If |session| is the only session in the [=active sessions list=]:
           <ol>

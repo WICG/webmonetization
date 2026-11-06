@@ -17,6 +17,14 @@
 
   <p>A generated key pair is persisted in {{Storage}}.</p>
 
+  <p class="note" title="Privacy">
+    Reusing a single long-lived signing key across
+    multiple origins or wallet providers can enable cross-site tracking.
+    Future revisions may define per-session or per-origin derived authentication
+    keys to further reduce tracking surfaces. See the <a href="https://docs.google.com/document/d/1s9aXcLoBdLe9y_8JispFK7NVERxUhxn0orqgzZBrcBo/edit?tab=t.0#heading=h.z0cxd4l694ag">
+    directed identity proposal</a> for background.
+  </p>
+
   <p class="note">The user agent SHOULD display the [=encoded public key JWK=] on its [=setup page=] to help
       the user register it with their wallet provider.</p>
 

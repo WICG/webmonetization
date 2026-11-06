@@ -93,7 +93,9 @@
     <li>
       Let |redirectUrl:URL| be the result of [=URL parser|parsing=] |pendingGrant|'s
       {{PendingGrant/interact}}.{{PendingInteract/redirect}} property ([=Redirect URI=]).
-      If |redirectUrl| is failure, return failure.
+    </li>
+    <li>
+        If |redirectUrl| is failure or |redirectUrl|'s [=url/scheme=] is not `https`, return failure.
     </li>
     <li>
       Run the
