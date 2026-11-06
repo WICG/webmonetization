@@ -37,7 +37,7 @@ export default defineConfig({
       plugins: [
         starlightLinksValidator({
           errorOnFallbackPages: false,
-          exclude: ['/prob-revshare']
+          exclude: ['/prob-revshare', '/tools']
         }),
         starlightFullViewMode({
           leftSidebarEnabled: true,
@@ -45,8 +45,6 @@ export default defineConfig({
         }),
         starlightLlmsTxt({
           details: `Web Monetization documentation is for two audiences: web developers and publishers who want to add Web Monetization to a site, and supporters who install a browser extension to send payments while they browse. It is not the formal specification text itself — that is linked as an optional resource below.
-
-The Web Monetization tools for publishers, supporters, and developers are no longer being proactively developed by the Interledger Foundation in terms of new features or integrations — existing tools are maintained, open source, and available to use. The Web Monetization extension continues to exist as a wallet-agnostic browser extension. The project has moved to a community-led model for new feature contributions, reviewed by the Foundation. The Web Monetization standard itself continues to be actively stewarded by the Foundation.
 
 Key terminology notes:
 
