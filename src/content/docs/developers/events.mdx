@@ -1,5 +1,6 @@
 ---
 title: Monetization events
+lastUpdated: 2026-11-06
 ---
 
 import { LinkOut, Hidden, Tooltip } from '@interledger/docs-design-system'
@@ -8,7 +9,6 @@ import { Tabs, TabItem, Badge } from '@astrojs/starlight/components'
 import BrowserCompat from '/src/components/docs/BrowserCompat.astro'
 import amountSent from '/src/data/browser-compat-data/amountSent.json'
 import incomingPayment from '/src/data/browser-compat-data/incomingPayment.json'
-import paymentPointer from '/src/data/browser-compat-data/paymentPointer.json'
 
 <Badge
   text="Web Monetization API"
@@ -164,13 +164,7 @@ async function verifyPayment(event) {
 
 ### walletAddress
 
-The `walletAddress` property returns the URL that represents the wallet address that the payment was sent to. In most cases, the value will be the same as the `href` URL in the monetization `<link>`.
-
-:::note[Property naming history]
-Earlier versions of the Web Monetization specification only used Interledger's Simple Payment Setup Protocol (SPSP), which calls for payment pointers. This is why the property was originally named `paymentPointer`.
-
-As of the September 2026 spec update, `paymentPointer` is deprecated in favor of `walletAddress`. Both properties return the same value, but `walletAddress` should be used going forward.
-:::
+The `walletAddress` property returns the URL that represents the wallet address that the payment was sent to. In most cases, the value will be the same as the `href` URL in the monetization `<link>`. The current extension also populates this value on a `paymentPointer` property, though `walletAddress` is the current name to use.
 
 #### Example using `walletAddress`
 
@@ -187,26 +181,6 @@ As of the September 2026 spec update, `paymentPointer` is deprecated in favor of
 #### Specification
 
 <Specification anchor="walletaddress-attribute" />
-
-### paymentPointer
-
-:::caution[Deprecated]
-`paymentPointer` is <LinkOut href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#deprecated_and_obsolete">deprecated</LinkOut>. Use [`walletAddress`](#walletaddress) instead.
-:::
-
-The `paymentPointer` property returns the same URL as [`walletAddress`](#walletaddress). It's retained for backward compatibility only and shouldn't be used in new integrations.
-
-<Hidden>
-
-// #### paymentPointer browser compatibility
-
-<BrowserCompat json={paymentPointer} />
-
-</Hidden>
-
-#### Specification
-
-<Specification anchor="paymentpointer-attribute" />
 
 ## Example use cases
 

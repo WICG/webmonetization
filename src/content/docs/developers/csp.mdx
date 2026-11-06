@@ -1,5 +1,6 @@
 ---
 title: Content Security Policy (CSP)
+lastUpdated: 2026-11-06
 ---
 
 import { LinkOut, Hidden } from '@interledger/docs-design-system'
@@ -34,7 +35,7 @@ The `monetization-src` fetch directive allows you to define the wallet address U
 
 ```http
 Content-Security-Policy: monetization-src <value>;
-Content-Security-Policy: monetization-src <value>, <value>;
+Content-Security-Policy: monetization-src <value> <value>;
 ```
 
 Where `<value>` is a wallet address that's allowed to load.
