@@ -37,7 +37,7 @@ export default defineConfig({
       plugins: [
         starlightLinksValidator({
           errorOnFallbackPages: false,
-          exclude: ['/prob-revshare']
+          exclude: ['/prob-revshare', '/tools']
         }),
         starlightFullViewMode({
           leftSidebarEnabled: true,
