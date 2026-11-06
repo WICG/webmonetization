@@ -10,6 +10,7 @@ found=0
 while IFS= read -r -d '' file; do
   [[ "$file" == *"/es/"* ]] && continue
   [[ "$file" == *"404"* ]] && continue
+  [[ "$file" == *"/partials/"* ]] && continue
 
   last_commit=$(git log -1 --format="%ct" -- "$file")
   [[ -z "$last_commit" ]] && continue
