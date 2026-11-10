@@ -230,6 +230,29 @@
         </aside>
       </section>
     </section>
+    <section id="goals" class="informative">
+      <h2>
+        Goals
+      </h2>
+      <ul>
+        <li>Suitable for static HTML documents, without requiring backend
+        infrastructure.
+        </li>
+        <li>Doesn't require user interaction, but user retains control over
+        which sites they monetize and how much they spend.
+        </li>
+        <li>Developers have a way to associate payments with their users, in
+        order to provide a range of experiences.
+        </li>
+        <li>Users retain control of if, when, and how payments are made to the
+        site. For example, micropayments of a predetermined monetary value
+        could be "streamed" to the site over time. Alternatively, the user
+        could make one or many discrete "one-off" payment(s) of any arbitrary
+        monetary amount, even while micropayments are simultaneously being
+        streamed.
+        </li>
+      </ul>
+    </section>
     <section id="model">
       <h2>
         Model
@@ -275,51 +298,121 @@
           entry-point</a> (i.e., a JSON resource containing details that
           facilitate payment to an account).
         </dd>
-        <dt>
-          <dfn>Payment session</dfn>
-        </dt>
-        <dd>
-          A session between a [=monetization provider=] and [=monetization
-          receiver=] initiated by the [=user agent=] at the [=monetization
-          receiver=]. One or more payments can be [=initiated=] by the
-          [=monetization provider=] in a single session. A payment has an
-          amount (a {{PaymentCurrencyAmount}}), an incoming payment [=URL=],
-          and a [=wallet address=].
-        </dd>
-        <dt>
-          <dfn data-lt="initiated">Initiated payment</dfn>
-        </dt>
-        <dd>
-          A payment that the [=monetization provider=] has started towards the
-          [=monetization receiver=] within a [=payment session=]. The
-          underlying payment layers could complete a payment asynchronously, so
-          an initiated payment is not a guarantee that the [=monetization
-          receiver=] has received the amount.
-        </dd>
       </dl>
-    </section>
-    <section id="goals" class="informative">
-      <h2>
-        Goals
-      </h2>
-      <ul>
-        <li>Suitable for static HTML documents, without requiring backend
-        infrastructure.
-        </li>
-        <li>Doesn't require user interaction, but user retains control over
-        which sites they monetize and how much they spend.
-        </li>
-        <li>Developers have a way to associate payments with their users, in
-        order to provide a range of experiences.
-        </li>
-        <li>Users retain control of if, when, and how payments are made to the
-        site. For example, micropayments of a predetermined monetary value
-        could be "streamed" to the site over time. Alternatively, the user
-        could make one or many discrete "one-off" payment(s) of any arbitrary
-        monetary amount, even while micropayments are simultaneously being
-        streamed.
-        </li>
-      </ul>
+      <section>
+        <h3>
+          Payment session
+        </h3>
+        <p>
+          A <dfn>payment session</dfn> is a session between a [=monetization
+          provider=] and [=monetization receiver=] initiated by the [=user
+          agent=] at the [=monetization receiver=]. One or more payments can be
+          initiated in a single session. A payment has an amount (a
+          {{PaymentCurrencyAmount}}), an incoming payment [=URL=], and a
+          [=wallet address=].
+        </p>
+        <p>
+          A [=payment session=] has an associated <dfn data-dfn-for=
+          "payment session">stopped</dfn> boolean, initially false.
+        </p>
+        <p>
+          To <dfn>stop a payment session</dfn> given a [=payment session=]
+          |session|, set |session|'s [=payment session/stopped=] to true.
+          Already initiated payments MUST NOT be canceled.
+        </p>
+        <p>
+          Any specification or the [=user agent=] may [=register a payment
+          session condition=]. The [=user agent=] has an associated
+          <dfn>payment session condition list</dfn>, a [=list=] of algorithms,
+          initially empty. Each algorithm takes a [=payment session=] and
+          returns a boolean.
+        </p>
+        <p>
+          To <dfn>register a payment session condition</dfn> given an algorithm
+          |condition|, run the following steps:
+        </p>
+        <ol class="algorithm">
+          <li>[=list/Append=] |condition| to the [=user agent=]'s [=payment
+          session condition list=].
+          </li>
+        </ol>
+        <aside class="example">
+          <p>
+            Registering conditions could result in a [=payment session
+            condition list=] containing algorithms for the following
+            conditions:
+          </p>
+          <ol>
+            <li>The user has allowed the usage of monetization (this
+            specification)
+            </li>
+            <li>
+              <p>
+                The user has setup a valid wallet in their [=user agent=]
+                (<a href="/specification/flows/">Web Monetization flows</a>
+                specification)
+              </p>
+            </li>
+            <li>The user has not paused monetization through a toggle in the
+            [=user agent=] preferences (user agent defined)
+            </li>
+          </ol>
+        </aside>
+        <p>
+          To <dfn>check if a payment session is active</dfn> given |session|,
+          run the following steps:
+        </p>
+        <ol class="algorithm">
+          <li>If |session|'s [=payment session/stopped=] is true, return false.
+          </li>
+          <li>[=list/For each=] |condition| of the [=user agent=]'s [=payment
+          session condition list=]:
+            <ol>
+              <li>If running |condition| given |session| returns false, return
+              false.
+              </li>
+            </ol>
+          </li>
+          <li>Return true.
+          </li>
+        </ol>
+        <p>
+          A [=monetization provider=] has associated <dfn>payment initiation
+          steps</dfn>, an implementation-defined algorithm that takes a
+          [=payment session=] and returns either a payment or failure. The
+          steps attempt to start a payment to the [=monetization receiver=].
+          They may complete a payment asynchronously, so an initiated payment
+          is not a guarantee that the [=monetization receiver=] has received
+          the amount.
+        </p>
+        <p>
+          To <dfn>initiate a payment</dfn> given |session|, run the following
+          steps:
+        </p>
+        <ol class="algorithm">
+          <li>If the result of [=check if a payment session is active|checking
+          if a payment session is active=] with |session| is false, return
+          failure.
+          </li>
+          <li>Let |payment| be the result of running the [=monetization
+          provider=]'s [=payment initiation steps=] given |session|.
+          </li>
+          <li>If |payment| is failure, return failure.
+          </li>
+          <li>If |payment| does not have an amount, an incoming payment
+          [=URL=], or a [=wallet address=], return failure.
+          </li>
+          <li>Perform [=emit the monetization event=] with |payment| and
+          |session|.
+          </li>
+          <li>Return |payment|.
+          </li>
+        </ol>
+        <p>
+          The [=user agent=] runs [=initiate a payment=] at
+          implementation-defined times.
+        </p>
+      </section>
     </section>
     <section>
       <h2>
@@ -347,7 +440,8 @@
       </p>
       <p>
         A user agent MAY restrict the number of concurrent [=payment sessions=]
-        it simultaneously supports.
+        it simultaneously supports. A [=payment session/stopped=] payment
+        session MUST NOT count towards that limit.
       </p>
       <p>
         The default type for resources given by the `monetization` keyword is
@@ -421,8 +515,9 @@
         [^link^] element |element|, is as follows:
       </p>
       <ol>
-        <li>Stop |element|'s [=associated payment session=], if any, and set it
-        to null.
+        <li>If |element|'s [=associated payment session=] is not null, [=stop a
+        payment session|stop=] it, then set |element|'s [=associated payment
+        session=] to null.
         </li>
         <li>Run the <a data-cite=
         "html#default-fetch-and-process-the-linked-resource">default fetch and
@@ -530,8 +625,8 @@
       <p>
         When a [^link^] element stops creating a "monetization" [=external
         resource link=], or stops being [=browsing-context connected=], a user
-        agent MUST stop its [=associated payment session=], if any, and set it
-        to null.
+        agent MUST [=stop a payment session|stop=] its [=associated payment
+        session=], if any, and set it to null.
       </p>
       <section>
         <h4>
@@ -578,7 +673,8 @@
               [=event handler content attribute=] for the {{monetization}}
               event supported by all [=element=]s, {{Document}} objects, and
               {{Window}} objects. The user agent uses it to notify that a
-              payment has been [=initiated=] for a [=monetized=] [^link^].
+              payment has been [=initiate a payment|initiated=] for a
+              [=monetized=] [^link^].
             </p>
           </dd>
         </dl>
@@ -588,14 +684,21 @@
           <code><dfn data-dfn-type="event">monetization</dfn></code> event
         </h3>
         <p>
-          When the [=payment session=] has [=initiated=] a |payment| with a
-          non-zero amount, perform the following steps:
+          To <dfn>emit the monetization event</dfn> given |payment| and
+          |session|, perform the following steps:
         </p>
         <ol class="algorithm">
-          <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}}
-          associated with the [=payment session=].
+          <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} whose
+          [=associated payment session=] is |session|.
           </li>
-          <li>If |target| is `null`, then return.
+          <li>If |target| is `null`, return.
+          </li>
+          <li>If |payment|'s amount["value"] is not a <a data-cite=
+          "payment-request#dfn-valid-decimal-monetary-value">valid decimal
+          monetary value</a>, return.
+          </li>
+          <li>If the numeric value represented by |payment|'s amount["value"]
+          is less than or equal to zero, return.
           </li>
           <li>[=Queue a task=] on the [=monetization task source=] to perform
           the following steps:
@@ -751,8 +854,8 @@
         </h3>
         <p>
           A [=URL=] representing the [=wallet address=] the payment was
-          initiated for. When getting, returns the value it was initialized
-          with.
+          [=initiate a payment|initiated=] for. When getting, returns the value
+          it was initialized with.
         </p>
       </section>
     </section>
