@@ -56,42 +56,6 @@ const t = useTranslations(lang)
       </div>
     </div>
   </HeroWrapper>
-  <section class="section">
-    <div class="contentWrapper">
-      <div class="textbox-info">
-        <div class="textbox-content">
-          <h2 class="font-h3">A Community-led Model</h2>
-          <p>
-            The Web Monetization tools for Publishers, Supporters and Developers
-            are no longer being proactively developed by the Interledger
-            Foundation in terms of new features or integrations. We are
-            maintaining all existing tools and they will remain open source and
-            available to use.
-          </p>
-          <p>
-            The Web Monetization extension itself will continue to exist as a
-            wallet agnostic browser extension that allows users to support Web
-            Monetized websites while the native browser implementation continues
-            to be developed.
-          </p>
-          <p>
-            We are moving to a community-led model and welcome code
-            contributions, including the development of new features. All code
-            will be reviewed by the Interledger Foundation. For more
-            information, review our{' '}
-            <a href="https://webmonetization.org/resources/get-involved/">
-              Contribution Guidelines
-            </a>
-            .
-          </p>
-          <p>
-            The Web Monetization standard will continue to be actively stewarded
-            by the foundation.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
   <section class="section" id="start">
     <div class="contentWrapper">
       <div class="textbox-info">
@@ -107,9 +71,9 @@ const t = useTranslations(lang)
             they control.
           </p>
           <p>
-            Built as a growing, open protocol web standard, Web Monetization
-            enables real-time wallet-to-wallet transfers through its
-            free-to-use, frictionless model.
+            Built as a growing, open protocol web standard proposal, Web
+            Monetization enables real-time wallet-to-wallet transfers through
+            its free-to-use, frictionless model.
           </p>
           <h2 class="font-h3">Compatible wallets</h2>
         </div>
@@ -118,15 +82,33 @@ const t = useTranslations(lang)
             <WalletList cards={wallets} ctaText="Set up a wallet" />
           </div>
         )}
-        <a
-          href="https://github.com/WICG/webmonetization/pulls"
-          target="_blank"
-          rel="noreferrer noopener"
-          data-umami-event="Home page link - GitHub PR"
-          class="bold"
-        >
-          Do you know other wallets? Make a PR
-        </a>
+        <p>
+          Do you know other wallets?{' '}
+          <a
+            href="https://github.com/WICG/webmonetization/pulls"
+            target="_blank"
+            rel="noreferrer noopener"
+            data-umami-event="Home page link - GitHub PR"
+          >
+            Add them by creating a PR!
+          </a>
+        </p>
+        <div class="textbox-content">
+          <h2 class="font-h3">Contribute to Web Monetization</h2>
+          <p>
+            The Web Monetization standard proposal is actively stewarded by the
+            Interledger Foundation. The{' '}
+            <a href="/supporters/get-started">Web Monetization extension</a> and
+            the{' '}
+            <a href="/tools">tools for publishers, supporters and developers</a>{' '}
+            are led by the community. The extension serves as wallet-agnostic
+            browser extension that allows users to support web monetized sites
+            while the native browser implementation continues to be developed.
+            We welcome suggestions, new features, integrations and bug fixes.
+            For more information, review our{' '}
+            <a href="/resources/get-involved">Get involved</a> page.
+          </p>
+        </div>
       </div>
     </div>
   </section>
