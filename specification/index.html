@@ -88,7 +88,6 @@
             title: 'STREAM',
             href: 'https://interledger.org/developers/rfcs/stream-protocol/',
           },
-
           'open-payments': {
             title: 'Open Payments',
             href: 'https://openpayments.dev/',
@@ -304,15 +303,15 @@
           Payment session
         </h3>
         <p>
-          A <dfn>payment session</dfn> is a session between a [=monetization
-          provider=] and [=monetization receiver=] initiated by the [=user
-          agent=] at the [=monetization receiver=]. One or more payments can be
-          initiated in a single session. A payment has an amount (a
-          {{PaymentCurrencyAmount}}), an incoming payment [=URL=], and a
-          [=wallet address=].
+          A <dfn>payment</dfn> has an amount (a {{PaymentCurrencyAmount}}), an
+          incoming payment [=URL=], and a [=wallet address=].
         </p>
         <p>
-          A [=payment session=] has an associated <dfn data-dfn-for=
+          A <dfn>payment session</dfn> groups the [=payments=] the [=user
+          agent=] initiates, through the [=monetization provider=], to the
+          [=monetization receiver=] of one [=monetized=] link. It has an
+          associated <dfn data-dfn-for="payment session">link</dfn>, an
+          {{HTMLLinkElement}}, and an associated <dfn data-dfn-for=
           "payment session">stopped</dfn> boolean, initially false.
         </p>
         <p>
@@ -321,65 +320,37 @@
           Already initiated payments MUST NOT be canceled.
         </p>
         <p>
-          Any specification or the [=user agent=] may [=register a payment
-          session condition=]. The [=user agent=] has an associated
-          <dfn>payment session condition list</dfn>, a [=list=] of algorithms,
-          initially empty. Each algorithm takes a [=payment session=] and
-          returns a boolean.
+          A <dfn>payment session condition</dfn> is an algorithm that takes a
+          [=payment session=] and returns a boolean. This specification, other
+          specifications or the [=user agent=] may define it.
         </p>
-        <p>
-          To <dfn>register a payment session condition</dfn> given an algorithm
-          |condition|, run the following steps:
-        </p>
-        <ol class="algorithm">
-          <li>[=list/Append=] |condition| to the [=user agent=]'s [=payment
-          session condition list=].
-          </li>
-        </ol>
         <aside class="example">
           <p>
-            Registering conditions could result in a [=payment session
-            condition list=] containing algorithms for the following
-            conditions:
+            Defining conditions could result in the following [=payment session
+            condition=] list:
           </p>
           <ol>
-            <li>The user has allowed the usage of monetization (this
+            <li>Has the user allowed the usage of monetization? (this
             specification)
             </li>
-            <li>
-              <p>
-                The user has setup a valid wallet in their [=user agent=]
-                (<a href="/specification/flows/">Web Monetization flows</a>
-                specification)
-              </p>
+            <li>Has the user set up a valid wallet in their [=user agent=]?
+            (<a href="/specification/flows/">Web Monetization flows</a>
+            specification)
             </li>
-            <li>The user has not paused monetization through a toggle in the
-            [=user agent=] preferences (user agent defined)
+            <li>Has the user not paused monetization through a toggle in the
+            [=user agent=] preferences? (user agent defined)
             </li>
           </ol>
         </aside>
         <p>
-          To <dfn>check if a payment session is active</dfn> given |session|,
-          run the following steps:
+          A payment session is <dfn data-dfn-for="payment session">active</dfn>
+          if it is not [=payment session/stopped=] and every [=payment session
+          condition=] returns true for it.
         </p>
-        <ol class="algorithm">
-          <li>If |session|'s [=payment session/stopped=] is true, return false.
-          </li>
-          <li>[=list/For each=] |condition| of the [=user agent=]'s [=payment
-          session condition list=]:
-            <ol>
-              <li>If running |condition| given |session| returns false, return
-              false.
-              </li>
-            </ol>
-          </li>
-          <li>Return true.
-          </li>
-        </ol>
         <p>
           A [=monetization provider=] has associated <dfn>payment initiation
           steps</dfn>, an implementation-defined algorithm that takes a
-          [=payment session=] and returns either a payment or failure. The
+          [=payment session=] and returns either a [=payment=] or failure. The
           steps attempt to start a payment to the [=monetization receiver=].
           They may complete a payment asynchronously, so an initiated payment
           is not a guarantee that the [=monetization receiver=] has received
@@ -390,22 +361,20 @@
           steps:
         </p>
         <ol class="algorithm">
-          <li>If the result of [=check if a payment session is active|checking
-          if a payment session is active=] with |session| is false, return
-          failure.
+          <li>If |session| is not [=payment session/active=], return.
           </li>
-          <li>Let |payment| be the result of running the [=monetization
-          provider=]'s [=payment initiation steps=] given |session|.
-          </li>
-          <li>If |payment| is failure, return failure.
-          </li>
-          <li>If |payment| does not have an amount, an incoming payment
-          [=URL=], or a [=wallet address=], return failure.
-          </li>
-          <li>Perform [=emit the monetization event=] with |payment| and
-          |session|.
-          </li>
-          <li>Return |payment|.
+          <li>Run these steps [=in parallel=]:
+            <ol>
+              <li>Let |payment| be the result of running the [=monetization
+              provider=]'s [=payment initiation steps=] given |session|.
+              </li>
+              <li>If |payment| is failure, return.
+              </li>
+              <li>[=Queue an element task=] on the [=monetization task source=]
+              given |session|'s [=payment session/link=] to [=emit the
+              monetization event=] with |payment| and |session|.
+              </li>
+            </ol>
           </li>
         </ol>
         <p>
@@ -608,8 +577,9 @@
             sessions=], set |success| to false.
           </p>
         </li>
-        <li>If |success| is true, start a new [=payment session=] and set it as
-        |element|'s [=associated payment session=].
+        <li>If |success| is true, start a new [=payment session=], set
+        |element| as the session's [=payment session/link=], and set the new
+        session as |element|'s [=associated payment session=].
         </li>
         <li>[=Queue an element task=] on the [=networking task source=] given
         |element| and the following steps:
@@ -688,10 +658,11 @@
           |session|, perform the following steps:
         </p>
         <ol class="algorithm">
-          <li>Let |target:HTMLLinkElement| be the {{HTMLLinkElement}} whose
-          [=associated payment session=] is |session|.
+          <li>Let |target:HTMLLinkElement| be |session|'s [=payment
+          session/link=].
           </li>
-          <li>If |target| is `null`, return.
+          <li>If |session| is no longer |target|'s [=associated payment
+          session=], return.
           </li>
           <li>If |payment|'s amount["value"] is not a <a data-cite=
           "payment-request#dfn-valid-decimal-monetary-value">valid decimal
@@ -700,26 +671,19 @@
           <li>If the numeric value represented by |payment|'s amount["value"]
           is less than or equal to zero, return.
           </li>
-          <li>[=Queue a task=] on the [=monetization task source=] to perform
-          the following steps:
-            <ol>
-              <li>If |target| is not connected, return.
-              </li>
-              <li>Let |amountSent:MonetizationCurrencyAmount| be the result of
-              [=create a monetization currency amount|creating a monetization
-              currency amount=] given |payment|'s amount and |target|'s
-              [=relevant realm=].
-              </li>
-              <li>[=Fire an event=] named `"monetization"` at |target| using
-              {{MonetizationEvent}}, with its {{MonetizationEvent/amountSent}}
-              attribute initialized to |amountSent|, its
-              {{MonetizationEvent/incomingPayment}} attribute initialized to
-              |payment|'s incoming payment URL, its
-              {{MonetizationEvent/walletAddress}} attribute initialized to
-              |payment|'s wallet address, and its {{Event/bubbles}} attribute
-              initialized to true.
-              </li>
-            </ol>
+          <li>Let |amountSent:MonetizationCurrencyAmount| be the result of
+          [=create a monetization currency amount|creating a monetization
+          currency amount=] given |payment|'s amount and |target|'s [=relevant
+          realm=].
+          </li>
+          <li>[=Fire an event=] named `"monetization"` at |target| using
+          {{MonetizationEvent}}, with its {{MonetizationEvent/amountSent}}
+          attribute initialized to |amountSent|, its
+          {{MonetizationEvent/incomingPayment}} attribute initialized to
+          |payment|'s incoming payment URL, its
+          {{MonetizationEvent/walletAddress}} attribute initialized to
+          |payment|'s wallet address, and its {{Event/bubbles}} attribute
+          initialized to true.
           </li>
         </ol>
       </section>
