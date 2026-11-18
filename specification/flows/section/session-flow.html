@@ -208,12 +208,12 @@
           {{PaymentCurrencyAmount/value}} set to |paymentAmount| serialized as a string.</li>
         <li>Schedule a task that, after |delay| has elapsed, runs these steps:
           <ol>
-            <li>If |session| is `null`, not in the [=active sessions list=], or not
+            <li>If |session| is not in the [=active sessions list=], or not
               <a data-cite="WebMonetization/#dfn-active">active</a>, then [=schedule payment streaming tick=]
               and return.
             </li>
             <li><a data-cite="WebMonetization/#dfn-initiate-a-payment">Initiate a payment</a> given
-              |paymentSession|.
+              |session| and |amount|.
             </li>
           </ol>
         </li>
@@ -235,8 +235,8 @@
       <p>To <dfn>run payment initiation steps</dfn>, given |session:Session| and |amount:PaymentCurrencyAmount|, run these steps:</p>
       <ol>
         <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
-        <li>If |userWallet| is null, then return failure.</li>
-        <li>If |session| is not in the [=active sessions list=], then return failure.</li>
+        <li>If |userWallet| is null, then [=schedule payment streaming tick=] and return failure.</li>
+        <li>If |session| is not in the [=active sessions list=], then [=schedule payment streaming tick=] and return failure.</li>
         <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
         <li>Let |userWalletGrant:Grant| be |userWallet|'s {{Storage/grant}}.</li>
         <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
@@ -266,12 +266,12 @@
           </ol>
         </li>
         <li>[=Schedule payment streaming tick=].</li>
-        <li>Let |amount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
+        <li>Let |paymentAmount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
           {{PaymentCurrencyAmount/currency}} set to |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetCode}}
           and {{PaymentCurrencyAmount/value}} set to the result of [=convert scaled amount to decimal=]
-          given |paymentAmount| and |assetScale|.
+          given |amountValue| and |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetScale}}.
         </li>
-        <li>Return a payment with amount |amount|, incoming payment URL |session|.{{Session/incomingPaymentId}},
+        <li>Return a payment with amount |paymentAmount|, incoming payment URL |session|.{{Session/incomingPaymentId}},
           and wallet address |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}.</li>
       </ol>
     </div>
