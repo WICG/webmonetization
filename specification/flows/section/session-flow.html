@@ -206,7 +206,17 @@
         <li>If |paymentAmount| is 0, then return.</li>
         <li>Let |amount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
           {{PaymentCurrencyAmount/value}} set to |paymentAmount| serialized as a string.</li>
-        <li>Schedule a task that, after |delay| has elapsed, will [=process session for payment=] given |session| and |amount|.</li>
+        <li>Schedule a task that, after |delay| has elapsed, runs these steps:
+          <ol>
+            <li>If |session| is `null`, not in the [=active sessions list=], or not
+              <a data-cite="WebMonetization/#dfn-active">active</a>, then [=schedule payment streaming tick=]
+              and return.
+            </li>
+            <li><a data-cite="WebMonetization/#dfn-initiate-a-payment">Initiate a payment</a> given
+              |paymentSession|.
+            </li>
+          </ol>
+        </li>
       </ol>
     </div>
 
@@ -222,11 +232,11 @@
     </div>
 
     <div class="algorithm">
-      <p>To <dfn>process session for payment</dfn>, given |session:Session| and |amount:PaymentCurrencyAmount|, run these steps:</p>
+      <p>To <dfn>run payment initiation steps</dfn>, given |session:Session| and |amount:PaymentCurrencyAmount|, run these steps:</p>
       <ol>
         <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
-        <li>If |userWallet| is null, then return.</li>
-        <li>If |session| is not in the [=active sessions list=], then return.</li>
+        <li>If |userWallet| is null, then return failure.</li>
+        <li>If |session| is not in the [=active sessions list=], then return failure.</li>
         <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
         <li>Let |userWalletGrant:Grant| be |userWallet|'s {{Storage/grant}}.</li>
         <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
@@ -239,7 +249,7 @@
             <li>If |rotatedAccessToken| is failure:
               <ol>
                 <li>[=Revoke user wallet credentials=].</li>
-                <li>Return.</li>
+                <li>Return failure.</li>
               </ol>
             </li>
             <li>Set |userWalletGrant|'s {{Grant/access_token}} to |rotatedAccessToken|.</li>
@@ -249,31 +259,20 @@
               |amountValue|, and |userWalletGrant|.</li>
           </ol>
         </li>
-        <li>If |result| is {{OutgoingPaymentResult/"success"}}:
+        <li>If |result| is not {{OutgoingPaymentResult/"success"}}:
           <ol>
-            <li>[=Fire monetization event=] given |session|, |amount|, and |userWallet|.</li>
-            <li>[=Schedule payment streaming tick=].</li>
-            <li>Return.</li>
+            <li>[=Revoke user wallet credentials=].</li>
+            <li>Return failure.</li>
           </ol>
         </li>
-        <li>[=Revoke user wallet credentials=].</li>
-      </ol>
-    </div>
-
-    <div class="algorithm">
-      <p>To <dfn>fire monetization event</dfn>, given |session:Session|, |amount:PaymentCurrencyAmount|, and |userWallet:UserWallet|, run these steps:</p>
-      <ol>
-        <li>Let |assetScale:long| be |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetScale}}.</li>
-        <li>Let |assetCode:DOMString| be |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetCode}}.</li>
-        <li>Let |decimalAmount:DOMString| be the result of [=convert scaled amount to decimal=] given |amount|.{{PaymentCurrencyAmount/value}} and |assetScale|.</li>
-        <li>Fire a <dfn data-dfn-type="interface" data-cite="WebMonetization/#dom-monetizationevent">`MonetizationEvent`</dfn> on |session|.{{Session/linkElement}} with:
-          <ul>
-            <li><a data-cite="WebMonetization/#dom-monetizationevent-amountsent">{{MonetizationEvent/amountSent}}</a>.<a data-cite="WebMonetization/#dom-monetizationcurrencyamount-currency">{{MonetizationCurrencyAmount/currency}}</a> set to |assetCode|</li>
-            <li><a data-cite="WebMonetization/#dom-monetizationevent-amountsent">{{MonetizationEvent/amountSent}}</a>.<a data-cite="WebMonetization/#dom-monetizationcurrencyamount-value">{{MonetizationCurrencyAmount/value}}</a> set to |decimalAmount|</li>
-            <li><a data-cite="WebMonetization/#dom-monetizationevent-walletaddress">{{MonetizationEvent/walletAddress}}</a> set to |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}</li>
-            <li><a data-cite="WebMonetization/#dom-monetizationevent-incomingpayment">{{MonetizationEvent/incomingPayment}}</a> set to |session|.{{Session/incomingPaymentId}}</li>
-          </ul>
+        <li>[=Schedule payment streaming tick=].</li>
+        <li>Let |amount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
+          {{PaymentCurrencyAmount/currency}} set to |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetCode}}
+          and {{PaymentCurrencyAmount/value}} set to the result of [=convert scaled amount to decimal=]
+          given |paymentAmount| and |assetScale|.
         </li>
+        <li>Return a payment with amount |amount|, incoming payment URL |session|.{{Session/incomingPaymentId}},
+          and wallet address |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}.</li>
       </ol>
     </div>
 
