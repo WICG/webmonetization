@@ -335,8 +335,8 @@
           the amount.
         </p>
         <p>
-          To <dfn>initiate a payment</dfn> given |session|, run the following
-          steps:
+          To <dfn>initiate a payment</dfn> given |session| and |amount|, run
+          the following steps:
         </p>
         <ol class="algorithm">
           <li>If |session| is not [=payment session/active=], return.
@@ -344,7 +344,8 @@
           <li>Run these steps [=in parallel=]:
             <ol>
               <li>Let |payment| be the result of running the [=monetization
-              provider=]'s [=payment initiation steps=] given |session|.
+              provider=]'s [=payment initiation steps=] given |session| and
+              |amount|.
               </li>
               <li>If |payment| is failure, return.
               </li>
