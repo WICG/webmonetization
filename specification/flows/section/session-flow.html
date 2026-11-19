@@ -16,22 +16,22 @@
     </p>
 
     <p>
-      The user agent maintains an [=active sessions list=] to track all currently running monetization sessions.
+      The user agent maintains a [=sessions list=] to track all currently running monetization sessions.
       Each session in this list corresponds to a monetization link element and contains the information needed
       to initiate payments.
     </p>
 
     <dl>
-      <dt><dfn>active sessions list</dfn></dt>
+      <dt><dfn>sessions list</dfn></dt>
       <dd>
         A user agent maintained ordered list of {{Session}} records created by [=start a session=].
       </dd>
       <dt><dfn>current session iterator</dfn></dt>
       <dd>
-        A user agent maintained iterator that points to the next {{Session}} in the [=active sessions list=] to be processed for payment.
+        A user agent maintained iterator that points to the next {{Session}} in the [=sessions list=] to be processed for payment.
         This iterator is used to implement round-robin session processing,
         ensuring fair distribution of payment attempts across all active sessions.
-        When the [=active sessions list=] is empty, the iterator is set to a special <dfn>end iterator</dfn> value
+        When the [=sessions list=] is empty, the iterator is set to a special <dfn>end iterator</dfn> value
         that represents a position past the last element in the list.
       </dd>
     </dl>
@@ -41,7 +41,7 @@
     <h3>Session initiation</h3>
     <p>
       This section defines the algorithms for initiating payment sessions. Session initiation discovers website wallet details,
-      negotiates authorization, creates an incoming payment, and registers a session record in the [=active sessions list=].
+      negotiates authorization, creates an incoming payment, and registers a session record in the [=sessions list=].
     </p>
 
 
@@ -122,10 +122,10 @@
           </ul>
         </li>
         <li>
-          Append |session| to the [=active sessions list=].
+          Append |session| to the [=sessions list=].
         </li>
         <li>
-          If this is the first active session:
+          If this is the first session:
           <ol>
             <li>Set the [=current session iterator=] to point to |session|.</li>
             <li>[=Schedule payment streaming tick=].</li>
@@ -142,7 +142,7 @@
         <li><strong>Authorization:</strong> Obtain an incoming payment grant to create payments on the website's wallet</li>
         <li><strong>Payment setup:</strong> Create an incoming payment (payment bucket) on the website's wallet resource server</li>
         <li><strong>Cleanup:</strong> Cancel the temporary incoming payment grant (no longer needed)</li>
-        <li><strong>Registration:</strong> Add the session to the active sessions list and
+        <li><strong>Registration:</strong> Add the session to the sessions list and
           start the payment streaming loop if this is not yet started</li>
       </ol>
     </aside>
@@ -152,7 +152,7 @@
     <h3>Session termination</h3>
     <p>
       This section defines the algorithms for stopping payment sessions. Session termination removes session records
-      from the [=active sessions list=] and cancels scheduled payment work.
+      from the [=sessions list=] and cancels scheduled payment work.
     </p>
 
     <div class="algorithm">
@@ -161,7 +161,7 @@
         <li>Let |linkElements:NodeList| be all [^link^] elements with `rel="monetization"` that are descendants of |root|.</li>
         <li>For each |linkElement:HTMLLinkElement| in |linkElements|:
           <ol>
-            <li>Let |session:Session| be the session record in the [=active sessions list=] whose {{HTMLLinkElement}} is |linkElement|, or null if none exists.</li>
+            <li>Let |session:Session| be the session record in the [=sessions list=] whose {{HTMLLinkElement}} is |linkElement|, or null if none exists.</li>
             <li>If |session| is not null, [=stop session=] given |session|.</li>
           </ol>
         </li>
@@ -171,16 +171,16 @@
     <div class="algorithm">
       <p>To <dfn>stop session</dfn>, given a session record |session:Session|, run these steps:</p>
       <ol>
-        <li>If |session| is the only session in the [=active sessions list=]:
+        <li>If |session| is the only session in the [=sessions list=]:
           <ol>
-            <li>Remove |session| from the [=active sessions list=].</li>
+            <li>Remove |session| from the [=sessions list=].</li>
             <li>Set the [=current session iterator=] to the [=end iterator=].</li>
           </ol>
         </li>
         <li>Otherwise:
           <ol>
             <li>If the [=current session iterator=] points to |session|, [=select next session for payment=].</li>
-            <li>Remove |session| from the [=active sessions list=].</li>
+            <li>Remove |session| from the [=sessions list=].</li>
           </ol>
         </li>
         <li>The user agent MUST cancel any scheduled payment work for |session|.</li>
@@ -199,7 +199,7 @@
       <ol>
         <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
         <li>If |userWallet| is null, then return.</li>
-        <li>If the [=active sessions list=] is empty, then return.</li>
+        <li>If the [=sessions list=] is empty, then return.</li>
         <li>Let |session:Session| be the session pointed to by the [=current session iterator=].</li>
         <li>[=Select next session for payment=].</li>
         <li>Let (|paymentAmount:long long|, |delay:DOMHighResTimeStamp|) be the result of [=compute payment amount and delay=].</li>
@@ -208,7 +208,7 @@
           {{PaymentCurrencyAmount/value}} set to |paymentAmount| serialized as a string.</li>
         <li>Schedule a task that, after |delay| has elapsed, runs these steps:
           <ol>
-            <li>If |session| is not in the [=active sessions list=], or not
+            <li>If |session| is not in the [=sessions list=], or not
               <a data-cite="WebMonetization/#dfn-active">active</a>, then [=schedule payment streaming tick=]
               and return.
             </li>
@@ -223,11 +223,11 @@
     <div class="algorithm">
       <p>To <dfn>select next session for payment</dfn>, run these steps:</p>
       <ol>
-        <li>If the [=active sessions list=] is empty, then set the [=current session iterator=] to the [=end iterator=].</li>
+        <li>If the [=sessions list=] is empty, then set the [=current session iterator=] to the [=end iterator=].</li>
         <li>Otherwise, if the [=current session iterator=] is not at the [=end iterator=],
-          then advance the [=current session iterator=] to the next session in the [=active sessions list=].</li>
+          then advance the [=current session iterator=] to the next session in the [=sessions list=].</li>
         <li>If the [=current session iterator=] is at the [=end iterator=],
-          then set the [=current session iterator=] to point to the first session in the [=active sessions list=].</li>
+          then set the [=current session iterator=] to point to the first session in the [=sessions list=].</li>
       </ol>
     </div>
 
@@ -236,7 +236,7 @@
       <ol>
         <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
         <li>If |userWallet| is null, then [=schedule payment streaming tick=] and return failure.</li>
-        <li>If |session| is not in the [=active sessions list=], then [=schedule payment streaming tick=] and return failure.</li>
+        <li>If |session| is not in the [=sessions list=], then [=schedule payment streaming tick=] and return failure.</li>
         <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
         <li>Let |userWalletGrant:Grant| be |userWallet|'s {{Storage/grant}}.</li>
         <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
@@ -324,9 +324,9 @@
       <p>To <dfn>revoke user wallet credentials</dfn>, run these steps:</p>
       <ol>
         <li>Run [=update grant access token=] with the empty string.</li>
-        <li>For each |session| in the [=active sessions list=]:
+        <li>For each |session| in the [=sessions list=]:
           <ol>
-            <li>Remove |session| from the [=active sessions list=].</li>
+            <li>Remove |session| from the [=sessions list=].</li>
           </ol>
         </li>
         <li>Set the [=current session iterator=] to the [=end iterator=].</li>
@@ -338,7 +338,7 @@
           rather than requiring the user to set up their wallet again from scratch.
         </p>
         <p>
-          All active monetization sessions are terminated since payments can no longer be made.
+          All monetization sessions are terminated since payments can no longer be made.
         </p>
       </aside>
     </div>
