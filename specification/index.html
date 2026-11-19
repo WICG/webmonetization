@@ -343,6 +343,17 @@
           </ol>
         </aside>
         <p>
+          This specification defines the following [=payment session
+          condition=] given |session|:
+        </p>
+        <ol>
+          <li>Return true if |session|'s [=payment session/link=]'s [=Node/node
+          document=] is [=Document/fully active=].
+          </li>
+          <li>Otherwise, return false.
+          </li>
+        </ol>
+        <p>
           A payment session is <dfn data-dfn-for="payment session">active</dfn>
           if it is not [=payment session/stopped=] and every [=payment session
           condition=] returns true for it.
