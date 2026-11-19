@@ -330,8 +330,8 @@
             condition=] list:
           </p>
           <ol>
-            <li>Has the user allowed the usage of monetization? (this
-            specification)
+            <li>Has the user allowed [=check for granted permission|the usage
+            of monetization=]? (this specification)
             </li>
             <li>Has the user set up a valid wallet in their [=user agent=]?
             (<a href="/specification/flows/">Web Monetization flows</a>
@@ -577,13 +577,9 @@
             sessions=], set |success| to false.
           </p>
         </li>
-        <li>Let |state| be the result of [=get the current permission state=]
-        with `"monetization"`.
-        </li>
-        <li>If |success| is true and |state| is {{PermissionState/"granted"}},
-        start a new [=payment session=], set |element| as the session's
-        [=payment session/link=], and set the new session as |element|'s
-        [=associated payment session=].
+        <li>If |success| is true, start a new [=payment session=], set
+        |element| as the session's [=payment session/link=], and set the new
+        session as |element|'s [=associated payment session=].
         </li>
         <li>[=Queue an element task=] on the [=networking task source=] given
         |element| and the following steps:
@@ -833,25 +829,46 @@
       </h2>
       <p>
         Web Monetization is a [=powerful feature=] that is identified by the
-        [=powerful feature/name=] "monetization". Its permission-related
-        algorithms are defined as follows:
+        [=powerful feature/name=] <dfn class=
+        "permission export">"monetization"</dfn>. Its permission-related
+        aspects are defined as follows:
       </p>
       <dl>
         <dt>
-          [=powerful feature/permission revocation algorithm=]
+          [=powerful feature/permission lifetime=]
         </dt>
         <dd>
-          To revoke the "monetization" permission, the UA must:
-          <ol>
-            <li>Stop all [=payment sessions=] established by a [=Document=]
-            matching the relevant [=Document/origin=].
-            </li>
-          </ol>
+          The user agent SHOULD retain a granted "monetization" permission
+          until the user revokes it.
         </dd>
       </dl>
       <p>
-        The [=permission state=] does not depend on a connected wallet. The
-        user agent MAY skip the prompt if no wallet is connected.
+        At implementation-defined times, the user agent MAY [=request
+        permission to use=] "monetization". The user agent SHOULD NOT [=request
+        permission to use=] "monetization" while no wallet is connected, so
+        that the [=permission state=] remains {{PermissionState/"prompt"}}.
+      </p>
+      <p>
+        To <dfn>check for granted permission</dfn> given |session|, perform the
+        following steps:
+      </p>
+      <ol class="algorithm">
+        <li>Let |document| be |session|'s [=payment session/link=]'s
+        [=Node/node document=].
+        </li>
+        <li>Let |settings| be |document|'s [=relevant settings object=].
+        </li>
+        <li>Let |state| be the result of [=get the current permission state=]
+        with `"monetization"` and |settings|.
+        </li>
+        <li>If |state| is not {{PermissionState/"granted"}}, return false.
+        </li>
+        <li>Return true.
+        </li>
+      </ol>
+      <p>
+        This section defines a [=payment session condition=] to [=check for
+        granted permission=].
       </p>
     </section>
     <section id="permissions-policy" data-cite="permissions-policy">
@@ -860,16 +877,16 @@
       </h2>
       <p>
         This specification defines a [=policy-controlled feature=] identified
-        by the string <dfn class="permission export">"monetization"</dfn>. Its
-        default <a>allowlist</a> is `'self'`.
+        by the same name as the powerful feature (<a>"monetization"</a>). Its
+        default [=allowlist=] is `'self'`.
       </p>
       <aside class="note">
         <p>
-          A <a>document</a>'s [=Document/permissions policy=] determines
-          whether the user agent starts [=payment sessions=] for [^link^]
-          elements - particularly in third-party content, such as an
-          [^iframe^]. When disabled, monetization is disabled and related
-          events won't be dispatched.
+          A [=document=]'s [=Document/permissions policy=] determines whether
+          the user agent starts [=payment sessions=] for [^link^] elements -
+          particularly in third-party content, such as an [^iframe^]. When
+          disabled, monetization is disabled and related events won't be
+          dispatched.
         </p>
       </aside>
       <aside class="note">
@@ -882,7 +899,7 @@
       <aside class="example">
         <p>
           Given a page embedding the following [^iframe^], monetization is
-          allowed for the embedded <a>document</a>:
+          allowed for the embedded [=document=]:
         </p>
         <pre class="html">
           &lt;iframe src="https://example.com/" allow="monetization"&gt;&lt;/iframe&gt;
