@@ -1,0 +1,65 @@
+name: Welcome
+
+on:
+  pull_request_target:
+    types:
+      - opened
+  issues:
+    types:
+      - opened
+
+permissions:
+  issues: write
+  pull-requests: write
+
+env:
+  PR_MESSAGE: |
+    Welcome to the Web Monetization community! Thanks for contributing this PR! :tada: We will have a look at it shortly.
+
+    We would love to welcome you in our #web-monetization [Slack channel](https://interledger.slack.com/join/shared_invite/zt-44g089zrn-XdSIiHF~cs8Oo_MBmSfECA#/shared-invite/email), or the next [monthly Web Monetization call](https://github.com/WICG/webmonetization/tree/main#web-monetization-community-call) for further collaboration! Don't hesitate to bring up questions you might have, as we're happy to answer them.
+
+    If you haven't read them yet, we suggest going through the [contribution guidelines](https://github.com/WICG/webmonetization/blob/main/CONTRIBUTING.md) for more information about contributing to this project.
+
+    Thank you again, and we're looking forward to seeing your continued contributions to Web Monetization!
+  ISSUE_MESSAGE: |
+    Welcome to the Web Monetization community! Thanks for filing this issue! :tada: We will have a look at it shortly.
+
+    We would love to welcome you in our #web-monetization [Slack channel](https://interledger.slack.com/join/shared_invite/zt-44g089zrn-XdSIiHF~cs8Oo_MBmSfECA#/shared-invite/email), or the next [monthly Web Monetization call](https://github.com/WICG/webmonetization/tree/main#web-monetization-community-call) for further collaboration! Don't hesitate to bring up questions you might have, as we're happy to answer them.
+
+    If you haven't read them yet, we suggest going through the [contribution guidelines](https://github.com/WICG/webmonetization/blob/main/CONTRIBUTING.md) for more information about contributing to this project.
+
+    Thank you again, and we're looking forward to seeing your continued contributions to Web Monetization!
+
+jobs:
+  welcome:
+    name: Welcome first contribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/github-script@v9
+        with:
+          script: |
+            const author = (context.payload.pull_request ?? context.payload.issue).user
+            if (author.type === 'Bot') {
+              core.info('Skipping. Author is a bot.')
+              return
+            }
+            const isPr = !!context.payload.pull_request
+            const kind = isPr ? 'pr' : 'issue'
+            const { data } = await github.rest.search.issuesAndPullRequests({
+              q: `repo:${context.repo.owner}/${context.repo.repo} is:${kind} author:${author.login}`,
+              per_page: 2
+            })
+            const hasPriorContribution = data.items.some(item => item.number !== context.issue.number)
+            if (hasPriorContribution) {
+              core.info('Skipping. Not first contribution!')
+              return
+            }
+            const body = isPr ? process.env.PR_MESSAGE : process.env.ISSUE_MESSAGE
+            core.info(`Adding message to #${context.issue.number}`)
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            })
