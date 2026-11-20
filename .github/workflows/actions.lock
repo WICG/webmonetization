@@ -21,6 +21,8 @@ workflows:
         - 'actions/setup-node@v7.1.0'
     '.github/workflows/verify-lockfile.yml':
         - 'actions/checkout@v7.0.1'
+    '.github/workflows/welcome.yml':
+        - 'actions/github-script@v9.0.0'
 dependencies:
     'actions/checkout@v4.4.0':
         ref: 'v4.4.0'
@@ -37,6 +39,11 @@ dependencies:
         commit: 'sha1-368f82528645a54fb793d4d04e342629a3f51346'
         owner_id: 44036562
         repo_id: 438112499
+    'actions/github-script@v9.0.0':
+        ref: 'v9.0.0'
+        commit: 'sha1-3a2844b7e9c422d3c10d287c895573f7108da1b3'
+        owner_id: 44036562
+        repo_id: 205262760
     'actions/setup-node@v7':
         ref: 'v7'
         commit: 'sha1-949feb2413d6458794dcd2491c4babbbce0c15c1'
