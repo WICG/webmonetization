@@ -40,32 +40,96 @@
     (3) a renewal monthly flag.
   </p>
 
-  <p>For every new wallet connection, the browser MUST generate a fresh key pair by
-  running the [=generate an Ed25519 key pair=] algorithm, replacing any previously stored key pair, and MUST display
-  the newly generated [=encoded public key JWK=] (representing the [=Ed25519 public key=]) so the user can copy or
-  upload it to their wallet provider. This key generation and public key
-  exposure happen before invoking the algorithm below; if no key pair exists at invocation time, the algorithm fails.</p>
+  <p>
+    Only one wallet can be connected at a time, and a connected wallet is disconnected before a new
+    wallet connection is started.
+  </p>
 
-  <p>To <b><em>process the wallet setup</em></b>, given a string |walletAddress:DOMString|
+  <div class="algorithm">
+    <p>When the user starts a new wallet connection from the [=setup page=], the browser MUST run the following
+      steps to <dfn>start a wallet connection</dfn>:</p>
+    <ol>
+      <li>
+        If the result of the [=get user wallet=] algorithm is not null:
+        <ol>
+          <li>
+            Ask the user to explicitly confirm that the connected wallet will be disconnected. If the user does not
+            confirm, return.
+          </li>
+          <li>Run the [=disconnect a wallet=] algorithm.</li>
+        </ol>
+        <p class="note">
+          Disconnecting first means the previous grant is cancelled with its authorization server and the
+          previous connection's wallet, grant and keys are removed from {{Storage}}. A failed wallet setup therefore
+          never leaves new state next to an old wallet and grant. The previous {{Storage/maxRateOfPay}} may be
+          retained (see [=clear wallet data=]) until the new connection is stored.
+        </p>
+      </li>
+      <li>
+        If the result of the [=get auth keys=] algorithm is null, run the [=generate an Ed25519 key pair=] algorithm.
+        <p class="note">
+          After the previous step no wallet is connected, so a key pair that still exists here was kept by an
+          earlier wallet setup that failed before a grant was requested (see [=abort wallet setup=]). It is reused
+          so that the user does not have to register a new public key with their wallet provider after, for example,
+          mistyping their [=wallet address=].
+        </p>
+      </li>
+      <li>
+        Display the [=encoded public key JWK=] (representing the [=Ed25519 public key=]) from the result of the
+        [=get auth keys=] algorithm, so the user can copy or upload it to their wallet provider.
+      </li>
+      <li>
+        When the user submits the [=setup page=] with a [=wallet address=] |walletAddress|, a budget |budget| and
+        a renewal monthly flag |renewMonthly|, run the [=process the wallet setup=] algorithm with |walletAddress|,
+        |budget| and |renewMonthly|.
+      </li>
+    </ol>
+  </div>
+
+  <div class="algorithm">
+    <p>To <dfn>abort wallet setup</dfn>, given an optional |continueUri:DOMString| and an optional
+      |continueAccessToken:DOMString|:</p>
+    <ol>
+      <li>
+        If |continueUri| and |continueAccessToken| are not null:
+        <ol>
+          <li>
+            Run the [=send a cancel grant request=] algorithm with |continueUri|, |continueAccessToken| and false.
+            <p class="note">
+              This revokes the pending grant with the authorization server so that the user cannot still approve it
+              after the wallet setup has failed. If the grant is already gone, for example because the user declined
+              it, the request fails. The failure is ignored and the user is not notified, because the wallet setup
+              has already failed.
+            </p>
+          </li>
+          <li>Run the [=clear wallet data=] algorithm.</li>
+        </ol>
+      </li>
+      <li>Return failure.</li>
+    </ol>
+    <p class="note">
+      If the wallet setup fails before a grant is requested, for example because the [=wallet address=] cannot be
+      resolved, {{Storage}} is left unchanged. The key pair is kept and reused by the next [=start a wallet connection=],
+      so the public key the user has already registered stays valid. Once a grant was requested, the key pair is
+      removed together with any other state of the failed wallet setup, and the next wallet connection generates a
+      new key pair that the user has to register with their wallet provider.
+    </p>
+    <p class="note">
+      Because any previously connected wallet was disconnected before the wallet setup started, this only removes
+      state created by the failed wallet setup.
+    </p>
+  </div>
+
+  <p>To <dfn>process the wallet setup</dfn>, given a string |walletAddress:DOMString|
     (the [=wallet address=] provided by the user),
     a number |budget:number| (a spending budget requested from the wallet for outgoing payments, expressed in the wallet asset), and
     a boolean |renewMonthly:boolean| (whether the budget is renewed monthly by the wallet):</p>
   <ol>
-    <li>If the result of the [=get auth keys=] algorithm is null, return failure.</li>
+    <li>
+      If the result of the [=get auth keys=] algorithm is null, return the result of running [=abort wallet setup=].
+    </li>
     <li>Let |walletAddressDetails:WalletAddressDetails| be the result of the [=send a wallet address request=] algorithm on |walletAddress|.</li>
-    <li>
-      Let |assetScale:long| be |walletAddressDetails|'s {{WalletAddressDetails/assetScale}}.
-    </li>
-    <li>
-      Let |maxRateOfPay:long long| be <code>Math.round(|budget| * Math.pow(10, |assetScale|))</code>.
-      <p class="note">
-        This converts the user-entered monthly budget in the wallet asset into a [=scaled amount=] integer.
-        The resulting value is stored as {{Storage/maxRateOfPay}} and used to compute the payment amount and delay.
-      </p>
-    </li>
-    <li>
-      Run the [=store max rate of pay=] algorithm with |maxRateOfPay| serialized as a string.
-    </li>
+    <li>If |walletAddressDetails| is failure, return the result of running [=abort wallet setup=].</li>
     <li>
       Let |interval:DOMString| be an <a href="https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals">ISO 8601 repeating interval</a>
       if |renewMonthly| is `true`.
@@ -84,18 +148,20 @@
         Since we ask for access to outgoing payments, the user will have to interact with the grant (approve or decline). Currently in Open Payments, only the grants that request access to outgoing payments are interactive.
       </p>
     </li>
+    <li>If |pendingGrant| is failure, return the result of running [=abort wallet setup=].</li>
     <li>
       Let |continueUri:DOMString| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/uri}} property at which the client instance can make <a data-cite="opas/operations/post-continue#">continuation requests</a>.
     </li>
     <li>
-      Let |continueAccessToken:DOMString| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/access_token}}.{{AccessToken/value}} property.
+      Let |continueAccessToken:DOMString| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/access_token}}.{{ContinueAccessToken/value}} property.
     </li>
     <li>
       Let |redirectUrl:URL| be the result of [=URL parser|parsing=] |pendingGrant|'s
       {{PendingGrant/interact}}.{{PendingInteract/redirect}} property ([=Redirect URI=]).
     </li>
     <li>
-        If |redirectUrl| is failure or |redirectUrl|'s [=url/scheme=] is not `https`, return failure.
+      If |redirectUrl| is failure or |redirectUrl|'s [=url/scheme=] is not `https`, return the result of running
+      [=abort wallet setup=] with |continueUri| and |continueAccessToken|.
     </li>
     <li>
       Run the
@@ -108,7 +174,12 @@
       </p>
     </li>
     <li>
-      Let |wait:number| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/wait}} property.
+      Let |baseWait:number| be |pendingGrant|'s {{PendingGrant/continue}}.{{Continue/wait}} property if it exists,
+      or 5 otherwise. If |baseWait| is less than 1, set |baseWait| to 1. Let |wait:number| be |baseWait|.
+      <p class="note">
+        5 seconds is the default polling interval defined by <a data-cite="GNAP#section-3.1">GNAP</a>. The lower bound
+        keeps the browser from sending continuation requests in a tight loop.
+      </p>
       <div class="note">
         <p>We cannot use the {{PendingInteract/finish}} redirect method as browser's internal URLs can not be opened from an external source.
           In the Open Payments scenario, the [=AS=] will have to redirect the user to the internal browser page for Web Monetization to continue the flow.</p>
@@ -117,31 +188,70 @@
           to retrieve information about the grant (whether user accepted or rejected the grant).</p>
       </div>
     </li>
-    <li>Let |finalizedGrant| be `null`.</li>
+    <li>Let |finalizedGrant:Grant?| be null.</li>
+    <li>Let |retries:number| be 0.</li>
     <li>
-      <p>Start polling to get the information about the grant state every |wait| seconds.</p>
+      <p>While |finalizedGrant| is null:</p>
       <ol>
-        <li>Let |interval:number| be result of |wait| multiplied by 1000, as |wait| is defined in seconds.</li>
+        <li>Wait |wait| seconds.</li>
+        <li>Let |result| be the result of running the [=send a continue grant request=] algorithm given |continueUri| and |continueAccessToken|.</li>
         <li>
-          Let |intervalId| be the result of calling {{ WindowOrWorkerGlobalScope/setInterval() }} with |interval| and the following steps as callback:
-        </li>
-        <li>Let |grant| be the result of running the [=send a continue grant request=] algorithm given |continueUri| and |continueAccessToken|.
+          If |result| is `"retry"`:
           <ol>
-            <li>If |grant| is failure (not an [=ok status=]), call {{ WindowOrWorkerGlobalScope/clearInterval(id)|clearInterval(intervalId) }}.</li>
-            <li>If |grant| is of type {{ PendingGrant }}, continue polling.</li>
-            <li>If |grant| is of type {{ Grant }}, {{ WindowOrWorkerGlobalScope/clearInterval(id)|clearInterval(intervalId) }} and set |finalizedGrant| to |grant|.</li>
+            <li>Increment |retries| by 1.</li>
+            <li>
+              If |retries| is greater than an [=implementation-defined=] limit, return the result of running
+              [=abort wallet setup=] with |continueUri| and |continueAccessToken|.
+            </li>
+            <li>Increase |wait| by 5.</li>
+            <li>[=iteration/Continue=].</li>
           </ol>
+          <p class="note">
+            A network error, a server error or a GNAP `too_fast` error does not end the wallet setup, because the user
+            may still be approving the grant. The browser backs off and tries again.
+          </p>
+        </li>
+        <li>
+          If |result| is failure, return the result of running [=abort wallet setup=] with
+          |continueUri| and |continueAccessToken|.
+          <p class="note">This includes the user declining the grant.</p>
+        </li>
+        <li>Set |retries| to 0.</li>
+        <li>If |result| is a {{Grant}}, set |finalizedGrant| to |result|.</li>
+        <li>
+          Otherwise, if |result| is a {{Continue}}:
+          <ol>
+            <li>Set |continueUri| to |result|'s {{Continue/uri}}.</li>
+            <li>Set |continueAccessToken| to |result|'s {{Continue/access_token}}.{{ContinueAccessToken/value}}.</li>
+            <li>If |result|'s {{Continue/wait}} exists, set |baseWait| to the greater of |result|'s {{Continue/wait}} and 1.</li>
+            <li>Set |wait| to |baseWait|.</li>
+          </ol>
+          <p class="note">
+            Each continuation response replaces the previous continuation handle, including its URI. Any back-off
+            from earlier retries is dropped, so polling continues at the interval requested by the
+            authorization server, or the default interval if it did not request one.
+          </p>
+        </li>
+        <li>
+          Otherwise, return the result of running [=abort wallet setup=] with |continueUri| and |continueAccessToken|.
         </li>
       </ol>
+      <p class="note">
+        The algorithm does not continue until the grant is finalized or the wallet setup is aborted.
+        Implementations run these steps without blocking the user interface.
+      </p>
     </li>
-    <li>If |finalizedGrant| is null:
-      <ol>
-        <li>Run the [=clear wallet data=] algorithm.</li>
-        <li>Return failure.</li>
-      </ol>
+    <li>
+      Let |assetScale:long| be |walletAddressDetails|'s {{WalletAddressDetails/assetScale}}.
     </li>
-    <li>Run the [=store wallet credentials=] algorithm with |walletAddressDetails|.</li>
-    <li>Run the [=store grant credentials=] algorithm with |finalizedGrant|.</li>
+    <li>
+      Let |maxRateOfPay:long long| be <code>Math.round(|budget| * Math.pow(10, |assetScale|))</code>.
+      <p class="note">
+        This converts the user-entered monthly budget in the wallet asset into a [=scaled amount=] integer.
+        The resulting value is stored as {{Storage/maxRateOfPay}} and used to compute the payment amount and delay.
+      </p>
+    </li>
+    <li>Run the [=store wallet connection=] algorithm with |walletAddressDetails|, |finalizedGrant| and |maxRateOfPay| serialized as a string.</li>
   </ol>
   </section>
 
@@ -152,7 +262,7 @@
 
   <p>Disconnecting a wallet revokes the active grant (if any) and clears state from {{Storage}}.</p>
 
-  <p>To <b><em>disconnect a wallet</em></b>:</p>
+  <p>To <dfn>disconnect a wallet</dfn>:</p>
   <ol>
     <li>Let |storage:Storage| be the result of the [=get storage=] algorithm.</li>
     <li>If |storage|'s {{Storage/grant}} is not null, then:
@@ -171,4 +281,5 @@
         Reconnecting will generate a new key pair requiring re-registration of the public key.</p>
     </li>
   </ol>
+  </section>
 </section>

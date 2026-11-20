@@ -65,6 +65,9 @@
             </ol>
           </li>
           <li>
+            If |details| is null, return failure.
+          </li>
+          <li>
             Return |details|.
           </li>
         </ol>
@@ -173,7 +176,7 @@
           </li>
           <li>
             Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to
-            the following steps, given a [=response=] and |response|'s [=request/body=] |responseBody|:
+            the following steps, given a [=response=] |response| and |response|'s [=response/body=] |responseBody|:
             <ol>
               <li>
                 Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
@@ -188,6 +191,12 @@
                 Set |grant| to |grantResponse|.
               </li>
             </ol>
+          </li>
+          <li>
+            If |grant| is null, return failure.
+          </li>
+          <li>
+            Return |grant|.
           </li>
         </ol>
       </div>
@@ -335,7 +344,7 @@
           <li>Let |grant| be null.</li>
           <li>
             Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
-            given a [=response=] and |response|'s [=request/body=] |responseBody|:
+            given a [=response=] |response| and |response|'s [=response/body=] |responseBody|:
             <ol>
               <li>
                 Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
@@ -443,27 +452,70 @@
           <li>
             Run the [=generate an HTTP message signature=] algorithm on |request| with |accessToken|.
           </li>
-          <li>Let |grant| be null.</li>
+          <li>Let |result| be failure.</li>
           <li>
             Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
             given a [=response=] |response| with [=response/body=] |responseBody|:
             <ol>
               <li>
-                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
+                If |response| is a [=network error=], its [=response/status=] is `429`, or its [=response/status=]
+                is in the range 500 to 599, inclusive, set |result| to `"retry"` and abort these steps.
               </li>
               <li>
-                Convert |json| to a {{ PendingGrant }} or {{ Grant }}, |grantResponse|.
+                If |response|'s [=response/status=] is not an [=ok status=]:
+                <ol>
+                  <li>
+                    Let |errorJson| be null.
+                  </li>
+                  <li>
+                    If |responseBody| is a [=byte sequence=], set |errorJson| to the result of
+                    [=parse JSON bytes to an infra value=] passing |responseBody|. If this throws an exception,
+                    set |errorJson| to null.
+                    <p class="note">
+                      An error response is not necessarily JSON, for example an HTML error page from a proxy.
+                    </p>
+                  </li>
+                  <li data-cite="infra">
+                    If |errorJson| is a [=map=] and either |errorJson|["error"] is the string `"too_fast"`, or
+                    |errorJson|["error"] is a [=map=] whose "code" member is the string `"too_fast"`,
+                    set |result| to `"retry"`.
+                    <p class="note">
+                      <a data-cite="GNAP#name-error-response">GNAP</a> allows the error to be either a string code or
+                      an object with a `code` member, such as <code>{"error": {"code": "too_fast"}}</code>.
+                    </p>
+                  </li>
+                  <li>Abort these steps.</li>
+                </ol>
                 <p class="note">
-                    The continuation request can return either a {{ PendingGrant }} or a {{ Grant }}.
+                  Any other error response, such as a <a data-cite="GNAP#name-error-response">GNAP error</a> with
+                  code `user_denied`, `request_denied`, `invalid_continuation` or `expired`, leaves |result| as failure.
                 </p>
               </li>
               <li>
-                If one of the previous two steps threw an exception, return failure.
+                Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
               </li>
-              <li>Set |grant| to |grantResponse|.</li>
+              <li>
+                If |json| has an `access_token` member, convert |json| to a {{ Grant }}, |grantResponse:Grant|.
+                Otherwise, convert |json|["continue"] to a {{ Continue }}, |grantResponse:Continue|.
+                <p class="note">
+                  A finalized grant includes an access token. A grant that is still pending only returns a new
+                  continuation handle, and does not necessarily repeat the {{PendingGrant/interact}} member, so
+                  it is not converted to a {{PendingGrant}}.
+                </p>
+              </li>
+              <li>
+                If one of the previous two steps threw an exception, abort these steps.
+              </li>
+              <li>Set |result| to |grantResponse|.</li>
             </ol>
           </li>
-          <li>Return |grant|.</li>
+          <li>
+            Return |result|.
+            <p class="note">
+              The result is a {{ Grant }} if the grant was finalized, a {{ Continue }} if the grant is still pending,
+              `"retry"` if the request failed for a transient reason and can be repeated, or failure otherwise.
+            </p>
+          </li>
         </ol>
       </div>
     </section>
@@ -472,7 +524,8 @@
       <h4>Cancel grant request</h4>
       <p>The cancel grant request, refers to the <a data-cite="opas/operations/delete-continue#">Open Payments cancel grant request</a>.</p>
       <div class="algorithm">
-        When asked to <dfn>send a cancel grant request</dfn>, given |continueUri|, |accessToken|, perform the following steps.
+        When asked to <dfn>send a cancel grant request</dfn>, given |continueUri|, |accessToken| and an optional
+        boolean |notifyUser:boolean| (default true), perform the following steps.
         <ol>
           <li>
             Let |uri| be the result of running [=URL parser=] with |continueUri|.
@@ -512,7 +565,8 @@
             Perform a [=fetch request=] with |request|, given a [=response=]:
             <ol>
               <li>
-                If {{"NetworkError"}} is thrown, notify the user that the browser could not cancel the grant.
+                If {{"NetworkError"}} is thrown and |notifyUser| is true, notify the user that the browser could not
+                cancel the grant.
               </li>
               <li>
                 If the [=status=] is `204`, the grant was successfully canceled and the storage can be cleared.
@@ -677,7 +731,7 @@
           </li>
           <li>
             Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
-            given a [=response=] and |response|'s [=request/body=] |responseBody|:
+            given a [=response=] |response| and |response|'s [=response/body=] |responseBody|:
             <ol>
               <li>
                 Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
@@ -839,24 +893,47 @@
       <h4>Fetch request</h4>
       <div class="algorithm">
         To perform a <dfn>fetch request</dfn> given a [=request=] |request| and
-        an algorithm |processResponseConsumeBody|, execute the following steps:
+        an algorithm |processResponseConsumeBody|, perform the following steps:
         <ol>
           <li>
+            Let |done:boolean| be false.
+          </li>
+          <li>
             [=Queue a global task=] on the [=networking task source=] to [=fetch=] |request|
-            with [=fetch/processResponseEndOfBody=] set to |processResponseConsumeBody|.
+            with [=fetch/processResponseConsumeBody=] set to the following steps, given a [=response=] |response|
+            and null, failure, or a [=byte sequence=] |responseBody|:
+            <ol>
+              <li>
+                Run |processResponseConsumeBody| given |response| and |responseBody|.
+              </li>
+              <li>
+                Set |done| to true.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Wait until |done| is true.
           </li>
         </ol>
+        <p class="note">
+          Because this algorithm waits for the response to be processed, the calling algorithm can read any value
+          set by |processResponseConsumeBody| after this algorithm returns. Callers run [=in parallel=], so waiting
+          does not block the user interface. Returning from |processResponseConsumeBody| only ends those steps,
+          not the calling algorithm.
+        </p>
       </div>
     </section>
 
     <section>
       <h4>Extract JSON from fetch response</h4>
       <div class="algorithm">
-        <p>To <dfn>extract the JSON fetch response</dfn> a [=response=] response:
+        <p>To <dfn>extract the JSON fetch response</dfn> given a [=response=] |response| and
+          null, failure, or a [=byte sequence=] |responseBody|, perform the following steps:
         <ol>
           <li>
             If |response| is a [=network error=] or its [=status=] is not an [=ok status=], throw a new {{"NetworkError"}}.
           </li>
+          <li>If |responseBody| is null or failure, throw a new {{"NetworkError"}}.</li>
           <li>
             Let |mimeType| be the result of [=header list/extract a MIME type=] from |response|'s [=header list=].
           </li>
