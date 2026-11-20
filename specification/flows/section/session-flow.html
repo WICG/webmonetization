@@ -45,10 +45,19 @@
     </p>
 
 
-    <p class="issue">
-      Media-scoped sessions are still to be fully specified in the main spec.
-      See <a href="https://github.com/WICG/webmonetization/issues/657">GitHub issue #657</a>.
-    </p>
+    <div class="issue" data-number="657">
+      <p>
+        Media-scoped sessions depend on how the user agent determines whether a document or [=media element=]
+        is still perceivable by the user (e.g. media paused or muted, page hidden, frozen or discarded),
+        and therefore when monetization should start or stop. This is not yet defined in the main spec,
+        and it is also undecided whether it needs to be specified at all or is left to user agents.
+      </p>
+      <p>
+        The media-scoped session parts of this document (the session lifecycle behavior for [=media elements=]
+        and [=initiate media-scoped sessions=]) are expected to change and should not be extended further
+        until this issue is resolved.
+      </p>
+    </div>
 
     <div class="algorithm">
       <p>To <dfn>initiate media-scoped sessions</dfn> given a |media:HTMLElement|, run [=initiate sessions scoped to=] |media|.</p>
