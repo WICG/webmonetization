@@ -16,10 +16,12 @@ env:
   PR_MESSAGE: |
     Welcome to the Web Monetization community! Thanks for contributing this PR! :tada: We will have a look at it shortly.
 
-    We would love to welcome you in our #web-monetization [Slack channel](https://interledger.slack.com/join/shared_invite/zt-44g089zrn-XdSIiHF~cs8Oo_MBmSfECA#/shared-invite/email), or the next [monthly Web Monetization call](https://github.com/WICG/webmonetization/tree/main#web-monetization-community-call) for further collaboration! Don't hesitate to bring up questions you might have, as we're happy to answer them.
+    We would love to welcome you to our #web-monetization [Slack channel](https://interledger.slack.com/join/shared_invite/zt-44g089zrn-XdSIiHF~cs8Oo_MBmSfECA#/shared-invite/email), or the next [monthly Web Monetization call](https://github.com/WICG/webmonetization/tree/main#web-monetization-community-call) for further collaboration! Don't hesitate to bring up questions you might have, as we're happy to answer them.
 
     If you haven't read them yet, we suggest going through the [contribution guidelines](https://github.com/WICG/webmonetization/blob/main/CONTRIBUTING.md) for more information about contributing to this project.
-
+    
+    Your contribution is valued, and we’d like to invite you to become an Interledger Member, where you get swag and perks like early access to our new initiatives. Follow the steps [here](https://insights.interledger.org/interledger-membership). 
+    
     Thank you again, and we're looking forward to seeing your continued contributions to Web Monetization!
   ISSUE_MESSAGE: |
     Welcome to the Web Monetization community! Thanks for filing this issue! :tada: We will have a look at it shortly.
@@ -27,6 +29,8 @@ env:
     We would love to welcome you in our #web-monetization [Slack channel](https://interledger.slack.com/join/shared_invite/zt-44g089zrn-XdSIiHF~cs8Oo_MBmSfECA#/shared-invite/email), or the next [monthly Web Monetization call](https://github.com/WICG/webmonetization/tree/main#web-monetization-community-call) for further collaboration! Don't hesitate to bring up questions you might have, as we're happy to answer them.
 
     If you haven't read them yet, we suggest going through the [contribution guidelines](https://github.com/WICG/webmonetization/blob/main/CONTRIBUTING.md) for more information about contributing to this project.
+
+    Your contribution is valued, and we’d like to invite you to become an Interledger Member, where you get swag and perks like early access to our new initiatives. Follow the steps [here](https://insights.interledger.org/interledger-membership). 
 
     Thank you again, and we're looking forward to seeing your continued contributions to Web Monetization!
 
