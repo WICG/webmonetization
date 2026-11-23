@@ -27,7 +27,7 @@
     "@astrojs/starlight": "^0.42.0",
     "@eslint/js": "^10.0.1",
     "@interledger/docs-design-system": "^0.14.2",
-    "astro": "~7.3.7",
+    "astro": "~7.4.13",
     "eslint": "^10.15.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
