@@ -57,8 +57,6 @@
     <div class="algorithm">
       <p>To <dfn>initiate sessions scoped to</dfn> the |root:HTMLElement|, run these steps:</p>
       <ol>
-        <li>Let |document:Document| be the {{Node/ownerDocument}} of |root|.</li>
-        <li>If [=document monetization disabled=] given |document|, then return.</li>
         <li>Let |linkElements:NodeList| be all [^link^] elements with `rel="monetization"` that are descendants of |root|.</li>
         <li>For each |linkElement:HTMLLinkElement| in |linkElements|, [=start a session=] given |linkElement|.</li>
       </ol>
@@ -67,15 +65,6 @@
     <div class="algorithm">
       <p>To <dfn>start a session</dfn>, given |linkElement:HTMLLinkElement|, perform the following steps:</p>
       <ol>
-        <li>
-          If the result of [=get user wallet=] is null, then return.
-        </li>
-        <li>
-          Let |document:Document| be the {{Node/ownerDocument}} of |linkElement|.
-        </li>
-        <li>
-          If [=document monetization disabled=] given |document|, then return.
-        </li>
         <li>
           Let |websiteWalletAddress:DOMString| be the value of the {{HTMLLinkElement/href}} of |linkElement|.
         </li>

@@ -14,24 +14,23 @@
     via <a data-cite="WebMonetization/#content-security-policy">Content Security Policy</a>. All three mechanisms work together to ensure monetization only occurs when all parties consent.
   </p>
 
-  <section id="monetization-is-disabled">
-    <h3>Document monetization restrictions</h3>
+  <p>
+    To <dfn>check if monetization is disabled by user-agent</dfn>, given a <a data-cite="WebMonetization/#dfn-payment-session">payment session</a>
+    |session|, perform the following steps:
+  </p>
+  <ol>
+    <li>Let |document:Document| be |session|'s <a data-cite="WebMonetization/#dfn-link">link</a>'s [=Node/node
+        document=]</li>
+    <li>
+      If the user agent's user preferences specify that Web Monetization is either completely disabled or disabled specifically
+      for the [=Document/origin=] of the |document|, return false.
+    </li>
+    <li>
+      Return true.
+    </li>
+  </ol>
 
-    <p>
-      <dfn data-lt="document monetization disabled">Document monetization disabled</dfn> happens
-      given a |document:Document| if either of the following conditions apply:
-    </p>
 
-    <ul>
-      <li>
-        The user preferences specify that Web Monetization is either completely disabled or disabled specifically
-        for the [=Document/origin=] of the |document|.
-      </li>
-      <li>
-        The |document| is not [=allowed to use=]
-        the <a data-cite="WebMonetization/#dfn-monetization-1">`monetization`</a>
-        [=policy-controlled feature=].
-      </li>
-    </ul>
-  </section>
+  This specification defines a <a data-cite="WebMonetization/#dfn-payment-session-condition">payment session condition</a>
+  to [=check if monetization is disabled by user-agent=].
 </section>
