@@ -576,6 +576,21 @@
         agent MUST [=stop a payment session|stop=] its [=associated payment
         session=], if any, and set it to null.
       </p>
+      <p>
+        To <dfn>check for fully active document</dfn> given a [=payment
+        session=] |session|, perform the following steps:
+      </p>
+      <ol class="algorithm">
+        <li>Return true if |session|'s [=payment session/link=]'s [=Node/node
+        document=] is [=Document/fully active=].
+        </li>
+        <li>Otherwise, return false.
+        </li>
+      </ol>
+      <p>
+        This specification defines a [=payment session condition=] to [=check
+        for fully active document=].
+      </p>
       <section>
         <h4>
           `disabled` attribute
