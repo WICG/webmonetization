@@ -20,6 +20,13 @@ Please refer to the [CONTRIBUTING.md](./CONTRIBUTING.md#specification-developmen
 
 ## Get Set Up
 
+### Requirements
+
+- Node.js 22.23.4 or later on Node 22, or 24.16.0 or later on Node 24. The repo sets Node 24 in `.nvmrc`, and CI uses the same file.
+- npm 11.10.0 or later. Node 24.16.0 and later already include it.
+
+On older versions, `npm install` and `npm run` stop with an `EBADDEVENGINES` error.
+
 ### Install dependencies
 
 ```sh

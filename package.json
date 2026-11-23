@@ -6,6 +6,11 @@
       "name": "npm",
       "version": ">=11.10.0",
       "onFail": "error"
+    },
+    "runtime": {
+      "name": "node",
+      "version": "^22.23.4 || ^24.16.0 || >=26.3.0",
+      "onFail": "error"
     }
   },
   "scripts": {
