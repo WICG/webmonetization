@@ -343,17 +343,6 @@
           </ol>
         </aside>
         <p>
-          This specification defines the following [=payment session
-          condition=] given |session|:
-        </p>
-        <ol>
-          <li>Return true if |session|'s [=payment session/link=]'s [=Node/node
-          document=] is [=Document/fully active=].
-          </li>
-          <li>Otherwise, return false.
-          </li>
-        </ol>
-        <p>
           A payment session is <dfn data-dfn-for="payment session">active</dfn>
           if it is not [=payment session/stopped=] and every [=payment session
           condition=] returns true for it.
@@ -608,6 +597,21 @@
         resource link=], or stops being [=browsing-context connected=], a user
         agent MUST [=stop a payment session|stop=] its [=associated payment
         session=], if any, and set it to null.
+      </p>
+      <p>
+        To <dfn>check for fully active document</dfn> given a [=payment
+        session=] |session|, perform the following steps:
+      </p>
+      <ol class="algorithm">
+        <li>Return true if |session|'s [=payment session/link=]'s [=Node/node
+        document=] is [=Document/fully active=].
+        </li>
+        <li>Otherwise, return false.
+        </li>
+      </ol>
+      <p>
+        This specification defines a [=payment session condition=] to [=check
+        for fully active document=].
       </p>
       <section>
         <h4>
