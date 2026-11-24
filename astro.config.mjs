@@ -11,6 +11,9 @@ import starlightLlmsTxt from 'starlight-llms-txt'
 // https://astro.build/config
 export default defineConfig({
   site: 'https://webmonetization.org',
+  // Required by @interledger/docs-design-system. Starlight 0.43+ no longer
+  // sets this, and Astro's default ('attribute') changes how scoped styles apply.
+  scopedStyleStrategy: 'where',
   markdown: {
     processor: unified()
   },
