@@ -145,10 +145,10 @@
   </ol>
 
   <p>
-    To <dfn>check if a wallet is connected</dfn>, perform the following steps:
+    To <dfn>check for connected wallet</dfn>, perform the following steps:
   </p>
   <ol class="algorithm">
-    <li>If the result of the [=get auth keys=] algorithm is null, return false.</li>
+    <li>If the result of the [=get user wallet=] algorithm is null, return false.</li>
     <li>
       Return true.
     </li>
@@ -156,7 +156,7 @@
 
 
   This specification defines a <a data-cite="WebMonetization/#dfn-payment-session-condition">payment session condition</a>
-  to [=check if a wallet is connected=].
+  to [=check for connected wallet=].
   </section>
 
   <section class="algorithm" id="disconnecting-a-wallet">

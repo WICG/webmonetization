@@ -114,7 +114,7 @@
           Append |session| to the [=sessions list=].
         </li>
         <li>
-          If this is the first session:
+          If this is the first session in the [=sessions list=]:
           <ol>
             <li>Set the [=current session iterator=] to point to |session|.</li>
             <li>[=Schedule payment streaming tick=].</li>
@@ -186,24 +186,19 @@
     <div class="algorithm">
       <p>To <dfn>schedule payment streaming tick</dfn>, run these steps:</p>
       <ol>
-        <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
-        <li>If |userWallet| is null, then return.</li>
-        <li>If the [=sessions list=] is empty, then return.</li>
         <li>Let |session:Session| be the session pointed to by the [=current session iterator=].</li>
+        <li>If |session| is the [=end iterator=], return.</li>
         <li>[=Select next session for payment=].</li>
         <li>Let (|paymentAmount:long long|, |delay:DOMHighResTimeStamp|) be the result of [=compute payment amount and delay=].</li>
-        <li>If |paymentAmount| is 0, then return.</li>
         <li>Let |amount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
           {{PaymentCurrencyAmount/value}} set to |paymentAmount| serialized as a string.</li>
-        <li>Schedule a task that, after |delay| has elapsed, runs these steps:
+        <li>If |paymentAmount| is greater than 0, schedule a task that, after |delay| has elapsed,
+          performs the following steps:
           <ol>
-            <li>If |session| is not in the [=sessions list=], or not
-              <a data-cite="WebMonetization/#dfn-active">active</a>, then [=schedule payment streaming tick=]
-              and return.
-            </li>
             <li><a data-cite="WebMonetization/#dfn-initiate-a-payment">Initiate a payment</a> given
               |session| and |amount|.
             </li>
+            <li>[=Schedule payment streaming tick=].</li>
           </ol>
         </li>
       </ol>
@@ -221,11 +216,8 @@
     </div>
 
     <div class="algorithm">
-      <p>To <dfn>run payment initiation steps</dfn>, given |session:Session| and |amount:PaymentCurrencyAmount|, run these steps:</p>
+      <p>The <a href="WebMonetization/#dfn-payment-initiation-steps">payment initiation steps</a>, given |session:Session| and |amount:PaymentCurrencyAmount|, are:</p>
       <ol>
-        <li>Let |userWallet:UserWallet| be the result of [=get user wallet=].</li>
-        <li>If |userWallet| is null, then [=schedule payment streaming tick=] and return failure.</li>
-        <li>If |session| is not in the [=sessions list=], then [=schedule payment streaming tick=] and return failure.</li>
         <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
         <li>Let |userWalletGrant:Grant| be |userWallet|'s {{Storage/grant}}.</li>
         <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
@@ -254,7 +246,6 @@
             <li>Return failure.</li>
           </ol>
         </li>
-        <li>[=Schedule payment streaming tick=].</li>
         <li>Let |paymentAmount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
           {{PaymentCurrencyAmount/currency}} set to |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetCode}}
           and {{PaymentCurrencyAmount/value}} set to the result of [=convert scaled amount to decimal=]
