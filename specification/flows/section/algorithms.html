@@ -673,7 +673,7 @@
             Run the [=generate an HTTP message signature=] algorithm on |request| with |incomingPaymentGrant|.{{Grant/access_token}}.{{AccessToken/value}}.
           </li>
           <li>
-            Let |incomingPaymentId:DOMString| be null.
+            Let |incomingPaymentId:DOMString?| be null.
           </li>
           <li>
             Perform a [=fetch request=] with |request| and with |processResponseConsumeBody| set to the following steps,
@@ -683,7 +683,7 @@
                 Let |json| be the result of [=extract the JSON fetch response=] from |response| and |responseBody|.
               </li>
               <li>
-                If |json| does not have an <code>id</code> property whose value is a string, return failure.
+                If |json| does not have an <code>id</code> property whose value is a string, return.
               </li>
               <li>
                 Set |incomingPaymentId| to |json|.id.

@@ -180,11 +180,11 @@
         <li>If |session|'s {{Session/incomingPaymentId}} is null, perform the following steps:
           <ol>
             <li>Let |authKeys:AuthKeys?| be the result of [=get auth keys=].</li>
-            <li>If |authKeys| is null, return.</li>
-            <li>Let |incomingPaymentGrant:Grant?| be the result of [=send an incoming payment grant request=] with |websiteWalletDetails| and |authKeys|.</li>
-            <li>If |incomingPaymentGrant| is null, return.</li>
-            <li>Let |incomingPaymentId:DOMString?| be the result of [=send a create incoming payment request=] with |websiteWalletDetails|, and |incomingPaymentGrant|.</li>
-            <li>If |incomingPaymentId| is null, return.</li>
+            <li>If |authKeys| is null, return failure.</li>
+            <li>Let |incomingPaymentGrant:Grant?| be the result of [=send an incoming payment grant request=] with |session|'s {{Session/walletDetails}} and |authKeys|.</li>
+            <li>If |incomingPaymentGrant| is null, return failure.</li>
+            <li>Let |incomingPaymentId:DOMString?| be the result of [=send a create incoming payment request=] with |session|'s {{Session/walletDetails}}, and |incomingPaymentGrant|.</li>
+            <li>If |incomingPaymentId| is null, return failure.</li>
             <li>Set |session|'s {{Session/incomingPaymentId}} to |incomingPaymentId|.</li>
             <li>Let |continueUri:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/uri}}.</li>
             <li>Let |accessToken:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/access_token}}.{{ContinueAccessToken/value}}.</li>
@@ -195,9 +195,11 @@
           </ol>
         </li>
         <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
-        <li>Let |userWalletGrant:Grant| be |userWallet|'s {{Storage/grant}}.</li>
+        <li>Let |userWalletDetails:WalletAddressDetails?| be the result of [=get user wallet=].</li>
+        <li>Let |userWalletGrant:Grant?| be the result of [=get grant=].</li>
+        <li>If |userWalletDetails| or |userWalletGrant| is null, return failure.</li>
         <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
-          with |userWallet|'s {{UserWallet/walletAddressDetails}}, |session|'s {{Session/incomingPaymentId}},
+          with |userWalletDetails|, |session|'s {{Session/incomingPaymentId}},
           |amountValue|, and |userWalletGrant|.</li>
         <li>If |result| is {{OutgoingPaymentResult/"token-invalid"}}:
           <ol>
@@ -212,7 +214,7 @@
             <li>Set |userWalletGrant|'s {{Grant/access_token}} to |rotatedAccessToken|.</li>
             <li>Run [=update grant access token=] with |rotatedAccessToken|.</li>
             <li>Set |result| to the result of [=send a create outgoing payment request=]
-              with |userWallet|'s {{UserWallet/walletAddressDetails}}, |session|'s {{Session/incomingPaymentId}},
+              with |userWalletDetails|, |session|'s {{Session/incomingPaymentId}},
               |amountValue|, and |userWalletGrant|.</li>
           </ol>
         </li>
@@ -223,9 +225,9 @@
           </ol>
         </li>
         <li>Let |paymentAmount:PaymentCurrencyAmount| be a new {{PaymentCurrencyAmount}} with
-          {{PaymentCurrencyAmount/currency}} set to |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetCode}}
+          {{PaymentCurrencyAmount/currency}} set to |userWalletDetails|.{{WalletAddressDetails/assetCode}}
           and {{PaymentCurrencyAmount/value}} set to the result of [=convert scaled amount to decimal=]
-          given |amountValue| and |userWallet|.{{UserWallet/walletAddressDetails}}.{{WalletAddressDetails/assetScale}}.
+          given |amountValue| and |userWalletDetails|.{{WalletAddressDetails/assetScale}}.
         </li>
         <li>Return a payment with amount |paymentAmount|, incoming payment URL |session|.{{Session/incomingPaymentId}},
           and wallet address |session|.{{Session/walletDetails}}.{{WalletAddressDetails/id}}.</li>
