@@ -77,7 +77,7 @@
         group: 'wicg',
         xref: {
           profile: 'web-platform',
-          specs: ['ECMAScript', 'payment-request'],
+          specs: ['ECMAScript', 'payment-request', 'permissions'],
         },
         localBiblio: {
           Interledger: {
@@ -307,8 +307,8 @@
             condition=] list:
           </p>
           <ol>
-            <li>Has the user allowed the usage of monetization? (this
-            specification)
+            <li>Has the user allowed [=check for granted permission|the usage
+            of monetization=]? (this specification)
             </li>
             <li>Has the user set up a valid wallet in their [=user agent=]?
             (<a href="/specification/flows/">Web Monetization flows</a>
@@ -815,22 +815,70 @@
         </p>
       </section>
     </section>
+    <section id="permissions">
+      <h2>
+        Permissions integration
+      </h2>
+      <p>
+        Web Monetization is a [=powerful feature=] that is identified by the
+        [=powerful feature/name=] <dfn class=
+        "permission export">"monetization"</dfn>. Its permission-related
+        aspects are defined as follows:
+      </p>
+      <dl>
+        <dt>
+          [=permission/lifetime|Permission lifetime=]
+        </dt>
+        <dd>
+          The user agent SHOULD retain a granted "monetization" permission
+          until the user revokes it.
+        </dd>
+      </dl>
+      <p>
+        At implementation-defined times, the user agent MAY [=request
+        permission to use=] "monetization". The user agent SHOULD NOT [=request
+        permission to use=] "monetization" while no wallet is connected, so
+        that the [=permission state=] remains {{PermissionState/"prompt"}}.
+      </p>
+      <p>
+        To <dfn>check for granted permission</dfn> given |session|, perform the
+        following steps:
+      </p>
+      <ol class="algorithm">
+        <li>Let |document| be |session|'s [=payment session/link=]'s
+        [=Node/node document=].
+        </li>
+        <li>Let |settings| be |document|'s [=relevant settings object=].
+        </li>
+        <li>Let |state| be the result of [=get the current permission state=]
+        with `"monetization"` and |settings|.
+        </li>
+        <li>If |state| is not {{PermissionState/"granted"}}, return false.
+        </li>
+        <li>Return true.
+        </li>
+      </ol>
+      <p>
+        This section defines a [=payment session condition=] to [=check for
+        granted permission=].
+      </p>
+    </section>
     <section id="permissions-policy" data-cite="permissions-policy">
       <h2>
         Permissions Policy integration
       </h2>
       <p>
         This specification defines a [=policy-controlled feature=] identified
-        by the string <dfn class="permission export">"monetization"</dfn>. Its
-        default <a>allowlist</a> is `'self'`.
+        by the same name as the powerful feature (<a>"monetization"</a>). Its
+        default [=allowlist=] is `'self'`.
       </p>
       <aside class="note">
         <p>
-          A <a>document</a>'s [=Document/permissions policy=] determines
-          whether the user agent starts [=payment sessions=] for [^link^]
-          elements - particularly in third-party content, such as an
-          [^iframe^]. When disabled, monetization is disabled and related
-          events won't be dispatched.
+          A [=document=]'s [=Document/permissions policy=] determines whether
+          the user agent starts [=payment sessions=] for [^link^] elements -
+          particularly in third-party content, such as an [^iframe^]. When
+          disabled, monetization is disabled and related events won't be
+          dispatched.
         </p>
       </aside>
       <aside class="note">
@@ -843,7 +891,7 @@
       <aside class="example">
         <p>
           Given a page embedding the following [^iframe^], monetization is
-          allowed for the embedded <a>document</a>:
+          allowed for the embedded [=document=]:
         </p>
         <pre class="html">
           &lt;iframe src="https://example.com/" allow="monetization"&gt;&lt;/iframe&gt;
@@ -1096,6 +1144,15 @@
         The user agent does not send data about the user to the [=monetization
         receiver=]. To set up a [=payment session=], it fetches the [=wallet
         address=] instead.
+      </p>
+      <p>
+        To avoid increasing the fingerprinting surface, the `"load"` event MUST
+        be fired independently of the [=permission state=]. Otherwise it could
+        indicate whether the user has connected a wallet or not. For the same
+        reason the [=permission state=] remains {{PermissionState/"prompt"}}
+        when no wallet is connected, to not allow for distinction between users
+        who have not granted permission yet and users who have not set up their
+        wallet.
       </p>
     </section>
     <section id="relation-to-other-technologies" class="informative">
