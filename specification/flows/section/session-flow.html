@@ -75,39 +75,11 @@
           If |websiteWalletDetails| is null, return.
         </li>
         <li>
-          Let |authKeys:AuthKeys?| be the result of [=get auth keys=].
-        </li>
-        <li>
-          If |authKeys| is null, return.
-        </li>
-        <li>
-          Let |incomingPaymentGrant:Grant?| be the result of [=send an incoming payment grant request=] with |websiteWalletDetails| and |authKeys|.
-        </li>
-        <li>
-          If |incomingPaymentGrant| is null, return.
-        </li>
-        <li>
-          Let |incomingPaymentId:DOMString?| be the result of [=send a create incoming payment request=] with |websiteWalletDetails|, and |incomingPaymentGrant|.
-        </li>
-        <li>
-          If |incomingPaymentId| is null, return.
-        </li>
-        <li>
-          Let |continueUri:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/uri}}.
-        </li>
-        <li>
-          Let |accessToken:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/access_token}}.{{ContinueAccessToken/value}}.
-        </li>
-        <li>
-          [=Send a cancel grant request=] with |continueUri| and |accessToken|.
-          <p class="note">The incoming payment grant is no longer needed after the payment bucket has been created. Canceling it ensures proper cleanup and revokes the authorization. Implementations should handle cancellation failures gracefully but can proceed with the session even if cancellation fails, as the grant will expire naturally.</p>
-        </li>
-        <li>
           Let |session:Session| be a new {{Session}} with:
           <ul>
             <li>{{Session/linkElement}} set to |linkElement|</li>
             <li>{{Session/walletDetails}} set to |websiteWalletDetails|</li>
-            <li>{{Session/incomingPaymentId}} set to |incomingPaymentId|</li>
+            <li>{{Session/incomingPaymentId}} set to null</li>
           </ul>
         </li>
         <li>
@@ -122,19 +94,6 @@
         </li>
       </ol>
     </div>
-
-    <aside class="note" title="Session initiation summary">
-      <p>The main [=start a session=] algorithm performs these key steps:</p>
-      <ol>
-        <li><strong>Precondition:</strong> Verify user wallet is connected and monetization is not disabled</li>
-        <li><strong>Discovery:</strong> Request website wallet address details</li>
-        <li><strong>Authorization:</strong> Obtain an incoming payment grant to create payments on the website's wallet</li>
-        <li><strong>Payment setup:</strong> Create an incoming payment (payment bucket) on the website's wallet resource server</li>
-        <li><strong>Cleanup:</strong> Cancel the temporary incoming payment grant (no longer needed)</li>
-        <li><strong>Registration:</strong> Add the session to the sessions list and
-          start the payment streaming loop if this is not yet started</li>
-      </ol>
-    </aside>
   </section>
 
   <section>
@@ -218,6 +177,23 @@
     <div class="algorithm">
       <p>The <a href="WebMonetization/#dfn-payment-initiation-steps">payment initiation steps</a>, given |session:Session| and |amount:PaymentCurrencyAmount|, are:</p>
       <ol>
+        <li>If |session|'s {{Session/incomingPaymentId}} is null, perform the following steps:
+          <ol>
+            <li>Let |authKeys:AuthKeys?| be the result of [=get auth keys=].</li>
+            <li>If |authKeys| is null, return.</li>
+            <li>Let |incomingPaymentGrant:Grant?| be the result of [=send an incoming payment grant request=] with |websiteWalletDetails| and |authKeys|.</li>
+            <li>If |incomingPaymentGrant| is null, return.</li>
+            <li>Let |incomingPaymentId:DOMString?| be the result of [=send a create incoming payment request=] with |websiteWalletDetails|, and |incomingPaymentGrant|.</li>
+            <li>If |incomingPaymentId| is null, return.</li>
+            <li>Set |session|'s {{Session/incomingPaymentId}} to |incomingPaymentId|.</li>
+            <li>Let |continueUri:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/uri}}.</li>
+            <li>Let |accessToken:DOMString| be |incomingPaymentGrant|.{{Grant/continue}}.{{Continue/access_token}}.{{ContinueAccessToken/value}}.</li>
+            <li>
+              [=Send a cancel grant request=] with |continueUri| and |accessToken|.
+              <p class="note">The incoming payment grant is no longer needed after the payment bucket has been created. Canceling it ensures proper cleanup and revokes the authorization. Implementations should handle cancellation failures gracefully but can proceed with the session even if cancellation fails, as the grant will expire naturally.</p>
+            </li>
+          </ol>
+        </li>
         <li>Let |amountValue:DOMString| be |amount|'s {{PaymentCurrencyAmount/value}}.</li>
         <li>Let |userWalletGrant:Grant| be |userWallet|'s {{Storage/grant}}.</li>
         <li>Let |result:OutgoingPaymentResult| be the result of [=send a create outgoing payment request=]
