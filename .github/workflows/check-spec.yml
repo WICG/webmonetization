@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - "specification/**"
+      - "scripts/format-specs.sh"
+      - "scripts/tidyconfig*.txt"
+      - "package.json"
+      - ".github/workflows/check-spec.yml"
 
 permissions:
   contents: read
@@ -24,9 +28,9 @@ jobs:
       - name: Check spec formatting
         run: |
           npm run format:spec || true
-          if ! git diff --exit-code --quiet specification/index.html; then
-            echo "::error::specification/index.html is not formatted correctly. Run 'npm run format:spec' locally and commit the changes."
-            git diff specification/index.html
+          if ! git diff --exit-code --quiet specification; then
+            echo "::error::The specification is not formatted correctly. Run 'npm run format:spec' locally and commit the changes."
+            git diff specification
             exit 1
           fi
 
