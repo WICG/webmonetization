@@ -89,10 +89,10 @@
           Let |websiteWalletAddress:DOMString| be the value of the {{HTMLLinkElement/href}} of |linkElement|.
         </li>
         <li>
-          Let |websiteWalletDetails:WalletAddressDetails?| be the result of [=send a wallet address request=] with |websiteWalletAddress|.
+          Let |websiteWalletDetails:WalletAddressDetails| be the result of [=send a wallet address request=] with |websiteWalletAddress|.
         </li>
         <li>
-          If |websiteWalletDetails| is null, return.
+          If |websiteWalletDetails| is failure, return.
         </li>
         <li>
           Let |authKeys:AuthKeys?| be the result of [=get auth keys=].

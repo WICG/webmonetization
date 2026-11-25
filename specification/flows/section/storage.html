@@ -89,36 +89,25 @@
         </div>
 
         <div class="algorithm">
-            <p>To <dfn>store wallet credentials</dfn>, given |walletAddressDetails:WalletAddressDetails|:</p>
+            <p>To <dfn>store wallet connection</dfn>, given |walletAddressDetails:WalletAddressDetails|, |grant:Grant|
+              and |maxRateOfPay:DOMString|:</p>
             <ol>
                 <li>Let |storage| be the result of [=get storage=].</li>
                 <li>Set |storage|'s {{Storage/wallet}} to |walletAddressDetails|.</li>
+                <li>Set |storage|'s {{Storage/grant}} to |grant|.</li>
+                <li>Set |storage|'s {{Storage/maxRateOfPay}} to |maxRateOfPay|.</li>
                 <li>[=Persist storage=] with |storage|.</li>
             </ol>
+            <p class="note">
+              The wallet, grant and max rate of pay are persisted in a single step so that an interruption cannot leave
+              a partially stored wallet connection.
+            </p>
             <p class="note">
               Each invocation of this algorithm establishes a new wallet connection. Implementations
               that track per-connection payment history SHOULD associate sessions and payments with
               the credential record created during this connection, so that balance computations are
               scoped to the active connection only.
             </p>
-        </div>
-
-        <div class="algorithm">
-            <p>To <dfn>store grant credentials</dfn>, given |grant:Grant|:</p>
-            <ol>
-                <li>Let |storage| be the result of [=get storage=].</li>
-                <li>Set |storage|'s {{Storage/grant}} to |grant|.</li>
-                <li>[=Persist storage=] with |storage|.</li>
-            </ol>
-        </div>
-
-        <div class="algorithm">
-          <p>To <dfn>store max rate of pay</dfn>, given |maxRateOfPay:DOMString|:</p>
-          <ol>
-            <li>Let |storage| be the result of [=get storage=].</li>
-            <li>Set |storage|'s {{Storage/maxRateOfPay}} to |maxRateOfPay|.</li>
-            <li>[=Persist storage=] with |storage|.</li>
-          </ol>
         </div>
 
         <div class="algorithm">
