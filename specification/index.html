@@ -325,25 +325,24 @@
           condition=] returns true for it.
         </p>
         <p>
-          A [=monetization provider=] has associated <dfn>payment initiation
-          steps</dfn>, an implementation-defined algorithm that takes a
-          [=payment session=] and returns either a [=payment=] or failure. The
-          steps attempt to start a payment to the [=monetization receiver=].
-          They may complete a payment asynchronously, so an initiated payment
-          is not a guarantee that the [=monetization receiver=] has received
-          the amount.
+          The <dfn>payment initiation steps</dfn> algorithm is
+          implementation-defined. It takes a [=payment session=] and returns
+          either a [=payment=] or failure. The steps attempt to start a payment
+          to the [=monetization receiver=]. They may complete a payment
+          asynchronously, so an initiated payment is not a guarantee that the
+          [=monetization receiver=] has received the amount.
         </p>
         <p>
-          To <dfn>initiate a payment</dfn> given |session|, run the following
-          steps:
+          To <dfn>initiate a payment</dfn> given |session| and |amount|, run
+          the following steps:
         </p>
         <ol class="algorithm">
           <li>If |session| is not [=payment session/active=], return.
           </li>
           <li>Run these steps [=in parallel=]:
             <ol>
-              <li>Let |payment| be the result of running the [=monetization
-              provider=]'s [=payment initiation steps=] given |session|.
+              <li>Let |payment| be the result of running the [=payment
+              initiation steps=] given |session| and |amount|.
               </li>
               <li>If |payment| is failure, return.
               </li>

@@ -153,14 +153,23 @@
             </ol>
         </div>
 
-  <div class="algorithm">
-    <p>To <dfn>get user wallet</dfn>:</p>
-    <ol>
-      <li>Let |storage| be the result of [=get storage=].</li>
-      <li>If |storage|'s {{Storage/wallet}} is null, return null.</li>
-      <li>Return |storage|'s {{Storage/wallet}}.</li>
-    </ol>
-  </div>
+        <div class="algorithm">
+          <p>To <dfn>get user wallet</dfn>:</p>
+          <ol>
+            <li>Let |storage| be the result of [=get storage=].</li>
+            <li>If |storage|'s {{Storage/wallet}} is null, return null.</li>
+            <li>Return |storage|'s {{Storage/wallet}}.</li>
+          </ol>
+        </div>
+
+        <div class="algorithm">
+          <p>To <dfn>get grant</dfn>:</p>
+          <ol>
+            <li>Let |storage| be the result of [=get storage=].</li>
+            <li>If |storage|'s {{Storage/grant}} is null, return null.</li>
+            <li>Return |storage|'s {{Storage/grant}}.</li>
+          </ol>
+        </div>
 
         <div class="algorithm">
           <p>To <dfn>clear wallet data</dfn>:</p>

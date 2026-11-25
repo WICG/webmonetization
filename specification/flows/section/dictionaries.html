@@ -350,14 +350,14 @@
     <section data-dfn-for="Session">
       <h4>The `Session` dictionary</h4>
       <p>
-        The {{Session}} dictionary represents an active monetization session. This is an internal user agent
-        structure maintained in the [=active sessions list=] and is not exposed to JavaScript.
+        The {{Session}} dictionary represents a monetization session. This is an internal user agent
+        structure maintained in the [=sessions list=] and is not exposed to JavaScript.
       </p>
       <pre class="idl">
         dictionary Session {
           required HTMLLinkElement linkElement;
           required WalletAddressDetails walletDetails;
-          required DOMString incomingPaymentId;
+          required DOMString? incomingPaymentId;
         };
       </pre>
       <dl>
@@ -368,7 +368,7 @@
         <dd>The {{WalletAddressDetails}} obtained from the wallet address discovery request.</dd>
 
         <dt><dfn>`incomingPaymentId`</dfn></dt>
-        <dd>The incoming payment identifier (payment bucket URI) created for receiving funds during this session.</dd>
+        <dd>The incoming payment identifier (payment bucket URI) created for receiving funds during this session. It is null until the first payment gets initiated.</dd>
       </dl>
     </section>
   </section>
