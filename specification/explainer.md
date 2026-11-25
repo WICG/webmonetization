@@ -122,7 +122,7 @@ blog does not learn who the reader is or anything about their financial account.
 - **Let sites respond to payments.** A site can learn that a payment was sent,
   check that it arrived, and offer something in return.
 - **Stay open.** Any wallet provider that supports Open Payments can send or
-  receive payments. There is no central network that all parties must join.
+  receive payments. There is no centralized platform that all parties must join.
 
 ### Non-goals
 
@@ -207,8 +207,7 @@ into the browser, Web Monetization would remove that step.
 5. **The site is notified.** For each payment the browser starts, it fires a
    `monetization` event at the `<link>` element. Its `amountSent` attribute
    holds the amount and currency, `walletAddress` the site's wallet address, and
-   `incomingPayment` the URL of the incoming payment. `incomingPayment` can be
-   null, for example for an event that a script created.
+   `incomingPayment` the URL of the incoming payment.
 6. **The site can verify.** The site can query the incoming payment URL, often
    from its own server, to confirm how much it has received.
 
@@ -558,10 +557,9 @@ Monetization mainly in that they depend on one company's network or browser.
 A
 [threat model](https://docs.google.com/document/d/1RqdMBZ3OECUm9UCSFacNVOFdHVQYjZhJJ9vQOvqyC4A/edit?tab=t.0#heading=h.4atdfjncmk6b)
 was written in 2024 for the Chromium prototype. Parts of it no longer match the
-current specification. For example, it describes a different authentication
-mechanism, a focus-based session condition, and CSP as a requirement. **The
-threat model needs to be cross-checked and updated against the current
-specification.** Where the two differ, this section follows the specification.
+current specification. **The threat model needs to be cross-checked and updated
+against the current specification.** Where the two differ, this section follows
+the specification.
 
 ### Privacy
 
