@@ -57,19 +57,20 @@
 
 ## Introduction
 
-Web Monetization lets a user agent send small, frequent payments from the user's
-own wallet to the website they are visiting. A website declares where it accepts
-payments with `<link rel="monetization" href="…">`. If the user has connected a
-wallet to their browser and allows monetization for that site, the browser pays
-the site while the user is on the page, without per-payment prompts. The site
-gets a `monetization` event for each payment the browser starts and can use it
-to change what it shows, for example by removing ads.
-
-The browser does the work between two independent accounts: the user's wallet
-and the website's wallet. Neither side needs an account with the other, and the
-user's wallet provider is not told which page the user is on. Payments use
-[Open Payments](https://openpayments.dev/), an open API for financial service
+Web Monetization lets a user agent send small, periodic payments from the user's
+digital wallet to the website they are visiting. The user agent does the work
+between two independent accounts: the user's wallet and the website's wallet.
+Neither side needs an account with the other, and the user's wallet provider is
+not told which page the user is on. Payments use [Open
+Payments](https://openpayments.dev/), an open API for financial service
 providers.
+
+A website declares where it accepts payments via an HTML `<link>` tag or tags.
+If the user has connected a wallet to their browser, and then allows
+monetization on that website, the browser pays the site while the user is on the
+page without requiring per-payment prompts. The site can then change what it
+shows; for example, by removing ads or by granting access to member-only
+resources.
 
 ## User-facing problem
 
@@ -97,31 +98,34 @@ ads or tracking have no common way to accept such payments.
 loads ads and third-party trackers. The reader would like to support the blog
 instead. To do that, they would have to create an account on the author's
 membership platform, enter card details, and commit to a monthly fee for a site
-they only visit now and then. Most readers don't, so the blog keeps relying on
-ads.
+they only visit now and then. Most readers don't go to that level of effort, so
+the blog keeps relying on ads.
 
-**With Web Monetization:** The reader connected their wallet to their browser
-once and set a monthly budget. When they open the blog, the browser checks that
-they allow monetization for it and sends small payments to the blog's wallet
-while they read. The blog sees the payments and hides its ads. The reader can
-stop paying any site at any time, and their browser can show what they paid. The
-blog does not learn who the reader is or anything about their financial account.
+**With Web Monetization:** The reader has already connected their wallet to
+their browser and set a monthly budget. When they open the cooking blog, the
+browser checks that the reader has allowed monetization for that site, and sends
+small payments to the blog's wallet while they read. The blog sees the payments
+and hides its ads. The reader can stop paying any site at any time, and their
+browser can show what they paid. The blog does not learn who the reader is or
+anything about their financial account. The reader's wallet provider does not
+learn what site the reader visited or what content they read.
 
 ### Goals
 
-- **Pay sites without friction.** Once a user has connected a wallet and set a
-  budget, payments to a site need no further steps per payment.
-- **Keep the user in control.** The user decides whether monetization is on,
+- **Paying sites without friction.** Once a user has connected a wallet, set a
+  budget, and authorized a site, payments to the site need no further steps 
+  per payment and will not automatically overspend the budget.
+- **Keeping the user in control.** The user decides whether monetization is on,
   which sites they pay, and how much they spend. They can pause or stop payments
   at any time.
-- **Protect privacy.** The browser shares only what each party needs to make a
-  payment. The user's wallet provider is not told which page the user visited,
+- **Protecting privacy.** The browser shares only what each party needs to make 
+  a payment. The user's wallet provider is not told which page the user visited,
   and the site does not receive the user's financial details.
-- **Work for simple sites.** A static HTML page can receive payments with a
+- **Working for simple sites.** A static HTML page can receive payments with a
   single `<link>` element, without a backend.
-- **Let sites respond to payments.** A site can learn that a payment was sent,
-  check that it arrived, and offer something in return.
-- **Stay open.** Any wallet provider that supports Open Payments can send or
+- **Letting sites respond to payments.** A site can learn that a payment was 
+  sent, check that it arrived, and offer something in return.
+- **Staying open.** Any wallet provider that supports Open Payments can send or
   receive payments. There is no centralized platform that all parties must join.
 
 ### Non-goals
@@ -157,12 +161,12 @@ in Chrome during 2021 and 2022, with a peak of about 0.048% in April 2021. In
 April 2023, when Coil stopped making payments, usage fell to about 0.013%.
 
 **The Web Monetization browser extension.** The Interledger Foundation now
-maintains the
-[Web Monetization browser extension](https://github.com/interledger/web-monetization-extension)
-for Chrome, Firefox, Edge, and Safari. As of November 2026, the stores list
-about 160 users on Chrome, about 30 on Edge, and about 17 daily users on
-Firefox.
-[Chrome Platform Status](https://chromestatus.com/metrics/feature/timeline/popularity/3120)
+maintains the [Web Monetization browser
+extension](https://github.com/interledger/web-monetization-extension) for
+Chrome, Firefox, Edge, and Safari. As of November 2026, the various browser
+extension stores list about 160 users on Chrome, about 30 on Edge, and about 17
+daily users on Firefox. [Chrome Platform
+Status](https://chromestatus.com/metrics/feature/timeline/popularity/3120)
 (`HTMLLinkElementMonetization`) shows `<link rel="monetization">` on about
 0.00001% of page loads, with a peak of about 0.002%. Neither counter measures
 payments, only pages that include the markup.
@@ -175,11 +179,11 @@ into the browser, Web Monetization would remove that step.
 
 ## Proposed approach
 
-### How it works
+### How it will work
 
 1. **The user connects a wallet.** In the browser's settings, the user enters
    the [wallet address](https://openpayments.dev/) of an account that supports
-   Open Payments and sets a budget, for example a monthly amount. The browser
+   Open Payments and sets a budget; for example, a monthly amount. The browser
    generates a signing key pair and shows its public key, which the user
    registers with their wallet provider. The browser then sends the user to
    their wallet provider to approve the budget. This happens once, not per site.
@@ -188,17 +192,18 @@ into the browser, Web Monetization would remove that step.
    ([#799](https://github.com/WICG/webmonetization/issues/799)).
 2. **A site declares a wallet address.** The site adds
    `<link rel="monetization" href="https://wallet.example/alice">`. The `href`
-   is the site's wallet address, a URL that returns JSON describing the account.
-   The browser fetches it in CORS mode, so the wallet provider must serve it
-   with CORS headers.
-3. **The browser starts a payment session.** When the link is connected to the
-   document, the browser fetches the wallet address. If the fetch succeeds, the
+   is the site's wallet address, a URL that returns a JSON file describing the 
+   account. The browser fetches it in CORS mode, so the wallet provider must 
+   serve it with CORS headers.
+3. **The browser starts a payment session.** When arriving at a monetized
+   web page, the browser fetches the wallet address given in the 
+   `<link rel="monetization">` element. If the fetch succeeds, the
    browser creates a _payment session_ for that link and fires a `load` event at
    the link; otherwise it fires `error`. Through Open Payments, it creates an
    _incoming payment_ at the site's wallet provider.
 4. **The browser sends payments.** The browser only pays into a session while it
    is _active_: its document is fully active and every other payment session
-   condition holds, for example a wallet is connected, the user has not paused
+   condition holds: a wallet is connected, the user has not paused
    monetization, and the user has granted permission for the site (see
    [permissions](#user-consent-and-permissions)). While the session is active,
    the browser asks the user's wallet provider to pay into the incoming payment.
@@ -206,10 +211,11 @@ into the browser, Web Monetization would remove that step.
    [Budget](#solving-keep-the-user-in-control-with-this-approach).
 5. **The site is notified.** For each payment the browser starts, it fires a
    `monetization` event at the `<link>` element. Its `amountSent` attribute
-   holds the amount and currency, `walletAddress` the site's wallet address, and
-   `incomingPayment` the URL of the incoming payment.
-6. **The site can verify.** The site can query the incoming payment URL, often
-   from its own server, to confirm how much it has received.
+   holds the amount and currency, its `walletAddress` attribute holds the site's 
+   wallet address, and its
+   `incomingPayment` attribute holds the URL of the incoming payment.
+6. **The site can verify.** The site can query the incoming payment URL to 
+   confirm how much was received.
 
 ```mermaid
 sequenceDiagram
@@ -242,13 +248,15 @@ sequenceDiagram
 ```
 
 The [main specification](https://webmonetization.org/specification/) defines the
-web-facing API: the link type, the event, and the integration with Permissions
-Policy, CSP, and Fetch. The
-[flows specification](https://webmonetization.org/specification/flows/) defines
-how a browser connects a wallet and runs payment sessions with Open Payments.
-The [extensions API](https://webmonetization.org/specification/extensions-api/)
-lets browser extensions build management UI on top of the browser's
-implementation. This explainer focuses on the web-facing API.
+web-facing API: the link type, the event, and the integration with [Permissions
+Policy](https://www.w3.org/TR/permissions-policy/),
+[CSP](https://www.w3.org/TR/CSP3/), and [Fetch](https://fetch.spec.whatwg.org/).
+The [Web Monetization flows
+specification](https://webmonetization.org/specification/flows/) defines how a
+browser connects a wallet and runs payment sessions with Open Payments. The
+[extensions API](https://webmonetization.org/specification/extensions-api/) lets
+browser extensions build management UI on top of the browser's implementation.
+This explainer focuses on the web-facing API.
 
 ### Dependencies on non-stable features
 
@@ -273,7 +281,7 @@ implementation. This explainer focuses on the web-facing API.
 The user connects a wallet and approves a budget once (step 1 of
 [How it works](#how-it-works)). After that, every monetized site the user allows
 is paid automatically, with no prompt per payment. The site needs nothing more
-than a `<link>` (see
+than a `<link rel="monetization">` (see
 [Work for simple sites](#solving-work-for-simple-sites-with-this-approach)).
 
 ### Solving "keep the user in control" with this approach
@@ -282,11 +290,11 @@ than a `<link>` (see
   it at their wallet provider, which enforces it. The browser turns the budget
   into a rate of pay. In the flows specification, a monthly budget is spread
   evenly over a 30-day month of continuous time, so a user who browses monetized
-  sites for a few hours a day spends only a fraction of it. The browser pays one
-  session at a time, in turn, so the rate is shared across all monetized links,
-  frames, and tabs and does not grow with their number.
+  sites for a few hours a day spends only a fraction of it. The browser in turn 
+  pays one session at a time, so the rate is shared across all monetized links,
+  frames, and tabs, and does not grow with their number.
 - **Per-site permission.** The browser asks the user before paying a site the
-  first time, and the user can choose a custom rate for it. See
+  first time, and the user can choose a custom rate for that site. See
   [User consent and permissions](#user-consent-and-permissions).
 - **Pause and stop.** The user can pause monetization, for all sites or for one
   site, in the browser's settings. A paused session is no longer active, so the
@@ -294,8 +302,8 @@ than a `<link>` (see
   session is stopped for good when its link is removed, disabled, or changed.
   Payments already started are not canceled.
 
-A site can check the permission state, for example to explain what Web
-Monetization is before the user has decided. A custom rate the user chose is
+A site can check the permission state and act upon it — for example, to bring
+up a modal — before the user has decided. A custom rate the user chooses is
 never exposed to the site.
 
 ```js
@@ -308,10 +316,10 @@ if (status.state === 'prompt') {
 ### Solving "protect privacy" with this approach
 
 - The site only sees the `monetization` event: the amount and currency sent, its
-  own wallet address, and the incoming payment URL. It gets no user identifier
-  or wallet details.
-- The user's wallet provider is told where to pay and how much, but not the URL
-  of the page.
+  own wallet address, and the incoming payment URL. It receives no user 
+  identifier or wallet details.
+- The user's wallet provider is told where to send payment and how much, but not 
+  the URL of the page that asked for the payment.
 - The `load` event on the link depends only on fetching the wallet address, not
   on whether the user has connected a wallet or granted permission, so a site
   cannot detect a wallet that way.
@@ -320,7 +328,7 @@ The remaining risks are described in [Privacy](#privacy).
 
 ### Solving "work for simple sites" with this approach
 
-A static page receives payments with a single element, using a wallet address
+A static page can receive payments with a single element, using a wallet address
 hosted by its wallet provider. No script or backend is needed.
 
 ```html
@@ -368,7 +376,7 @@ available.
 ```
 
 A `monetization` event means the browser has started a payment. It does not
-prove the site received money.
+prove that the site received money.
 
 ```js
 window.addEventListener('monetization', async (event) => {
@@ -390,8 +398,8 @@ window.addEventListener('monetization', async (event) => {
 ### Solving "stay open" with this approach
 
 A wallet address is a plain HTTPS URL. Any provider that implements Open
-Payments can host one, and the user's wallet provider and the site's wallet
-provider do not need any relationship with each other.
+Payments can host one, and neither the user's wallet provider nor the 
+site's wallet provider need any relationship with the other.
 
 Different parts of a page can be paid through different providers. Embedded
 documents can be monetized if the embedding page allows it. The `monetization`
@@ -427,17 +435,17 @@ modeled the sender as a
 of payments.
 
 - **Pros:** Reuses existing web payment APIs and their concepts.
-- **Cons:** Payment Request is imperative, requires a user gesture, and shows a
-  payment sheet. Web Monetization payments are small, frequent, and pre-approved
-  by a budget, so a per-payment prompt would defeat the purpose.
+- **Cons:** Payment Request is imperative, requires user interaction, and shows 
+  a payment sheet. Web Monetization payments are small, periodic, and
+  pre-approved by a budget, so a per-payment prompt would defeat the purpose.
 - **Reason for rejection:** The interaction model does not fit.
 
 ### `<meta name="monetization">` and a `document.monetization` object
 
-The first version of Web Monetization used
-`<meta name="monetization" content="$wallet.example/alice">` in the document
-head. A global `document.monetization` object exposed a state and fired
-`monetizationstart` and `monetizationprogress` events.
+The first version of Web Monetization used `<meta name="monetization"
+content="https://wallet.example/alice">` in the document head. A global
+`document.monetization` object exposed a state and fired `monetizationstart` and
+`monetizationprogress` events.
 
 - **Pros:** Easier to extend in the future.
 - **Cons:** Only one wallet address per document. `<meta>` must be in the
@@ -492,7 +500,7 @@ the declarative link.
 
 - **Pros:** Gives scripts full control over when payments start.
 - **Cons:** Requires JavaScript. The site would decide when to start payments,
-  while the user and user agent should decide.
+  whereas the user and user agent should decide.
 - **Reason for rejection:** The declarative link meets the goals. Scripts can
   still add, remove, or disable links to control monetization.
 
@@ -500,9 +508,9 @@ the declarative link.
 
 Earlier versions fired events at `document.monetization`.
 
-- **Pros:** One place to listen for all payments.
+- **Pros:** One place to listen for all payment activity.
 - **Cons:** With several wallet addresses on a page, a global target cannot tell
-  which one a payment was for.
+  which one a payment is for.
 - **Reason for rejection:** Events fire at the `<link>` element that started the
   session. They bubble, so a listener on the document or window still sees all
   payments, and `event.target` identifies the link.
@@ -517,7 +525,7 @@ property.
 - **Cons:** More API surface, and more states that reveal details about the
   user's setup.
 - **Reason for rejection:** A single `monetization` event fires for each
-  payment. Whether a session could be set up is already reported by the link's
+  payment. Whether a session can be set up is already reported by the link's
   standard `load` and `error` events.
 
 ### Integer amounts with an asset scale
@@ -567,7 +575,7 @@ What each party learns:
 
 | Party                  | Learns                                                                                                      | Does not learn                                            |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| User's wallet provider | Amounts, timing, the site's wallet address and incoming payment, and the user's IP address                  | The URL of the page                                       |
+| User's wallet provider | Amounts, timing, the site's wallet address and incoming payment, and the user's IP address                  | The URL of the site                                       |
 | Site's wallet provider | That payments arrive, their amounts and timing, the user's IP address, and the browser's public signing key | The user's name or wallet address                         |
 | Website                | That a payment was sent, its amount and currency, and the incoming payment URL                              | The user's identity, wallet address, or financial details |
 
@@ -577,23 +585,24 @@ account.
 Known privacy risks, and how the design addresses them:
 
 - **Inferring browsing from wallet addresses:** The user agent does not send
-  page URLs to the user's wallet provider. But a wallet address often identifies
-  the site's owner, so the user's wallet provider may still infer which sites
-  the user pays. This risk is higher when the user's wallet provider and the
-  site's wallet provider are the same company.
+  page URLs to the user's wallet provider. Nevertheless, a wallet address often 
+  identifies the site's owner, so the user's wallet provider may still infer 
+  which sites the user pays. This risk is higher when the user's wallet provider 
+  and the site's wallet provider are the same company.
 - **Per-visitor wallet addresses:** A site could give each visitor a unique
   wallet address and link payments to that visitor. This is no more than what
   the site could already do with first-party state.
-- **Stable signing key:** The browser signs its Open Payments requests with one
-  long-lived key pair, including the requests to the site's wallet provider that
-  create incoming payments. A wallet provider that serves many sites can use the
-  public key to link the same user across those sites. The flows specification
-  notes this and may move to per-session or per-origin keys in the future.
-- **Fingerprinting:** Whether `monetization` events fire reveals that the user
-  has a wallet connected. The currency of `amountSent` is the currency of the
-  user's wallet, which can hint at the user's country. The amount and timing can
-  reveal the user's budget. If the user agent limits concurrent sessions,
-  `error` events on extra links can reveal that limit.
+- **Stable signing key:** The browser signs its Open Payments requests,
+  including the requests to the site's wallet provider that create incoming
+  payments, with one long-lived key pair. A wallet provider that serves many
+  sites can use the public key to link the same user across those sites. The
+  flows specification notes this and may move to per-session or per-origin keys
+  in the future.
+- **Fingerprinting:** Whether `monetization` events fire reveals whether the
+  user has a wallet connected. The currency of `amountSent` is the currency of
+  the user's wallet, which can hint at the user's country. The amount and
+  timing of payments can reveal the user's budget. If the user agent limits
+  concurrent sessions, `error` events on extra links can reveal that limit.
 - **Time spent on a page:** Payment timing reveals to the site's wallet provider
   how long the user is on a page. The site already knows this.
 
@@ -608,15 +617,15 @@ Two mechanisms control where monetization happens:
   user decide per site. Granted permission is a payment session condition: the
   browser fetches the wallet address and fires `load` regardless of the
   permission state, but only pays while the permission is granted. The user
-  agent can ask the user per site, at times it chooses, or let the user allow or
-  block sites in settings. A granted permission is kept until the user revokes
-  it. Once revoked, the payment sessions for that origin are no longer active,
-  so the browser stops paying into them. The user agent does not ask while no
-  wallet is connected, so the state stays `"prompt"` both for users without a
-  wallet and for users who have not decided yet.
+  agent can ask the user per site, at times of its own choosing, or let the
+  user allow or block sites in settings. A granted permission is kept until the
+  user revokes it. Once revoked, the payment sessions for that origin are no
+  longer active, so the browser stops paying into them. The user agent does not
+  ask while no wallet is connected, so the state stays `"prompt"` both for
+  users without a wallet and for users who have not decided yet.
 
 The specification also recommends that user agents show when monetization is
-possible or happening, and let the user stop or start it for a site.
+possible or happening, and let the user stop or start it for a given site.
 
 ### Security
 
@@ -641,7 +650,7 @@ possible or happening, and let the user stop or start it for a site.
 - **Fake events and replayed payments:** `MonetizationEvent` has a public
   constructor, so page script can dispatch fake events, and a modified client
   can send any incoming payment URL to the site. Sites should verify payments on
-  their server, checking that the incoming payment belongs to them and that its
+  their server, and check that the incoming payment belongs to them and that its
   `receivedAmount` has increased, before giving anything of value.
 - **Credentials:** The browser's private signing key never leaves the user agent
   and is never exposed to web content. Access to the user's funds requires the
@@ -681,7 +690,7 @@ possible or happening, and let the user stop or start it for a site.
 - **Gecko**: No official signal. A
   [standards position request](https://github.com/mozilla/standards-positions/issues/987)
   is open without a response.
-- **WebKit**: No official signals. _TODO: Link the WebKit standards position
+- **WebKit**: No official signal. _TODO: Link the WebKit standards position
   request once filed._
 - **Web developers**: Sites use Web Monetization today, and users pay them
   through the
